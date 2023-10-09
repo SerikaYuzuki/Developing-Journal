@@ -374,12 +374,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="rotation-matrixのgetunitaxisの意味" class="level3">
 <h3 class="anchored" data-anchor-id="rotation-matrixのgetunitaxisの意味">Rotation MatrixのGetUnitAxisの意味</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> FVector2D InputAxisVector <span class="op">=</span> Value<span class="op">.</span>Get<span class="op">&lt;</span>FVector2D<span class="op">&gt;();</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> FRotator Rotation <span class="op">=</span> GetControlRotation<span class="op">();</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> FRotator YawRotation<span class="op">(</span><span class="dv">0</span><span class="op">,</span> Rotation<span class="op">.</span>Yaw<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> FVector ForwardDirection <span class="op">=</span> FRotationMatrix<span class="op">(</span>YawRotation<span class="op">).</span>GetUnitAxis<span class="op">(</span>EAxis<span class="op">::</span>X<span class="op">);</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> FVector RightDirection <span class="op">=</span> FRotationMatrix<span class="op">(</span>YawRotation<span class="op">).</span>GetUnitAxis<span class="op">(</span>EAxis<span class="op">::</span>Y<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="{cpp}"><code>const FVector2D InputAxisVector = Value.Get&lt;FVector2D&gt;();
+const FRotator Rotation = GetControlRotation();
+const FRotator YawRotation(0, Rotation.Yaw, 0);
+
+const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+
+if (APawn* ContrlledPawn = GetPawn&lt;APawn&gt;())
+{
+    ContrlledPawn-&gt;AddMovementInput(ForwardDirection, InputAxisVector.Y);
+    ContrlledPawn-&gt;AddMovementInput(RightDirection, InputAxisVector.X);
+}</code></pre>
 <p><code>FRotationMatrix(YawRotation)</code> は、YawRotationを回転行列に変換している。この回転行列は、YawRotationの回転軸をZ軸にしている。ここまではいいが、行列にする意味は何か？</p>
 <p><code>GetUnitAxis(EAxis::X)</code> は、回転行列の1列目を取得していることになる。</p>
 <p><span class="math display">\[
@@ -407,7 +413,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 1
 \end{pmatrix}
 \]</span></p>
-<p>これについて考えれば、</p>
+<p>これについて考えれば、1,2,3列目のベクトルとは、回転後のベクトルの、向いている方向、その方向を <span class="math inline">\(x'\)</span> 軸として作り上げる右手系 <span class="math inline">\(x', y', z'\)</span> の基底ベクトルになっていることがわかる。</p>
+<p><code>GetControlRotation()</code>でControl世界の回転を取得しているので、その世界の <span class="math inline">\(x, y\)</span> 軸への方向に動きを制限して、Inputを適用している。</p>
 </section>
 </section>
 <section id="問題点" class="level2">
