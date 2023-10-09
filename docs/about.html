@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Harlow Malloc">
-<meta name="dcterms.date" content="2023-10-09">
 
-<title>UE5 Journal - Post With Code</title>
+<title>My Journal - About</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,26 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../posts/welcome/index.html" rel="next">
-<link href="../../about.html" rel="prev">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./posts/UE5 Aura Courses/Section 02 Project Creation.html" rel="next">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,15 +65,15 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-sidebar floating nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">UE5 Journal</span>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">My Journal</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -87,8 +83,13 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../../about.html" rel="" target="" aria-current="page">
+    <a class="nav-link active" href="./about.html" rel="" target="" aria-current="page">
  <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://syosetu.org/novel/309340/" rel="" target=""><i class="bi bi-book" role="img">
+</i> 
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/SerikaYuzuki" rel="" target=""><i class="bi bi-github" role="img">
@@ -117,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/post-with-code/index.html">Posts</a></li><li class="breadcrumb-item"><a href="../../posts/post-with-code/index.html">Post With Code</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./about.html">About</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -127,40 +128,7 @@ ul.task-list li input[type="checkbox"] {
   </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Post With Code</h1>
-                                <div class="quarto-categories">
-                <div class="quarto-category">news</div>
-                <div class="quarto-category">code</div>
-                <div class="quarto-category">analysis</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Harlow Malloc </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">October 9, 2023</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -172,14 +140,14 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+  <a href="./about.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">About</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Posts</span></a>
+ <span class="menu-text">UE5 Aura Courses</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -187,14 +155,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/post-with-code/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Post With Code</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/welcome/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Welcome To My Blog</span></a>
+  <a href="./posts/UE5 Aura Courses/Section 02 Project Creation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Section 02 Project Creation</span></a>
   </div>
 </li>
       </ul>
@@ -204,68 +166,39 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#test-1" id="toc-test-1" class="nav-link active" data-scroll-target="#test-1">test 1</a>
-  <ul class="collapse">
-  <li><a href="#test-1.1" id="toc-test-1.1" class="nav-link" data-scroll-target="#test-1.1">test 1.1</a>
-  <ul class="collapse">
-  <li><a href="#test-1.1.1" id="toc-test-1.1.1" class="nav-link" data-scroll-target="#test-1.1.1">test 1.1.1</a></li>
-  </ul></li>
-  <li><a href="#test-1.2" id="toc-test-1.2" class="nav-link" data-scroll-target="#test-1.2">test 1.2</a></li>
-  </ul></li>
-  <li><a href="#test-2" id="toc-test-2" class="nav-link" data-scroll-target="#test-2">test 2</a>
-  <ul class="collapse">
-  <li><a href="#test-2.1" id="toc-test-2.1" class="nav-link" data-scroll-target="#test-2.1">test 2.1</a>
-  <ul class="collapse">
-  <li><a href="#test-2.1.1" id="toc-test-2.1.1" class="nav-link" data-scroll-target="#test-2.1.1">test 2.1.1</a></li>
-  <li><a href="#test-2.1.2" id="toc-test-2.1.2" class="nav-link" data-scroll-target="#test-2.1.2">test 2.1.2</a></li>
-  </ul></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<div class="quarto-about-jolla">
+  <img src="profile.jpg" class="about-image
+  round " style="height: 15em; width: 15em;">
+ <header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">About</h1>
+</div>
+<div class="quarto-title-meta">
+  </div>
+</header><main class="content" id="quarto-document-content">
+<p>About this blog</p>
 
 
-
-
-<section id="test-1" class="level1">
-<h1>test 1</h1>
-<p>element sadf</p>
-<section id="test-1.1" class="level2">
-<h2 class="anchored" data-anchor-id="test-1.1">test 1.1</h2>
-<p>element</p>
-<section id="test-1.1.1" class="level3">
-<h3 class="anchored" data-anchor-id="test-1.1.1">test 1.1.1</h3>
-<p>element</p>
-</section>
-</section>
-<section id="test-1.2" class="level2">
-<h2 class="anchored" data-anchor-id="test-1.2">test 1.2</h2>
-</section>
-</section>
-<section id="test-2" class="level1">
-<h1>test 2</h1>
-<section id="test-2.1" class="level2">
-<h2 class="anchored" data-anchor-id="test-2.1">test 2.1</h2>
-<section id="test-2.1.1" class="level3">
-<h3 class="anchored" data-anchor-id="test-2.1.1">test 2.1.1</h3>
-</section>
-<section id="test-2.1.2" class="level3">
-<h3 class="anchored" data-anchor-id="test-2.1.2">test 2.1.2</h3>
-<p>This is a post with executable code.</p>
-
-
-</section>
-</section>
-</section>
-
-</main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> 
+  <hr class="about-sep">
+   <div class="about-links">
+  <a href="https://twitter.com" class="about-link" rel="" target="">
+    <i class="bi bi-twitter"></i>
+     <span class="about-link-text">Twitter</span>
+  </a>
+  <a href="https://linkedin.com" class="about-link" rel="" target="">
+    <i class="bi bi-linkedin"></i>
+     <span class="about-link-text">LinkedIn</span>
+  </a>
+  <a href="https://github.com" class="about-link" rel="" target="">
+    <i class="bi bi-github"></i>
+     <span class="about-link-text">Github</span>
+  </a>
+</div>
+</div>
+ <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -375,7 +308,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  let localAlternateSentinel = 'alternate';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
@@ -401,13 +334,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   } else {
     toggleColorMode(false);
   }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
       if (clz.startsWith('code-annotation-')) {                     
@@ -614,22 +540,21 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<script src="https://giscus.app/client.js" data-repo="SerikaYuzuki/Developing-Journal" data-repo-id="R_kgDOKdxfxA" data-category="General" data-category-id="DIC_kwDOKdxfxM4CZ-FP" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../about.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">About</span>
-      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../posts/welcome/index.html" class="pagination-link">
-        <span class="nav-page-text">Welcome To My Blog</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./posts/UE5 Aura Courses/Section 02 Project Creation.html" class="pagination-link">
+        <span class="nav-page-text">Section 02 Project Creation</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">UE5 Journal</div>   
+    <div class="nav-footer-left">My Journal</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
