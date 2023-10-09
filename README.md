@@ -1,2 +1,2 @@
 # Developing-Journal
- This is personal journal.
+ This is a personal journal.

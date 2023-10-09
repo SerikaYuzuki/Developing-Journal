@@ -1,0 +1,102 @@
+---
+title: "Section 02"
+author: "Serika Yuzuki"
+date: "2023-10-09"
+categories: [UE5, Aura, Udemy, Game, Programming]
+image: "images/thumbnail.png"
+---
+
+Sec 02 について
+
+## 流れ
+
+1. まずRiderで作業するのに集中するために、Auto CompileやLive Codingを消した。
+1. キャラクターの基本のセットアップ
+    1. Created Character Class
+    1. Created Weapon object and attached to mesh
+    1. Applied Animation
+1. Setting up player enhanced input
+    1. Private Dependency Module にEnhanced Inputを入れないといけない
+
+## 発見
+
+### BindActionの第4引数に渡す関数ポインタの型をドキュメントで知りたい
+
+```cpp
+void AAuraPlayerController::SetupInputComponent()
+{
+	...
+	EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
+}
+
+void AAuraPlayerController::Move(const FInputActionValue& Value) {...}
+```
+
+BindActionの第4引数には、`void (AAuraPlayerController::*)(const FInputActionValue&)` という型の関数ポインタを渡す必要がある。これはどこを読めばわかるのか？
+
+BindActionの[ドキュメント](https://docs.unrealengine.com/5.3/en-US/API/Plugins/EnhancedInput/UEnhancedInputComponent/BindAction/3/)によれば、上の関数の引数の形は
+```cpp
+template<class UserClass>
+FInputActionBinding & BindAction
+(
+    const FName ActionName,
+    const EInputEvent KeyEvent,
+    UserClass * Object,
+    typename FInputActionHandlerWithKeySignature::TMethodPtr< UserClass > Func
+)
+```
+で、この第四引数である`FEnhancedInputActionHandlerValueSignature`の[ドキュメント](https://docs.unrealengine.com/5.3/en-US/API/Plugins/EnhancedInput/FEnhancedInputActionHandlerValue-/)によれば、
+`typedef TBaseDelegate_OneParam< void, const FInputActionValue & > FEnhancedInputActionHandlerValueSignature`
+
+### Rotation MatrixのGetUnitAxisの意味
+
+```{cpp}
+const FVector2D InputAxisVector = Value.Get<FVector2D>();
+const FRotator Rotation = GetControlRotation();
+const FRotator YawRotation(0, Rotation.Yaw, 0);
+
+const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+
+if (APawn* ContrlledPawn = GetPawn<APawn>())
+{
+    ContrlledPawn->AddMovementInput(ForwardDirection, InputAxisVector.Y);
+    ContrlledPawn->AddMovementInput(RightDirection, InputAxisVector.X);
+}
+```
+
+`FRotationMatrix(YawRotation)` は、YawRotationを回転行列に変換している。この回転行列は、YawRotationの回転軸をZ軸にしている。ここまではいいが、行列にする意味は何か？
+
+`GetUnitAxis(EAxis::X)` は、回転行列の1列目を取得していることになる。
+
+$$
+\begin{pmatrix}
+\cos\theta & -\sin\theta & 0 \\
+\sin\theta & \cos\theta & 0 \\
+0 & 0 & 1
+\end{pmatrix}
+\longmapsto
+\begin{pmatrix}
+\cos\theta \\
+\sin\theta \\
+0
+\end{pmatrix}
+,
+\begin{pmatrix}
+-\sin\theta \\
+\cos\theta \\
+0
+\end{pmatrix}
+,
+\begin{pmatrix}
+0 \\
+0 \\
+1
+\end{pmatrix}
+$$
+
+これについて考えれば、1,2,3列目のベクトルとは、回転後のベクトルの、向いている方向、その方向を $x'$ 軸として作り上げる右手系 $x', y', z'$ の基底ベクトルになっていることがわかる。
+
+`GetControlRotation()`でControl世界の回転を取得しているので、その世界の $x, y$ 軸への方向に動きを制限して、Inputを適用している。
+
+## 問題点

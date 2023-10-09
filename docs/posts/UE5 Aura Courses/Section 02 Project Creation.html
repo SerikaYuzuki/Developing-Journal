@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -32,6 +66,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../posts/AtCoder/Encyclopedia of Parentheses.html" rel="next">
 <link href="../../about.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -87,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link active" href="../../about.html" rel="" target="" aria-current="page">
- <span class="menu-text">About</span></a>
+ <span class="menu-text">Serika Yuzuki</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://syosetu.org/novel/309340/" rel="" target=""><i class="bi bi-book" role="img">
@@ -139,7 +174,8 @@ ul.task-list li input[type="checkbox"] {
                 <div class="quarto-category">UE5</div>
                 <div class="quarto-category">Aura</div>
                 <div class="quarto-category">Udemy</div>
-                <div class="quarto-category">game</div>
+                <div class="quarto-category">Game</div>
+                <div class="quarto-category">Programming</div>
               </div>
                   </div>
   </div>
@@ -173,12 +209,18 @@ ul.task-list li input[type="checkbox"] {
         <div id="quarto-search" class="" title="Search"></div>
         </div>
         </div>
+        <div class="sidebar-tools-collapse tools-wide">
+    <a href="https://syosetu.org/novel/309340/" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-book"></i></a>
+    <a href="https://github.com/SerikaYuzuki" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://twitter.com/serika_yuzuki" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
+    <a href="https://discord.gg/zUUkFzYZvK" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-discord"></i></a>
+</div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../about.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">About</span></a>
+ <span class="menu-text">Serika Yuzuki</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -198,6 +240,23 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">AtCoder</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/AtCoder/Encyclopedia of Parentheses.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-02</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -208,22 +267,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#test-1" id="toc-test-1" class="nav-link active" data-scroll-target="#test-1">test 1</a>
-  <ul class="collapse">
-  <li><a href="#test-1.1" id="toc-test-1.1" class="nav-link" data-scroll-target="#test-1.1">test 1.1</a>
-  <ul class="collapse">
-  <li><a href="#test-1.1.1" id="toc-test-1.1.1" class="nav-link" data-scroll-target="#test-1.1.1">test 1.1.1</a></li>
-  </ul></li>
-  <li><a href="#test-1.2" id="toc-test-1.2" class="nav-link" data-scroll-target="#test-1.2">test 1.2</a></li>
-  </ul></li>
-  <li><a href="#test-2" id="toc-test-2" class="nav-link" data-scroll-target="#test-2">test 2</a>
-  <ul class="collapse">
-  <li><a href="#test-2.1" id="toc-test-2.1" class="nav-link" data-scroll-target="#test-2.1">test 2.1</a>
-  <ul class="collapse">
-  <li><a href="#test-2.1.1" id="toc-test-2.1.1" class="nav-link" data-scroll-target="#test-2.1.1">test 2.1.1</a></li>
-  <li><a href="#test-2.1.2" id="toc-test-2.1.2" class="nav-link" data-scroll-target="#test-2.1.2">test 2.1.2</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#流れ" id="toc-流れ" class="nav-link active" data-scroll-target="#流れ">流れ</a></li>
+  <li><a href="#発見" id="toc-発見" class="nav-link" data-scroll-target="#発見">発見</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#問題点" id="toc-問題点" class="nav-link" data-scroll-target="#問題点">問題点</a></li>
   </ul>
 </nav>
     </div>
@@ -233,35 +280,47 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="test-1" class="level1">
-<h1>test 1</h1>
-<p>element sadf</p>
-<section id="test-1.1" class="level2">
-<h2 class="anchored" data-anchor-id="test-1.1">test 1.1</h2>
-<p>element</p>
-<section id="test-1.1.1" class="level3">
-<h3 class="anchored" data-anchor-id="test-1.1.1">test 1.1.1</h3>
-<p>element</p>
+<section id="流れ" class="level2">
+<h2 class="anchored" data-anchor-id="流れ">流れ</h2>
+<ol type="1">
+<li>まずRiderで作業するのに集中するために、Auto CompileやLive Codingを消した。</li>
+<li>キャラクターの基本のセットアップ
+<ol type="1">
+<li>Created Character Class</li>
+<li>Created Weapon object and attached to mesh</li>
+<li>Applied Animation</li>
+</ol></li>
+<li>Setting up player enhanced input
+<ol type="1">
+<li>Private Dependency Module にEnhanced Inputを入れないといけない</li>
+</ol></li>
+</ol>
+</section>
+<section id="発見" class="level2">
+<h2 class="anchored" data-anchor-id="発見">発見</h2>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<section id="bindactionの第4引数に渡す関数ポインタの型をドキュメントで知りたい" class="level4">
+<h4 class="anchored" data-anchor-id="bindactionの第4引数に渡す関数ポインタの型をドキュメントで知りたい">BindActionの第4引数に渡す関数ポインタの型をドキュメントで知りたい</h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> AAuraPlayerController<span class="op">::</span>SetupInputComponent<span class="op">()</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    EnhancedInputComponent<span class="op">-&gt;</span>BindAction<span class="op">(</span>MoveAction<span class="op">,</span> ETriggerEvent<span class="op">::</span>Triggered<span class="op">,</span> <span class="kw">this</span><span class="op">,</span> <span class="op">&amp;</span>AAuraPlayerController<span class="op">::</span>Move<span class="op">);</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> AAuraPlayerController<span class="op">::</span>Move<span class="op">(</span><span class="at">const</span> FInputActionValue<span class="op">&amp;</span> Value<span class="op">)</span> <span class="op">{...}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>BindActionの第4引数には、<code>void (AAuraPlayerController::*)(const FInputActionValue&amp;)</code> という型の関数ポインタを渡す必要がある。これはどこを読めばわかるのか？</p>
+</section>
+<section id="解決" class="level4">
+<h4 class="anchored" data-anchor-id="解決">解決</h4>
+<p><code>typedef TBaseDelegate_OneParam&lt; void, const FInputActionValue &amp; &gt; FEnhancedInputActionHandlerValueSignature</code></p>
 </section>
 </section>
-<section id="test-1.2" class="level2">
-<h2 class="anchored" data-anchor-id="test-1.2">test 1.2</h2>
-</section>
-</section>
-<section id="test-2" class="level1">
-<h1>test 2</h1>
-<section id="test-2.1" class="level2">
-<h2 class="anchored" data-anchor-id="test-2.1">test 2.1</h2>
-<section id="test-2.1.1" class="level3">
-<h3 class="anchored" data-anchor-id="test-2.1.1">test 2.1.1</h3>
-</section>
-<section id="test-2.1.2" class="level3">
-<h3 class="anchored" data-anchor-id="test-2.1.2">test 2.1.2</h3>
-<p>This is a post with executable code.</p>
+<section id="問題点" class="level2">
+<h2 class="anchored" data-anchor-id="問題点">問題点</h2>
 
 
-</section>
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -613,15 +672,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<script src="https://giscus.app/client.js" data-repo="SerikaYuzuki/Developing-Journal" data-repo-id="R_kgDOKdxfxA" data-category="General" data-category-id="DIC_kwDOKdxfxM4CZ-FP" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+<script src="https://giscus.app/client.js" data-repo="SerikaYuzuki/Developing-Journal" data-repo-id="R_kgDOKdxfxA" data-category="General" data-category-id="DIC_kwDOKdxfxM4CZ-FP" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="transparent_dark" data-lang="en" crossorigin="anonymous" async="">
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../../about.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">About</span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Serika Yuzuki</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../posts/AtCoder/Encyclopedia of Parentheses.html" class="pagination-link">
+        <span class="nav-page-text">typical90-02</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

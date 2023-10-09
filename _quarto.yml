@@ -22,18 +22,37 @@ website:
   sidebar:
     style: floating
     search: true
+
+    # Contents of sidebar
     contents: 
       - about.qmd
       - section: UE5 Aura Courses
-        contents: posts/UE5 Aura Courses/*
+        contents: posts/ue5_aura_courses/*
+      - section: AtCoder
+        contents: posts/at_coder/*
+      - section: Journal
+        contents: posts/journal/*
+
+    # Tools of sidebar
+    tools: 
+      - icon: book
+        href: https://syosetu.org/novel/309340/
+      - icon: github
+        href: https://github.com/SerikaYuzuki
+      - icon: twitter
+        href: https://twitter.com/serika_yuzuki
+      - icon: discord
+        href: https://discord.gg/zUUkFzYZvK
 
   # Footer of this website
   page-footer:
     left: "My Journal"
     right: "Built with Quarto"
 
+  # Back to top button in the bottom
   back-to-top-navigation: true
 
+  # Page navigation at the right side
   page-navigation: true
 
 format:
@@ -49,8 +68,15 @@ format:
       dark: darkly
       light: flatly
 
+    # Commenting system via giscus
     comments:
       giscus: 
         repo: SerikaYuzuki/Developing-Journal
+        theme: transparent_dark
+
+    code-copy: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    highlight-style: vim-dark
 
 
