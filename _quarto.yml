@@ -1,0 +1,55 @@
+project:
+  type: website
+
+website:
+  title: "My Journal"
+
+  # Top bar of this website
+  navbar:
+    right: 
+      - about.qmd
+      - icon: book
+        href: https://syosetu.org/novel/309340/
+      - icon: github
+        href: https://github.com/SerikaYuzuki
+      - icon: twitter
+        href: https://twitter.com/serika_yuzuki
+      - icon: discord
+        href: https://discord.gg/zUUkFzYZvK
+
+  # Sidebar of this website
+  sidebar:
+    style: floating
+    search: true
+    contents: 
+      - about.qmd
+      - section: UE5 Aura Courses
+        contents: posts/UE5 Aura Courses/*
+
+  # Footer of this website
+  page-footer:
+    left: "My Journal"
+    right: "Built with Quarto"
+
+  back-to-top-navigation: true
+
+  page-navigation: true
+
+format:
+  html:
+
+    # table-of-contents on the right
+    toc: true
+
+    # theme
+    theme:
+      # darkly is dark mode of flatly
+      # if this is set, you can see switch button on the top right
+      dark: darkly
+      light: flatly
+
+    comments:
+      giscus: 
+        repo: SerikaYuzuki/Developing-Journal
+
+
