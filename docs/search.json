@@ -130,14 +130,14 @@
     "href": "posts/at_coder/typical90-02.html#発見",
     "title": "typical90-02",
     "section": "発見",
-    "text": "発見\n\n問題\n\n\n解決"
+    "text": "発見\n\nString Str Vecの相互変換\n\nstr と String の違い\n\nstr is a “String” slice.\n\nSlice is a pointer to a block of memory.\nSlice is immutable.\nIf you make a string via “string” then it is &str.\n\nString is type of “String”.\n\nString is a heap-allocated string. It is growable, mutable like vec and UTF-8 encoded.\n\n\n\n\nString -&gt; str\n    let s: String = \"abc\".to_string();\n    let ss: &str = &s;\n    println!(\"{}\", &ss); // → abc\n\n\nchar -&gt; String\n    let c: char = 'a';\n    let cs: String = c.to_string();\n    println!(\"{}\", &cs); // → a\n\n\nVec -&gt; String\n    let cs: Vec&lt;char&gt; = vec!['a', 'b', 'c'];\n    let s: String = cs.iter().collect();\n    println!(\"{}\", &s); // → abc\n\n\nString -&gt; Vec\n    let s: String = \"abc\".to_string();\n    let cs: Vec&lt;char&gt; = s.chars().collect();\n    println!(\"{:?}\", &cs); // → ['a', 'b', 'c']\n\n\n\nBinaryの話。\nfn main() {\n    let x = 13;\n\n    // bが2進数に変換という意味。020は0を20桁まで入れるという意味。\n    let s = format!(\"{:020b}\", x);\n\n    println!(\"{}\", s);\n}"
   },
   {
     "objectID": "posts/at_coder/typical90-02.html#問題点",
     "href": "posts/at_coder/typical90-02.html#問題点",
     "title": "typical90-02",
     "section": "問題点",
-    "text": "問題点"
+    "text": "問題点\n\nnext_permutation??\nユーザー解説の内容が理解できなかった。\nnext_permutationなんとかって言ってたけど、意味がわからんかった。"
   },
   {
     "objectID": "posts/ue5_aura_courses/section_02.html",
@@ -172,6 +172,41 @@
     "href": "index.html",
     "title": "UE5 Journal",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\ntemplate\n\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n2023-10-09\n\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\nCargo Compete\n\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\ntemplate\n\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\ntypical90-02\n\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\ntypical90-01\n\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\nSection 02\n\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\ntemplate\n\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\nNo matching items\n\n Back to top"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\n2023-10-10\n\n\n\n\n\n\n\nJournal\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\ntemplate\n\n\n\n\n\n\n\nJournal\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n2023-10-09\n\n\n\n\n\n\n\nJournal\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\nCargo Compete\n\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\ntemplate\n\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\ntypical90-02\n\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\ntypical90-01\n\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\nSection 02\n\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\ntemplate\n\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\nNo matching items\n\n Back to top"
+  },
+  {
+    "objectID": "posts/journal/2023-10-10.html",
+    "href": "posts/journal/2023-10-10.html",
+    "title": "2023-10-10",
+    "section": "",
+    "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
+  },
+  {
+    "objectID": "posts/journal/2023-10-10.html#今日の予定の完成度",
+    "href": "posts/journal/2023-10-10.html#今日の予定の完成度",
+    "title": "2023-10-10",
+    "section": "",
+    "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
+  },
+  {
+    "objectID": "posts/journal/2023-10-10.html#日記",
+    "href": "posts/journal/2023-10-10.html#日記",
+    "title": "2023-10-10",
+    "section": "日記",
+    "text": "日記\nやっぱ飯を食うと眠くなってしまう。\n生活リズムを崩さないように気をつけていかないと……。\n1日2食くらいがいいのかね？\n\nダイエット記録\n\n食べたもの\n\n\nジムでの消費カロリー\n\n\n体重\n\n\n\nその他"
+  },
+  {
+    "objectID": "posts/at_coder/typical90-02.html",
+    "href": "posts/at_coder/typical90-02.html",
+    "title": "typical90-02",
+    "section": "",
+    "text": "問題リンク\n(())などをランダムウォークのように考えると、常に＋の部分にいて、最終的には必ず0に戻ってくることがわかる。\n効率のいい回答だったのは、回帰関数で解いているところ。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n : i32,\n    }\n\n    if n % 2 == 1 {\n        return;\n    }\n\n    let mut cs = Vec::new();\n    let mut answer = Vec::new();\n    let mut left = n / 2;\n    let mut right = n / 2;\n\n    recursive(&mut cs, &mut left, &mut right, &mut answer);\n\n    for i in 0..answer.len() {\n        println!(\"{}\", answer[i]);\n    }\n}\n\nfn recursive(cs: &mut Vec&lt;char&gt;, left: &mut i32, right: &mut i32, answer: &mut Vec&lt;String&gt;) {\n    if *left == 0 && *right == 0 {\n        answer.push(cs.iter().collect());\n        return;\n    }\n\n    if *left &gt; 0 {\n        *left -= 1;\n        cs.push('(');\n        recursive(cs, left, right, answer);\n        cs.pop();\n        *left += 1;\n    }\n\n    if *right &gt; 0 && *left &lt; *right {\n        *right -= 1;\n        cs.push(')');\n        recursive(cs, left, right, answer);\n        cs.pop();\n        *right += 1;\n    }\n}\n発想としては、00001111,00010111,…のような二進数を作っていくことを考えていくところ。で、0の数を超えないように1をappendしていくわけだ。辞書式に並べていくわけだから、最初に0を入れて、後で1を入れれば、自ずと辞書式に並べられる。"
+  },
+  {
+    "objectID": "posts/at_coder/typical90-02.html#概要",
+    "href": "posts/at_coder/typical90-02.html#概要",
+    "title": "typical90-02",
+    "section": "",
+    "text": "問題リンク\n(())などをランダムウォークのように考えると、常に＋の部分にいて、最終的には必ず0に戻ってくることがわかる。\n効率のいい回答だったのは、回帰関数で解いているところ。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n : i32,\n    }\n\n    if n % 2 == 1 {\n        return;\n    }\n\n    let mut cs = Vec::new();\n    let mut answer = Vec::new();\n    let mut left = n / 2;\n    let mut right = n / 2;\n\n    recursive(&mut cs, &mut left, &mut right, &mut answer);\n\n    for i in 0..answer.len() {\n        println!(\"{}\", answer[i]);\n    }\n}\n\nfn recursive(cs: &mut Vec&lt;char&gt;, left: &mut i32, right: &mut i32, answer: &mut Vec&lt;String&gt;) {\n    if *left == 0 && *right == 0 {\n        answer.push(cs.iter().collect());\n        return;\n    }\n\n    if *left &gt; 0 {\n        *left -= 1;\n        cs.push('(');\n        recursive(cs, left, right, answer);\n        cs.pop();\n        *left += 1;\n    }\n\n    if *right &gt; 0 && *left &lt; *right {\n        *right -= 1;\n        cs.push(')');\n        recursive(cs, left, right, answer);\n        cs.pop();\n        *right += 1;\n    }\n}\n発想としては、00001111,00010111,…のような二進数を作っていくことを考えていくところ。で、0の数を超えないように1をappendしていくわけだ。辞書式に並べていくわけだから、最初に0を入れて、後で1を入れれば、自ずと辞書式に並べられる。"
   }
 ]
