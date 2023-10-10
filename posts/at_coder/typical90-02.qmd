@@ -8,10 +8,128 @@ image: "images/thumbnail.webp"
 
 ## 概要
 
+[問題リンク](https://atcoder.jp/contests/typical90/tasks/typical90_b)
+
+(())などをランダムウォークのように考えると、常に＋の部分にいて、最終的には必ず0に戻ってくることがわかる。
+
+効率のいい回答だったのは、回帰関数で解いているところ。
+
+```rust
+use proconio::input;
+
+fn main() {
+    input! {
+        n : i32,
+    }
+
+    if n % 2 == 1 {
+        return;
+    }
+
+    let mut cs = Vec::new();
+    let mut answer = Vec::new();
+    let mut left = n / 2;
+    let mut right = n / 2;
+
+    recursive(&mut cs, &mut left, &mut right, &mut answer);
+
+    for i in 0..answer.len() {
+        println!("{}", answer[i]);
+    }
+}
+
+fn recursive(cs: &mut Vec<char>, left: &mut i32, right: &mut i32, answer: &mut Vec<String>) {
+    if *left == 0 && *right == 0 {
+        answer.push(cs.iter().collect());
+        return;
+    }
+
+    if *left > 0 {
+        *left -= 1;
+        cs.push('(');
+        recursive(cs, left, right, answer);
+        cs.pop();
+        *left += 1;
+    }
+
+    if *right > 0 && *left < *right {
+        *right -= 1;
+        cs.push(')');
+        recursive(cs, left, right, answer);
+        cs.pop();
+        *right += 1;
+    }
+}
+```
+
+発想としては、00001111,00010111,...のような二進数を作っていくことを考えていくところ。で、0の数を超えないように1をappendしていくわけだ。辞書式に並べていくわけだから、最初に0を入れて、後で1を入れれば、自ずと辞書式に並べられる。
+
+
+
 ## 発見
 
-### 問題
+### String Str Vec<char>の相互変換
 
-### 解決
+#### str と String の違い
+
+- str is a "String" slice.
+    - Slice is a pointer to a block of memory.
+    - Slice is immutable.
+    - If you make a string via "string" then it is &str.
+- String is type of "String".
+    - String is a heap-allocated string. It is growable, mutable like vec and UTF-8 encoded.
+
+#### String -> str
+
+```rust
+    let s: String = "abc".to_string();
+    let ss: &str = &s;
+    println!("{}", &ss); // → abc
+```
+
+#### char -> String
+
+```rust
+    let c: char = 'a';
+    let cs: String = c.to_string();
+    println!("{}", &cs); // → a
+```
+
+#### Vec<char> -> String
+
+```rust
+    let cs: Vec<char> = vec!['a', 'b', 'c'];
+    let s: String = cs.iter().collect();
+    println!("{}", &s); // → abc
+```
+
+#### String -> Vec<char>
+
+```rust
+    let s: String = "abc".to_string();
+    let cs: Vec<char> = s.chars().collect();
+    println!("{:?}", &cs); // → ['a', 'b', 'c']
+```
+
+### Binaryの話。
+
+```rust
+fn main() {
+    let x = 13;
+
+    // bが2進数に変換という意味。020は0を20桁まで入れるという意味。
+    let s = format!("{:020b}", x);
+
+    println!("{}", s);
+}
+```
+
 
 ## 問題点
+
+### next_permutation??
+
+[ユーザー解説](https://atcoder.jp/contests/typical90/editorial/3212)の内容が理解できなかった。
+
+next_permutationなんとかって言ってたけど、意味がわからんかった。
+
