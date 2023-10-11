@@ -18,6 +18,11 @@ Sec 02 について
 1. Setting up player enhanced input
     1. Private Dependency Module にEnhanced Inputを入れないといけない
 1. Setup GameModeBase and GameBase
+    1. Setup PlayerController
+    1. Casting input to enhanced input
+    1. Setup Move function
+1. highlight the enemy when mouse over
+    1. by creating interface
 
 
 ## 発見
@@ -100,5 +105,41 @@ $$
 これについて考えれば、1,2,3列目のベクトルとは、回転後のベクトルの、向いている方向、その方向を $x'$ 軸として作り上げる右手系 $x', y', z'$ の基底ベクトルになっていることがわかる。
 
 `GetControlRotation()`でControl世界の回転を取得しているので、その世界の $x, y$ 軸への方向に動きを制限して、Inputを適用している。
+
+### 仮想関数周り
+
+```cpp
+class Parent{
+public:
+    virtual void VFunc() { std::cout << "Parent" << std::endl; }
+    void NVFunc() { std::cout << "Parent" << std::endl; }
+};
+
+class Child : public Parent{
+public:
+    void VFunc() override { std::cout << "Child" << std::endl; }
+    void NVFunc() { std::cout << "Child" << std::endl; }
+};
+
+int main()
+{
+    Parent* p = new Child();
+    // Parentとしてpを定義しているので、virtualじゃない関数はParentのものが呼ばれる
+    p->VFunc(); // Child
+    // virtualな関数はChildのものが呼ばれる
+    p->NVFunc(); // Parent
+}
+```
+
+以上が`virtual`についての話で、sub classで書き換えられる前提の関数は次のように書く。
+
+```cpp
+class Parent{
+public:
+    virtual void VFunc() = 0;
+};
+```
+
+
 
 ## 問題点
