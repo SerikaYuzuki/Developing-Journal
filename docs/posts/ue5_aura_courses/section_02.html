@@ -9,7 +9,7 @@
 <meta name="author" content="Serika Yuzuki">
 <meta name="dcterms.date" content="2023-10-09">
 
-<title>My Journal - Section 02</title>
+<title>芹香のブログ：セリポンポン - Section 02</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">My Journal</span>
+    <span class="navbar-title">芹香のブログ：セリポンポン</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -375,6 +375,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#bindactionの第4引数に渡す関数ポインタの型をドキュメントで知りたい" id="toc-bindactionの第4引数に渡す関数ポインタの型をドキュメントで知りたい" class="nav-link" data-scroll-target="#bindactionの第4引数に渡す関数ポインタの型をドキュメントで知りたい">BindActionの第4引数に渡す関数ポインタの型をドキュメントで知りたい</a></li>
   <li><a href="#rotation-matrixのgetunitaxisの意味" id="toc-rotation-matrixのgetunitaxisの意味" class="nav-link" data-scroll-target="#rotation-matrixのgetunitaxisの意味">Rotation MatrixのGetUnitAxisの意味</a></li>
   <li><a href="#仮想関数周り" id="toc-仮想関数周り" class="nav-link" data-scroll-target="#仮想関数周り">仮想関数周り</a></li>
+  <li><a href="#tick関連の話" id="toc-tick関連の話" class="nav-link" data-scroll-target="#tick関連の話">Tick関連の話</a></li>
+  <li><a href="#collision-channelの話" id="toc-collision-channelの話" class="nav-link" data-scroll-target="#collision-channelの話">Collision Channelの話</a></li>
   </ul></li>
   <li><a href="#問題点" id="toc-問題点" class="nav-link" data-scroll-target="#問題点">問題点</a></li>
   </ul>
@@ -507,6 +509,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">virtual</span> <span class="dt">void</span> VFunc<span class="op">()</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tick関連の話" class="level3">
+<h3 class="anchored" data-anchor-id="tick関連の話">Tick関連の話</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>PrimaryActorTick<span class="op">.</span>bCanEverTick <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>これをContructorで設定しないとTickしない。ただし、PlayerControllerはデフォルトでPlayerTickするようになっている。</p>
+</section>
+<section id="collision-channelの話" class="level3">
+<h3 class="anchored" data-anchor-id="collision-channelの話">Collision Channelの話</h3>
+<p>Character Collision PresetではECC_VisibilityがOffになってるんで気をつけて。</p>
 </section>
 </section>
 <section id="問題点" class="level2">

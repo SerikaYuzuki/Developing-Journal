@@ -140,6 +140,16 @@ public:
 };
 ```
 
+### Tick関連の話
+
+```cpp
+PrimaryActorTick.bCanEverTick = true;
+```
+これをContructorで設定しないとTickしない。ただし、PlayerControllerはデフォルトでPlayerTickするようになっている。
+
+### Collision Channelの話
+
+Character Collision PresetではECC_VisibilityがOffになってるんで気をつけて。
 
 
 ## 問題点
