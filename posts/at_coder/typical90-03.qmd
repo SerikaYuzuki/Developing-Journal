@@ -81,4 +81,15 @@ Vec<Vec<usize>>
 
 最終的に剥がすことができなかったtupleだけがstuckに積み重なっていくわけである。
 
+### Find Max Value Index
+
+```rust
+let max_index = data.iter().enumerate().max_by_key(|x| x.1).unwrap().0;
+```
+とかける。
+```rust
+|x| x.1
+```
+というのはClosureといって、||に挟まれた引数から後ろの数を返す関数のことである。
+
 ## 問題点

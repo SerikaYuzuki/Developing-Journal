@@ -332,7 +332,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/journal/2023-10-15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">template</span></a>
+ <span class="menu-text">2023-10-15</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -421,6 +421,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#複数のループをするときに使う" id="toc-複数のループをするときに使う" class="nav-link" data-scroll-target="#複数のループをするときに使う">複数のループをするときに使う</a></li>
   <li><a href="#dfsのコードの書き方" id="toc-dfsのコードの書き方" class="nav-link" data-scroll-target="#dfsのコードの書き方">DFSのコードの書き方</a></li>
+  <li><a href="#find-max-value-index" id="toc-find-max-value-index" class="nav-link" data-scroll-target="#find-max-value-index">Find Max Value Index</a></li>
   </ul></li>
   <li><a href="#問題点" id="toc-問題点" class="nav-link" data-scroll-target="#問題点">問題点</a></li>
   </ul>
@@ -495,6 +496,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>で表現する。</p>
 <p>次に、探索の仕方として、stackを用意して、そこに今現時点の(Node,Depth)を入れておく。そして、stackが空になるまで、stackからtupleを抜き取って行って、次のNodeを探索していく。つまり、stackはいわばNodeにDepthのステッカーを貼っているようなものであり、次に進めれば剥がすということを繰り返している。</p>
 <p>最終的に剥がすことができなかったtupleだけがstuckに積み重なっていくわけである。</p>
+</section>
+<section id="find-max-value-index" class="level3">
+<h3 class="anchored" data-anchor-id="find-max-value-index">Find Max Value Index</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> max_index <span class="op">=</span> data<span class="op">.</span>iter()<span class="op">.</span>enumerate()<span class="op">.</span>max_by_key(<span class="op">|</span>x<span class="op">|</span> x<span class="op">.</span><span class="dv">1</span>)<span class="op">.</span>unwrap()<span class="op">.</span><span class="dv">0</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>とかける。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">|</span>x<span class="op">|</span> x<span class="op">.</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>というのはClosureといって、||に挟まれた引数から後ろの数を返す関数のことである。</p>
 </section>
 </section>
 <section id="問題点" class="level2">
