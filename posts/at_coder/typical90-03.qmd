@@ -1,0 +1,84 @@
+---
+title: "typical90-03"
+author: "Serika Yuzuki"
+date: "2023-10-15"
+categories: [AtCoder, Programming]
+image: "images/thumbnail.webp"
+---
+
+## 概要
+
+DFSを使って解く問題。この問題は、グラフを与えられて、そのグラフの中で最も長い経路を求めれば、その端と端を結んでしまえば求めるサークルができる。
+
+何よりも苦戦したのは**問題文をちゃんと読めてなかった**こと。問題文をちゃんと読めていれば、もっと早く解けたはず。
+
+```rust
+use proconio::input;
+
+fn main() {
+    input! {
+        n: usize,
+        data: [[usize; 2]; n-1],
+    }
+    
+    let mut graph = vec![vec![]; n];
+
+    for datum in data {
+        graph[datum[0]-1].push(datum[1]-1);
+        graph[datum[1]-1].push(datum[0]-1);
+    }
+
+    let dist_from_0 = solve(graph.clone(), 0);
+    
+    let max_index = dist_from_0.iter().enumerate().max_by_key(|x| x.1).unwrap().0;
+    
+    let dist_from_max = solve(graph.clone(), max_index);
+    
+    println!("{}", dist_from_max.iter().max().unwrap() + 1);
+}
+
+fn solve(graph: Vec<Vec<usize>>,start: usize) -> Vec<isize>{    
+    let mut stack = vec![(start, 0)];
+    let mut dist = vec![-1; graph.len()];
+    dist[start] = 0;
+    
+    while let Some((node, depth)) = stack.pop() {
+        for &next in &graph[node] {
+            if dist[next] != -1 {
+                continue;
+            }
+            dist[next] = depth + 1;
+            stack.push((next, depth + 1));
+        }
+    }
+    
+    return dist;
+}
+```
+
+
+## 発見
+
+### 複数のループをするときに使う
+
+```rust
+// Iterate over the coordinates of a 4 x 4 x 4 grid
+// from (0, 0, 0), (0, 0, 1), .., (0, 1, 0), (0, 1, 1), .. etc until (3, 3, 3)
+for (i, j, k) in iproduct!(0..4, 0..4, 0..4) {
+   // ..
+}
+```
+
+### DFSのコードの書き方
+
+グラフをとりあえず
+```rust
+Vec<Vec<usize>>
+```
+で表現する。
+
+次に、探索の仕方として、stackを用意して、そこに今現時点の(Node,Depth)を入れておく。そして、stackが空になるまで、stackからtupleを抜き取って行って、次のNodeを探索していく。つまり、stackはいわばNodeにDepthのステッカーを貼っているようなものであり、次に進めれば剥がすということを繰り返している。
+
+最終的に剥がすことができなかったtupleだけがstuckに積み重なっていくわけである。
+
+## 問題点
