@@ -56,228 +56,186 @@
     "text": "問題点"
   },
   {
-    "objectID": "posts/at_coder/typical90-01.html",
-    "href": "posts/at_coder/typical90-01.html",
-    "title": "typical90-01",
+    "objectID": "posts/at_coder/typical90-04.html",
+    "href": "posts/at_coder/typical90-04.html",
+    "title": "typical90-04",
     "section": "",
-    "text": "Learnt Binary Search."
+    "text": "簡単な問題。\n前処理をした方が良い、くらいしか話すことがない。\nuse itertools::iproduct;\nuse nalgebra::DMatrix;\nuse proconio::input;\n\nfn main() {\n    input! {\n        h: usize,\n        w: usize,\n        b: [usize; w * h],\n    }\n    \n    let mat = DMatrix::from_row_slice(h, w, &b);\n    \n    let row_sum = mat.clone().row_sum();\n    let col_sum = mat.clone().column_sum();\n    \n    for j in 0..w {\n        let tmp = row_sum[j] + col_sum[0] - mat[(0, j)];\n\n        if j == 0 {\n            print!(\"{}\", tmp);\n        } else {\n            print!(\" {}\", tmp);\n        }\n    }\n\n    for (i, j) in iproduct!(1..h, 0..w) {\n        let tmp = row_sum[j] + col_sum[i] - mat[(i, j)];\n        \n        if j == 0 {\n            print!(\"\\n{}\", tmp);\n        } else {\n            print!(\" {}\", tmp);\n        }\n    }\n    \n}"
   },
   {
-    "objectID": "posts/at_coder/typical90-01.html#概要",
-    "href": "posts/at_coder/typical90-01.html#概要",
-    "title": "typical90-01",
+    "objectID": "posts/at_coder/typical90-04.html#概要",
+    "href": "posts/at_coder/typical90-04.html#概要",
+    "title": "typical90-04",
     "section": "",
-    "text": "Learnt Binary Search."
+    "text": "簡単な問題。\n前処理をした方が良い、くらいしか話すことがない。\nuse itertools::iproduct;\nuse nalgebra::DMatrix;\nuse proconio::input;\n\nfn main() {\n    input! {\n        h: usize,\n        w: usize,\n        b: [usize; w * h],\n    }\n    \n    let mat = DMatrix::from_row_slice(h, w, &b);\n    \n    let row_sum = mat.clone().row_sum();\n    let col_sum = mat.clone().column_sum();\n    \n    for j in 0..w {\n        let tmp = row_sum[j] + col_sum[0] - mat[(0, j)];\n\n        if j == 0 {\n            print!(\"{}\", tmp);\n        } else {\n            print!(\" {}\", tmp);\n        }\n    }\n\n    for (i, j) in iproduct!(1..h, 0..w) {\n        let tmp = row_sum[j] + col_sum[i] - mat[(i, j)];\n        \n        if j == 0 {\n            print!(\"\\n{}\", tmp);\n        } else {\n            print!(\" {}\", tmp);\n        }\n    }\n    \n}"
   },
   {
-    "objectID": "posts/at_coder/typical90-01.html#発見",
-    "href": "posts/at_coder/typical90-01.html#発見",
-    "title": "typical90-01",
+    "objectID": "posts/at_coder/typical90-04.html#発見",
+    "href": "posts/at_coder/typical90-04.html#発見",
+    "title": "typical90-04",
     "section": "発見",
-    "text": "発見\n\nBinary Search\nSearching 0..n is O(n) but searching by binary is O(log n). This makes very big difference."
+    "text": "発見\n\nnalgebraの使い方\nuse nalgebra::DMatrix;\n\nfn main() {\n    let mat = DMatrix::from_row_slice(2, 3, &[1, 2, 3, 4, 5, 6]);\n    assert_eq!(mat[(0, 0)], 1);\n    assert_eq!(mat[(0, 1)], 2);\n\n    let mat_zero = DMatrix::zeros(2, 3);\n    assert_eq!(mat_zero[(0, 0)], 0);\n\n    let elm = 10;\n    let mat_elm = DMatrix::from_element(2, 3, elm);\n    assert_eq!(mat_elm[(0, 0)], elm);\n\n    let mat_vec = DMatrix::from_vec(4, 3, vec![1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0]);\n    assert_eq!(mat_vec[(0, 0)], 1.0);\n\n    let mat_macro = matrix![1, 2, 3;\n                4, 5, 6;\n                7, 8, 9];\n    assert_eq!(mat_macro[(2, 1)], 8);\n}"
   },
   {
-    "objectID": "posts/at_coder/typical90-01.html#問題点",
-    "href": "posts/at_coder/typical90-01.html#問題点",
-    "title": "typical90-01",
+    "objectID": "posts/at_coder/typical90-04.html#問題点",
+    "href": "posts/at_coder/typical90-04.html#問題点",
+    "title": "typical90-04",
     "section": "問題点",
     "text": "問題点"
   },
   {
-    "objectID": "posts/at_coder/typical90-03.html",
-    "href": "posts/at_coder/typical90-03.html",
-    "title": "typical90-03",
+    "objectID": "posts/at_coder/typical90-02.html",
+    "href": "posts/at_coder/typical90-02.html",
+    "title": "typical90-02",
     "section": "",
-    "text": "DFSを使って解く問題。この問題は、グラフを与えられて、そのグラフの中で最も長い経路を求めれば、その端と端を結んでしまえば求めるサークルができる。\n何よりも苦戦したのは問題文をちゃんと読めてなかったこと。問題文をちゃんと読めていれば、もっと早く解けたはず。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        data: [[usize; 2]; n-1],\n    }\n    \n    let mut graph = vec![vec![]; n];\n\n    for datum in data {\n        graph[datum[0]-1].push(datum[1]-1);\n        graph[datum[1]-1].push(datum[0]-1);\n    }\n\n    let dist_from_0 = solve(graph.clone(), 0);\n    \n    let max_index = dist_from_0.iter().enumerate().max_by_key(|x| x.1).unwrap().0;\n    \n    let dist_from_max = solve(graph.clone(), max_index);\n    \n    println!(\"{}\", dist_from_max.iter().max().unwrap() + 1);\n}\n\nfn solve(graph: Vec&lt;Vec&lt;usize&gt;&gt;,start: usize) -&gt; Vec&lt;isize&gt;{    \n    let mut stack = vec![(start, 0)];\n    let mut dist = vec![-1; graph.len()];\n    dist[start] = 0;\n    \n    while let Some((node, depth)) = stack.pop() {\n        for &next in &graph[node] {\n            if dist[next] != -1 {\n                continue;\n            }\n            dist[next] = depth + 1;\n            stack.push((next, depth + 1));\n        }\n    }\n    \n    return dist;\n}"
+    "text": "問題リンク\n(())などをランダムウォークのように考えると、常に＋の部分にいて、最終的には必ず0に戻ってくることがわかる。\n効率のいい回答だったのは、回帰関数で解いているところ。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n : i32,\n    }\n\n    if n % 2 == 1 {\n        return;\n    }\n\n    let mut cs = Vec::new();\n    let mut answer = Vec::new();\n    let mut left = n / 2;\n    let mut right = n / 2;\n\n    recursive(&mut cs, &mut left, &mut right, &mut answer);\n\n    for i in 0..answer.len() {\n        println!(\"{}\", answer[i]);\n    }\n}\n\nfn recursive(cs: &mut Vec&lt;char&gt;, left: &mut i32, right: &mut i32, answer: &mut Vec&lt;String&gt;) {\n    if *left == 0 && *right == 0 {\n        answer.push(cs.iter().collect());\n        return;\n    }\n\n    if *left &gt; 0 {\n        *left -= 1;\n        cs.push('(');\n        recursive(cs, left, right, answer);\n        cs.pop();\n        *left += 1;\n    }\n\n    if *right &gt; 0 && *left &lt; *right {\n        *right -= 1;\n        cs.push(')');\n        recursive(cs, left, right, answer);\n        cs.pop();\n        *right += 1;\n    }\n}\n発想としては、00001111,00010111,…のような二進数を作っていくことを考えていくところ。で、0の数を超えないように1をappendしていくわけだ。辞書式に並べていくわけだから、最初に0を入れて、後で1を入れれば、自ずと辞書式に並べられる。"
   },
   {
-    "objectID": "posts/at_coder/typical90-03.html#概要",
-    "href": "posts/at_coder/typical90-03.html#概要",
-    "title": "typical90-03",
+    "objectID": "posts/at_coder/typical90-02.html#概要",
+    "href": "posts/at_coder/typical90-02.html#概要",
+    "title": "typical90-02",
     "section": "",
-    "text": "DFSを使って解く問題。この問題は、グラフを与えられて、そのグラフの中で最も長い経路を求めれば、その端と端を結んでしまえば求めるサークルができる。\n何よりも苦戦したのは問題文をちゃんと読めてなかったこと。問題文をちゃんと読めていれば、もっと早く解けたはず。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        data: [[usize; 2]; n-1],\n    }\n    \n    let mut graph = vec![vec![]; n];\n\n    for datum in data {\n        graph[datum[0]-1].push(datum[1]-1);\n        graph[datum[1]-1].push(datum[0]-1);\n    }\n\n    let dist_from_0 = solve(graph.clone(), 0);\n    \n    let max_index = dist_from_0.iter().enumerate().max_by_key(|x| x.1).unwrap().0;\n    \n    let dist_from_max = solve(graph.clone(), max_index);\n    \n    println!(\"{}\", dist_from_max.iter().max().unwrap() + 1);\n}\n\nfn solve(graph: Vec&lt;Vec&lt;usize&gt;&gt;,start: usize) -&gt; Vec&lt;isize&gt;{    \n    let mut stack = vec![(start, 0)];\n    let mut dist = vec![-1; graph.len()];\n    dist[start] = 0;\n    \n    while let Some((node, depth)) = stack.pop() {\n        for &next in &graph[node] {\n            if dist[next] != -1 {\n                continue;\n            }\n            dist[next] = depth + 1;\n            stack.push((next, depth + 1));\n        }\n    }\n    \n    return dist;\n}"
+    "text": "問題リンク\n(())などをランダムウォークのように考えると、常に＋の部分にいて、最終的には必ず0に戻ってくることがわかる。\n効率のいい回答だったのは、回帰関数で解いているところ。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n : i32,\n    }\n\n    if n % 2 == 1 {\n        return;\n    }\n\n    let mut cs = Vec::new();\n    let mut answer = Vec::new();\n    let mut left = n / 2;\n    let mut right = n / 2;\n\n    recursive(&mut cs, &mut left, &mut right, &mut answer);\n\n    for i in 0..answer.len() {\n        println!(\"{}\", answer[i]);\n    }\n}\n\nfn recursive(cs: &mut Vec&lt;char&gt;, left: &mut i32, right: &mut i32, answer: &mut Vec&lt;String&gt;) {\n    if *left == 0 && *right == 0 {\n        answer.push(cs.iter().collect());\n        return;\n    }\n\n    if *left &gt; 0 {\n        *left -= 1;\n        cs.push('(');\n        recursive(cs, left, right, answer);\n        cs.pop();\n        *left += 1;\n    }\n\n    if *right &gt; 0 && *left &lt; *right {\n        *right -= 1;\n        cs.push(')');\n        recursive(cs, left, right, answer);\n        cs.pop();\n        *right += 1;\n    }\n}\n発想としては、00001111,00010111,…のような二進数を作っていくことを考えていくところ。で、0の数を超えないように1をappendしていくわけだ。辞書式に並べていくわけだから、最初に0を入れて、後で1を入れれば、自ずと辞書式に並べられる。"
   },
   {
-    "objectID": "posts/at_coder/typical90-03.html#発見",
-    "href": "posts/at_coder/typical90-03.html#発見",
-    "title": "typical90-03",
+    "objectID": "posts/at_coder/typical90-02.html#発見",
+    "href": "posts/at_coder/typical90-02.html#発見",
+    "title": "typical90-02",
     "section": "発見",
-    "text": "発見\n\n複数のループをするときに使う\n// Iterate over the coordinates of a 4 x 4 x 4 grid\n// from (0, 0, 0), (0, 0, 1), .., (0, 1, 0), (0, 1, 1), .. etc until (3, 3, 3)\nfor (i, j, k) in iproduct!(0..4, 0..4, 0..4) {\n   // ..\n}\n\n\nDFSのコードの書き方\nグラフをとりあえず\nVec&lt;Vec&lt;usize&gt;&gt;\nで表現する。\n次に、探索の仕方として、stackを用意して、そこに今現時点の(Node,Depth)を入れておく。そして、stackが空になるまで、stackからtupleを抜き取って行って、次のNodeを探索していく。つまり、stackはいわばNodeにDepthのステッカーを貼っているようなものであり、次に進めれば剥がすということを繰り返している。\n最終的に剥がすことができなかったtupleだけがstuckに積み重なっていくわけである。\n\n\nFind Max Value Index\nlet max_index = data.iter().enumerate().max_by_key(|x| x.1).unwrap().0;\nとかける。\n|x| x.1\nというのはClosureといって、||に挟まれた引数から後ろの数を返す関数のことである。"
+    "text": "発見\n\nString Str Vecの相互変換\n\nstr と String の違い\n\nstr is a “String” slice.\n\nSlice is a pointer to a block of memory.\nSlice is immutable.\nIf you make a string via “string” then it is &str.\n\nString is type of “String”.\n\nString is a heap-allocated string. It is growable, mutable like vec and UTF-8 encoded.\n\n\n\n\nString -&gt; str\n    let s: String = \"abc\".to_string();\n    let ss: &str = &s;\n    println!(\"{}\", &ss); // → abc\n\n\nchar -&gt; String\n    let c: char = 'a';\n    let cs: String = c.to_string();\n    println!(\"{}\", &cs); // → a\n\n\nVec -&gt; String\n    let cs: Vec&lt;char&gt; = vec!['a', 'b', 'c'];\n    let s: String = cs.iter().collect();\n    println!(\"{}\", &s); // → abc\n\n\nString -&gt; Vec\n    let s: String = \"abc\".to_string();\n    let cs: Vec&lt;char&gt; = s.chars().collect();\n    println!(\"{:?}\", &cs); // → ['a', 'b', 'c']\n\n\n\nBinaryの話。\nfn main() {\n    let x = 13;\n\n    // bが2進数に変換という意味。020は0を20桁まで入れるという意味。\n    let s = format!(\"{:020b}\", x);\n\n    println!(\"{}\", s);\n}"
   },
   {
-    "objectID": "posts/at_coder/typical90-03.html#問題点",
-    "href": "posts/at_coder/typical90-03.html#問題点",
-    "title": "typical90-03",
+    "objectID": "posts/at_coder/typical90-02.html#問題点",
+    "href": "posts/at_coder/typical90-02.html#問題点",
+    "title": "typical90-02",
+    "section": "問題点",
+    "text": "問題点\n\nnext_permutation??\nユーザー解説の内容が理解できなかった。\nnext_permutationなんとかって言ってたけど、意味がわからんかった。"
+  },
+  {
+    "objectID": "posts/at_coder/template.html#発見",
+    "href": "posts/at_coder/template.html#発見",
+    "title": "template",
+    "section": "発見",
+    "text": "発見\n\n問題"
+  },
+  {
+    "objectID": "posts/at_coder/template.html#問題点",
+    "href": "posts/at_coder/template.html#問題点",
+    "title": "template",
     "section": "問題点",
     "text": "問題点"
   },
   {
-    "objectID": "posts/at_coder/cargo_compete.html",
-    "href": "posts/at_coder/cargo_compete.html",
-    "title": "Cargo Compete",
+    "objectID": "posts/journal/2023-10-09.html",
+    "href": "posts/journal/2023-10-09.html",
+    "title": "2023-10-09",
     "section": "",
-    "text": "cargo install cargo-compete\ncargo compete init atcoder\ncargo compete new typical90\n\n\n\n```bash cd typical90 cargo compete test 001 cargo compete submit 001 –no-watch"
+    "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
   },
   {
-    "objectID": "posts/at_coder/cargo_compete.html#プロジェクトの設定の仕方",
-    "href": "posts/at_coder/cargo_compete.html#プロジェクトの設定の仕方",
-    "title": "Cargo Compete",
+    "objectID": "posts/journal/2023-10-09.html#今日の予定の完成度",
+    "href": "posts/journal/2023-10-09.html#今日の予定の完成度",
+    "title": "2023-10-09",
     "section": "",
-    "text": "cargo install cargo-compete\ncargo compete init atcoder\ncargo compete new typical90\n\n\n\n```bash cd typical90 cargo compete test 001 cargo compete submit 001 –no-watch"
+    "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
   },
   {
-    "objectID": "posts/journal/template.html",
-    "href": "posts/journal/template.html",
-    "title": "template",
-    "section": "",
-    "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\nお絵描きをする\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
-  },
-  {
-    "objectID": "posts/journal/template.html#今日の予定の完成度",
-    "href": "posts/journal/template.html#今日の予定の完成度",
-    "title": "template",
-    "section": "",
-    "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\nお絵描きをする\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
-  },
-  {
-    "objectID": "posts/journal/template.html#今日の計画",
-    "href": "posts/journal/template.html#今日の計画",
-    "title": "template",
-    "section": "今日の計画",
-    "text": "今日の計画\n\n\n\nPLAN\nUNIT\nEXTRA\nTIME\n\n\n\n\nUE5\n0\n\n14:00\n\n\nAtCoder\n0\n\n16:30\n\n\nDrawing\n0\n\n18:00\n\n\nGym\n0\nThis is in the first priority\n21:30\n\n\nCleaning\n0\n\n22:30"
-  },
-  {
-    "objectID": "posts/journal/template.html#明日の計画",
-    "href": "posts/journal/template.html#明日の計画",
-    "title": "template",
-    "section": "明日の計画",
-    "text": "明日の計画\n\n\n\nPLAN\nUNIT\nEXTRA\nTIME\n\n\n\n\nUE5\n8\n\n14:00\n\n\nAtCoder\n4\n\n16:30\n\n\nDrawing\n2\n\n18:00\n\n\nGym\n2\nThis is in the first priority\n21:30\n\n\nCleaning\n1\n\n22:30"
-  },
-  {
-    "objectID": "posts/journal/template.html#日記",
-    "href": "posts/journal/template.html#日記",
-    "title": "template",
+    "objectID": "posts/journal/2023-10-09.html#日記",
+    "href": "posts/journal/2023-10-09.html#日記",
+    "title": "2023-10-09",
     "section": "日記",
     "text": "日記\n\nダイエット記録\n\n食べたもの\n\n\nジムでの消費カロリー\n\n\n体重\n\n\n\nその他"
   },
   {
-    "objectID": "posts/journal/2023-10-14.html",
-    "href": "posts/journal/2023-10-14.html",
-    "title": "2023-10-14",
+    "objectID": "posts/journal/2023-10-16.html",
+    "href": "posts/journal/2023-10-16.html",
+    "title": "2023-10-16",
     "section": "",
-    "text": "ダメみたいですね。\n\n\n\nリマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\nお絵描きをする\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
+    "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\nお絵描きをする\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
   },
   {
-    "objectID": "posts/journal/2023-10-14.html#今日の予定の完成度",
-    "href": "posts/journal/2023-10-14.html#今日の予定の完成度",
-    "title": "2023-10-14",
+    "objectID": "posts/journal/2023-10-16.html#今日の予定の完成度",
+    "href": "posts/journal/2023-10-16.html#今日の予定の完成度",
+    "title": "2023-10-16",
     "section": "",
-    "text": "ダメみたいですね。\n\n\n\nリマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\nお絵描きをする\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
+    "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\nお絵描きをする\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
   },
   {
-    "objectID": "posts/journal/2023-10-14.html#明日の計画",
-    "href": "posts/journal/2023-10-14.html#明日の計画",
-    "title": "2023-10-14",
+    "objectID": "posts/journal/2023-10-16.html#今日の計画",
+    "href": "posts/journal/2023-10-16.html#今日の計画",
+    "title": "2023-10-16",
+    "section": "今日の計画",
+    "text": "今日の計画\n\n\n\nPLAN\nUNIT\nEXTRA\nTIME\n\n\n\n\nUE5\n4\n\n14:00\n\n\nAtCoder\n2\n\n16:30\n\n\nDrawing\n0\n\n18:00\n\n\nGym\n2\nThis is in the first priority\n21:30\n\n\nCleaning\n0\n\n22:30"
+  },
+  {
+    "objectID": "posts/journal/2023-10-16.html#明日の計画",
+    "href": "posts/journal/2023-10-16.html#明日の計画",
+    "title": "2023-10-16",
     "section": "明日の計画",
-    "text": "明日の計画\n\n\n\n予定\n駒数\n備考\n時刻\n\n\n\n\nUE5\n8\n流石にSec3はある程度進める\n1400まで\n\n\nAtCoder\n4\n問題1個は進める\n1630まで\n\n\nお絵描き\n2\n長くやりすぎない\n1800まで\n\n\nジム\n2\n移動含めて２時間程度だろうけど、余裕を持とう\n2130まで\n\n\n掃除\n1\n25分だけでもいいからやろう\n2230まで"
+    "text": "明日の計画\n\n\n\nPLAN\nUNIT\nEXTRA\nTIME\n\n\n\n\nUE5\n8\n\n14:00\n\n\nAtCoder\n4\n\n16:30\n\n\nDrawing\n2\n\n18:00\n\n\nGym\n2\nThis is in the first priority\n21:30\n\n\nCleaning\n1\n\n22:30"
   },
   {
-    "objectID": "posts/journal/2023-10-14.html#日記",
-    "href": "posts/journal/2023-10-14.html#日記",
-    "title": "2023-10-14",
+    "objectID": "posts/journal/2023-10-16.html#日記",
+    "href": "posts/journal/2023-10-16.html#日記",
+    "title": "2023-10-16",
     "section": "日記",
-    "text": "日記\n明日からはマジでしっかり時間を管理しないといけなさそうだ。マジで何もしてねえや。\n\nダイエット記録\n\n食べたもの\n\n\nジムでの消費カロリー\n\n\n体重\n\n\n\nその他"
+    "text": "日記\npyscketcherなるものを見つけた。TikZと比較してどちらの方が使いやすいかを見極めてから、問題を書くのに使おうかな。\n１日の始まりをスーッと頑張り始めたい。\n無茶をせずに、ね。\nあと、小説もルーティンに入れたいのだけど、今のルーティンができてない状態では流石に差し込めないかな。\nてか、最近RiderとRustRoverを使ってて、もはやJetBrainsのIDEがないと生きていけない状態になってきた。学生が終わったら大人しくお金を貢がせてもらうことにしよう。\n\nダイエット記録\n\n食べたもの\n\n\nジムでの消費カロリー\n\n\n体重\n\n\n\nその他"
   },
   {
-    "objectID": "posts/journal/2023-10-11.html",
-    "href": "posts/journal/2023-10-11.html",
-    "title": "2023-10-11",
+    "objectID": "posts/journal/2023-10-15.html",
+    "href": "posts/journal/2023-10-15.html",
+    "title": "2023-10-15",
     "section": "",
-    "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\n\n記事の更新もした\n\nAtCoderを進める\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
+    "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\nお絵描きをする\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
   },
   {
-    "objectID": "posts/journal/2023-10-11.html#今日の予定の完成度",
-    "href": "posts/journal/2023-10-11.html#今日の予定の完成度",
-    "title": "2023-10-11",
+    "objectID": "posts/journal/2023-10-15.html#今日の予定の完成度",
+    "href": "posts/journal/2023-10-15.html#今日の予定の完成度",
+    "title": "2023-10-15",
     "section": "",
-    "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\n\n記事の更新もした\n\nAtCoderを進める\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
+    "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\nお絵描きをする\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
   },
   {
-    "objectID": "posts/journal/2023-10-11.html#日記",
-    "href": "posts/journal/2023-10-11.html#日記",
-    "title": "2023-10-11",
+    "objectID": "posts/journal/2023-10-15.html#今日の計画",
+    "href": "posts/journal/2023-10-15.html#今日の計画",
+    "title": "2023-10-15",
+    "section": "今日の計画",
+    "text": "今日の計画\n\n\n\nPLAN\nUNIT\nEXTRA\nTIME\n\n\n\n\nUE5\n4\nSec3\n14:00\n\n\nAtCoder\n5\nAt least 1 problem\n16:30\n\n\nDrawing\n0\nDo not do too much\n18:00\n\n\nGym\n0\nFirst Priority\n21:30\n\n\nCleaning\n0\nDo at least 25 minutes\n22:30"
+  },
+  {
+    "objectID": "posts/journal/2023-10-15.html#明日の計画",
+    "href": "posts/journal/2023-10-15.html#明日の計画",
+    "title": "2023-10-15",
+    "section": "明日の計画",
+    "text": "明日の計画\n\n\n\nPLAN\nUNIT\nEXTRA\nTIME\n\n\n\n\nUE5\n8\nSec3\n14:00\n\n\nAtCoder\n4\nAt least 1 problem\n16:30\n\n\nDrawing\n2\nDo not do too much\n18:00\n\n\nGym\n2\nFirst Priority\n21:30\n\n\nCleaning\n1\nDo at least 25 minutes\n22:30"
+  },
+  {
+    "objectID": "posts/journal/2023-10-15.html#日記",
+    "href": "posts/journal/2023-10-15.html#日記",
+    "title": "2023-10-15",
     "section": "日記",
-    "text": "日記\n特に書くこともないし眠いので寝る。\n昼間はやたらと暑くてしんどかった。明日も暑かったら流石にエアコンをつけようかな。\n\nダイエット記録\n\n食べたもの\n\n\nジムでの消費カロリー\n500kcal\n\n\n体重\n\n\n\nその他"
+    "text": "日記\nPomodoroを使い始めてみた。いつまで続くかはわからないが、まあ頑張ろう！\n\nダイエット記録\n\n食べたもの\n\n\nジムでの消費カロリー\n\n\n体重\n\n\n\nその他"
   },
   {
-    "objectID": "posts/journal/2023-10-12.html",
-    "href": "posts/journal/2023-10-12.html",
-    "title": "2023-10-12",
+    "objectID": "posts/journal/2023-10-10.html",
+    "href": "posts/journal/2023-10-10.html",
+    "title": "2023-10-10",
     "section": "",
-    "text": "朝、目覚ましが鳴らなかった"
+    "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
   },
   {
-    "objectID": "posts/journal/2023-10-12.html#今日の予定の完成度",
-    "href": "posts/journal/2023-10-12.html#今日の予定の完成度",
-    "title": "2023-10-12",
-    "section": "今日の予定の完成度",
-    "text": "今日の予定の完成度\n\n最重要課題\n\nリマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\n[x023-] AtCoderを進める\n\n\n\n課題\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
+    "objectID": "posts/journal/2023-10-10.html#今日の予定の完成度",
+    "href": "posts/journal/2023-10-10.html#今日の予定の完成度",
+    "title": "2023-10-10",
+    "section": "",
+    "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
   },
   {
-    "objectID": "posts/journal/2023-10-12.html#日記",
-    "href": "posts/journal/2023-10-12.html#日記",
-    "title": "2023-10-12",
+    "objectID": "posts/journal/2023-10-10.html#日記",
+    "href": "posts/journal/2023-10-10.html#日記",
+    "title": "2023-10-10",
     "section": "日記",
-    "text": "日記\nHelixなるものを使用し始めようと思う。思ったがやめた。結局あれじゃん。NeoVim使えばいいじゃん。\n収容所のページ何をするかまだ決まらず。\nあまり実りのない１日だった。明日はしっかり時間管理をしよう。\n明日からお絵描きをルーティンに入れようかな。\n\nダイエット記録\n\n食べたもの\n\n\nジムでの消費カロリー\n\n\n体重\n\n\n\nその他"
-  },
-  {
-    "objectID": "posts/univ_lecs/材料相平衡論.html",
-    "href": "posts/univ_lecs/材料相平衡論.html",
-    "title": "材料相平衡論",
-    "section": "",
-    "text": "過去問の解答があるので概ね問題ないと思われますが、2021年の(5)の3に問題の誤りがあり、そのことについて図示しました。\n\n\n\n\n Back to top"
-  },
-  {
-    "objectID": "posts/univ_lecs/材料速度論.html",
-    "href": "posts/univ_lecs/材料速度論.html",
-    "title": "材料速度論",
-    "section": "",
-    "text": "軽いまとめと問題の過去問を手書きで解いてます。\nTeXにまとめるのは面倒でした。\n\n\n\n\n\n\n\n\n\n\n\n Back to top"
-  },
-  {
-    "objectID": "posts/univ_lecs/材料量子力学.html",
-    "href": "posts/univ_lecs/材料量子力学.html",
-    "title": "材料量子力学",
-    "section": "",
-    "text": "過去問を解いていく。手書きです。"
-  },
-  {
-    "objectID": "posts/univ_lecs/材料量子力学.html#section",
-    "href": "posts/univ_lecs/材料量子力学.html#section",
-    "title": "材料量子力学",
-    "section": "2021",
-    "text": "2021"
-  },
-  {
-    "objectID": "posts/univ_lecs/材料量子力学.html#section-1",
-    "href": "posts/univ_lecs/材料量子力学.html#section-1",
-    "title": "材料量子力学",
-    "section": "2019",
-    "text": "2019"
-  },
-  {
-    "objectID": "posts/univ_lecs/材料量子力学.html#section-2",
-    "href": "posts/univ_lecs/材料量子力学.html#section-2",
-    "title": "材料量子力学",
-    "section": "2015",
-    "text": "2015"
-  },
-  {
-    "objectID": "posts/univ_lecs/材料量子力学.html#section-3",
-    "href": "posts/univ_lecs/材料量子力学.html#section-3",
-    "title": "材料量子力学",
-    "section": "2009",
-    "text": "2009"
+    "text": "日記\nやっぱ飯を食うと眠くなってしまう。\n生活リズムを崩さないように気をつけていかないと……。\n1日2食くらいがいいのかね？\n話は変わるが、RustをVSCodeで書くように変えようかと思ったが、ダメだ。重たすぎる。その理由はどこから来ているのかは知らないが、おそらくマルチスレッディングに対応しているかどうかによるものだろうか。Zedの方がよほど速いので、そちらを使うことにした。\nJournalはVSCodeで書きながら、ZedでAtcoderをして、RiderでUEを書くという感じになるのかな。めんどくさい。Riderはまあ仕方ないとしても、ZedにQuartoのExtensionを移植できないかなぁ。\n\nダイエット記録\n\n食べたもの\nスーパーで買った広島風お好み焼き風何か\n鍋用野菜＋春雨の鍋\n\n\nジムでの消費カロリー\n0 kcal\n\n\n体重\n\n\n\nその他"
   },
   {
     "objectID": "posts/univ_lecs/材料力学.html",
@@ -329,158 +287,228 @@
     "text": "高分子の粘弾性緩和は、(分子ダイナミックス)を反映する。\n非絡み合い系の粘弾性緩和は分子量に対して(2)乗の関係を示す。( バネ・ビーズ ) モデルを用いることで、粘弾性緩和挙動を予測可能である。Boltzmannの重畳原理より粘度の分子量依存性は(高分子のからみあい ) と予測される。\n絡み合った高分子の粘弾性緩和は、濃度・分子量に対して( ) の関係を示す。絡んだ周囲の鎖の影響で、分子は一方向に拡散する( 熱 )運動によって緩和が起こる。(管 )モデルを用いる ことで、絡み合い高分子の粘弾性は記述可能である。\n分岐が入ると( レプテーション運動（一次元運動） )が抑制され、( 鎖の収縮運動 )によってのみ緩和が 進行するため、ダイナミクスが遅延する。\n高度に分岐すると、系全体が固体として振る舞うゲルになる。 ゾルとゲルの境目では、( 緩和時間が発散)の関係が見られ、( Winter -Chambon )則と呼ばれる。"
   },
   {
-    "objectID": "posts/journal/2023-10-10.html",
-    "href": "posts/journal/2023-10-10.html",
-    "title": "2023-10-10",
+    "objectID": "posts/univ_lecs/材料量子力学.html",
+    "href": "posts/univ_lecs/材料量子力学.html",
+    "title": "材料量子力学",
     "section": "",
-    "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
+    "text": "過去問を解いていく。手書きです。"
   },
   {
-    "objectID": "posts/journal/2023-10-10.html#今日の予定の完成度",
-    "href": "posts/journal/2023-10-10.html#今日の予定の完成度",
-    "title": "2023-10-10",
-    "section": "",
-    "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
+    "objectID": "posts/univ_lecs/材料量子力学.html#section",
+    "href": "posts/univ_lecs/材料量子力学.html#section",
+    "title": "材料量子力学",
+    "section": "2021",
+    "text": "2021"
   },
   {
-    "objectID": "posts/journal/2023-10-10.html#日記",
-    "href": "posts/journal/2023-10-10.html#日記",
-    "title": "2023-10-10",
+    "objectID": "posts/univ_lecs/材料量子力学.html#section-1",
+    "href": "posts/univ_lecs/材料量子力学.html#section-1",
+    "title": "材料量子力学",
+    "section": "2019",
+    "text": "2019"
+  },
+  {
+    "objectID": "posts/univ_lecs/材料量子力学.html#section-2",
+    "href": "posts/univ_lecs/材料量子力学.html#section-2",
+    "title": "材料量子力学",
+    "section": "2015",
+    "text": "2015"
+  },
+  {
+    "objectID": "posts/univ_lecs/材料量子力学.html#section-3",
+    "href": "posts/univ_lecs/材料量子力学.html#section-3",
+    "title": "材料量子力学",
+    "section": "2009",
+    "text": "2009"
+  },
+  {
+    "objectID": "posts/univ_lecs/材料速度論.html",
+    "href": "posts/univ_lecs/材料速度論.html",
+    "title": "材料速度論",
+    "section": "",
+    "text": "軽いまとめと問題の過去問を手書きで解いてます。\nTeXにまとめるのは面倒でした。\n\n\n\n\n\n\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "posts/univ_lecs/材料相平衡論.html",
+    "href": "posts/univ_lecs/材料相平衡論.html",
+    "title": "材料相平衡論",
+    "section": "",
+    "text": "過去問の解答があるので概ね問題ないと思われますが、2021年の(5)の3に問題の誤りがあり、そのことについて図示しました。\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "posts/journal/2023-10-12.html",
+    "href": "posts/journal/2023-10-12.html",
+    "title": "2023-10-12",
+    "section": "",
+    "text": "朝、目覚ましが鳴らなかった"
+  },
+  {
+    "objectID": "posts/journal/2023-10-12.html#今日の予定の完成度",
+    "href": "posts/journal/2023-10-12.html#今日の予定の完成度",
+    "title": "2023-10-12",
+    "section": "今日の予定の完成度",
+    "text": "今日の予定の完成度\n\n最重要課題\n\nリマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\n[x023-] AtCoderを進める\n\n\n\n課題\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
+  },
+  {
+    "objectID": "posts/journal/2023-10-12.html#日記",
+    "href": "posts/journal/2023-10-12.html#日記",
+    "title": "2023-10-12",
     "section": "日記",
-    "text": "日記\nやっぱ飯を食うと眠くなってしまう。\n生活リズムを崩さないように気をつけていかないと……。\n1日2食くらいがいいのかね？\n話は変わるが、RustをVSCodeで書くように変えようかと思ったが、ダメだ。重たすぎる。その理由はどこから来ているのかは知らないが、おそらくマルチスレッディングに対応しているかどうかによるものだろうか。Zedの方がよほど速いので、そちらを使うことにした。\nJournalはVSCodeで書きながら、ZedでAtcoderをして、RiderでUEを書くという感じになるのかな。めんどくさい。Riderはまあ仕方ないとしても、ZedにQuartoのExtensionを移植できないかなぁ。\n\nダイエット記録\n\n食べたもの\nスーパーで買った広島風お好み焼き風何か\n鍋用野菜＋春雨の鍋\n\n\nジムでの消費カロリー\n0 kcal\n\n\n体重\n\n\n\nその他"
+    "text": "日記\nHelixなるものを使用し始めようと思う。思ったがやめた。結局あれじゃん。NeoVim使えばいいじゃん。\n収容所のページ何をするかまだ決まらず。\nあまり実りのない１日だった。明日はしっかり時間管理をしよう。\n明日からお絵描きをルーティンに入れようかな。\n\nダイエット記録\n\n食べたもの\n\n\nジムでの消費カロリー\n\n\n体重\n\n\n\nその他"
   },
   {
-    "objectID": "posts/journal/2023-10-15.html",
-    "href": "posts/journal/2023-10-15.html",
-    "title": "2023-10-15",
+    "objectID": "posts/journal/2023-10-11.html",
+    "href": "posts/journal/2023-10-11.html",
+    "title": "2023-10-11",
     "section": "",
-    "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\nお絵描きをする\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
+    "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\n\n記事の更新もした\n\nAtCoderを進める\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
   },
   {
-    "objectID": "posts/journal/2023-10-15.html#今日の予定の完成度",
-    "href": "posts/journal/2023-10-15.html#今日の予定の完成度",
-    "title": "2023-10-15",
+    "objectID": "posts/journal/2023-10-11.html#今日の予定の完成度",
+    "href": "posts/journal/2023-10-11.html#今日の予定の完成度",
+    "title": "2023-10-11",
     "section": "",
-    "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\nお絵描きをする\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
+    "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\n\n記事の更新もした\n\nAtCoderを進める\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
   },
   {
-    "objectID": "posts/journal/2023-10-15.html#今日の計画",
-    "href": "posts/journal/2023-10-15.html#今日の計画",
-    "title": "2023-10-15",
-    "section": "今日の計画",
-    "text": "今日の計画\n\n\n\nPLAN\nUNIT\nEXTRA\nTIME\n\n\n\n\nUE5\n4\nSec3\n14:00\n\n\nAtCoder\n5\nAt least 1 problem\n16:30\n\n\nDrawing\n0\nDo not do too much\n18:00\n\n\nGym\n0\nFirst Priority\n21:30\n\n\nCleaning\n0\nDo at least 25 minutes\n22:30"
+    "objectID": "posts/journal/2023-10-11.html#日記",
+    "href": "posts/journal/2023-10-11.html#日記",
+    "title": "2023-10-11",
+    "section": "日記",
+    "text": "日記\n特に書くこともないし眠いので寝る。\n昼間はやたらと暑くてしんどかった。明日も暑かったら流石にエアコンをつけようかな。\n\nダイエット記録\n\n食べたもの\n\n\nジムでの消費カロリー\n500kcal\n\n\n体重\n\n\n\nその他"
   },
   {
-    "objectID": "posts/journal/2023-10-15.html#明日の計画",
-    "href": "posts/journal/2023-10-15.html#明日の計画",
-    "title": "2023-10-15",
+    "objectID": "posts/journal/2023-10-14.html",
+    "href": "posts/journal/2023-10-14.html",
+    "title": "2023-10-14",
+    "section": "",
+    "text": "ダメみたいですね。\n\n\n\nリマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\nお絵描きをする\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
+  },
+  {
+    "objectID": "posts/journal/2023-10-14.html#今日の予定の完成度",
+    "href": "posts/journal/2023-10-14.html#今日の予定の完成度",
+    "title": "2023-10-14",
+    "section": "",
+    "text": "ダメみたいですね。\n\n\n\nリマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\nお絵描きをする\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
+  },
+  {
+    "objectID": "posts/journal/2023-10-14.html#明日の計画",
+    "href": "posts/journal/2023-10-14.html#明日の計画",
+    "title": "2023-10-14",
     "section": "明日の計画",
-    "text": "明日の計画\n\n\n\nPLAN\nUNIT\nEXTRA\nTIME\n\n\n\n\nUE5\n8\nSec3\n14:00\n\n\nAtCoder\n4\nAt least 1 problem\n16:30\n\n\nDrawing\n2\nDo not do too much\n18:00\n\n\nGym\n2\nFirst Priority\n21:30\n\n\nCleaning\n1\nDo at least 25 minutes\n22:30"
+    "text": "明日の計画\n\n\n\n予定\n駒数\n備考\n時刻\n\n\n\n\nUE5\n8\n流石にSec3はある程度進める\n1400まで\n\n\nAtCoder\n4\n問題1個は進める\n1630まで\n\n\nお絵描き\n2\n長くやりすぎない\n1800まで\n\n\nジム\n2\n移動含めて２時間程度だろうけど、余裕を持とう\n2130まで\n\n\n掃除\n1\n25分だけでもいいからやろう\n2230まで"
   },
   {
-    "objectID": "posts/journal/2023-10-15.html#日記",
-    "href": "posts/journal/2023-10-15.html#日記",
-    "title": "2023-10-15",
+    "objectID": "posts/journal/2023-10-14.html#日記",
+    "href": "posts/journal/2023-10-14.html#日記",
+    "title": "2023-10-14",
     "section": "日記",
-    "text": "日記\nPomodoroを使い始めてみた。いつまで続くかはわからないが、まあ頑張ろう！\n\nダイエット記録\n\n食べたもの\n\n\nジムでの消費カロリー\n\n\n体重\n\n\n\nその他"
+    "text": "日記\n明日からはマジでしっかり時間を管理しないといけなさそうだ。マジで何もしてねえや。\n\nダイエット記録\n\n食べたもの\n\n\nジムでの消費カロリー\n\n\n体重\n\n\n\nその他"
   },
   {
-    "objectID": "posts/journal/2023-10-16.html",
-    "href": "posts/journal/2023-10-16.html",
-    "title": "2023-10-16",
+    "objectID": "posts/journal/template.html",
+    "href": "posts/journal/template.html",
+    "title": "template",
     "section": "",
     "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\nお絵描きをする\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
   },
   {
-    "objectID": "posts/journal/2023-10-16.html#今日の予定の完成度",
-    "href": "posts/journal/2023-10-16.html#今日の予定の完成度",
-    "title": "2023-10-16",
+    "objectID": "posts/journal/template.html#今日の予定の完成度",
+    "href": "posts/journal/template.html#今日の予定の完成度",
+    "title": "template",
     "section": "",
     "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\nお絵描きをする\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
   },
   {
-    "objectID": "posts/journal/2023-10-16.html#今日の計画",
-    "href": "posts/journal/2023-10-16.html#今日の計画",
-    "title": "2023-10-16",
+    "objectID": "posts/journal/template.html#今日の計画",
+    "href": "posts/journal/template.html#今日の計画",
+    "title": "template",
     "section": "今日の計画",
-    "text": "今日の計画\n\n\n\nPLAN\nUNIT\nEXTRA\nTIME\n\n\n\n\nUE5\n4\n\n14:00\n\n\nAtCoder\n0\n\n16:30\n\n\nDrawing\n0\n\n18:00\n\n\nGym\n2\nThis is in the first priority\n21:30\n\n\nCleaning\n0\n\n22:30"
+    "text": "今日の計画\n\n\n\nPLAN\nUNIT\nEXTRA\nTIME\n\n\n\n\nUE5\n0\n\n14:00\n\n\nAtCoder\n0\n\n16:30\n\n\nDrawing\n0\n\n18:00\n\n\nGym\n0\nThis is in the first priority\n21:30\n\n\nCleaning\n0\n\n22:30"
   },
   {
-    "objectID": "posts/journal/2023-10-16.html#明日の計画",
-    "href": "posts/journal/2023-10-16.html#明日の計画",
-    "title": "2023-10-16",
+    "objectID": "posts/journal/template.html#明日の計画",
+    "href": "posts/journal/template.html#明日の計画",
+    "title": "template",
     "section": "明日の計画",
     "text": "明日の計画\n\n\n\nPLAN\nUNIT\nEXTRA\nTIME\n\n\n\n\nUE5\n8\n\n14:00\n\n\nAtCoder\n4\n\n16:30\n\n\nDrawing\n2\n\n18:00\n\n\nGym\n2\nThis is in the first priority\n21:30\n\n\nCleaning\n1\n\n22:30"
   },
   {
-    "objectID": "posts/journal/2023-10-16.html#日記",
-    "href": "posts/journal/2023-10-16.html#日記",
-    "title": "2023-10-16",
-    "section": "日記",
-    "text": "日記\npyscketcherなるものを見つけた。TikZと比較してどちらの方が使いやすいかを見極めてから、問題を書くのに使おうかな。\n１日の始まりをスーッと頑張り始めたい。\n無茶をせずに、ね。\nあと、小説もルーティンに入れたいのだけど、今のルーティンができてない状態では流石に差し込めないかな。\n\nダイエット記録\n\n食べたもの\n\n\nジムでの消費カロリー\n\n\n体重\n\n\n\nその他"
-  },
-  {
-    "objectID": "posts/journal/2023-10-09.html",
-    "href": "posts/journal/2023-10-09.html",
-    "title": "2023-10-09",
-    "section": "",
-    "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
-  },
-  {
-    "objectID": "posts/journal/2023-10-09.html#今日の予定の完成度",
-    "href": "posts/journal/2023-10-09.html#今日の予定の完成度",
-    "title": "2023-10-09",
-    "section": "",
-    "text": "リマインダーの確認\nジムに行く\n掃除をする\nゲームの進捗を産む\nAtCoderを進める\n\n\n\n\n\nUEドキュメントを読み進める\nECサイトの作成を進める"
-  },
-  {
-    "objectID": "posts/journal/2023-10-09.html#日記",
-    "href": "posts/journal/2023-10-09.html#日記",
-    "title": "2023-10-09",
+    "objectID": "posts/journal/template.html#日記",
+    "href": "posts/journal/template.html#日記",
+    "title": "template",
     "section": "日記",
     "text": "日記\n\nダイエット記録\n\n食べたもの\n\n\nジムでの消費カロリー\n\n\n体重\n\n\n\nその他"
   },
   {
-    "objectID": "posts/at_coder/template.html#発見",
-    "href": "posts/at_coder/template.html#発見",
-    "title": "template",
-    "section": "発見",
-    "text": "発見\n\n問題"
+    "objectID": "posts/at_coder/cargo_compete.html",
+    "href": "posts/at_coder/cargo_compete.html",
+    "title": "Cargo Compete",
+    "section": "",
+    "text": "cargo install cargo-compete\ncargo compete init atcoder\ncargo compete new typical90\n\n\n\n```bash cd typical90 cargo compete test 001 cargo compete submit 001 –no-watch"
   },
   {
-    "objectID": "posts/at_coder/template.html#問題点",
-    "href": "posts/at_coder/template.html#問題点",
-    "title": "template",
+    "objectID": "posts/at_coder/cargo_compete.html#プロジェクトの設定の仕方",
+    "href": "posts/at_coder/cargo_compete.html#プロジェクトの設定の仕方",
+    "title": "Cargo Compete",
+    "section": "",
+    "text": "cargo install cargo-compete\ncargo compete init atcoder\ncargo compete new typical90\n\n\n\n```bash cd typical90 cargo compete test 001 cargo compete submit 001 –no-watch"
+  },
+  {
+    "objectID": "posts/at_coder/typical90-03.html",
+    "href": "posts/at_coder/typical90-03.html",
+    "title": "typical90-03",
+    "section": "",
+    "text": "DFSを使って解く問題。この問題は、グラフを与えられて、そのグラフの中で最も長い経路を求めれば、その端と端を結んでしまえば求めるサークルができる。\n何よりも苦戦したのは問題文をちゃんと読めてなかったこと。問題文をちゃんと読めていれば、もっと早く解けたはず。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        data: [[usize; 2]; n-1],\n    }\n    \n    let mut graph = vec![vec![]; n];\n\n    for datum in data {\n        graph[datum[0]-1].push(datum[1]-1);\n        graph[datum[1]-1].push(datum[0]-1);\n    }\n\n    let dist_from_0 = solve(graph.clone(), 0);\n    \n    let max_index = dist_from_0.iter().enumerate().max_by_key(|x| x.1).unwrap().0;\n    \n    let dist_from_max = solve(graph.clone(), max_index);\n    \n    println!(\"{}\", dist_from_max.iter().max().unwrap() + 1);\n}\n\nfn solve(graph: Vec&lt;Vec&lt;usize&gt;&gt;,start: usize) -&gt; Vec&lt;isize&gt;{    \n    let mut stack = vec![(start, 0)];\n    let mut dist = vec![-1; graph.len()];\n    dist[start] = 0;\n    \n    while let Some((node, depth)) = stack.pop() {\n        for &next in &graph[node] {\n            if dist[next] != -1 {\n                continue;\n            }\n            dist[next] = depth + 1;\n            stack.push((next, depth + 1));\n        }\n    }\n    \n    return dist;\n}"
+  },
+  {
+    "objectID": "posts/at_coder/typical90-03.html#概要",
+    "href": "posts/at_coder/typical90-03.html#概要",
+    "title": "typical90-03",
+    "section": "",
+    "text": "DFSを使って解く問題。この問題は、グラフを与えられて、そのグラフの中で最も長い経路を求めれば、その端と端を結んでしまえば求めるサークルができる。\n何よりも苦戦したのは問題文をちゃんと読めてなかったこと。問題文をちゃんと読めていれば、もっと早く解けたはず。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        data: [[usize; 2]; n-1],\n    }\n    \n    let mut graph = vec![vec![]; n];\n\n    for datum in data {\n        graph[datum[0]-1].push(datum[1]-1);\n        graph[datum[1]-1].push(datum[0]-1);\n    }\n\n    let dist_from_0 = solve(graph.clone(), 0);\n    \n    let max_index = dist_from_0.iter().enumerate().max_by_key(|x| x.1).unwrap().0;\n    \n    let dist_from_max = solve(graph.clone(), max_index);\n    \n    println!(\"{}\", dist_from_max.iter().max().unwrap() + 1);\n}\n\nfn solve(graph: Vec&lt;Vec&lt;usize&gt;&gt;,start: usize) -&gt; Vec&lt;isize&gt;{    \n    let mut stack = vec![(start, 0)];\n    let mut dist = vec![-1; graph.len()];\n    dist[start] = 0;\n    \n    while let Some((node, depth)) = stack.pop() {\n        for &next in &graph[node] {\n            if dist[next] != -1 {\n                continue;\n            }\n            dist[next] = depth + 1;\n            stack.push((next, depth + 1));\n        }\n    }\n    \n    return dist;\n}"
+  },
+  {
+    "objectID": "posts/at_coder/typical90-03.html#発見",
+    "href": "posts/at_coder/typical90-03.html#発見",
+    "title": "typical90-03",
+    "section": "発見",
+    "text": "発見\n\n複数のループをするときに使う\n// Iterate over the coordinates of a 4 x 4 x 4 grid\n// from (0, 0, 0), (0, 0, 1), .., (0, 1, 0), (0, 1, 1), .. etc until (3, 3, 3)\nfor (i, j, k) in iproduct!(0..4, 0..4, 0..4) {\n   // ..\n}\n\n\nDFSのコードの書き方\nグラフをとりあえず\nVec&lt;Vec&lt;usize&gt;&gt;\nで表現する。\n次に、探索の仕方として、stackを用意して、そこに今現時点の(Node,Depth)を入れておく。そして、stackが空になるまで、stackからtupleを抜き取って行って、次のNodeを探索していく。つまり、stackはいわばNodeにDepthのステッカーを貼っているようなものであり、次に進めれば剥がすということを繰り返している。\n最終的に剥がすことができなかったtupleだけがstuckに積み重なっていくわけである。\n\n\nFind Max Value Index\nlet max_index = data.iter().enumerate().max_by_key(|x| x.1).unwrap().0;\nとかける。\n|x| x.1\nというのはClosureといって、||に挟まれた引数から後ろの数を返す関数のことである。"
+  },
+  {
+    "objectID": "posts/at_coder/typical90-03.html#問題点",
+    "href": "posts/at_coder/typical90-03.html#問題点",
+    "title": "typical90-03",
     "section": "問題点",
     "text": "問題点"
   },
   {
-    "objectID": "posts/at_coder/typical90-02.html",
-    "href": "posts/at_coder/typical90-02.html",
-    "title": "typical90-02",
+    "objectID": "posts/at_coder/typical90-01.html",
+    "href": "posts/at_coder/typical90-01.html",
+    "title": "typical90-01",
     "section": "",
-    "text": "問題リンク\n(())などをランダムウォークのように考えると、常に＋の部分にいて、最終的には必ず0に戻ってくることがわかる。\n効率のいい回答だったのは、回帰関数で解いているところ。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n : i32,\n    }\n\n    if n % 2 == 1 {\n        return;\n    }\n\n    let mut cs = Vec::new();\n    let mut answer = Vec::new();\n    let mut left = n / 2;\n    let mut right = n / 2;\n\n    recursive(&mut cs, &mut left, &mut right, &mut answer);\n\n    for i in 0..answer.len() {\n        println!(\"{}\", answer[i]);\n    }\n}\n\nfn recursive(cs: &mut Vec&lt;char&gt;, left: &mut i32, right: &mut i32, answer: &mut Vec&lt;String&gt;) {\n    if *left == 0 && *right == 0 {\n        answer.push(cs.iter().collect());\n        return;\n    }\n\n    if *left &gt; 0 {\n        *left -= 1;\n        cs.push('(');\n        recursive(cs, left, right, answer);\n        cs.pop();\n        *left += 1;\n    }\n\n    if *right &gt; 0 && *left &lt; *right {\n        *right -= 1;\n        cs.push(')');\n        recursive(cs, left, right, answer);\n        cs.pop();\n        *right += 1;\n    }\n}\n発想としては、00001111,00010111,…のような二進数を作っていくことを考えていくところ。で、0の数を超えないように1をappendしていくわけだ。辞書式に並べていくわけだから、最初に0を入れて、後で1を入れれば、自ずと辞書式に並べられる。"
+    "text": "Learnt Binary Search."
   },
   {
-    "objectID": "posts/at_coder/typical90-02.html#概要",
-    "href": "posts/at_coder/typical90-02.html#概要",
-    "title": "typical90-02",
+    "objectID": "posts/at_coder/typical90-01.html#概要",
+    "href": "posts/at_coder/typical90-01.html#概要",
+    "title": "typical90-01",
     "section": "",
-    "text": "問題リンク\n(())などをランダムウォークのように考えると、常に＋の部分にいて、最終的には必ず0に戻ってくることがわかる。\n効率のいい回答だったのは、回帰関数で解いているところ。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n : i32,\n    }\n\n    if n % 2 == 1 {\n        return;\n    }\n\n    let mut cs = Vec::new();\n    let mut answer = Vec::new();\n    let mut left = n / 2;\n    let mut right = n / 2;\n\n    recursive(&mut cs, &mut left, &mut right, &mut answer);\n\n    for i in 0..answer.len() {\n        println!(\"{}\", answer[i]);\n    }\n}\n\nfn recursive(cs: &mut Vec&lt;char&gt;, left: &mut i32, right: &mut i32, answer: &mut Vec&lt;String&gt;) {\n    if *left == 0 && *right == 0 {\n        answer.push(cs.iter().collect());\n        return;\n    }\n\n    if *left &gt; 0 {\n        *left -= 1;\n        cs.push('(');\n        recursive(cs, left, right, answer);\n        cs.pop();\n        *left += 1;\n    }\n\n    if *right &gt; 0 && *left &lt; *right {\n        *right -= 1;\n        cs.push(')');\n        recursive(cs, left, right, answer);\n        cs.pop();\n        *right += 1;\n    }\n}\n発想としては、00001111,00010111,…のような二進数を作っていくことを考えていくところ。で、0の数を超えないように1をappendしていくわけだ。辞書式に並べていくわけだから、最初に0を入れて、後で1を入れれば、自ずと辞書式に並べられる。"
+    "text": "Learnt Binary Search."
   },
   {
-    "objectID": "posts/at_coder/typical90-02.html#発見",
-    "href": "posts/at_coder/typical90-02.html#発見",
-    "title": "typical90-02",
+    "objectID": "posts/at_coder/typical90-01.html#発見",
+    "href": "posts/at_coder/typical90-01.html#発見",
+    "title": "typical90-01",
     "section": "発見",
-    "text": "発見\n\nString Str Vecの相互変換\n\nstr と String の違い\n\nstr is a “String” slice.\n\nSlice is a pointer to a block of memory.\nSlice is immutable.\nIf you make a string via “string” then it is &str.\n\nString is type of “String”.\n\nString is a heap-allocated string. It is growable, mutable like vec and UTF-8 encoded.\n\n\n\n\nString -&gt; str\n    let s: String = \"abc\".to_string();\n    let ss: &str = &s;\n    println!(\"{}\", &ss); // → abc\n\n\nchar -&gt; String\n    let c: char = 'a';\n    let cs: String = c.to_string();\n    println!(\"{}\", &cs); // → a\n\n\nVec -&gt; String\n    let cs: Vec&lt;char&gt; = vec!['a', 'b', 'c'];\n    let s: String = cs.iter().collect();\n    println!(\"{}\", &s); // → abc\n\n\nString -&gt; Vec\n    let s: String = \"abc\".to_string();\n    let cs: Vec&lt;char&gt; = s.chars().collect();\n    println!(\"{:?}\", &cs); // → ['a', 'b', 'c']\n\n\n\nBinaryの話。\nfn main() {\n    let x = 13;\n\n    // bが2進数に変換という意味。020は0を20桁まで入れるという意味。\n    let s = format!(\"{:020b}\", x);\n\n    println!(\"{}\", s);\n}"
+    "text": "発見\n\nBinary Search\nSearching 0..n is O(n) but searching by binary is O(log n). This makes very big difference."
   },
   {
-    "objectID": "posts/at_coder/typical90-02.html#問題点",
-    "href": "posts/at_coder/typical90-02.html#問題点",
-    "title": "typical90-02",
+    "objectID": "posts/at_coder/typical90-01.html#問題点",
+    "href": "posts/at_coder/typical90-01.html#問題点",
+    "title": "typical90-01",
     "section": "問題点",
-    "text": "問題点\n\nnext_permutation??\nユーザー解説の内容が理解できなかった。\nnext_permutationなんとかって言ってたけど、意味がわからんかった。"
+    "text": "問題点"
   },
   {
     "objectID": "posts/ue5_aura_courses/section_02.html",
@@ -527,8 +555,8 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "UE5 Journal",
+    "title": "Serika’s Blog",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\n2023-10-16\n\n\n\n\n\n\n\nJournal\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 16, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n2023-10-15\n\n\n\n\n\n\n\nJournal\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 15, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\ntypical90-03\n\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 15, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\nsection_03\n\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 15, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n2023-10-14\n\n\n\n\n\n\n\nJournal\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n数学I\n\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\n\n\nOct 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n2023-10-12\n\n\n\n\n\n\n\nJournal\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 12, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n2023-10-11\n\n\n\n\n\n\n\nJournal\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 11, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n材料速度論\n\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n材料量子力学\n\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n材料相平衡論\n\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n統計力学\n\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n2023-10-10\n\n\n\n\n\n\n\nJournal\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\ntemplate\n\n\n\n\n\n\n\nJournal\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n2023-10-09\n\n\n\n\n\n\n\nJournal\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\nCargo Compete\n\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\ntemplate\n\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\ntypical90-02\n\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\ntypical90-01\n\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\nSection 02\n\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\ntemplate\n\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\nNo matching items\n\n Back to top"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\n2023-10-16\n\n\n\n\n\n\n\nJournal\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 16, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\ntypical90-04\n\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 16, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n2023-10-15\n\n\n\n\n\n\n\nJournal\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 15, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\ntypical90-03\n\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 15, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\nsection_03\n\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 15, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n2023-10-14\n\n\n\n\n\n\n\nJournal\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n数学I\n\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\n\n\nOct 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n2023-10-12\n\n\n\n\n\n\n\nJournal\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 12, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n2023-10-11\n\n\n\n\n\n\n\nJournal\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 11, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n材料速度論\n\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n材料量子力学\n\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n材料相平衡論\n\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n統計力学\n\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n2023-10-10\n\n\n\n\n\n\n\nJournal\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\ntemplate\n\n\n\n\n\n\n\nJournal\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\n2023-10-09\n\n\n\n\n\n\n\nJournal\n\n\n2023\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\nCargo Compete\n\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\ntemplate\n\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\ntypical90-02\n\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\ntypical90-01\n\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\nSection 02\n\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n  \n\n\n\n\ntemplate\n\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\nNo matching items\n\n Back to top"
   }
 ]

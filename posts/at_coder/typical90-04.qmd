@@ -1,0 +1,85 @@
+---
+title: "typical90-04"
+author: "Serika Yuzuki"
+date: "2023-10-16"
+categories: [AtCoder, Programming]
+image: "images/thumbnail.webp"
+---
+
+## 概要
+
+簡単な問題。
+
+前処理をした方が良い、くらいしか話すことがない。
+
+```rust
+use itertools::iproduct;
+use nalgebra::DMatrix;
+use proconio::input;
+
+fn main() {
+    input! {
+        h: usize,
+        w: usize,
+        b: [usize; w * h],
+    }
+    
+    let mat = DMatrix::from_row_slice(h, w, &b);
+    
+    let row_sum = mat.clone().row_sum();
+    let col_sum = mat.clone().column_sum();
+    
+    for j in 0..w {
+        let tmp = row_sum[j] + col_sum[0] - mat[(0, j)];
+
+        if j == 0 {
+            print!("{}", tmp);
+        } else {
+            print!(" {}", tmp);
+        }
+    }
+
+    for (i, j) in iproduct!(1..h, 0..w) {
+        let tmp = row_sum[j] + col_sum[i] - mat[(i, j)];
+        
+        if j == 0 {
+            print!("\n{}", tmp);
+        } else {
+            print!(" {}", tmp);
+        }
+    }
+    
+}
+```
+
+
+## 発見
+
+### nalgebraの使い方
+
+```rust
+use nalgebra::DMatrix;
+
+fn main() {
+    let mat = DMatrix::from_row_slice(2, 3, &[1, 2, 3, 4, 5, 6]);
+    assert_eq!(mat[(0, 0)], 1);
+    assert_eq!(mat[(0, 1)], 2);
+
+    let mat_zero = DMatrix::zeros(2, 3);
+    assert_eq!(mat_zero[(0, 0)], 0);
+
+    let elm = 10;
+    let mat_elm = DMatrix::from_element(2, 3, elm);
+    assert_eq!(mat_elm[(0, 0)], elm);
+
+    let mat_vec = DMatrix::from_vec(4, 3, vec![1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0]);
+    assert_eq!(mat_vec[(0, 0)], 1.0);
+
+    let mat_macro = matrix![1, 2, 3;
+                4, 5, 6;
+                7, 8, 9];
+    assert_eq!(mat_macro[(2, 1)], 8);
+}
+```
+
+## 問題点
