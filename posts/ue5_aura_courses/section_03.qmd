@@ -16,6 +16,10 @@ Sec 03 について
 1. Attach Ability System to Characters
     1. It is possible to attach systems to Actor or Actor assosiated Class
         1. In this course, we will attach to both for studying
+1. Setup GAS
+    1. Enable Plugin in Plugin Setting and Build.cs
+    1. Create Ability System Component both on base-enemy and playerstate
+    1. Impliment IAbilitySystemInterface on both
     
 
 ## 発見
@@ -27,5 +31,17 @@ Sec 03 について
 1. ビルドしなおす。ただRiderでエディタを開いてもコンパイルエラーが出る
 1. Epic Game Launcherから直接開く
 1. Refresh Rider Projectを実行する
+
+### iCloudでの作業
+
+やめた方が良い。
+```
+resource fork, Finder information, or similar detritus not allowed
+```
+こんなエラーを吐いてくるが、
+```sh
+xattr -cr .
+```
+これで解決できない。
 
 ## 問題点
