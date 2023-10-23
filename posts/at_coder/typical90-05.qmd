@@ -1,0 +1,310 @@
+---
+title: "typical90-05"
+author: "Serika Yuzuki"
+date: "2023-10-17"
+categories: [AtCoder, Programming]
+image: "images/thumbnail.webp"
+---
+
+[問題リンク](https://atcoder.jp/contests/typical90/tasks/typical90_e)
+
+## 概要
+
+解き切ってない。問題はアルゴリズムというよりかは、行列などの扱いや変数の大きさなどのようだ。
+
+```rust
+//いつかリベンジ！！
+
+use std::env;
+use nalgebra::DMatrix;
+use proconio::input;
+
+fn main() {
+    //env::set_var("RUST_BACKTRACE", "full");
+    input! {
+        numbers_length: usize,
+        devider: usize,
+        digits: usize,
+        numbers: [usize; digits],
+    }
+
+    // 340282366920938463463374607431768211455
+    // 19318074092350443561
+    // 11710352956716025284
+
+    // for debug18446744073709551615
+
+    // let numbers_length: usize = 111;
+    // let devider : usize = 29;
+    // let digits: usize = 6;
+    // let numbers : Vec<usize>= vec![1,2,3,5,6,7,9];
+
+    let modular : u128 = 1000000007;
+
+    let mut rem_vec : Vec<usize> = vec![1];
+    let mut begin_index : usize = 0;
+    let mut end_index : usize= 0;
+    let mut loop_len : usize = 0;
+
+    for i in 0..devider {
+        let tmp_rem = (rem_vec.last().unwrap() * 10 ) % devider;
+        if rem_vec.binary_search(&tmp_rem).is_ok() {
+            begin_index = rem_vec.binary_search(&tmp_rem).unwrap();
+            end_index = rem_vec.len();
+            loop_len = end_index - begin_index;
+            break;
+        }
+        rem_vec.push( tmp_rem );
+    }
+
+    let (non_looped_side, looped_side) = rem_vec.split_at(begin_index);
+
+    // looped_rem[i][j] i*10^j-th % devider
+    let mut looped_rem : Vec<Vec<usize>> = Vec::new();
+    let mut non_looped_rem : Vec<Vec<usize>> = Vec::new();
+
+    for num in numbers {
+        let mut tmp_looped_rem = vec![];
+        let mut tmp_nonlooped_rem = vec![];
+        for i in looped_side {
+            tmp_looped_rem.push( (i * num) % devider );
+        }
+        looped_rem.push(tmp_looped_rem);
+        for i in non_looped_side {
+            tmp_nonlooped_rem.push( (i * num) % devider );
+        }
+        non_looped_rem.push(tmp_nonlooped_rem);
+    }
+
+    let mut beginning_vec : DMatrix<u128> = DMatrix::from_vec( devider, 1, vec![0; devider]);
+    beginning_vec[(0,0)] = 1;
+
+    // container[i][j] means how many numbers remain i in j-th digit in the loop
+    let mut looped_container : Vec<DMatrix<u128>> = Vec::new();
+
+    for jndex in 0..looped_rem[0].len() {
+        let mut vec_tmp_0 = vec![0 as u128; devider];
+
+        for index in 0..digits {
+            vec_tmp_0[looped_rem[index][jndex]] += 1;
+        }
+
+        looped_container.push(generate_calc_matrix(vec_tmp_0));
+    }
+
+    // container[i][j] means how many numbers remain i in j-th digit in the non-loop
+    let mut non_looped_container : Vec<DMatrix<u128>> = Vec::new();
+
+    if non_looped_rem.len() != 0 {
+        for jndex in 0..non_looped_rem[0].len() {
+            let mut vec_tmp_0 = vec![0 as u128; devider];
+            for index in 0..digits {
+                vec_tmp_0[non_looped_rem[index][jndex]] += 1;
+            }
+
+            non_looped_container.push(generate_calc_matrix(vec_tmp_0));
+        }
+    }
+
+    let ans = calc_mat(non_looped_container.clone(), looped_container.clone(), beginning_vec.clone(), numbers_length, modular);
+
+    println!("{}", ans % modular as u128);
+
+}
+
+fn calc_mat(non_looped_container : Vec<DMatrix<u128>>, looped_container : Vec<DMatrix<u128>>, beginning_vec : DMatrix<u128>, number_length : usize, modular: u128) -> u128 {
+    if non_looped_container.len() != 0 {
+        if non_looped_container.len() >= number_length {
+            let mut tmp_mat = non_looped_container[0].clone();
+            for i in 1..number_length {
+                tmp_mat = &non_looped_container[i] * &tmp_mat;
+                for j in 0..tmp_mat.nrows() {
+                    for k in 0..tmp_mat.ncols() {
+                        tmp_mat[(j,k)] %= modular as u128;
+                    }
+                }
+            }
+            let ans = tmp_mat * beginning_vec;
+            let ans_u = ans[(0,0)];
+            return ans_u;
+        }
+        else {
+            let mut nl_tmp_mat = non_looped_container[0].clone();
+            for i in 1..non_looped_container.len() {
+                nl_tmp_mat = &non_looped_container[i] * &nl_tmp_mat;
+                for j in 0..nl_tmp_mat.nrows() {
+                    for k in 0..nl_tmp_mat.ncols() {
+                        nl_tmp_mat[(j,k)] %= modular;
+                    }
+                }
+            }
+            let mut new_beginning_vec = nl_tmp_mat * beginning_vec;
+
+            let loop_number = number_length - non_looped_container.len();
+
+            let ans = calc_looped(looped_container, new_beginning_vec, loop_number, modular);
+
+            let ans_u = ans[(0,0)];
+
+            return ans_u;
+        }
+    } else {
+        let ans = calc_looped(looped_container, beginning_vec, number_length, modular);
+
+        let ans_u = ans[(0,0)];
+
+        return ans_u;
+    }
+}
+
+fn calc_looped (looped_container : Vec<DMatrix<u128>>, beginning_vec : DMatrix<u128>, number_length : usize, modular : u128) -> DMatrix<u128> {
+    if looped_container.len() >= number_length {
+        let mut tmp_mat = looped_container[1].clone();
+        for i in 2..number_length {
+            tmp_mat = &looped_container[i] * &tmp_mat;
+            for j in 0..tmp_mat.nrows() {
+                for k in 0..tmp_mat.ncols() {
+                    tmp_mat[(j,k)] %= modular;
+                }
+            }
+        }
+        return tmp_mat * beginning_vec;
+    }
+    else {
+        let mut tmp_mat_one_loop = looped_container[0].clone();
+        for i in 1..looped_container.len() {
+            tmp_mat_one_loop = &looped_container[i] * &tmp_mat_one_loop;
+            for j in 0..tmp_mat_one_loop.nrows() {
+                for k in 0..tmp_mat_one_loop.ncols() {
+                    tmp_mat_one_loop[(j,k)] %= modular;
+                }
+            }
+        }
+
+        let loop_number = number_length / looped_container.len();
+
+        // １回のループでできる行列はできたので、あとはloop_number回のループを行う
+        let mut ans = calc_power(tmp_mat_one_loop, loop_number, modular);
+
+        let loop_number_remain = number_length % looped_container.len();
+
+        if loop_number_remain != 0 {
+            let mut tmp_mat = looped_container[0].clone();
+            for i in 1..loop_number_remain {
+                tmp_mat = &looped_container[i] * &tmp_mat;
+                for j in 0..tmp_mat.nrows() {
+                    for k in 0..tmp_mat.ncols() {
+                        tmp_mat[(j,k)] %= modular;
+                    }
+                }
+            }
+            ans = tmp_mat * ans;
+        }
+
+        for j in 0..ans.nrows() {
+            for k in 0..ans.ncols() {
+                ans[(j,k)] %= modular;
+            }
+        }
+
+        return ans * beginning_vec;
+    }
+}
+
+fn calc_power (mat: DMatrix<u128>, power : usize, modular : u128) -> DMatrix<u128> {
+    let mut binary : Vec<usize> = format!("{:b}", power).chars().map(|c| c.to_digit(10).unwrap() as usize).collect();
+
+    binary.reverse();
+
+    let mut ans_mat = DMatrix::from_element(mat.nrows(), mat.ncols(), 0);
+
+    for i in 0..binary.len() {
+        if binary[i] == 0 {
+            continue;
+        } else {
+            if ans_mat == DMatrix::from_element(mat.nrows(), mat.ncols(), 0) {
+                ans_mat = calc_binary_power(mat.clone(), i, modular);
+            }
+            else {
+                ans_mat = ans_mat * calc_binary_power(mat.clone(), i, modular);
+                for j in 0..ans_mat.nrows() {
+                    for k in 0..ans_mat.ncols() {
+                        ans_mat[(j,k)] %= modular;
+                    }
+                }
+            }
+
+        }
+    }
+
+
+
+    ans_mat
+}
+
+fn calc_binary_power (mat: DMatrix<u128>, power_size: usize, modular : u128) -> DMatrix<u128> {
+    let mut ans_mat = DMatrix::from_element(mat.nrows(), mat.ncols(), 0);
+
+    if power_size == 0 {
+        return mat;
+    }
+
+    for i in 1..power_size+1 {
+        if i == 1 {
+            ans_mat = &mat * &mat;
+        } else {
+            ans_mat = &ans_mat * &ans_mat;
+            // alith
+            for j in 0..ans_mat.nrows() {
+                for k in 0..ans_mat.ncols() {
+                    ans_mat[(j,k)] %= modular;
+                }
+            }
+        }
+    }
+
+    ans_mat
+}
+
+fn generate_calc_matrix(rem_vec : Vec<u128>) -> DMatrix<u128> {
+    let mut tmp_bm = vec![];
+
+    let size = rem_vec.len();
+
+    for index in 0..size {
+        let mut tmp_left = rem_vec[0..index+1].to_vec();
+        tmp_left.reverse();
+        let mut tmp_right = rem_vec[index+1..size].to_vec();
+        tmp_right.reverse();
+        let mut tmp_vec = tmp_left;
+        tmp_vec.append(&mut tmp_right);
+
+        tmp_bm.append(&mut tmp_vec);
+    }
+
+    DMatrix::from_vec(size, size, tmp_bm)
+}
+
+```
+
+## 発見
+
+### Vecの中身を探すとき
+
+```rust
+let vec = vec![1,3,5];
+let res1 = vec.binary_search(&2).is_ok();
+assert_eq!(res1, false);
+let res2 = vec.binary_search(&3).is_ok();
+assert_eq!(res2, true);
+```
+
+## 問題点
+
+### usize
+
+rustのusizeは基本64bitなので、大きすぎる値を考える時には向いていない。
+
+### 高速フーリエ変換
+
+やってなかったので、後々詳細を調べる。

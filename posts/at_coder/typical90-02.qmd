@@ -14,7 +14,7 @@ image: "images/thumbnail.webp"
 
 効率のいい回答だったのは、回帰関数で解いているところ。
 
-```rust
+``` rust
 use proconio::input;
 
 fn main() {
@@ -64,48 +64,46 @@ fn recursive(cs: &mut Vec<char>, left: &mut i32, right: &mut i32, answer: &mut V
 
 発想としては、00001111,00010111,...のような二進数を作っていくことを考えていくところ。で、0の数を超えないように1をappendしていくわけだ。辞書式に並べていくわけだから、最初に0を入れて、後で1を入れれば、自ずと辞書式に並べられる。
 
-
-
 ## 発見
 
 ### String Str Vec<char>の相互変換
 
 #### str と String の違い
 
-- str is a "String" slice.
-    - Slice is a pointer to a block of memory.
-    - Slice is immutable.
-    - If you make a string via "string" then it is &str.
-- String is type of "String".
-    - String is a heap-allocated string. It is growable, mutable like vec and UTF-8 encoded.
+-   str is a "String" slice.
+    -   Slice is a pointer to a block of memory.
+    -   Slice is immutable.
+    -   If you make a string via "string" then it is &str.
+-   String is type of "String".
+    -   String is a heap-allocated string. It is growable, mutable like vec and UTF-8 encoded.
 
-#### String -> str
+#### String -\> str
 
-```rust
+``` rust
     let s: String = "abc".to_string();
     let ss: &str = &s;
     println!("{}", &ss); // → abc
 ```
 
-#### char -> String
+#### char -\> String
 
-```rust
+``` rust
     let c: char = 'a';
     let cs: String = c.to_string();
     println!("{}", &cs); // → a
 ```
 
-#### Vec<char> -> String
+#### Vec<char> -\> String
 
-```rust
+``` rust
     let cs: Vec<char> = vec!['a', 'b', 'c'];
     let s: String = cs.iter().collect();
     println!("{}", &s); // → abc
 ```
 
-#### String -> Vec<char>
+#### String -\> Vec<char>
 
-```rust
+``` rust
     let s: String = "abc".to_string();
     let cs: Vec<char> = s.chars().collect();
     println!("{:?}", &cs); // → ['a', 'b', 'c']
@@ -113,7 +111,7 @@ fn recursive(cs: &mut Vec<char>, left: &mut i32, right: &mut i32, answer: &mut V
 
 ### Binaryの話。
 
-```rust
+``` rust
 fn main() {
     let x = 13;
 
@@ -124,7 +122,6 @@ fn main() {
 }
 ```
 
-
 ## 問題点
 
 ### next_permutation??
@@ -132,4 +129,3 @@ fn main() {
 [ユーザー解説](https://atcoder.jp/contests/typical90/editorial/3212)の内容が理解できなかった。
 
 next_permutationなんとかって言ってたけど、意味がわからんかった。
-
