@@ -1,0 +1,69 @@
+---
+title: "typical90-07"
+author: "Serika Yuzuki"
+date: "2023-10-25"
+categories: [AtCoder, Programming]
+image: "images/thumbnail.webp"
+---
+
+## 概要
+
+[問題リンク](https://atcoder.jp/contests/typical90/tasks/typical90_g)
+
+とりあえずBinary Searchすればいい。そうすれば計算量は $\symscr{O}(Q\ln N)$ になる。 $\ln$ じゃなくて $\log_{2}$ だろうがという文句に対しては、定数倍してるだけだろうがという返答を投げつけますね。
+
+```rust
+use std::cmp;
+
+use proconio::input;
+
+fn main() {
+    input! {
+        n: usize,
+        mut a: [usize; n],
+        q: usize,
+        b: [usize; q],
+    }
+
+    a.sort();
+
+    for i in b.clone() {
+        let ans = cmp::min(
+            (a[(cmp::min(a.len() as isize - 1, binary_search(&a, i) as isize)) as usize] as isize
+                - i as isize)
+                .abs(),
+            (a[(cmp::max(0, binary_search(&a, i) as isize - 1)) as usize] as isize - i as isize)
+                .abs(),
+        );
+        println!("{}", ans);
+    }
+}
+
+fn binary_search(a: &[usize], b: usize) -> usize {
+    let mut left = 0;
+    let mut right = a.len();
+
+    while left < right {
+        let mid = (left + right) / 2;
+        if a[mid] == b {
+            return mid;
+        } else if a[mid] < b {
+            left = mid + 1;
+        } else {
+            right = mid;
+        }
+    }
+
+    left
+}
+```
+
+見たらわかると思いますが、マジで競プロにRustは合わないっすね。真剣にNimに移行することを考えるレベルで。
+
+でも、私みたいな頑固なやつは何があってもRustを使い続けようとするんだろうなぁ。
+
+## 発見
+
+### 問題
+
+## 問題点
