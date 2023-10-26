@@ -1,0 +1,81 @@
+---
+title: "typical90-08"
+author: "Serika Yuzuki"
+date: "2023-10-26"
+categories: [AtCoder, Programming]
+image: "images/thumbnail.webp"
+---
+
+## 概要
+
+[問題リンク](https://atcoder.jp/contests/typical90/tasks/typical90_h)
+
+計算量の問題で、おそらく多項式時間に収めないといけない。故に数え上げをやるのではなく、漸化式を数値的に解くことになる。
+
+$$
+A_i =
+\begin{pmatrix}
+a_{i,0}\; &: \; a\\
+a_{i,1}\; &: \; at\\
+a_{i,2}\; &: \; atc\\
+a_{i,3}\; &: \; atco\\
+a_{i,4}\; &: \; atcod\\
+a_{i,5}\; &: \; atcode\\
+a_{i,6}\; &: \; atcoder\\
+\end{pmatrix}
+$$
+
+こんな行列を考えて、それの目的になる項を求めていく。漸化式は次のようなルールに従う。
+
+$$
+a_{i+1,k} = 
+\begin{cases}
+a_{i,k} &\text{$k$番目の文字じゃなかったら}\\
+a_{i,k} + a_{i,k-1}　&\text{$k$番目の文字だったら}
+\end{cases}
+$$
+
+コードに落とし込めば次のようになる。
+
+```rust
+use proconio::input;
+
+fn main() {
+    input! {
+        n: usize,
+        s: String,
+    }
+    let modular = 1_000_000_007;
+
+    let vec_str = s.chars().collect::<Vec<char>>();
+
+    let mut ans = vec![0; 7];
+
+    for i in vec_str {
+        match i {
+            'a' => ans[0] = (ans[0] + 1) % modular,
+            't' => ans[1] = (ans[1] + ans[0]) % modular,
+            'c' => ans[2] = (ans[2] + ans[1]) % modular,
+            'o' => ans[3] = (ans[3] + ans[2]) % modular,
+            'd' => ans[4] = (ans[4] + ans[3]) % modular,
+            'e' => ans[5] = (ans[5] + ans[4]) % modular,
+            'r' => ans[6] = (ans[6] + ans[5]) % modular,
+            _ => (),
+        }
+    }
+
+    println!("{}", ans[6] % 1_000_000_007);
+}
+```
+
+こうかなり慣れてきたのか、30分ちょっとで解き切れるようになった。
+
+## 発見
+
+### 計算時にModularをかけておく。
+
+でなければ、オーバーフローして変な値になる。普通はコンパイルエラーが起きるのだが、この場合は起きなかった。おそらくある程度複雑なプログラムには対応できないのだろう。
+
+### 問題
+
+## 問題点
