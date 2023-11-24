@@ -1,0 +1,118 @@
+---
+title: "typical90-09"
+author: "Serika Yuzuki"
+date: "2023-11-24"
+categories: [AtCoder, Programming]
+image: "images/thumbnail.webp"
+---
+
+## 概要
+
+[問題リンク](https://atcoder.jp/contests/typical90/tasks/typical90_i)
+
+数学の問題じゃ。
+
+とりあえず全探索でもギリギリ大丈夫そう。10^10程度だし。いや、でもむずいか？　やってないのでわかんない。
+
+この問題は $P_i,\; P_j$ を固定して最大角となる $P_k$ を探すことになる。幾何的性質で、 $P_j$ を始点として考えてアーム $P_jP_k$ が最もアーム $P_iP_j$ に近づく時の $k$ を考えればいいわけで、そのような $k$ は $P_j$ を始点として考えたアームの偏角をソートすれば見つかる。
+
+具体的なコードは次のとおり。
+
+```rust
+use num::complex::Complex;
+use proconio::input;
+
+fn main() {
+    input! {
+        n: usize,
+        a: [[usize; 2]; n],
+    }
+
+    let mut ans = vec![];
+
+    for j in 0..n {
+
+        // Storage は P_j からのその他への点への偏角を格納する
+        let mut storage = vec![];
+
+        for i in 0..n {
+
+            // 同じ点を選んだ時はスキップ
+            if i == j {
+                continue;
+            }
+
+            // 偏角の計算
+            let tmp = Complex::new(a[i][0] as f64, a[i][1] as f64)
+                - Complex::new(a[j][0] as f64, a[j][1] as f64);
+            storage.push(tmp.arg().to_degrees());
+        }
+
+        // 偏角をソート
+        storage.sort_by(|a, b| a.partial_cmp(b).unwrap());
+
+        // P_j, P_i を固定して、作られる角度の最大を探す部分
+        for i in 0..n - 1 {
+
+            // P_j, P_i から作られる角度の反対側に伸びる方向の偏角を計算
+            let mut opp_angle = storage[i] + 180.;
+            if opp_angle >= 180. {
+                opp_angle -= 360.;
+            }
+
+            // 二分探索で偏角の反対側にある点を探す
+            let mut left = 0;
+            let mut right = n - 2;
+            while right - left > 1 {
+                let mid = (left + right) / 2;
+                if storage[mid] <= opp_angle {
+                    left = mid;
+                } else {
+                    right = mid;
+                }
+            }
+
+            // より大きい偏角を採用
+            let mut tmp_left = storage[i] - storage[left];
+            let mut tmp_right = storage[right] - storage[i];
+            if tmp_left <= 0. {
+                tmp_left += 360.;
+            }
+            if tmp_right <= 0. {
+                tmp_right += 360.;
+            }
+            if tmp_left >= 180. {
+                tmp_left = 360. - tmp_left;
+            }
+            if tmp_right >= 180. {
+                tmp_right = 360. - tmp_right;
+            }
+            ans.push(tmp_left.max(tmp_right));
+        }
+    }
+
+    println!(
+        "{}",
+        // P_j, P_i を固定した時の最大の角度を格納した配列の最大値を出力
+        ans.iter().max_by(|a, b| a.partial_cmp(b).unwrap()).unwrap()
+    );
+}
+```
+
+綺麗なコードを書いて載せるなんてやりたいけど、そこまで習熟度があるわけじゃないので、勘弁願いたい。
+
+## 発見
+
+### f64のソート
+
+`sort_by`を使えば楽。
+
+```rust
+fn main() {
+    let mut tmp = vec![19.0, 12.9, 1.2];
+    tmp.sort_by(|a, b| a.partial_cmp(b).unwrap());
+    assert_eq!(tmp, [1.2, 12.9, 19.0]);
+}
+```
+
+これをそのまま関数にした `sort_floats` っていう関数もあるけど、nightly-onlyなので使えないかもしれない。
