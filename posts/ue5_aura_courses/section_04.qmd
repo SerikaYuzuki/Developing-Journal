@@ -1,0 +1,94 @@
+---
+title: "section_04"
+author: "Serika Yuzuki"
+date: "2023-11-20"
+categories: [UE5, Aura, Udemy, Game, Programming]
+image: "images/thumbnail.png"
+---
+
+Sec 04 について
+
+## 概要
+
+1. Setup Attributes
+    1. Do NOT let one ability system component have multiple SAME Attributes. This may lead to ambiguity. Having multiple SEPARATE Attributes is allowed.
+    1. Create a FGameplayAttributeData Health, MaxHealth, Mana, MaxMana;
+    1. In uproperty refer ReplicatedUsing = Function: OnRep_BluBlu
+    1. override GetLifetimeReplicatedProps and use DOREPLIFETIME_CONDITION_NOTIFY macro
+        - About GetLifetimeReplicatedProps: Returns the properties used for network replication, this needs to be overridden by all actor classes with native replicated properties
+    1. Setup variables accessable by macro
+        - Detail about ATTRIBUTE_ACCESSORS is at bottom.
+        - Once you setup ATT... then you can easily use functions like `InitHealth(100.f)`.
+    1. For learning purpose, create a actor to change Attributes instead of Gameplay Effect.
+        1. Creating mesh and sphere component.
+        1. Setting up OnOverlap, EndOverlap event functions and delecates.
+        1. In OnOverlap, we can search Actor who **is** IAbilitySystemInterface and GetAbilitySystemComponent
+            - Note that GetAttributeSet need Parameter of The type of attribute set to look for
+        1. const_cast is used for modify AttributeSet, but this is not recommended. It will be fixed in the future.
+
+## 発見
+
+### ATTRIBUTE_ACCESSORSのマクロについて。
+
+```c++
+/**
+ * This defines a set of helper functions for accessing and initializing attributes, to avoid having to manually write these functions.
+ * It would creates the following functions, for attribute Health
+ *
+ *	static FGameplayAttribute UMyHealthSet::GetHealthAttribute();
+ *	FORCEINLINE float UMyHealthSet::GetHealth() const;
+ *	FORCEINLINE void UMyHealthSet::SetHealth(float NewVal);
+ *	FORCEINLINE void UMyHealthSet::InitHealth(float NewVal);
+ *
+ * To use this in your game you can define something like this, and then add game-specific functions as necessary:
+ * 
+ *	#define ATTRIBUTE_ACCESSORS(ClassName, PropertyName) \
+ *	GAMEPLAYATTRIBUTE_PROPERTY_GETTER(ClassName, PropertyName) \
+ *	GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \
+ *	GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
+ *	GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
+ * 
+ *	ATTRIBUTE_ACCESSORS(UMyHealthSet, Health)
+ */
+```
+
+### Delecate について。
+
+これは要するに、関数のアドレスを渡して実行させていると考えて良さそうだ。
+
+```c++
+Sphere->OnComponentBeginOverlap.AddDynamic(this, &AAuraEffectActor::OnOverlap);
+```
+
+このコードがあるが、大元のEffectActorがTickしてないが、SphereはTickしている。EAがTickする必要はないが、TickしているSphereがEAを知らずにEAの関数を実行することができる。
+
+```c++
+if (Sphere->IsOverlap)
+{
+    OnOverlap();
+}
+```
+
+にしない理由はEAがTickしないから。
+
+以上が適当に考えた理由。もっと詳しくはもう少し調べていかなければならない。わかりやすかったリンクが [これ](http://marupeke296.com/DP_Delegate.html)
+
+次に、Delegateの関数の引数の種類については、`OnComponentBeginOverlap`のDefに書いてある。
+
+```c++
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_SixParams( FComponentBeginOverlapSignature, UPrimitiveComponent, OnComponentBeginOverlap, UPrimitiveComponent*, OverlappedComponent, AActor*, OtherActor, UPrimitiveComponent*, OtherComp, int32, OtherBodyIndex, bool, bFromSweep, const FHitResult &, SweepResult);
+```
+
+これの `UPrimitiveComponent*, OverlappedComponent, AActor*, OtherActor, UPrimitiveComponent*, OtherComp, int32, OtherBodyIndex, bool, bFromSweep, const FHitResult &, SweepResult` を参考にして、
+
+```c++
+void AAuraEffectActor::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+```
+
+を定義したわけだ。
+
+## 問題点
+
+- Delecateについての勉強
+- C++のマクロの文法についての勉強

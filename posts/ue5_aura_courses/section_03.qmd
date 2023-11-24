@@ -19,7 +19,48 @@ Sec 03 について
 1. Setup GAS
     1. Enable Plugin in Plugin Setting and Build.cs
     1. Create Ability System Component both on base-enemy and playerstate
-    1. Impliment IAbilitySystemInterface on both
+        1. create default object for both abilitySystem and AttributeSet, and set replicated for AbilitySystem
+    1. Impliment IAbilitySystemInterface on both characterbase and playerstate
+        1. **Question** Why IAbilitySystemInterface? Why not normal getter?? **Answer** This is discribed in [here](https://docs.unrealengine.com/5.0/en-US/gameplay-ability-system-component-and-gameplay-attributes-in-unreal-engine/)
+    1. Set player state belonging to controlled player
+
+::: {.callout-note}
+Distinguish Owner Actor and Avatar Actor.
+For example, Aura enemy is both owner and avatar, player state is owner, controlled character is avatar.
+![](images/3-1.png)
+:::
+
+        1. Consider server side and client side
+            - detail will be inplemented in other lec
+   
+```c
+void AAuraCharacter::InitAbilityActorInfo()
+{
+	AAuraPlayerState* AuraPlayerState = GetPlayerState<AAuraPlayerState>();
+	check(AuraPlayerState);
+	AuraPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(AuraPlayerState, this);
+
+	AbilitySystemComponent = AuraPlayerState->GetAbilitySystemComponent();
+	AttributeSet = AuraPlayerState->GetAttributeSet();
+}
+
+void AAuraCharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+
+	// Init ability system component for the server
+	InitAbilityActorInfo();
+}
+
+void AAuraCharacter::OnRep_PlayerState()
+{
+	Super::OnRep_PlayerState();
+
+	// Init ability system component for the client
+	InitAbilityActorInfo();
+}
+```
+
     
 
 ## 発見
@@ -43,5 +84,9 @@ resource fork, Finder information, or similar detritus not allowed
 xattr -cr .
 ```
 これで解決できない。
+
+### Server side と Client side の問題
+
+これについては後でじっくりドキュメントを読む必要がありそうだ。
 
 ## 問題点
