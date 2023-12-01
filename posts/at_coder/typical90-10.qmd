@@ -1,0 +1,59 @@
+---
+title: "typical90-10"
+author: "Serika Yuzuki"
+date: "2023-11-25"
+categories: [AtCoder, Programming]
+image: "images/thumbnail.webp"
+---
+
+## 概要
+
+[問題リンク](https://atcoder.jp/contests/typical90/tasks/typical90_j)
+
+累積和って言うらしい。知らんくても思いつくだろう。要するにいちいち計算するんじゃなくて、一気にまとめておいて後から計算するって話。
+
+```rust
+use proconio::input;
+
+fn main() {
+    input! {
+        n: usize,
+        cp: [[usize; 2]; n],
+        q: usize,
+        lr: [[usize; 2]; q],
+    }
+
+    // storageは累積和を格納する
+    // つまり、storage[i][0]はC_i番目の出席番号までの１組の期末点数の合計
+    let mut storage = vec![];
+
+    let mut tmp = vec![0,0];
+
+    for i in 0..n {
+        if cp[i][0] == 1 {
+            tmp[0] += cp[i][1];
+        } else {
+            tmp[1] += cp[i][1];
+        }
+        storage.push(tmp.clone());
+    }
+
+    for i in 0..q {
+        let l = lr[i][0] - 1;
+        let r = lr[i][1] - 1;
+
+        let mut ans = vec![0,0];
+        if l > 0 {
+            ans[0] = storage[r][0] - storage[l-1][0];
+            ans[1] = storage[r][1] - storage[l-1][1];
+        } else {
+            ans[0] = storage[r][0];
+            ans[1] = storage[r][1];
+        }
+
+        println!("{} {}", ans[0], ans[1]);
+    }
+
+}
+
+```

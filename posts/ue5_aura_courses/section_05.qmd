@@ -1,0 +1,94 @@
+---
+title: "section_05"
+author: "Serika Yuzuki"
+date: "2023-11-25"
+categories: [UE5, Aura, Udemy, Game, Programming]
+image: "images/thumbnail.png"
+---
+
+## 概要
+
+section 05 UI
+
+1. Use UUserWidget BP Class to implement Widgets
+    1. Creating Widget and Widget Controller C++ class.
+    1. Creating a WBP derived from Widget class.
+    1. Making WBP reusable in other classes, Setting up contents in Hierachybars Variable.
+        1. Setting up those variables by Blueprint
+        1. When setting up padding "Slot as Overlay Slot" was used.
+    1. Making HUD Class.
+        1. In the HUD class, make a overlay variable.
+        1. BP_HUD class.
+        1. Also creating a HUD Controller class
+        1. Creating and add to viewport overlay widget
+    1. Setting up Widget Controller
+        1. Creating `struct FWidgetControllerParams`
+        1. Creating Setter for controller based on FWidgetControllerParams.
+    1. Init Widgets Function in HUD. Execute in CharacterController
+
+
+
+
+## 発見
+
+### Setting up Images by Slate Brush
+
+[Slate Brush](https://docs.unrealengine.com/4.26/en-US/API/Runtime/SlateCore/Styling/FSlateBrush/)を使ってImagesのSet Brush関数で画像を定義した。
+
+![](images/5-1.png)
+
+### Hierarchie of HUD
+
+```{mermaid}
+classDiagram
+    note for HUD "HUDは全てを含む"
+    note for AuraUserWidget "AuraUserWidgetはControllerを持っている"
+    note for AuraUserWidgetController "ControllerはWidgetを知る必要がない"
+    class HUD{
+        +OverlayWidget
+        -OverlayWidgetController
+        -OverlayWidgetClass
+        -OverlayWidgetControllerClass
+        +GetOverlayWidgetController()
+	    +SetOverlayWidgetController(FWidgetControllerParams)
+	    +InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC, UAttributeSet* AS)
+    }
+    class AuraUserWidget {
+        +WidgetController
+        +SetWidgetController()
+        -WidgetControllerSet()
+    }
+    class AuraUserWidgetController {
+        -SetWidgetControllerParams()
+        +PlayerController
+        +PlayerState
+        +AbilitySystemComponent
+        +AttributeSet
+    }
+    class FWidgetControllerParams {
+        +PlayerController
+        +PlayerState
+        +AbilitySystemComponent
+        +AttributeSet
+    }
+    class BP_OverlayWidget{
+
+    }
+    class OverlayWdigetController {
+
+    }
+
+    OverlayWdigetController --|> AuraUserWidgetController : Inheritance
+    BP_OverlayWidget --|> AuraUserWidget : Inheritance
+    AuraUserWidgetController --* AuraUserWidget : Composition
+    OverlayWdigetController --* BP_OverlayWidget : Composition
+    BP_OverlayWidget --* HUD : Composition
+    FWidgetControllerParams ..> AuraUserWidget : Defined in this
+```
+
+## 問題点
+
+### Slot as Overlay SlotなどのUI関連
+
+Comprehensiveなチュートリアルとかドキュメントとかを読む必要あり。
+

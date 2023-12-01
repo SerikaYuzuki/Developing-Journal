@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Serika Yuzuki">
-<meta name="dcterms.date" content="2023-10-14">
+<meta name="dcterms.date" content="2023-11-25">
 
-<title>芹香のブログ：セリポンポン - 数学I</title>
+<title>芹香のブログ：セリポンポン - section_05</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,25 +25,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../../posts/univ_lecs/材料量子力学.html" rel="prev">
-<script src="../../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../posts/ue5_aura_courses/template.html" rel="next">
+<link href="../../posts/ue5_aura_courses/section_04.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -64,9 +65,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -77,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../../../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">芹香のブログ：セリポンポン</span>
     </a>
   </div>
@@ -88,7 +90,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../../../about.html" rel="" target="" aria-current="page">
+    <a class="nav-link active" href="../../about.html" rel="" target="" aria-current="page">
  <span class="menu-text">Serika Yuzuki</span></a>
   </li>  
   <li class="nav-item compact">
@@ -123,7 +125,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">収容所配布用</li><li class="breadcrumb-item"><a href="../../../posts/収容所配布用/数学/数学I.html">数学</a></li><li class="breadcrumb-item"><a href="../../../posts/収容所配布用/数学/数学I.html">数学I</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/ue5_aura_courses/section_02.html">UE5 Aura Courses</a></li><li class="breadcrumb-item"><a href="../../posts/ue5_aura_courses/section_05.html">section_05</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -136,9 +138,13 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">数学I</h1>
+      <h1 class="title">section_05</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">Math</div>
+                <div class="quarto-category">UE5</div>
+                <div class="quarto-category">Aura</div>
+                <div class="quarto-category">Udemy</div>
+                <div class="quarto-category">Game</div>
+                <div class="quarto-category">Programming</div>
               </div>
                   </div>
   </div>
@@ -156,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">October 14, 2023</p>
+        <p class="date">November 25, 2023</p>
       </div>
     </div>
     
@@ -182,7 +188,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../about.html" class="sidebar-item-text sidebar-link">
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Serika Yuzuki</span></a>
   </div>
 </li>
@@ -197,31 +203,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/ue5_aura_courses/section_02.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/ue5_aura_courses/section_02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Section 02</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/ue5_aura_courses/section_03.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/ue5_aura_courses/section_03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">section_03</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/ue5_aura_courses/section_04.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/ue5_aura_courses/section_04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">section_04</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/ue5_aura_courses/section_05.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/ue5_aura_courses/section_05.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">section_05</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/ue5_aura_courses/template.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/ue5_aura_courses/template.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">template</span></a>
   </div>
 </li>
@@ -238,7 +244,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/ue5_project/planning.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/ue5_project/planning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Planning</span></a>
   </div>
 </li>
@@ -255,79 +261,79 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/at_coder/cargo_compete.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/at_coder/cargo_compete.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cargo Compete</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/at_coder/template.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/at_coder/template.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">template</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/at_coder/typical90-01.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/at_coder/typical90-01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-01</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/at_coder/typical90-02.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/at_coder/typical90-02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-02</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/at_coder/typical90-03.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/at_coder/typical90-03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-03</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/at_coder/typical90-04.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/at_coder/typical90-04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-04</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/at_coder/typical90-05.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/at_coder/typical90-05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-05</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/at_coder/typical90-06.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/at_coder/typical90-06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-06</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/at_coder/typical90-07.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/at_coder/typical90-07.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-07</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/at_coder/typical90-08.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/at_coder/typical90-08.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-08</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/at_coder/typical90-09.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/at_coder/typical90-09.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-09</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/at_coder/typical90-10.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/at_coder/typical90-10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-10</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/at_coder/typical90-11.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/at_coder/typical90-11.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-11</span></a>
   </div>
 </li>
@@ -362,55 +368,55 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/journal/2023-10/2023-10-09.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/journal/2023-10/2023-10-09.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2023-10-09</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/journal/2023-10/2023-10-10.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/journal/2023-10/2023-10-10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2023-10-10</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/journal/2023-10/2023-10-11.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/journal/2023-10/2023-10-11.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2023-10-11</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/journal/2023-10/2023-10-12.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/journal/2023-10/2023-10-12.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2023-10-12</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/journal/2023-10/2023-10-14.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/journal/2023-10/2023-10-14.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2023-10-14</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/journal/2023-10/2023-10-15.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/journal/2023-10/2023-10-15.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2023-10-15</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/journal/2023-10/2023-10-16.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/journal/2023-10/2023-10-16.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2023-10-16</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/journal/2023-10/2023-10-17.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/journal/2023-10/2023-10-17.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2023-10-17</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/journal/2023-10/2023-10-18.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/journal/2023-10/2023-10-18.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2023-10-23</span></a>
   </div>
 </li>
@@ -427,25 +433,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/journal/2023-11/2023-11-24.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/journal/2023-11/2023-11-24.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2023-11-24</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/journal/2023-11/2023-11-25.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/journal/2023-11/2023-11-25.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2023-11-25</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/journal/2023-11/2023-11-3.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/journal/2023-11/2023-11-3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2023-11-03</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/journal/2023-11/template.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/journal/2023-11/template.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">template</span></a>
   </div>
 </li>
@@ -466,25 +472,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/材料力学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/材料力学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">統計力学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/材料相平衡論.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/材料相平衡論.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料相平衡論</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/材料速度論.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/材料速度論.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料速度論</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/材料量子力学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/材料量子力学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料量子力学</span></a>
   </div>
 </li>
@@ -501,16 +507,16 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">
  <span class="menu-text">数学</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/収容所配布用/数学/数学I.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../posts/収容所配布用/数学/数学I.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学I</span></a>
   </div>
 </li>
@@ -528,7 +534,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">1</a></li>
+  <li><a href="#概要" id="toc-概要" class="nav-link active" data-scroll-target="#概要">概要</a></li>
+  <li><a href="#発見" id="toc-発見" class="nav-link" data-scroll-target="#発見">発見</a>
+  <ul class="collapse">
+  <li><a href="#setting-up-images-by-slate-brush" id="toc-setting-up-images-by-slate-brush" class="nav-link" data-scroll-target="#setting-up-images-by-slate-brush">Setting up Images by Slate Brush</a></li>
+  <li><a href="#hierarchie-of-hud" id="toc-hierarchie-of-hud" class="nav-link" data-scroll-target="#hierarchie-of-hud">Hierarchie of HUD</a></li>
+  </ul></li>
+  <li><a href="#問題点" id="toc-問題点" class="nav-link" data-scroll-target="#問題点">問題点</a>
+  <ul class="collapse">
+  <li><a href="#slot-as-overlay-slotなどのui関連" id="toc-slot-as-overlay-slotなどのui関連" class="nav-link" data-scroll-target="#slot-as-overlay-slotなどのui関連">Slot as Overlay SlotなどのUI関連</a></li>
+  </ul></li>
   </ul>
 </nav>
     <div class="quarto-margin-footer"><div class="margin-footer-item">
@@ -554,14 +569,107 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section">1</h2>
-<p>次の <span class="math inline">\(x\)</span> についての方程式の解を求めよ．ただし、 <span class="math inline">\(0&lt;a&lt;\frac{1}{4}\)</span> とする。</p>
-<p><span class="math display">\[
-x^2 + 2ax + \frac{1}{16} = -a + \sqrt{a^2 + x - \frac{1}{16}}\;
-\]</span></p>
+<section id="概要" class="level2">
+<h2 class="anchored" data-anchor-id="概要">概要</h2>
+<p>section 05 UI</p>
+<ol type="1">
+<li>Use UUserWidget BP Class to implement Widgets
+<ol type="1">
+<li>Creating Widget and Widget Controller C++ class.</li>
+<li>Creating a WBP derived from Widget class.</li>
+<li>Making WBP reusable in other classes, Setting up contents in Hierachybars Variable.
+<ol type="1">
+<li>Setting up those variables by Blueprint</li>
+<li>When setting up padding “Slot as Overlay Slot” was used.</li>
+</ol></li>
+<li>Making HUD Class.
+<ol type="1">
+<li>In the HUD class, make a overlay variable.</li>
+<li>BP_HUD class.</li>
+<li>Also creating a HUD Controller class</li>
+<li>Creating and add to viewport overlay widget</li>
+</ol></li>
+<li>Setting up Widget Controller
+<ol type="1">
+<li>Creating <code>struct FWidgetControllerParams</code></li>
+<li>Creating Setter for controller based on FWidgetControllerParams.</li>
+</ol></li>
+<li>Init Widgets Function in HUD. Execute in CharacterController</li>
+</ol></li>
+</ol>
+</section>
+<section id="発見" class="level2">
+<h2 class="anchored" data-anchor-id="発見">発見</h2>
+<section id="setting-up-images-by-slate-brush" class="level3">
+<h3 class="anchored" data-anchor-id="setting-up-images-by-slate-brush">Setting up Images by Slate Brush</h3>
+<p><a href="https://docs.unrealengine.com/4.26/en-US/API/Runtime/SlateCore/Styling/FSlateBrush/">Slate Brush</a>を使ってImagesのSet Brush関数で画像を定義した。</p>
+<p><img src="images/5-1.png" class="img-fluid"></p>
+</section>
+<section id="hierarchie-of-hud" class="level3">
+<h3 class="anchored" data-anchor-id="hierarchie-of-hud">Hierarchie of HUD</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">classDiagram
+    note for HUD "HUDは全てを含む"
+    note for AuraUserWidget "AuraUserWidgetはControllerを持っている"
+    note for AuraUserWidgetController "ControllerはWidgetを知る必要がない"
+    class HUD{
+        +OverlayWidget
+        -OverlayWidgetController
+        -OverlayWidgetClass
+        -OverlayWidgetControllerClass
+        +GetOverlayWidgetController()
+        +SetOverlayWidgetController(FWidgetControllerParams)
+        +InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC, UAttributeSet* AS)
+    }
+    class AuraUserWidget {
+        +WidgetController
+        +SetWidgetController()
+        -WidgetControllerSet()
+    }
+    class AuraUserWidgetController {
+        -SetWidgetControllerParams()
+        +PlayerController
+        +PlayerState
+        +AbilitySystemComponent
+        +AttributeSet
+    }
+    class FWidgetControllerParams {
+        +PlayerController
+        +PlayerState
+        +AbilitySystemComponent
+        +AttributeSet
+    }
+    class BP_OverlayWidget{
+
+    }
+    class OverlayWdigetController {
+
+    }
+
+    OverlayWdigetController --|&gt; AuraUserWidgetController : Inheritance
+    BP_OverlayWidget --|&gt; AuraUserWidget : Inheritance
+    AuraUserWidgetController --* AuraUserWidget : Composition
+    OverlayWdigetController --* BP_OverlayWidget : Composition
+    BP_OverlayWidget --* HUD : Composition
+    FWidgetControllerParams ..&gt; AuraUserWidget : Defined in this
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="問題点" class="level2">
+<h2 class="anchored" data-anchor-id="問題点">問題点</h2>
+<section id="slot-as-overlay-slotなどのui関連" class="level3">
+<h3 class="anchored" data-anchor-id="slot-as-overlay-slotなどのui関連">Slot as Overlay SlotなどのUI関連</h3>
+<p>Comprehensiveなチュートリアルとかドキュメントとかを読む必要あり。</p>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -917,11 +1025,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../posts/univ_lecs/材料量子力学.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">材料量子力学</span>
+      <a href="../../posts/ue5_aura_courses/section_04.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">section_04</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../posts/ue5_aura_courses/template.html" class="pagination-link">
+        <span class="nav-page-text">template</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

@@ -1,0 +1,45 @@
+---
+title: "typical90-11"
+author: "Serika Yuzuki"
+date: "2023-11-30"
+categories: [AtCoder, Programming]
+image: "images/thumbnail.webp"
+---
+
+## 概要
+
+[問題リンク](https://atcoder.jp/contests/typical90/tasks/typical90_k)
+
+DPの問題です。慣れたものだね。
+
+```rust
+use itertools::iproduct;
+use proconio::input;
+
+fn main() {
+    input! {
+        n: usize,
+        mut dcs: [(usize, usize, usize); n],
+    }
+
+    // 締切日を降順にソート
+    dcs.sort_by(|a, b| a.0.cmp(&b.0).then(a.1.cmp(&b.1)).then(b.2.cmp(&a.2)));
+
+    // dp[i][j]: i問題目まで考えて、それまでの合計仕事日数がjの時の、報酬の最大値
+    let mut dp = vec![vec![0; 5001]; n + 1];
+
+    for (i, j) in iproduct!(0..n, 0..5001) {
+        // i問題目を解く場合
+        if j + dcs[i].1 <= dcs[i].0 {
+            dp[i + 1][j + dcs[i].1] = dp[i + 1][j + dcs[i].1].max(dp[i][j] + dcs[i].2);
+        }
+        // i問題目を解かない場合
+        dp[i + 1][j] = dp[i + 1][j].max(dp[i][j]);
+    }
+
+    println!("{}", dp[n].iter().max().unwrap());
+
+}
+
+
+```
