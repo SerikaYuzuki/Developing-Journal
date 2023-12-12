@@ -25,9 +25,13 @@ section 05 UI
         1. Creating `struct FWidgetControllerParams`
         1. Creating Setter for controller based on FWidgetControllerParams.
     1. Init Widgets Function in HUD. Execute in CharacterController
-
-
-
+    1. Create Delegate for OnHealthChange
+        1. Use DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam
+        1. Setup Broadcast in Init
+    1. Bindcallback in Controller
+        1. ASC already has a delegate for valuechange: `GetGameplayAttributeValueChangeDelegate`
+        1. Bind Function to it and in that funtion, broadcasting controller's onchanged delegate is a good way
+    1. Setup Mana
 
 ## 発見
 
@@ -86,7 +90,57 @@ classDiagram
     FWidgetControllerParams ..> AuraUserWidget : Defined in this
 ```
 
-## 問題点
+### Delegate について続き。
+
+Delegateは、いろんな関数のAdressをStoreしたもの。で、UEの場合、そのDelegateの定義は
+
+```{.cpp filename="OverlayWidgetController.cpp"}
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHealthChangedSignature, float, NewHealth);
+```
+
+のようにする。これで定義したDelegateの変数の定義は
+
+```{.cpp filename="OverlayWidgetController.cpp"}
+UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes")
+FOnHealthChangedSignature OnHealthChanged;
+```
+
+のようにしておき、この変数の中に関数のアドレスを入れるのに使うのは、他のcppファイルでやる。例えばWidgetはControllerを知っているけど、Controllerは知らないので、
+
+```{.cpp filename="OverlayWidget.cpp"}
+void UOverlayWidget::WidgetControllerSet()
+{
+    WidgetController->OnHealthChanged.AddDynamic(this, &UOverlayWidget::OnHealthChanged)
+}
+
+void UOverlayWidget::OnHealthChanged(float NewHealth)
+{
+    percent = NewHealth / MaxHealth;
+}
+```
+
+こんな感じに設定する。それで、この`OnHealthChanged`を呼びたいときは、
+
+```{.cpp filename="OverlayWidgetController.cpp"}
+void UOverlayWidgetController::DealDamage()
+{
+    Health -= 10;
+
+    OnScoreChangedDelegate.Broadcast(Health)
+}
+```
+
+としている。けど、なんでControllerはWidget本体を知らない方がいいのか……？
+
+![](images/5-2.png)
+
+![](images/5-3.png)
+
+これらについてもう少し考えてみる。
+
+つまりは、ControllerがCharacterとかのデータのやり取りを全てしており、WidgetがControllerにアクセスすればすべての欲しいものがあると。それから、全部のWidgetをTickさせながらアクセスするのは馬鹿らしいので、ControllerがDelegateを持って、Widget側がそれに関数をAssignさせ、Widgetに依存せずに知らないControllerが淡々とTickとUpdateをしていくわけだ。
+
+こうすることによって、Widgetの数が増えても、考えるべきなのはWidgetの中でDelegateにAssignする関数だけで済むし、Controllerは淡々と必用なVariablesを必用に応じてUpdateして、Delegateの実行、つまりBroadCastをしていくだけである。複雑になってもこれは変わらないので、Module性が高まる。
 
 ### Slot as Overlay SlotなどのUI関連
 

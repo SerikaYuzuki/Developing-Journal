@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -539,9 +573,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#setting-up-images-by-slate-brush" id="toc-setting-up-images-by-slate-brush" class="nav-link" data-scroll-target="#setting-up-images-by-slate-brush">Setting up Images by Slate Brush</a></li>
   <li><a href="#hierarchie-of-hud" id="toc-hierarchie-of-hud" class="nav-link" data-scroll-target="#hierarchie-of-hud">Hierarchie of HUD</a></li>
-  </ul></li>
-  <li><a href="#問題点" id="toc-問題点" class="nav-link" data-scroll-target="#問題点">問題点</a>
-  <ul class="collapse">
+  <li><a href="#delegate-について続き" id="toc-delegate-について続き" class="nav-link" data-scroll-target="#delegate-について続き">Delegate について続き。</a></li>
   <li><a href="#slot-as-overlay-slotなどのui関連" id="toc-slot-as-overlay-slotなどのui関連" class="nav-link" data-scroll-target="#slot-as-overlay-slotなどのui関連">Slot as Overlay SlotなどのUI関連</a></li>
   </ul></li>
   </ul>
@@ -595,6 +627,17 @@ ul.task-list li input[type="checkbox"] {
 <li>Creating Setter for controller based on FWidgetControllerParams.</li>
 </ol></li>
 <li>Init Widgets Function in HUD. Execute in CharacterController</li>
+<li>Create Delegate for OnHealthChange
+<ol type="1">
+<li>Use DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam</li>
+<li>Setup Broadcast in Init</li>
+</ol></li>
+<li>Bindcallback in Controller
+<ol type="1">
+<li>ASC already has a delegate for valuechange: <code>GetGameplayAttributeValueChangeDelegate</code></li>
+<li>Bind Function to it and in that funtion, broadcasting controller’s onchanged delegate is a good way</li>
+</ol></li>
+<li>Setup Mana</li>
 </ol></li>
 </ol>
 </section>
@@ -661,9 +704,57 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
+<section id="delegate-について続き" class="level3">
+<h3 class="anchored" data-anchor-id="delegate-について続き">Delegate について続き。</h3>
+<p>Delegateは、いろんな関数のAdressをStoreしたもの。で、UEの場合、そのDelegateの定義は</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>OverlayWidgetController.cpp</strong></pre>
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam<span class="op">(</span>FOnHealthChangedSignature<span class="op">,</span> <span class="dt">float</span><span class="op">,</span> NewHealth<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>のようにする。これで定義したDelegateの変数の定義は</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>OverlayWidgetController.cpp</strong></pre>
+</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>UPROPERTY<span class="op">(</span>BlueprintAssignable<span class="op">,</span> Category <span class="op">=</span> <span class="st">"GAS|Attributes"</span><span class="op">)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>FOnHealthChangedSignature OnHealthChanged<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>のようにしておき、この変数の中に関数のアドレスを入れるのに使うのは、他のcppファイルでやる。例えばWidgetはControllerを知っているけど、Controllerは知らないので、</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>OverlayWidget.cpp</strong></pre>
+</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> UOverlayWidget<span class="op">::</span>WidgetControllerSet<span class="op">()</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    WidgetController<span class="op">-&gt;</span>OnHealthChanged<span class="op">.</span>AddDynamic<span class="op">(</span><span class="kw">this</span><span class="op">,</span> <span class="op">&amp;</span>UOverlayWidget<span class="op">::</span>OnHealthChanged<span class="op">)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> UOverlayWidget<span class="op">::</span>OnHealthChanged<span class="op">(</span><span class="dt">float</span> NewHealth<span class="op">)</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    percent <span class="op">=</span> NewHealth <span class="op">/</span> MaxHealth<span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>こんな感じに設定する。それで、この<code>OnHealthChanged</code>を呼びたいときは、</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>OverlayWidgetController.cpp</strong></pre>
+</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> UOverlayWidgetController<span class="op">::</span>DealDamage<span class="op">()</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    Health <span class="op">-=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    OnScoreChangedDelegate<span class="op">.</span>Broadcast<span class="op">(</span>Health<span class="op">)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>としている。けど、なんでControllerはWidget本体を知らない方がいいのか……？</p>
+<p><img src="images/5-2.png" class="img-fluid"></p>
+<p><img src="images/5-3.png" class="img-fluid"></p>
+<p>これらについてもう少し考えてみる。</p>
+<p>つまりは、ControllerがCharacterとかのデータのやり取りを全てしており、WidgetがControllerにアクセスすればすべての欲しいものがあると。それから、全部のWidgetをTickさせながらアクセスするのは馬鹿らしいので、ControllerがDelegateを持って、Widget側がそれに関数をAssignさせ、Widgetに依存せずに知らないControllerが淡々とTickとUpdateをしていくわけだ。</p>
+<p>こうすることによって、Widgetの数が増えても、考えるべきなのはWidgetの中でDelegateにAssignする関数だけで済むし、Controllerは淡々と必用なVariablesを必用に応じてUpdateして、Delegateの実行、つまりBroadCastをしていくだけである。複雑になってもこれは変わらないので、Module性が高まる。</p>
 </section>
-<section id="問題点" class="level2">
-<h2 class="anchored" data-anchor-id="問題点">問題点</h2>
 <section id="slot-as-overlay-slotなどのui関連" class="level3">
 <h3 class="anchored" data-anchor-id="slot-as-overlay-slotなどのui関連">Slot as Overlay SlotなどのUI関連</h3>
 <p>Comprehensiveなチュートリアルとかドキュメントとかを読む必要あり。</p>
