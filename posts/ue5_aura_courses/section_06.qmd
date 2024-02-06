@@ -1,0 +1,32 @@
+---
+title: "section_06"
+author: "Serika Yuzuki"
+date: "2023-12-14"
+categories: [UE5, Aura, Udemy, Game, Programming]
+image: "images/thumbnail.png"
+---
+
+## 概要
+
+sec 06
+
+1. Recreate all functionalities in GamePlayEffect
+    1.
+
+## 発見
+
+
+### 問題
+
+## 問題点
+
+### FGameplayEffectContextHandle?? FGameplayEffectSpecHandle??
+
+```cpp
+FGameplayEffectContextHandle EffectContextHandle = AbilitySystemComponent->MakeEffectContext();
+EffectContextHandle.AddSourceObject(this);
+FGameplayEffectSpecHandle EffectSpecHandle = AbilitySystemComponent->MakeOutgoingSpec(GameplayEffectClass, 1, EffectContextHandle);
+AbilitySystemComponent->ApplyGameplayEffectSpecToSelf(*EffectSpecHandle.Data.Get());
+```
+
+呪文として覚えておくか……。
