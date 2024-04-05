@@ -1,0 +1,161 @@
+---
+title: "材料強度学"
+author: "Serika Yuzuki"
+date: "2024-4-5"
+categories: [University, 2023]
+image: "images/thumbnail.png"
+---
+
+$$ \require{physics} $$
+
+# 材料強度学
+
+## 講義の概要
+
+-   出席は取らない
+
+##　第一講
+
+### Hooke's Law
+
+$$ \pdv{\sigma}{\epsilon} = E $$
+
+応力は歪の小さい範囲では歪に比例する。比例係数はヤング率。当たり前の話。
+
+![](images/強度学/1.png)
+
+点Aから手を離すと、フックの直線とそんなに変わらない傾きで点Bに行く。OBのことを塑性変形と読んでいる。このことを yield phenomenon pointと呼んでいるらしい。
+
+![](images/強度学/2.png)
+
+この状態は continuous yieldingと呼ばれている。このヤング率は測定が難しいので、歪の0.2%とすることが多いらしい。
+
+### 脆性破壊と延性破壊
+
+脆性破壊は、急激に破壊が進むこと。延性破壊は、ゆっくりと破壊が進むこと。
+
+![](images/強度学/3.png)
+
+靱性は、破壊エネルギーのこと。延性破壊が起こる材料は靱性が高い。
+
+$$ \text{靱性} = \int \sigma \dd \epsilon $$
+
+### 理想強度
+
+![](images/強度学/5.png)
+
+このもっこりを正弦関数で近似して、
+
+![](images/強度学/6.png)
+
+$$ \sigma \cong \sigma_c \sin \left(\frac{2\pi(a-a_0)}{\lambda}\right) $$
+
+ここで、一時近似すると、
+
+$$ \sigma \cong \sigma_c \frac{2\pi(a-a_0)}{\lambda} $$
+
+フックの法則では
+
+$$ \sigma = E \epsilon = E \frac{a-a_0}{a_0}$$
+
+$$ \sigma_c = \frac{E\lambda}{2\pi a_0}$$
+
+ここで $\lambda$ を求めないといけないが、これは、実験的に劈開試験を行うことで求めることができる。表面エネルギーを $\gamma$ にすると、面が二つある事を考えて、
+
+$$ 2\gamma = \int_{a_0}^{\infty} \sigma \dd a = \int_{a_0}^{\infty} \sigma_c \sin \left(\frac{2\pi(a-a_0)}{\lambda}\right) \dd a = \sigma_c \frac{\lambda}{\pi} $$
+
+ここで注意なのは、もっこりは一つなので、それで近似する。
+
+ここにフックの法則の方の式を代入すると、
+
+$$ 2\gamma = \frac{\sigma_c}{\pi} \frac{2\pi a_0 \sigma_c}{E} = \frac{2\sigma_c^2 a_0}{E} $$
+
+$$ \sigma_c = \sqrt{\frac{\gamma E}{a_0}} $$
+
+実際の破壊強度は $\sigma_c$ の 10%\~1%程度で あることが知られている。このモデルでは欠陥の影響が考慮されていない。現実の材料では、ミリ～ミクロンサイズの空隙から、熱力学的平衡状態において存在する格子欠陥まで、さまざまな欠陥が含まれており、それゆえ破壊強度が理想強度を大きく下回ると考えられる。
+
+## 過去問
+
+### 2008
+
+#### 問1
+
+刃状転位およびらせん転位を図示して、転位線とそのバーガースベクトルの関係について記せ
+
+##### Dislocations
+
+Dislocations are a type of defect in a crystal structure. They are areas where the atoms are out of position in the crystal structure. Dislocations are divided into two basic types: edge dislocations and screw dislocations.
+
+![](images/強度学/4.png)
+
+###### Edge Dislocations
+
+Edge dislocations are caused by the termination of a plane of atoms in the middle of a crystal. In such a case, an extra half-plane of atoms is introduced.
+
+The vector that is perpendicular to the dislocation line and points in the direction where the extra half-plane of atoms was inserted is called the Burgers vector.
+
+###### Screw Dislocations
+
+Screw dislocations are a bit more difficult to visualize. They are formed by a shear stress that is applied to the crystal structure.
+
+The Burgers vector is parallel to the dislocation line for a screw dislocation.
+
+In both types of dislocations, the magnitude of the Burgers vector is equal to the lattice parameter, $a$.
+
+##### 解答
+
+螺旋転移では、転位線とバーガースベクトルは平行である。一方、刃状転位では、転位線とバーガースベクトルは直交する。
+
+#### 問２
+
+断面積 $S$ の単結晶の丸棒に引っ張り力 $F$ を負荷した場合を考える。この時、引っ張り方向と滑り面の方線のなす角度を $\phi$ 引っ張り方向と滑り方向のなす角度を $\lambda$ とした場合、臨界剪断応力 $\tau_0$ を $S,F,\phi,\lambda$ の関数として導け。またシュミット因子についてのべよ。
+
+##### 解答
+
+###### Critical Shear Stress and Schmid's Law
+
+When a single crystal rod with a cross-sectional area $S$ is subjected to a tensile force $F$, the critical resolved shear stress $\tau_0$ is given by Schmid's Law:
+
+$$\tau_0 = \frac{F}{S} \cdot \cos(\phi) \cdot \cos(\lambda)$$
+
+where $\phi$ is the angle between the tensile direction and the normal to the slip plane, and $\lambda$ is the angle between the tensile direction and the slip direction.
+
+The term $\cos(\phi) \cdot \cos(\lambda)$ is known as the Schmid factor. It represents the resolved shear stress on a particular slip system. The slip system with the highest Schmid factor will be the first to undergo plastic deformation when the material is subjected to a stress. The Schmid factor is a measure of the component of the applied stress that can contribute to dislocation motion along a slip plane in a specific direction.
+
+#### 問３
+
+刃状転位の応力場は $\sigma_{xx} = -\frac{Gb}{2\pi(1-\nu)}\frac{y(3x^2+y^2)}{(x^2+y^2)^2}, \sigma_{yy} = \frac{Gb}{2\pi(1-\nu)}\frac{(x^2-y^2)}{(x^2+y^2)^2}$ で与えられる。ここで、$G$ はせん断弾性率、$b$ はバーガースベクトル、$\nu$ はポアソン比である。これより刃状転位周囲の引っ張り、圧縮の応力分布を図示せよ。
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+G = 1  # Shear modulus
+b = 1  # Burgers vector
+nu = 0.3  # Poisson's ratio
+
+# Grid of x, y points
+x = np.linspace(-1, 1, 100)
+y = np.linspace(-1, 1, 100)
+X, Y = np.meshgrid(x, y)
+
+# Stress fields
+sigma_xx = -G*b/(2*np.pi*(1-nu)) * Y*(3*X**2+Y**2) / (X**2+Y**2)**2
+sigma_yy = G*b/(2*np.pi*(1-nu)) * (X**2-Y**2) / (X**2+Y**2)**2
+
+# Plot
+fig, ax = plt.subplots(1, 2, figsize=(12, 6))
+
+# sigma_xx
+c = ax[0].contourf(X, Y, sigma_xx, levels=20, cmap='RdBu_r')
+fig.colorbar(c, ax=ax[0])
+ax[0].set_title('$\sigma_{xx}$')
+
+# sigma_yy
+c = ax[1].contourf(X, Y, sigma_yy, levels=20, cmap='RdBu_r')
+fig.colorbar(c, ax=ax[1])
+ax[1].set_title('$\sigma_{yy}$')
+
+plt.show()
+```
