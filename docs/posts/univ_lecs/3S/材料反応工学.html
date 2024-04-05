@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Serika Yuzuki">
+<meta name="dcterms.date" content="2024-04-05">
 
-<title>芹香のブログ：セリポンポン</title>
+<title>芹香のブログ：セリポンポン - 材料反応工学</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,6 +73,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -137,7 +168,39 @@ ul.task-list li input[type="checkbox"] {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">大学関連</li><li class="breadcrumb-item">Univ Lecs</li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/材料反応工学.html">3S</a></li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/材料反応工学.html">材料反応工学</a></li></ol></nav>
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">材料反応工学</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">University</div>
+                <div class="quarto-category">2024</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Serika Yuzuki </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 5, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -467,7 +530,33 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#ノート" id="toc-ノート" class="nav-link active" data-scroll-target="#ノート">ノート</a>
+  <ul class="collapse">
+  <li><a href="#速度論概要" id="toc-速度論概要" class="nav-link" data-scroll-target="#速度論概要">速度論概要</a>
+  <ul class="collapse">
+  <li><a href="#平衡状態-equilibrium-state" id="toc-平衡状態-equilibrium-state" class="nav-link" data-scroll-target="#平衡状態-equilibrium-state">平衡状態 (Equilibrium State)</a></li>
+  <li><a href="#定常状態-steady-state" id="toc-定常状態-steady-state" class="nav-link" data-scroll-target="#定常状態-steady-state">定常状態 (Steady State)</a></li>
+  <li><a href="#速度過程" id="toc-速度過程" class="nav-link" data-scroll-target="#速度過程">速度過程</a></li>
+  </ul></li>
+  <li><a href="#化学反応速度論" id="toc-化学反応速度論" class="nav-link" data-scroll-target="#化学反応速度論">化学反応速度論</a>
+  <ul class="collapse">
+  <li><a href="#化学反応速度" id="toc-化学反応速度" class="nav-link" data-scroll-target="#化学反応速度">化学反応速度</a></li>
+  <li><a href="#反応の種類" id="toc-反応の種類" class="nav-link" data-scroll-target="#反応の種類">反応の種類</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#過去問" id="toc-過去問" class="nav-link" data-scroll-target="#過去問">過去問</a>
+  <ul class="collapse">
+  <li><a href="#年度" id="toc-年度" class="nav-link" data-scroll-target="#年度">2012年度</a>
+  <ul class="collapse">
+  <li><a href="#問1" id="toc-問1" class="nav-link" data-scroll-target="#問1">問1</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
     <div class="quarto-margin-footer"><div class="margin-footer-item">
 アクセスカウンター
 <table border="0" cellspacing="0" cellpadding="0">
@@ -490,7 +579,122 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<p><span class="math display">\[ \require{physics}
+\require{mhchem}
+\]</span></p>
+<section id="ノート" class="level1">
+<h1>ノート</h1>
+<p>後半は豊島先生が担当するらしい。</p>
+<section id="速度論概要" class="level2">
+<h2 class="anchored" data-anchor-id="速度論概要">速度論概要</h2>
+<section id="平衡状態-equilibrium-state" class="level3">
+<h3 class="anchored" data-anchor-id="平衡状態-equilibrium-state">平衡状態 (Equilibrium State)</h3>
+<p>平衡状態とは熱力学的に安定な状態、つまり自由エネルギーが最も低い状態のことを指す。これについての話は平衡論と呼ばれており、熱力学で中心的に扱われる。</p>
+</section>
+<section id="定常状態-steady-state" class="level3">
+<h3 class="anchored" data-anchor-id="定常状態-steady-state">定常状態 (Steady State)</h3>
+<p>定常状態とは、系内の物質量やエネルギーが時間とともに変化しない状態のことを指す。これは系内の物質量やエネルギーの収支が釣り合っている状態であり、系内の物質量やエネルギーの変化がないことを意味する。この講義では平衡状態、定常状態は独立して考えるらしい。</p>
+<p>数式的に書けば、</p>
+<p>(系への蓄積速度) = (系への流入速度) - (系からの流出速度) + (系内での生成速度) - (系内での消失速度)=0</p>
+<p><span class="math display">\[
+\pdv{C}{t}(x,t) = 0
+\]</span></p>
+</section>
+<section id="速度過程" class="level3">
+<h3 class="anchored" data-anchor-id="速度過程">速度過程</h3>
+<p>初期状態から平衡状態に至るまでの過程を速度過程と呼ぶ。講義ではここの部分を重点的にやる予定らしい。</p>
+</section>
+</section>
+<section id="化学反応速度論" class="level2">
+<h2 class="anchored" data-anchor-id="化学反応速度論">化学反応速度論</h2>
+<section id="化学反応速度" class="level3">
+<h3 class="anchored" data-anchor-id="化学反応速度">化学反応速度</h3>
+<p>化学反応速度とは、単位時間あたりに反応物質が反応する速さのことを指す。これは反応物質の濃度に依存するため、一般的には濃度の関数として表される。</p>
+<p><span class="math display">\[
+-r_A = - \dv{C_A}{t} = f(C_A, C_B, \cdots)
+\]</span></p>
+<p>ここで考える反応装置とは回分反応器（バッチ式）で、これの特徴は、閉じた系であること、反応物質の濃度が空間的に均一であること、反応物質の濃度が時間的に変化することである。</p>
+<p>他にも、槽型反応器CSTR、管型流通式反応機などがある。CSTRは特に大量生産に向いているので、工業的によく使われる。</p>
+<p>!(CSTR)[images/反応工学/1.jpg]</p>
+<p>ある均一反応を考えると、その反応速度は以下のように表される。</p>
+<p><span class="math display">\[
+\ce{aA + bB -&gt; cC + dD}
+\]</span></p>
+<p>Aの消失速度は</p>
+<p><span class="math display">\[
+-r_A = \frac{1}{V} \dv{N_A}{t} \; \left[\frac{\text{mol}}{\text{m}^3  \cdot \text{s}}\right]
+\]</span></p>
+<p>また、次のような等式も当然成り立つ。</p>
+<p><span class="math display">\[
+\frac{r_A}{a}= \frac{r_B}{b} = \frac{r_C}{c} = \frac{r_D}{d}
+\]</span></p>
+</section>
+<section id="反応の種類" class="level3">
+<h3 class="anchored" data-anchor-id="反応の種類">反応の種類</h3>
+<ul>
+<li>単一反応</li>
+</ul>
+<p><span class="math display">\[
+\ce{A -&gt; B}
+\]</span></p>
+<p><span class="math display">\[
+\ce{A + B -&gt; C + D}
+\]</span></p>
+<ul>
+<li>複合反応</li>
+</ul>
+<p><span class="math display">\[
+\ce{A -&gt; B -&gt; C}
+\]</span></p>
+<ul>
+<li>並行反応</li>
+</ul>
+<p><span class="math display">\[
+\chemfig{A -&gt; C}
+\]</span></p>
+<p><span class="math display">\[
+\chemfig{A -&gt; D}
+\]</span></p>
+<ul>
+<li>素反応</li>
+</ul>
+<p><span class="math display">\[
+\ce{A + B -&gt; C}
+\]</span></p>
+<p>分解できる最小単位を素反応と呼ぶ。</p>
+<ul>
+<li>非素反応</li>
+</ul>
+<p><span class="math display">\[
+\ce{H2 + Br2 -&gt; 2HBr}
+\]</span></p>
+<p><span class="math display">\[
+r_{\ce{HBr}} = \frac{k_1[\ce{H2}][\ce{Br2}]^{\frac{1}{2}}}{k_2 + \frac{[\ce{HBr}]}{[\ce{Br2}]}}
+\]</span></p>
+</section>
+</section>
+</section>
+<section id="過去問" class="level1">
+<h1>過去問</h1>
+<section id="年度" class="level2">
+<h2 class="anchored" data-anchor-id="年度">2012年度</h2>
+<section id="問1" class="level3">
+<h3 class="anchored" data-anchor-id="問1">問1</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/反応工学/2.png" class="img-fluid figure-img"></p>
+<figcaption>問1</figcaption>
+</figure>
+</div>
+<ol type="1">
+<li>Lindemann-Hinshelwood機構</li>
+<li></li>
+</ol>
 
+
+</section>
+</section>
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

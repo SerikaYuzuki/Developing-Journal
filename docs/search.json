@@ -846,7 +846,7 @@
     "href": "posts/univ_lecs/3S/材料強度学.html",
     "title": "材料強度学",
     "section": "",
-    "text": "\\[ \\require{physics} \\]",
+    "text": "\\[ \\require{physics}\n\\require{mhchem}\n\\]",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
@@ -1082,9 +1082,51 @@
   {
     "objectID": "posts/univ_lecs/3S/材料反応工学.html",
     "href": "posts/univ_lecs/3S/材料反応工学.html",
-    "title": "芹香のブログ：セリポンポン",
+    "title": "材料反応工学",
     "section": "",
-    "text": "Back to top",
+    "text": "\\[ \\require{physics}\n\\require{mhchem}\n\\]",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料反応工学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料反応工学.html#速度論概要",
+    "href": "posts/univ_lecs/3S/材料反応工学.html#速度論概要",
+    "title": "材料反応工学",
+    "section": "速度論概要",
+    "text": "速度論概要\n\n平衡状態 (Equilibrium State)\n平衡状態とは熱力学的に安定な状態、つまり自由エネルギーが最も低い状態のことを指す。これについての話は平衡論と呼ばれており、熱力学で中心的に扱われる。\n\n\n定常状態 (Steady State)\n定常状態とは、系内の物質量やエネルギーが時間とともに変化しない状態のことを指す。これは系内の物質量やエネルギーの収支が釣り合っている状態であり、系内の物質量やエネルギーの変化がないことを意味する。この講義では平衡状態、定常状態は独立して考えるらしい。\n数式的に書けば、\n(系への蓄積速度) = (系への流入速度) - (系からの流出速度) + (系内での生成速度) - (系内での消失速度)=0\n\\[\n\\pdv{C}{t}(x,t) = 0\n\\]\n\n\n速度過程\n初期状態から平衡状態に至るまでの過程を速度過程と呼ぶ。講義ではここの部分を重点的にやる予定らしい。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料反応工学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料反応工学.html#化学反応速度論",
+    "href": "posts/univ_lecs/3S/材料反応工学.html#化学反応速度論",
+    "title": "材料反応工学",
+    "section": "化学反応速度論",
+    "text": "化学反応速度論\n\n化学反応速度\n化学反応速度とは、単位時間あたりに反応物質が反応する速さのことを指す。これは反応物質の濃度に依存するため、一般的には濃度の関数として表される。\n\\[\n-r_A = - \\dv{C_A}{t} = f(C_A, C_B, \\cdots)\n\\]\nここで考える反応装置とは回分反応器（バッチ式）で、これの特徴は、閉じた系であること、反応物質の濃度が空間的に均一であること、反応物質の濃度が時間的に変化することである。\n他にも、槽型反応器CSTR、管型流通式反応機などがある。CSTRは特に大量生産に向いているので、工業的によく使われる。\n!(CSTR)[images/反応工学/1.jpg]\nある均一反応を考えると、その反応速度は以下のように表される。\n\\[\n\\ce{aA + bB -&gt; cC + dD}\n\\]\nAの消失速度は\n\\[\n-r_A = \\frac{1}{V} \\dv{N_A}{t} \\; \\left[\\frac{\\text{mol}}{\\text{m}^3  \\cdot \\text{s}}\\right]\n\\]\nまた、次のような等式も当然成り立つ。\n\\[\n\\frac{r_A}{a}= \\frac{r_B}{b} = \\frac{r_C}{c} = \\frac{r_D}{d}\n\\]\n\n\n反応の種類\n\n単一反応\n\n\\[\n\\ce{A -&gt; B}\n\\]\n\\[\n\\ce{A + B -&gt; C + D}\n\\]\n\n複合反応\n\n\\[\n\\ce{A -&gt; B -&gt; C}\n\\]\n\n並行反応\n\n\\[\n\\chemfig{A -&gt; C}\n\\]\n\\[\n\\chemfig{A -&gt; D}\n\\]\n\n素反応\n\n\\[\n\\ce{A + B -&gt; C}\n\\]\n分解できる最小単位を素反応と呼ぶ。\n\n非素反応\n\n\\[\n\\ce{H2 + Br2 -&gt; 2HBr}\n\\]\n\\[\nr_{\\ce{HBr}} = \\frac{k_1[\\ce{H2}][\\ce{Br2}]^{\\frac{1}{2}}}{k_2 + \\frac{[\\ce{HBr}]}{[\\ce{Br2}]}}\n\\]",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料反応工学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料反応工学.html#年度",
+    "href": "posts/univ_lecs/3S/材料反応工学.html#年度",
+    "title": "材料反応工学",
+    "section": "2012年度",
+    "text": "2012年度\n\n問1\n\n\n\n問1\n\n\n\nLindemann-Hinshelwood機構",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
@@ -1731,6 +1773,6 @@
     "href": "index.html",
     "title": "Serika’s Blog",
     "section": "",
-    "text": "このブログでは、私個人の日記などの記録や、AtCoderやゲーム開発などでの進捗管理、情報発信をしていくつもりです。\n現時点での各セクションでの概要や目標は次のとおりです。\n\n\n\n\n\n\n\n\nセクション名\n概要\n目標\n\n\n\n\nAtCoder\nTypicala90を解いて行っています\nrustでAtCoderに挑戦する人にとって一助となるドキュメントになること\n\n\nUE5\nAuraというゲームを作るオンライン講義の記録\nコース完了後に自作のコピーゲームを作るときに参考にする\n\n\n大学用\n自作のシケプリを公開する場所\n参考になってくれれば嬉しい。そのうち消すかも\n\n\n収容所\n収容所で公開する問題を載せていく\nデータベース代わりになるといいかなと\n\n\nJournal\nただの日記\nできれば毎日投稿する\n\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n材料強度学\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nApr 5, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\n\n\n\nProgramming\n\n\nWeb\n\n\nPlayGround\n\n\n\n\n\n\n\n\n\nDec 20, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_06\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学II\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学III\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学B\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学A\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-11\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 30, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nPlanning\n\n\n\n\n\n\nUE5\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 29, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-10\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_05\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-09\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 24, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_04\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 20, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-08\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 26, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-07\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-06\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 23, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-05\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 17, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-04\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 16, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-03\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 15, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_03\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 15, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学I\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nOct 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n物理\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nOct 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料速度論\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料量子力学\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料相平衡論\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n統計力学\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nCargo Compete\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-02\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-01\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nSection 02\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\nNo matching items\n\n\n  \n\n Back to top"
+    "text": "このブログでは、私個人の日記などの記録や、AtCoderやゲーム開発などでの進捗管理、情報発信をしていくつもりです。\n現時点での各セクションでの概要や目標は次のとおりです。\n\n\n\n\n\n\n\n\nセクション名\n概要\n目標\n\n\n\n\nAtCoder\nTypicala90を解いて行っています\nrustでAtCoderに挑戦する人にとって一助となるドキュメントになること\n\n\nUE5\nAuraというゲームを作るオンライン講義の記録\nコース完了後に自作のコピーゲームを作るときに参考にする\n\n\n大学用\n自作のシケプリを公開する場所\n参考になってくれれば嬉しい。そのうち消すかも\n\n\n収容所\n収容所で公開する問題を載せていく\nデータベース代わりになるといいかなと\n\n\nJournal\nただの日記\nできれば毎日投稿する\n\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\n材料強度学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 5, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料反応工学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 5, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\n\n\n\nProgramming\n\n\nWeb\n\n\nPlayGround\n\n\n\n\n\n\n\n\n\nDec 20, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_06\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学II\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学III\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学B\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学A\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-11\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 30, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nPlanning\n\n\n\n\n\n\nUE5\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 29, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-10\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_05\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-09\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 24, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_04\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 20, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-08\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 26, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-07\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-06\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 23, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-05\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 17, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-04\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 16, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-03\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 15, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_03\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 15, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学I\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nOct 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n物理\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nOct 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料速度論\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料量子力学\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料相平衡論\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n統計力学\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nCargo Compete\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-02\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-01\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nSection 02\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\nNo matching items\n\n\n  \n\n Back to top"
   }
 ]
