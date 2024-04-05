@@ -1,0 +1,343 @@
+---
+title: "材料反応工学"
+author: "Serika Yuzuki"
+date: "2024-4-5"
+categories: [University, 2024]
+image: "images/thumbnail.png"
+---
+
+$$ \require{physics} 
+\require{mhchem}
+$$
+
+# ノート
+
+## 結晶格子
+
+### 結晶とは
+
+- 結晶とは、原子や分子が規則的に並んだ固体のことである。
+- 理想的な結晶、現実の結晶、多結晶、非晶質(アモルファス)の4つの種類がある。
+
+講義ではまず２次元Latticeについて考える。
+
+### 基本単位胞
+
+- 結晶構造を記述するための基本単位胞とは、結晶構造の最小単位であり、その結晶構造を無限に繰り返すことで全体の結晶構造が構築される。
+- 基本単位胞の取り方は無限にあるが、最も簡単なものを選ぶといいらしい。
+- 基本単位胞内の任意の点を格子点と呼んでいる。ただし、全ての別の単位胞に対して同じ位置として考える。バラバラに選ぶものではない。
+- 格子点同士を最短で結ぶベクトルを基本並進ベクトルと呼ぶ。
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Define the lattice vectors
+a1 = np.array([1, 0])
+a2 = np.array([0, 1])
+
+# Generate a grid of lattice points
+x = np.arange(-2, 3)
+y = np.arange(-2, 3)
+X, Y = np.meshgrid(x, y)
+
+# Plot the lattice points
+plt.figure(figsize=(6, 6))
+plt.scatter(X, Y, color='blue')
+
+# Plot the lattice vectors
+plt.quiver(0, 0, a1[0], a1[1], angles='xy', scale_units='xy', scale=1, color='red')
+plt.quiver(0, 0, a2[0], a2[1], angles='xy', scale_units='xy', scale=1, color='green')
+
+# Set the aspect ratio and limits
+plt.gca().set_aspect('equal', adjustable='box')
+plt.xlim(-2.5, 2.5)
+plt.ylim(-2.5, 2.5)
+
+# Add labels
+plt.text(a1[0], a1[1], 'a1', fontsize=12, ha='right')
+plt.text(a2[0], a2[1], 'a2', fontsize=12, va='bottom')
+
+plt.show()
+```
+
+- すると、任意の格子点は $\symbfit{R} = n_1 \symbfit{a}_1 + n_2 \symbfit{a}_2$ と表すことができる。
+
+### ３次元結晶格子
+
+- ３次元結晶格子は、２次元結晶格子の拡張である。並進ベクトルの性質はそれほど変わらない。
+- ３次元格子は１４種類のブラベ格子に分類される。
+- ３次元格子の並進ベクトルを基底ベクトルで表すなんてこともする。
+    - 体心立方格子
+        $$
+        \begin{aligned}
+        \symbfit{a}_1 &= \frac{a}{2} ( \symbfit{e}_x + \symbfit{e}_y + \symbfit{e}_z ) \\
+        \symbfit{a}_2 &= \frac{a}{2} ( -\symbfit{e}_x + \symbfit{e}_y + \symbfit{e}_z ) \\
+        \symbfit{a}_3 &= \frac{a}{2} ( \symbfit{e}_x - \symbfit{e}_y + \symbfit{e}_z ) \\
+        \end{aligned}
+        $$
+
+    - 面心立方格子
+        $$
+        \begin{aligned}
+        \symbfit{a}_1 &= \frac{a}{2} ( \symbfit{e}_x + \symbfit{e}_y ) \\
+        \symbfit{a}_2 &= \frac{a}{2} ( -\symbfit{e}_x + \symbfit{e}_y ) \\
+        \symbfit{a}_3 &= \frac{a}{2} ( \symbfit{e}_x - \symbfit{e}_y ) \\
+        \end{aligned}
+        $$
+
+- 基本単位胞では面倒なことがあるので、慣用単位砲で考えることもある。その一例として、ウィグナー・ツァイト胞がある。ウィグナーサイツ胞とは、ある格子点と、その周りの格子点との間の垂直二等分面で囲まれた領域における最小のセル（胞）のことである。
+    - 二次元のウィグナーサイツ胞は、過去問のセクションで図示している。
+
+
+
+
+# 過去問
+
+## 2018年度
+
+### 問1
+
+1. ウィグナーサイツ胞とは、ある格子点と、その周りの格子点との間の垂直二等分面で囲まれた領域における最小のセル（胞）のことである。
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.patches import Rectangle
+
+# Define the lattice vectors
+a1 = np.array([1, 0])
+a2 = np.array([0, 1])
+
+# Generate a grid of lattice points
+x = np.arange(-2, 3)
+y = np.arange(-2, 3)
+X, Y = np.meshgrid(x, y)
+
+# Plot the lattice points
+plt.figure(figsize=(6, 6))
+plt.scatter(X, Y, color='blue')
+
+# Plot the lattice vectors
+plt.quiver(0, 0, a1[0], a1[1], angles='xy', scale_units='xy', scale=1, color='red')
+plt.quiver(0, 0, a2[0], a2[1], angles='xy', scale_units='xy', scale=1, color='green')
+
+# Draw the Wigner-Seitz cell
+rectangle = Rectangle((-0.5, -0.5), 1, 1, edgecolor='black', facecolor='none')
+plt.gca().add_patch(rectangle)
+
+# Set the aspect ratio and limits
+plt.gca().set_aspect('equal', adjustable='box')
+plt.xlim(-2.5, 2.5)
+plt.ylim(-2.5, 2.5)
+
+# Add labels
+plt.text(a1[0], a1[1], 'a1', fontsize=12, ha='right')
+plt.text(a2[0], a2[1], 'a2', fontsize=12, va='bottom')
+
+plt.show()
+```
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.patches import RegularPolygon
+
+# Define the lattice vectors
+a1 = np.array([1, 0])
+a2 = np.array([1/2, np.sqrt(3)/2])
+
+# Generate a grid of lattice points
+x = np.arange(-2, 3)
+y = np.arange(-2, 3)
+X, Y = np.meshgrid(x, y)
+
+# Generate the hexagonal lattice points
+X_hex = X + Y/2
+Y_hex = Y * np.sqrt(3)/2
+
+# Plot the lattice points
+plt.figure(figsize=(6, 6))
+plt.scatter(X_hex, Y_hex, color='blue')
+
+# Plot the lattice vectors
+plt.quiver(0, 0, a1[0], a1[1], angles='xy', scale_units='xy', scale=1, color='red')
+plt.quiver(0, 0, a2[0], a2[1], angles='xy', scale_units='xy', scale=1, color='green')
+
+# Draw the Wigner-Seitz cell
+polygon = RegularPolygon((0, 0), 6, radius=1/np.sqrt(3), edgecolor='black', facecolor='none')
+plt.gca().add_patch(polygon)
+
+# Set the aspect ratio and limits
+plt.gca().set_aspect('equal', adjustable='box')
+plt.xlim(-2.5, 2.5)
+plt.ylim(-2.5, 2.5)
+
+# Add labels
+plt.text(a1[0], a1[1], 'a1', fontsize=12, ha='right')
+plt.text(a2[0], a2[1], 'a2', fontsize=12, va='bottom')
+
+plt.show()
+```
+
+2. 三次元六方格子の逆格子点の求め方は次のとおり。
+
+三次元六方格子の基本並進ベクトルは以下のように表されます：
+
+$$
+\begin{aligned}
+\mathbf{a}_1 &= a \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} \\
+\mathbf{a}_2 &= a \begin{pmatrix} -\frac{1}{2} \\ \frac{\sqrt{3}}{2} \\ 0 \end{pmatrix} \\
+\mathbf{a}_3 &= a \begin{pmatrix} 0 \\ 0 \\ c \end{pmatrix}
+\end{aligned}
+$$
+
+ここで、$a$ は格子定数、$c$ は六方格子の高さです。
+
+これらの基本並進ベクトルから逆格子ベクトルを求めるには、以下の公式を使用します：
+
+$$
+b_i = 2\pi \frac{a_j \times a_k}{a_1 \cdot (a_2 \times a_3)}
+$$
+
+ここで、(i, j, k) は (1, 2, 3)、(2, 3, 1)、(3, 1, 2) の任意の巡回置換です。
+
+したがって、三次元六方格子の逆格子ベクトルは以下のようになります：
+
+$$
+b_1 = 2\pi \frac{a}{V} (c, -\sqrt{3}/2, 1/2)
+$$
+$$
+b_2 = 2\pi \frac{a}{V} (0, \sqrt{3}, 0)
+$$
+$$
+b_3 = 2\pi \frac{a}{V} (0, 0, 2\pi/c)
+$$
+
+ここで、$V = a^2 \sqrt{3} c / 2$ は単位胞の体積です。
+
+これらの逆格子ベクトルは、逆格子空間における格子点の位置を決定します。
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# Define the reciprocal lattice vectors
+b1 = np.array([1, -1/np.sqrt(3), 0])
+b2 = np.array([0, 2/np.sqrt(3), 0])
+b3 = np.array([0, 0, 1])
+
+# Generate a grid of reciprocal lattice points
+x = np.arange(-2, 3)
+y = np.arange(-2, 3)
+z = np.arange(-2, 3)
+X, Y, Z = np.meshgrid(x, y, z)
+
+# Convert the grid to reciprocal lattice coordinates
+X_rec = X*b1[0] + Y*b2[0] + Z*b3[0]
+Y_rec = X*b1[1] + Y*b2[1] + Z*b3[1]
+Z_rec = X*b1[2] + Y*b2[2] + Z*b3[2]
+
+# Plot the reciprocal lattice points
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.scatter(X_rec, Y_rec, Z_rec, color='blue')
+
+# Set the aspect ratio and limits
+ax.set_xlabel('b1')
+ax.set_ylabel('b2')
+ax.set_zlabel('b3')
+
+plt.show()
+```
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Define the lattice vectors
+a1 = np.array([1, 0])
+a2 = np.array([1/2, np.sqrt(3)/2])
+
+# Define the reciprocal lattice vectors
+b1 = np.array([1, -1/np.sqrt(3)])
+b2 = np.array([0, 2/np.sqrt(3)])
+
+# Generate a grid of lattice points
+x = np.arange(-2, 3)
+y = np.arange(-2, 3)
+X, Y = np.meshgrid(x, y)
+
+# Convert the grid to lattice coordinates
+X_lat = X*a1[0] + Y*a2[0]
+Y_lat = X*a1[1] + Y*a2[1]
+
+# Convert the grid to reciprocal lattice coordinates
+X_rec = X*b1[0] + Y*b2[0]
+Y_rec = X*b1[1] + Y*b2[1]
+
+# Plot the lattice points
+plt.figure(figsize=(6, 6))
+plt.scatter(X_lat, Y_lat, color='blue', label='Lattice points')
+
+# Plot the reciprocal lattice points
+plt.scatter(X_rec, Y_rec, color='red', label='Reciprocal lattice points')
+
+# Set the aspect ratio and limits
+plt.gca().set_aspect('equal', adjustable='box')
+plt.xlim(-2.5, 2.5)
+plt.ylim(-2.5, 2.5)
+
+# Add a legend
+plt.legend()
+
+plt.show()
+```
+
+### 問2
+
+1. 普通に運動方程式を立てる。
+
+$$
+m\ddots{x_j} = -K(x_j - x_{j-1}) + K(x_{j+1} - x_j) = K(x_{j+1} - 2x_j + x_{j-1})
+$$
+
+2.
+
+$$
+x_j(t) = A e^{i(kja - \omega t)}
+$$
+
+ここで、$A$ は振幅、$k$ は波数、$a$ は格子定数（原子間距離）、$\omega$ は角周波数です。代入して整理すると、次のようになります：
+
+$$
+m\omega^2 = 2K(1 - \cos(ka))
+$$
+
+これは、振動数 $\omega$ が波数 $k$ に依存するディスパージョン関係を表しています。
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Define the parameters
+m = 1.0  # atomic mass
+K = 1.0  # spring constant
+a = 1.0  # lattice constant
+
+# Define the wave number range within the first Brillouin zone
+k = np.linspace(-np.pi/a, np.pi/a, 1000)
+
+# Calculate the angular frequency
+omega = np.sqrt(2*K/m * (1 - np.cos(k*a)))
+
+# Plot the dispersion relation
+plt.figure(figsize=(6, 6))
+plt.plot(k, omega)
+plt.xlabel('k (wave number)')
+plt.ylabel('ω (angular frequency)')
+plt.title('Dispersion relation in the first Brillouin zone')
+plt.grid(True)
+plt.show()
+```

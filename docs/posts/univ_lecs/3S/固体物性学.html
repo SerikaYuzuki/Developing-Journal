@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -32,8 +66,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../posts/univ_lecs/3S/材料強度学.html" rel="next">
-<link href="../../../posts/univ_lecs/3S/固体物性学.html" rel="prev">
+<link href="../../../posts/univ_lecs/3S/材料反応工学.html" rel="next">
+<link href="../../../posts/univ_lecs/2A/材料量子力学.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -158,7 +192,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">大学関連</li><li class="breadcrumb-item">Univ Lecs</li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/固体物性学.html">3S</a></li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/材料反応工学.html">材料反応工学</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">大学関連</li><li class="breadcrumb-item">Univ Lecs</li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/固体物性学.html">3S</a></li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/固体物性学.html">材料反応工学</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -168,7 +202,7 @@ window.Quarto = {
   </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">大学関連</li><li class="breadcrumb-item">Univ Lecs</li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/固体物性学.html">3S</a></li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/材料反応工学.html">材料反応工学</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default page-columns page-full"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">大学関連</li><li class="breadcrumb-item">Univ Lecs</li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/固体物性学.html">3S</a></li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/固体物性学.html">材料反応工学</a></li></ol></nav>
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">材料反応工学</h1>
@@ -456,13 +490,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth3 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/3S/固体物性学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/univ_lecs/3S/固体物性学.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">材料反応工学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/3S/材料反応工学.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../posts/univ_lecs/3S/材料反応工学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料反応工学</span></a>
   </div>
 </li>
@@ -542,23 +576,19 @@ window.Quarto = {
   <ul>
   <li><a href="#ノート" id="toc-ノート" class="nav-link active" data-scroll-target="#ノート">ノート</a>
   <ul class="collapse">
-  <li><a href="#速度論概要" id="toc-速度論概要" class="nav-link" data-scroll-target="#速度論概要">速度論概要</a>
+  <li><a href="#結晶格子" id="toc-結晶格子" class="nav-link" data-scroll-target="#結晶格子">結晶格子</a>
   <ul class="collapse">
-  <li><a href="#平衡状態-equilibrium-state" id="toc-平衡状態-equilibrium-state" class="nav-link" data-scroll-target="#平衡状態-equilibrium-state">平衡状態 (Equilibrium State)</a></li>
-  <li><a href="#定常状態-steady-state" id="toc-定常状態-steady-state" class="nav-link" data-scroll-target="#定常状態-steady-state">定常状態 (Steady State)</a></li>
-  <li><a href="#速度過程" id="toc-速度過程" class="nav-link" data-scroll-target="#速度過程">速度過程</a></li>
-  </ul></li>
-  <li><a href="#化学反応速度論" id="toc-化学反応速度論" class="nav-link" data-scroll-target="#化学反応速度論">化学反応速度論</a>
-  <ul class="collapse">
-  <li><a href="#化学反応速度" id="toc-化学反応速度" class="nav-link" data-scroll-target="#化学反応速度">化学反応速度</a></li>
-  <li><a href="#反応の種類" id="toc-反応の種類" class="nav-link" data-scroll-target="#反応の種類">反応の種類</a></li>
+  <li><a href="#結晶とは" id="toc-結晶とは" class="nav-link" data-scroll-target="#結晶とは">結晶とは</a></li>
+  <li><a href="#基本単位胞" id="toc-基本単位胞" class="nav-link" data-scroll-target="#基本単位胞">基本単位胞</a></li>
+  <li><a href="#次元結晶格子" id="toc-次元結晶格子" class="nav-link" data-scroll-target="#次元結晶格子">３次元結晶格子</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#過去問" id="toc-過去問" class="nav-link" data-scroll-target="#過去問">過去問</a>
   <ul class="collapse">
-  <li><a href="#年度" id="toc-年度" class="nav-link" data-scroll-target="#年度">2012年度</a>
+  <li><a href="#年度" id="toc-年度" class="nav-link" data-scroll-target="#年度">2018年度</a>
   <ul class="collapse">
   <li><a href="#問1" id="toc-問1" class="nav-link" data-scroll-target="#問1">問1</a></li>
+  <li><a href="#問2" id="toc-問2" class="nav-link" data-scroll-target="#問2">問2</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -590,112 +620,383 @@ window.Quarto = {
 \]</span></p>
 <section id="ノート" class="level1">
 <h1>ノート</h1>
-<p>後半は豊島先生が担当するらしい。</p>
-<section id="速度論概要" class="level2">
-<h2 class="anchored" data-anchor-id="速度論概要">速度論概要</h2>
-<section id="平衡状態-equilibrium-state" class="level3">
-<h3 class="anchored" data-anchor-id="平衡状態-equilibrium-state">平衡状態 (Equilibrium State)</h3>
-<p>平衡状態とは熱力学的に安定な状態、つまり自由エネルギーが最も低い状態のことを指す。これについての話は平衡論と呼ばれており、熱力学で中心的に扱われる。</p>
-</section>
-<section id="定常状態-steady-state" class="level3">
-<h3 class="anchored" data-anchor-id="定常状態-steady-state">定常状態 (Steady State)</h3>
-<p>定常状態とは、系内の物質量やエネルギーが時間とともに変化しない状態のことを指す。これは系内の物質量やエネルギーの収支が釣り合っている状態であり、系内の物質量やエネルギーの変化がないことを意味する。この講義では平衡状態、定常状態は独立して考えるらしい。</p>
-<p>数式的に書けば、</p>
-<p>(系への蓄積速度) = (系への流入速度) - (系からの流出速度) + (系内での生成速度) - (系内での消失速度)=0</p>
-<p><span class="math display">\[
-\pdv{C}{t}(x,t) = 0
-\]</span></p>
-</section>
-<section id="速度過程" class="level3">
-<h3 class="anchored" data-anchor-id="速度過程">速度過程</h3>
-<p>初期状態から平衡状態に至るまでの過程を速度過程と呼ぶ。講義ではここの部分を重点的にやる予定らしい。</p>
-</section>
-</section>
-<section id="化学反応速度論" class="level2">
-<h2 class="anchored" data-anchor-id="化学反応速度論">化学反応速度論</h2>
-<section id="化学反応速度" class="level3">
-<h3 class="anchored" data-anchor-id="化学反応速度">化学反応速度</h3>
-<p>化学反応速度とは、単位時間あたりに反応物質が反応する速さのことを指す。これは反応物質の濃度に依存するため、一般的には濃度の関数として表される。</p>
-<p><span class="math display">\[
--r_A = - \dv{C_A}{t} = f(C_A, C_B, \cdots)
-\]</span></p>
-<p>ここで考える反応装置とは回分反応器（バッチ式）で、これの特徴は、閉じた系であること、反応物質の濃度が空間的に均一であること、反応物質の濃度が時間的に変化することである。</p>
-<p>他にも、槽型反応器CSTR、管型流通式反応機などがある。CSTRは特に大量生産に向いているので、工業的によく使われる。</p>
-<p>!(CSTR)[images/反応工学/1.jpg]</p>
-<p>ある均一反応を考えると、その反応速度は以下のように表される。</p>
-<p><span class="math display">\[
-\ce{aA + bB -&gt; cC + dD}
-\]</span></p>
-<p>Aの消失速度は</p>
-<p><span class="math display">\[
--r_A = \frac{1}{V} \dv{N_A}{t} \; \left[\frac{\text{mol}}{\text{m}^3  \cdot \text{s}}\right]
-\]</span></p>
-<p>また、次のような等式も当然成り立つ。</p>
-<p><span class="math display">\[
-\frac{r_A}{a}= \frac{r_B}{b} = \frac{r_C}{c} = \frac{r_D}{d}
-\]</span></p>
-</section>
-<section id="反応の種類" class="level3">
-<h3 class="anchored" data-anchor-id="反応の種類">反応の種類</h3>
+<section id="結晶格子" class="level2">
+<h2 class="anchored" data-anchor-id="結晶格子">結晶格子</h2>
+<section id="結晶とは" class="level3">
+<h3 class="anchored" data-anchor-id="結晶とは">結晶とは</h3>
 <ul>
-<li>単一反応</li>
+<li>結晶とは、原子や分子が規則的に並んだ固体のことである。</li>
+<li>理想的な結晶、現実の結晶、多結晶、非晶質(アモルファス)の4つの種類がある。</li>
 </ul>
-<p><span class="math display">\[
-\ce{A -&gt; B}
-\]</span></p>
-<p><span class="math display">\[
-\ce{A + B -&gt; C + D}
-\]</span></p>
+<p>講義ではまず２次元Latticeについて考える。</p>
+</section>
+<section id="基本単位胞" class="level3">
+<h3 class="anchored" data-anchor-id="基本単位胞">基本単位胞</h3>
 <ul>
-<li>複合反応</li>
+<li>結晶構造を記述するための基本単位胞とは、結晶構造の最小単位であり、その結晶構造を無限に繰り返すことで全体の結晶構造が構築される。</li>
+<li>基本単位胞の取り方は無限にあるが、最も簡単なものを選ぶといいらしい。</li>
+<li>基本単位胞内の任意の点を格子点と呼んでいる。ただし、全ての別の単位胞に対して同じ位置として考える。バラバラに選ぶものではない。</li>
+<li>格子点同士を最短で結ぶベクトルを基本並進ベクトルと呼ぶ。</li>
 </ul>
-<p><span class="math display">\[
-\ce{A -&gt; B -&gt; C}
-\]</span></p>
+<div id="fe1a5bca" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the lattice vectors</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>a1 <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">0</span>])</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>a2 <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a grid of lattice points</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the lattice points</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.scatter(X, Y, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the lattice vectors</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, a1[<span class="dv">0</span>], a1[<span class="dv">1</span>], angles<span class="op">=</span><span class="st">'xy'</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, scale<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, a2[<span class="dv">0</span>], a2[<span class="dv">1</span>], angles<span class="op">=</span><span class="st">'xy'</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, scale<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the aspect ratio and limits</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>plt.gca().set_aspect(<span class="st">'equal'</span>, adjustable<span class="op">=</span><span class="st">'box'</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="fl">2.5</span>, <span class="fl">2.5</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="fl">2.5</span>, <span class="fl">2.5</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>plt.text(a1[<span class="dv">0</span>], a1[<span class="dv">1</span>], <span class="st">'a1'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, ha<span class="op">=</span><span class="st">'right'</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>plt.text(a2[<span class="dv">0</span>], a2[<span class="dv">1</span>], <span class="st">'a2'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, va<span class="op">=</span><span class="st">'bottom'</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="固体物性学_files/figure-html/cell-2-output-1.png" width="492" height="485" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 <ul>
-<li>並行反応</li>
+<li>すると、任意の格子点は <span class="math inline">\(\symbfit{R} = n_1 \symbfit{a}_1 + n_2 \symbfit{a}_2\)</span> と表すことができる。</li>
 </ul>
-<p><span class="math display">\[
-\chemfig{A -&gt; C}
-\]</span></p>
-<p><span class="math display">\[
-\chemfig{A -&gt; D}
-\]</span></p>
+</section>
+<section id="次元結晶格子" class="level3">
+<h3 class="anchored" data-anchor-id="次元結晶格子">３次元結晶格子</h3>
 <ul>
-<li>素反応</li>
-</ul>
-<p><span class="math display">\[
-\ce{A + B -&gt; C}
-\]</span></p>
-<p>分解できる最小単位を素反応と呼ぶ。</p>
+<li>３次元結晶格子は、２次元結晶格子の拡張である。並進ベクトルの性質はそれほど変わらない。</li>
+<li>３次元格子は１４種類のブラベ格子に分類される。</li>
+<li>３次元格子の並進ベクトルを基底ベクトルで表すなんてこともする。
 <ul>
-<li>非素反応</li>
+<li><p>体心立方格子 <span class="math display">\[
+  \begin{aligned}
+  \symbfit{a}_1 &amp;= \frac{a}{2} ( \symbfit{e}_x + \symbfit{e}_y + \symbfit{e}_z ) \\
+  \symbfit{a}_2 &amp;= \frac{a}{2} ( -\symbfit{e}_x + \symbfit{e}_y + \symbfit{e}_z ) \\
+  \symbfit{a}_3 &amp;= \frac{a}{2} ( \symbfit{e}_x - \symbfit{e}_y + \symbfit{e}_z ) \\
+  \end{aligned}
+  \]</span></p></li>
+<li><p>面心立方格子 <span class="math display">\[
+  \begin{aligned}
+  \symbfit{a}_1 &amp;= \frac{a}{2} ( \symbfit{e}_x + \symbfit{e}_y ) \\
+  \symbfit{a}_2 &amp;= \frac{a}{2} ( -\symbfit{e}_x + \symbfit{e}_y ) \\
+  \symbfit{a}_3 &amp;= \frac{a}{2} ( \symbfit{e}_x - \symbfit{e}_y ) \\
+  \end{aligned}
+  \]</span></p></li>
+</ul></li>
+<li>基本単位胞では面倒なことがあるので、慣用単位砲で考えることもある。その一例として、ウィグナー・ツァイト胞がある。ウィグナーサイツ胞とは、ある格子点と、その周りの格子点との間の垂直二等分面で囲まれた領域における最小のセル（胞）のことである。
+<ul>
+<li>二次元のウィグナーサイツ胞は、過去問のセクションで図示している。</li>
+</ul></li>
 </ul>
-<p><span class="math display">\[
-\ce{H2 + Br2 -&gt; 2HBr}
-\]</span></p>
-<p><span class="math display">\[
-r_{\ce{HBr}} = \frac{k_1[\ce{H2}][\ce{Br2}]^{\frac{1}{2}}}{k_2 + \frac{[\ce{HBr}]}{[\ce{Br2}]}}
-\]</span></p>
 </section>
 </section>
 </section>
 <section id="過去問" class="level1">
 <h1>過去問</h1>
 <section id="年度" class="level2">
-<h2 class="anchored" data-anchor-id="年度">2012年度</h2>
+<h2 class="anchored" data-anchor-id="年度">2018年度</h2>
 <section id="問1" class="level3">
 <h3 class="anchored" data-anchor-id="問1">問1</h3>
-<div class="quarto-figure quarto-figure-center">
+<ol type="1">
+<li>ウィグナーサイツ胞とは、ある格子点と、その周りの格子点との間の垂直二等分面で囲まれた領域における最小のセル（胞）のことである。</li>
+</ol>
+<div id="b9cb0cf7" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Rectangle</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the lattice vectors</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>a1 <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">0</span>])</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>a2 <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a grid of lattice points</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the lattice points</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plt.scatter(X, Y, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the lattice vectors</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, a1[<span class="dv">0</span>], a1[<span class="dv">1</span>], angles<span class="op">=</span><span class="st">'xy'</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, scale<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, a2[<span class="dv">0</span>], a2[<span class="dv">1</span>], angles<span class="op">=</span><span class="st">'xy'</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, scale<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw the Wigner-Seitz cell</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>rectangle <span class="op">=</span> Rectangle((<span class="op">-</span><span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.5</span>), <span class="dv">1</span>, <span class="dv">1</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>, facecolor<span class="op">=</span><span class="st">'none'</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>plt.gca().add_patch(rectangle)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the aspect ratio and limits</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>plt.gca().set_aspect(<span class="st">'equal'</span>, adjustable<span class="op">=</span><span class="st">'box'</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="fl">2.5</span>, <span class="fl">2.5</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="fl">2.5</span>, <span class="fl">2.5</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>plt.text(a1[<span class="dv">0</span>], a1[<span class="dv">1</span>], <span class="st">'a1'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, ha<span class="op">=</span><span class="st">'right'</span>)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>plt.text(a2[<span class="dv">0</span>], a2[<span class="dv">1</span>], <span class="st">'a2'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, va<span class="op">=</span><span class="st">'bottom'</span>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
 <figure class="figure">
-<p><img src="images/反応工学/2.png" class="img-fluid figure-img"></p>
-<figcaption>問1</figcaption>
+<p><img src="固体物性学_files/figure-html/cell-3-output-1.png" width="492" height="485" class="figure-img"></p>
 </figure>
 </div>
+</div>
+</div>
+<div id="15240b28" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> RegularPolygon</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the lattice vectors</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>a1 <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">0</span>])</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>a2 <span class="op">=</span> np.array([<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>, np.sqrt(<span class="dv">3</span>)<span class="op">/</span><span class="dv">2</span>])</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a grid of lattice points</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the hexagonal lattice points</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>X_hex <span class="op">=</span> X <span class="op">+</span> Y<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>Y_hex <span class="op">=</span> Y <span class="op">*</span> np.sqrt(<span class="dv">3</span>)<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the lattice points</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_hex, Y_hex, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the lattice vectors</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, a1[<span class="dv">0</span>], a1[<span class="dv">1</span>], angles<span class="op">=</span><span class="st">'xy'</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, scale<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, a2[<span class="dv">0</span>], a2[<span class="dv">1</span>], angles<span class="op">=</span><span class="st">'xy'</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, scale<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw the Wigner-Seitz cell</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>polygon <span class="op">=</span> RegularPolygon((<span class="dv">0</span>, <span class="dv">0</span>), <span class="dv">6</span>, radius<span class="op">=</span><span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">3</span>), edgecolor<span class="op">=</span><span class="st">'black'</span>, facecolor<span class="op">=</span><span class="st">'none'</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>plt.gca().add_patch(polygon)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the aspect ratio and limits</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>plt.gca().set_aspect(<span class="st">'equal'</span>, adjustable<span class="op">=</span><span class="st">'box'</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="fl">2.5</span>, <span class="fl">2.5</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="fl">2.5</span>, <span class="fl">2.5</span>)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>plt.text(a1[<span class="dv">0</span>], a1[<span class="dv">1</span>], <span class="st">'a1'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, ha<span class="op">=</span><span class="st">'right'</span>)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>plt.text(a2[<span class="dv">0</span>], a2[<span class="dv">1</span>], <span class="st">'a2'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, va<span class="op">=</span><span class="st">'bottom'</span>)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="固体物性学_files/figure-html/cell-4-output-1.png" width="492" height="485" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>三次元六方格子の逆格子点の求め方は次のとおり。</li>
+</ol>
+<p>三次元六方格子の基本並進ベクトルは以下のように表されます：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathbf{a}_1 &amp;= a \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} \\
+\mathbf{a}_2 &amp;= a \begin{pmatrix} -\frac{1}{2} \\ \frac{\sqrt{3}}{2} \\ 0 \end{pmatrix} \\
+\mathbf{a}_3 &amp;= a \begin{pmatrix} 0 \\ 0 \\ c \end{pmatrix}
+\end{aligned}
+\]</span></p>
+<p>ここで、<span class="math inline">\(a\)</span> は格子定数、<span class="math inline">\(c\)</span> は六方格子の高さです。</p>
+<p>これらの基本並進ベクトルから逆格子ベクトルを求めるには、以下の公式を使用します：</p>
+<p><span class="math display">\[
+b_i = 2\pi \frac{a_j \times a_k}{a_1 \cdot (a_2 \times a_3)}
+\]</span></p>
+<p>ここで、(i, j, k) は (1, 2, 3)、(2, 3, 1)、(3, 1, 2) の任意の巡回置換です。</p>
+<p>したがって、三次元六方格子の逆格子ベクトルは以下のようになります：</p>
+<p><span class="math display">\[
+b_1 = 2\pi \frac{a}{V} (c, -\sqrt{3}/2, 1/2)
+\]</span> <span class="math display">\[
+b_2 = 2\pi \frac{a}{V} (0, \sqrt{3}, 0)
+\]</span> <span class="math display">\[
+b_3 = 2\pi \frac{a}{V} (0, 0, 2\pi/c)
+\]</span></p>
+<p>ここで、<span class="math inline">\(V = a^2 \sqrt{3} c / 2\)</span> は単位胞の体積です。</p>
+<p>これらの逆格子ベクトルは、逆格子空間における格子点の位置を決定します。</p>
+<div id="4e50116e" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the reciprocal lattice vectors</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">3</span>), <span class="dv">0</span>])</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">2</span><span class="op">/</span>np.sqrt(<span class="dv">3</span>), <span class="dv">0</span>])</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>b3 <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a grid of reciprocal lattice points</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>X, Y, Z <span class="op">=</span> np.meshgrid(x, y, z)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the grid to reciprocal lattice coordinates</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>X_rec <span class="op">=</span> X<span class="op">*</span>b1[<span class="dv">0</span>] <span class="op">+</span> Y<span class="op">*</span>b2[<span class="dv">0</span>] <span class="op">+</span> Z<span class="op">*</span>b3[<span class="dv">0</span>]</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>Y_rec <span class="op">=</span> X<span class="op">*</span>b1[<span class="dv">1</span>] <span class="op">+</span> Y<span class="op">*</span>b2[<span class="dv">1</span>] <span class="op">+</span> Z<span class="op">*</span>b3[<span class="dv">1</span>]</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>Z_rec <span class="op">=</span> X<span class="op">*</span>b1[<span class="dv">2</span>] <span class="op">+</span> Y<span class="op">*</span>b2[<span class="dv">2</span>] <span class="op">+</span> Z<span class="op">*</span>b3[<span class="dv">2</span>]</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the reciprocal lattice points</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">'3d'</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>ax.scatter(X_rec, Y_rec, Z_rec, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the aspect ratio and limits</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'b1'</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'b2'</span>)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>ax.set_zlabel(<span class="st">'b3'</span>)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="固体物性学_files/figure-html/cell-5-output-1.png" width="409" height="396" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="e23f8f66" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the lattice vectors</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>a1 <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">0</span>])</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>a2 <span class="op">=</span> np.array([<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>, np.sqrt(<span class="dv">3</span>)<span class="op">/</span><span class="dv">2</span>])</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the reciprocal lattice vectors</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">3</span>)])</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">2</span><span class="op">/</span>np.sqrt(<span class="dv">3</span>)])</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a grid of lattice points</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the grid to lattice coordinates</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>X_lat <span class="op">=</span> X<span class="op">*</span>a1[<span class="dv">0</span>] <span class="op">+</span> Y<span class="op">*</span>a2[<span class="dv">0</span>]</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>Y_lat <span class="op">=</span> X<span class="op">*</span>a1[<span class="dv">1</span>] <span class="op">+</span> Y<span class="op">*</span>a2[<span class="dv">1</span>]</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the grid to reciprocal lattice coordinates</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>X_rec <span class="op">=</span> X<span class="op">*</span>b1[<span class="dv">0</span>] <span class="op">+</span> Y<span class="op">*</span>b2[<span class="dv">0</span>]</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>Y_rec <span class="op">=</span> X<span class="op">*</span>b1[<span class="dv">1</span>] <span class="op">+</span> Y<span class="op">*</span>b2[<span class="dv">1</span>]</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the lattice points</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_lat, Y_lat, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Lattice points'</span>)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the reciprocal lattice points</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_rec, Y_rec, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Reciprocal lattice points'</span>)</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the aspect ratio and limits</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>plt.gca().set_aspect(<span class="st">'equal'</span>, adjustable<span class="op">=</span><span class="st">'box'</span>)</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="fl">2.5</span>, <span class="fl">2.5</span>)</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="fl">2.5</span>, <span class="fl">2.5</span>)</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a legend</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="固体物性学_files/figure-html/cell-6-output-1.png" width="492" height="485" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="問2" class="level3">
+<h3 class="anchored" data-anchor-id="問2">問2</h3>
 <ol type="1">
-<li>Lindemann-Hinshelwood機構</li>
+<li>普通に運動方程式を立てる。</li>
+</ol>
+<p><span class="math display">\[
+m\ddots{x_j} = -K(x_j - x_{j-1}) + K(x_{j+1} - x_j) = K(x_{j+1} - 2x_j + x_{j-1})
+\]</span></p>
+<ol start="2" type="1">
 <li></li>
 </ol>
+<p><span class="math display">\[
+x_j(t) = A e^{i(kja - \omega t)}
+\]</span></p>
+<p>ここで、<span class="math inline">\(A\)</span> は振幅、<span class="math inline">\(k\)</span> は波数、<span class="math inline">\(a\)</span> は格子定数（原子間距離）、<span class="math inline">\(\omega\)</span> は角周波数です。代入して整理すると、次のようになります：</p>
+<p><span class="math display">\[
+m\omega^2 = 2K(1 - \cos(ka))
+\]</span></p>
+<p>これは、振動数 <span class="math inline">\(\omega\)</span> が波数 <span class="math inline">\(k\)</span> に依存するディスパージョン関係を表しています。</p>
+<div id="ed9a3ff7" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the parameters</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># atomic mass</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>K <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># spring constant</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># lattice constant</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the wave number range within the first Brillouin zone</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> np.linspace(<span class="op">-</span>np.pi<span class="op">/</span>a, np.pi<span class="op">/</span>a, <span class="dv">1000</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the angular frequency</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>omega <span class="op">=</span> np.sqrt(<span class="dv">2</span><span class="op">*</span>K<span class="op">/</span>m <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> np.cos(k<span class="op">*</span>a)))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the dispersion relation</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>plt.plot(k, omega)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'k (wave number)'</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'ω (angular frequency)'</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Dispersion relation in the first Brillouin zone'</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="固体物性学_files/figure-html/cell-7-output-1.png" width="523" height="523" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>
@@ -1262,13 +1563,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <input type="hidden" id="giscus-alt-theme" value="transparent_dark">
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../posts/univ_lecs/3S/固体物性学.html" class="pagination-link" aria-label="材料反応工学">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">材料反応工学</span>
+      <a href="../../../posts/univ_lecs/2A/材料量子力学.html" class="pagination-link" aria-label="材料量子力学">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">材料量子力学</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../posts/univ_lecs/3S/材料強度学.html" class="pagination-link" aria-label="材料強度学">
-        <span class="nav-page-text">材料強度学</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../posts/univ_lecs/3S/材料反応工学.html" class="pagination-link" aria-label="材料反応工学">
+        <span class="nav-page-text">材料反応工学</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
