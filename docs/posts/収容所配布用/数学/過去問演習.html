@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Serika Yuzuki">
-<meta name="dcterms.date" content="2023-12-20">
+<meta name="dcterms.date" content="2024-04-06">
 
-<title>芹香のブログ：セリポンポン - template</title>
+<title>芹香のブログ：セリポンポン - 過去問演習</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,26 +25,25 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../posts/at_coder/cargo_compete.html" rel="next">
-<link href="../../posts/ue5_project/planning.html" rel="prev">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../posts/収容所配布用/数学/数学III.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,6 +72,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -83,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">芹香のブログ：セリポンポン</span>
     </a>
   </div>
@@ -94,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../../about.html" aria-current="page"> 
+    <a class="nav-link active" href="../../../about.html" aria-current="page"> 
 <span class="menu-text">Serika Yuzuki</span></a>
   </li>  
   <li class="nav-item compact">
@@ -129,7 +157,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/play_ground/template.html">PlayGround</a></li><li class="breadcrumb-item"><a href="../../posts/play_ground/template.html">template</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">収容所配布用</li><li class="breadcrumb-item"><a href="../../../posts/収容所配布用/数学/数学A.html">数学</a></li><li class="breadcrumb-item"><a href="../../../posts/収容所配布用/数学/過去問演習.html">過去問演習</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -139,14 +167,12 @@ ul.task-list li input[type="checkbox"] {
   </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/play_ground/template.html">PlayGround</a></li><li class="breadcrumb-item"><a href="../../posts/play_ground/template.html">template</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default page-columns page-full"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">収容所配布用</li><li class="breadcrumb-item"><a href="../../../posts/収容所配布用/数学/数学A.html">数学</a></li><li class="breadcrumb-item"><a href="../../../posts/収容所配布用/数学/過去問演習.html">過去問演習</a></li></ol></nav>
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">template</h1>
+      <h1 class="title">過去問演習</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">Programming</div>
-                <div class="quarto-category">Web</div>
-                <div class="quarto-category">PlayGround</div>
+                <div class="quarto-category">Math</div>
               </div>
                   </div>
   </div>
@@ -164,7 +190,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">December 20, 2023</p>
+        <p class="date">April 6, 2024</p>
       </div>
     </div>
     
@@ -190,7 +216,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Serika Yuzuki</span></a>
   </div>
 </li>
@@ -205,37 +231,37 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/ue5_aura_courses/section_02.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/ue5_aura_courses/section_02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Section 02</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/ue5_aura_courses/section_03.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/ue5_aura_courses/section_03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">section_03</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/ue5_aura_courses/section_04.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/ue5_aura_courses/section_04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">section_04</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/ue5_aura_courses/section_05.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/ue5_aura_courses/section_05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">section_05</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/ue5_aura_courses/section_06.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/ue5_aura_courses/section_06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">section_06</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/ue5_aura_courses/template.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/ue5_aura_courses/template.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">template</span></a>
   </div>
 </li>
@@ -252,7 +278,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/ue5_project/planning.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/ue5_project/planning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Planning</span></a>
   </div>
 </li>
@@ -269,7 +295,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/play_ground/template.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../posts/play_ground/template.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">template</span></a>
   </div>
 </li>
@@ -286,79 +312,79 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/at_coder/cargo_compete.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/at_coder/cargo_compete.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cargo Compete</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/at_coder/template.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/at_coder/template.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">template</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/at_coder/typical90-01.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/at_coder/typical90-01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-01</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/at_coder/typical90-02.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/at_coder/typical90-02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-02</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/at_coder/typical90-03.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/at_coder/typical90-03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-03</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/at_coder/typical90-04.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/at_coder/typical90-04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-04</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/at_coder/typical90-05.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/at_coder/typical90-05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-05</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/at_coder/typical90-06.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/at_coder/typical90-06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-06</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/at_coder/typical90-07.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/at_coder/typical90-07.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-07</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/at_coder/typical90-08.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/at_coder/typical90-08.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-08</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/at_coder/typical90-09.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/at_coder/typical90-09.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-09</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/at_coder/typical90-10.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/at_coder/typical90-10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-10</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/at_coder/typical90-11.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/at_coder/typical90-11.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-11</span></a>
   </div>
 </li>
@@ -393,25 +419,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/univ_lecs/2A/材料力学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/univ_lecs/2A/材料力学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">統計力学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/univ_lecs/2A/材料相平衡論.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/univ_lecs/2A/材料相平衡論.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料相平衡論</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/univ_lecs/2A/材料速度論.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/univ_lecs/2A/材料速度論.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料速度論</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/univ_lecs/2A/材料量子力学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/univ_lecs/2A/材料量子力学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料量子力学</span></a>
   </div>
 </li>
@@ -428,25 +454,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/univ_lecs/3S/固体物性学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/univ_lecs/3S/固体物性学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">固体物性学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/univ_lecs/3S/材料反応工学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/univ_lecs/3S/材料反応工学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料反応工学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/univ_lecs/3S/材料強度学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/univ_lecs/3S/材料強度学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料強度学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/univ_lecs/3S/材料電気化学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/univ_lecs/3S/材料電気化学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料電気化学</span></a>
   </div>
 </li>
@@ -467,46 +493,46 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">
  <span class="menu-text">数学</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/収容所配布用/数学/数学A.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/収容所配布用/数学/数学A.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学A</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/収容所配布用/数学/数学B.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/収容所配布用/数学/数学B.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学B</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/収容所配布用/数学/数学I.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/収容所配布用/数学/数学I.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学I</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/収容所配布用/数学/数学II.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/収容所配布用/数学/数学II.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学II</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/収容所配布用/数学/数学III.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/収容所配布用/数学/数学III.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学III</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/収容所配布用/数学/過去問演習.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/収容所配布用/数学/過去問演習.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">過去問演習</span></a>
   </div>
 </li>
@@ -524,12 +550,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#概要" id="toc-概要" class="nav-link active" data-scroll-target="#概要">概要</a></li>
-  <li><a href="#発見" id="toc-発見" class="nav-link" data-scroll-target="#発見">発見</a>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">1</a>
   <ul class="collapse">
-  <li><a href="#問題" id="toc-問題" class="nav-link" data-scroll-target="#問題">問題</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">1</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">2</a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">3</a></li>
   </ul></li>
-  <li><a href="#問題点" id="toc-問題点" class="nav-link" data-scroll-target="#問題点">問題点</a></li>
   </ul>
 </nav>
     <div class="quarto-margin-footer"><div class="margin-footer-item">
@@ -554,20 +580,37 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<!-- TODO: Title, Date を変更したのちにこのコメントを消してください -->
-<section id="概要" class="level2">
-<h2 class="anchored" data-anchor-id="概要">概要</h2>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section">1</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th>難易度</th>
+<th>所要時間</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>B</td>
+<td>60分</td>
+</tr>
+</tbody>
+</table>
+<section id="section-1" class="level3">
+<h3 class="anchored" data-anchor-id="section-1">1</h3>
+<p>曲線 <span class="math inline">\(y=x^3\)</span> の <span class="math inline">\(x&gt;0\)</span> の部分を <span class="math inline">\(C\)</span> とする。<span class="math inline">\(C\)</span> 上の点 <span class="math inline">\(P\)</span> において、<span class="math inline">\(P\)</span> における <span class="math inline">\(C\)</span> の接線と <span class="math inline">\(x\)</span> 軸との交点を <span class="math inline">\(Q\)</span> とし、 <span class="math inline">\(P\)</span> における <span class="math inline">\(C\)</span> の法線と <span class="math inline">\(y\)</span> 軸との交点を <span class="math inline">\(R\)</span> とする。 <span class="math inline">\(\frac{OR}{OQ}\)</span> の最小値を求めよ。</p>
 </section>
-<section id="発見" class="level2">
-<h2 class="anchored" data-anchor-id="発見">発見</h2>
-<section id="問題" class="level3">
-<h3 class="anchored" data-anchor-id="問題">問題</h3>
+<section id="section-2" class="level3">
+<h3 class="anchored" data-anchor-id="section-2">2</h3>
+<p>下の等式を満たす複素数 <span class="math inline">\(z\)</span> を全て求めよ。</p>
+<p><span class="math display">\[\frac{2z+2i}{z+2i}=\bar{z}\]</span></p>
 </section>
-</section>
-<section id="問題点" class="level2">
-<h2 class="anchored" data-anchor-id="問題点">問題点</h2>
+<section id="section-3" class="level3">
+<h3 class="anchored" data-anchor-id="section-3">3</h3>
+<p><span class="math inline">\(n\)</span> 個のドルコインと <span class="math inline">\(n+1\)</span> 個のペソコインがある。これらを全て同時に投げた時、ペソコインの表の枚数がドルコインの表の枚数より多い確率を求めよ。</p>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -1130,14 +1173,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <input type="hidden" id="giscus-alt-theme" value="transparent_dark">
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../posts/ue5_project/planning.html" class="pagination-link" aria-label="Planning">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Planning</span>
+      <a href="../../../posts/収容所配布用/数学/数学III.html" class="pagination-link" aria-label="数学III">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">数学III</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../posts/at_coder/cargo_compete.html" class="pagination-link" aria-label="Cargo Compete">
-        <span class="nav-page-text">Cargo Compete</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
