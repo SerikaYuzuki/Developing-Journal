@@ -1,0 +1,12 @@
+{
+  "hash": "16c84684552887e84688237c199d4f93",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"マテリアルインフォルマティクス\"\nauthor: \"Serika Yuzuki\"\ndate: \"2024-4-9\"\ncategories: [University, 2024]\nimage: \"images/thumbnail.png\"\n---\n\n# ノート\n\nとりあえず最初の方は簡単なことしかやらないので、ノートは取らない。競プロでも裏でやっている。\n\n::: {#8dc69bea .cell execution_count=1}\n``` {.python .cell-code}\nimport random\na = random.random()\n\nprint(a)\n\nif a > 0.3:\n    print(\"Higher\")\nelse:\n    print(\"Lower or Equal\")\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n0.15501691142038232\nLower or Equal\n```\n:::\n:::\n\n\n::: {#9f3a09ac .cell execution_count=2}\n``` {.python .cell-code}\nimport random\n\ncnt = 0\n\nfor i in range(1000000):\n    a = random.random()\n    b = random.random()\n    if a**2 + b**2 >= 1:\n        cnt += 1\n\nprint(4*cnt/1000000)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n0.858412\n```\n:::\n:::\n\n\n",
+    "supporting": [
+      "MI_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

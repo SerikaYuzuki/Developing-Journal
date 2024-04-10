@@ -1,0 +1,38 @@
+---
+title: "マテリアルインフォルマティクス"
+author: "Serika Yuzuki"
+date: "2024-4-9"
+categories: [University, 2024]
+image: "images/thumbnail.png"
+---
+
+# ノート
+
+とりあえず最初の方は簡単なことしかやらないので、ノートは取らない。競プロでも裏でやっている。
+
+```{python}
+import random
+a = random.random()
+
+print(a)
+
+if a > 0.3:
+    print("Higher")
+else:
+    print("Lower or Equal")
+```
+
+```{python}
+import random
+
+cnt = 0
+
+for i in range(1000000):
+    a = random.random()
+    b = random.random()
+    if a**2 + b**2 >= 1:
+        cnt += 1
+
+print(4*cnt/1000000)
+```
+

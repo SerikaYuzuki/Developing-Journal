@@ -158,7 +158,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">大学関連</li><li class="breadcrumb-item">Univ Lecs</li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/固体物性学.html">3S</a></li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/材料反応工学.html">材料反応工学</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">大学関連</li><li class="breadcrumb-item">Univ Lecs</li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/MI.html">3S</a></li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/材料反応工学.html">材料反応工学</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -168,7 +168,7 @@ window.Quarto = {
   </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">大学関連</li><li class="breadcrumb-item">Univ Lecs</li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/固体物性学.html">3S</a></li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/材料反応工学.html">材料反応工学</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default page-columns page-full"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">大学関連</li><li class="breadcrumb-item">Univ Lecs</li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/MI.html">3S</a></li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/材料反応工学.html">材料反応工学</a></li></ol></nav>
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">材料反応工学</h1>
@@ -456,6 +456,12 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth3 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/MI.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">マテリアルインフォルマティクス</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../posts/univ_lecs/3S/固体物性学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">固体物性学</span></a>
   </div>
@@ -476,6 +482,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../../../posts/univ_lecs/3S/材料電気化学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料電気化学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/組織生成論.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">組織生成論</span></a>
   </div>
 </li>
       </ul>
@@ -564,6 +576,8 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#化学反応速度" id="toc-化学反応速度" class="nav-link" data-scroll-target="#化学反応速度">化学反応速度</a></li>
   <li><a href="#反応の種類" id="toc-反応の種類" class="nav-link" data-scroll-target="#反応の種類">反応の種類</a></li>
+  <li><a href="#反応速度式" id="toc-反応速度式" class="nav-link" data-scroll-target="#反応速度式">反応速度式</a></li>
+  <li><a href="#定常状態近似" id="toc-定常状態近似" class="nav-link" data-scroll-target="#定常状態近似">定常状態近似</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#過去問" id="toc-過去問" class="nav-link" data-scroll-target="#過去問">過去問</a>
@@ -668,10 +682,10 @@ window.Quarto = {
 <li>並行反応</li>
 </ul>
 <p><span class="math display">\[
-\chemfig{A -&gt; C}
+\ce{A -&gt; C}
 \]</span></p>
 <p><span class="math display">\[
-\chemfig{A -&gt; D}
+\ce{A -&gt; D}
 \]</span></p>
 <ul>
 <li>素反応</li>
@@ -690,6 +704,83 @@ window.Quarto = {
 r_{\ce{HBr}} = \frac{k_1[\ce{H2}][\ce{Br2}]^{\frac{1}{2}}}{k_2 + \frac{[\ce{HBr}]}{[\ce{Br2}]}}
 \]</span></p>
 </section>
+<section id="反応速度式" class="level3">
+<h3 class="anchored" data-anchor-id="反応速度式">反応速度式</h3>
+<p><span class="math display">\[
+-r_A=kC_A^aC_B^b \cdots
+\]</span></p>
+<p>ここで、<span class="math inline">\(k\)</span> は反応速度定数である。また、<span class="math inline">\(a,b,\cdots\)</span> は反応次数である。全体の反応次数は <span class="math inline">\(a+b+\cdots\)</span> である。また、反応次数は整数とは限らなし、 <span class="math inline">\(0\)</span> であることもある。</p>
+<p>例として幾つかあげる。</p>
+<ol type="1">
+<li><span class="math display">\[
+\ce{H2+I2 -&gt; 2HI}
+\]</span></li>
+</ol>
+<p><span class="math display">\[
+r = k[\ce{H2}][\ce{I2}]
+\]</span></p>
+<ol start="2" type="1">
+<li><span class="math display">\[
+\ce{CH3CHO -&gt; CH4 + CO}
+\]</span></li>
+</ol>
+<p><span class="math display">\[
+r = k[\ce{CH3CHO}]^{3/2}
+\]</span></p>
+<ol start="3" type="1">
+<li><span class="math display">\[
+\ce{H2 + Br2 -&gt; 2HBr}
+\]</span></li>
+</ol>
+<p><span class="math display">\[
+r_{\ce{HBr}} = \frac{k_1[\ce{H2}][\ce{Br2}]^{\frac{1}{2}}}{k_2 + \frac{[\ce{HBr}]}{[\ce{Br2}]}}
+\]</span></p>
+<p>以上のように、実験的に決定することとなる。</p>
+<p>このような手順を繰り返してある一定の反応速度式を求めては繰り返す作業で、反応機構を求めることを反応機構解析と呼ぶ。</p>
+</section>
+<section id="定常状態近似" class="level3">
+<h3 class="anchored" data-anchor-id="定常状態近似">定常状態近似</h3>
+<ul>
+<li>正味の変化速度は各々の素反応での反応速度の総和で表される。</li>
+<li>反応中間体の変化量は <span class="math inline">\(0\)</span> である。</li>
+</ul>
+<p>このような近似を定常状態近似と呼ぶ。このような近似を用いて解析した結果を一つ例として出すと、</p>
+<p><span class="math display">\[
+\ce{H2 + Br2 -&gt; 2HBr}
+\]</span></p>
+<p>この反応の速度式は実験的に次のようになっている。</p>
+<p><span class="math display">\[
+r_{\ce{HBr}} = \frac{k_1[\ce{H2}][\ce{Br2}]^{\frac{1}{2}}}{k_2 + \frac{[\ce{HBr}]}{[\ce{Br2}]}}
+\]</span></p>
+<p>この反応の素反応は次のようになっている。</p>
+<ol type="1">
+<li><span class="math inline">\(\ce{Br2 -&gt; 2Br^{\ast}}\)</span></li>
+<li><span class="math inline">\(\ce{H2 + Br^{\ast} -&gt; HBr + H^{\ast}}\)</span></li>
+<li><span class="math inline">\(\ce{H^{\ast} + Br2 -&gt; HBr + Br^{\ast}}\)</span></li>
+<li><span class="math inline">\(\ce{H^{\ast} + HBr -&gt; H2 + Br^{\ast}}\)</span></li>
+<li><span class="math inline">\(\ce{Br^{\ast} + Br^{\ast} -&gt; Br2}\)</span></li>
+</ol>
+<p>なので、</p>
+<p><span class="math display">\[
+\dv{[\ce{HBr}]}{t} = k_2[\ce{Br^{\ast}}][\ce{H2}] + k_3[\ce{H^{\ast}}][\ce{Br2}] - k_4[\ce{H^{\ast}}][\ce{HBr}]
+\]</span></p>
+<p><span class="math display">\[
+\dv{[\ce{Br^{\ast}}]}{t} = k_1[\ce{Br2}] - k_2[\ce{Br^{\ast}}][\ce{H2}] + k_3[\ce{H^{\ast}}][\ce{Br2}] + k_4[\ce{H^{\ast}}][\ce{HBr}] - k_5[\ce{Br^{\ast}}]^2 =0
+\]</span></p>
+<p><span class="math display">\[
+\dv{[\ce{H^{\ast}}]}{t} = k_2[\ce{Br^{\ast}}][\ce{H2}] - k_3[\ce{H^{\ast}}][\ce{Br2}] - k_4[\ce{H^{\ast}}][\ce{HBr}] = 0
+\]</span></p>
+<p>この式をこねくり回すことによって、反応速度式を求めることができる。その内容は下二つの式の中間体濃度を消去することで求めることができる。</p>
+<p>次に反応機構の推察をしてみる。</p>
+<p><span class="math display">\[
+\ce{2A + B -&gt; A2B}
+\]</span></p>
+<p>これの反応速度式が</p>
+<p><span class="math display">\[
+r = \frac{0.72[\ce{A}]^2[\ce{B}]}{1+2[\ce{A}]}
+\]</span></p>
+<p>とする。</p>
+</section>
 </section>
 </section>
 <section id="過去問" class="level1">
@@ -706,8 +797,24 @@ r_{\ce{HBr}} = \frac{k_1[\ce{H2}][\ce{Br2}]^{\frac{1}{2}}}{k_2 + \frac{[\ce{HBr}
 </div>
 <ol type="1">
 <li>Lindemann-Hinshelwood機構</li>
-<li></li>
+<li><span class="math inline">\(\ce{SiH4^{\ast}}\)</span> の生成の速度式を等式に結ぶ。</li>
 </ol>
+<p><span class="math display">\[
+k_1[\ce{SiH4}][\ce{M}] = k_2[\ce{SiH4^{\ast}}] + k_{-1}[\ce{SiH4^{\ast}}][\ce{M}]
+\]</span></p>
+<p>することによって、<span class="math inline">\(\ce{SiH4^{\ast}}\)</span> の生成速度式を求めることができる。</p>
+<p><span class="math display">\[
+[\ce{SiH4^{\ast}}] = \frac{k_1[\ce{SiH4}][\ce{M}]}{k_2 + k_{-1}[\ce{M}]}
+\]</span></p>
+<p>次に、<span class="math inline">\(r_\ce{SiH2}=k_2 [\ce{SiH4^{\ast}}]\)</span> なので、</p>
+<p><span class="math display">\[
+r_\ce{SiH2} = \frac{k_1k_2[\ce{SiH4}][\ce{M}]}{k_2 + k_{-1}[\ce{M}]}
+\]</span></p>
+<p>となる。高圧環境下では <span class="math inline">\(k_{-1}\)</span> はすぐにどこかにぶつかって励起状態を脱するので、 <span class="math inline">\(k_2\)</span> に比べて非常に大きい。このとき、<span class="math inline">\(r_\ce{SiH2} = k[\ce{SiH4}] \approx \frac{k_1k_2}{k_{-1}}\ce{SiH4}\)</span> となるので、一次反応になる。逆に、そうじゃ無い時は略すが、2次反応になる。</p>
+<p>また、 <span class="math inline">\(k\)</span> について解くと、</p>
+<p><span class="math display">\[
+k=\frac{k_1k_2}{k_{-1}} + \frac{1}{k_1}\frac{1}{\ce{M}}
+\]</span></p>
 
 
 </section>
