@@ -578,6 +578,8 @@ window.Quarto = {
   <li><a href="#反応の種類" id="toc-反応の種類" class="nav-link" data-scroll-target="#反応の種類">反応の種類</a></li>
   <li><a href="#反応速度式" id="toc-反応速度式" class="nav-link" data-scroll-target="#反応速度式">反応速度式</a></li>
   <li><a href="#定常状態近似" id="toc-定常状態近似" class="nav-link" data-scroll-target="#定常状態近似">定常状態近似</a></li>
+  <li><a href="#酵素反応" id="toc-酵素反応" class="nav-link" data-scroll-target="#酵素反応">酵素反応</a></li>
+  <li><a href="#重合反応" id="toc-重合反応" class="nav-link" data-scroll-target="#重合反応">重合反応</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#過去問" id="toc-過去問" class="nav-link" data-scroll-target="#過去問">過去問</a>
@@ -771,7 +773,7 @@ r_{\ce{HBr}} = \frac{k_1[\ce{H2}][\ce{Br2}]^{\frac{1}{2}}}{k_2 + \frac{[\ce{HBr}
 \dv{[\ce{H^{\ast}}]}{t} = k_2[\ce{Br^{\ast}}][\ce{H2}] - k_3[\ce{H^{\ast}}][\ce{Br2}] - k_4[\ce{H^{\ast}}][\ce{HBr}] = 0
 \]</span></p>
 <p>この式をこねくり回すことによって、反応速度式を求めることができる。その内容は下二つの式の中間体濃度を消去することで求めることができる。</p>
-<p>次に反応機構の推察をしてみる。</p>
+<p>次に反応機構の推察をしてみる。<strong>これは試験で出すらしい。</strong></p>
 <p><span class="math display">\[
 \ce{2A + B -&gt; A2B}
 \]</span></p>
@@ -780,6 +782,69 @@ r_{\ce{HBr}} = \frac{k_1[\ce{H2}][\ce{Br2}]^{\frac{1}{2}}}{k_2 + \frac{[\ce{HBr}
 r = \frac{0.72[\ce{A}]^2[\ce{B}]}{1+2[\ce{A}]}
 \]</span></p>
 <p>とする。</p>
+<p>この反応の素反応を、</p>
+<ol type="1">
+<li></li>
+</ol>
+<p><span class="math display">\[
+\ce{A + A + B &lt;=&gt; A2^{\ast} + B &lt;=&gt;　A2B}
+\]</span></p>
+<p>と考えて、反応速度式を求めると、おかしくなる。どうおかしくなるかは面倒なので具体的には書かない。めんどくさい</p>
+<p><span class="math display">\[
+\ce{A + A + B &lt;=&gt; AB + A &lt;=&gt;A2B}
+\]</span></p>
+<p>にするとうまいこといく。</p>
+</section>
+<section id="酵素反応" class="level3">
+<h3 class="anchored" data-anchor-id="酵素反応">酵素反応</h3>
+<p>酵素で反応が活性化される反応物を基質と呼ぶ。</p>
+<p><span class="math display">\[
+\ce{S -&gt;[\symup{enzyme}] P}
+\]</span></p>
+<p>反応速度は酵素濃度に比例し、また、基質濃度が高い時は、反応速度は基質濃度によらず一定である。</p>
+<p>反応速度式は次のような素反応で考えられるする。</p>
+<p><span class="math display">\[
+\ce{E + S &lt;=&gt;[k_1][k_2] ES -&gt;[k_3] E + P}
+\]</span></p>
+<p>$ $ は酵素基質複合体と呼ばれる。</p>
+<p><span class="math display">\[
+\begin{aligned}
+\dv{[\ce{ES}]}{t} &amp;= k_1[\ce{E}][\ce{S}] - k_2[\ce{ES}] - k_3[\ce{ES}] = 0\\
+\ce{E_0} &amp;= [\ce{E}] + [\ce{ES}] \\
+\end{aligned}
+\]</span></p>
+<p>ここで、 $ $ を求めれば、酵素が優れているかどうかがわかる。ただし、 <span class="math inline">\(\ce{E}\)</span> は邪魔なので消してやると、</p>
+<p><span class="math display">\[
+[\ce{ES}] = \frac{[\ce{E_0}][\ce{S}]}{\frac{k_2+k_3}{k_1} + [\ce{S}]} = \frac{[\ce{E_0}][\ce{S}]}{k_m + [\ce{S}]}
+\]</span></p>
+<p>となる。ここで、 <span class="math inline">\(k_m = \frac{k_2+k_3}{k_1}\)</span> とする。この式はミカエリス・メンテンの式と呼ばれ、 <span class="math inline">\(k_m\)</span> はミカエリス定数と呼ばれる。優れている酵素ほど <span class="math inline">\(k_m\)</span> が小さい。</p>
+<p>次に最大反応速度は</p>
+<p><span class="math display">\[
+V_{\max} = k_3[\ce{E_0}]
+\]</span></p>
+<p>なのは明らかである。そのように置いておくと、</p>
+<p><span class="math display">\[
+\dv{[\ce{P}]}{t} = k_3[\ce{ES}] = \frac{V_{\max}[\ce{S}]}{k_m + [\ce{S}] }
+\]</span></p>
+<p>この時、 <span class="math inline">\(k_m\)</span> は反応速度の最大値の半分となる <span class="math inline">\([\ce{S}]\)</span> の値と同じなのは <span class="math inline">\(k_m = [\ce{S}]\)</span> 代入したらすぐわかる。なのでそこを基準点として考えて、</p>
+<ol type="1">
+<li><span class="math inline">\([\ce{S}] \ll k_m\)</span> の時、 <span class="math inline">\(\dv{[\ce{P}]}{t} = \frac{V_{\max}}{k_m}[\ce{S}]\)</span> となる。</li>
+<li><span class="math inline">\([\ce{S}] \gg k_m\)</span> の時、 <span class="math inline">\(\dv{[\ce{P}]}{t} = V_{\max}\)</span> となる。</li>
+</ol>
+<p>また、 <span class="math inline">\(V_{\max}\)</span> の中身を考えれば、 <span class="math inline">\(\dv{[\ce{P}]}{t}\)</span> は常に <span class="math inline">\([\ce{E_0}]\)</span> に比例することがわかる。</p>
+<p>次に、 <span class="math inline">\(k_m\)</span> の実験的な求め方だが、式を分母分子逆転させて考える。それで直線プロットする。</p>
+</section>
+<section id="重合反応" class="level3">
+<h3 class="anchored" data-anchor-id="重合反応">重合反応</h3>
+<p><span class="math display">\[
+\begin {aligned}
+\ce{I &amp;-&gt;[k_d] 2R^{.}}\\
+\ce{R^{.} + M &amp;-&gt;[k_i] M^{.}}\\
+\ce{M^{.} + M &amp;-&gt;[k_p] M^{.}}\\
+\ce{2M^{.} &amp;-&gt;[k_t] P}\\
+\ce{M^{.} + S &amp;-&gt;[k_{tr}] P + S^{.}}
+\end{aligned}
+\]</span></p>
 </section>
 </section>
 </section>
@@ -813,8 +878,19 @@ r_\ce{SiH2} = \frac{k_1k_2[\ce{SiH4}][\ce{M}]}{k_2 + k_{-1}[\ce{M}]}
 <p>となる。高圧環境下では <span class="math inline">\(k_{-1}\)</span> はすぐにどこかにぶつかって励起状態を脱するので、 <span class="math inline">\(k_2\)</span> に比べて非常に大きい。このとき、<span class="math inline">\(r_\ce{SiH2} = k[\ce{SiH4}] \approx \frac{k_1k_2}{k_{-1}}\ce{SiH4}\)</span> となるので、一次反応になる。逆に、そうじゃ無い時は略すが、2次反応になる。</p>
 <p>また、 <span class="math inline">\(k\)</span> について解くと、</p>
 <p><span class="math display">\[
-k=\frac{k_1k_2}{k_{-1}} + \frac{1}{k_1}\frac{1}{\ce{M}}
+\frac{1}{k}=\frac{k_{-1}}{k_1k_2} + \frac{1}{k_1}\frac{1}{\ce{M}}
 \]</span></p>
+<ol start="3" type="1">
+<li>何を書けばいいのかわからない。一般論を語れと？</li>
+</ol>
+<p>2種類の分子が競争的に吸着するのとき、<span class="math inline">\(A, B\)</span> の吸着に関する平衡は下のようになる。ただし <span class="math inline">\(\theta\)</span> は吸着率を表す。 <span class="math display">\[
+K_{\mathrm{A}}=\frac{[\mathrm{M}]_0 \theta_{\mathrm{A}}}{p_{\mathrm{A}}[\mathrm{M}]_0\left(1-\theta_{\mathrm{A}}-\theta_{\mathrm{B}}\right)}, \quad K_{\mathrm{B}}=\frac{[\mathrm{M}]_0 \theta_{\mathrm{B}}}{p_{\mathrm{B}}[\mathrm{M}]_0\left(1-\theta_{\mathrm{A}}-\theta_{\mathrm{B}}\right)}
+\]</span></p>
+<p>すると、</p>
+<p><span class="math display">\[
+\frac{d[\mathrm{C}]}{d t}=k \theta_{\mathrm{A}} \theta_{\mathrm{B}}=k \frac{\left(p_{\mathrm{A}} K_{\mathrm{A}}\right)\left(p_{\mathrm{B}} K_{\mathrm{B}}\right)}{\left(1+p_{\mathrm{A}} K_{\mathrm{A}}+p_{\mathrm{B}} K_{\mathrm{B}}\right)^2}
+\]</span></p>
+<p>となる。これ以上何を語れと？</p>
 
 
 </section>

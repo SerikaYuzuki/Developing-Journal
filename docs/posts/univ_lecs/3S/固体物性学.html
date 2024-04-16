@@ -605,6 +605,7 @@ window.Quarto = {
   <li><a href="#結晶とは" id="toc-結晶とは" class="nav-link" data-scroll-target="#結晶とは">結晶とは</a></li>
   <li><a href="#基本単位胞" id="toc-基本単位胞" class="nav-link" data-scroll-target="#基本単位胞">基本単位胞</a></li>
   <li><a href="#次元結晶格子" id="toc-次元結晶格子" class="nav-link" data-scroll-target="#次元結晶格子">３次元結晶格子</a></li>
+  <li><a href="#逆格子" id="toc-逆格子" class="nav-link" data-scroll-target="#逆格子">逆格子</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#過去問" id="toc-過去問" class="nav-link" data-scroll-target="#過去問">過去問</a>
@@ -613,6 +614,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#問1" id="toc-問1" class="nav-link" data-scroll-target="#問1">問1</a></li>
   <li><a href="#問2" id="toc-問2" class="nav-link" data-scroll-target="#問2">問2</a></li>
+  <li><a href="#問3" id="toc-問3" class="nav-link" data-scroll-target="#問3">問3</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -662,7 +664,7 @@ window.Quarto = {
 <li>基本単位胞内の任意の点を格子点と呼んでいる。ただし、全ての別の単位胞に対して同じ位置として考える。バラバラに選ぶものではない。</li>
 <li>格子点同士を最短で結ぶベクトルを基本並進ベクトルと呼ぶ。</li>
 </ul>
-<div id="b22a8829" class="cell" data-execution_count="1">
+<div id="4ee108cc" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -736,6 +738,59 @@ window.Quarto = {
 </ul></li>
 </ul>
 </section>
+<section id="逆格子" class="level3">
+<h3 class="anchored" data-anchor-id="逆格子">逆格子</h3>
+<p>周期性のある関数を一つ考える。</p>
+<p><span class="math display">\[
+f(x) = f(x+n\lambda)
+\]</span></p>
+<p>この時、</p>
+<p><span class="math display">\[
+f(x)=\sum_{n=-\infty}^{\infty} c_n \exp \left(\frac{2 \pi i n x}{\lambda}\right) = \sum_{n=-\infty}^{\infty} c_n \exp \left(iG_n x\right)
+\]</span></p>
+<p>ただしフーリエ係数は, <span class="math display">\[
+c_n=\frac{1}{\lambda} \int_0^\lambda f(x) \exp \left(-iG_n x\right) \dd x
+\]</span></p>
+<p>ここで、 <span class="math inline">\(G_n = 2\pi n / \lambda\)</span> となり、離散的な値を持つ。この時の <span class="math inline">\((G_n)\)</span> を逆格子ベクトルと呼ぶ。逆格子スペクトルは、要するに <span class="math inline">\(G_n\)</span> を横軸にして、どの端数が一番強く現れているのかを、 <span class="math inline">\(c_n\)</span> 高さで表しているだけなのだ。</p>
+<p>これを立体に拡張させる。</p>
+<p><span class="math display">\[
+f(\symbfit{X})=\sum_{n=-\infty}^{\infty} c_n \exp \left(i\symbfit{G_n} \cdot (\symbfit{r}+\symbfit{R})\right)
+\]</span></p>
+<p>ここで、 <span class="math inline">\(\symbfit{R}\)</span> は関数が一周して帰ってくる値。</p>
+<p><span class="math display">\[
+\symbfit{G_n} \cdot \symbfit{R} = 2\pi N
+\]</span></p>
+<p>というのは次からわかる。</p>
+<p><span class="math display">\[
+\begin{aligned}
+\symbfit{G_n} \cdot \symbfit{a}_1 &amp;= 2\pi n_1 \\
+\symbfit{G_n} \cdot \symbfit{a}_2 &amp;= 2\pi n_2 \\
+\symbfit{G_n} \cdot \symbfit{a}_3 &amp;= 2\pi n_3 \\
+\end{aligned}
+\]</span></p>
+<p>この理由は、要するに波が一周して戻るから。数式で表せば、<span class="math inline">\(f(\symbfit{r}+\symbfit{R})=(\symbfit{r})\)</span> で導ける。</p>
+<p>ここで次のようなベクトルを考える。</p>
+<p><span class="math display">\[
+\symbfit{G_n} = n_1 \symbfit{b}_1 + n_2 \symbfit{b}_2 + n_3 \symbfit{b}_3
+\]</span></p>
+<p>これで、</p>
+<p><span class="math display">\[
+\symbfit{a_i} \cdot \symbfit{b}_j = 2\pi \delta_{ij}
+\]</span></p>
+<p>とすれば、</p>
+<p><span class="math display">\[
+\symbfit{G_n} \cdot \symbfit{a_i} = 2\pi n_i
+\]</span></p>
+<p>になる。これを逆格子ベクトルと呼ぶ。</p>
+<p><span class="math display">\[
+\begin{aligned}
+\symbfit{b}_1 &amp;= 2\pi \frac{\symbfit{a}_2 \times \symbfit{a}_3}{\symbfit{a}_1 \cdot (\symbfit{a}_2 \times \symbfit{a}_3)} \\
+\symbfit{b}_2 &amp;= 2\pi \frac{\symbfit{a}_3 \times \symbfit{a}_1}{\symbfit{a}_1 \cdot (\symbfit{a}_2 \times \symbfit{a}_3)} \\
+\symbfit{b}_3 &amp;= 2\pi \frac{\symbfit{a}_1 \times \symbfit{a}_2}{\symbfit{a}_1 \cdot (\symbfit{a}_2 \times \symbfit{a}_3)} \\
+\end{aligned}
+\]</span></p>
+<p>となる。これが何がありがたいかというと、</p>
+</section>
 </section>
 </section>
 <section id="過去問" class="level1">
@@ -747,7 +802,7 @@ window.Quarto = {
 <ol type="1">
 <li>ウィグナーサイツ胞とは、ある格子点と、その周りの格子点との間の垂直二等分面で囲まれた領域における最小のセル（胞）のことである。</li>
 </ol>
-<div id="684388e8" class="cell" data-execution_count="2">
+<div id="07101541" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -794,7 +849,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="86ca8409" class="cell" data-execution_count="3">
+<div id="063325b9" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -872,7 +927,7 @@ b_3 = 2\pi \frac{a}{V} (0, 0, 2\pi/c)
 \]</span></p>
 <p>ここで、<span class="math inline">\(V = a^2 \sqrt{3} c / 2\)</span> は単位胞の体積です。</p>
 <p>これらの逆格子ベクトルは、逆格子空間における格子点の位置を決定します。</p>
-<div id="1ea75ba2" class="cell" data-execution_count="4">
+<div id="2737c20d" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -915,7 +970,7 @@ b_3 = 2\pi \frac{a}{V} (0, 0, 2\pi/c)
 </div>
 </div>
 </div>
-<div id="a3bf4dc4" class="cell" data-execution_count="5">
+<div id="b98dac64" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -987,7 +1042,7 @@ x_j(t) = A e^{i(kja - \omega t)}
 m\omega^2 = 2K(1 - \cos(ka))
 \]</span></p>
 <p>これは、振動数 <span class="math inline">\(\omega\)</span> が波数 <span class="math inline">\(k\)</span> に依存するディスパージョン関係を表しています。</p>
-<div id="cd2f7473" class="cell" data-execution_count="6">
+<div id="ecedcc40" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1021,6 +1076,10 @@ m\omega^2 = 2K(1 - \cos(ka))
 </div>
 </div>
 </div>
+</section>
+<section id="問3" class="level3">
+<h3 class="anchored" data-anchor-id="問3">問3</h3>
+<p><img src="images/固体物性学/1.png" class="img-fluid"></p>
 
 
 </section>

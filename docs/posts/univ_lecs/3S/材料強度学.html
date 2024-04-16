@@ -600,11 +600,21 @@ window.Quarto = {
   <ul>
   <li><a href="#材料強度学" id="toc-材料強度学" class="nav-link active" data-scroll-target="#材料強度学">材料強度学</a>
   <ul class="collapse">
-  <li><a href="#講義の概要" id="toc-講義の概要" class="nav-link" data-scroll-target="#講義の概要">講義の概要</a>
+  <li><a href="#講義の概要" id="toc-講義の概要" class="nav-link" data-scroll-target="#講義の概要">講義の概要</a></li>
+  <li><a href="#第一講" id="toc-第一講" class="nav-link" data-scroll-target="#第一講">第一講</a>
   <ul class="collapse">
   <li><a href="#hookes-law" id="toc-hookes-law" class="nav-link" data-scroll-target="#hookes-law">Hooke’s Law</a></li>
   <li><a href="#脆性破壊と延性破壊" id="toc-脆性破壊と延性破壊" class="nav-link" data-scroll-target="#脆性破壊と延性破壊">脆性破壊と延性破壊</a></li>
   <li><a href="#理想強度" id="toc-理想強度" class="nav-link" data-scroll-target="#理想強度">理想強度</a></li>
+  </ul></li>
+  <li><a href="#第２講" id="toc-第２講" class="nav-link" data-scroll-target="#第２講">第２講</a>
+  <ul class="collapse">
+  <li><a href="#滑り面と滑り方向滑り系について" id="toc-滑り面と滑り方向滑り系について" class="nav-link" data-scroll-target="#滑り面と滑り方向滑り系について">滑り面と滑り方向、滑り系について</a></li>
+  <li><a href="#crss" id="toc-crss" class="nav-link" data-scroll-target="#crss">CRSS</a></li>
+  </ul></li>
+  <li><a href="#第３講" id="toc-第３講" class="nav-link" data-scroll-target="#第３講">第３講</a>
+  <ul class="collapse">
+  <li><a href="#理論剪断強度" id="toc-理論剪断強度" class="nav-link" data-scroll-target="#理論剪断強度">理論剪断強度</a></li>
   </ul></li>
   <li><a href="#過去問" id="toc-過去問" class="nav-link" data-scroll-target="#過去問">過去問</a>
   <ul class="collapse">
@@ -645,7 +655,9 @@ window.Quarto = {
 <ul>
 <li>出席は取らない</li>
 </ul>
-<p>##　第一講</p>
+</section>
+<section id="第一講" class="level2">
+<h2 class="anchored" data-anchor-id="第一講">第一講</h2>
 <section id="hookes-law" class="level3">
 <h3 class="anchored" data-anchor-id="hookes-law">Hooke’s Law</h3>
 <p><span class="math display">\[ \pdv{\sigma}{\epsilon} = E \]</span></p>
@@ -680,6 +692,74 @@ window.Quarto = {
 <p><span class="math display">\[ 2\gamma = \frac{\sigma_c}{\pi} \frac{2\pi a_0 \sigma_c}{E} = \frac{2\sigma_c^2 a_0}{E} \]</span></p>
 <p><span class="math display">\[ \sigma_c = \sqrt{\frac{\gamma E}{a_0}} \]</span></p>
 <p>実際の破壊強度は <span class="math inline">\(\sigma_c\)</span> の 10%~1%程度で あることが知られている。このモデルでは欠陥の影響が考慮されていない。現実の材料では、ミリ～ミクロンサイズの空隙から、熱力学的平衡状態において存在する格子欠陥まで、さまざまな欠陥が含まれており、それゆえ破壊強度が理想強度を大きく下回ると考えられる。</p>
+</section>
+</section>
+<section id="第２講" class="level2">
+<h2 class="anchored" data-anchor-id="第２講">第２講</h2>
+<section id="滑り面と滑り方向滑り系について" class="level3">
+<h3 class="anchored" data-anchor-id="滑り面と滑り方向滑り系について">滑り面と滑り方向、滑り系について</h3>
+<p>これらを表すのにミラー指数が使われる。</p>
+<ul>
+<li>滑り面 <img src="images/強度学/7.png" class="img-fluid"> <span class="math display">\[
+(h\; k\; l) = (\frac{1}{x_1} \; \frac{1}{y_1} \; \frac{1}{z_1})
+\]</span> のように定義するので、このようになる。要するに、逆数を考えればいい。また面同士の角度は、内積を取ることで求めることができる。 <span class="math display">\[
+\cos \phi = \frac{h_1h_2 + k_1k_2 + l_1l_2}{\sqrt{h_1^2 + k_1^2 + l_1^2} \sqrt{h_2^2 + k_2^2 + l_2^2}}
+\]</span> また、面のことは <span class="math inline">\((h\; k\; l)\)</span> と表し、等価な面は <span class="math inline">\({h\; k\; l}\)</span> と表す。</li>
+<li>滑り方向 方向については単純に方向のベクトルを考えればいい。</li>
+<li>滑り系 先ほどの二つの値をかけあわせてできるもの。</li>
+</ul>
+</section>
+<section id="crss" class="level3">
+<h3 class="anchored" data-anchor-id="crss">CRSS</h3>
+<p>CRSS とは Critical Resolved Shear Stress の略で、これは、ある方向に対しての応力のこと。これは、Schmid’s Law によって求めることができる。</p>
+<p><span class="math display">\[
+\tau = \frac{F}{S} \cos \phi \cos \lambda
+\]</span></p>
+<p>ここで次の項はシュミット因子と呼ばれる</p>
+<p><span class="math display">\[
+\cos \phi \cos \lambda
+\]</span></p>
+<p>これは、ある方向に対しての応力を表す。この値が大きいほど、その方向に対しての応力が大きいことを示す。</p>
+<p>次に、CRSSの温度依存性の式は次のように示される。</p>
+<p><span class="math display">\[
+\tau = \tau_0 \exp \left(-\frac{Q}{kT}\right)
+\]</span></p>
+<p>また、CRSSは結晶構造によっても変わり、シュミット因子の値を等高線的にプロットすることがある。</p>
+<p><img src="images/強度学/8.png" class="img-fluid"></p>
+<p>この時の三角形はステレオ投影図である。</p>
+<ul>
+<li>ステレオ投影図</li>
+</ul>
+<p><img src="images/強度学/9.png" class="img-fluid"> <img src="images/強度学/10.png" class="img-fluid"></p>
+<p>この代表的な三角形を標準ステレオ三角形と呼ぶ。この３つのベクトルを使って、任意のベクトルを線型結合的に表しているみたいだ。</p>
+<ul>
+<li>２次滑り</li>
+</ul>
+<p><img src="images/強度学/11.png" class="img-fluid"></p>
+<p>ある程度以上引っ張り変形させると、２次滑りが起こる。これの模式的なずが上のようなものである。</p>
+</section>
+</section>
+<section id="第３講" class="level2">
+<h2 class="anchored" data-anchor-id="第３講">第３講</h2>
+<section id="理論剪断強度" class="level3">
+<h3 class="anchored" data-anchor-id="理論剪断強度">理論剪断強度</h3>
+<p><img src="images/強度学/12.png" class="img-fluid"></p>
+<p>このような近似で、臨界剪断応力は次のように示される。</p>
+<p><span class="math display">\[
+\tau = \tau_{max} \sin \frac{2\pi x}{b} \approx \frac{2\pi x \tau_{max}}{b}
+\]</span></p>
+<p>これに対して、フックの法則から</p>
+<p><span class="math display">\[
+\tau = G \frac{x}{a}
+\]</span></p>
+<p><span class="math display">\[
+\tau_{max} = \frac{Gb}{2\pi a}
+\]</span></p>
+<p>ここで、<span class="math inline">\(\tau_{max}\)</span> は理論剪断強度と呼ばれる。</p>
+<p><span class="math display">\[
+\tau = \frac{Gb}{2\pi a} \sin \frac{2\pi x}{b}
+\]</span></p>
+<p>となる。</p>
 </section>
 </section>
 <section id="過去問" class="level2">
@@ -727,7 +807,7 @@ window.Quarto = {
 <section id="問３" class="level4">
 <h4 class="anchored" data-anchor-id="問３">問３</h4>
 <p>刃状転位の応力場は <span class="math inline">\(\sigma_{xx} = -\frac{Gb}{2\pi(1-\nu)}\frac{y(3x^2+y^2)}{(x^2+y^2)^2}, \sigma_{yy} = \frac{Gb}{2\pi(1-\nu)}\frac{(x^2-y^2)}{(x^2+y^2)^2}\)</span> で与えられる。ここで、<span class="math inline">\(G\)</span> はせん断弾性率、<span class="math inline">\(b\)</span> はバーガースベクトル、<span class="math inline">\(\nu\)</span> はポアソン比である。これより刃状転位周囲の引っ張り、圧縮の応力分布を図示せよ。</p>
-<div id="3dc466de" class="cell" data-execution_count="1">
+<div id="9c3b331f" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -762,14 +842,43 @@ window.Quarto = {
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<pre><code>&lt;&gt;:24: SyntaxWarning: invalid escape sequence '\s'
+&lt;&gt;:29: SyntaxWarning: invalid escape sequence '\s'
+&lt;&gt;:24: SyntaxWarning: invalid escape sequence '\s'
+&lt;&gt;:29: SyntaxWarning: invalid escape sequence '\s'
+/var/folders/j3/xf5v28yn6037v0yylgccpmsr0000gn/T/ipykernel_28974/1480925135.py:24: SyntaxWarning: invalid escape sequence '\s'
+  ax[0].set_title('$\sigma_{xx}$')
+/var/folders/j3/xf5v28yn6037v0yylgccpmsr0000gn/T/ipykernel_28974/1480925135.py:29: SyntaxWarning: invalid escape sequence '\s'
+  ax[1].set_title('$\sigma_{yy}$')</code></pre>
+</div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="材料強度学_files/figure-html/cell-2-output-1.png" width="969" height="505" class="figure-img"></p>
+<p><img src="材料強度学_files/figure-html/cell-2-output-2.png" width="969" height="505" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
+</section>
+<section id="問４" class="level4">
+<h4 class="anchored" data-anchor-id="問４">問４</h4>
+<p>ひずみエネルギーは半径<span class="math inline">\(r\)</span> の場所で円筒一周で剪断応力が</p>
+<p><span class="math display">\[
+\tau = \frac{Gb}{2\pi r} = G\gamma
+\]</span></p>
+<p>なので、面積あたりのひずみエネルギーは</p>
+<p><span class="math display">\[
+e = \int_{0}^{\gamma} \tau \dd \gamma = \frac{1}{2}G\gamma^2
+\]</span></p>
+<p>これは、歪が線形に変化するときのひずみエネルギーと一致する。</p>
+<p><span class="math display">\[
+E = \int_{r_0}^{r} e2\pi r \dd r = \frac{Gb^3}{4\pi}\ln \frac{r}{r_0}
+\]</span></p>
+</section>
+<section id="問５" class="level4">
+<h4 class="anchored" data-anchor-id="問５">問５</h4>
+<p><img src="images/強度学/13.png" class="img-fluid"></p>
 
 
 </section>

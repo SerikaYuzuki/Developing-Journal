@@ -73,6 +73,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -535,8 +564,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#ノート" id="toc-ノート" class="nav-link active" data-scroll-target="#ノート">ノート</a></li>
-  <li><a href="#過去問" id="toc-過去問" class="nav-link" data-scroll-target="#過去問">過去問</a></li>
+  <li><a href="#ノート" id="toc-ノート" class="nav-link active" data-scroll-target="#ノート">ノート</a>
+  <ul class="collapse">
+  <li><a href="#核生成" id="toc-核生成" class="nav-link" data-scroll-target="#核生成">核生成</a></li>
+  </ul></li>
+  <li><a href="#過去問" id="toc-過去問" class="nav-link" data-scroll-target="#過去問">過去問</a>
+  <ul class="collapse">
+  <li><a href="#年度" id="toc-年度" class="nav-link" data-scroll-target="#年度">2009年度</a>
+  <ul class="collapse">
+  <li><a href="#問1" id="toc-問1" class="nav-link" data-scroll-target="#問1">問1</a></li>
+  <li><a href="#問2" id="toc-問2" class="nav-link" data-scroll-target="#問2">問2</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     <div class="quarto-margin-footer"><div class="margin-footer-item">
@@ -563,11 +602,57 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="ノート" class="level1">
 <h1>ノート</h1>
+<section id="核生成" class="level2">
+<h2 class="anchored" data-anchor-id="核生成">核生成</h2>
+<p>液相中に古層の角が生成する時、自由エネルギー変化は次のように表される。</p>
+<p><span class="math display">\[
+\Delta G = -V_s \Delta G_v + A \sigma_{SL}
+\]</span></p>
+<p>ここで、<span class="math inline">\(V_s\)</span> は核の体積、<span class="math inline">\(\Delta G_v\)</span> は核の体積の自由エネルギー、<span class="math inline">\(A\)</span> は核の表面積、<span class="math inline">\(\sigma_{SL}\)</span> は核の界面エネルギーである。</p>
+<p>熱力学的駆動力は過冷却の温度差に比例する。</p>
+<p><span class="math display">\[
+\Delta G = \frac{\Delta H_f\Delta T}{T_m}
+\]</span></p>
+<p><span class="math inline">\(\Delta T\)</span> は過冷却温度差、 <span class="math inline">\(T_m\)</span> は融点、<span class="math inline">\(\Delta H_f\)</span> は融解エンタルピーである。</p>
+<p>これの導出には、次のようにする。 <span class="math inline">\(\Delta G\)</span> とは個体と液体の自由エネルギー差である。</p>
+<p><span class="math display">\[
+\begin{align*}
+\Delta G &amp;= \Delta H_f - T\Delta S\\
+0 &amp;= \Delta H_f - T_m\Delta S\\
+\Delta S &amp;= \frac{\Delta H_f}{T_m} \\
+\Delta G &amp;= \Delta H_f - T\frac{\Delta H_f}{T_m} \\
+&amp;= \frac{T_m - T}{T_m}\Delta H_f\\
+&amp;= \frac{\Delta T}{T_m}\Delta H_f
+\end{align*}
+\]</span></p>
+</section>
 </section>
 <section id="過去問" class="level1">
 <h1>過去問</h1>
+<section id="年度" class="level2">
+<h2 class="anchored" data-anchor-id="年度">2009年度</h2>
+<section id="問1" class="level3">
+<h3 class="anchored" data-anchor-id="問1">問1</h3>
+<ol type="1">
+<li><p>(0,800),(58,560)を結ぶ直線の方程式は、<span class="math inline">\(y = -4.14x + 800\)</span> なので、<span class="math inline">\(737.9\)</span> である。</p></li>
+<li><p>平衡分配係数とは <span class="math inline">\(k = n^{S} / n^{L}\)</span> である。</p></li>
+</ol>
+<p>続きは、おそらく問題が未完成なので、他の年の問題を解くことにする。</p>
+</section>
+<section id="問2" class="level3">
+<h3 class="anchored" data-anchor-id="問2">問2</h3>
+<p>Zenerの線形購買近侍は次のような式である。</p>
+<p><span class="math display">\[
+\zeta = \alpha \sqrt{t}
+\]</span></p>
+<p><span class="math display">\[
+\alpha = \frac{\sqrt{D}(C_m-C_0)}{(C_m-C_p)(C_0-C_p)}
+\]</span></p>
+<p>ここで、 <span class="math inline">\(D\)</span> は拡散係数、 <span class="math inline">\(C_m\)</span> は界面母側の溶質濃度、 <span class="math inline">\(C_0\)</span> は溶質平均濃度、 <span class="math inline">\(C_p\)</span> は界面新相側の溶質濃度である。</p>
 
 
+</section>
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->

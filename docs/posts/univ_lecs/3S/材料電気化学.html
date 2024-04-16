@@ -567,6 +567,12 @@ window.Quarto = {
   <li><a href="#ノート" id="toc-ノート" class="nav-link active" data-scroll-target="#ノート">ノート</a>
   <ul class="collapse">
   <li><a href="#電位関連の言葉の定義" id="toc-電位関連の言葉の定義" class="nav-link" data-scroll-target="#電位関連の言葉の定義">電位関連の言葉の定義</a></li>
+  <li><a href="#モル電気伝導率" id="toc-モル電気伝導率" class="nav-link" data-scroll-target="#モル電気伝導率">モル電気伝導率</a></li>
+  <li><a href="#コールラウシュの法則" id="toc-コールラウシュの法則" class="nav-link" data-scroll-target="#コールラウシュの法則">コールラウシュの法則</a></li>
+  <li><a href="#イオンの移動度" id="toc-イオンの移動度" class="nav-link" data-scroll-target="#イオンの移動度">イオンの移動度</a></li>
+  <li><a href="#ストークスの法則" id="toc-ストークスの法則" class="nav-link" data-scroll-target="#ストークスの法則">ストークスの法則</a></li>
+  <li><a href="#輸率" id="toc-輸率" class="nav-link" data-scroll-target="#輸率">輸率</a></li>
+  <li><a href="#希釈律" id="toc-希釈律" class="nav-link" data-scroll-target="#希釈律">希釈律</a></li>
   </ul></li>
   <li><a href="#演習問題" id="toc-演習問題" class="nav-link" data-scroll-target="#演習問題">演習問題</a>
   <ul class="collapse">
@@ -581,6 +587,7 @@ window.Quarto = {
   <li><a href="#年度" id="toc-年度" class="nav-link" data-scroll-target="#年度">2018年度</a>
   <ul class="collapse">
   <li><a href="#問1" id="toc-問1" class="nav-link" data-scroll-target="#問1">問1</a></li>
+  <li><a href="#問2" id="toc-問2" class="nav-link" data-scroll-target="#問2">問2</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -607,6 +614,9 @@ window.Quarto = {
 
 
 
+<p><span class="math display">\[\require{mhchem}
+\require{physics}
+\]</span></p>
 <section id="ノート" class="level1">
 <h1>ノート</h1>
 <section id="電位関連の言葉の定義" class="level2">
@@ -615,6 +625,80 @@ window.Quarto = {
 <li>アノード反応: 電子を放出する反応</li>
 <li>カソード反応: 電子を受け取る反応</li>
 </ul>
+</section>
+<section id="モル電気伝導率" class="level2">
+<h2 class="anchored" data-anchor-id="モル電気伝導率">モル電気伝導率</h2>
+<p>まず、コンダクタンスという言葉を定義する。これは、ある物質が電気を通す能力を表す物理量である。これは、電気伝導率抵抗の逆数である。</p>
+<p><span class="math display">\[
+G \triangleq \frac{1}{R} = \frac{1}{\rho}\frac{A}{l} = \kappa \frac{A}{l}
+\]</span></p>
+<p>次にイオンのモル電気伝導率は次のように決まる。</p>
+<p><span class="math display">\[
+\Lambda = \frac{\kappa}{c}
+\]</span></p>
+<p>ここで、<span class="math inline">\(\kappa\)</span> はイオンの電気伝導率、<span class="math inline">\(c\)</span> は<strong>イオン</strong>の濃度である。</p>
+</section>
+<section id="コールラウシュの法則" class="level2">
+<h2 class="anchored" data-anchor-id="コールラウシュの法則">コールラウシュの法則</h2>
+<p>上のモル電気伝導率は強電解質にて次のような式が成り立つ。</p>
+<p><span class="math display">\[
+\Lambda = \Lambda^{\infty} - k\sqrt{c}
+\]</span></p>
+<p>ここで、<span class="math inline">\(\Lambda^{\infty}\)</span> は無限希釈時のモル電気伝導率、<span class="math inline">\(k\)</span> はコールラウシュの定数である。</p>
+<p>次に、電解質には特有の守る電気電動率が存在しており、無限希釈時のモル電気伝導率は次のように表される。</p>
+<p><span class="math display">\[
+\Lambda^{\infty} = v_{+}\lambda_{+}^{\infty} + v_{-}\lambda_{-}^{\infty}
+\]</span></p>
+</section>
+<section id="イオンの移動度" class="level2">
+<h2 class="anchored" data-anchor-id="イオンの移動度">イオンの移動度</h2>
+<p><span class="math display">\[
+\lambda_{\pm}^{\infty} = z_{\pm}F \mu_{\pm}^{\infty}
+\]</span></p>
+<p>ここで、<span class="math inline">\(z_{\pm}\)</span> はイオンの電荷、<span class="math inline">\(F\)</span> はファラデー定数、<span class="math inline">\(\mu_{\pm}^{\infty}\)</span> は無限希釈時のイオンの移動速度である。</p>
+</section>
+<section id="ストークスの法則" class="level2">
+<h2 class="anchored" data-anchor-id="ストークスの法則">ストークスの法則</h2>
+<p><span class="math inline">\(r_s\)</span> を球体粒子の半径、<span class="math inline">\(\eta\)</span> を流体の粘度、<span class="math inline">\(\rho_s\)</span> を流体密度とする。</p>
+<p>まず仮定として、レイノルズ数が2以下の時</p>
+<p><span class="math display">\[
+Re = \frac{2r_x\rho_f u}{\eta} &lt;2
+\]</span></p>
+<p>この時、球体粒子の持つ抵抗力は</p>
+<p><span class="math display">\[
+6\pi \eta r_s u
+\]</span></p>
+<p>になるという。この時、電場が働いている場合、終端速度は</p>
+<p><span class="math display">\[
+u = \frac{E}{6\pi \eta r_s}
+\]</span></p>
+<p>となる。ここでストークス半径はイオン半径とは違って、前者は移動度から計算され、後者は結晶半径から計算される。</p>
+</section>
+<section id="輸率" class="level2">
+<h2 class="anchored" data-anchor-id="輸率">輸率</h2>
+<p>輸率は次のように定義される。</p>
+<p><span class="math display">\[
+t_{\pm}^{\infty} = \frac{v_{\pm} \lambda_{\pm}^{\infty}}{\Lambda^{\infty}}
+\]</span></p>
+</section>
+<section id="希釈律" class="level2">
+<h2 class="anchored" data-anchor-id="希釈律">希釈律</h2>
+<p>アレニウスの電離説では</p>
+<p><span class="math display">\[
+\begin{align*}
+K_a &amp;= \frac{c_{\ce{H^+}}c_{\ce{A^-}}}{c_{\ce{HA}}} \\
+&amp;= \frac{\alpha^2}{1-\alpha}c_{\ce{HA}}
+\end{align*}
+\]</span></p>
+<p>などとなっていたが、</p>
+<p><span class="math display">\[
+\Lambda = \alpha \lambda_{-} + \alpha \lambda_{+} = \alpha \Lambda^{\infty}
+\]</span></p>
+<p>と考えることによって、</p>
+<p><span class="math display">\[
+K_a = \frac{\Lambda^2}{\Lambda^{\infty}(\Lambda^{\infty} - \Lambda)}c
+\]</span></p>
+<p>とすることができて、これが希釈溶液ではそれなりに実験値と変わらないようだ。</p>
 </section>
 </section>
 <section id="演習問題" class="level1">
@@ -652,8 +736,25 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="問1">問1</h3>
 <ol type="1">
 <li><p>電気二重層は、正電荷の表面に固定吸着された陰イオン（または負電荷に吸着した陽イオン）からなる非常に薄い層（Stern-Helmholtz層）と、静電引力の中で拡散しつつ濃度分布が生じる層（拡散層あるいはGouy-Chapman層）の２つの層で構成される。</p></li>
-<li></li>
+<li><p>荷電粒子あるいは分子が電場（電界）中を移動する現象。</p></li>
+<li><p>液体と固体が接している所に電圧をかけた場合に、液体が移動する現象。これにより生じる液体の流れを電気浸透流（でんきしんとうりゅう）という</p></li>
 </ol>
+</section>
+<section id="問2" class="level3">
+<h3 class="anchored" data-anchor-id="問2">問2</h3>
+<ol type="1">
+<li>Fickの第一法則は次の式の通り</li>
+</ol>
+<p><span class="math display">\[
+J = -D \dv{c}{x}
+\]</span></p>
+<p>物質移動律速なので、</p>
+<p><span class="math display">\[
+\begin{align*}
+- 2 \cdot 9.65 \times 10^4 \symup{C\;mol^{-1}} \cdot 0.72 \times 10^{-5} \symup{cm^2\;s^{-1}} \dv{c}{x} \times 10^{3} \symup{mol\;cm^{-4}}\\
+= 1.39 \times 10^3 \dv{c}{x} \symup{C\; cm^{-2}\;s^{-1}}
+\end{align*}
+\]</span></p>
 
 
 </section>
