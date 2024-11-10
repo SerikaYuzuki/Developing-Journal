@@ -6,6 +6,10 @@ categories: [University, 2024]
 image: "images/thumbnail.png"
 ---
 
+$$
+\require{physics}
+$$
+
 # ノート
 
 ## 核生成
@@ -38,6 +42,79 @@ $$
 &= \frac{\Delta T}{T_m}\Delta H_f
 \end{align*}
 $$
+
+ここで、核生成の自由エネルギーを考えると、
+
+$$
+\begin{aligned}
+\Delta G &= -V_s \Delta G_v + A \sigma_{SL} \\
+&= -\frac{4}{3}\pi r^3 \Delta G_v + 4\pi r^2 \sigma_{SL} \\
+\end{aligned}
+$$
+
+ここで、$r$ は核の半径である。$r^3$ を考えれば、一度核ができればどんどん大きくなった方が安定する。ここで、
+
+$$
+\pdv{\Delta G}{r} = 0
+$$
+
+となるような $r$ を臨界半径と呼ぶ。これを解くと、
+
+$$
+r^* = \frac{2\pi \sigma_{SL}}{\Delta G_v}
+$$
+
+これを代入すると、
+
+$$
+\Delta G^* = \frac{16\pi \sigma_{SL}^3}{3\Delta G_v^2}
+$$
+
+これにさらに
+
+$$
+\Delta G_v = \frac{\Delta H_m \Delta T}{T_m}
+$$
+
+を代入すると、
+
+$$
+\Delta G^* = \frac{16\pi \sigma_{SL}^3 T_m^2}{3\Delta H_m^2 } \frac{1}{\Delta T^2}
+$$
+
+となり、過冷却状態だと、臨界半径における自由エネルギーはその過冷却温度の二乗の逆数に比例する。
+
+以上の議論を別方向からもできて、界面生成に必要なエネルギーは次のように表される。
+
+$$
+\begin{aligned}
+E_{Int} &= 4\pi r^2 \sigma_{SL} \\
+\dv{E}{V} &= \frac{2\sigma_{SL}}{r}\\
+\frac{\Delta G}{\Delta V} &= \Delta G_v + \frac{2\sigma_{SL}}{r^*} = 0 \\
+r^* &= \frac{2\sigma_{SL}}{\Delta G_v}
+\end{aligned}
+$$
+
+
+## 表面エネルギー
+
+同一原子群に関しては、次のような式が成り立つ。
+
+$$
+\sigma_{AV} = \frac{Zm_1}{\omega} \frac{\epsilon_{AA}}{2}
+$$
+
+ここで、 $Z$ は配位数 $m_1$ は Broken bondの割合の数、 $\omega$ は原子一個あたりの面積で、 $\epsilon_{AA}$ は原子間の結合エネルギーである。
+
+また、表面エネルギーは昇華熱に比例する。
+
+次に、別々の原子群に関しては、次のような式が成り立つ。
+
+$$
+\sigma_{AB} = \frac{Zm_1}{\omega} \left\{ \epsilon_{AB} - \frac{\epsilon_{AA}+\epsilon_{BB}}{2} \right\}
+$$
+
+## 
 
 
 # 過去問

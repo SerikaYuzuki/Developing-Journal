@@ -1,0 +1,12 @@
+{
+  "hash": "0a952cb70ee709b7f1085482bbd45165",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"高分子課題4\"\nauthor: \"Serika Yuzuki\"\ndate: \"2024-10-10\"\ncategories: [University, 2024]\nimage: \"images/thumbnail.png\"\n---\n\n\n\n\n## 課題1\n![](../images/スクリーンショット 2024-11-05 11.00.58.png)\n\nrdkitのコードとして + や → などの記号が使用できないため略して書く。\n\n::: {#3f57b973 .cell execution_count=1}\n``` {.python .cell-code}\nfrom rdkit import Chem\nfrom rdkit.Chem import AllChem\nfrom rdkit.Chem import Draw\n\n# フェノールとホルムアルデヒドの分子構造をSMILESで指定\nphenol = Chem.MolFromSmiles(\"c1ccc(cc1)O\")  # フェノール\nformaldehyde = Chem.MolFromSmiles(\"C=O\")    # ホルムアルデヒド\n\n# フェノールとホルムアルデヒドの付加反応をSMARTSで定義\n# ここではフェノールの酸素（OH基）とホルムアルデヒドのカルボニル基の間に結合が形成されると仮定\nreaction_smarts = \"[c:1][OH].[C:2]=[O]>>[c:1][C:2][OH]\"  # 簡易的な付加反応のSMARTS\nreaction = AllChem.ReactionFromSmarts(reaction_smarts)\n\n# 反応の実行\nproducts = reaction.RunReactants((phenol, formaldehyde))\n\n# フェノール、ホルムアルデヒド、および生成物を並べて表示\nmolecules = [phenol, formaldehyde, products[0][0]]  # フェノールとホルムアルデヒド、生成物\nDraw.MolsToGridImage(molecules, molsPerRow=3, subImgSize=(200, 200), legends=[\"Phenol\", \"Formaldehyde\", \"Product\"])\n```\n\n::: {.cell-output .cell-output-display execution_count=1}\n![](4回目課題_files/figure-html/cell-2-output-1.png){}\n:::\n:::\n\n\n",
+    "supporting": [
+      "4回目課題_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
