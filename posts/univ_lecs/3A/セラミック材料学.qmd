@@ -37,7 +37,7 @@ This is an example of a callout with a title.
 ::: {.callout-note collapse="true"}
 #### 理論
 
-fccの間隙原子については、その原子が入り込む面で考えればいい
+fccの間隙原子については、その原子が入り込む面で考えればいい。８面体は立方体の一面、４面体は斜め切りした時を考えればいい。
 
 :::
 
@@ -48,7 +48,7 @@ fccの間隙原子については、その原子が入り込む面で考えれ�
 
 $$
 \begin{aligned}
-4r_0 &= \sqrt{2}(2r + 2r_0) \\
+\sqrt{2} \times 2r_0 &= 2r + 2r_0 \\
 r &= \qty(\sqrt{2}-1)r_0 \\
 \end{aligned}
 $$
@@ -181,12 +181,6 @@ $$
 ### 問6
 
 ![](simages/image5.png)
-
-::: {.callout-note collapse="true"}
-#### 理論
-
-This is an example of a callout with a title.
-:::
 
 ::: {.callout-tip collapse="true"}
 #### 解答
@@ -382,4 +376,75 @@ print("mu is: ", mu, "\nP is: ", P)
 ::: 
 
 ### 問15
+
+![](simages/image15.png)
+
+::: {.callout-tip collapse="true"}
+#### 解答
+
+![](simages/image16.png)
+
+ガラスになる物質を高温からゆっくり冷却すると結晶化するが、急冷すると粘性が増大し融点でも結晶化せず過冷却され、その体積は滑らかに減少し、ガラス転移点に達すと体積変化が急に小さくなる。 $T_g$ はガラスを特徴づける最も基本的な物性値で、冷却速度が遅い場合は網目が連続的につながっている構造を持ち、その値は高く、冷却速度が速い場合は網目が不連続になって低くなる。
+
+::: 
+
+### 問16
+
+![](simages/image17.png)
+
+::: {.callout-tip collapse="true"}
+#### 解答
+
+熱伝導率を $\kappa$ とすると、キャリアの比熱を $c$ 、音速を $c$ 、平均自由行程を $l$ とすると、熱伝導率は
+
+$$
+\kappa = \frac{1}{3} cvl
+$$
+
+と示されている。キャリアの比熱と速度は固体内では変わらないので、 $l$ が熱伝導率に影響を与える。
+
+ここで、ガラス内部の構造は結晶内部に比べて複雑であり、ある２点の原子A,Bを通る経路同士でキャリアの位相が干渉してしまうため、平均自由行程が短くなる。そのため、熱伝導率が低くなる。
+
+::: 
+
+### 問17
+
+![](simages/image18.png)
+
+::: {.callout-tip collapse="true"}
+#### 解答
+
+XRD, EDS, IRなどの方法によって使用されている素材の組成を調べることによって、適当な現代の材料を選定する。次に、高精度な焼結技術を用いて、異なる材料、釉薬、焼成条件を変化させながら試作を繰り返し、最適な条件を見つけ出すことが求められる。
+
+::: 
+
+## その他
+
+### 2023-1
+
+![](simages/image19.png)
+
+::: {.callout-note collapse="true"}
+#### 理論
+
+ポテンシャルの話。
+
+$$
+\ln(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \cdots
+$$
+
+:::
+
+::: {.callout-tip collapse="true"}
+#### 解答
+
+$$
+V = - \frac{e^2}{4\pi \varepsilon_0 r_0} \times 2 \qty(1 - \frac{1}{2} + \frac{1}{3} - \cdots)= - \frac{e^2}{4\pi \varepsilon_0 r_0} 2\ln 2
+$$
+
+以上より $2\ln 2$ となる。
+
+::: 
+
+
 

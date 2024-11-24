@@ -651,6 +651,12 @@ window.Quarto = {
   <li><a href="#問13" id="toc-問13" class="nav-link" data-scroll-target="#問13">問13</a></li>
   <li><a href="#問14" id="toc-問14" class="nav-link" data-scroll-target="#問14">問14</a></li>
   <li><a href="#問15" id="toc-問15" class="nav-link" data-scroll-target="#問15">問15</a></li>
+  <li><a href="#問16" id="toc-問16" class="nav-link" data-scroll-target="#問16">問16</a></li>
+  <li><a href="#問17" id="toc-問17" class="nav-link" data-scroll-target="#問17">問17</a></li>
+  </ul></li>
+  <li><a href="#その他" id="toc-その他" class="nav-link" data-scroll-target="#その他">その他</a>
+  <ul class="collapse">
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">2023-1</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -714,7 +720,7 @@ This is an example of a callout with a title.
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>fccの間隙原子については、その原子が入り込む面で考えればいい</p>
+<p>fccの間隙原子については、その原子が入り込む面で考えればいい。８面体は立方体の一面、４面体は斜め切りした時を考えればいい。</p>
 </div>
 </div>
 </div>
@@ -733,7 +739,7 @@ This is an example of a callout with a title.
 <p>八面体間隙の場合は、</p>
 <p><span class="math display">\[
 \begin{aligned}
-4r_0 &amp;= \sqrt{2}(2r + 2r_0) \\
+\sqrt{2} \times 2r_0 &amp;= 2r + 2r_0 \\
 r &amp;= \qty(\sqrt{2}-1)r_0 \\
 \end{aligned}
 \]</span></p>
@@ -782,7 +788,7 @@ r &amp;= \qty(\frac{\sqrt{6}}{2}-1)r_0 \\
 <p><span class="math display">\[
 2\frac{\sqrt{6}}{3}
 \]</span></p>
-<div id="654f1b77" class="cell" data-execution_count="1">
+<div id="c5576d59" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -970,24 +976,8 @@ t=\frac{ (r_{\ce{Sr}} + r_{\ce{O}}) }{ \sqrt{2}(r_{\ce{Ti}} + r_{\ce{O}}) }=0.87
 <section id="問6" class="level3">
 <h3 class="anchored" data-anchor-id="問6">問6</h3>
 <p><img src="simages/image5.png" class="img-fluid"></p>
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-理論
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>This is an example of a callout with a title.</p>
-</div>
-</div>
-</div>
 <div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -996,7 +986,7 @@ t=\frac{ (r_{\ce{Sr}} + r_{\ce{O}}) }{ \sqrt{2}(r_{\ce{Ti}} + r_{\ce{O}}) }=0.87
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="a">
 <li></li>
@@ -1019,7 +1009,7 @@ t=\frac{ (r_{\ce{Sr}} + r_{\ce{O}}) }{ \sqrt{2}(r_{\ce{Ti}} + r_{\ce{O}}) }=0.87
 <h3 class="anchored" data-anchor-id="問7">問7</h3>
 <p><img src="simages/image6.png" class="img-fluid"></p>
 <div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1028,14 +1018,14 @@ t=\frac{ (r_{\ce{Sr}} + r_{\ce{O}}) }{ \sqrt{2}(r_{\ce{Ti}} + r_{\ce{O}}) }=0.87
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>バイエルス応力と、イオン結合の話、滑り系の話でOKと思われる。</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1044,7 +1034,7 @@ t=\frac{ (r_{\ce{Sr}} + r_{\ce{O}}) }{ \sqrt{2}(r_{\ce{Ti}} + r_{\ce{O}}) }=0.87
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>パイエルス応力が大きい</li>
@@ -1060,7 +1050,7 @@ t=\frac{ (r_{\ce{Sr}} + r_{\ce{O}}) }{ \sqrt{2}(r_{\ce{Ti}} + r_{\ce{O}}) }=0.87
 <h3 class="anchored" data-anchor-id="問8">問8</h3>
 <p><img src="simages/image7.png" class="img-fluid"></p>
 <div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1069,14 +1059,14 @@ t=\frac{ (r_{\ce{Sr}} + r_{\ce{O}}) }{ \sqrt{2}(r_{\ce{Ti}} + r_{\ce{O}}) }=0.87
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>CSLについての話。覚えればいい。</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1085,7 +1075,7 @@ t=\frac{ (r_{\ce{Sr}} + r_{\ce{O}}) }{ \sqrt{2}(r_{\ce{Ti}} + r_{\ce{O}}) }=0.87
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>CSL:隣接する結晶粒の格子構造が特定の割合で整合するような粒界</p>
 <p>重要性:</p>
@@ -1102,7 +1092,7 @@ t=\frac{ (r_{\ce{Sr}} + r_{\ce{O}}) }{ \sqrt{2}(r_{\ce{Ti}} + r_{\ce{O}}) }=0.87
 <p><img src="simages/image8.png" class="img-fluid"></p>
 <p><img src="simages/image9.png" class="img-fluid"></p>
 <div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1111,7 +1101,7 @@ t=\frac{ (r_{\ce{Sr}} + r_{\ce{O}}) }{ \sqrt{2}(r_{\ce{Ti}} + r_{\ce{O}}) }=0.87
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>①: 表面, ②: 圧粉体, ③: 粒界, ④: 体, ⑤: 密度, ⑥: オープンポア, ⑦: クローズポア, ⑧: 粒成長, ⑨: ポア, ⑩: 体, ⑪: 粒界</p>
 </div>
@@ -1122,7 +1112,7 @@ t=\frac{ (r_{\ce{Sr}} + r_{\ce{O}}) }{ \sqrt{2}(r_{\ce{Ti}} + r_{\ce{O}}) }=0.87
 <h3 class="anchored" data-anchor-id="問10">問10</h3>
 <p><img src="simages/image10.png" class="img-fluid"></p>
 <div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1131,7 +1121,7 @@ t=\frac{ (r_{\ce{Sr}} + r_{\ce{O}}) }{ \sqrt{2}(r_{\ce{Ti}} + r_{\ce{O}}) }=0.87
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li>相変態：組織の変化により、物質の性質が変化させ、より強靭度の高い相に変化させる。</li>
@@ -1149,7 +1139,7 @@ t=\frac{ (r_{\ce{Sr}} + r_{\ce{O}}) }{ \sqrt{2}(r_{\ce{Ti}} + r_{\ce{O}}) }=0.87
 <h3 class="anchored" data-anchor-id="問11">問11</h3>
 <p><img src="simages/image11.png" class="img-fluid"></p>
 <div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1158,12 +1148,32 @@ t=\frac{ (r_{\ce{Sr}} + r_{\ce{O}}) }{ \sqrt{2}(r_{\ce{Ti}} + r_{\ce{O}}) }=0.87
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>講義で出てきたっけ……？　記憶にありません。</p>
 </div>
 </div>
 </div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>安定き裂進展時におけるき裂進展量と破壊抵抗値との関係を示す曲線。亀裂進展が始まる初期段階では破壊抵抗が低く、亀裂が進展するにつれて破壊抵抗が増加する場合が多いのが特徴。</p>
+</div>
+</div>
+</div>
+</section>
+<section id="問12-1" class="level3">
+<h3 class="anchored" data-anchor-id="問12-1">問12</h3>
+<p><img src="simages/image12.png" class="img-fluid"></p>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1176,14 +1186,16 @@ t=\frac{ (r_{\ce{Sr}} + r_{\ce{O}}) }{ \sqrt{2}(r_{\ce{Ti}} + r_{\ce{O}}) }=0.87
 </div>
 <div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>安定き裂進展時におけるき裂進展量と破壊抵抗値との関係を示す曲線。亀裂進展が始まる初期段階では破壊抵抗が低く、亀裂が進展するにつれて破壊抵抗が増加する場合が多いのが特徴。</p>
+<p>積層コンデンサー：積層構造のセラミックスを用いたコンデンサで、高誘電率材料により高い静電容量を実現。小型・高容量で電子機器に広く使用される。主にチタン酸バリウムが使われる。</p>
+<p>圧電セラミックス：機械的変形により電圧を発生させる特性を持つセラミックス。逆に電圧で変形も可能。高感度や精密な制御が求められる用途に適していて、センサー、アクチュエーター、超音波機器などで活用される。</p>
+<p>バリスター：電圧が一定値を超えると急激に電気抵抗が下がる非線形抵抗素子。酸化亜鉛が主材料。耐久性や迅速な応答性が重要な電源回路の過電圧保護や雷サージ対策に用いられる。</p>
 </div>
 </div>
 </div>
 </section>
-<section id="問12-1" class="level3">
-<h3 class="anchored" data-anchor-id="問12-1">問12</h3>
-<p><img src="simages/image12.png" class="img-fluid"></p>
+<section id="問13" class="level3">
+<h3 class="anchored" data-anchor-id="問13">問13</h3>
+<p><img src="simages/image13.png" class="img-fluid"></p>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1196,28 +1208,6 @@ t=\frac{ (r_{\ce{Sr}} + r_{\ce{O}}) }{ \sqrt{2}(r_{\ce{Ti}} + r_{\ce{O}}) }=0.87
 </div>
 <div id="callout-19" class="callout-19-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>積層コンデンサー：積層構造のセラミックスを用いたコンデンサで、高誘電率材料により高い静電容量を実現。小型・高容量で電子機器に広く使用される。主にチタン酸バリウムが使われる。</p>
-<p>圧電セラミックス：機械的変形により電圧を発生させる特性を持つセラミックス。逆に電圧で変形も可能。高感度や精密な制御が求められる用途に適していて、センサー、アクチュエーター、超音波機器などで活用される。</p>
-<p>バリスター：電圧が一定値を超えると急激に電気抵抗が下がる非線形抵抗素子。酸化亜鉛が主材料。耐久性や迅速な応答性が重要な電源回路の過電圧保護や雷サージ対策に用いられる。</p>
-</div>
-</div>
-</div>
-</section>
-<section id="問13" class="level3">
-<h3 class="anchored" data-anchor-id="問13">問13</h3>
-<p><img src="simages/image13.png" class="img-fluid"></p>
-<div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-解答
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-20" class="callout-20-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
 <p>固溶体の焼結の結果粒界ができることで、相転移点以上で電子が界面準位に捕獲されるショットキー障壁が形成されることで電気抵抗が急激に増加する。</p>
 </div>
 </div>
@@ -1227,7 +1217,7 @@ t=\frac{ (r_{\ce{Sr}} + r_{\ce{O}}) }{ \sqrt{2}(r_{\ce{Ti}} + r_{\ce{O}}) }=0.87
 <h3 class="anchored" data-anchor-id="問14">問14</h3>
 <p><img src="simages/image14.png" class="img-fluid"></p>
 <div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1236,7 +1226,7 @@ t=\frac{ (r_{\ce{Sr}} + r_{\ce{O}}) }{ \sqrt{2}(r_{\ce{Ti}} + r_{\ce{O}}) }=0.87
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>分極モーメントは</p>
 <p><span class="math display">\[
@@ -1252,7 +1242,7 @@ t=\frac{ (r_{\ce{Sr}} + r_{\ce{O}}) }{ \sqrt{2}(r_{\ce{Ti}} + r_{\ce{O}}) }=0.87
 </div>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1261,7 +1251,7 @@ t=\frac{ (r_{\ce{Sr}} + r_{\ce{O}}) }{ \sqrt{2}(r_{\ce{Ti}} + r_{\ce{O}}) }=0.87
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-22" class="callout-22-contents callout-collapse collapse">
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>上向を正とする。</p>
 <p><span class="math display">\[
@@ -1274,7 +1264,7 @@ t=\frac{ (r_{\ce{Sr}} + r_{\ce{O}}) }{ \sqrt{2}(r_{\ce{Ti}} + r_{\ce{O}}) }=0.87
 P &amp;= \frac{\mu}{V} = 1.679 \times 10^{-1} \, \mathrm{C} \cdot \mathrm{m}^{-2}
 \end{aligned}
 \]</span></p>
-<div id="64864508" class="cell" data-execution_count="2">
+<div id="22967496" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1300,6 +1290,114 @@ P is:  0.1678766079680568</code></pre>
 </section>
 <section id="問15" class="level3">
 <h3 class="anchored" data-anchor-id="問15">問15</h3>
+<p><img src="simages/image15.png" class="img-fluid"></p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><img src="simages/image16.png" class="img-fluid"></p>
+<p>ガラスになる物質を高温からゆっくり冷却すると結晶化するが、急冷すると粘性が増大し融点でも結晶化せず過冷却され、その体積は滑らかに減少し、ガラス転移点に達すと体積変化が急に小さくなる。 <span class="math inline">\(T_g\)</span> はガラスを特徴づける最も基本的な物性値で、冷却速度が遅い場合は網目が連続的につながっている構造を持ち、その値は高く、冷却速度が速い場合は網目が不連続になって低くなる。</p>
+</div>
+</div>
+</div>
+</section>
+<section id="問16" class="level3">
+<h3 class="anchored" data-anchor-id="問16">問16</h3>
+<p><img src="simages/image17.png" class="img-fluid"></p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>熱伝導率を <span class="math inline">\(\kappa\)</span> とすると、キャリアの比熱を <span class="math inline">\(c\)</span> 、音速を <span class="math inline">\(c\)</span> 、平均自由行程を <span class="math inline">\(l\)</span> とすると、熱伝導率は</p>
+<p><span class="math display">\[
+\kappa = \frac{1}{3} cvl
+\]</span></p>
+<p>と示されている。キャリアの比熱と速度は固体内では変わらないので、 <span class="math inline">\(l\)</span> が熱伝導率に影響を与える。</p>
+<p>ここで、ガラス内部の構造は結晶内部に比べて複雑であり、ある２点の原子A,Bを通る経路同士でキャリアの位相が干渉してしまうため、平均自由行程が短くなる。そのため、熱伝導率が低くなる。</p>
+</div>
+</div>
+</div>
+</section>
+<section id="問17" class="level3">
+<h3 class="anchored" data-anchor-id="問17">問17</h3>
+<p><img src="simages/image18.png" class="img-fluid"></p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>XRD, EDS, IRなどの方法によって使用されている素材の組成を調べることによって、適当な現代の材料を選定する。次に、高精度な焼結技術を用いて、異なる材料、釉薬、焼成条件を変化させながら試作を繰り返し、最適な条件を見つけ出すことが求められる。</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="その他" class="level2">
+<h2 class="anchored" data-anchor-id="その他">その他</h2>
+<section id="section" class="level3">
+<h3 class="anchored" data-anchor-id="section">2023-1</h3>
+<p><img src="simages/image19.png" class="img-fluid"></p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>ポテンシャルの話。</p>
+<p><span class="math display">\[
+\ln(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \cdots
+\]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-26" class="callout-26-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+V = - \frac{e^2}{4\pi \varepsilon_0 r_0} \times 2 \qty(1 - \frac{1}{2} + \frac{1}{3} - \cdots)= - \frac{e^2}{4\pi \varepsilon_0 r_0} 2\ln 2
+\]</span></p>
+<p>以上より <span class="math inline">\(2\ln 2\)</span> となる。</p>
+</div>
+</div>
+</div>
 
 
 </section>
