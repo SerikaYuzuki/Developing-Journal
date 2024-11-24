@@ -303,12 +303,6 @@ CSL:隣接する結晶粒の格子構造が特定の割合で整合するよう�
 
 ![](simages/image12.png)
 
-::: {.callout-note collapse="true"}
-#### 理論
-
-This is an example of a callout with a title.
-:::
-
 ::: {.callout-tip collapse="true"}
 #### 解答
 
@@ -319,9 +313,73 @@ This is an example of a callout with a title.
 バリスター：電圧が一定値を超えると急激に電気抵抗が下がる非線形抵抗素子。酸化亜鉛が主材料。耐久性や迅速な応答性が重要な電源回路の過電圧保護や雷サージ対策に用いられる。
 ::: 
 
+### 問13
 
+![](simages/image13.png)
 
+::: {.callout-tip collapse="true"}
+#### 解答
 
+固溶体の焼結の結果粒界ができることで、相転移点以上で電子が界面準位に捕獲されるショットキー障壁が形成されることで電気抵抗が急激に増加する。
 
+::: 
 
+### 問14
+
+![](simages/image14.png)
+
+::: {.callout-note collapse="true"}
+#### 理論
+
+分極モーメントは
+
+$$
+\mathbfit{\mu} = q \times \Delta \mathbfit{r}
+$$
+
+で表される。ここで、$\Delta \mathbfit{r}$ はずれた距離である。そして、分極 ionic polarizability は
+
+$$
+\mathbfit{P} = N \times \mathbfit{\mu} = \frac{\mathbfit{\mu}_{\text{格子内}}}{V_\text{単位体積}}
+$$
+
+で表される。ここで、$N$ は単位体積あたりの双極子数である。
+
+この問題ではまず格子内の分極モーメントを求め、次に単位体積で割れば良い。格子自体の体積については、$V = a^2c$ で求められる。 $a^2$ は基準にした酸素イオンの間隔で、対称性から考えればわかる。
+
+:::
+
+::: {.callout-tip collapse="true"}
+#### 解答
+
+上向を正とする。
+
+$$
+\begin{aligned}
+\mu = e (
+    &\eval{\qty{{1_{\text{個}} \times (+4)_{\text{価数}} \times 0.12 [Å]}}}_{\ce{Ti^{4+}}} + \\
+    &\eval{\qty{{1_{\text{個}} \times (-2)_{\text{価数}} \times -0.036 [Å]}}}_{\ce{O^{2-}}} + \\
+    &\eval{\qty{{1_{\text{個}} \times (+2)_{\text{価数}} \times 0.061 [Å]}}}_{\ce{Ba^{2+}}} ) \\
+    &= 1.080 \times 10^{-29} \, \mathrm{C} \cdot \mathrm{m} \\ 
+P &= \frac{\mu}{V} = 1.679 \times 10^{-1} \, \mathrm{C} \cdot \mathrm{m}^{-2}
+\end{aligned}
+$$
+
+```{python}
+import numpy as np
+
+e = 1.602e-19
+a = 3.992e-10
+c = 4.036e-10
+
+mu = e * (1 * 4 * 0.12e-10 + 1 * (-2) * (-0.036e-10) + 1 * 2 * 0.061e-10)
+V = a**2 * c
+P = mu / V
+
+print("mu is: ", mu, "\nP is: ", P)
+```
+
+::: 
+
+### 問15
 
