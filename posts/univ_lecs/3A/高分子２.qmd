@@ -723,6 +723,13 @@ $$
 
 ![](images/image39.png)
 
+::: {.callout-note collapse="true"}
+### 理論
+
+マイナスになって、Oの隣を攻めていく
+
+:::
+
 ::: {.callout-tip collapse="true"}
 ### 解答
 
@@ -785,4 +792,92 @@ $$
 
 
 # 過去問まとめ
+
+## 共重合組成曲線
+
+![](images/image48.png)
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# データ設定
+r_values = {
+    "(r1=0.04, r2=0)": (0.04, 0),
+    "(r1=0.52, r2=0.46)": (0.52, 0.46),
+    "(r1=0.78, r2=1.3)": (0.78, 1.3),
+    "(r1=0.1, r2=9.0)": (0.1, 9.0)
+}
+
+# プロット関数
+def generate_copolymer_composition_curves(r_values):
+    f1 = np.linspace(0, 1, 500)  # モノマー比 (f1)
+    f2 = 1 - f1  # f2 = 1 - f1
+
+    plt.figure(figsize=(10, 8))
+
+    for label, (r1, r2) in r_values.items():
+        # 共重合組成式
+        with np.errstate(divide='ignore', invalid='ignore'):  # 0除算の警告を無視
+            F1 = (r1 * f1**2 + f1 * f2) / (r1 * f1**2 + 2 * f1 * f2 + r2 * f2**2)
+            F1 = np.nan_to_num(F1)  # NaNを0に変換
+        plt.plot(f1, F1, label=label)
+
+    plt.title("Copolymer Composition Curves", fontsize=16)
+    plt.xlabel("$f_1$ (Monomer Fraction in Feed)", fontsize=14)
+    plt.ylabel("$F_1$ (Monomer Fraction in Polymer)", fontsize=14)
+    plt.grid(True)
+    plt.legend(fontsize=12)
+    plt.show()
+
+# 実行
+generate_copolymer_composition_curves(r_values)
+```
+
+## かご効果
+
+![](images/image49.png)
+
+::: {.callout-note collapse="true"}
+### 理論
+
+別れた時のことを考えればいい。
+
+:::
+
+::: {.callout-tip collapse="true"}
+### 解答
+
+AIBOは脱膣するが、BPOは脱膣しない。
+
+::: 
+
+## リビング重合
+
+![](images/image50.png)
+
+::: {.callout-tip collapse="true"}
+### 解答
+
+条件：連鎖移動反応や停止反応などの生長末端を失活させる副反応を伴わない
+
+確認方法：ポリマーの長さが一定であることを確認する
+
+::: 
+
+## ラジカル重合周辺
+
+![](images/image51.png)
+
+::: {.callout-tip collapse="true"}
+### 解答
+
+a. バルク
+b. 混濁
+c. 乳化
+d. 0.5
+e. 1
+
+:::
+
 
