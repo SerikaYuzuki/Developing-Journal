@@ -1852,7 +1852,7 @@
     "href": "posts/univ_lecs/3A/高分子２.html#課題10-2",
     "title": "高分子ノート",
     "section": "課題10-2",
-    "text": "課題10-2\n\n\n\n\n\n\n\n解答",
+    "text": "課題10-2\n\n\n\n\n\n\n\n理論\n\n\n\n\n\nマイナスになって、Oの隣を攻めていく\n\n\n\n\n\n\n\n\n\n解答",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
@@ -1895,6 +1895,76 @@
     "title": "高分子ノート",
     "section": "課題11-2",
     "text": "課題11-2\n\n\n\n\n\n\n\n理論\n\n\n\n\n\nポリ乳酸は一個分だけに注目して \\(\\ce{C3H4O2}\\) として考える。\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\\[\n\\ce{C3H4O2 + 3O2 -&gt; 3CO2 + 2H2O}\n\\]\nから、1.0gのPLAが分解した時に発生する二酸化炭素は\n\\[\n\\frac{1.0}{72} \\times 3 \\times 44 = 1.83 \\mathrm{g}\n\\]\nゆえに分解度は\n\\[\n\\frac{0.72-0.08}{1.83} = 0.35\n\\]",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#共重合組成曲線",
+    "href": "posts/univ_lecs/3A/高分子２.html#共重合組成曲線",
+    "title": "高分子ノート",
+    "section": "共重合組成曲線",
+    "text": "共重合組成曲線\n\n\n\nShow Code\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# データ設定\nr_values = {\n    \"(r1=0.04, r2=0)\": (0.04, 0),\n    \"(r1=0.52, r2=0.46)\": (0.52, 0.46),\n    \"(r1=0.78, r2=1.3)\": (0.78, 1.3),\n    \"(r1=0.1, r2=9.0)\": (0.1, 9.0)\n}\n\n# プロット関数\ndef generate_copolymer_composition_curves(r_values):\n    f1 = np.linspace(0, 1, 500)  # モノマー比 (f1)\n    f2 = 1 - f1  # f2 = 1 - f1\n\n    plt.figure(figsize=(10, 8))\n\n    for label, (r1, r2) in r_values.items():\n        # 共重合組成式\n        with np.errstate(divide='ignore', invalid='ignore'):  # 0除算の警告を無視\n            F1 = (r1 * f1**2 + f1 * f2) / (r1 * f1**2 + 2 * f1 * f2 + r2 * f2**2)\n            F1 = np.nan_to_num(F1)  # NaNを0に変換\n        plt.plot(f1, F1, label=label)\n\n    plt.title(\"Copolymer Composition Curves\", fontsize=16)\n    plt.xlabel(\"$f_1$ (Monomer Fraction in Feed)\", fontsize=14)\n    plt.ylabel(\"$F_1$ (Monomer Fraction in Polymer)\", fontsize=14)\n    plt.grid(True)\n    plt.legend(fontsize=12)\n    plt.show()\n\n# 実行\ngenerate_copolymer_composition_curves(r_values)",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#かご効果",
+    "href": "posts/univ_lecs/3A/高分子２.html#かご効果",
+    "title": "高分子ノート",
+    "section": "かご効果",
+    "text": "かご効果\n\n\n\n\n\n\n\n理論\n\n\n\n\n\n別れた時のことを考えればいい。\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\nAIBOは脱膣するが、BPOは脱膣しない。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#リビング重合",
+    "href": "posts/univ_lecs/3A/高分子２.html#リビング重合",
+    "title": "高分子ノート",
+    "section": "リビング重合",
+    "text": "リビング重合\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n条件：連鎖移動反応や停止反応などの生長末端を失活させる副反応を伴わない\n確認方法：ポリマーの長さが一定であることを確認する",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#ラジカル重合周辺",
+    "href": "posts/univ_lecs/3A/高分子２.html#ラジカル重合周辺",
+    "title": "高分子ノート",
+    "section": "ラジカル重合周辺",
+    "text": "ラジカル重合周辺\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\nバルク\n混濁\n乳化\n0.5\n1",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#スチレンの重合",
+    "href": "posts/univ_lecs/3A/高分子２.html#スチレンの重合",
+    "title": "高分子ノート",
+    "section": "スチレンの重合",
+    "text": "スチレンの重合\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\nカチオン\nラジカル\nアニオン",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",

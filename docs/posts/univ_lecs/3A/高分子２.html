@@ -662,7 +662,14 @@ window.Quarto = {
   <li><a href="#課題11-1" id="toc-課題11-1" class="nav-link" data-scroll-target="#課題11-1">課題11-1</a></li>
   <li><a href="#課題11-2" id="toc-課題11-2" class="nav-link" data-scroll-target="#課題11-2">課題11-2</a></li>
   </ul></li>
-  <li><a href="#過去問まとめ" id="toc-過去問まとめ" class="nav-link" data-scroll-target="#過去問まとめ">過去問まとめ</a></li>
+  <li><a href="#過去問まとめ" id="toc-過去問まとめ" class="nav-link" data-scroll-target="#過去問まとめ">過去問まとめ</a>
+  <ul class="collapse">
+  <li><a href="#共重合組成曲線" id="toc-共重合組成曲線" class="nav-link" data-scroll-target="#共重合組成曲線">共重合組成曲線</a></li>
+  <li><a href="#かご効果" id="toc-かご効果" class="nav-link" data-scroll-target="#かご効果">かご効果</a></li>
+  <li><a href="#リビング重合" id="toc-リビング重合" class="nav-link" data-scroll-target="#リビング重合">リビング重合</a></li>
+  <li><a href="#ラジカル重合周辺" id="toc-ラジカル重合周辺" class="nav-link" data-scroll-target="#ラジカル重合周辺">ラジカル重合周辺</a></li>
+  <li><a href="#スチレンの重合" id="toc-スチレンの重合" class="nav-link" data-scroll-target="#スチレンの重合">スチレンの重合</a></li>
+  </ul></li>
   </ul>
 </nav>
     <div class="quarto-margin-footer"><div class="margin-footer-item">
@@ -912,7 +919,7 @@ This is an example of a callout with a title.
 <p><span class="math display">\[
 \mathrm{DP} = \frac{2.02}{0.03+0.01} = 50.5
 \]</span></p>
-<div id="4c0815d4" class="cell" data-execution_count="1">
+<div id="8576a4fc" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dp <span class="op">=</span> <span class="fl">2.02</span> <span class="op">/</span> (<span class="fl">0.03</span> <span class="op">+</span> <span class="fl">0.01</span>)</span>
@@ -1021,7 +1028,7 @@ p &amp;= \frac{2KC_{0}+1-\sqrt{ (2KC_{0}+1)^2 - 4K^2C_{0}^2 }}{2KC_{0}} \\
 \bar{X_{n}} &amp;= \frac{2KC_{0}}{\sqrt{ 4KC_{0}+1} - 1 }
 \end{aligned}
 \]</span></p>
-<div id="f7d56b83" class="cell" data-execution_count="2">
+<div id="c1ac0cfc" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1342,7 +1349,7 @@ t_{1/2} = \frac{\ln 2}{Ae^{-E_a/RT}}
 </tr>
 </tbody>
 </table>
-<div id="d8ffbbd4" class="cell" data-execution_count="3">
+<div id="acd68073" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1429,7 +1436,7 @@ F &amp;= \frac{R}{R+1} = \frac{\qty(\frac{f_1}{f_2})^2r_1+\qty(\frac{f_1}{f_2})}
 <ol start="2" type="1">
 <li></li>
 </ol>
-<div id="98fbbd64" class="cell" data-execution_count="4">
+<div id="d7be4dda" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>r1 <span class="op">=</span> <span class="fl">0.75</span></span>
@@ -1524,7 +1531,7 @@ r_1=\frac{Q_1}{Q_2} e^{\left(-e_1\left(e_1-e_2\right)\right)}
 <p><span class="math display">\[
 r_2=\frac{Q_2}{Q_1} e^{\left(-e_2\left(e_2-e_1\right)\right)}
 \]</span></p>
-<div id="4edbc778" class="cell" data-execution_count="5">
+<div id="8c32acd3" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1630,7 +1637,7 @@ r_2=\frac{Q_2}{Q_1} e^{\left(-e_2\left(e_2-e_1\right)\right)}
 <ol type="1">
 <li></li>
 </ol>
-<div id="39be1225" class="cell" data-execution_count="6">
+<div id="64a0ceb5" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdkit <span class="im">import</span> Chem</span>
@@ -1892,26 +1899,22 @@ r_2=\frac{Q_2}{Q_1} e^{\left(-e_2\left(e_2-e_1\right)\right)}
 <section id="課題10-2" class="level2">
 <h2 class="anchored" data-anchor-id="課題10-2">課題10-2</h2>
 <p><img src="images/image39.png" class="img-fluid"></p>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-41-contents" aria-controls="callout-41" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-解答
+理論
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-41" class="callout-41-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><img src="images/image40.png" class="img-fluid"></p>
+<p>マイナスになって、Oの隣を攻めていく</p>
 </div>
 </div>
 </div>
-</section>
-<section id="課題10-3" class="level2">
-<h2 class="anchored" data-anchor-id="課題10-3">課題10-3</h2>
-<p><img src="images/image41.png" class="img-fluid"></p>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-42-contents" aria-controls="callout-42" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1923,6 +1926,26 @@ r_2=\frac{Q_2}{Q_1} e^{\left(-e_2\left(e_2-e_1\right)\right)}
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-42" class="callout-42-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><img src="images/image40.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="課題10-3" class="level2">
+<h2 class="anchored" data-anchor-id="課題10-3">課題10-3</h2>
+<p><img src="images/image41.png" class="img-fluid"></p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-43-contents" aria-controls="callout-43" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-43" class="callout-43-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><img src="images/image42.png" class="img-fluid"></p>
 </div>
@@ -1947,7 +1970,7 @@ r_2=\frac{Q_2}{Q_1} e^{\left(-e_2\left(e_2-e_1\right)\right)}
 <h2 class="anchored" data-anchor-id="課題11-2">課題11-2</h2>
 <p><img src="images/image44.png" class="img-fluid"></p>
 <div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-43-contents" aria-controls="callout-43" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-44-contents" aria-controls="callout-44" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1956,14 +1979,14 @@ r_2=\frac{Q_2}{Q_1} e^{\left(-e_2\left(e_2-e_1\right)\right)}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-43" class="callout-43-contents callout-collapse collapse">
+<div id="callout-44" class="callout-44-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>ポリ乳酸は一個分だけに注目して <span class="math inline">\(\ce{C3H4O2}\)</span> として考える。</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-44-contents" aria-controls="callout-44" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-45-contents" aria-controls="callout-45" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1972,7 +1995,7 @@ r_2=\frac{Q_2}{Q_1} e^{\left(-e_2\left(e_2-e_1\right)\right)}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-44" class="callout-44-contents callout-collapse collapse">
+<div id="callout-45" class="callout-45-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[
 \ce{C3H4O2 + 3O2 -&gt; 3CO2 + 2H2O}
@@ -1992,8 +2015,165 @@ r_2=\frac{Q_2}{Q_1} e^{\left(-e_2\left(e_2-e_1\right)\right)}
 </section>
 <section id="過去問まとめ" class="level1">
 <h1>過去問まとめ</h1>
+<section id="共重合組成曲線" class="level2">
+<h2 class="anchored" data-anchor-id="共重合組成曲線">共重合組成曲線</h2>
+<p><img src="images/image48.png" class="img-fluid"></p>
+<div id="a58360cc" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># データ設定</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>r_values <span class="op">=</span> {</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"(r1=0.04, r2=0)"</span>: (<span class="fl">0.04</span>, <span class="dv">0</span>),</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"(r1=0.52, r2=0.46)"</span>: (<span class="fl">0.52</span>, <span class="fl">0.46</span>),</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"(r1=0.78, r2=1.3)"</span>: (<span class="fl">0.78</span>, <span class="fl">1.3</span>),</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"(r1=0.1, r2=9.0)"</span>: (<span class="fl">0.1</span>, <span class="fl">9.0</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># プロット関数</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_copolymer_composition_curves(r_values):</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    f1 <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">500</span>)  <span class="co"># モノマー比 (f1)</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    f2 <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> f1  <span class="co"># f2 = 1 - f1</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> label, (r1, r2) <span class="kw">in</span> r_values.items():</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 共重合組成式</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> np.errstate(divide<span class="op">=</span><span class="st">'ignore'</span>, invalid<span class="op">=</span><span class="st">'ignore'</span>):  <span class="co"># 0除算の警告を無視</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>            F1 <span class="op">=</span> (r1 <span class="op">*</span> f1<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> f1 <span class="op">*</span> f2) <span class="op">/</span> (r1 <span class="op">*</span> f1<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> f1 <span class="op">*</span> f2 <span class="op">+</span> r2 <span class="op">*</span> f2<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>            F1 <span class="op">=</span> np.nan_to_num(F1)  <span class="co"># NaNを0に変換</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>        plt.plot(f1, F1, label<span class="op">=</span>label)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"Copolymer Composition Curves"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"$f_1$ (Monomer Fraction in Feed)"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"$F_1$ (Monomer Fraction in Polymer)"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    plt.grid(<span class="va">True</span>)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    plt.legend(fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="co"># 実行</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>generate_copolymer_composition_curves(r_values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="高分子２_files/figure-html/cell-8-output-1.png" width="820" height="682" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="かご効果" class="level2">
+<h2 class="anchored" data-anchor-id="かご効果">かご効果</h2>
+<p><img src="images/image49.png" class="img-fluid"></p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-46-contents" aria-controls="callout-46" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-46" class="callout-46-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>別れた時のことを考えればいい。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-47-contents" aria-controls="callout-47" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-47" class="callout-47-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>AIBOは脱膣するが、BPOは脱膣しない。</p>
+</div>
+</div>
+</div>
+</section>
+<section id="リビング重合" class="level2">
+<h2 class="anchored" data-anchor-id="リビング重合">リビング重合</h2>
+<p><img src="images/image50.png" class="img-fluid"></p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-48-contents" aria-controls="callout-48" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-48" class="callout-48-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>条件：連鎖移動反応や停止反応などの生長末端を失活させる副反応を伴わない</p>
+<p>確認方法：ポリマーの長さが一定であることを確認する</p>
+</div>
+</div>
+</div>
+</section>
+<section id="ラジカル重合周辺" class="level2">
+<h2 class="anchored" data-anchor-id="ラジカル重合周辺">ラジカル重合周辺</h2>
+<p><img src="images/image51.png" class="img-fluid"></p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-49-contents" aria-controls="callout-49" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-49" class="callout-49-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>バルク</li>
+<li>混濁</li>
+<li>乳化</li>
+<li>0.5</li>
+<li>1</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="スチレンの重合" class="level2">
+<h2 class="anchored" data-anchor-id="スチレンの重合">スチレンの重合</h2>
+<p><img src="images/image52.png" class="img-fluid"></p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-50-contents" aria-controls="callout-50" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-50" class="callout-50-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>カチオン</li>
+<li>ラジカル</li>
+<li>アニオン</li>
+</ol>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
