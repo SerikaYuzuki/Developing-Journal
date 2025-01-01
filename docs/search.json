@@ -1908,7 +1908,7 @@
     "href": "posts/univ_lecs/3A/高分子２.html#共重合組成曲線",
     "title": "高分子ノート",
     "section": "共重合組成曲線",
-    "text": "共重合組成曲線\n\n\n\nShow Code\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# データ設定\nr_values = {\n    \"(r1=0.04, r2=0)\": (0.04, 0),\n    \"(r1=0.52, r2=0.46)\": (0.52, 0.46),\n    \"(r1=0.78, r2=1.3)\": (0.78, 1.3),\n    \"(r1=0.1, r2=9.0)\": (0.1, 9.0)\n}\n\n# プロット関数\ndef generate_copolymer_composition_curves(r_values):\n    f1 = np.linspace(0, 1, 500)  # モノマー比 (f1)\n    f2 = 1 - f1  # f2 = 1 - f1\n\n    plt.figure(figsize=(10, 8))\n\n    for label, (r1, r2) in r_values.items():\n        # 共重合組成式\n        with np.errstate(divide='ignore', invalid='ignore'):  # 0除算の警告を無視\n            F1 = (r1 * f1**2 + f1 * f2) / (r1 * f1**2 + 2 * f1 * f2 + r2 * f2**2)\n            F1 = np.nan_to_num(F1)  # NaNを0に変換\n        plt.plot(f1, F1, label=label)\n\n    plt.title(\"Copolymer Composition Curves\", fontsize=16)\n    plt.xlabel(\"$f_1$ (Monomer Fraction in Feed)\", fontsize=14)\n    plt.ylabel(\"$F_1$ (Monomer Fraction in Polymer)\", fontsize=14)\n    plt.grid(True)\n    plt.legend(fontsize=12)\n    plt.show()\n\n# 実行\ngenerate_copolymer_composition_curves(r_values)",
+    "text": "共重合組成曲線\n\n\n\nShow Code\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# データ設定\nr_values = {\n    \"(r1=0.04, r2=0)\": (0.04, 0),\n    \"(r1=0.52, r2=0.46)\": (0.52, 0.46),\n    \"(r1=0.78, r2=1.3)\": (0.78, 1.3),\n    \"(r1=0.1, r2=9.0)\": (0.1, 9.0),\n    \"(r1=17, r2=0.02)\": (17, 0.02),\n}\n\n# プロット関数\ndef generate_copolymer_composition_curves(r_values):\n    f1 = np.linspace(0, 1, 500)  # モノマー比 (f1)\n    f2 = 1 - f1  # f2 = 1 - f1\n\n    plt.figure(figsize=(10, 8))\n\n    for label, (r1, r2) in r_values.items():\n        # 共重合組成式\n        with np.errstate(divide='ignore', invalid='ignore'):  # 0除算の警告を無視\n            F1 = (r1 * f1**2 + f1 * f2) / (r1 * f1**2 + 2 * f1 * f2 + r2 * f2**2)\n            F1 = np.nan_to_num(F1)  # NaNを0に変換\n        plt.plot(f1, F1, label=label)\n\n    plt.title(\"Copolymer Composition Curves\", fontsize=16)\n    plt.xlabel(\"$f_1$ (Monomer Fraction in Feed)\", fontsize=14)\n    plt.ylabel(\"$F_1$ (Monomer Fraction in Polymer)\", fontsize=14)\n    plt.grid(True)\n    plt.legend(fontsize=12)\n    plt.show()\n\n# 実行\ngenerate_copolymer_composition_curves(r_values)",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
@@ -2765,6 +2765,90 @@
     "href": "index.html",
     "title": "Serika’s Blog",
     "section": "",
-    "text": "このブログでは、私個人の日記などの記録や、AtCoderやゲーム開発などでの進捗管理、情報発信をしていくつもりです。\n現時点での各セクションでの概要や目標は次のとおりです。\n\n\n\n\n\n\n\n\nセクション名\n概要\n目標\n\n\n\n\nAtCoder\nTypicala90を解いて行っています\nrustでAtCoderに挑戦する人にとって一助となるドキュメントになること\n\n\nUE5\nAuraというゲームを作るオンライン講義の記録\nコース完了後に自作のコピーゲームを作るときに参考にする\n\n\n大学用\n自作のシケプリを公開する場所\n参考になってくれれば嬉しい。そのうち消すかも\n\n\n収容所\n収容所で公開する問題を載せていく\nデータベース代わりになるといいかなと\n\n\nJournal\nただの日記\nできれば毎日投稿する\n\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nRDKit pandas support\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n高分子ノート\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nNov 10, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n高分子ノート\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nOct 10, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nセラミックノート\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nOct 10, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nマテリアルインフォルマティクス\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 9, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料電気化学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 8, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n組織生成論\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 8, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n過去問演習\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nApr 6, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料強度学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 5, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n固体物性学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 5, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料反応工学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 5, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\n\n\n\nProgramming\n\n\nWeb\n\n\nPlayGround\n\n\n\n\n\n\n\n\n\nDec 20, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_06\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学II\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学III\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学B\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学A\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-11\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 30, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nPlanning\n\n\n\n\n\n\nUE5\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 29, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-10\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_05\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-09\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 24, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_04\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 20, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-08\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 26, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-07\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-06\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 23, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-05\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 17, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-04\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 16, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-03\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 15, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_03\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 15, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学I\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nOct 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n物理\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nOct 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料速度論\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料量子力学\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料相平衡論\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n統計力学\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nCargo Compete\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-02\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-01\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nSection 02\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\nNo matching items\n\n\n  \n\n Back to top"
+    "text": "このブログでは、私個人の日記などの記録や、AtCoderやゲーム開発などでの進捗管理、情報発信をしていくつもりです。\n現時点での各セクションでの概要や目標は次のとおりです。\n\n\n\n\n\n\n\n\nセクション名\n概要\n目標\n\n\n\n\nAtCoder\nTypicala90を解いて行っています\nrustでAtCoderに挑戦する人にとって一助となるドキュメントになること\n\n\nUE5\nAuraというゲームを作るオンライン講義の記録\nコース完了後に自作のコピーゲームを作るときに参考にする\n\n\n大学用\n自作のシケプリを公開する場所\n参考になってくれれば嬉しい。そのうち消すかも\n\n\n収容所\n収容所で公開する問題を載せていく\nデータベース代わりになるといいかなと\n\n\nJournal\nただの日記\nできれば毎日投稿する\n\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\n生産プロセス\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nDec 17, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nデバイス材料工学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nDec 2, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料統計力学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nNov 29, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n高分子ノート\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nOct 10, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nセラミックノート\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nOct 10, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nマテリアルインフォルマティクス\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 9, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料電気化学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 8, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n組織生成論\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 8, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n過去問演習\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nApr 6, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料強度学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 5, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n固体物性学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 5, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料反応工学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 5, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\n\n\n\nProgramming\n\n\nWeb\n\n\nPlayGround\n\n\n\n\n\n\n\n\n\nDec 20, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_06\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学II\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学III\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学B\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学A\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-11\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 30, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nPlanning\n\n\n\n\n\n\nUE5\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 29, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-10\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_05\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-09\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 24, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_04\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 20, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-08\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 26, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-07\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-06\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 23, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-05\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 17, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-04\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 16, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-03\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 15, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_03\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 15, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学I\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nOct 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n物理\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nOct 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料速度論\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料量子力学\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料相平衡論\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n統計力学\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nCargo Compete\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-02\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-01\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nSection 02\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\nNo matching items\n\n\n  \n\n Back to top"
+  },
+  {
+    "objectID": "posts/univ_lecs/2A/材料統計力学.html",
+    "href": "posts/univ_lecs/2A/材料統計力学.html",
+    "title": "材料統計力学",
+    "section": "",
+    "text": "\\[\n\\require{physics}\n\\require{mhchem}\n\\require{ams}\n\\]",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "2A",
+      "材料統計力学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/2A/材料統計力学.html#年度",
+    "href": "posts/univ_lecs/2A/材料統計力学.html#年度",
+    "title": "材料統計力学",
+    "section": "2007年度",
+    "text": "2007年度\n注意：B側の問題だけです。\n\n問1\n\n\n\n\n\n\n\n理論\n\n\n\n\n\n\\[\n\\begin{aligned}\n\\dd U &= T \\dd S - P \\dd V \\\\\n\\dd F &= -S \\dd T - P \\dd V \\\\\n\\dd G &= -S \\dd T + V \\dd P\n\\end{aligned}\n\\]\nここら辺について頭に入れておく\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\n\n\n性質\nミクロカノニカル\nカノニカル\nグランドカノニカル\n\n\n\n\n状態\n外界から独立している\n周囲と熱平衡\n外界とやり取りがある\n\n\nエネルギー\n一定(断熱)\nやり取りあり(等温)\nやり取りあり(等温)\n\n\n粒子数\n一定\n一定\nやり取りあり\n\n\n特徴量\n\\(U\\)\n\\(F\\)\n\\(G\\)\n\n\n\n\n\n\n\n\n問2\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\n\n\n\n\n\n\n記号\n物理量\n説明\n\n\n\n\n\\(S\\)\nエントロピー\n乱雑さを示す状態量 \\(k_B\\ln W\\)\n\n\n\\(k_B\\)\nボルツマン定数\n\n\n\n\\(W\\)\n状態の数\n系のエネルギーが等しい微視状態の総数\n\n\n\\(F\\)\nヘルムホルツエネルギー\n等温条件下で取り出し可能なエネルギー量\n\n\n\\(\\beta\\)\n逆温度 \\(1/k_BT\\)\n温度の逆数として定義される量\n\n\n\\(Z\\)\n分配関数\nカノニカル分布の規格化定数\n\n\n\\(J\\)\nグランドポテンシャル\n系における可能な状態の分布\n\n\n\\(\\Xi\\)\n大分配関数\nグランドポテンシャルに関連する量\n\n\n\n\n\n\n\n\n問3\n\n\n\n\n\n\n\n理論\n\n\n\n\n\n\nはただ単に確率の問題を解くだけ。ここで、 \\(W_N(M) = {}_N \\mathrm{H}_M = \\binom{M+N-1}{M}\\) ということに注意した方がいい。\n\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n求める確率は \\(\\frac{W_{N-1}(M-n)}{W_N(M)}\\) であり、 \\(m = M/N\\) を使えば、\n\n\\[\n\\frac{1}{m+1} \\left( \\frac{m}{m+1} \\right)^n\n\\]\n\n\n\n\\[\n\\frac{m}{1+m}=\\frac{M}{M+N} = \\exp \\qty(-\\frac{\\hbar \\omega}{k_BT})\n\\]\n\n\n\n\n\n問4\n\n不明瞭なので、解答は不確かです。\n\n\n\n\n\n\n理論\n\n\n\n\n\n問題自体は指示している通りに積分計算をすればいい。\n分配関数とかについて軽くまとめる。かなり我流な考え方なので注意してください。\nある何らかの力が働いている系があ流として、そこでは圧力が定義可能である。 \\(P=NkT\\) となるわけだが、この系のうち、あるエネルギー \\(E\\) 以上を取る粒子が \\(n\\) 個存在してるとしたら、その割合は、 PE が圧力を超えていく確立に等しくて、 \\(-n\\dd P.E. = \\dd P = kT \\dd n\\) で \\(n\\propto \\exp(-P.E./kT)\\) になるわけだけど、これを正規化するために \\(Z = \\sum \\exp(-P.E./kT)\\) をやっている。\nで、この \\(Z\\) 自体を弄り回して \\(T\\) 関連の量を求めることもできる。\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n分配関数は\n\n\\[\n\\begin{aligned}\nZ = &\\eval{\\frac{1}{N!}}_{\\text{粒子については区別しない}} \\\\\n&\\eval{\\sum_{n_x} \\sum_{n_y} \\sum_{n_z}}_{x,y,z\\text{方向全て}} \\\\\n&\\exp \\qty(-\\frac{1}{k_BT} \\eval{\\sum_i}_{N個} \\frac{h^2}{2mL^2} (n_x^2+n_y^2+n_z^2)) \\\\\n= & \\frac{1}{N!} \\qty(\\sum_n \\exp(-\\frac{\\beta h^2}{2mL^2}n^2))^{3N} \\\\\n= & \\frac{V^N}{h^{3N}N!} \\qty(\\frac{2\\pi m}{\\beta})^{3N/2}\n\\end{aligned}\n\\]",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "2A",
+      "材料統計力学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/デバイス材料工学.html",
+    "href": "posts/univ_lecs/3A/デバイス材料工学.html",
+    "title": "デバイス材料工学",
+    "section": "",
+    "text": "過去問を中心にして書いていく予定。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "デバイス材料工学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/2A/材料統計力学.html#等重率の原理",
+    "href": "posts/univ_lecs/2A/材料統計力学.html#等重率の原理",
+    "title": "材料統計力学",
+    "section": "等重率の原理",
+    "text": "等重率の原理\n孤立系において、微視的状態はどの状態にあることも同様に確からしい。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "2A",
+      "材料統計力学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/生産プロセス.html",
+    "href": "posts/univ_lecs/3A/生産プロセス.html",
+    "title": "生産プロセス",
+    "section": "",
+    "text": "\\[\n\\require{physics}\n\\require{mhchem}\n\\require{ams}\n\\]",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "生産プロセス"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/生産プロセス.html#年度",
+    "href": "posts/univ_lecs/3A/生産プロセス.html#年度",
+    "title": "生産プロセス",
+    "section": "2014年度",
+    "text": "2014年度",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "生産プロセス"
+    ]
   }
 ]

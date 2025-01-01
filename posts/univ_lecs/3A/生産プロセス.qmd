@@ -1,0 +1,153 @@
+---
+title: "生産プロセス"
+author: "Serika Yuzuki"
+date: "2024-12-17"
+categories: [University, 2024]
+image: "images/thumbnail.png"
+---
+
+$$
+\require{physics}
+\require{mhchem}
+\require{ams}
+$$
+
+# レポート課題
+
+Standard Gibss free energy のまとめ。
+
+|Compounds|$\Delta G\  \text{KJ}\ \text{mol}^{-1}$|
+|---|---|
+|Ba(s)|0|
+|BaO(s)|-520.40592|
+|BaS(s)|-456.056|
+|BaSO4(s)|-1362.3104|
+|O2(g)|0|
+|S2(g)|80.08176|
+
+```{python}
+import numpy as np
+
+delta_G1 = -520.40592  # Ba(s) -> BaO(s)
+delta_G2 = -456.056-(80.08176/2)   # Ba(s) -> BaS(s)
+delta_G3 = -1362.3104-(80.08176/2)  # Ba(s) -> BaSO4(s)
+delta_G4 = -1362.3104+520.40592-(80.08176/2)  # BaO(s) -> BaSO4(s)
+delta_G5 = -1362.3104+456.056  # BaS(s) -> BaSO4(s)
+delta_G6 = -520.40592+(80.08176/2)+456.056  # BaS(s) -> BaO(s) + S2(g)
+
+delta_G1, delta_G2, delta_G3, delta_G4, delta_G5, delta_G6
+```
+
+$$
+\begin{aligned}
+& \ce{Ba(s) + 1/2 O2(g) -> BaO(s)} \quad \Delta G_1 = -520.406\ \text{KJ mol}^{-1} \\
+& \ce{Ba(s) + 1/2 S2(g) -> BaS(s)} \quad \Delta G_2 = -496.097\ \text{KJ mol}^{-1} \\
+& \ce{Ba(s) + 1/2 S2(g) + 2O2(g) -> BaSO4(s)} \quad \Delta G_3 = -1402.35\ \text{KJ mol}^{-1} \\
+& \ce{BaO(s) + 1/2 S2(g) + \frac{3}{2}O2(g) -> BaSO4(s)} \quad \Delta G_4 = -881.945\ \text{KJ mol}^{-1} \\
+& \ce{BaS(s) + 2O2 -> BaSO4(s)} \quad \Delta G_5 = -906.254\ \text{KJ mol}^{-1} \\
+& \ce{BaS(s) + \frac{1}{2}O2 -> BaO(s) + \frac{1}{2}S2(g)} \quad \Delta G_6 = -24.3090\ \text{KJ mol}^{-1} \\
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\frac{G_1}{RT} &= \frac{1}{2}\log P_{\ce{O_2}} \\
+\frac{G_2}{RT} &= \frac{1}{2}\log P_{\ce{S_2}} \\
+\frac{G_3}{RT} &= \frac{1}{2}\log P_{\ce{S_2}} + 2\log P_{\ce{O_2}} \\
+\frac{G_4}{RT} &= \frac{1}{2}\log P_{\ce{S_2}} + \frac{3}{2}\log P_{\ce{O_2}} \\
+\frac{G_5}{RT} &= 2\log P_{\ce{O_2}} \\
+\frac{G_6}{RT} &= \frac{1}{2}\log P_{\ce{O_2}} - \frac{1}{2}\log P_{\ce{S_2}} \\
+\end{aligned}
+$$
+
+
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 定数設定
+R = 8.314  # 気体定数 (J/(mol*K))
+T = 900    # 温度 (K)
+
+# ギブズ自由エネルギー変化 (J/mol)
+delta_G1 = -520.406 * 1e3  # Ba -> BaO
+delta_G2 = -496.097 * 1e3  # Ba -> BaS
+delta_G3 = -1402.35 * 1e3  # Ba -> BaSO4
+delta_G4 = -881.945 * 1e3  # BaO -> BaSO4
+delta_G5 = -906.254 * 1e3  # BaS -> BaSO4
+delta_G6 = -24.3090 * 1e3  # BaS -> BaO + S2
+
+# 直線の描画
+# y = log_PO2, x = log_PS2
+
+# Ba -> BaO
+x = np.linspace(-150, 0, 500)
+log_PO2 = 2 * delta_G1 / (R * T)
+y = np.full_like(x, log_PO2)
+
+plt.plot(x, y, label='Ba -> BaO')
+
+# Ba -> BaS
+y = np.linspace(-150, 0, 500)
+log_PS2 = 2 * delta_G2 / (R * T)
+x = np.full_like(y, log_PS2)
+
+plt.plot(x, y, label='Ba -> BaS')
+
+# Ba -> BaSO4
+x = np.linspace(-150, 0, 500)
+y = -x / 4 + delta_G3 / (R * T) / 2
+
+plt.plot(x, y, label='Ba -> BaSO4')
+
+# BaO -> BaSO4
+x = np.linspace(-150, 0, 500)
+y = - x / 3 + delta_G4 / (R * T) / 3 * 2
+
+plt.plot(x, y, label='BaO -> BaSO4')
+
+# BaS -> BaSO4
+x = np.linspace(-150, 0, 500)
+log_PO2 = delta_G5 / (R * T) / 2
+y = np.full_like(x, log_PO2)
+
+plt.plot(x, y, label='BaS -> BaSO4')
+
+# BaS -> BaO + S2
+x = np.linspace(-150, 0, 500)
+y = x  + delta_G6 / (R * T) * 2
+
+plt.plot(x, y, label='BaS -> BaO + S2')
+
+# Draw
+plt.xlabel('log_PS2')
+plt.ylabel('log_PO2')
+plt.title('Graph of log_PS2 and log_PO2')
+plt.legend()
+plt.grid()
+plt.show()
+
+```
+
+# 過去問まとめ
+
+<!-- 
+::: {.callout-note collapse="true"}
+### 理論
+
+This is an example of a callout with a title.
+:::
+
+::: {.callout-tip collapse="true"}
+### 解答
+
+This is an example of a callout with a title.
+::: 
+-->
+
+## 2014年度
+
+
+
+
