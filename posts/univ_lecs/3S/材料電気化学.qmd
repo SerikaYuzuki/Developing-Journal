@@ -39,7 +39,7 @@ $$
 
 $$
 \Lambda = \Lambda^{\infty} - k\sqrt{c}
-$$
+$$ 
 
 ここで、$\Lambda^{\infty}$ は無限希釈時のモル電気伝導率、$k$ はコールラウシュの定数である。
 
@@ -47,13 +47,13 @@ $$
 
 $$
 \Lambda^{\infty} = v_{+}\lambda_{+}^{\infty} + v_{-}\lambda_{-}^{\infty}
-$$
+$$ {#eq-molar_conductivity}
 
 ## イオンの移動度
 
 $$
 \lambda_{\pm}^{\infty} = z_{\pm}F \mu_{\pm}^{\infty}
-$$
+$$ {#eq-ion_mobility}
 
 ここで、$z_{\pm}$ はイオンの電荷、$F$ はファラデー定数、$\mu_{\pm}^{\infty}$ は無限希釈時のイオンの移動速度である。
 
@@ -106,13 +106,11 @@ $$
 \Lambda = \alpha \lambda_{-} + \alpha \lambda_{+} = \alpha \Lambda^{\infty}
 $$
 
-##
-
 と考えることによって、
 
 $$
 K_a = \frac{\Lambda^2}{\Lambda^{\infty}(\Lambda^{\infty} - \Lambda)}c
-$$
+$$ {#eq-dilution_law}
 
 とすることができて、これが希釈溶液ではそれなりに実験値と変わらないようだ。
 
@@ -315,6 +313,8 @@ $$
 
 # 演習問題
 
+![](images/%E9%9B%BB%E6%B0%97%E5%8C%96%E5%AD%A6/image0.png)
+
 ## 2.1
 
 50 $\symup{mA/cm}^2$ で10分間電流を流すと、合計で 30 $\symup{C/cm}^2$ の電荷が流れる。これは、1 $\symup{cm}^2$ の面積につき 30 $\symup{C}$ の電荷が流れたことを意味する。
@@ -329,11 +329,43 @@ $1 \symup{eV}$ とは、$1.6 \times 10^{-19} \symup{J}$ である。このエネ
 
 ただし厳密的には、 $1 \symup{eV} = k_BT$ から、 $T= 1.16 \times 10^4 \symup{K}$ となる。これについては理解できるまでに時間がかかりそうだ。
 
+![](images/%E9%9B%BB%E6%B0%97%E5%8C%96%E5%AD%A6/image1.png)
+
 ## 2.3
 
 これについては 2.1 と同じ計算を行うことになる。
 
 $1 \symup{A \cdot m^{-2}}$ によって流れる電気量は $1/96485 = 1.036 \times 10^{-5} \symup{mol \cdot m^{-2} \cdot s^{-1}}$ である。これに $\ce{Fe, Zn, Al}$ のそれぞれの価数で割って、原子量で掛けることで、それぞれの生成質量の速度を求めることができる。
+
+```{python}
+import numpy as np
+
+# 定数
+F = 96485  # C/mol
+molar_charge = 1 / F  # mol/C
+
+# 各金属の価数と原子量
+metals = {
+    'Fe': {'valence': 2, 'molar_mass': 55.85},
+    'Zn': {'valence': 2, 'molar_mass': 65.38},
+    'Al': {'valence': 3, 'molar_mass': 26.98}
+}
+
+# 電流密度
+current_density = 1  # A/m^2
+
+# 各金属の生成質量の速度を計算
+for metal, properties in metals.items():
+    valence = properties['valence']
+    molar_mass = properties['molar_mass']
+    
+    # 電気量
+    charge_per_m2 = current_density * molar_charge  # mol/m^2/s
+    
+    # 生成質量の速度
+    mass_production_rate = charge_per_m2 * molar_mass / valence  # g/m^2/s
+    print(f"{metal}: {mass_production_rate:.3e} g/m^2/s")
+```
 
 ## 2.4
 
@@ -342,6 +374,69 @@ $1 \symup{A \cdot m^{-2}}$ によって流れる電気量は $1/96485 = 1.036 \t
 ## 2.5
 
 $E= hc/\lambda$ なので、 $\lambda = hc/E$ となる。これを $\symup{eV}$ に変換すると、 $\lambda = 1240/E$ となる。これを用いて、 $\lambda = 1240/1.1 = 1127 \symup{nm}$ となる。次に、 $\lambda = 1240/3.2 = 387 \symup{nm}$ となる。
+
+![](images/%E9%9B%BB%E6%B0%97%E5%8C%96%E5%AD%A6/image2.png)
+
+## 3.1
+
+イオン移動度の式は (@eq-ion_mobility) だから、
+
+```{python}
+# 定数
+F = 96485  # C/mol
+
+# 各物質のイオンモル伝導率
+metals = {
+    'K+': {'z': 1, 'lambda': 73.5},
+    'Ca2+': {'z': 2, 'lambda': 119},
+    'Cl-': {'z': 1, 'lambda': 76.35},
+    'SO42-': {'z': 2, 'lambda': 160},
+}
+
+# 各物質のイオン移動度を計算
+for metal, properties in metals.items():
+    z = properties['z']
+    lambda_ = properties['lambda']
+    
+    # イオンモル伝導率
+    ion_mobility = lambda_ / z / F  # m^2/V/s
+    print(f"{metal}: {ion_mobility:.3e} m^2/V/s")
+
+```
+
+## 3.2
+
+ストークス半径は流体中の水和イオンの見かけ上の大きさで、イオン半径は結晶中のイオンの大きさである。
+
+$\ce{Li+}$ は $\ce{Cs+}$ に比べて電荷密度が高く、水和が強いために $r_s$ が大きくなる。逆に、 $\ce{Cs+}$ は電荷密度が低く、水和が弱いために $r_s$ が小さくなる。
+
+![](images/%E9%9B%BB%E6%B0%97%E5%8C%96%E5%AD%A6/image3.png)
+
+## 3.3
+
+この式 (@eq-molar_conductivity) を用いて、 $\ce{CH3COOH}$ のモル電気伝導率を求める。
+
+$$\Lambda^{\infty}[\ce{CH3COOH}] = 349.82 + 40.9 = 390.7 \ \text{S}\text{m}^2\text{mol}^{-1}$$
+
+## 3.4
+
+式 (@eq-dilution_law) を用いる。
+
+```{python}
+# 定数
+c = 0.02  # mol/L
+lambda_infinity = 390.7e-4  # S m^2 mol^-1
+lambda_ = 2.31e-5 / c  # S m^2 mol^-1
+
+# 酢酸の電離度と電離定数を計算
+alpha = lambda_ / lambda_infinity
+Ka = (lambda_**2) / (lambda_infinity * (lambda_infinity - lambda_)) * c
+print(f"電離度: {alpha:.3f}")
+print(f"電離定数: {Ka:.3e} mol/L")
+
+```
+
+
 
 # 過去問
 
