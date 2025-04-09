@@ -65,31 +65,108 @@ plt.show()
 
 ### ３次元結晶格子
 
-- ３次元結晶格子は、２次元結晶格子の拡張である。並進ベクトルの性質はそれほど変わらない。
-- ３次元格子は１４種類のブラベ格子に分類される。
-- ３次元格子の並進ベクトルを基底ベクトルで表すなんてこともする。
-    - 体心立方格子
-        $$
-        \begin{aligned}
-        \symbfit{a}_1 &= \frac{a}{2} ( \symbfit{e}_x + \symbfit{e}_y + \symbfit{e}_z ) \\
-        \symbfit{a}_2 &= \frac{a}{2} ( -\symbfit{e}_x + \symbfit{e}_y + \symbfit{e}_z ) \\
-        \symbfit{a}_3 &= \frac{a}{2} ( \symbfit{e}_x - \symbfit{e}_y + \symbfit{e}_z ) \\
-        \end{aligned}
-        $$
+３次元結晶格子は、２次元結晶格子の拡張である。並進ベクトルの性質はそれほど変わらない。３次元格子は１４種類のブラベ格子に分類される。並進ベクトルを基底ベクトルで表すなんてこともする。
+- 体心立方格子
+    $$
+    \begin{aligned}
+    \symbfit{a}_1 &= \frac{a}{2} ( \symbfit{e}_x + \symbfit{e}_y + \symbfit{e}_z ) \\
+    \symbfit{a}_2 &= \frac{a}{2} ( -\symbfit{e}_x + \symbfit{e}_y + \symbfit{e}_z ) \\
+    \symbfit{a}_3 &= \frac{a}{2} ( \symbfit{e}_x - \symbfit{e}_y + \symbfit{e}_z ) \\
+    \end{aligned}
+    $$
 
-    - 面心立方格子
-        $$
-        \begin{aligned}
-        \symbfit{a}_1 &= \frac{a}{2} ( \symbfit{e}_x + \symbfit{e}_y ) \\
-        \symbfit{a}_2 &= \frac{a}{2} ( -\symbfit{e}_x + \symbfit{e}_y ) \\
-        \symbfit{a}_3 &= \frac{a}{2} ( \symbfit{e}_x - \symbfit{e}_y ) \\
-        \end{aligned}
-        $$
+- 面心立方格子
+    $$
+    \begin{aligned}
+    \symbfit{a}_1 &= \frac{a}{2} ( \symbfit{e}_x + \symbfit{e}_y ) \\
+    \symbfit{a}_2 &= \frac{a}{2} ( -\symbfit{e}_x + \symbfit{e}_y ) \\
+    \symbfit{a}_3 &= \frac{a}{2} ( \symbfit{e}_x - \symbfit{e}_y ) \\
+    \end{aligned}
+    $$
 
 - 基本単位胞では面倒なことがあるので、慣用単位砲で考えることもある。その一例として、ウィグナー・ツァイト胞がある。ウィグナーサイツ胞とは、ある格子点と、その周りの格子点との間の垂直二等分面で囲まれた領域における最小のセル（胞）のことである。
-    - 二次元のウィグナーサイツ胞は、過去問のセクションで図示している。
 
-### 逆格子
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.patches import Rectangle
+
+# Define the lattice vectors
+a1 = np.array([1, 0])
+a2 = np.array([0, 1])
+
+# Generate a grid of lattice points
+x = np.arange(-2, 3)
+y = np.arange(-2, 3)
+X, Y = np.meshgrid(x, y)
+
+# Plot the lattice points
+plt.figure(figsize=(6, 6))
+plt.scatter(X, Y, color='blue')
+
+# Plot the lattice vectors
+plt.quiver(0, 0, a1[0], a1[1], angles='xy', scale_units='xy', scale=1, color='red')
+plt.quiver(0, 0, a2[0], a2[1], angles='xy', scale_units='xy', scale=1, color='green')
+
+# Draw the Wigner-Seitz cell
+rectangle = Rectangle((-0.5, -0.5), 1, 1, edgecolor='black', facecolor='none')
+plt.gca().add_patch(rectangle)
+
+# Set the aspect ratio and limits
+plt.gca().set_aspect('equal', adjustable='box')
+plt.xlim(-2.5, 2.5)
+plt.ylim(-2.5, 2.5)
+
+# Add labels
+plt.text(a1[0], a1[1], 'a1', fontsize=12, ha='right')
+plt.text(a2[0], a2[1], 'a2', fontsize=12, va='bottom')
+
+plt.show()
+```
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.patches import RegularPolygon
+
+# Define the lattice vectors
+a1 = np.array([1, 0])
+a2 = np.array([1/2, np.sqrt(3)/2])
+
+# Generate a grid of lattice points
+x = np.arange(-2, 3)
+y = np.arange(-2, 3)
+X, Y = np.meshgrid(x, y)
+
+# Generate the hexagonal lattice points
+X_hex = X + Y/2
+Y_hex = Y * np.sqrt(3)/2
+
+# Plot the lattice points
+plt.figure(figsize=(6, 6))
+plt.scatter(X_hex, Y_hex, color='blue')
+
+# Plot the lattice vectors
+plt.quiver(0, 0, a1[0], a1[1], angles='xy', scale_units='xy', scale=1, color='red')
+plt.quiver(0, 0, a2[0], a2[1], angles='xy', scale_units='xy', scale=1, color='green')
+
+# Draw the Wigner-Seitz cell
+polygon = RegularPolygon((0, 0), 6, radius=1/np.sqrt(3), edgecolor='black', facecolor='none')
+plt.gca().add_patch(polygon)
+
+# Set the aspect ratio and limits
+plt.gca().set_aspect('equal', adjustable='box')
+plt.xlim(-2.5, 2.5)
+plt.ylim(-2.5, 2.5)
+
+# Add labels
+plt.text(a1[0], a1[1], 'a1', fontsize=12, ha='right')
+plt.text(a2[0], a2[1], 'a2', fontsize=12, va='bottom')
+
+plt.show()
+```
+
+### 逆格子 {#sec-inverse-lattice}
 
 周期性のある関数を一つ考える。
 
@@ -157,8 +234,8 @@ $$
 $$
 \begin{aligned}
 \symbfit{b}_1 &= 2\pi \frac{\symbfit{a}_2 \times \symbfit{a}_3}{\symbfit{a}_1 \cdot (\symbfit{a}_2 \times \symbfit{a}_3)} \\
-\symbfit{b}_2 &= 2\pi \frac{\symbfit{a}_3 \times \symbfit{a}_1}{\symbfit{a}_1 \cdot (\symbfit{a}_2 \times \symbfit{a}_3)} \\
-\symbfit{b}_3 &= 2\pi \frac{\symbfit{a}_1 \times \symbfit{a}_2}{\symbfit{a}_1 \cdot (\symbfit{a}_2 \times \symbfit{a}_3)} \\
+\symbfit{b}_2 &= 2\pi \frac{\symbfit{a}_3 \times \symbfit{a}_1}{\symbfit{a}_2 \cdot (\symbfit{a}_3 \times \symbfit{a}_1)} \\
+\symbfit{b}_3 &= 2\pi \frac{\symbfit{a}_1 \times \symbfit{a}_2}{\symbfit{a}_3 \cdot (\symbfit{a}_1 \times \symbfit{a}_2)} \\
 \end{aligned}
 $$
 
@@ -320,17 +397,117 @@ $$
 \begin{aligned}
 E_i &= -\frac{e^2}{4\pi\epsilon_0} \sum_{j \neq i} \frac{Z_i Z_j}{r_{ij}}\\
 &= M \times \frac{Z_i Z_j e^2}{4 \pi \epsilon d}
+\end{aligned}
 $$
 
 ここで $M$ はマーデルング定数という。
 
+## 自由電子論
+
+### 箱型ポテンシャルの復習
+
+箱型ポテンシャルの中にある電子のエネルギー分布を考える。
+
+$$
+\begin{aligned}
+\psi_{\symbfit{k}}(\symbfit{r}) &= \frac{1}{\sqrt{V}} \exp(i \symbfit{k} \cdot \symbfit{r}) \\
+E_{\symbfit{k}} &= \frac{\hbar^2 k^2}{2m} \\
+\symbfit{k} &= \frac{2\pi}{L} (n_x, n_y, n_z) 
+\end{aligned}
+$$
+
+ここら辺は復習。忘れたら、
+
+$$
+\begin{aligned}
+\hat{H}\psi_{\symbfit{k}}(\symbfit{r}) &= E_{\symbfit{k}} \psi_{\symbfit{k}}(\symbfit{r}) \\
+-\frac{\hbar^2}{2m} \nabla^2 \psi_{\symbfit{k}}(\symbfit{r}) &= E_{\symbfit{k}} \psi_{\symbfit{k}}(\symbfit{r}) \\
+\end{aligned}
+$$
+
+これを変数分離で解けばいい。
+
+### 状態密度・フェルミエネルギー {#sec-state-density}
+
+波数 $\symbfit{k}$ が　$k_i = \frac{2\pi}{L} n_i$ であることを考えた時、要するに $(2\pi/L)^3$ ごとに一個の状態があるから、体積あたりの状態数は $1/(2\pi/L)^3$ になる。
+
+次に、状態密度 $D(E)$ を導入する。こいつは、エネルギー $E$ の時の状態の数 $N$ の $E$ 微分だ。別の分野だと数を時間で微分してその増減を見たりするんだが、こいつは数をエネルギーで微分して、その増減を見てるわけ。
+
+$D(E)\dd E$ ってのは $E \sim E+\dd E$ の間にある状態の数の密度ってわけで、 $E$ の状態下での波数 $k$ の球の体積を考えて、**電子スピンの自由度2**をかけてやって
+
+$$
+D(E)\dd E = 2 \times 4\pi k^2 \dd k \times \frac{1}{(2\pi/L)^3}
+$$
+
+ここで、
+
+$$
+\dd k = \frac{1}{2} \sqrt{\frac{2m_e}{\hbar^2E}} \dd E
+$$
+
+だから、状態密度ってのは、
+
+$$
+D(E) = \frac{L^3}{2\pi^2} \left( \frac{2m_e}{\hbar^2} \right)^{3/2} \sqrt{E}
+$$
+
+となる。
+
+フェルミエネルギーってのは、ある状態の数 $N$ になるようなエネルギーのことだから、
+
+$$
+\begin{aligned}
+\int _0^{E_F} D(E) \dd E &\triangleq N \\
+E_F &= \frac{\hbar^2}{2m_e} \left( \frac{3\pi^2 N}{L^3} \right)^{2/3} \\
+\end{aligned}
+$$
+
+今までのはめんどくさい方の考え方。別の導き方で考える。
+
+要するに $N$ ってのは、 $\symbfit{k}$ の空間の球体体積を考えればいい。球体内の状態の数なんだから、体積あたりの状態数と**電子スピンの自由度2**をかけてやればいい。
+
+$$
+\begin{aligned}
+N(E) &= 2 \frac{4\pi}{3} k^3 \frac{L^3}{(2\pi)^3} = \frac{V}{3\pi^2} \qty(\frac{2m_eE}{\hbar^2})^{3/2} \\
+D(E) &= \frac{dN}{dE} = \frac{L^3}{2\pi^2} \left( \frac{2m_e}{\hbar^2} \right)^{3/2} \sqrt{E} \\
+\end{aligned}
+$$
+
+
 # 過去問
+
+<!-- 
+::: {.callout-note collapse="true"}
+##### 理論
+
+This is an example of a callout with a title.
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+This is an example of a callout with a title.
+::: 
+-->
 
 ## 2018年度
 
 ### 問1
 
-1. ウィグナーサイツ胞とは、ある格子点と、その周りの格子点との間の垂直二等分面で囲まれた領域における最小のセル（胞）のことである。
+結晶格子と逆格子について、以下の問いに答えよ。
+
+#### (a)
+2次元単純直方格子（a ≠ b）と2次元六方格子のそれぞれについて、**格子点と基本並進ベクトルを図示せよ**。また、それらの図に**ウィグナー・ザイツ胞を書き入れよ**。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+ウィグナーサイツ胞とは、ある格子点と、その周りの格子点との間の垂直二等分面で囲まれた領域における最小のセル（胞）のことである。
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
 
 ```{python}
 import matplotlib.pyplot as plt
@@ -412,93 +589,58 @@ plt.text(a2[0], a2[1], 'a2', fontsize=12, va='bottom')
 plt.show()
 ```
 
-2. 三次元六方格子の逆格子点の求め方は次のとおり。
+::: 
 
-三次元六方格子の基本並進ベクトルは以下のように表されます：
+#### (b)
+3次元六方格子の**逆格子点を求めよ**。なお、六方格子の基本並進ベクトルは
 
 $$
 \begin{aligned}
-\mathbf{a}_1 &= a \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} \\
-\mathbf{a}_2 &= a \begin{pmatrix} -\frac{1}{2} \\ \frac{\sqrt{3}}{2} \\ 0 \end{pmatrix} \\
-\mathbf{a}_3 &= a \begin{pmatrix} 0 \\ 0 \\ c \end{pmatrix}
+\symbfit{a}_1 &= \frac{\sqrt{3}a}{2} \symbfit{e}_x - \frac{a}{2} \symbfit{e}_y, \\
+\symbfit{a}_2 &= \frac{\sqrt{3}a}{2} \symbfit{e}_x + \frac{a}{2} \symbfit{e}_y, \\
+\symbfit{a}_3 &= c \symbfit{e}_z
 \end{aligned}
 $$
 
-ここで、$a$ は格子定数、$c$ は六方格子の高さです。
+で与えられるとせよ。また、**xy面内での格子点と逆格子点の配列をそれぞれ図示せよ**。
 
-これらの基本並進ベクトルから逆格子ベクトルを求めるには、以下の公式を使用します：
+::: {.callout-note collapse="true"}
+##### 理論
 
-$$
-b_i = 2\pi \frac{a_j \times a_k}{a_1 \cdot (a_2 \times a_3)}
-$$
-
-ここで、(i, j, k) は (1, 2, 3)、(2, 3, 1)、(3, 1, 2) の任意の巡回置換です。
-
-したがって、三次元六方格子の逆格子ベクトルは以下のようになります：
+三次元六方格子の逆格子点の求め方は次のとおり。
 
 $$
-b_1 = 2\pi \frac{a}{V} (c, -\sqrt{3}/2, 1/2)
-$$
-$$
-b_2 = 2\pi \frac{a}{V} (0, \sqrt{3}, 0)
-$$
-$$
-b_3 = 2\pi \frac{a}{V} (0, 0, 2\pi/c)
+\symbfit{b_i} = 2\pi \frac{\symbfit{a_j} \times \symbfit{a_k}}{\symbfit{a_i} \cdot (\symbfit{a_j} \times \symbfit{a_k})}
 $$
 
-ここで、$V = a^2 \sqrt{3} c / 2$ は単位胞の体積です。
+:::
 
-これらの逆格子ベクトルは、逆格子空間における格子点の位置を決定します。
+::: {.callout-tip collapse="true"}
+##### 解答
 
-```{python}
-import numpy as np
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-
-# Define the reciprocal lattice vectors
-b1 = np.array([1, -1/np.sqrt(3), 0])
-b2 = np.array([0, 2/np.sqrt(3), 0])
-b3 = np.array([0, 0, 1])
-
-# Generate a grid of reciprocal lattice points
-x = np.arange(-2, 3)
-y = np.arange(-2, 3)
-z = np.arange(-2, 3)
-X, Y, Z = np.meshgrid(x, y, z)
-
-# Convert the grid to reciprocal lattice coordinates
-X_rec = X*b1[0] + Y*b2[0] + Z*b3[0]
-Y_rec = X*b1[1] + Y*b2[1] + Z*b3[1]
-Z_rec = X*b1[2] + Y*b2[2] + Z*b3[2]
-
-# Plot the reciprocal lattice points
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-ax.scatter(X_rec, Y_rec, Z_rec, color='blue')
-
-# Set the aspect ratio and limits
-ax.set_xlabel('b1')
-ax.set_ylabel('b2')
-ax.set_zlabel('b3')
-
-plt.show()
-```
+$$
+\begin{aligned}
+\symbfit{b}_1 &= \frac{2\pi}{a} \left( \frac{1}{\sqrt{3}} \symbfit{e}_x - \symbfit{e}_y \right), \\
+\symbfit{b}_2 &= \frac{2\pi}{a} \left( \frac{1}{\sqrt{3}} \symbfit{e}_x + \symbfit{e}_y \right), \\
+\symbfit{b}_3 &= \frac{2\pi}{c} \symbfit{e}_z
+\end{aligned}
+$$
 
 ```{python}
 import numpy as np
 import matplotlib.pyplot as plt
 
 # Define the lattice vectors
-a1 = np.array([1, 0])
-a2 = np.array([1/2, np.sqrt(3)/2])
+a1 = np.array([np.sqrt(3)/2, -1/2])
+a2 = np.array([np.sqrt(3)/2, 1/2])
 
 # Define the reciprocal lattice vectors
-b1 = np.array([1, -1/np.sqrt(3)])
-b2 = np.array([0, 2/np.sqrt(3)])
+b1 = np.array([2 * np.pi / np.sqrt(3), -2 * np.pi])
+b2 = np.array([2 * np.pi / np.sqrt(3), 2 * np.pi])
 
 # Generate a grid of lattice points
-x = np.arange(-2, 3)
-y = np.arange(-2, 3)
+x = np.arange(-40, 40)
+y = np.arange(-40, 40)
 X, Y = np.meshgrid(x, y)
 
 # Convert the grid to lattice coordinates
@@ -510,7 +652,7 @@ X_rec = X*b1[0] + Y*b2[0]
 Y_rec = X*b1[1] + Y*b2[1]
 
 # Plot the lattice points
-plt.figure(figsize=(6, 6))
+plt.figure(figsize=(12, 12))
 plt.scatter(X_lat, Y_lat, color='blue', label='Lattice points')
 
 # Plot the reciprocal lattice points
@@ -518,8 +660,8 @@ plt.scatter(X_rec, Y_rec, color='red', label='Reciprocal lattice points')
 
 # Set the aspect ratio and limits
 plt.gca().set_aspect('equal', adjustable='box')
-plt.xlim(-2.5, 2.5)
-plt.ylim(-2.5, 2.5)
+plt.xlim(-10, 10)
+plt.ylim(-10, 10)
 
 # Add a legend
 plt.legend()
@@ -527,54 +669,259 @@ plt.legend()
 plt.show()
 ```
 
+:::
+
 ### 問2
 
-1. 普通に運動方程式を立てる。
+下図に示すような1種類の原子からなる1次元結晶の格子振動を考えよう。
+
+![](images/%E5%9B%BA%E4%BD%93%E7%89%A9%E6%80%A7%E5%AD%A6/image2.png)
+
+#### (a)
+$j$ 番目の原子の（古典的）**運動方程式**を書き下せ。
+
+#### (b)
+$u_j = A \exp(ikja) \exp(-i\omega t)$ という解を仮定して、上の運動方程式から**分散関係を導出せよ**。また、その分散関係を**ブリュアンゾーンの中で図示せよ**。
+
+#### (c)
+1次元結晶の単位胞内に**異なる2つの原子がある場合の分散関係の概略を図示し**、そこに現れる**モードについて知るところを述べよ**。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+一次元のブリルアンゾーンの話だけど、これについては定義 (@sec-inverse-lattice) に立ち戻って、 $aG_n = 2\pi n$ になるような $G_n$ の並びを考えれば、ブリルアンゾーンは $[-\pi/a, \pi/a]$ になる。
+
+2種類の原子がある場合はおそらく途中式は必要ないので、ここに少しだけまとめる。2種類の原子の質量をそれぞれ $M_1, M_2$ とし、バネ定数を $K$ とすると、運動方程式に次の値を代入する。
+
+$$u_j = U e^{i(kja - \omega t)} $$
+
+$$ v_j = V e^{i(kja + ka/2 - \omega t)} $$
+
+代入して得られた式に $U,V$ の非自明解条件を求めると、
 
 $$
-m\ddots{x_j} = -K(x_j - x_{j-1}) + K(x_{j+1} - x_j) = K(x_{j+1} - 2x_j + x_{j-1})
+\begin{aligned}
+\omega^2(k) &= \frac{K(M_1 + M_2)}{M_1 M_2} \left[
+1 \pm \sqrt{1 - \frac{4 M_1 M_2}{(M_1 + M_2)^2} \sin^2\left( \frac{ka}{2} \right)}
+\right] \\
+&= \frac{K}{\mu} \left[ 1 \pm \sqrt{1-4\frac{\mu}{M}\sin^2\left( \frac{ka}{2} \right)} \right] 
+\end{aligned}
 $$
 
-2.
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+普通に運動方程式を立てる。
+
+$$
+\begin{aligned}
+m\ddot{x_j} &= -K(x_j - x_{j-1}) + K(x_{j+1} - x_j) \\
+&= - K(2x_j -x_{j+1} - x_{j-1})
+\end{aligned}
+$$
+
+ここで、$A$ は振幅、$k$ は波数、$a$ は格子定数に注意して、
 
 $$
 x_j(t) = A e^{i(kja - \omega t)}
 $$
 
-ここで、$A$ は振幅、$k$ は波数、$a$ は格子定数（原子間距離）、$\omega$ は角周波数です。代入して整理すると、次のようになります：
+を代入すると、
 
 $$
 m\omega^2 = 2K(1 - \cos(ka))
 $$
 
-これは、振動数 $\omega$ が波数 $k$ に依存するディスパージョン関係を表しています。
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+plt.rcParams['text.usetex'] = True
+
+# パラメータ設定
+m = 1.0  # 質量
+K = 1.0  # バネ定数
+a = 1.0  # 格子定数
+
+# ブリルアンゾーン内のk
+k = np.linspace(-np.pi/a, np.pi/a, 1000)
+omega = np.sqrt(2*K/m * (1 - np.cos(k*a)))
+
+# グラフ描画
+plt.figure(figsize=(6, 6))
+plt.plot(k, omega)
+
+# 軸ラベルにLaTeX表記を使用
+plt.xlabel(r"$k$ (wave number)")
+plt.ylabel(r"$\omega$ (angular frequency)")
+plt.title("Dispersion relation in the first Brillouin zone")
+
+# 軸の目盛りを数式で表す
+plt.xticks(
+    ticks=[-np.pi/a, -np.pi/(2*a), 0, np.pi/(2*a), np.pi/a],
+    labels=[r"$-\frac{\pi}{a}$", r"$-\frac{\pi}{2a}$", r"$0$", r"$\frac{\pi}{2a}$", r"$\frac{\pi}{a}$"]
+)
+plt.yticks(
+    ticks=[0, np.sqrt(4*K/m)],
+    labels=[r"$0$", r"$\sqrt{\frac{4K}{M}}$"]
+)
+
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+```
+
+(c)の方については、
+
+$$
+\begin{aligned}
+\omega^2(k) = \frac{K(M_1 + M_2)}{M_1 M_2} \left[
+1 \pm \sqrt{1 - \frac{4 M_1 M_2}{(M_1 + M_2)^2} \sin^2\left( \frac{ka}{2} \right)}
+\right] 
+\end{aligned}
+$$
+
+となる。
 
 ```{python}
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Define the parameters
-m = 1.0  # atomic mass
-K = 1.0  # spring constant
-a = 1.0  # lattice constant
+# パラメータ設定
+M1 = 1.0
+M2 = 2.0
+K = 1.0
+a = 1.0
 
-# Define the wave number range within the first Brillouin zone
+# 波数ベクトル（ブリルアンゾーン内）
 k = np.linspace(-np.pi/a, np.pi/a, 1000)
 
-# Calculate the angular frequency
-omega = np.sqrt(2*K/m * (1 - np.cos(k*a)))
+# 定数計算
+A = K * (M1 + M2) / (M1 * M2)
+B = 4 * M1 * M2 / (M1 + M2)**2
+sin_term = np.sin(k * a / 2)**2
 
-# Plot the dispersion relation
+# 分散関係（アコースティック・オプティカルモード）
+omega_sq_plus = A * (1 + np.sqrt(1 - B * sin_term))
+omega_sq_minus = A * (1 - np.sqrt(1 - B * sin_term))
+
+omega_plus = np.sqrt(np.real(omega_sq_plus))
+omega_minus = np.sqrt(np.real(omega_sq_minus))
+
+# グラフ描画
 plt.figure(figsize=(6, 6))
-plt.plot(k, omega)
-plt.xlabel('k (wave number)')
-plt.ylabel('ω (angular frequency)')
-plt.title('Dispersion relation in the first Brillouin zone')
+plt.plot(k, omega_plus, label="Optical mode", linewidth=2)
+plt.plot(k, omega_minus, label="Acoustic mode", linewidth=2)
+
+# 軸ラベルにLaTeX表記を使用
+plt.xlabel(r"$k$ (wave number)")
+plt.ylabel(r"$\omega$ (angular frequency)")
+plt.title("Dispersion relation (diatomic 1D lattice)")
+
+# 軸の目盛り（対称に数式で）
+plt.xticks(
+    ticks=[-np.pi/a, -np.pi/(2*a), 0, np.pi/(2*a), np.pi/a],
+    labels=[r"$-\frac{\pi}{a}$", r"$-\frac{\pi}{2a}$", r"$0$", r"$\frac{\pi}{2a}$", r"$\frac{\pi}{a}$"]
+)
+
+# 最大振動数の目安
+omega_max = np.max(omega_plus)
+plt.yticks(
+    ticks=[0, omega_max],
+    labels=[r"$0$", r"$\omega_{\mathrm{max}}$"]
+)
+
+plt.legend()
 plt.grid(True)
+plt.tight_layout()
 plt.show()
 ```
 
+:::
+
 ### 問3
 
-![](images/固体物性学/1.png)
+固体中の電子に関して以下の問いに答えよ。
+
+#### (a)
+
+1辺の長さ $L$ の立方体中の $N$ 個の自由電子を考えよう。
+
+#### i.
+自由電子モデルでは、エネルギー $E$ と波数 $k$ の関係により状態密度が
+
+$$
+D(E) = \frac{L^3}{2\pi^2} \left( \frac{2m_e}{\hbar^2} \right)^{3/2} \sqrt{E}
+$$
+
+で与えられることを示せ。
+
+#### ii.
+フェルミエネルギー $E_F$ を電子数 $N$ の関数として与えよ。状態密度を使って計算すること。
+
+---
+
+#### (b)
+
+格子定数 $a$ で（**1種類の原子**）からなる**1次元結晶**を考える。2つの原子軌道（1s, 2s）のみを考慮すると、強結合近似では
+
+$$
+\sum_n \sum_{\mu = 1s, 2s} c_{\mu} e^{ika(n - n')} \left( \langle n'\mu' | \hat{H} | n\mu \rangle - E \langle n'\mu' | n\mu \rangle \right) = 0
+$$
+
+が成り立つ（ここで $n$ は単位胞の番号である）。最近接原子の同種原子軌道間の相互作用以外を無視でき、
+
+$$
+\langle n'\mu' | \hat{H} | n\mu \rangle =
+\begin{cases}
+E_{1s} & (n = n',\ \mu = \mu' = 1s) \\
+E_{2s} & (n = n',\ \mu = \mu' = 2s) \\
+t_{1s} & (n = n' \pm 1,\ \mu = \mu' = 1s) \\
+t_{2s} & (n = n' \pm 1,\ \mu = \mu' = 2s) \\
+0 & \text{(それ以外)}
+\end{cases}
+$$
+
+$$
+\langle n'\mu' | n\mu \rangle =
+\begin{cases}
+1 & (n = n',\ \mu = \mu') \\
+0 & \text{(それ以外)}
+\end{cases}
+$$
+
+であるとして**バンド分散**を求めよ。さらに、このバンド分散の概形を、$t_{1s} > 0,\ t_{2s} < 0$ として**ブリュアンゾーン内で描け**。
+
+::: {.callout-note collapse="true"}
+
+##### 理論
+
+(a)は @sec-state-density ここら辺を読めばいい。一応軽くまとめる。
+
+波数空間で、 $(2\pi/L)^3$ ごとに一個の状態があるから、体積あたりの状態数は $1/(2\pi/L)^3$ になる。
+
+次に波数空間の球体を考えて
+
+$$
+\frac{4\pi}{3} k^3 = \frac{4\pi}{3} \left( \frac{2m_e}{\hbar^2} E \right)^{3/2}
+$$
+
+これに密度と、**電子スピンの自由度2**をかけてやって
+
+$$
+N(E) = \frac{L^3}{3\pi^2} \left( \frac{2m_e E}{\hbar^2} \right)^{3/2}
+$$
+
+これを微分してやると、状態密度が出てくる。この密度をフェルミエネルギーまで積分したら状態数 $N$ になるのは定義。
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+$$\dv{E}2 \frac{4\pi}{3} k^3 \frac{1}{(2\pi/L)^3} = \frac{L^3}{2\pi^2} \left( \frac{2m_e}{\hbar^2} \right)^{3/2} \sqrt{E}$$
+
+::: 
 

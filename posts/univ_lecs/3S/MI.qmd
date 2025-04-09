@@ -10,7 +10,7 @@ image: "images/thumbnail.png"
 
 ## 第一講
 
-とりあえず最初の方は簡単なことしかやらないので、ノートは取らない。競プロでも裏でやっている。
+出席さえすれば大丈夫だ！　出席し続けろよ、俺！
 
 ```{python}
 import random
@@ -18,10 +18,10 @@ a = random.random()
 
 print(a)
 
-if a > 0.3:
-    print("Higher")
+if a > 0.6:
+    print("higher")
 else:
-    print("Lower or Equal")
+    print("lower or equal")
 ```
 
 ```{python}
@@ -30,12 +30,16 @@ import random
 cnt = 0
 
 for i in range(1000000):
-    a = random.random()
-    b = random.random()
-    if a**2 + b**2 >= 1:
+    r1 = random.random()
+    r2 = random.random()
+    if r1**2 + 4*r2**2 <= 1:
         cnt += 1
 
-print(4*cnt/1000000)
+result = 4 * cnt / 1000000
+print(result)
+
+#with open("240712_1-2.txt", "w") as file:
+#    file.write(f"Result: {result}\n")
 ```
 
 ## 第二講
@@ -106,7 +110,7 @@ X0 = [1, 3, 3.5]
 
 t = np.linspace(0, 40, 40000)
 
-X = odeint(lorenz, X0, t, args=(sigma, rho, beta))
+X = odeint(lorenz, X0, t, args=(p, r, b))
 
 plt.plot(t, X[:, 0], label='x')
 plt.plot(t, X[:, 1], label='y')

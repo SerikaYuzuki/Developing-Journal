@@ -611,7 +611,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="3">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -634,8 +634,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>ノート</h1>
 <section id="第一講" class="level2">
 <h2 class="anchored" data-anchor-id="第一講">第一講</h2>
-<p>とりあえず最初の方は簡単なことしかやらないので、ノートは取らない。競プロでも裏でやっている。</p>
-<div id="d1f31981" class="cell" data-execution_count="1">
+<p>出席さえすれば大丈夫だ！　出席し続けろよ、俺！</p>
+<div id="ad548f43" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
@@ -649,11 +649,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Lower or Equal"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.6297899596870244
-Higher</code></pre>
+<pre><code>0.1150399761190275
+Lower or Equal</code></pre>
 </div>
 </div>
-<div id="a1440ba7" class="cell" data-execution_count="2">
+<div id="7d37ecf5" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
@@ -669,48 +669,116 @@ Higher</code></pre>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">4</span><span class="op">*</span>cnt<span class="op">/</span><span class="dv">1000000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.858296</code></pre>
+<pre><code>0.858488</code></pre>
 </div>
 </div>
 </section>
 <section id="第二講" class="level2">
 <h2 class="anchored" data-anchor-id="第二講">第二講</h2>
-<div id="0d038df9" class="cell" data-execution_count="3">
+<div id="b99c986b" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text.usetex"</span>: <span class="va">True</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"font.family"</span>: <span class="st">"serif"</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">300</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>y1 <span class="op">=</span> x<span class="op">**</span><span class="dv">4</span> <span class="op">-</span> x<span class="op">**</span><span class="dv">3</span> <span class="op">-</span> <span class="fl">7.39</span><span class="op">*</span>x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">5.08</span><span class="op">*</span>x <span class="op">+</span> <span class="fl">4.2</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>y2 <span class="op">=</span> <span class="dv">0</span><span class="op">*</span>x</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the range of x</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">1000</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y1, label<span class="op">=</span><span class="st">'$y = x^4 - x^3 - 7.39x^2 + 5.08x + 4.2$'</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y2, label<span class="op">=</span><span class="st">'$y = 0$'</span>)</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the functions</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>y1 <span class="op">=</span> x<span class="op">**</span><span class="dv">4</span> <span class="op">-</span> x<span class="op">**</span><span class="dv">3</span> <span class="op">-</span> <span class="fl">7.39</span><span class="op">*</span>x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">5.08</span><span class="op">*</span>x <span class="op">+</span> <span class="fl">4.2</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>y2 <span class="op">=</span> np.zeros_like(x)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the functions</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y1, label<span class="op">=</span><span class="st">'y = x^4 - x^3 - 7.39x^2 + 5.08x + 4.2'</span>)</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y2, label<span class="op">=</span><span class="st">'y = 0'</span>)</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels and title</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$x$'</span>)</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>)</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Plot of the functions'</span>)</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$y$'</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Homework 2'</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>RuntimeError: Failed to process string with tex because latex could not be found</code></pre>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="MI_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="20521237" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">4</span> <span class="op">-</span> x<span class="op">**</span><span class="dv">3</span> <span class="op">-</span> <span class="fl">7.39</span><span class="op">*</span>x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">5.08</span><span class="op">*</span>x <span class="op">+</span> <span class="fl">4.2</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> df(x):</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">4</span><span class="op">*</span>x<span class="op">**</span><span class="dv">3</span> <span class="op">-</span> <span class="dv">3</span><span class="op">*</span>x<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">14.78</span><span class="op">*</span>x <span class="op">+</span> <span class="fl">5.08</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> newton_method(x0, f, df, tol<span class="op">=</span><span class="fl">0.001</span>, max_iter<span class="op">=</span><span class="dv">100</span>):</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> x0</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(max_iter):</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        x_new <span class="op">=</span> x <span class="op">-</span> f(x) <span class="op">/</span> df(x)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">abs</span>(x_new <span class="op">-</span> x) <span class="op">&lt;</span> tol:</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> x_new</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> x_new</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> [<span class="fl">1.0</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="op">-</span><span class="fl">2.5</span>, <span class="fl">3.0</span>]</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>root <span class="op">=</span> []</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x0 <span class="kw">in</span> xs:</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    root.append(newton_method(x0, f, df))</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(root)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1.200000000986774, -0.5, -2.5, 2.8000000000031053]</code></pre>
+</div>
+</div>
+<div id="82e446dd" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="dv">18</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lorenz(X, t, p, r, b):</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    x, y, z <span class="op">=</span> X</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    dx_dt <span class="op">=</span> p<span class="op">*</span>(<span class="op">-</span>x <span class="op">+</span> y)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    dy_dt <span class="op">=</span> <span class="op">-</span>x<span class="op">*</span>z <span class="op">+</span> r<span class="op">*</span>x <span class="op">-</span>y</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    dz_dt <span class="op">=</span> x<span class="op">*</span>y <span class="op">-</span> b<span class="op">*</span>z</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [dx_dt, dy_dt, dz_dt]</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>X0 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">3</span>, <span class="fl">3.5</span>]</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">40</span>, <span class="dv">40000</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> odeint(lorenz, X0, t, args<span class="op">=</span>(p, r, b))</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>plt.plot(t, X[:, <span class="dv">0</span>], label<span class="op">=</span><span class="st">'x'</span>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>plt.plot(t, X[:, <span class="dv">1</span>], label<span class="op">=</span><span class="st">'y'</span>)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$t$'</span>)</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$x,\;y$'</span>)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>&lt;&gt;:25: SyntaxWarning: invalid escape sequence '\;'
+&lt;&gt;:25: SyntaxWarning: invalid escape sequence '\;'
+/var/folders/tn/xv5_ldbs095b2qr06qxnz2_40000gn/T/ipykernel_47698/1930065823.py:25: SyntaxWarning: invalid escape sequence '\;'
+  plt.ylabel('$x,\;y$')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<pre><code>&lt;Figure size 672x480 with 1 Axes&gt;</code></pre>
+<div>
+<figure class="figure">
+<p><img src="MI_files/figure-html/cell-6-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 
