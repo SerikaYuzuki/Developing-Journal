@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  quarto-dev:
+    build: .
+    volumes:
+      - ..:/workspace
+    ports:
+      - "8888:8888" # Jupyter用
+    tty: true

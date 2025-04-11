@@ -1,0 +1,25 @@
+{
+    "name": "Quarto + TeX + Python",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "quarto-dev",
+    "workspaceFolder": "/workspace",
+    "settings": {
+        "python.pythonPath": "/usr/bin/python3",
+        "python.formatting.provider": "black",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "python.linting.flake8Enabled": false,
+        "python.linting.mypyEnabled": true
+    },
+    "postCreateCommand": "quarto check",
+    "extensions": [
+        "quarto.quarto",
+        "ms-python.python",
+        "ms-toolsai.jupyter",
+        "ms-toolsai.jupyter-keymap",
+        "ms-toolsai.jupyter-renderers",
+        "ms-toolsai.vscode-jupyter-cell-tags",
+        "ms-toolsai.vscode-jupyter-slideshow"
+    ],
+    "remoteUser": "root"
+}
