@@ -50,7 +50,8 @@ $$
 
 他にも、槽型反応器CSTR、管型流通式反応機などがある。CSTRは特に大量生産に向いているので、工業的によく使われる。
 
-!(CSTR)[images/反応工学/1.jpg]
+![cstr](images/%E5%8F%8D%E5%BF%9C%E5%B7%A5%E5%AD%A6/1.jpg)
+
 
 ある均一反応を考えると、その反応速度は以下のように表される。
 
@@ -229,6 +230,62 @@ $$
 
 にするとうまいこといく。
 
+#### Linndemann-Hinshelwood機構
+
+気相中での化学分解や異性化反応をモデル化で使われる。
+
+$$\ce{A -> P}$$
+
+この一見一時反応見えるものが実は中間体の存在する反応だという反応機構だ。
+
+$$\ce{A + M <=> A^{*} + M}$$
+
+$$\ce{A^{*} -> P}$$
+
+ここで、 $\ce{M}$ は触媒や溶媒のことを指す。 $\ce{A^{*}}$ は中間体である。
+
+この反応の速度式は次のように表される。
+
+$$ k_1[\ce{A}][\ce{M}] = k_{-1}[\ce{A^*}][\ce{M}] + k_2[\ce{A^*}] $$
+
+$$ \Rightarrow \quad [\ce{A^*}] = \dfrac{k_1[\ce{A}][\ce{M}]}{k_{-1}[\ce{M}] + k_2} $$
+
+で、全体の反応速度は $k_2 [\ce{A^*}]$ で表されるので、
+
+$$
+\dv{[\ce{P}]}{t} = k_2 [\ce{A^*}] = \frac{k_1k_2[\ce{A}][\ce{M}]}{k_{-1}[\ce{M}] + k_2}
+$$
+
+この式で、$k_{-1}[\ce{M}] \gtreqless k_2$ によって一次反応なのか二次反応なのかが決まる。
+
+また、見なしの反応速度定数を $k$ とかにしたら、
+
+$$
+\begin{aligned}
+k[\ce{A}] &= \frac{k_1k_2[\ce{A}][\ce{M}]}{k_{-1}[\ce{M}] + k_2} \\
+\dfrac{1}{k} &= \dfrac{k_{-1}}{k_1k_2} + \dfrac{1}{k_2[\ce{M}]}
+\end{aligned}
+$$
+
+ここで、
+
+$$
+\begin{aligned}
+p&=\dfrac{n}{V}RT=[\ce{M}]RT \\
+\dfrac{1}{[\ce{M}]} &\propto \dfrac{1}{p}
+\end{aligned}
+$$
+
+ということから考えれば、
+
+$$
+\dfrac{1}{k} \propto \dfrac{1}{p}
+$$
+
+このように、反応速度定数は圧力に依存することがわかる。
+
+
+
 ### 酵素反応
 
 酵素で反応が活性化される反応物を基質と呼ぶ。
@@ -403,39 +460,62 @@ $$
 
 # 過去問
 
+<!-- 
+::: {.callout-note collapse="true"}
+##### 理論
+
+This is an example of a callout with a title.
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+This is an example of a callout with a title.
+::: 
+-->
+
 ## 2012年度
 
 ### 問1
 
-![問1](images/反応工学/2.png)
+反応速度式の導出方法について、以下の設問に答えよ。
+
+モノシラン（$\ce{SiH4}$）の気相分解反応は見かけ上、モノシラン濃度に一次の反応である：
+
+$$\ce{SiH4 -> SiH2 + H2}$$
+
+この反応の速度定数を $k$ とすると、$k$ は圧力が低くなるとその値が低下することが知られている。  
+これは、上記の反応が実際には以下のように2段階の素反応に分かれているためと考えられる：
+
+$$\ce{SiH4 + M <=> SiH4^{*} + M}$$
+$$\ce{SiH4^{*} -> SiH2 + H2}$$
+
+#### 設問
+
+1. 上記のように、単分子分解反応の速度定数が圧力依存性を示す反応機構を一般的になんと呼ぶか答えよ。
+2. 上記の反応機構に基づき、定常状態近似を用いて、$\ce{SiH2}$ 生成速度の圧力依存性を示す速度式を導出せよ。
+3. 表面反応速度式として、Langmuir–Hinshelwood 型の速度式がよく知られている。律速段階近似を用いて Langmuir–Hinshelwood 型の速度式を導出せよ。その際に、定常状態近似と律速段階近似の違いを明確にせよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+This is an example of a callout with a title.
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
 
 1. Lindemann-Hinshelwood機構
+
+::: 
+
 2. 
-$\ce{SiH4^{\ast}}$ の生成の速度式を等式に結ぶ。
+中間体 $\ce{SiH4^*}$ に対して定常状態近似を適用：
 
-$$
-k_1[\ce{SiH4}][\ce{M}] = k_2[\ce{SiH4^{\ast}}] + k_{-1}[\ce{SiH4^{\ast}}][\ce{M}]
-$$
+$$ k_1[\ce{SiH4}][\ce{M}] = k_{-1}[\ce{SiH4^*}][\ce{M}] + k_2[\ce{SiH4^*}] $$
 
-することによって、$\ce{SiH4^{\ast}}$ の生成速度式を求めることができる。
+$$ \Rightarrow \quad [\ce{SiH4^*}] = \dfrac{k_1[\ce{SiH4}]}{k_{-1} + \dfrac{k_2}{[\ce{M}]}} $$
 
-$$
-[\ce{SiH4^{\ast}}] = \frac{k_1[\ce{SiH4}][\ce{M}]}{k_2 + k_{-1}[\ce{M}]}
-$$
-
-次に、$r_\ce{SiH2}=k_2 [\ce{SiH4^{\ast}}]$ なので、
-
-$$
-r_\ce{SiH2} = \frac{k_1k_2[\ce{SiH4}][\ce{M}]}{k_2 + k_{-1}[\ce{M}]}
-$$
-
-となる。高圧環境下では $k_{-1}$ はすぐにどこかにぶつかって励起状態を脱するので、 $k_2$ に比べて非常に大きい。このとき、$r_\ce{SiH2} = k[\ce{SiH4}] \approx \frac{k_1k_2}{k_{-1}}\ce{SiH4}$ となるので、一次反応になる。逆に、そうじゃ無い時は略すが、2次反応になる。
-
-また、 $k$ について解くと、
-
-$$
-\frac{1}{k}=\frac{k_{-1}}{k_1k_2} + \frac{1}{k_1}\frac{1}{\ce{M}}
-$$
 
 3. 何を書けばいいのかわからない。一般論を語れと？
 

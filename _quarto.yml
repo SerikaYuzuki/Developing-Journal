@@ -1,6 +1,5 @@
 project:
   type: website
-  output-dir: docs
     
 website:
   title: "芹香のブログ：セリポンポン"
@@ -62,13 +61,12 @@ website:
   page-navigation: true
 
   # Page footer setting
-  body-header: <script defer src="http://analysts.serika.work/script.js" data-website-id="e3f99186-a216-4483-ac43-f753db16a4ee"></script>
+  body-header: |
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b9cf0467342644ca9bc2d7035d5326b0"}'></script><!-- End Cloudflare Web Analytics -->
 
 format:
   html:
     callout-appearance: simple
-
-    include-in-header: headan.html
 
     # table-of-contents on the right
     toc: true
