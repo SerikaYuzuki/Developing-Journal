@@ -181,7 +181,9 @@ $$
 
 ## デバイ・ヒュッケルの法則
 
-ボルマンの式は次のようになる。
+要するに、ボルツマン分布でイオンを考えて、それとポアソンの法則を組み合わせると、イオンの平均活量係数が求まる。
+
+ボルツマン分布でイオン内のイオン分布次のようになる。
 
 $$
 n_i^{'} = n_i \exp \left( -\frac{z_ie\phi(r)}{kT} \right)
@@ -192,7 +194,7 @@ $$
 各種イオンに対してこれが成り立つので、電荷密度は次のようになる。
 
 $$
-\rho(r) = \sum_i z_i e n_i
+\rho(r) = \sum_i z_i e n_i \exp \left( -\frac{z_ie\phi(r)}{kT} \right)
 $$
 
 これを一次近似すると、0次の項が消えて、1次の項だけが残る。
@@ -201,7 +203,7 @@ $$
 \rho(r) = -\frac{e^2\phi (r)}{kT} \left( \sum_i n_i z_i^2 \right) = -\frac{2 e^2}{kT} \left( \sum_i \frac{1}{2} n_i z_i^2 \phi (r) \right)
 $$
 
-ここで、ポアソンの定理をガウスの法則に適応して次の式が得られる。
+ここで、ガウスの法則のポテンシャルの方の式を考えて、
 
 $$
 \nabla^2 \phi = -\frac{\rho}{\varepsilon} = -\frac{\rho}{\epsilon_0 \epsilon_r}
@@ -210,30 +212,22 @@ $$
 これらを合わせて、
 
 $$
-\nabla^2 \phi = \frac{1}{\epsilon_0 \epsilon_r} \frac{2e^2}{kT} \left( \sum_i \frac{1}{2} n_i z_i^2 \right)
+\nabla^2 \phi = \frac{1}{\epsilon_0 \epsilon_r} \frac{2e^2}{kT} \left( \sum_i \frac{1}{2} n_i z_i^2 \right) \phi
 $$
 
-ここで、
+これはヘルムホルツ方程式 $\nabla^2 \phi = \frac{\phi}{\lambda_D^2}$ と呼ばれる偏微分方程式で、解が
 
 $$
-\laplacian \phi = \frac{1}{r^2} \pdv{r} \left( r^2 \pdv{\phi}{r} \right)
+\phi = \dfrac{A}{r} \exp\left(-\frac{r}{\lambda_D}\right) + \dfrac{B}{r} \exp\left(\frac{r}{\lambda_D}\right)
 $$
 
-であることが数学的に示されているので、
+になるんだが、この時の $\lambda_D$ がデバイ・ヒュッケル長さである。
 
 $$
-\pdv{r} \left( r^2 \pdv{\phi}{r} \right) = \frac{r^2}{\epsilon_0 \epsilon_r} \frac{2e^2}{kT} \left( \sum_i \frac{1}{2} n_i z_i^2 \right) = \frac{r^2}{\lambda_D^2}\phi(r)
+\lambda_D = \qty(\dfrac{2e^2}{\epsilon_0 \epsilon_r kT} \sum_i \frac{1}{2} c_i z_i^2)^{-1/2} 
 $$
 
-とかく。ここで、$\lambda_D$ はデバイ・ヒュッケル長さである。
-
-$u = r\phi(r)$ と変数変換してやると、次のように解ける。
-
-$$
-\pdv[2]{u}{r} = \frac{u}{\lambda_D^2}
-$$
-
-初期条件を考えて、 $\phi(\infty) = 0$ と、 $n_i \to 0 \approx 1$ で、 $\phi(r) = ze/4\pi \epsilon_0 \epsilon_r$ となることから、
+実際に解いていくと次のようになる。
 
 $$
 \phi(r) = \frac{ze}{4 \pi \epsilon_0 \epsilon_r} \exp\left(-\frac{r}{\lambda_D}\right)
@@ -273,9 +267,13 @@ $$
 
 $$
 \ln \gamma_i = -A^{\ast}z^2 I^{1/2}
-$$
+$$ {#eq-debye_huckel}
 
-ここで、$I \triangleq \sum_i \frac{1}{2}c_iz_i^2$ で、イオン強度と呼ばれる。この式を代入することによって、平均活量計数が求められる。
+$$
+I \triangleq \sum_i \frac{1}{2}c_iz_i^2
+$$ {#eq-ion_strength}
+
+で、イオン強度と呼ばれる。この式を代入することによって、平均活量計数が求められる。
 
 $$
 \begin{aligned}
@@ -305,6 +303,20 @@ $$
 
 $$
 \ln \gamma_{\pm} = A^{\ast} z_+ z_- I^{1/2}
+$$
+
+ただし、
+
+$$
+A^{\ast} = \frac{1}{8\pi}\qty(\frac{2N_A}{1000})^{1/2}\left(\frac{e^2}{\epsilon_0\epsilon_r kT}\right)^{3/2}
+$$
+
+この値の $25^{\circ}\symup{C}$ における値は $0.509$ である。
+
+これまでは希釈溶液の話だったが、濃度が高い時含めて拡張した式として
+
+$$
+\ln \gamma_{\pm} = \frac{A^{\ast}z_+ z_- I^{1/2}}{1+BaI^{1/2}} + bI
 $$
 
 ## ボルンの式
@@ -436,11 +448,171 @@ print(f"電離定数: {Ka:.3e} mol/L")
 
 ```
 
+## 4.1
+
+$\ce{NaCl}$ を 0.1 M、$\ce{Al2(SO4)3}$ を 0.01 M 含む水溶液（どちらも $\alpha = 1$ とする）の**イオン強度**は何 M になるか。 
+また、そのうち $\ce{NaCl}$ の**分担割合**は何 % かもとめよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+イオン強度の定義式は (@eq-ion_strength) である。
+
+ここで、$c_i$ はイオンの濃度、$z_i$ はイオンの電荷数というのを注意！　イオン濃度じゃなくて、水溶液濃度で計算してハマったのでまじで注意。
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+```{python}
+# 定数
+c_Na = 0.1  # mol/L
+c_Cl = 0.1  # mol/L
+c_Al2 = 0.02  # mol/L
+c_SO4 = 0.03  # mol/L
+z_Na = 1
+z_Cl = -1
+z_Al = 3
+z_SO4 = -2
+# イオン強度の計算
+I = 0.5 * (c_Na * z_Na**2 + c_Cl * z_Cl**2 + c_Al2 * z_Al**2 + c_SO4 * z_SO4**2)
+print(f"イオン強度: {I:.3f} M")
+# 分担割合の計算
+fraction_NaCl = (c_Na * z_Na**2 + c_Cl * z_Cl**2) / (c_Na * z_Na**2 + c_Cl * z_Cl**2 + c_Al2 * z_Al**2 + c_SO4 * z_SO4**2)
+print(f"分担割合: {fraction_NaCl:.3%}")
+```
+
+:::
+
+## 4.2
+
+$\ce{CaCl2}$ 水溶液（強電解質溶液：$25^{\circ}\symup{C}$）の、0.001 M および 0.01 M における  **イオン強度**と**デバイ半径**を計算せよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+デバイ半径は次のように定義される。
+
+$$
+\begin{aligned}
+\lambda_D &= \qty(\dfrac{2e^2}{\epsilon_0 \epsilon_r kT} \sum_i \frac{1}{2} c_i z_i^2)^{-1/2} \\
+&= \qty(\dfrac{2e^2}{\epsilon_0 \epsilon_r kT} I_n)^{-1/2}
+\end{aligned}
+$$
+
+ここで、 $n_i$ はイオン濃度。ただし単位は $\symup{mol\ m^{-3}}$ ではなく、 $\symup{m^{-3}}$ であることに注意。つまり、 $N_A$ を掛けてやる必要がある。
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+```{python}
+import numpy as np
+# 定数
+epsilon_0 = 8.854e-12  # C^2/Jm
+epsilon_r = 78.5  # 水の誘電率
+k = 1.38e-23  # J/K
+T = 298.15  # K
+e = 1.6022e-19  # C
+Na = 6.022e23  # mol^-1
+# イオン濃度
+c_Ca = [0.001, 0.01]  # mol/L
+c_Cl = [0.002, 0.02]  # mol/L
+n_Ca = [1*Na, 10*Na] # /m^3
+n_Cl = [2*Na, 20*Na] # /m^3
+# イオン強度の計算
+for i in range(len(c_Ca)):
+    I = 0.5 * (c_Ca[i] * 2**2 + c_Cl[i] * (-1)**2)
+    print(f"イオン強度: {I:.3f} M")
+    # デバイ半径の計算
+    nI = 0.5 * (n_Ca[i] * 2**2 + n_Cl[i] * (-1)**2)
+    lambda_D = 1 / np.sqrt(2 * e**2 / (epsilon_0 * epsilon_r * k * T) * nI) 
+    print(f"デバイ半径: {lambda_D:.3e} m")
+```
+
+::: 
+
+## 4-3
+
+$25^{\circ}\symup{C},\ 5.0 \times 10^{-3} \ \symup{M} \ \ce{KCl}$ 水溶液の  
+**イオン強度**および**平均活量係数**を、**デバイ＝ヒュッケルの極限法則**を用いて求めよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+イオン強度の式 (@eq-ion_strength) と平均活量計数の式 (@eq-debye_huckel) を使う計算問題
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+```{python}
+import numpy as np
+# 定数
+c_k = 5.0e-3  # mol/L
+c_cl = 5.0e-3  # mol/L
+z_k = 1
+z_cl = -1
+# デバイ＝ヒュッケルの極限法則
+A_star = 1.2  # m^3/2/mol^1/2
+# イオン強度の計算
+I = 0.5 * (c_k * z_k**2 + c_cl * z_cl**2)
+print(f"イオン強度: {I:.3f} M")
+# 平均活量係数の計算
+gamma = np.exp(-A_star * z_k * z_cl * np.sqrt(I))
+print(f"平均活量係数: {gamma:.3f}")
+```
+
+::: 
+
+## 4-4
+
+$25^{\circ}\symup{C},\ 5.0 \times 10^{-3} \ \symup{M} \ \ce{CaCl2}$ 水溶液の  
+**イオン強度**および**平均活量係数**を、**デバイ＝ヒュッケルの極限法則**を用いて求めよ。
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+```{python}
+import numpy as np
+# 定数
+c_ca = 1.0e-3  # mol/L
+c_cl = 2.0e-3  # mol/L
+z_ca = 2
+z_cl = -1
+# デバイ＝ヒュッケルの極限法則
+A_star = 1.2  # m^3/2/mol^1/2
+# イオン強度の計算
+I = 0.5 * (c_ca * z_ca**2 + c_cl * z_cl**2)
+print(f"イオン強度: {I:.3f} M")
+# 平均活量係数の計算
+gamma = np.exp(-A_star * z_ca * z_cl * np.sqrt(I))
+print(f"平均活量係数: {gamma:.3f}")
+```
+
+::: 
 
 
 # 過去問
 
-## 2018年度
+<!-- 
+::: {.callout-note collapse="true"}
+##### 理論
+
+This is an example of a callout with a title.
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+This is an example of a callout with a title.
+::: 
+-->
+
+## 2018年度（前半）
 
 ### 問1
 
@@ -452,18 +624,75 @@ print(f"電離定数: {Ka:.3e} mol/L")
 
 ### 問2
 
+::: {.callout-note collapse="true"}
+##### 理論
+
+フィックの法則の式が書ければ大体大丈夫。
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
 1. Fickの第一法則は次の式の通り
 
 $$
 J = -D \dv{c}{x}
 $$
 
-物質移動律速なので、
+ここで拡散層の厚さが薄いと仮定して、
 
 $$
-\begin{align*}
-- 2 \cdot 9.65 \times 10^4 \symup{C\;mol^{-1}} \cdot 0.72 \times 10^{-5} \symup{cm^2\;s^{-1}} \dv{c}{x} \times 10^{3} \symup{mol\;cm^{-4}}\\
-= 1.39 \times 10^3 \dv{c}{x} \symup{C\; cm^{-2}\;s^{-1}}
-\end{align*}
+\begin{aligned}
+\dv{c}{x} = \dfrac{C}{d} = 1.0 \ \symup{mol\ cm^{-3}} / 1 \times 10^{-2} \ \symup{cm} \\
+= 1.0 \times 10^{2} \ \symup{mol\ cm^{-4}}
+\end{aligned}
 $$
+
+これに拡散係数を考えて、
+
+$$
+J = 0.72 \times 10^{-5} \ \symup{cm^2\ s^{-1}} \times 1.0 \times 10^{2} \ \symup{mol\ cm^{-4}} = 7.2 \times 10^{-4} \ \symup{mol\ cm^{-2} s^{-1}}
+$$
+
+電解電流密度なので、$z=2$ を考えて、
+
+```{python}
+# 定数
+F = 96485  # C/mol
+J = 7.2e-4  # mol/cm^2/s
+# 電流密度の計算
+current_density = J * 2 * F  # A/cm^2
+print(f"電流密度: {current_density:.3e} A/cm^2")
+```
+
+$$
+J = 7.2 \times 10^{-4} \ \symup{mol\ cm^{-2} s^{-1}} \times 2 \times 96485 \ \symup{C/mol} = 1.4 \times 10^{2} \ \symup{A\ cm^{-2}}
+$$
+
+::: 
+
+## 2018年度（後半）
+
+### 問1
+
+以下の問いに答えよ。温度は $25^{\circ}\symup{K}$（$298.15 \symup{K}$）の標準温度とし、必要に応じてイオンの活量係数は 1 として良い。電位の基準は標準水素電極電位とする。ファラデー定数には $F = 9.65 \times 10^4\;\mathrm{C \cdot mol^{-1}}$ 気体定数には $R = 8.31\;\mathrm{J \cdot K^{-1} \cdot mol^{-1}}$ を用いよ。**計算過程も明記すること。**  
+単位 [M] は $\mathrm{mol/L}$ である。必要に応じ、表1の値を用いよ。
+
+---
+
+#### 1-1
+
+$\ce{HCl}$、$\ce{NaCl}$、$\ce{CH3COONa}$ 水溶液の無限希釈モル導電率はそれぞれ  
+426.3、126.4、91.0 [$\mathrm{S \cdot cm^2 \cdot mol^{-1}}$] である。  
+酢酸 $\ce{CH3COOH}$ の無限希釈モル導電率を求めよ。
+
+#### 1-2
+
+0.02 M 酢酸水溶液の導電率は $2.31 \times 10^{-4}\;\mathrm{S \cdot cm^{-1}}$ だった。  
+(1-1) の結果を用い、0.02 M における酢酸の電離度 $\alpha$ と、酢酸の解離定数 $K$ を求めよ。
+
+#### 1-3
+
+\ce{CH3COO-} の標準生成ギブスエネルギーを求めよ。
 

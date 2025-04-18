@@ -1316,328 +1316,6 @@
     ]
   },
   {
-    "objectID": "posts/univ_lecs/3S/材料強度学.html",
-    "href": "posts/univ_lecs/3S/材料強度学.html",
-    "title": "材料強度学",
-    "section": "",
-    "text": "\\[ \\require{physics}\n\\require{mhchem}\n\\]",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3S",
-      "材料強度学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3S/材料強度学.html#講義の概要",
-    "href": "posts/univ_lecs/3S/材料強度学.html#講義の概要",
-    "title": "材料強度学",
-    "section": "講義の概要",
-    "text": "講義の概要\n\n出席は取らない",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3S",
-      "材料強度学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3S/材料強度学.html#第一講",
-    "href": "posts/univ_lecs/3S/材料強度学.html#第一講",
-    "title": "材料強度学",
-    "section": "第一講",
-    "text": "第一講\n\nHooke’s Law\n\\[ \\pdv{\\sigma}{\\epsilon} = E \\]\n応力は歪の小さい範囲では歪に比例する。比例係数はヤング率。当たり前の話。\n\n点Aから手を離すと、フックの直線とそんなに変わらない傾きで点Bに行く。OBのことを塑性変形と読んでいる。このことを yield phenomenon pointと呼んでいるらしい。\n\nこの状態は continuous yieldingと呼ばれている。このヤング率は測定が難しいので、歪の0.2%とすることが多いらしい。\n\n\n脆性破壊と延性破壊\n脆性破壊は、急激に破壊が進むこと。延性破壊は、ゆっくりと破壊が進むこと。\n\n靱性は、破壊エネルギーのこと。延性破壊が起こる材料は靱性が高い。\n\\[ \\text{靱性} = \\int \\sigma \\dd \\epsilon \\]\n\n\n理想強度\n\nこのもっこりを正弦関数で近似して、\n\n\\[ \\sigma \\cong \\sigma_c \\sin \\left(\\frac{2\\pi(a-a_0)}{\\lambda}\\right) \\]\nここで、一時近似すると、\n\\[ \\sigma \\cong \\sigma_c \\frac{2\\pi(a-a_0)}{\\lambda} \\]\nフックの法則では\n\\[ \\sigma = E \\epsilon = E \\frac{a-a_0}{a_0}\\]\n\\[ \\sigma_c = \\frac{E\\lambda}{2\\pi a_0}\\]\nここで \\(\\lambda\\) を求めないといけないが、これは、実験的に劈開試験を行うことで求めることができる。表面エネルギーを \\(\\gamma\\) にすると、面が二つある事を考えて、\n\\[ 2\\gamma = \\int_{a_0}^{\\infty} \\sigma \\dd a = \\int_{a_0}^{\\infty} \\sigma_c \\sin \\left(\\frac{2\\pi(a-a_0)}{\\lambda}\\right) \\dd a = \\sigma_c \\frac{\\lambda}{\\pi} \\]\nここで注意なのは、もっこりは一つなので、それで近似する。\nここにフックの法則の方の式を代入すると、\n\\[ 2\\gamma = \\frac{\\sigma_c}{\\pi} \\frac{2\\pi a_0 \\sigma_c}{E} = \\frac{2\\sigma_c^2 a_0}{E} \\]\n\\[ \\sigma_c = \\sqrt{\\frac{\\gamma E}{a_0}} \\]\n実際の破壊強度は \\(\\sigma_c\\) の 10%~1%程度で あることが知られている。このモデルでは欠陥の影響が考慮されていない。現実の材料では、ミリ～ミクロンサイズの空隙から、熱力学的平衡状態において存在する格子欠陥まで、さまざまな欠陥が含まれており、それゆえ破壊強度が理想強度を大きく下回ると考えられる。",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3S",
-      "材料強度学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3S/材料強度学.html#第２講",
-    "href": "posts/univ_lecs/3S/材料強度学.html#第２講",
-    "title": "材料強度学",
-    "section": "第２講",
-    "text": "第２講\n\n滑り面と滑り方向、滑り系について\nこれらを表すのにミラー指数が使われる。\n\n滑り面  \\[\n(h\\; k\\; l) = (\\frac{1}{x_1} \\; \\frac{1}{y_1} \\; \\frac{1}{z_1})\n\\] のように定義するので、このようになる。要するに、逆数を考えればいい。また面同士の角度は、内積を取ることで求めることができる。 \\[\n\\cos \\phi = \\frac{h_1h_2 + k_1k_2 + l_1l_2}{\\sqrt{h_1^2 + k_1^2 + l_1^2} \\sqrt{h_2^2 + k_2^2 + l_2^2}}\n\\] また、面のことは \\((h\\; k\\; l)\\) と表し、等価な面は \\({h\\; k\\; l}\\) と表す。\n滑り方向 方向については単純に方向のベクトルを考えればいい。\n滑り系 先ほどの二つの値をかけあわせてできるもの。\n\n\n\nCRSS\nCRSS とは Critical Resolved Shear Stress の略で、これは、ある方向に対しての応力のこと。これは、Schmid’s Law によって求めることができる。\n\\[\n\\tau = \\frac{F}{S} \\cos \\phi \\cos \\lambda\n\\]\nここで次の項はシュミット因子と呼ばれる\n\\[\n\\cos \\phi \\cos \\lambda\n\\]\nこれは、ある方向に対しての応力を表す。この値が大きいほど、その方向に対しての応力が大きいことを示す。\n次に、CRSSの温度依存性の式は次のように示される。\n\\[\n\\tau = \\tau_0 \\exp \\left(-\\frac{Q}{kT}\\right)\n\\]\nまた、CRSSは結晶構造によっても変わり、シュミット因子の値を等高線的にプロットすることがある。\n\nこの時の三角形はステレオ投影図である。\n\nステレオ投影図\n\n \nこの代表的な三角形を標準ステレオ三角形と呼ぶ。この３つのベクトルを使って、任意のベクトルを線型結合的に表しているみたいだ。\n\n２次滑り\n\n\nある程度以上引っ張り変形させると、２次滑りが起こる。これの模式的なずが上のようなものである。",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3S",
-      "材料強度学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3S/材料強度学.html#第３講",
-    "href": "posts/univ_lecs/3S/材料強度学.html#第３講",
-    "title": "材料強度学",
-    "section": "第３講",
-    "text": "第３講\n\n理論剪断強度\n\nこのような近似で、臨界剪断応力は次のように示される。\n\\[\n\\tau = \\tau_{max} \\sin \\frac{2\\pi x}{b} \\approx \\frac{2\\pi x \\tau_{max}}{b}\n\\]\nこれに対して、フックの法則から\n\\[\n\\tau = G \\frac{x}{a}\n\\]\n\\[\n\\tau_{max} = \\frac{Gb}{2\\pi a}\n\\]\nここで、\\(\\tau_{max}\\) は理論剪断強度と呼ばれる。\n\\[\n\\tau = \\frac{Gb}{2\\pi a} \\sin \\frac{2\\pi x}{b}\n\\]\nとなる。",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3S",
-      "材料強度学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3S/材料強度学.html#過去問",
-    "href": "posts/univ_lecs/3S/材料強度学.html#過去問",
-    "title": "材料強度学",
-    "section": "過去問",
-    "text": "過去問\n\n2008\n\n問1\n刃状転位およびらせん転位を図示して、転位線とそのバーガースベクトルの関係について記せ\n\nDislocations\nDislocations are a type of defect in a crystal structure. They are areas where the atoms are out of position in the crystal structure. Dislocations are divided into two basic types: edge dislocations and screw dislocations.\n\n\nEdge Dislocations\nEdge dislocations are caused by the termination of a plane of atoms in the middle of a crystal. In such a case, an extra half-plane of atoms is introduced.\nThe vector that is perpendicular to the dislocation line and points in the direction where the extra half-plane of atoms was inserted is called the Burgers vector.\n\n\nScrew Dislocations\nScrew dislocations are a bit more difficult to visualize. They are formed by a shear stress that is applied to the crystal structure.\nThe Burgers vector is parallel to the dislocation line for a screw dislocation.\nIn both types of dislocations, the magnitude of the Burgers vector is equal to the lattice parameter, \\(a\\).\n\n\n\n解答\n螺旋転移では、転位線とバーガースベクトルは平行である。一方、刃状転位では、転位線とバーガースベクトルは直交する。\n\n\n\n問２\n断面積 \\(S\\) の単結晶の丸棒に引っ張り力 \\(F\\) を負荷した場合を考える。この時、引っ張り方向と滑り面の方線のなす角度を \\(\\phi\\) 引っ張り方向と滑り方向のなす角度を \\(\\lambda\\) とした場合、臨界剪断応力 \\(\\tau_0\\) を \\(S,F,\\phi,\\lambda\\) の関数として導け。またシュミット因子についてのべよ。\n\n解答\n\nCritical Shear Stress and Schmid’s Law\nWhen a single crystal rod with a cross-sectional area \\(S\\) is subjected to a tensile force \\(F\\), the critical resolved shear stress \\(\\tau_0\\) is given by Schmid’s Law:\n\\[\\tau_0 = \\frac{F}{S} \\cdot \\cos(\\phi) \\cdot \\cos(\\lambda)\\]\nwhere \\(\\phi\\) is the angle between the tensile direction and the normal to the slip plane, and \\(\\lambda\\) is the angle between the tensile direction and the slip direction.\nThe term \\(\\cos(\\phi) \\cdot \\cos(\\lambda)\\) is known as the Schmid factor. It represents the resolved shear stress on a particular slip system. The slip system with the highest Schmid factor will be the first to undergo plastic deformation when the material is subjected to a stress. The Schmid factor is a measure of the component of the applied stress that can contribute to dislocation motion along a slip plane in a specific direction.\n\n\n\n\n問３\n刃状転位の応力場は \\(\\sigma_{xx} = -\\frac{Gb}{2\\pi(1-\\nu)}\\frac{y(3x^2+y^2)}{(x^2+y^2)^2}, \\sigma_{yy} = \\frac{Gb}{2\\pi(1-\\nu)}\\frac{(x^2-y^2)}{(x^2+y^2)^2}\\) で与えられる。ここで、\\(G\\) はせん断弾性率、\\(b\\) はバーガースベクトル、\\(\\nu\\) はポアソン比である。これより刃状転位周囲の引っ張り、圧縮の応力分布を図示せよ。\n\n\nShow Code\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# Constants\nG = 1  # Shear modulus\nb = 1  # Burgers vector\nnu = 0.3  # Poisson's ratio\n\n# Grid of x, y points\nx = np.linspace(-1, 1, 100)\ny = np.linspace(-1, 1, 100)\nX, Y = np.meshgrid(x, y)\n\n# Stress fields\nsigma_xx = -G*b/(2*np.pi*(1-nu)) * Y*(3*X**2+Y**2) / (X**2+Y**2)**2\nsigma_yy = G*b/(2*np.pi*(1-nu)) * (X**2-Y**2) / (X**2+Y**2)**2\n\n# Plot\nfig, ax = plt.subplots(1, 2, figsize=(12, 6))\n\n# sigma_xx\nc = ax[0].contourf(X, Y, sigma_xx, levels=20, cmap='RdBu_r')\nfig.colorbar(c, ax=ax[0])\nax[0].set_title('$\\sigma_{xx}$')\n\n# sigma_yy\nc = ax[1].contourf(X, Y, sigma_yy, levels=20, cmap='RdBu_r')\nfig.colorbar(c, ax=ax[1])\nax[1].set_title('$\\sigma_{yy}$')\n\nplt.show()\n\n\n&lt;&gt;:24: SyntaxWarning: invalid escape sequence '\\s'\n&lt;&gt;:29: SyntaxWarning: invalid escape sequence '\\s'\n&lt;&gt;:24: SyntaxWarning: invalid escape sequence '\\s'\n&lt;&gt;:29: SyntaxWarning: invalid escape sequence '\\s'\n/var/folders/j3/xf5v28yn6037v0yylgccpmsr0000gn/T/ipykernel_28974/1480925135.py:24: SyntaxWarning: invalid escape sequence '\\s'\n  ax[0].set_title('$\\sigma_{xx}$')\n/var/folders/j3/xf5v28yn6037v0yylgccpmsr0000gn/T/ipykernel_28974/1480925135.py:29: SyntaxWarning: invalid escape sequence '\\s'\n  ax[1].set_title('$\\sigma_{yy}$')\n\n\n\n\n\n\n\n\n\n\n\n問４\nひずみエネルギーは半径\\(r\\) の場所で円筒一周で剪断応力が\n\\[\n\\tau = \\frac{Gb}{2\\pi r} = G\\gamma\n\\]\nなので、面積あたりのひずみエネルギーは\n\\[\ne = \\int_{0}^{\\gamma} \\tau \\dd \\gamma = \\frac{1}{2}G\\gamma^2\n\\]\nこれは、歪が線形に変化するときのひずみエネルギーと一致する。\n\\[\nE = \\int_{r_0}^{r} e2\\pi r \\dd r = \\frac{Gb^3}{4\\pi}\\ln \\frac{r}{r_0}\n\\]\n\n\n問５",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3S",
-      "材料強度学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/2A/材料力学.html",
-    "href": "posts/univ_lecs/2A/材料力学.html",
-    "title": "統計力学",
-    "section": "",
-    "text": "作ったらみんなが喜ぶと聞いて．\n\\[\\require{physics}\\]\n\n\n\nレオロジーとは、(変形と流動) の学問であり、(ソフトマター)と呼ばれる固体と液体の中間的な性質をもつ材料を対象とする。\n固体の示す性質を(弾性)、液体の示す性質を(粘性)と呼ぶ。その二つをわけるのは、簡単には(かたち)を忘れるかどうかである。\nエネルギーの観点からは、固体は変形によるエネルギーを(貯蔵)する一方で液体はエネルギーを(散逸)する。\nスライムやゲルは、(時間)によって固体と液体の中間的な性質を示す(粘弾性)体である。\nマヨネーズや歯磨き粉は、(加える変形量)によって固体と液体の中間的な性質を示す(塑性)体である。\nレオロジー特性を利用した様々な材料が、わたしたちの身の周りに存在する (例:化粧品、防振ゴム、、、、)。\n\n\n\n\n\n材料の力学を扱う上で、力と変形の関係は試料形状によらない必要がある。このため、規格化した力、変形量として(応力)と(ひずみ)が用いられる。\n一軸伸張変形を特徴づけるパラメータとして(ヤング)率が、ずり変形を特徴づけるパラメータとして(剛性)率がある。これらは、変形前後の体 積変化を示す(ポアソン比)で結び付けられており、等体積変形下におい て(3)倍の関係にある。\nより一般的な表記として、(テンソル)を用いることができる。対称性を考えるとこのテンソルには、(6)個の独立変数が存在する。\n純粋な変形の効果を考えるため、(フィンガーテンソル)が使われる。さらに、座標系によらない変数として、(不変量)が用いられる。\n\n\n\n\n\n材料の粘弾性は、(レオメータ)という装置を用いて、種々の変形を加えることで評価できる。\n粘弾性評価方法としては、一定ひずみを加え応力の時間変化を観察する(クリープ)、正弦ひずみを加える(動的粘弾性)がある。\nそれぞれについて、(緩和弾性率)、(クリープコンプライアンス)、(貯蔵・損失弾性率)を用いることで、粘弾性の定量的な議論ができる。 線形粘弾性の範囲において、これらの関数は等価な情報を有する。\n任意の変形履歴を受けた場合、ある時間における応力 (ひずみ) は過去の時刻における微小時間内に誘起した応力(ひずみ)の総和として記述できることを(Boltzmannの重畳原理)と呼び、この加成性が成り立つ範囲 を線形粘弾性と呼ぶ。\n実際の成形加工、実用上は(非線形)粘弾性が重要となる場面もある。\n\n\n\n\n\n高分子は、分子が(共有結合)によって連結したひも状の物質である。\n高分子は、ポリエチレンのような(結晶)性高分子とポリスチレンのような(非晶)性高分子に大別できる。(非晶)性高分子には、分子運動性の違 いによって、(ガラス)状態と(ゴム)状態が存在する。(ゴム)状態の高分子が示すソフトな弾性を(ゴム)弾性と呼ぶ。\n(ゴム)弾性の特徴は、\n\n金属と比べ(小さい力で大きく変形)する\n温度を上げると弾性率が(増加)する\n急激に伸長すると(暖まり)、急激に圧縮すると(冷える) - 応力ー延伸比曲線が(S)字型\n\n熱力学的な解析から、ゴム弾性は、金属の示す(エネルギー)弾性と異なり、 (エントロピー)の寄与が支配的であることがわかる。\n\n\n\n\n\nゴム弾性は、(エントロピー)由来の寄与が支配的である。\n高分子一本鎖の弾性は、(ガウス)統計を用いることで、定量的に議論することが可能である。\n網目を単純化した(自由連結鎖)モデルを用いることで、ゴムの非線形挙動をある程度、記述可能である。\nゴム弾性の式に基づくと、弾性率は(部分鎖密度)に比例することがわかる。\n架橋点数や(部分鎖)密度は、パーコレーションモデルなどで見積もることができ、(\\(G = 2pCk_BT\\))のように予測される。\n高分子絡み合い溶液の場合、弾性率は(濃度)のみで規定される。\n\n\n\n\n\n高分子の粘弾性緩和は、(分子ダイナミックス)を反映する。\n非絡み合い系の粘弾性緩和は分子量に対して(2)乗の関係を示す。( バネ・ビーズ ) モデルを用いることで、粘弾性緩和挙動を予測可能である。Boltzmannの重畳原理より粘度の分子量依存性は(高分子のからみあい ) と予測される。\n絡み合った高分子の粘弾性緩和は、濃度・分子量に対して( ) の関係を示す。絡んだ周囲の鎖の影響で、分子は一方向に拡散する( 熱 )運動によって緩和が起こる。(管 )モデルを用いる ことで、絡み合い高分子の粘弾性は記述可能である。\n分岐が入ると( レプテーション運動（一次元運動） )が抑制され、( 鎖の収縮運動 )によってのみ緩和が 進行するため、ダイナミクスが遅延する。\n高度に分岐すると、系全体が固体として振る舞うゲルになる。 ゾルとゲルの境目では、( 緩和時間が発散)の関係が見られ、( Winter -Chambon )則と呼ばれる。",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "2A",
-      "統計力学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/2A/材料力学.html#section",
-    "href": "posts/univ_lecs/2A/材料力学.html#section",
-    "title": "統計力学",
-    "section": "",
-    "text": "レオロジーとは、(変形と流動) の学問であり、(ソフトマター)と呼ばれる固体と液体の中間的な性質をもつ材料を対象とする。\n固体の示す性質を(弾性)、液体の示す性質を(粘性)と呼ぶ。その二つをわけるのは、簡単には(かたち)を忘れるかどうかである。\nエネルギーの観点からは、固体は変形によるエネルギーを(貯蔵)する一方で液体はエネルギーを(散逸)する。\nスライムやゲルは、(時間)によって固体と液体の中間的な性質を示す(粘弾性)体である。\nマヨネーズや歯磨き粉は、(加える変形量)によって固体と液体の中間的な性質を示す(塑性)体である。\nレオロジー特性を利用した様々な材料が、わたしたちの身の周りに存在する (例:化粧品、防振ゴム、、、、)。",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "2A",
-      "統計力学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/2A/材料力学.html#section-1",
-    "href": "posts/univ_lecs/2A/材料力学.html#section-1",
-    "title": "統計力学",
-    "section": "",
-    "text": "材料の力学を扱う上で、力と変形の関係は試料形状によらない必要がある。このため、規格化した力、変形量として(応力)と(ひずみ)が用いられる。\n一軸伸張変形を特徴づけるパラメータとして(ヤング)率が、ずり変形を特徴づけるパラメータとして(剛性)率がある。これらは、変形前後の体 積変化を示す(ポアソン比)で結び付けられており、等体積変形下におい て(3)倍の関係にある。\nより一般的な表記として、(テンソル)を用いることができる。対称性を考えるとこのテンソルには、(6)個の独立変数が存在する。\n純粋な変形の効果を考えるため、(フィンガーテンソル)が使われる。さらに、座標系によらない変数として、(不変量)が用いられる。",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "2A",
-      "統計力学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/2A/材料力学.html#section-2",
-    "href": "posts/univ_lecs/2A/材料力学.html#section-2",
-    "title": "統計力学",
-    "section": "",
-    "text": "材料の粘弾性は、(レオメータ)という装置を用いて、種々の変形を加えることで評価できる。\n粘弾性評価方法としては、一定ひずみを加え応力の時間変化を観察する(クリープ)、正弦ひずみを加える(動的粘弾性)がある。\nそれぞれについて、(緩和弾性率)、(クリープコンプライアンス)、(貯蔵・損失弾性率)を用いることで、粘弾性の定量的な議論ができる。 線形粘弾性の範囲において、これらの関数は等価な情報を有する。\n任意の変形履歴を受けた場合、ある時間における応力 (ひずみ) は過去の時刻における微小時間内に誘起した応力(ひずみ)の総和として記述できることを(Boltzmannの重畳原理)と呼び、この加成性が成り立つ範囲 を線形粘弾性と呼ぶ。\n実際の成形加工、実用上は(非線形)粘弾性が重要となる場面もある。",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "2A",
-      "統計力学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/2A/材料力学.html#section-3",
-    "href": "posts/univ_lecs/2A/材料力学.html#section-3",
-    "title": "統計力学",
-    "section": "",
-    "text": "高分子は、分子が(共有結合)によって連結したひも状の物質である。\n高分子は、ポリエチレンのような(結晶)性高分子とポリスチレンのような(非晶)性高分子に大別できる。(非晶)性高分子には、分子運動性の違 いによって、(ガラス)状態と(ゴム)状態が存在する。(ゴム)状態の高分子が示すソフトな弾性を(ゴム)弾性と呼ぶ。\n(ゴム)弾性の特徴は、\n\n金属と比べ(小さい力で大きく変形)する\n温度を上げると弾性率が(増加)する\n急激に伸長すると(暖まり)、急激に圧縮すると(冷える) - 応力ー延伸比曲線が(S)字型\n\n熱力学的な解析から、ゴム弾性は、金属の示す(エネルギー)弾性と異なり、 (エントロピー)の寄与が支配的であることがわかる。",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "2A",
-      "統計力学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/2A/材料力学.html#section-4",
-    "href": "posts/univ_lecs/2A/材料力学.html#section-4",
-    "title": "統計力学",
-    "section": "",
-    "text": "ゴム弾性は、(エントロピー)由来の寄与が支配的である。\n高分子一本鎖の弾性は、(ガウス)統計を用いることで、定量的に議論することが可能である。\n網目を単純化した(自由連結鎖)モデルを用いることで、ゴムの非線形挙動をある程度、記述可能である。\nゴム弾性の式に基づくと、弾性率は(部分鎖密度)に比例することがわかる。\n架橋点数や(部分鎖)密度は、パーコレーションモデルなどで見積もることができ、(\\(G = 2pCk_BT\\))のように予測される。\n高分子絡み合い溶液の場合、弾性率は(濃度)のみで規定される。",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "2A",
-      "統計力学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/2A/材料力学.html#section-5",
-    "href": "posts/univ_lecs/2A/材料力学.html#section-5",
-    "title": "統計力学",
-    "section": "",
-    "text": "高分子の粘弾性緩和は、(分子ダイナミックス)を反映する。\n非絡み合い系の粘弾性緩和は分子量に対して(2)乗の関係を示す。( バネ・ビーズ ) モデルを用いることで、粘弾性緩和挙動を予測可能である。Boltzmannの重畳原理より粘度の分子量依存性は(高分子のからみあい ) と予測される。\n絡み合った高分子の粘弾性緩和は、濃度・分子量に対して( ) の関係を示す。絡んだ周囲の鎖の影響で、分子は一方向に拡散する( 熱 )運動によって緩和が起こる。(管 )モデルを用いる ことで、絡み合い高分子の粘弾性は記述可能である。\n分岐が入ると( レプテーション運動（一次元運動） )が抑制され、( 鎖の収縮運動 )によってのみ緩和が 進行するため、ダイナミクスが遅延する。\n高度に分岐すると、系全体が固体として振る舞うゲルになる。 ゾルとゲルの境目では、( 緩和時間が発散)の関係が見られ、( Winter -Chambon )則と呼ばれる。",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "2A",
-      "統計力学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/2A/材料相平衡論.html",
-    "href": "posts/univ_lecs/2A/材料相平衡論.html",
-    "title": "材料相平衡論",
-    "section": "",
-    "text": "過去問の解答があるので概ね問題ないと思われますが、2021年の(5)の3に問題の誤りがあり、そのことについて図示しました。\n\n\n\n\n Back to top",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "2A",
-      "材料相平衡論"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/2A/材料速度論.html",
-    "href": "posts/univ_lecs/2A/材料速度論.html",
-    "title": "材料速度論",
-    "section": "",
-    "text": "軽いまとめと問題の過去問を手書きで解いてます。\nTeXにまとめるのは面倒でした。\n\n\n\n\n\n\n\n\n\n\n\n Back to top",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "2A",
-      "材料速度論"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/2A/材料量子力学.html",
-    "href": "posts/univ_lecs/2A/材料量子力学.html",
-    "title": "材料量子力学",
-    "section": "",
-    "text": "過去問を解いていく。手書きです。",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "2A",
-      "材料量子力学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/2A/材料量子力学.html#section",
-    "href": "posts/univ_lecs/2A/材料量子力学.html#section",
-    "title": "材料量子力学",
-    "section": "2021",
-    "text": "2021",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "2A",
-      "材料量子力学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/2A/材料量子力学.html#section-1",
-    "href": "posts/univ_lecs/2A/材料量子力学.html#section-1",
-    "title": "材料量子力学",
-    "section": "2019",
-    "text": "2019",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "2A",
-      "材料量子力学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/2A/材料量子力学.html#section-2",
-    "href": "posts/univ_lecs/2A/材料量子力学.html#section-2",
-    "title": "材料量子力学",
-    "section": "2015",
-    "text": "2015",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "2A",
-      "材料量子力学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/2A/材料量子力学.html#section-3",
-    "href": "posts/univ_lecs/2A/材料量子力学.html#section-3",
-    "title": "材料量子力学",
-    "section": "2009",
-    "text": "2009",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "2A",
-      "材料量子力学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/2A/材料統計力学.html",
-    "href": "posts/univ_lecs/2A/材料統計力学.html",
-    "title": "材料統計力学",
-    "section": "",
-    "text": "\\[\n\\require{physics}\n\\require{mhchem}\n\\require{ams}\n\\]",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "2A",
-      "材料統計力学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/2A/材料統計力学.html#等重率の原理",
-    "href": "posts/univ_lecs/2A/材料統計力学.html#等重率の原理",
-    "title": "材料統計力学",
-    "section": "等重率の原理",
-    "text": "等重率の原理\n孤立系において、微視的状態はどの状態にあることも同様に確からしい。",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "2A",
-      "材料統計力学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/2A/材料統計力学.html#年度",
-    "href": "posts/univ_lecs/2A/材料統計力学.html#年度",
-    "title": "材料統計力学",
-    "section": "2007年度",
-    "text": "2007年度\n注意：B側の問題だけです。\n\n問1\n\n\n\n\n\n\n\n理論\n\n\n\n\n\n\\[\n\\begin{aligned}\n\\dd U &= T \\dd S - P \\dd V \\\\\n\\dd F &= -S \\dd T - P \\dd V \\\\\n\\dd G &= -S \\dd T + V \\dd P\n\\end{aligned}\n\\]\nここら辺について頭に入れておく\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\n\n\n性質\nミクロカノニカル\nカノニカル\nグランドカノニカル\n\n\n\n\n状態\n外界から独立している\n周囲と熱平衡\n外界とやり取りがある\n\n\nエネルギー\n一定(断熱)\nやり取りあり(等温)\nやり取りあり(等温)\n\n\n粒子数\n一定\n一定\nやり取りあり\n\n\n特徴量\n\\(U\\)\n\\(F\\)\n\\(G\\)\n\n\n\n\n\n\n\n\n問2\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\n\n\n\n\n\n\n記号\n物理量\n説明\n\n\n\n\n\\(S\\)\nエントロピー\n乱雑さを示す状態量 \\(k_B\\ln W\\)\n\n\n\\(k_B\\)\nボルツマン定数\n\n\n\n\\(W\\)\n状態の数\n系のエネルギーが等しい微視状態の総数\n\n\n\\(F\\)\nヘルムホルツエネルギー\n等温条件下で取り出し可能なエネルギー量\n\n\n\\(\\beta\\)\n逆温度 \\(1/k_BT\\)\n温度の逆数として定義される量\n\n\n\\(Z\\)\n分配関数\nカノニカル分布の規格化定数\n\n\n\\(J\\)\nグランドポテンシャル\n系における可能な状態の分布\n\n\n\\(\\Xi\\)\n大分配関数\nグランドポテンシャルに関連する量\n\n\n\n\n\n\n\n\n問3\n\n\n\n\n\n\n\n理論\n\n\n\n\n\n\nはただ単に確率の問題を解くだけ。ここで、 \\(W_N(M) = {}_N \\mathrm{H}_M = \\binom{M+N-1}{M}\\) ということに注意した方がいい。\n\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n求める確率は \\(\\frac{W_{N-1}(M-n)}{W_N(M)}\\) であり、 \\(m = M/N\\) を使えば、\n\n\\[\n\\frac{1}{m+1} \\left( \\frac{m}{m+1} \\right)^n\n\\]\n\n\n\n\\[\n\\frac{m}{1+m}=\\frac{M}{M+N} = \\exp \\qty(-\\frac{\\hbar \\omega}{k_BT})\n\\]\n\n\n\n\n\n問4\n\n不明瞭なので、解答は不確かです。\n\n\n\n\n\n\n理論\n\n\n\n\n\n問題自体は指示している通りに積分計算をすればいい。\n分配関数とかについて軽くまとめる。かなり我流な考え方なので注意してください。\nある何らかの力が働いている系があ流として、そこでは圧力が定義可能である。 \\(P=NkT\\) となるわけだが、この系のうち、あるエネルギー \\(E\\) 以上を取る粒子が \\(n\\) 個存在してるとしたら、その割合は、 PE が圧力を超えていく確立に等しくて、 \\(-n\\dd P.E. = \\dd P = kT \\dd n\\) で \\(n\\propto \\exp(-P.E./kT)\\) になるわけだけど、これを正規化するために \\(Z = \\sum \\exp(-P.E./kT)\\) をやっている。\nで、この \\(Z\\) 自体を弄り回して \\(T\\) 関連の量を求めることもできる。\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n分配関数は\n\n\\[\n\\begin{aligned}\nZ = &\\eval{\\frac{1}{N!}}_{\\text{粒子については区別しない}} \\\\\n&\\eval{\\sum_{n_x} \\sum_{n_y} \\sum_{n_z}}_{x,y,z\\text{方向全て}} \\\\\n&\\exp \\qty(-\\frac{1}{k_BT} \\eval{\\sum_i}_{N個} \\frac{h^2}{2mL^2} (n_x^2+n_y^2+n_z^2)) \\\\\n= & \\frac{1}{N!} \\qty(\\sum_n \\exp(-\\frac{\\beta h^2}{2mL^2}n^2))^{3N} \\\\\n= & \\frac{V^N}{h^{3N}N!} \\qty(\\frac{2\\pi m}{\\beta})^{3N/2}\n\\end{aligned}\n\\]",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "2A",
-      "材料統計力学"
-    ]
-  },
-  {
     "objectID": "posts/univ_lecs/3S/材料電気化学.html",
     "href": "posts/univ_lecs/3S/材料電気化学.html",
     "title": "材料電気化学",
@@ -1782,7 +1460,7 @@
     "href": "posts/univ_lecs/3S/材料電気化学.html#デバイヒュッケルの法則",
     "title": "材料電気化学",
     "section": "デバイ・ヒュッケルの法則",
-    "text": "デバイ・ヒュッケルの法則\nボルマンの式は次のようになる。\n\\[\nn_i^{'} = n_i \\exp \\left( -\\frac{z_ie\\phi(r)}{kT} \\right)\n\\]\nここで、\\(n_i^{'}\\) はイオンの濃度、\\(n_i\\) は無限遠における密度、\\(z_i\\) はイオンの電荷、\\(e\\) は電子の電荷、\\(\\phi(r)\\) は電位、\\(k\\) はボルツマン定数、\\(T\\) は温度である。\n各種イオンに対してこれが成り立つので、電荷密度は次のようになる。\n\\[\n\\rho(r) = \\sum_i z_i e n_i\n\\]\nこれを一次近似すると、0次の項が消えて、1次の項だけが残る。\n\\[\n\\rho(r) = -\\frac{e^2\\phi (r)}{kT} \\left( \\sum_i n_i z_i^2 \\right) = -\\frac{2 e^2}{kT} \\left( \\sum_i \\frac{1}{2} n_i z_i^2 \\phi (r) \\right)\n\\]\nここで、ポアソンの定理をガウスの法則に適応して次の式が得られる。\n\\[\n\\nabla^2 \\phi = -\\frac{\\rho}{\\varepsilon} = -\\frac{\\rho}{\\epsilon_0 \\epsilon_r}\n\\]\nこれらを合わせて、\n\\[\n\\nabla^2 \\phi = \\frac{1}{\\epsilon_0 \\epsilon_r} \\frac{2e^2}{kT} \\left( \\sum_i \\frac{1}{2} n_i z_i^2 \\right)\n\\]\nここで、\n\\[\n\\laplacian \\phi = \\frac{1}{r^2} \\pdv{r} \\left( r^2 \\pdv{\\phi}{r} \\right)\n\\]\nであることが数学的に示されているので、\n\\[\n\\pdv{r} \\left( r^2 \\pdv{\\phi}{r} \\right) = \\frac{r^2}{\\epsilon_0 \\epsilon_r} \\frac{2e^2}{kT} \\left( \\sum_i \\frac{1}{2} n_i z_i^2 \\right) = \\frac{r^2}{\\lambda_D^2}\\phi(r)\n\\]\nとかく。ここで、\\(\\lambda_D\\) はデバイ・ヒュッケル長さである。\n\\(u = r\\phi(r)\\) と変数変換してやると、次のように解ける。\n\\[\n\\pdv[2]{u}{r} = \\frac{u}{\\lambda_D^2}\n\\]\n初期条件を考えて、 \\(\\phi(\\infty) = 0\\) と、 \\(n_i \\to 0 \\approx 1\\) で、 \\(\\phi(r) = ze/4\\pi \\epsilon_0 \\epsilon_r\\) となることから、\n\\[\n\\phi(r) = \\frac{ze}{4 \\pi \\epsilon_0 \\epsilon_r} \\exp\\left(-\\frac{r}{\\lambda_D}\\right)\n\\]\n\\[\n\\rho (r) = -\\frac{ze}{4\\pi \\lambda_D^2 r}\\exp\\left(-\\frac{r}{\\lambda_D}\\right)\n\\]\nとなる。ここでさらに電位を展開すると、\n\\[\n\\phi(r) = \\frac{ze}{4\\pi \\epsilon_0 \\epsilon_r r} - \\frac{ze}{4\\pi \\epsilon_0 \\epsilon_r \\lambda_D}\n\\]\nこの第一項は中心電荷による電位で、第二項はイオン相互作用による電位である。\n次に充電することを考える。中心電化による電位は考えなくてもいいので、\n\\[\nW = N_A \\int_0^{ze} - \\frac{ze}{4\\pi \\epsilon_0 \\epsilon_r \\lambda_D} \\dd ze = -N_A \\frac{(ze)^2}{8\\pi \\epsilon_0 \\epsilon_r \\lambda_D}\n\\]\n理想溶液と実在溶液の化学ポテンシャルの差は\n\\[\n\\Delta \\mu = \\mu_i^0 +RT \\ln a_i - (\\mu_i^0 + RT \\ln x_i) = RT \\ln \\gamma_i\n\\]\nこれらがつながるので、ごちゃごちゃした計算を略すと\n\\[\n\\ln \\gamma_i = -z^2\\frac{1}{8\\pi}\\left(\\frac{2N_A}{1000}\\right)^{1/2}\\left(\\frac{e^2}{\\epsilon_0\\epsilon_r kT}\\right)^{3/2}\\left(\\sum_i \\frac{1}{2}c_iz_i^2\\right)^{1/2}\n\\]\nこれを次のように記述する。\n\\[\n\\ln \\gamma_i = -A^{\\ast}z^2 I^{1/2}\n\\]\nここで、\\(I \\triangleq \\sum_i \\frac{1}{2}c_iz_i^2\\) で、イオン強度と呼ばれる。この式を代入することによって、平均活量計数が求められる。\n\\[\n\\begin{aligned}\n\\ln \\gamma_{\\pm} & = \\frac{1}{\\nu_++\\nu_-}\\left( \\nu_+ \\ln \\gamma_+ + \\nu_- \\ln \\gamma_- \\right)\\\\\n& = \\frac{-A^{\\ast}}{\\nu_++\\nu_-} \\left( \\nu_+ z_+^2 I^{1/2} + \\nu_- z_-^2 I^{1/2} \\right)\\\\\n&= A^{\\ast} z_+ z_- I^{1/2}\n\\end{aligned}\n\\]\nこれをデバイ・ヒュッケルの極限法則という。ただし、これはイオン直径が高い時と、濃度が高い場合に問題になってくるので、その補正を入れると、\n\\[\n\\ln \\gamma_{\\pm} = \\frac{A^{\\ast}z_+z_-I^{1/2}}{1+BaI^{1/2}} + bI\n\\]\nとなる。ここで、\\(B\\) はイオンの直径に関するパラメータで、 \\(a\\) はイオンの半径である。\nここまでで大事な式は次のようになる。\nイオン強度\n\\[\nI = \\frac{1}{2} \\sum_i c_iz_i^2\n\\]\nデバイ・ヒュッケルの極限法則\n\\[\n\\ln \\gamma_{\\pm} = A^{\\ast} z_+ z_- I^{1/2}\n\\]",
+    "text": "デバイ・ヒュッケルの法則\n要するに、ボルツマン分布でイオンを考えて、それとポアソンの法則を組み合わせると、イオンの平均活量係数が求まる。\nボルツマン分布でイオン内のイオン分布次のようになる。\n\\[\nn_i^{'} = n_i \\exp \\left( -\\frac{z_ie\\phi(r)}{kT} \\right)\n\\]\nここで、\\(n_i^{'}\\) はイオンの濃度、\\(n_i\\) は無限遠における密度、\\(z_i\\) はイオンの電荷、\\(e\\) は電子の電荷、\\(\\phi(r)\\) は電位、\\(k\\) はボルツマン定数、\\(T\\) は温度である。\n各種イオンに対してこれが成り立つので、電荷密度は次のようになる。\n\\[\n\\rho(r) = \\sum_i z_i e n_i \\exp \\left( -\\frac{z_ie\\phi(r)}{kT} \\right)\n\\]\nこれを一次近似すると、0次の項が消えて、1次の項だけが残る。\n\\[\n\\rho(r) = -\\frac{e^2\\phi (r)}{kT} \\left( \\sum_i n_i z_i^2 \\right) = -\\frac{2 e^2}{kT} \\left( \\sum_i \\frac{1}{2} n_i z_i^2 \\phi (r) \\right)\n\\]\nここで、ガウスの法則のポテンシャルの方の式を考えて、\n\\[\n\\nabla^2 \\phi = -\\frac{\\rho}{\\varepsilon} = -\\frac{\\rho}{\\epsilon_0 \\epsilon_r}\n\\]\nこれらを合わせて、\n\\[\n\\nabla^2 \\phi = \\frac{1}{\\epsilon_0 \\epsilon_r} \\frac{2e^2}{kT} \\left( \\sum_i \\frac{1}{2} n_i z_i^2 \\right) \\phi\n\\]\nこれはヘルムホルツ方程式 \\(\\nabla^2 \\phi = \\frac{\\phi}{\\lambda_D^2}\\) と呼ばれる偏微分方程式で、解が\n\\[\n\\phi = \\dfrac{A}{r} \\exp\\left(-\\frac{r}{\\lambda_D}\\right) + \\dfrac{B}{r} \\exp\\left(\\frac{r}{\\lambda_D}\\right)\n\\]\nになるんだが、この時の \\(\\lambda_D\\) がデバイ・ヒュッケル長さである。\n\\[\n\\lambda_D = \\qty(\\dfrac{2e^2}{\\epsilon_0 \\epsilon_r kT} \\sum_i \\frac{1}{2} c_i z_i^2)^{-1/2}\n\\]\n実際に解いていくと次のようになる。\n\\[\n\\phi(r) = \\frac{ze}{4 \\pi \\epsilon_0 \\epsilon_r} \\exp\\left(-\\frac{r}{\\lambda_D}\\right)\n\\]\n\\[\n\\rho (r) = -\\frac{ze}{4\\pi \\lambda_D^2 r}\\exp\\left(-\\frac{r}{\\lambda_D}\\right)\n\\]\nとなる。ここでさらに電位を展開すると、\n\\[\n\\phi(r) = \\frac{ze}{4\\pi \\epsilon_0 \\epsilon_r r} - \\frac{ze}{4\\pi \\epsilon_0 \\epsilon_r \\lambda_D}\n\\]\nこの第一項は中心電荷による電位で、第二項はイオン相互作用による電位である。\n次に充電することを考える。中心電化による電位は考えなくてもいいので、\n\\[\nW = N_A \\int_0^{ze} - \\frac{ze}{4\\pi \\epsilon_0 \\epsilon_r \\lambda_D} \\dd ze = -N_A \\frac{(ze)^2}{8\\pi \\epsilon_0 \\epsilon_r \\lambda_D}\n\\]\n理想溶液と実在溶液の化学ポテンシャルの差は\n\\[\n\\Delta \\mu = \\mu_i^0 +RT \\ln a_i - (\\mu_i^0 + RT \\ln x_i) = RT \\ln \\gamma_i\n\\]\nこれらがつながるので、ごちゃごちゃした計算を略すと\n\\[\n\\ln \\gamma_i = -z^2\\frac{1}{8\\pi}\\left(\\frac{2N_A}{1000}\\right)^{1/2}\\left(\\frac{e^2}{\\epsilon_0\\epsilon_r kT}\\right)^{3/2}\\left(\\sum_i \\frac{1}{2}c_iz_i^2\\right)^{1/2}\n\\]\nこれを次のように記述する。\n\\[\n\\ln \\gamma_i = -A^{\\ast}z^2 I^{1/2}\n\\tag{4}\\]\n\\[\nI \\triangleq \\sum_i \\frac{1}{2}c_iz_i^2\n\\tag{5}\\]\nで、イオン強度と呼ばれる。この式を代入することによって、平均活量計数が求められる。\n\\[\n\\begin{aligned}\n\\ln \\gamma_{\\pm} & = \\frac{1}{\\nu_++\\nu_-}\\left( \\nu_+ \\ln \\gamma_+ + \\nu_- \\ln \\gamma_- \\right)\\\\\n& = \\frac{-A^{\\ast}}{\\nu_++\\nu_-} \\left( \\nu_+ z_+^2 I^{1/2} + \\nu_- z_-^2 I^{1/2} \\right)\\\\\n&= A^{\\ast} z_+ z_- I^{1/2}\n\\end{aligned}\n\\]\nこれをデバイ・ヒュッケルの極限法則という。ただし、これはイオン直径が高い時と、濃度が高い場合に問題になってくるので、その補正を入れると、\n\\[\n\\ln \\gamma_{\\pm} = \\frac{A^{\\ast}z_+z_-I^{1/2}}{1+BaI^{1/2}} + bI\n\\]\nとなる。ここで、\\(B\\) はイオンの直径に関するパラメータで、 \\(a\\) はイオンの半径である。\nここまでで大事な式は次のようになる。\nイオン強度\n\\[\nI = \\frac{1}{2} \\sum_i c_iz_i^2\n\\]\nデバイ・ヒュッケルの極限法則\n\\[\n\\ln \\gamma_{\\pm} = A^{\\ast} z_+ z_- I^{1/2}\n\\]\nただし、\n\\[\nA^{\\ast} = \\frac{1}{8\\pi}\\qty(\\frac{2N_A}{1000})^{1/2}\\left(\\frac{e^2}{\\epsilon_0\\epsilon_r kT}\\right)^{3/2}\n\\]\nこの値の \\(25^{\\circ}\\symup{C}\\) における値は \\(0.509\\) である。\nこれまでは希釈溶液の話だったが、濃度が高い時含めて拡張した式として\n\\[\n\\ln \\gamma_{\\pm} = \\frac{A^{\\ast}z_+ z_- I^{1/2}}{1+BaI^{1/2}} + bI\n\\]",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
@@ -1932,11 +1610,11 @@
     ]
   },
   {
-    "objectID": "posts/univ_lecs/3S/材料電気化学.html#年度",
-    "href": "posts/univ_lecs/3S/材料電気化学.html#年度",
+    "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-9",
+    "href": "posts/univ_lecs/3S/材料電気化学.html#section-9",
     "title": "材料電気化学",
-    "section": "2018年度",
-    "text": "2018年度\n\n問1\n\n電気二重層は、正電荷の表面に固定吸着された陰イオン（または負電荷に吸着した陽イオン）からなる非常に薄い層（Stern-Helmholtz層）と、静電引力の中で拡散しつつ濃度分布が生じる層（拡散層あるいはGouy-Chapman層）の２つの層で構成される。\n荷電粒子あるいは分子が電場（電界）中を移動する現象。\n液体と固体が接している所に電圧をかけた場合に、液体が移動する現象。これにより生じる液体の流れを電気浸透流（でんきしんとうりゅう）という\n\n\n\n問2\n\nFickの第一法則は次の式の通り\n\n\\[\nJ = -D \\dv{c}{x}\n\\]\n物質移動律速なので、\n\\[\n\\begin{align*}\n- 2 \\cdot 9.65 \\times 10^4 \\symup{C\\;mol^{-1}} \\cdot 0.72 \\times 10^{-5} \\symup{cm^2\\;s^{-1}} \\dv{c}{x} \\times 10^{3} \\symup{mol\\;cm^{-4}}\\\\\n= 1.39 \\times 10^3 \\dv{c}{x} \\symup{C\\; cm^{-2}\\;s^{-1}}\n\\end{align*}\n\\]",
+    "section": "4.1",
+    "text": "4.1\n\\(\\ce{NaCl}\\) を 0.1 M、\\(\\ce{Al2(SO4)3}\\) を 0.01 M 含む水溶液（どちらも \\(\\alpha = 1\\) とする）のイオン強度は何 M になるか。 また、そのうち \\(\\ce{NaCl}\\) の分担割合は何 % かもとめよ。\n\n\n\n\n\n\n理論\n\n\n\n\n\nイオン強度の定義式は (Equation 5) である。\nここで、\\(c_i\\) はイオンの濃度、\\(z_i\\) はイオンの電荷数というのを注意！　イオン濃度じゃなくて、水溶液濃度で計算してハマったのでまじで注意。\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\n# 定数\nc_Na = 0.1  # mol/L\nc_Cl = 0.1  # mol/L\nc_Al2 = 0.02  # mol/L\nc_SO4 = 0.03  # mol/L\nz_Na = 1\nz_Cl = -1\nz_Al = 3\nz_SO4 = -2\n# イオン強度の計算\nI = 0.5 * (c_Na * z_Na**2 + c_Cl * z_Cl**2 + c_Al2 * z_Al**2 + c_SO4 * z_SO4**2)\nprint(f\"イオン強度: {I:.3f} M\")\n# 分担割合の計算\nfraction_NaCl = (c_Na * z_Na**2 + c_Cl * z_Cl**2) / (c_Na * z_Na**2 + c_Cl * z_Cl**2 + c_Al2 * z_Al**2 + c_SO4 * z_SO4**2)\nprint(f\"分担割合: {fraction_NaCl:.3%}\")\n\n\nイオン強度: 0.250 M\n分担割合: 40.000%",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
@@ -1946,45 +1624,395 @@
     ]
   },
   {
-    "objectID": "posts/univ_lecs/3S/MI.html",
-    "href": "posts/univ_lecs/3S/MI.html",
-    "title": "マテリアルインフォルマティクス",
-    "section": "",
-    "text": "出席さえすれば大丈夫だ！　出席し続けろよ、俺！\n\n\nShow Code\nimport random\na = random.random()\n\nprint(a)\n\nif a &gt; 0.3:\n    print(\"Higher\")\nelse:\n    print(\"Lower or Equal\")\n\n\n0.1150399761190275\nLower or Equal\n\n\n\n\nShow Code\nimport random\n\ncnt = 0\n\nfor i in range(1000000):\n    a = random.random()\n    b = random.random()\n    if a**2 + b**2 &gt;= 1:\n        cnt += 1\n\nprint(4*cnt/1000000)\n\n\n0.858488\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nx = np.linspace(-4, 4, 300)\n\ny1 = x**4 - x**3 - 7.39*x**2 + 5.08*x + 4.2\ny2 = 0*x\n\nplt.plot(x, y1, label='$y = x^4 - x^3 - 7.39x^2 + 5.08x + 4.2$')\nplt.plot(x, y2, label='$y = 0$')\n\nplt.xlabel('$x$')\nplt.ylabel('$y$')\nplt.title('Homework 2')\nplt.legend()\n\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\n\ndef f(x):\n    return x**4 - x**3 - 7.39*x**2 + 5.08*x + 4.2\n\ndef df(x):\n    return 4*x**3 - 3*x**2 - 14.78*x + 5.08\n\ndef newton_method(x0, f, df, tol=0.001, max_iter=100):\n    x = x0\n    for _ in range(max_iter):\n        x_new = x - f(x) / df(x)\n        if abs(x_new - x) &lt; tol:\n            return x_new\n        x = x_new\n    return x\n\nxs = [1.0, -0.5, -2.5, 3.0]\nroot = []\nfor x0 in xs:\n    root.append(newton_method(x0, f, df))\n\nprint(root)\n\n\n[1.200000000986774, -0.5, -2.5, 2.8000000000031053]\n\n\n\n\nShow Code\nimport numpy as np\nfrom scipy.integrate import odeint\nimport matplotlib.pyplot as plt\n\np = 7\nr = 18\nb = 2\n\ndef lorenz(X, t, p, r, b):\n    x, y, z = X\n    dx_dt = p*(-x + y)\n    dy_dt = -x*z + r*x -y\n    dz_dt = x*y - b*z\n    return [dx_dt, dy_dt, dz_dt]\n\nX0 = [1, 3, 3.5]\n\nt = np.linspace(0, 40, 40000)\n\nX = odeint(lorenz, X0, t, args=(p, r, b))\n\nplt.plot(t, X[:, 0], label='x')\nplt.plot(t, X[:, 1], label='y')\nplt.xlabel('$t$')\nplt.ylabel('$x,\\;y$')\nplt.legend()\n\nplt.show()\n\n\n&lt;&gt;:25: SyntaxWarning: invalid escape sequence '\\;'\n&lt;&gt;:25: SyntaxWarning: invalid escape sequence '\\;'\n/var/folders/tn/xv5_ldbs095b2qr06qxnz2_40000gn/T/ipykernel_47698/1930065823.py:25: SyntaxWarning: invalid escape sequence '\\;'\n  plt.ylabel('$x,\\;y$')",
+    "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-10",
+    "href": "posts/univ_lecs/3S/材料電気化学.html#section-10",
+    "title": "材料電気化学",
+    "section": "4.2",
+    "text": "4.2\n\\(\\ce{CaCl2}\\) 水溶液（強電解質溶液：\\(25^{\\circ}\\symup{C}\\)）の、0.001 M および 0.01 M における イオン強度とデバイ半径を計算せよ。\n\n\n\n\n\n\n理論\n\n\n\n\n\nデバイ半径は次のように定義される。\n\\[\n\\begin{aligned}\n\\lambda_D &= \\qty(\\dfrac{2e^2}{\\epsilon_0 \\epsilon_r kT} \\sum_i \\frac{1}{2} c_i z_i^2)^{-1/2} \\\\\n&= \\qty(\\dfrac{2e^2}{\\epsilon_0 \\epsilon_r kT} I_n)^{-1/2}\n\\end{aligned}\n\\]\nここで、 \\(n_i\\) はイオン濃度。ただし単位は \\(\\symup{mol\\ m^{-3}}\\) ではなく、 \\(\\symup{m^{-3}}\\) であることに注意。つまり、 \\(N_A\\) を掛けてやる必要がある。\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\n# 定数\nepsilon_0 = 8.854e-12  # C^2/Jm\nepsilon_r = 78.5  # 水の誘電率\nk = 1.38e-23  # J/K\nT = 298.15  # K\ne = 1.6022e-19  # C\nNa = 6.022e23  # mol^-1\n# イオン濃度\nc_Ca = [0.001, 0.01]  # mol/L\nc_Cl = [0.002, 0.02]  # mol/L\nn_Ca = [1*Na, 10*Na] # /m^3\nn_Cl = [2*Na, 20*Na] # /m^3\n# イオン強度の計算\nfor i in range(len(c_Ca)):\n    I = 0.5 * (c_Ca[i] * 2**2 + c_Cl[i] * (-1)**2)\n    print(f\"イオン強度: {I:.3f} M\")\n    # デバイ半径の計算\n    nI = 0.5 * (n_Ca[i] * 2**2 + n_Cl[i] * (-1)**2)\n    lambda_D = 1 / np.sqrt(2 * e**2 / (epsilon_0 * epsilon_r * k * T) * nI) \n    print(f\"デバイ半径: {lambda_D:.3e} m\")\n\n\nイオン強度: 0.003 M\nデバイ半径: 5.553e-09 m\nイオン強度: 0.030 M\nデバイ半径: 1.756e-09 m",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
       "Univ Lecs",
       "3S",
-      "マテリアルインフォルマティクス"
+      "材料電気化学"
     ]
   },
   {
-    "objectID": "posts/univ_lecs/3S/MI.html#第一講",
-    "href": "posts/univ_lecs/3S/MI.html#第一講",
-    "title": "マテリアルインフォルマティクス",
-    "section": "",
-    "text": "出席さえすれば大丈夫だ！　出席し続けろよ、俺！\n\n\nShow Code\nimport random\na = random.random()\n\nprint(a)\n\nif a &gt; 0.3:\n    print(\"Higher\")\nelse:\n    print(\"Lower or Equal\")\n\n\n0.1150399761190275\nLower or Equal\n\n\n\n\nShow Code\nimport random\n\ncnt = 0\n\nfor i in range(1000000):\n    a = random.random()\n    b = random.random()\n    if a**2 + b**2 &gt;= 1:\n        cnt += 1\n\nprint(4*cnt/1000000)\n\n\n0.858488",
+    "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-11",
+    "href": "posts/univ_lecs/3S/材料電気化学.html#section-11",
+    "title": "材料電気化学",
+    "section": "4-3",
+    "text": "4-3\n\\(25^{\\circ}\\symup{C},\\ 5.0 \\times 10^{-3} \\ \\symup{M} \\ \\ce{KCl}\\) 水溶液の\nイオン強度および平均活量係数を、デバイ＝ヒュッケルの極限法則を用いて求めよ。\n\n\n\n\n\n\n理論\n\n\n\n\n\nイオン強度の式 (Equation 5) と平均活量計数の式 (Equation 4) を使う計算問題\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\n# 定数\nc_k = 5.0e-3  # mol/L\nc_cl = 5.0e-3  # mol/L\nz_k = 1\nz_cl = -1\n# デバイ＝ヒュッケルの極限法則\nA_star = 1.2  # m^3/2/mol^1/2\n# イオン強度の計算\nI = 0.5 * (c_k * z_k**2 + c_cl * z_cl**2)\nprint(f\"イオン強度: {I:.3f} M\")\n# 平均活量係数の計算\ngamma = np.exp(-A_star * z_k * z_cl * np.sqrt(I))\nprint(f\"平均活量係数: {gamma:.3f}\")\n\n\nイオン強度: 0.005 M\n平均活量係数: 1.089",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
       "Univ Lecs",
       "3S",
-      "マテリアルインフォルマティクス"
+      "材料電気化学"
     ]
   },
   {
-    "objectID": "posts/univ_lecs/3S/MI.html#第二講",
-    "href": "posts/univ_lecs/3S/MI.html#第二講",
-    "title": "マテリアルインフォルマティクス",
-    "section": "",
-    "text": "Show Code\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nx = np.linspace(-4, 4, 300)\n\ny1 = x**4 - x**3 - 7.39*x**2 + 5.08*x + 4.2\ny2 = 0*x\n\nplt.plot(x, y1, label='$y = x^4 - x^3 - 7.39x^2 + 5.08x + 4.2$')\nplt.plot(x, y2, label='$y = 0$')\n\nplt.xlabel('$x$')\nplt.ylabel('$y$')\nplt.title('Homework 2')\nplt.legend()\n\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\n\ndef f(x):\n    return x**4 - x**3 - 7.39*x**2 + 5.08*x + 4.2\n\ndef df(x):\n    return 4*x**3 - 3*x**2 - 14.78*x + 5.08\n\ndef newton_method(x0, f, df, tol=0.001, max_iter=100):\n    x = x0\n    for _ in range(max_iter):\n        x_new = x - f(x) / df(x)\n        if abs(x_new - x) &lt; tol:\n            return x_new\n        x = x_new\n    return x\n\nxs = [1.0, -0.5, -2.5, 3.0]\nroot = []\nfor x0 in xs:\n    root.append(newton_method(x0, f, df))\n\nprint(root)\n\n\n[1.200000000986774, -0.5, -2.5, 2.8000000000031053]\n\n\n\n\nShow Code\nimport numpy as np\nfrom scipy.integrate import odeint\nimport matplotlib.pyplot as plt\n\np = 7\nr = 18\nb = 2\n\ndef lorenz(X, t, p, r, b):\n    x, y, z = X\n    dx_dt = p*(-x + y)\n    dy_dt = -x*z + r*x -y\n    dz_dt = x*y - b*z\n    return [dx_dt, dy_dt, dz_dt]\n\nX0 = [1, 3, 3.5]\n\nt = np.linspace(0, 40, 40000)\n\nX = odeint(lorenz, X0, t, args=(p, r, b))\n\nplt.plot(t, X[:, 0], label='x')\nplt.plot(t, X[:, 1], label='y')\nplt.xlabel('$t$')\nplt.ylabel('$x,\\;y$')\nplt.legend()\n\nplt.show()\n\n\n&lt;&gt;:25: SyntaxWarning: invalid escape sequence '\\;'\n&lt;&gt;:25: SyntaxWarning: invalid escape sequence '\\;'\n/var/folders/tn/xv5_ldbs095b2qr06qxnz2_40000gn/T/ipykernel_47698/1930065823.py:25: SyntaxWarning: invalid escape sequence '\\;'\n  plt.ylabel('$x,\\;y$')",
+    "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-12",
+    "href": "posts/univ_lecs/3S/材料電気化学.html#section-12",
+    "title": "材料電気化学",
+    "section": "4-4",
+    "text": "4-4\n\\(25^{\\circ}\\symup{C},\\ 5.0 \\times 10^{-3} \\ \\symup{M} \\ \\ce{CaCl2}\\) 水溶液の\nイオン強度および平均活量係数を、デバイ＝ヒュッケルの極限法則を用いて求めよ。\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\n# 定数\nc_ca = 1.0e-3  # mol/L\nc_cl = 2.0e-3  # mol/L\nz_ca = 2\nz_cl = -1\n# デバイ＝ヒュッケルの極限法則\nA_star = 1.2  # m^3/2/mol^1/2\n# イオン強度の計算\nI = 0.5 * (c_ca * z_ca**2 + c_cl * z_cl**2)\nprint(f\"イオン強度: {I:.3f} M\")\n# 平均活量係数の計算\ngamma = np.exp(-A_star * z_ca * z_cl * np.sqrt(I))\nprint(f\"平均活量係数: {gamma:.3f}\")\n\n\nイオン強度: 0.003 M\n平均活量係数: 1.140",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
       "Univ Lecs",
       "3S",
-      "マテリアルインフォルマティクス"
+      "材料電気化学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料電気化学.html#年度前半",
+    "href": "posts/univ_lecs/3S/材料電気化学.html#年度前半",
+    "title": "材料電気化学",
+    "section": "2018年度（前半）",
+    "text": "2018年度（前半）\n\n問1\n\n電気二重層は、正電荷の表面に固定吸着された陰イオン（または負電荷に吸着した陽イオン）からなる非常に薄い層（Stern-Helmholtz層）と、静電引力の中で拡散しつつ濃度分布が生じる層（拡散層あるいはGouy-Chapman層）の２つの層で構成される。\n荷電粒子あるいは分子が電場（電界）中を移動する現象。\n液体と固体が接している所に電圧をかけた場合に、液体が移動する現象。これにより生じる液体の流れを電気浸透流（でんきしんとうりゅう）という\n\n\n\n問2\n\n\n\n\n\n\n理論\n\n\n\n\n\nフィックの法則の式が書ければ大体大丈夫。\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\nFickの第一法則は次の式の通り\n\n\\[\nJ = -D \\dv{c}{x}\n\\]\nここで拡散層の厚さが薄いと仮定して、\n\\[\n\\begin{aligned}\n\\dv{c}{x} = \\dfrac{C}{d} = 1.0 \\ \\symup{mol\\ cm^{-3}} / 1 \\times 10^{-2} \\ \\symup{cm} \\\\\n= 1.0 \\times 10^{2} \\ \\symup{mol\\ cm^{-4}}\n\\end{aligned}\n\\]\nこれに拡散係数を考えて、\n\\[\nJ = 0.72 \\times 10^{-5} \\ \\symup{cm^2\\ s^{-1}} \\times 1.0 \\times 10^{2} \\ \\symup{mol\\ cm^{-4}} = 7.2 \\times 10^{-4} \\ \\symup{mol\\ cm^{-2} s^{-1}}\n\\]\n電解電流密度なので、\\(z=2\\) を考えて、\n\n\nShow Code\n# 定数\nF = 96485  # C/mol\nJ = 7.2e-4  # mol/cm^2/s\n# 電流密度の計算\ncurrent_density = J * 2 * F  # A/cm^2\nprint(f\"電流密度: {current_density:.3e} A/cm^2\")\n\n\n電流密度: 1.389e+02 A/cm^2\n\n\n\\[\nJ = 7.2 \\times 10^{-4} \\ \\symup{mol\\ cm^{-2} s^{-1}} \\times 2 \\times 96485 \\ \\symup{C/mol} = 1.4 \\times 10^{2} \\ \\symup{A\\ cm^{-2}}\n\\]",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料電気化学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料電気化学.html#年度後半",
+    "href": "posts/univ_lecs/3S/材料電気化学.html#年度後半",
+    "title": "材料電気化学",
+    "section": "2018年度（後半）",
+    "text": "2018年度（後半）\n\n問1\n以下の問いに答えよ。温度は \\(25^{\\circ}\\symup{K}\\)（\\(298.15 \\symup{K}\\)）の標準温度とし、必要に応じてイオンの活量係数は 1 として良い。電位の基準は標準水素電極電位とする。ファラデー定数には \\(F = 9.65 \\times 10^4\\;\\mathrm{C \\cdot mol^{-1}}\\) 気体定数には \\(R = 8.31\\;\\mathrm{J \\cdot K^{-1} \\cdot mol^{-1}}\\) を用いよ。計算過程も明記すること。\n単位 [M] は \\(\\mathrm{mol/L}\\) である。必要に応じ、表1の値を用いよ。\n\n\n1-1\n\\(\\ce{HCl}\\)、\\(\\ce{NaCl}\\)、\\(\\ce{CH3COONa}\\) 水溶液の無限希釈モル導電率はそれぞれ\n426.3、126.4、91.0 [\\(\\mathrm{S \\cdot cm^2 \\cdot mol^{-1}}\\)] である。\n酢酸 \\(\\ce{CH3COOH}\\) の無限希釈モル導電率を求めよ。\n\n\n1-2\n0.02 M 酢酸水溶液の導電率は \\(2.31 \\times 10^{-4}\\;\\mathrm{S \\cdot cm^{-1}}\\) だった。\n(1-1) の結果を用い、0.02 M における酢酸の電離度 \\(\\alpha\\) と、酢酸の解離定数 \\(K\\) を求めよ。\n\n\n1-3\n の標準生成ギブスエネルギーを求めよ。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料電気化学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/2A/材料統計力学.html",
+    "href": "posts/univ_lecs/2A/材料統計力学.html",
+    "title": "材料統計力学",
+    "section": "",
+    "text": "\\[\n\\require{physics}\n\\require{mhchem}\n\\require{ams}\n\\]",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "2A",
+      "材料統計力学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/2A/材料統計力学.html#等重率の原理",
+    "href": "posts/univ_lecs/2A/材料統計力学.html#等重率の原理",
+    "title": "材料統計力学",
+    "section": "等重率の原理",
+    "text": "等重率の原理\n孤立系において、微視的状態はどの状態にあることも同様に確からしい。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "2A",
+      "材料統計力学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/2A/材料統計力学.html#年度",
+    "href": "posts/univ_lecs/2A/材料統計力学.html#年度",
+    "title": "材料統計力学",
+    "section": "2007年度",
+    "text": "2007年度\n注意：B側の問題だけです。\n\n問1\n\n\n\n\n\n\n\n理論\n\n\n\n\n\n\\[\n\\begin{aligned}\n\\dd U &= T \\dd S - P \\dd V \\\\\n\\dd F &= -S \\dd T - P \\dd V \\\\\n\\dd G &= -S \\dd T + V \\dd P\n\\end{aligned}\n\\]\nここら辺について頭に入れておく\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\n\n\n性質\nミクロカノニカル\nカノニカル\nグランドカノニカル\n\n\n\n\n状態\n外界から独立している\n周囲と熱平衡\n外界とやり取りがある\n\n\nエネルギー\n一定(断熱)\nやり取りあり(等温)\nやり取りあり(等温)\n\n\n粒子数\n一定\n一定\nやり取りあり\n\n\n特徴量\n\\(U\\)\n\\(F\\)\n\\(G\\)\n\n\n\n\n\n\n\n\n問2\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\n\n\n\n\n\n\n記号\n物理量\n説明\n\n\n\n\n\\(S\\)\nエントロピー\n乱雑さを示す状態量 \\(k_B\\ln W\\)\n\n\n\\(k_B\\)\nボルツマン定数\n\n\n\n\\(W\\)\n状態の数\n系のエネルギーが等しい微視状態の総数\n\n\n\\(F\\)\nヘルムホルツエネルギー\n等温条件下で取り出し可能なエネルギー量\n\n\n\\(\\beta\\)\n逆温度 \\(1/k_BT\\)\n温度の逆数として定義される量\n\n\n\\(Z\\)\n分配関数\nカノニカル分布の規格化定数\n\n\n\\(J\\)\nグランドポテンシャル\n系における可能な状態の分布\n\n\n\\(\\Xi\\)\n大分配関数\nグランドポテンシャルに関連する量\n\n\n\n\n\n\n\n\n問3\n\n\n\n\n\n\n\n理論\n\n\n\n\n\n\nはただ単に確率の問題を解くだけ。ここで、 \\(W_N(M) = {}_N \\mathrm{H}_M = \\binom{M+N-1}{M}\\) ということに注意した方がいい。\n\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n求める確率は \\(\\frac{W_{N-1}(M-n)}{W_N(M)}\\) であり、 \\(m = M/N\\) を使えば、\n\n\\[\n\\frac{1}{m+1} \\left( \\frac{m}{m+1} \\right)^n\n\\]\n\n\n\n\\[\n\\frac{m}{1+m}=\\frac{M}{M+N} = \\exp \\qty(-\\frac{\\hbar \\omega}{k_BT})\n\\]\n\n\n\n\n\n問4\n\n不明瞭なので、解答は不確かです。\n\n\n\n\n\n\n理論\n\n\n\n\n\n問題自体は指示している通りに積分計算をすればいい。\n分配関数とかについて軽くまとめる。かなり我流な考え方なので注意してください。\nある何らかの力が働いている系があ流として、そこでは圧力が定義可能である。 \\(P=NkT\\) となるわけだが、この系のうち、あるエネルギー \\(E\\) 以上を取る粒子が \\(n\\) 個存在してるとしたら、その割合は、 PE が圧力を超えていく確立に等しくて、 \\(-n\\dd P.E. = \\dd P = kT \\dd n\\) で \\(n\\propto \\exp(-P.E./kT)\\) になるわけだけど、これを正規化するために \\(Z = \\sum \\exp(-P.E./kT)\\) をやっている。\nで、この \\(Z\\) 自体を弄り回して \\(T\\) 関連の量を求めることもできる。\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n分配関数は\n\n\\[\n\\begin{aligned}\nZ = &\\eval{\\frac{1}{N!}}_{\\text{粒子については区別しない}} \\\\\n&\\eval{\\sum_{n_x} \\sum_{n_y} \\sum_{n_z}}_{x,y,z\\text{方向全て}} \\\\\n&\\exp \\qty(-\\frac{1}{k_BT} \\eval{\\sum_i}_{N個} \\frac{h^2}{2mL^2} (n_x^2+n_y^2+n_z^2)) \\\\\n= & \\frac{1}{N!} \\qty(\\sum_n \\exp(-\\frac{\\beta h^2}{2mL^2}n^2))^{3N} \\\\\n= & \\frac{V^N}{h^{3N}N!} \\qty(\\frac{2\\pi m}{\\beta})^{3N/2}\n\\end{aligned}\n\\]",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "2A",
+      "材料統計力学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/2A/材料量子力学.html",
+    "href": "posts/univ_lecs/2A/材料量子力学.html",
+    "title": "材料量子力学",
+    "section": "",
+    "text": "過去問を解いていく。手書きです。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "2A",
+      "材料量子力学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/2A/材料量子力学.html#section",
+    "href": "posts/univ_lecs/2A/材料量子力学.html#section",
+    "title": "材料量子力学",
+    "section": "2021",
+    "text": "2021",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "2A",
+      "材料量子力学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/2A/材料量子力学.html#section-1",
+    "href": "posts/univ_lecs/2A/材料量子力学.html#section-1",
+    "title": "材料量子力学",
+    "section": "2019",
+    "text": "2019",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "2A",
+      "材料量子力学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/2A/材料量子力学.html#section-2",
+    "href": "posts/univ_lecs/2A/材料量子力学.html#section-2",
+    "title": "材料量子力学",
+    "section": "2015",
+    "text": "2015",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "2A",
+      "材料量子力学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/2A/材料量子力学.html#section-3",
+    "href": "posts/univ_lecs/2A/材料量子力学.html#section-3",
+    "title": "材料量子力学",
+    "section": "2009",
+    "text": "2009",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "2A",
+      "材料量子力学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/2A/材料速度論.html",
+    "href": "posts/univ_lecs/2A/材料速度論.html",
+    "title": "材料速度論",
+    "section": "",
+    "text": "軽いまとめと問題の過去問を手書きで解いてます。\nTeXにまとめるのは面倒でした。\n\n\n\n\n\n\n\n\n\n\n\n Back to top",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "2A",
+      "材料速度論"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/2A/材料相平衡論.html",
+    "href": "posts/univ_lecs/2A/材料相平衡論.html",
+    "title": "材料相平衡論",
+    "section": "",
+    "text": "過去問の解答があるので概ね問題ないと思われますが、2021年の(5)の3に問題の誤りがあり、そのことについて図示しました。\n\n\n\n\n Back to top",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "2A",
+      "材料相平衡論"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/2A/材料力学.html",
+    "href": "posts/univ_lecs/2A/材料力学.html",
+    "title": "統計力学",
+    "section": "",
+    "text": "作ったらみんなが喜ぶと聞いて．\n\\[\\require{physics}\\]\n\n\n\nレオロジーとは、(変形と流動) の学問であり、(ソフトマター)と呼ばれる固体と液体の中間的な性質をもつ材料を対象とする。\n固体の示す性質を(弾性)、液体の示す性質を(粘性)と呼ぶ。その二つをわけるのは、簡単には(かたち)を忘れるかどうかである。\nエネルギーの観点からは、固体は変形によるエネルギーを(貯蔵)する一方で液体はエネルギーを(散逸)する。\nスライムやゲルは、(時間)によって固体と液体の中間的な性質を示す(粘弾性)体である。\nマヨネーズや歯磨き粉は、(加える変形量)によって固体と液体の中間的な性質を示す(塑性)体である。\nレオロジー特性を利用した様々な材料が、わたしたちの身の周りに存在する (例:化粧品、防振ゴム、、、、)。\n\n\n\n\n\n材料の力学を扱う上で、力と変形の関係は試料形状によらない必要がある。このため、規格化した力、変形量として(応力)と(ひずみ)が用いられる。\n一軸伸張変形を特徴づけるパラメータとして(ヤング)率が、ずり変形を特徴づけるパラメータとして(剛性)率がある。これらは、変形前後の体 積変化を示す(ポアソン比)で結び付けられており、等体積変形下におい て(3)倍の関係にある。\nより一般的な表記として、(テンソル)を用いることができる。対称性を考えるとこのテンソルには、(6)個の独立変数が存在する。\n純粋な変形の効果を考えるため、(フィンガーテンソル)が使われる。さらに、座標系によらない変数として、(不変量)が用いられる。\n\n\n\n\n\n材料の粘弾性は、(レオメータ)という装置を用いて、種々の変形を加えることで評価できる。\n粘弾性評価方法としては、一定ひずみを加え応力の時間変化を観察する(クリープ)、正弦ひずみを加える(動的粘弾性)がある。\nそれぞれについて、(緩和弾性率)、(クリープコンプライアンス)、(貯蔵・損失弾性率)を用いることで、粘弾性の定量的な議論ができる。 線形粘弾性の範囲において、これらの関数は等価な情報を有する。\n任意の変形履歴を受けた場合、ある時間における応力 (ひずみ) は過去の時刻における微小時間内に誘起した応力(ひずみ)の総和として記述できることを(Boltzmannの重畳原理)と呼び、この加成性が成り立つ範囲 を線形粘弾性と呼ぶ。\n実際の成形加工、実用上は(非線形)粘弾性が重要となる場面もある。\n\n\n\n\n\n高分子は、分子が(共有結合)によって連結したひも状の物質である。\n高分子は、ポリエチレンのような(結晶)性高分子とポリスチレンのような(非晶)性高分子に大別できる。(非晶)性高分子には、分子運動性の違 いによって、(ガラス)状態と(ゴム)状態が存在する。(ゴム)状態の高分子が示すソフトな弾性を(ゴム)弾性と呼ぶ。\n(ゴム)弾性の特徴は、\n\n金属と比べ(小さい力で大きく変形)する\n温度を上げると弾性率が(増加)する\n急激に伸長すると(暖まり)、急激に圧縮すると(冷える) - 応力ー延伸比曲線が(S)字型\n\n熱力学的な解析から、ゴム弾性は、金属の示す(エネルギー)弾性と異なり、 (エントロピー)の寄与が支配的であることがわかる。\n\n\n\n\n\nゴム弾性は、(エントロピー)由来の寄与が支配的である。\n高分子一本鎖の弾性は、(ガウス)統計を用いることで、定量的に議論することが可能である。\n網目を単純化した(自由連結鎖)モデルを用いることで、ゴムの非線形挙動をある程度、記述可能である。\nゴム弾性の式に基づくと、弾性率は(部分鎖密度)に比例することがわかる。\n架橋点数や(部分鎖)密度は、パーコレーションモデルなどで見積もることができ、(\\(G = 2pCk_BT\\))のように予測される。\n高分子絡み合い溶液の場合、弾性率は(濃度)のみで規定される。\n\n\n\n\n\n高分子の粘弾性緩和は、(分子ダイナミックス)を反映する。\n非絡み合い系の粘弾性緩和は分子量に対して(2)乗の関係を示す。( バネ・ビーズ ) モデルを用いることで、粘弾性緩和挙動を予測可能である。Boltzmannの重畳原理より粘度の分子量依存性は(高分子のからみあい ) と予測される。\n絡み合った高分子の粘弾性緩和は、濃度・分子量に対して( ) の関係を示す。絡んだ周囲の鎖の影響で、分子は一方向に拡散する( 熱 )運動によって緩和が起こる。(管 )モデルを用いる ことで、絡み合い高分子の粘弾性は記述可能である。\n分岐が入ると( レプテーション運動（一次元運動） )が抑制され、( 鎖の収縮運動 )によってのみ緩和が 進行するため、ダイナミクスが遅延する。\n高度に分岐すると、系全体が固体として振る舞うゲルになる。 ゾルとゲルの境目では、( 緩和時間が発散)の関係が見られ、( Winter -Chambon )則と呼ばれる。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "2A",
+      "統計力学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/2A/材料力学.html#section",
+    "href": "posts/univ_lecs/2A/材料力学.html#section",
+    "title": "統計力学",
+    "section": "",
+    "text": "レオロジーとは、(変形と流動) の学問であり、(ソフトマター)と呼ばれる固体と液体の中間的な性質をもつ材料を対象とする。\n固体の示す性質を(弾性)、液体の示す性質を(粘性)と呼ぶ。その二つをわけるのは、簡単には(かたち)を忘れるかどうかである。\nエネルギーの観点からは、固体は変形によるエネルギーを(貯蔵)する一方で液体はエネルギーを(散逸)する。\nスライムやゲルは、(時間)によって固体と液体の中間的な性質を示す(粘弾性)体である。\nマヨネーズや歯磨き粉は、(加える変形量)によって固体と液体の中間的な性質を示す(塑性)体である。\nレオロジー特性を利用した様々な材料が、わたしたちの身の周りに存在する (例:化粧品、防振ゴム、、、、)。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "2A",
+      "統計力学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/2A/材料力学.html#section-1",
+    "href": "posts/univ_lecs/2A/材料力学.html#section-1",
+    "title": "統計力学",
+    "section": "",
+    "text": "材料の力学を扱う上で、力と変形の関係は試料形状によらない必要がある。このため、規格化した力、変形量として(応力)と(ひずみ)が用いられる。\n一軸伸張変形を特徴づけるパラメータとして(ヤング)率が、ずり変形を特徴づけるパラメータとして(剛性)率がある。これらは、変形前後の体 積変化を示す(ポアソン比)で結び付けられており、等体積変形下におい て(3)倍の関係にある。\nより一般的な表記として、(テンソル)を用いることができる。対称性を考えるとこのテンソルには、(6)個の独立変数が存在する。\n純粋な変形の効果を考えるため、(フィンガーテンソル)が使われる。さらに、座標系によらない変数として、(不変量)が用いられる。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "2A",
+      "統計力学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/2A/材料力学.html#section-2",
+    "href": "posts/univ_lecs/2A/材料力学.html#section-2",
+    "title": "統計力学",
+    "section": "",
+    "text": "材料の粘弾性は、(レオメータ)という装置を用いて、種々の変形を加えることで評価できる。\n粘弾性評価方法としては、一定ひずみを加え応力の時間変化を観察する(クリープ)、正弦ひずみを加える(動的粘弾性)がある。\nそれぞれについて、(緩和弾性率)、(クリープコンプライアンス)、(貯蔵・損失弾性率)を用いることで、粘弾性の定量的な議論ができる。 線形粘弾性の範囲において、これらの関数は等価な情報を有する。\n任意の変形履歴を受けた場合、ある時間における応力 (ひずみ) は過去の時刻における微小時間内に誘起した応力(ひずみ)の総和として記述できることを(Boltzmannの重畳原理)と呼び、この加成性が成り立つ範囲 を線形粘弾性と呼ぶ。\n実際の成形加工、実用上は(非線形)粘弾性が重要となる場面もある。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "2A",
+      "統計力学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/2A/材料力学.html#section-3",
+    "href": "posts/univ_lecs/2A/材料力学.html#section-3",
+    "title": "統計力学",
+    "section": "",
+    "text": "高分子は、分子が(共有結合)によって連結したひも状の物質である。\n高分子は、ポリエチレンのような(結晶)性高分子とポリスチレンのような(非晶)性高分子に大別できる。(非晶)性高分子には、分子運動性の違 いによって、(ガラス)状態と(ゴム)状態が存在する。(ゴム)状態の高分子が示すソフトな弾性を(ゴム)弾性と呼ぶ。\n(ゴム)弾性の特徴は、\n\n金属と比べ(小さい力で大きく変形)する\n温度を上げると弾性率が(増加)する\n急激に伸長すると(暖まり)、急激に圧縮すると(冷える) - 応力ー延伸比曲線が(S)字型\n\n熱力学的な解析から、ゴム弾性は、金属の示す(エネルギー)弾性と異なり、 (エントロピー)の寄与が支配的であることがわかる。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "2A",
+      "統計力学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/2A/材料力学.html#section-4",
+    "href": "posts/univ_lecs/2A/材料力学.html#section-4",
+    "title": "統計力学",
+    "section": "",
+    "text": "ゴム弾性は、(エントロピー)由来の寄与が支配的である。\n高分子一本鎖の弾性は、(ガウス)統計を用いることで、定量的に議論することが可能である。\n網目を単純化した(自由連結鎖)モデルを用いることで、ゴムの非線形挙動をある程度、記述可能である。\nゴム弾性の式に基づくと、弾性率は(部分鎖密度)に比例することがわかる。\n架橋点数や(部分鎖)密度は、パーコレーションモデルなどで見積もることができ、(\\(G = 2pCk_BT\\))のように予測される。\n高分子絡み合い溶液の場合、弾性率は(濃度)のみで規定される。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "2A",
+      "統計力学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/2A/材料力学.html#section-5",
+    "href": "posts/univ_lecs/2A/材料力学.html#section-5",
+    "title": "統計力学",
+    "section": "",
+    "text": "高分子の粘弾性緩和は、(分子ダイナミックス)を反映する。\n非絡み合い系の粘弾性緩和は分子量に対して(2)乗の関係を示す。( バネ・ビーズ ) モデルを用いることで、粘弾性緩和挙動を予測可能である。Boltzmannの重畳原理より粘度の分子量依存性は(高分子のからみあい ) と予測される。\n絡み合った高分子の粘弾性緩和は、濃度・分子量に対して( ) の関係を示す。絡んだ周囲の鎖の影響で、分子は一方向に拡散する( 熱 )運動によって緩和が起こる。(管 )モデルを用いる ことで、絡み合い高分子の粘弾性は記述可能である。\n分岐が入ると( レプテーション運動（一次元運動） )が抑制され、( 鎖の収縮運動 )によってのみ緩和が 進行するため、ダイナミクスが遅延する。\n高度に分岐すると、系全体が固体として振る舞うゲルになる。 ゾルとゲルの境目では、( 緩和時間が発散)の関係が見られ、( Winter -Chambon )則と呼ばれる。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "2A",
+      "統計力学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料強度学.html",
+    "href": "posts/univ_lecs/3S/材料強度学.html",
+    "title": "材料強度学",
+    "section": "",
+    "text": "\\[ \\require{physics}\n\\require{mhchem}\n\\]",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料強度学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料強度学.html#講義の概要",
+    "href": "posts/univ_lecs/3S/材料強度学.html#講義の概要",
+    "title": "材料強度学",
+    "section": "講義の概要",
+    "text": "講義の概要\n\n出席は取らない",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料強度学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料強度学.html#第一講",
+    "href": "posts/univ_lecs/3S/材料強度学.html#第一講",
+    "title": "材料強度学",
+    "section": "第一講",
+    "text": "第一講\n\nHooke’s Law\n\\[ \\pdv{\\sigma}{\\epsilon} = E \\]\n応力は歪の小さい範囲では歪に比例する。比例係数はヤング率。当たり前の話。\n\n点Aから手を離すと、フックの直線とそんなに変わらない傾きで点Bに行く。OBのことを塑性変形と読んでいる。このことを yield phenomenon pointと呼んでいるらしい。\n\nこの状態は continuous yieldingと呼ばれている。このヤング率は測定が難しいので、歪の0.2%とすることが多いらしい。\n\n\n脆性破壊と延性破壊\n脆性破壊は、急激に破壊が進むこと。延性破壊は、ゆっくりと破壊が進むこと。\n\n靱性は、破壊エネルギーのこと。延性破壊が起こる材料は靱性が高い。\n\\[ \\text{靱性} = \\int \\sigma \\dd \\epsilon \\]\n\n\n理想強度\n\nこのもっこりを正弦関数で近似して、\n\n\\[ \\sigma \\cong \\sigma_c \\sin \\left(\\frac{2\\pi(a-a_0)}{\\lambda}\\right) \\]\nここで、一時近似すると、\n\\[ \\sigma \\cong \\sigma_c \\frac{2\\pi(a-a_0)}{\\lambda} \\]\nフックの法則では\n\\[ \\sigma = E \\epsilon = E \\frac{a-a_0}{a_0}\\]\n\\[ \\sigma_c = \\frac{E\\lambda}{2\\pi a_0}\\]\nここで \\(\\lambda\\) を求めないといけないが、これは、実験的に劈開試験を行うことで求めることができる。表面エネルギーを \\(\\gamma\\) にすると、面が二つある事を考えて、\n\\[ 2\\gamma = \\int_{a_0}^{\\infty} \\sigma \\dd a = \\int_{a_0}^{\\infty} \\sigma_c \\sin \\left(\\frac{2\\pi(a-a_0)}{\\lambda}\\right) \\dd a = \\sigma_c \\frac{\\lambda}{\\pi} \\]\nここで注意なのは、もっこりは一つなので、それで近似する。\nここにフックの法則の方の式を代入すると、\n\\[ 2\\gamma = \\frac{\\sigma_c}{\\pi} \\frac{2\\pi a_0 \\sigma_c}{E} = \\frac{2\\sigma_c^2 a_0}{E} \\]\n\\[ \\sigma_c = \\sqrt{\\frac{\\gamma E}{a_0}} \\]\n実際の破壊強度は \\(\\sigma_c\\) の 10%~1%程度で あることが知られている。このモデルでは欠陥の影響が考慮されていない。現実の材料では、ミリ～ミクロンサイズの空隙から、熱力学的平衡状態において存在する格子欠陥まで、さまざまな欠陥が含まれており、それゆえ破壊強度が理想強度を大きく下回ると考えられる。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料強度学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料強度学.html#第２講",
+    "href": "posts/univ_lecs/3S/材料強度学.html#第２講",
+    "title": "材料強度学",
+    "section": "第２講",
+    "text": "第２講\n\n滑り面と滑り方向、滑り系について\nこれらを表すのにミラー指数が使われる。\n\n滑り面  \\[\n(h\\; k\\; l) = (\\frac{1}{x_1} \\; \\frac{1}{y_1} \\; \\frac{1}{z_1})\n\\] のように定義するので、このようになる。要するに、逆数を考えればいい。また面同士の角度は、内積を取ることで求めることができる。 \\[\n\\cos \\phi = \\frac{h_1h_2 + k_1k_2 + l_1l_2}{\\sqrt{h_1^2 + k_1^2 + l_1^2} \\sqrt{h_2^2 + k_2^2 + l_2^2}}\n\\] また、面のことは \\((h\\; k\\; l)\\) と表し、等価な面は \\({h\\; k\\; l}\\) と表す。\n滑り方向 方向については単純に方向のベクトルを考えればいい。\n滑り系 先ほどの二つの値をかけあわせてできるもの。\n\n\n\nCRSS\nCRSS とは Critical Resolved Shear Stress の略で、これは、ある方向に対しての応力のこと。これは、Schmid’s Law によって求めることができる。\n\\[\n\\tau = \\frac{F}{S} \\cos \\phi \\cos \\lambda\n\\]\nここで次の項はシュミット因子と呼ばれる\n\\[\n\\cos \\phi \\cos \\lambda\n\\]\nこれは、ある方向に対しての応力を表す。この値が大きいほど、その方向に対しての応力が大きいことを示す。\n次に、CRSSの温度依存性の式は次のように示される。\n\\[\n\\tau = \\tau_0 \\exp \\left(-\\frac{Q}{kT}\\right)\n\\]\nまた、CRSSは結晶構造によっても変わり、シュミット因子の値を等高線的にプロットすることがある。\n\nこの時の三角形はステレオ投影図である。\n\nステレオ投影図\n\n \nこの代表的な三角形を標準ステレオ三角形と呼ぶ。この３つのベクトルを使って、任意のベクトルを線型結合的に表しているみたいだ。\n\n２次滑り\n\n\nある程度以上引っ張り変形させると、２次滑りが起こる。これの模式的なずが上のようなものである。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料強度学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料強度学.html#第３講",
+    "href": "posts/univ_lecs/3S/材料強度学.html#第３講",
+    "title": "材料強度学",
+    "section": "第３講",
+    "text": "第３講\n\n理論剪断強度\n\nこのような近似で、臨界剪断応力は次のように示される。\n\\[\n\\tau = \\tau_{max} \\sin \\frac{2\\pi x}{b} \\approx \\frac{2\\pi x \\tau_{max}}{b}\n\\]\nこれに対して、フックの法則から\n\\[\n\\tau = G \\frac{x}{a}\n\\]\n\\[\n\\tau_{max} = \\frac{Gb}{2\\pi a}\n\\]\nここで、\\(\\tau_{max}\\) は理論剪断強度と呼ばれる。\n\\[\n\\tau = \\frac{Gb}{2\\pi a} \\sin \\frac{2\\pi x}{b}\n\\]\nとなる。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料強度学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料強度学.html#過去問",
+    "href": "posts/univ_lecs/3S/材料強度学.html#過去問",
+    "title": "材料強度学",
+    "section": "過去問",
+    "text": "過去問\n\n2008\n\n問1\n刃状転位およびらせん転位を図示して、転位線とそのバーガースベクトルの関係について記せ\n\nDislocations\nDislocations are a type of defect in a crystal structure. They are areas where the atoms are out of position in the crystal structure. Dislocations are divided into two basic types: edge dislocations and screw dislocations.\n\n\nEdge Dislocations\nEdge dislocations are caused by the termination of a plane of atoms in the middle of a crystal. In such a case, an extra half-plane of atoms is introduced.\nThe vector that is perpendicular to the dislocation line and points in the direction where the extra half-plane of atoms was inserted is called the Burgers vector.\n\n\nScrew Dislocations\nScrew dislocations are a bit more difficult to visualize. They are formed by a shear stress that is applied to the crystal structure.\nThe Burgers vector is parallel to the dislocation line for a screw dislocation.\nIn both types of dislocations, the magnitude of the Burgers vector is equal to the lattice parameter, \\(a\\).\n\n\n\n解答\n螺旋転移では、転位線とバーガースベクトルは平行である。一方、刃状転位では、転位線とバーガースベクトルは直交する。\n\n\n\n問２\n断面積 \\(S\\) の単結晶の丸棒に引っ張り力 \\(F\\) を負荷した場合を考える。この時、引っ張り方向と滑り面の方線のなす角度を \\(\\phi\\) 引っ張り方向と滑り方向のなす角度を \\(\\lambda\\) とした場合、臨界剪断応力 \\(\\tau_0\\) を \\(S,F,\\phi,\\lambda\\) の関数として導け。またシュミット因子についてのべよ。\n\n解答\n\nCritical Shear Stress and Schmid’s Law\nWhen a single crystal rod with a cross-sectional area \\(S\\) is subjected to a tensile force \\(F\\), the critical resolved shear stress \\(\\tau_0\\) is given by Schmid’s Law:\n\\[\\tau_0 = \\frac{F}{S} \\cdot \\cos(\\phi) \\cdot \\cos(\\lambda)\\]\nwhere \\(\\phi\\) is the angle between the tensile direction and the normal to the slip plane, and \\(\\lambda\\) is the angle between the tensile direction and the slip direction.\nThe term \\(\\cos(\\phi) \\cdot \\cos(\\lambda)\\) is known as the Schmid factor. It represents the resolved shear stress on a particular slip system. The slip system with the highest Schmid factor will be the first to undergo plastic deformation when the material is subjected to a stress. The Schmid factor is a measure of the component of the applied stress that can contribute to dislocation motion along a slip plane in a specific direction.\n\n\n\n\n問３\n刃状転位の応力場は \\(\\sigma_{xx} = -\\frac{Gb}{2\\pi(1-\\nu)}\\frac{y(3x^2+y^2)}{(x^2+y^2)^2}, \\sigma_{yy} = \\frac{Gb}{2\\pi(1-\\nu)}\\frac{(x^2-y^2)}{(x^2+y^2)^2}\\) で与えられる。ここで、\\(G\\) はせん断弾性率、\\(b\\) はバーガースベクトル、\\(\\nu\\) はポアソン比である。これより刃状転位周囲の引っ張り、圧縮の応力分布を図示せよ。\n\n\nShow Code\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# Constants\nG = 1  # Shear modulus\nb = 1  # Burgers vector\nnu = 0.3  # Poisson's ratio\n\n# Grid of x, y points\nx = np.linspace(-1, 1, 100)\ny = np.linspace(-1, 1, 100)\nX, Y = np.meshgrid(x, y)\n\n# Stress fields\nsigma_xx = -G*b/(2*np.pi*(1-nu)) * Y*(3*X**2+Y**2) / (X**2+Y**2)**2\nsigma_yy = G*b/(2*np.pi*(1-nu)) * (X**2-Y**2) / (X**2+Y**2)**2\n\n# Plot\nfig, ax = plt.subplots(1, 2, figsize=(12, 6))\n\n# sigma_xx\nc = ax[0].contourf(X, Y, sigma_xx, levels=20, cmap='RdBu_r')\nfig.colorbar(c, ax=ax[0])\nax[0].set_title('$\\sigma_{xx}$')\n\n# sigma_yy\nc = ax[1].contourf(X, Y, sigma_yy, levels=20, cmap='RdBu_r')\nfig.colorbar(c, ax=ax[1])\nax[1].set_title('$\\sigma_{yy}$')\n\nplt.show()\n\n\n&lt;&gt;:24: SyntaxWarning: invalid escape sequence '\\s'\n&lt;&gt;:29: SyntaxWarning: invalid escape sequence '\\s'\n&lt;&gt;:24: SyntaxWarning: invalid escape sequence '\\s'\n&lt;&gt;:29: SyntaxWarning: invalid escape sequence '\\s'\n/var/folders/j3/xf5v28yn6037v0yylgccpmsr0000gn/T/ipykernel_28974/1480925135.py:24: SyntaxWarning: invalid escape sequence '\\s'\n  ax[0].set_title('$\\sigma_{xx}$')\n/var/folders/j3/xf5v28yn6037v0yylgccpmsr0000gn/T/ipykernel_28974/1480925135.py:29: SyntaxWarning: invalid escape sequence '\\s'\n  ax[1].set_title('$\\sigma_{yy}$')\n\n\n\n\n\n\n\n\n\n\n\n問４\nひずみエネルギーは半径\\(r\\) の場所で円筒一周で剪断応力が\n\\[\n\\tau = \\frac{Gb}{2\\pi r} = G\\gamma\n\\]\nなので、面積あたりのひずみエネルギーは\n\\[\ne = \\int_{0}^{\\gamma} \\tau \\dd \\gamma = \\frac{1}{2}G\\gamma^2\n\\]\nこれは、歪が線形に変化するときのひずみエネルギーと一致する。\n\\[\nE = \\int_{r_0}^{r} e2\\pi r \\dd r = \\frac{Gb^3}{4\\pi}\\ln \\frac{r}{r_0}\n\\]\n\n\n問５",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料強度学"
     ]
   },
   {
@@ -2877,20 +2905,6 @@
     "href": "index.html",
     "title": "Serika’s Blog",
     "section": "",
-    "text": "このブログでは、私個人の日記などの記録や、AtCoderやゲーム開発などでの進捗管理、情報発信をしていくつもりです。\n現時点での各セクションでの概要や目標は次のとおりです。\n\n\n\n\n\n\n\n\nセクション名\n概要\n目標\n\n\n\n\nAtCoder\nTypicala90を解いて行っています\nrustでAtCoderに挑戦する人にとって一助となるドキュメントになること\n\n\nUE5\nAuraというゲームを作るオンライン講義の記録\nコース完了後に自作のコピーゲームを作るときに参考にする\n\n\n大学用\n自作のシケプリを公開する場所\n参考になってくれれば嬉しい。そのうち消すかも\n\n\n収容所\n収容所で公開する問題を載せていく\nデータベース代わりになるといいかなと\n\n\nJournal\nただの日記\nできれば毎日投稿する\n\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\n生産プロセス\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nDec 17, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nデバイス材料工学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nDec 2, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料統計力学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nNov 29, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n高分子ノート\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nOct 10, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nセラミックノート\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nOct 10, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nマテリアルインフォルマティクス\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 9, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料電気化学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 8, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n組織生成論\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 8, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n過去問演習\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nApr 6, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料強度学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 5, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n固体物性学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 5, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料反応工学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 5, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\n\n\n\nProgramming\n\n\nWeb\n\n\nPlayGround\n\n\n\n\n\n\n\n\n\nDec 20, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_06\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学II\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学III\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学B\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学A\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-11\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 30, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nPlanning\n\n\n\n\n\n\nUE5\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 29, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-10\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_05\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-09\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 24, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_04\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 20, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-08\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 26, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-07\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-06\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 23, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-05\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 17, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-04\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 16, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-03\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 15, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_03\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 15, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学I\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nOct 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n物理\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nOct 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料速度論\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料量子力学\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料相平衡論\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n統計力学\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nCargo Compete\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-02\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-01\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nSection 02\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\nNo matching items\n\n\n  \n\n Back to top"
-  },
-  {
-    "objectID": "posts/univ_lecs/3S/材料反応工学.html#問題1反応速度式の導出方法について以下の設問に答えよ",
-    "href": "posts/univ_lecs/3S/材料反応工学.html#問題1反応速度式の導出方法について以下の設問に答えよ",
-    "title": "材料反応工学",
-    "section": "問題【1】反応速度式の導出方法について、以下の設問に答えよ。",
-    "text": "問題【1】反応速度式の導出方法について、以下の設問に答えよ。\nモノシラン（()）の気相分解反応は見かけ上、モノシラン濃度に一次の反応である：\n[ ]\nこの反応の速度定数を (k) とすると、(k) は圧力が低くなるとその値が低下することが知られている。\nこれは、上記の反応が実際には以下のように 2 段階の素反応に分かれているためと考えられる：\n[ ] [ ]\n\n設問\n\n上記のように、単分子分解反応の速度定数が圧力依存性を示す反応機構を一般的になんと呼ぶか答えよ。\n上記の反応機構に基づき、定常状態近似を用いて、() 生成速度の圧力依存性を示す速度式を導出せよ。\n表面反応速度式として、Langmuir–Hinshelwood 型の速度式がよく知られている。**律速段階近似*## 問題【1】反応速度式の導出方法について、以下の設問に答えよ。\n\nモノシラン（()）の気相分解反応は見かけ上、モノシラン濃度に一次の反応である：\n[ ]\nこの反応の速度定数を (k) とすると、(k) は圧力が低くなるとその値が低下することが知られている。\nこれは、上記の反応が実際には以下のように 2 段階の素反応に分かれているためと考えられる：\n\\[\n\\ce{SiH4 + M &lt;=&gt; SiH4^{*} + M}\n\\] \\[\n\\ce{SiH4^{*} -&gt; SiH2 + H2}\n\\]\n\n\n設問\n\n上記のように、単分子分解反応の速度定数が圧力依存性を示す反応機構を一般的になんと呼ぶか答えよ。\n上記の反応機構に基づき、定常状態近似を用いて、() 生成速度の圧力依存性を示す速度式を導出せよ。\n表面反応速度式として、Langmuir–Hinshelwood 型の速度式がよく知られている。律速段階近似を用いて Langmuir–Hinshelwood 型の速度式を導出せよ。その際に、定常状態近似と律速段階近似の違いを明確にせよ。\nLindemann-Hinshelwood機構\n\\(\\ce{SiH4^{\\ast}}\\) の生成の速度式を等式に結ぶ。\n\n\\[\nk_1[\\ce{SiH4}][\\ce{M}] = k_2[\\ce{SiH4^{\\ast}}] + k_{-1}[\\ce{SiH4^{\\ast}}][\\ce{M}]\n\\]\nすることによって、\\(\\ce{SiH4^{\\ast}}\\) の生成速度式を求めることができる。\n\\[\n[\\ce{SiH4^{\\ast}}] = \\frac{k_1[\\ce{SiH4}][\\ce{M}]}{k_2 + k_{-1}[\\ce{M}]}\n\\]\n次に、\\(r_\\ce{SiH2}=k_2 [\\ce{SiH4^{\\ast}}]\\) なので、\n\\[\nr_\\ce{SiH2} = \\frac{k_1k_2[\\ce{SiH4}][\\ce{M}]}{k_2 + k_{-1}[\\ce{M}]}\n\\]\nとなる。高圧環境下では \\(k_{-1}\\) はすぐにどこかにぶつかって励起状態を脱するので、 \\(k_2\\) に比べて非常に大きい。このとき、\\(r_\\ce{SiH2} = k[\\ce{SiH4}] \\approx \\frac{k_1k_2}{k_{-1}}\\ce{SiH4}\\) となるので、一次反応になる。逆に、そうじゃ無い時は略すが、2次反応になる。\nまた、 \\(k\\) について解くと、\n\\[\n\\frac{1}{k}=\\frac{k_{-1}}{k_1k_2} + \\frac{1}{k_1}\\frac{1}{\\ce{M}}\n\\]\n\n何を書けばいいのかわからない。一般論を語れと？\n\n2種類の分子が競争的に吸着するのとき、\\(A, B\\) の吸着に関する平衡は下のようになる。ただし \\(\\theta\\) は吸着率を表す。 \\[\nK_{\\mathrm{A}}=\\frac{[\\mathrm{M}]_0 \\theta_{\\mathrm{A}}}{p_{\\mathrm{A}}[\\mathrm{M}]_0\\left(1-\\theta_{\\mathrm{A}}-\\theta_{\\mathrm{B}}\\right)}, \\quad K_{\\mathrm{B}}=\\frac{[\\mathrm{M}]_0 \\theta_{\\mathrm{B}}}{p_{\\mathrm{B}}[\\mathrm{M}]_0\\left(1-\\theta_{\\mathrm{A}}-\\theta_{\\mathrm{B}}\\right)}\n\\]\nすると、\n\\[\n\\frac{d[\\mathrm{C}]}{d t}=k \\theta_{\\mathrm{A}} \\theta_{\\mathrm{B}}=k \\frac{\\left(p_{\\mathrm{A}} K_{\\mathrm{A}}\\right)\\left(p_{\\mathrm{B}} K_{\\mathrm{B}}\\right)}{\\left(1+p_{\\mathrm{A}} K_{\\mathrm{A}}+p_{\\mathrm{B}} K_{\\mathrm{B}}\\right)^2}\n\\]\nとなる。これ以上何を語れと？",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3S",
-      "材料反応工学"
-    ]
+    "text": "このブログでは、私個人の日記などの記録や、AtCoderやゲーム開発などでの進捗管理、情報発信をしていくつもりです。\n現時点での各セクションでの概要や目標は次のとおりです。\n\n\n\n\n\n\n\n\nセクション名\n概要\n目標\n\n\n\n\nAtCoder\nTypicala90を解いて行っています\nrustでAtCoderに挑戦する人にとって一助となるドキュメントになること\n\n\nUE5\nAuraというゲームを作るオンライン講義の記録\nコース完了後に自作のコピーゲームを作るときに参考にする\n\n\n大学用\n自作のシケプリを公開する場所\n参考になってくれれば嬉しい。そのうち消すかも\n\n\n収容所\n収容所で公開する問題を載せていく\nデータベース代わりになるといいかなと\n\n\nJournal\nただの日記\nできれば毎日投稿する\n\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\n生産プロセス\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nDec 17, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nデバイス材料工学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nDec 2, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料統計力学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nNov 29, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n高分子ノート\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nOct 10, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nセラミックノート\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nOct 10, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料電気化学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 8, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n組織生成論\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 8, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n過去問演習\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nApr 6, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料強度学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 5, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n固体物性学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 5, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料反応工学\n\n\n\n\n\n\nUniversity\n\n\n2024\n\n\n\n\n\n\n\n\n\nApr 5, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\n\n\n\nProgramming\n\n\nWeb\n\n\nPlayGround\n\n\n\n\n\n\n\n\n\nDec 20, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_06\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学II\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学III\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学B\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学A\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-11\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 30, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nPlanning\n\n\n\n\n\n\nUE5\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 29, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-10\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_05\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-09\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 24, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_04\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 20, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-08\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 26, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-07\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-06\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 23, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-05\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 17, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-04\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 16, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-03\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 15, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_03\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 15, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学I\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nOct 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n物理\n\n\n\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nOct 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料速度論\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料量子力学\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料相平衡論\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n統計力学\n\n\n\n\n\n\nUniversity\n\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nCargo Compete\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-02\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-01\n\n\n\n\n\n\nAtCoder\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nSection 02\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\n\n\n\nUE5\n\n\nAura\n\n\nUdemy\n\n\nGame\n\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\nNo matching items\n\n\n  \n\n Back to top"
   }
 ]
