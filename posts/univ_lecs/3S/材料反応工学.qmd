@@ -230,7 +230,7 @@ $$
 
 にするとうまいこといく。
 
-#### Linndemann-Hinshelwood機構
+#### Linndemann-Hinshelwood機構 {#sec-lindemann}
 
 気相中での化学分解や異性化反応をモデル化で使われる。
 
@@ -457,6 +457,58 @@ $$
 
 - 二次反応
 
+同様にして積分すればいい。
+
+$$
+\begin{aligned}
+\int_{C_{A0}}^{C_A} \frac{dC_A}{C_A^2} &= -kt\\
+- \frac{1}{C_A} + \frac{1}{C_{A0}} &= -kt\\
+\frac{1}{C_A} &= \frac{1}{C_{A0}} + kt
+\end{aligned}
+$$
+
+で、半減期は
+
+$$
+t_{1/2} = \frac{1}{kC_{A0}}
+$$
+
+になって、初期濃度に依存するようになる。
+
+- n次反応
+
+$$
+\begin{aligned}
+\int_{C_{A0}}^{C_A} \frac{dC_A}{C_A^n} &= -kt\\
+\frac{1}{(n-1)C_A^{n-1}} - \frac{1}{(n-1)C_{A0}^{n-1}} &= kt\\
+\frac{1}{C_A^{n-1}} &= \frac{1}{C_{A0}^{n-1}} + (n-1)kt
+\end{aligned}
+$$
+
+- 0次反応
+
+$$
+\begin{aligned}
+\int_{C_{A0}}^{C_A} dC_A &= -kt\\
+C_A - C_{A0} &= -kt\\
+C_A &= C_{A0} - kt
+\end{aligned}
+$$
+
+- 異種２分子反応
+
+$$
+\ce{A + B -> X}
+$$
+
+$$
+\begin{aligned}
+\dv{[\ce{A_0}] - [\ce{X}]}{t} &= -k([\ce{A_0}] - [\ce{X}])([\ce{B_0}] - [\ce{X}]) \\
+\dfrac{\dd{} [\ce{X}]}{([\ce{A_0}] - [\ce{X}])([\ce{B_0}] - [\ce{X}])} &= kdt \\
+
+\end{aligned}
+$$
+
 
 # 過去問
 
@@ -499,7 +551,8 @@ $$\ce{SiH4^{*} -> SiH2 + H2}$$
 ::: {.callout-note collapse="true"}
 ##### 理論
 
-This is an example of a callout with a title.
+先ほど述べた (@sec-lindemann) の反応機構。
+
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -507,17 +560,30 @@ This is an example of a callout with a title.
 
 1. Lindemann-Hinshelwood機構
 
-::: 
-
-2. 
-中間体 $\ce{SiH4^*}$ に対して定常状態近似を適用：
+2. 中間体 $\ce{SiH4^*}$ に対して定常状態近似を適用
 
 $$ k_1[\ce{SiH4}][\ce{M}] = k_{-1}[\ce{SiH4^*}][\ce{M}] + k_2[\ce{SiH4^*}] $$
 
 $$ \Rightarrow \quad [\ce{SiH4^*}] = \dfrac{k_1[\ce{SiH4}]}{k_{-1} + \dfrac{k_2}{[\ce{M}]}} $$
 
+ここで、$[\ce{SH2}]$ の生成速度は $k_2[\ce{SiH4^*}]$ で表されるので、全体の生成速度は
 
-3. 何を書けばいいのかわからない。一般論を語れと？
+$$
+\dv{[\ce{SiH2}]}{t} = k_2[\ce{SiH4^*}] = \frac{k_1k_2[\ce{SiH4}]}{k_{-1} + \dfrac{k_2}{[\ce{M}]}} 
+$$
+
+ここでみなしの反応速度定数を $k$ とすると、
+
+$$
+\begin{aligned}
+k[\ce{SiH4}] &= \frac{k_1k_2[\ce{SiH4}]}{k_{-1} + \dfrac{k_2}{[\ce{M}]}} \\
+\dfrac{1}{k} &= \dfrac{k_{-1}}{k_1k_2} + \dfrac{k_1}{[\ce{M}]}
+\end{aligned}
+$$
+
+になるので、$\frac{1}{k} \propto \frac{1}{p}$ となる。
+
+3. 何を書けばいいのかわからない。
 
 2種類の分子が競争的に吸着するのとき、$A, B$ の吸着に関する平衡は下のようになる。ただし $\theta$ は吸着率を表す。
 $$
@@ -530,6 +596,32 @@ $$
 \frac{d[\mathrm{C}]}{d t}=k \theta_{\mathrm{A}} \theta_{\mathrm{B}}=k \frac{\left(p_{\mathrm{A}} K_{\mathrm{A}}\right)\left(p_{\mathrm{B}} K_{\mathrm{B}}\right)}{\left(1+p_{\mathrm{A}} K_{\mathrm{A}}+p_{\mathrm{B}} K_{\mathrm{B}}\right)^2}
 $$
 
-となる。これ以上何を語れと？
+::: 
 
+### 問2
 
+炭素粒子の燃焼反応に関連して、以下の設問に答えよ。
+
+#### 設問
+
+1. 直径 $1\ \mathrm{cm}$ の炭素粒子を $800\ ^\circ \mathrm{C}$、$1\ \mathrm{気圧}$ に保持した電気炉（雰囲気は空気）に入れたところ、燃焼し始めた。この温度での炭素表面に入射する酸素分子の反応確率（$\ce{C + O2 -> CO2}$ の反応が起こる確率）は $5.0 \times 10^{-2}$ であるという。この温度における表面反応速度定数を求めよ。ただし、空気中の酸素の濃度は $21\%$、酸素分子の分子量は $32$、気体定数 $R = 8.314\ \mathrm{J/mol \cdot K}$、$1\ \mathrm{気圧} = 1.0 \times 10^5\ \mathrm{Pa}$ である。
+
+2. 上記の反応は表面反応律速となるか、それとも拡散律速となるか、判断せよ。なお、$800\ ^\circ \mathrm{C}$ における酸素の拡散係数を $2.0 \times 10^{-5}\ \mathrm{m^2/sec}$ とする。
+
+3. 2の条件において、二酸化炭素の発生速度を計算せよ。なお、燃焼による炭素粒子径の減少は考えずに、初期生成速度（炭素粒子の直径 $1\ \mathrm{cm}$ のときの速度）を計算すればよい。
+
+4. 電気炉内に酸素を供給し、電気炉内の酸素濃度を $21\%$ から $30\%$ に増大させた。このとき、上記の二酸化炭素発生速度はどのように変化するか答えよ。
+
+5. 電気炉内に空気を供給し、炭素粒子の周りに流れを発生させた。このとき、流れによって炭素粒子およびその周りの空気の温度に変化はないものとする。二酸化炭素発生速度が流れの速度によってどのように変化するか記述せよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+This is an example of a callout with a title.
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+This is an example of a callout with a title.
+::: 

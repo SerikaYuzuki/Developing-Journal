@@ -624,6 +624,7 @@ window.Quarto = {
   <li><a href="#年度" id="toc-年度" class="nav-link" data-scroll-target="#年度">2012年度</a>
   <ul class="collapse">
   <li><a href="#問1" id="toc-問1" class="nav-link" data-scroll-target="#問1">問1</a></li>
+  <li><a href="#問2" id="toc-問2" class="nav-link" data-scroll-target="#問2">問2</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -635,7 +636,7 @@ window.Quarto = {
 
 
 
-<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;b9cf0467342644ca9bc2d7035d5326b0&quot;}"></script>
+
 <p><span class="math display">\[ \require{physics}
 \require{mhchem}
 \]</span></p>
@@ -822,8 +823,8 @@ r = \frac{0.72[\ce{A}]^2[\ce{B}]}{1+2[\ce{A}]}
 \ce{A + A + B &lt;=&gt; AB + A &lt;=&gt;A2B}
 \]</span></p>
 <p>にするとうまいこといく。</p>
-<section id="linndemann-hinshelwood機構" class="level4">
-<h4 class="anchored" data-anchor-id="linndemann-hinshelwood機構">Linndemann-Hinshelwood機構</h4>
+<section id="sec-lindemann" class="level4">
+<h4 class="anchored" data-anchor-id="sec-lindemann">Linndemann-Hinshelwood機構</h4>
 <p>気相中での化学分解や異性化反応をモデル化で使われる。</p>
 <p><span class="math display">\[\ce{A -&gt; P}\]</span></p>
 <p>この一見一時反応見えるものが実は中間体の存在する反応だという反応機構だ。</p>
@@ -989,6 +990,52 @@ k = \frac{\ln 2}{t_{1/2}}
 <ul>
 <li>二次反応</li>
 </ul>
+<p>同様にして積分すればいい。</p>
+<p><span class="math display">\[
+\begin{aligned}
+\int_{C_{A0}}^{C_A} \frac{dC_A}{C_A^2} &amp;= -kt\\
+- \frac{1}{C_A} + \frac{1}{C_{A0}} &amp;= -kt\\
+\frac{1}{C_A} &amp;= \frac{1}{C_{A0}} + kt
+\end{aligned}
+\]</span></p>
+<p>で、半減期は</p>
+<p><span class="math display">\[
+t_{1/2} = \frac{1}{kC_{A0}}
+\]</span></p>
+<p>になって、初期濃度に依存するようになる。</p>
+<ul>
+<li>n次反応</li>
+</ul>
+<p><span class="math display">\[
+\begin{aligned}
+\int_{C_{A0}}^{C_A} \frac{dC_A}{C_A^n} &amp;= -kt\\
+\frac{1}{(n-1)C_A^{n-1}} - \frac{1}{(n-1)C_{A0}^{n-1}} &amp;= kt\\
+\frac{1}{C_A^{n-1}} &amp;= \frac{1}{C_{A0}^{n-1}} + (n-1)kt
+\end{aligned}
+\]</span></p>
+<ul>
+<li>0次反応</li>
+</ul>
+<p><span class="math display">\[
+\begin{aligned}
+\int_{C_{A0}}^{C_A} dC_A &amp;= -kt\\
+C_A - C_{A0} &amp;= -kt\\
+C_A &amp;= C_{A0} - kt
+\end{aligned}
+\]</span></p>
+<ul>
+<li>異種２分子反応</li>
+</ul>
+<p><span class="math display">\[
+\ce{A + B -&gt; X}
+\]</span></p>
+$$
+<span class="math display">\[\begin{aligned}
+\dv{[\ce{A_0}] - [\ce{X}]}{t} &amp;= -k([\ce{A_0}] - [\ce{X}])([\ce{B_0}] - [\ce{X}]) \\
+\dfrac{\dd{} [\ce{X}]}{([\ce{A_0}] - [\ce{X}])([\ce{B_0}] - [\ce{X}])} &amp;= kdt \\
+
+\end{aligned}\]</span>
+<p>$$</p>
 </section>
 </section>
 </section>
@@ -1036,7 +1083,7 @@ This is an example of a callout with a title.
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>This is an example of a callout with a title.</p>
+<p>先ほど述べた (<a href="#sec-lindemann" class="quarto-xref">Section&nbsp;1.2.4.1</a>) の反応機構。</p>
 </div>
 </div>
 </div>
@@ -1053,18 +1100,25 @@ This is an example of a callout with a title.
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>Lindemann-Hinshelwood機構</li>
-</ol>
-</div>
-</div>
-</div>
-<ol start="2" type="1">
-<li>中間体 <span class="math inline">\(\ce{SiH4^*}\)</span> に対して定常状態近似を適用：</li>
+<li><p>Lindemann-Hinshelwood機構</p></li>
+<li><p>中間体 <span class="math inline">\(\ce{SiH4^*}\)</span> に対して定常状態近似を適用</p></li>
 </ol>
 <p><span class="math display">\[ k_1[\ce{SiH4}][\ce{M}] = k_{-1}[\ce{SiH4^*}][\ce{M}] + k_2[\ce{SiH4^*}] \]</span></p>
 <p><span class="math display">\[ \Rightarrow \quad [\ce{SiH4^*}] = \dfrac{k_1[\ce{SiH4}]}{k_{-1} + \dfrac{k_2}{[\ce{M}]}} \]</span></p>
+<p>ここで、<span class="math inline">\([\ce{SH2}]\)</span> の生成速度は <span class="math inline">\(k_2[\ce{SiH4^*}]\)</span> で表されるので、全体の生成速度は</p>
+<p><span class="math display">\[
+\dv{[\ce{SiH2}]}{t} = k_2[\ce{SiH4^*}] = \frac{k_1k_2[\ce{SiH4}]}{k_{-1} + \dfrac{k_2}{[\ce{M}]}}
+\]</span></p>
+<p>ここでみなしの反応速度定数を <span class="math inline">\(k\)</span> とすると、</p>
+<p><span class="math display">\[
+\begin{aligned}
+k[\ce{SiH4}] &amp;= \frac{k_1k_2[\ce{SiH4}]}{k_{-1} + \dfrac{k_2}{[\ce{M}]}} \\
+\dfrac{1}{k} &amp;= \dfrac{k_{-1}}{k_1k_2} + \dfrac{k_1}{[\ce{M}]}
+\end{aligned}
+\]</span></p>
+<p>になるので、<span class="math inline">\(\frac{1}{k} \propto \frac{1}{p}\)</span> となる。</p>
 <ol start="3" type="1">
-<li>何を書けばいいのかわからない。一般論を語れと？</li>
+<li>何を書けばいいのかわからない。</li>
 </ol>
 <p>2種類の分子が競争的に吸着するのとき、<span class="math inline">\(A, B\)</span> の吸着に関する平衡は下のようになる。ただし <span class="math inline">\(\theta\)</span> は吸着率を表す。 <span class="math display">\[
 K_{\mathrm{A}}=\frac{[\mathrm{M}]_0 \theta_{\mathrm{A}}}{p_{\mathrm{A}}[\mathrm{M}]_0\left(1-\theta_{\mathrm{A}}-\theta_{\mathrm{B}}\right)}, \quad K_{\mathrm{B}}=\frac{[\mathrm{M}]_0 \theta_{\mathrm{B}}}{p_{\mathrm{B}}[\mathrm{M}]_0\left(1-\theta_{\mathrm{A}}-\theta_{\mathrm{B}}\right)}
@@ -1073,7 +1127,55 @@ K_{\mathrm{A}}=\frac{[\mathrm{M}]_0 \theta_{\mathrm{A}}}{p_{\mathrm{A}}[\mathrm{
 <p><span class="math display">\[
 \frac{d[\mathrm{C}]}{d t}=k \theta_{\mathrm{A}} \theta_{\mathrm{B}}=k \frac{\left(p_{\mathrm{A}} K_{\mathrm{A}}\right)\left(p_{\mathrm{B}} K_{\mathrm{B}}\right)}{\left(1+p_{\mathrm{A}} K_{\mathrm{A}}+p_{\mathrm{B}} K_{\mathrm{B}}\right)^2}
 \]</span></p>
-<p>となる。これ以上何を語れと？</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="問2" class="level3">
+<h3 class="anchored" data-anchor-id="問2">問2</h3>
+<p>炭素粒子の燃焼反応に関連して、以下の設問に答えよ。</p>
+<section id="設問-1" class="level4">
+<h4 class="anchored" data-anchor-id="設問-1">設問</h4>
+<ol type="1">
+<li><p>直径 <span class="math inline">\(1\ \mathrm{cm}\)</span> の炭素粒子を <span class="math inline">\(800\ ^\circ \mathrm{C}\)</span>、<span class="math inline">\(1\ \mathrm{気圧}\)</span> に保持した電気炉（雰囲気は空気）に入れたところ、燃焼し始めた。この温度での炭素表面に入射する酸素分子の反応確率（<span class="math inline">\(\ce{C + O2 -&gt; CO2}\)</span> の反応が起こる確率）は <span class="math inline">\(5.0 \times 10^{-2}\)</span> であるという。この温度における表面反応速度定数を求めよ。ただし、空気中の酸素の濃度は <span class="math inline">\(21\%\)</span>、酸素分子の分子量は <span class="math inline">\(32\)</span>、気体定数 <span class="math inline">\(R = 8.314\ \mathrm{J/mol \cdot K}\)</span>、<span class="math inline">\(1\ \mathrm{気圧} = 1.0 \times 10^5\ \mathrm{Pa}\)</span> である。</p></li>
+<li><p>上記の反応は表面反応律速となるか、それとも拡散律速となるか、判断せよ。なお、<span class="math inline">\(800\ ^\circ \mathrm{C}\)</span> における酸素の拡散係数を <span class="math inline">\(2.0 \times 10^{-5}\ \mathrm{m^2/sec}\)</span> とする。</p></li>
+<li><p>2の条件において、二酸化炭素の発生速度を計算せよ。なお、燃焼による炭素粒子径の減少は考えずに、初期生成速度（炭素粒子の直径 <span class="math inline">\(1\ \mathrm{cm}\)</span> のときの速度）を計算すればよい。</p></li>
+<li><p>電気炉内に酸素を供給し、電気炉内の酸素濃度を <span class="math inline">\(21\%\)</span> から <span class="math inline">\(30\%\)</span> に増大させた。このとき、上記の二酸化炭素発生速度はどのように変化するか答えよ。</p></li>
+<li><p>電気炉内に空気を供給し、炭素粒子の周りに流れを発生させた。このとき、流れによって炭素粒子およびその周りの空気の温度に変化はないものとする。二酸化炭素発生速度が流れの速度によってどのように変化するか記述せよ。</p></li>
+</ol>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This is an example of a callout with a title.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This is an example of a callout with a title.</p>
+</div>
+</div>
+</div>
 
 
 </section>
