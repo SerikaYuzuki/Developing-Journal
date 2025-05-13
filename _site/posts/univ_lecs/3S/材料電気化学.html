@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.33">
+<meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -23,8 +23,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -35,7 +36,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -68,17 +69,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../../">
 <link href="../../../posts/univ_lecs/3S/組織生成論.html" rel="next">
 <link href="../../../posts/univ_lecs/3S/材料強度学.html" rel="prev">
-<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-538e1dc739d9f2bb0fbfcee15ee2091c.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-538e1dc739d9f2bb0fbfcee15ee2091c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-43998d56548821d04db92fa7baf5cea8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-43998d56548821d04db92fa7baf5cea8.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-a2a46a12bea50fb3788243e593a4bef8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-61bbfbdc6d63d2fe94f4bef1a4d2021e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-bea5cecadd40e1fc1e7972c16070bfb3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-6a83da12ef8fb2471e73786fb2a11b83.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -140,7 +142,167 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-sidebar floating nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const darkModeDefault = authorPrefersDark;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -647,6 +809,7 @@ window.Quarto = {
   <li><a href="#平均活量係数" id="toc-平均活量係数" class="nav-link" data-scroll-target="#平均活量係数">平均活量係数</a></li>
   <li><a href="#デバイヒュッケルの法則" id="toc-デバイヒュッケルの法則" class="nav-link" data-scroll-target="#デバイヒュッケルの法則">デバイ・ヒュッケルの法則</a></li>
   <li><a href="#ボルンの式" id="toc-ボルンの式" class="nav-link" data-scroll-target="#ボルンの式">ボルンの式</a></li>
+  <li><a href="#sec-nerst_eq" id="toc-sec-nerst_eq" class="nav-link" data-scroll-target="#sec-nerst_eq">ネルンストの式</a></li>
   </ul></li>
   <li><a href="#演習問題" id="toc-演習問題" class="nav-link" data-scroll-target="#演習問題">演習問題</a>
   <ul class="collapse">
@@ -674,6 +837,9 @@ window.Quarto = {
   <li><a href="#年度後半" id="toc-年度後半" class="nav-link" data-scroll-target="#年度後半">2018年度（後半）</a>
   <ul class="collapse">
   <li><a href="#問1-1" id="toc-問1-1" class="nav-link" data-scroll-target="#問1-1">問1</a></li>
+  <li><a href="#問2-1" id="toc-問2-1" class="nav-link" data-scroll-target="#問2-1">問2</a></li>
+  <li><a href="#問3" id="toc-問3" class="nav-link" data-scroll-target="#問3">問3</a></li>
+  <li><a href="#問4" id="toc-問4" class="nav-link" data-scroll-target="#問4">問4</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -681,6 +847,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
+
 
 
 
@@ -763,13 +930,13 @@ K_a &amp;= \frac{c_{\ce{H^+}}c_{\ce{A^-}}}{c_{\ce{HA}}} \\
 \end{align*}
 \]</span></p>
 <p>などとなっていたが、</p>
-<p><span class="math display">\[
+<p><span id="eq-dilution_law_alpha"><span class="math display">\[
 \Lambda = \alpha \lambda_{-} + \alpha \lambda_{+} = \alpha \Lambda^{\infty}
-\]</span></p>
+\tag{3}\]</span></span></p>
 <p>と考えることによって、</p>
 <p><span id="eq-dilution_law"><span class="math display">\[
 K_a = \frac{\Lambda^2}{\Lambda^{\infty}(\Lambda^{\infty} - \Lambda)}c
-\tag{3}\]</span></span></p>
+\tag{4}\]</span></span></p>
 <p>とすることができて、これが希釈溶液ではそれなりに実験値と変わらないようだ。</p>
 </section>
 <section id="イオン活量" class="level2">
@@ -880,10 +1047,10 @@ W = N_A \int_0^{ze} - \frac{ze}{4\pi \epsilon_0 \epsilon_r \lambda_D} \dd ze = -
 <p>これを次のように記述する。</p>
 <p><span id="eq-debye_huckel"><span class="math display">\[
 \ln \gamma_i = -A^{\ast}z^2 I^{1/2}
-\tag{4}\]</span></span></p>
+\tag{5}\]</span></span></p>
 <p><span id="eq-ion_strength"><span class="math display">\[
 I \triangleq \sum_i \frac{1}{2}c_iz_i^2
-\tag{5}\]</span></span></p>
+\tag{6}\]</span></span></p>
 <p>で、イオン強度と呼ばれる。この式を代入することによって、平均活量計数が求められる。</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -920,6 +1087,38 @@ A^{\ast} = \frac{1}{8\pi}\qty(\frac{2N_A}{1000})^{1/2}\left(\frac{e^2}{\epsilon_
 <h2 class="anchored" data-anchor-id="ボルンの式">ボルンの式</h2>
 <p>今までは充電する時の話だったが、</p>
 </section>
+<section id="sec-nerst_eq" class="level2">
+<h2 class="anchored" data-anchor-id="sec-nerst_eq">ネルンストの式</h2>
+<p>イオンの電気化学ポテンシャルは次の式で表される。</p>
+<p><span class="math display">\[
+\mu_i = \mu_i^0 + RT \ln a_i + z_i F \phi
+\]</span></p>
+<p>ここで、<span class="math inline">\(\mu_i^0\)</span> は標準電気化学ポテンシャル、<span class="math inline">\(a_i\)</span> は活量、<span class="math inline">\(z_i\)</span> はイオンの電荷、<span class="math inline">\(F\)</span> はファラデー定数、<span class="math inline">\(\phi\)</span> は電位である。</p>
+<p>ここで酸化体、還元体の電気化学ポテンシャルを考えると、</p>
+<p><span class="math display">\[
+\ce{Ox^{z+}} + ne^- \ce{&lt;=&gt; Red^{(z-n)+}}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\mu_{\ce{Ox}} &amp;= \mu_{\ce{Ox}}^{O} + RT \ln a_{\ce{Ox}} + z_i F \phi_{Liq} \\
+\mu_{\ce{Red}} &amp;= \mu_{\ce{Red}}^{O} + RT \ln a_{\ce{Red}} + (z-n)F \phi_{Liq} \\
+\mu_{e^-} &amp;= \mu_{e^-}^{O} + RT \ln a_{e^-} - F \phi_{M}
+\end{aligned}
+\]</span></p>
+<p>となる。ここで注意すべきは、<span class="math inline">\(\phi_{Liq}\)</span> と <span class="math inline">\(\phi_{M}\)</span> はそれぞれ溶液と電極の電位である。このような状態が平衡に達しているとき、</p>
+<p><span class="math display">\[
+\mu_{\ce{Ox}} + n\mu_{e^-} = \mu_{\ce{Red}}
+\]</span></p>
+<p>となる。これを整理すると、</p>
+<p><span class="math display">\[
+\Delta \phi = \phi_{M} - \phi_{Liq} = \frac{\mu_{\ce{Ox}} + n\mu_{e^-} - \mu_{\ce{Red}}}{nF} + \frac{RT}{nF} \ln \frac{a_{\ce{Ox}}}{a_{\ce{Red}}}
+\]</span></p>
+<p>となる。ここで、 <span class="math inline">\(\Delta G^O = -(\mu_{\ce{Ox}} + n\mu_{e^-} - \mu_{\ce{Red}})\)</span> で、 <span class="math inline">\(E^O = - \Delta G^O/nF\)</span> と標準電位を定義して整理すると、</p>
+<p><span id="eq-nerst_eq"><span class="math display">\[
+\Delta \phi = E^O + \frac{RT}{nF} \ln \frac{a_{\ce{Ox}}}{a_{\ce{Red}}}
+\tag{7}\]</span></span></p>
+<p>となる。これをネルンストの式という。ただし、ネルンストの式と呼ばれているものは数種類以上存在しているらしく、そこらの混乱について端的にわかりやすい解説は<a href="https://www.jstage.jst.go.jp/article/electrochemistry/70/10/70_821/_pdf/-char/ja">ここ</a>にある。</p>
+</section>
 </section>
 <section id="演習問題" class="level1">
 <h1>演習問題</h1>
@@ -940,7 +1139,7 @@ A^{\ast} = \frac{1}{8\pi}\qty(\frac{2N_A}{1000})^{1/2}\left(\frac{e^2}{\epsilon_
 <h2 class="anchored" data-anchor-id="section-2">2.3</h2>
 <p>これについては 2.1 と同じ計算を行うことになる。</p>
 <p><span class="math inline">\(1 \symup{A \cdot m^{-2}}\)</span> によって流れる電気量は <span class="math inline">\(1/96485 = 1.036 \times 10^{-5} \symup{mol \cdot m^{-2} \cdot s^{-1}}\)</span> である。これに <span class="math inline">\(\ce{Fe, Zn, Al}\)</span> のそれぞれの価数で割って、原子量で掛けることで、それぞれの生成質量の速度を求めることができる。</p>
-<div id="24904eb0" class="cell" data-execution_count="1">
+<div id="b50d1ff2" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -990,7 +1189,7 @@ Al: 9.321e-05 g/m^2/s</code></pre>
 <section id="section-5" class="level2">
 <h2 class="anchored" data-anchor-id="section-5">3.1</h2>
 <p>イオン移動度の式は (<a href="#eq-ion_mobility" class="quarto-xref">Equation&nbsp;2</a>) だから、</p>
-<div id="9be82148" class="cell" data-execution_count="2">
+<div id="ebda045b" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
@@ -1034,8 +1233,8 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 </section>
 <section id="section-8" class="level2">
 <h2 class="anchored" data-anchor-id="section-8">3.4</h2>
-<p>式 (<a href="#eq-dilution_law" class="quarto-xref">Equation&nbsp;3</a>) を用いる。</p>
-<div id="d58a1d67" class="cell" data-execution_count="3">
+<p>式 (<a href="#eq-dilution_law" class="quarto-xref">Equation&nbsp;4</a>) を用いる。</p>
+<div id="c0460707" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
@@ -1070,7 +1269,7 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>イオン強度の定義式は (<a href="#eq-ion_strength" class="quarto-xref">Equation&nbsp;5</a>) である。</p>
+<p>イオン強度の定義式は (<a href="#eq-ion_strength" class="quarto-xref">Equation&nbsp;6</a>) である。</p>
 <p>ここで、<span class="math inline">\(c_i\)</span> はイオンの濃度、<span class="math inline">\(z_i\)</span> はイオンの電荷数というのを注意！　イオン濃度じゃなくて、水溶液濃度で計算してハマったのでまじで注意。</p>
 </div>
 </div>
@@ -1087,7 +1286,7 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="3044bbe3" class="cell" data-execution_count="4">
+<div id="4f680492" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
@@ -1153,7 +1352,7 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="14f2f354" class="cell" data-execution_count="5">
+<div id="92dabc5c" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1191,8 +1390,7 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 </section>
 <section id="section-11" class="level2">
 <h2 class="anchored" data-anchor-id="section-11">4-3</h2>
-<p><span class="math inline">\(25^{\circ}\symup{C},\ 5.0 \times 10^{-3} \ \symup{M} \ \ce{KCl}\)</span> 水溶液の<br>
-<strong>イオン強度</strong>および<strong>平均活量係数</strong>を、<strong>デバイ＝ヒュッケルの極限法則</strong>を用いて求めよ。</p>
+<p><span class="math inline">\(25^{\circ}\symup{C},\ 5.0 \times 10^{-3} \ \symup{M} \ \ce{KCl}\)</span> 水溶液の<strong>イオン強度</strong>および<strong>平均活量係数</strong>を、<strong>デバイ＝ヒュッケルの極限法則</strong>を用いて求めよ。</p>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1205,7 +1403,7 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>イオン強度の式 (<a href="#eq-ion_strength" class="quarto-xref">Equation&nbsp;5</a>) と平均活量計数の式 (<a href="#eq-debye_huckel" class="quarto-xref">Equation&nbsp;4</a>) を使う計算問題</p>
+<p>イオン強度の式 (<a href="#eq-ion_strength" class="quarto-xref">Equation&nbsp;6</a>) と平均活量計数の式 (<a href="#eq-debye_huckel" class="quarto-xref">Equation&nbsp;5</a>) を使う計算問題</p>
 </div>
 </div>
 </div>
@@ -1221,7 +1419,7 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="e7c6f8b3" class="cell" data-execution_count="6">
+<div id="f051ad53" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1264,7 +1462,7 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="07b0b3e0" class="cell" data-execution_count="7">
+<div id="82c261c6" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1365,7 +1563,7 @@ J = -D \dv{c}{x}
 J = 0.72 \times 10^{-5} \ \symup{cm^2\ s^{-1}} \times 1.0 \times 10^{2} \ \symup{mol\ cm^{-4}} = 7.2 \times 10^{-4} \ \symup{mol\ cm^{-2} s^{-1}}
 \]</span></p>
 <p>電解電流密度なので、<span class="math inline">\(z=2\)</span> を考えて、</p>
-<div id="d342fc61" class="cell" data-execution_count="8">
+<div id="895f9528" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
@@ -1389,9 +1587,77 @@ J = 7.2 \times 10^{-4} \ \symup{mol\ cm^{-2} s^{-1}} \times 2 \times 96485 \ \sy
 </section>
 <section id="年度後半" class="level2">
 <h2 class="anchored" data-anchor-id="年度後半">2018年度（後半）</h2>
+<table class="caption-top table">
+<caption>標準生成ギブスエネルギー</caption>
+<thead>
+<tr class="header">
+<th>物質</th>
+<th><span class="math inline">\(\Delta G^\circ_f [\mathrm{kJ \cdot mol^{-1}}]\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\ce{H+}\)</span></td>
+<td>0.00</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{Zn^{2+}}\)</span></td>
+<td>-147.06</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{Fe^{2+}}\)</span></td>
+<td>-78.9</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{Al^{3+}}\)</span></td>
+<td>-485</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{Cu^{2+}}\)</span></td>
+<td>65.49</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{PbCl2}\)</span></td>
+<td>-314.1</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{Cl-}\)</span></td>
+<td>-131.23</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{Na+}\)</span></td>
+<td>-261.91</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{MnO2}\)</span></td>
+<td>-465.14</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{H2O}\)</span></td>
+<td>-237.13</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{Mn(OH)2}\)</span></td>
+<td>-618.58</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{Zn(OH)2}\)</span></td>
+<td>-555.07</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{OH-}\)</span></td>
+<td>-157.24</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{CH3COOH}\)</span></td>
+<td>-396.46</td>
+</tr>
+</tbody>
+</table>
 <section id="問1-1" class="level3">
 <h3 class="anchored" data-anchor-id="問1-1">問1</h3>
-<p>以下の問いに答えよ。温度は <span class="math inline">\(25^{\circ}\symup{K}\)</span>（<span class="math inline">\(298.15 \symup{K}\)</span>）の標準温度とし、必要に応じてイオンの活量係数は 1 として良い。電位の基準は標準水素電極電位とする。ファラデー定数には <span class="math inline">\(F = 9.65 \times 10^4\;\mathrm{C \cdot mol^{-1}}\)</span> 気体定数には <span class="math inline">\(R = 8.31\;\mathrm{J \cdot K^{-1} \cdot mol^{-1}}\)</span> を用いよ。<strong>計算過程も明記すること。</strong><br>
+<p>以下の問いに答えよ。</p>
+<p>温度は <span class="math inline">\(25^{\circ}\symup{K}\)</span>（<span class="math inline">\(298.15 \symup{K}\)</span>）の標準温度とし、必要に応じてイオンの活量係数は 1 として良い。電位の基準は標準水素電極電位とする。ファラデー定数には <span class="math inline">\(F = 9.65 \times 10^4\;\mathrm{C \cdot mol^{-1}}\)</span> 気体定数には <span class="math inline">\(R = 8.31\;\mathrm{J \cdot K^{-1} \cdot mol^{-1}}\)</span> を用いよ。<strong>計算過程も明記すること。</strong><br>
 単位 [M] は <span class="math inline">\(\mathrm{mol/L}\)</span> である。必要に応じ、表1の値を用いよ。</p>
 <hr>
 <section id="section-13" class="level4">
@@ -1407,393 +1673,750 @@ J = 7.2 \times 10^{-4} \ \symup{mol\ cm^{-2} s^{-1}} \times 2 \times 96485 \ \sy
 </section>
 <section id="section-15" class="level4">
 <h4 class="anchored" data-anchor-id="section-15">1-3</h4>
-<p> の標準生成ギブスエネルギーを求めよ。</p>
-
-
+<p><span class="math inline">\(\ce{CH3COO-}\)</span> の標準生成ギブスエネルギーを求めよ。</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>1-1 では、 <a href="#eq-molar_conductivity" class="quarto-xref">Equation&nbsp;1</a> を用いる。</p>
+<p>1-2 では、 <a href="#eq-dilution_law_alpha" class="quarto-xref">Equation&nbsp;3</a> と <a href="#eq-dilution_law" class="quarto-xref">Equation&nbsp;4</a> を用いる。ただし、導電率とモル伝導率の単位と換算について注意すること。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>1-1</p>
+<p><span class="math inline">\(\ce{H+},\ \ce{Cl-},\ \ce{CH3COO-}\)</span> のモル電気伝導率をそれぞれ <span class="math inline">\(\lambda_{\ce{H+}},\ \lambda_{\ce{Cl-}},\ \lambda_{\ce{CH3COO-}}\)</span> とすると、</p>
+<p><span class="math display">\[
+\begin{aligned}
+\lambda_{\ce{H+}} + \lambda_{\ce{Cl-}} &amp;= 426.3 \\
+\lambda_{\ce{Cl-}} + \lambda_{\ce{Na+}} &amp;= 126.4 \\
+\lambda_{\ce{Na+}} + \lambda_{\ce{CH3COO-}} &amp;= 91.0
+\end{aligned}
+\]</span></p>
+<p>これを解いて、</p>
+<p><span class="math display">\[
+\lambda_{\ce{H+}} + \lambda_{\ce{CH3COO-}} = 426.3 + 91.0 - 126.4 = 390.9 \ \mathrm{S \cdot cm^2 \cdot mol^{-1}}
+\]</span></p>
+<p>1-2</p>
+<p><span class="math inline">\(\alpha = \frac{\lambda}{\lambda^{\infty}}\)</span> となるので、まずは <span class="math inline">\(\lambda\)</span> を求める。</p>
+<p><span class="math display">\[
+\lambda = 2.31 \times 10^{-4} \ \mathrm{S \cdot cm^{-1}} / 0.02 \ \mathrm{M} = 1.155 \times 10^{2} \ \mathrm{S \cdot cm^2 \cdot mol^{-1}}
+\]</span></p>
+<p>1-3</p>
+<p><span class="math display">\[\Delta G_{\ce{CH3COO-}} = \Delta G_{\ce{CH3COOH}} - \Delta G_{\ce{H+}} = -396.46 \ \mathrm{kJ \cdot mol^{-1}}\]</span></p>
+</div>
+</div>
+</div>
+<hr>
 </section>
+</section>
+<section id="問2-1" class="level3">
+<h3 class="anchored" data-anchor-id="問2-1">問2</h3>
+<div id="d0d69550" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> patches</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 図の設定</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 領域の描画</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>ax.add_patch(patches.Polygon([[<span class="dv">0</span>, <span class="op">-</span><span class="fl">0.763</span>], [<span class="dv">7</span>, <span class="op">-</span><span class="fl">0.763</span>], [<span class="dv">7</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>]], closed<span class="op">=</span><span class="va">True</span>, facecolor<span class="op">=</span><span class="st">'lightblue'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>))</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>ax.add_patch(patches.Polygon([[<span class="dv">7</span>, <span class="op">-</span><span class="fl">0.763</span>], [<span class="dv">14</span>, <span class="op">-</span><span class="fl">1.25</span> <span class="op">+</span> <span class="fl">0.059</span> <span class="op">*</span> (<span class="dv">14</span> <span class="op">-</span> <span class="dv">14</span>)], [<span class="dv">14</span>, <span class="dv">1</span>], [<span class="dv">7</span>, <span class="dv">1</span>]], closed<span class="op">=</span><span class="va">True</span>, facecolor<span class="op">=</span><span class="st">'lightgreen'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>))</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>ax.add_patch(patches.Polygon([[<span class="dv">0</span>, <span class="op">-</span><span class="dv">2</span>], [<span class="dv">14</span>, <span class="op">-</span><span class="dv">2</span>], [<span class="dv">14</span>, <span class="op">-</span><span class="fl">1.25</span> <span class="op">+</span> <span class="fl">0.059</span> <span class="op">*</span> (<span class="dv">14</span> <span class="op">-</span> <span class="dv">14</span>)], [<span class="dv">7</span>, <span class="op">-</span><span class="fl">0.763</span>], [<span class="dv">0</span>, <span class="op">-</span><span class="fl">0.763</span>]], closed<span class="op">=</span><span class="va">True</span>, facecolor<span class="op">=</span><span class="st">'lightgray'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>))</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 境界線の描画</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="dv">0</span>, <span class="dv">7</span>], [<span class="op">-</span><span class="fl">0.763</span>, <span class="op">-</span><span class="fl">0.763</span>], <span class="st">'k'</span>, label<span class="op">=</span><span class="st">'①'</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="dv">7</span>, <span class="dv">14</span>], [<span class="op">-</span><span class="fl">0.763</span>, <span class="op">-</span><span class="fl">1.25</span> <span class="op">+</span> <span class="fl">0.059</span> <span class="op">*</span> (<span class="dv">14</span> <span class="op">-</span> <span class="dv">14</span>)], <span class="st">'k'</span>, label<span class="op">=</span><span class="st">'②'</span>)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ラベルの追加</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">2</span>, <span class="fl">0.2</span>, <span class="st">'(A)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">10</span>, <span class="fl">0.2</span>, <span class="st">'(B)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">6</span>, <span class="op">-</span><span class="fl">1.6</span>, <span class="st">'(C)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">3.5</span>, <span class="op">-</span><span class="fl">0.64</span>, <span class="st">'①'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">"circle"</span>, fc<span class="op">=</span><span class="st">"white"</span>, ec<span class="op">=</span><span class="st">"black"</span>))</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">10.5</span>, <span class="op">-</span><span class="fl">0.9</span>, <span class="st">'②'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">"circle"</span>, fc<span class="op">=</span><span class="st">"white"</span>, ec<span class="op">=</span><span class="st">"black"</span>))</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 軸ラベル</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'pH'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'E [V vs. SHE]'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 軸の範囲</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">14</span>)</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="co"># グリッド</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Zn'</span>)</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="材料電気化学_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="section-16" class="level4">
+<h4 class="anchored" data-anchor-id="section-16">2-1</h4>
+<p>図1は、<span class="math inline">\(\ce{Zn^{2+}}\)</span> の活量を1とした <span class="math inline">\(\ce{Zn}\)</span> のプールベイ図である。(A)、(B)、(C) には、<span class="math inline">\(\ce{Zn^{2+}}\)</span>、<span class="math inline">\(\ce{Zn}\)</span>、<span class="math inline">\(\ce{Zn(OH)2}\)</span> のいずれかが対応するか記述せよ。</p>
+</section>
+<section id="section-17" class="level4">
+<h4 class="anchored" data-anchor-id="section-17">2-2</h4>
+<p>(A)と(C)の境界①が位置する平衡電極電位 <span class="math inline">\(E\)</span> を求めよ。</p>
+</section>
+<section id="section-18" class="level4">
+<h4 class="anchored" data-anchor-id="section-18">2-3</h4>
+<p>(B)と(C)の境界②が示す平衡電極電位 <span class="math inline">\(E\)</span> を、<span class="math inline">\(x = \mathrm{pH}\)</span> として <span class="math inline">\(x\)</span> の関数として求めよ。①との交点（<span class="math inline">\(x\)</span> の範囲）まで求める必要はない。</p>
+</section>
+<section id="section-19" class="level4">
+<h4 class="anchored" data-anchor-id="section-19">2-4</h4>
+<p>アルカリマンガン電池は、電極材料として <span class="math inline">\(\ce{MnO2}\)</span> および <span class="math inline">\(\ce{Zn}\)</span>、電解質として <span class="math inline">\(\ce{KOH}\)</span> 水溶液を用いた電池である。放電後、正極および負極ともに水酸化物が生成された。</p>
+<p>正極反応、負極反応、および電池反応（全反応）を記述せよ。</p>
+</section>
+<section id="section-20" class="level4">
+<h4 class="anchored" data-anchor-id="section-20">2-5</h4>
+<p>上記アルカリマンガン電池の開放電圧 <span class="math inline">\([V]\)</span> を求めよ。必要に応じ、電解質の pH は 14 として良い。</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>これは、<a href="@sec-nerst_eq">ネルンストの式</a> を用いる問題。プールベイ図という年によっては講義資料に現れないグラフがあるが、要するにpH vs 電位のグラフである。</p>
+<p>次に、活量について混乱しかけたので、そのメモを置いておく。</p>
+<p>そもそも、活量というのは、実在溶液を理想溶液の形式で表すための補正係数つき濃度。定義式としては、</p>
+<p><span class="math display">\[
+\mu_i = \mu_i^0 + RT \ln a_i
+\]</span></p>
+<p>となる。ここで、<span class="math inline">\(\mu_i^0\)</span> は標準化学ポテンシャル、<span class="math inline">\(a_i\)</span> は活量である。</p>
+<p>ここで、<span class="math inline">\(a_i = 1\)</span> として良いという文言は数種類の状態について言及しているので注意すべきである。</p>
+<ul>
+<li>固体や純水、溶媒など。この理由は単純で、標準状態で考えているからだ。化学ポテンシャルやギブスエネルギーなどは、標準状態で測っていて、その状態の活量を1に定義しているんだ。</li>
+<li>溶液が無限希釈の状態。これは、溶液が薄いということで、溶液中のイオンの相互作用が小さくなるため、活量係数が1に近づく。<strong>大事：活量自身が1になるわけではない</strong></li>
+</ul>
+<p>次に、この話を掘り進めてまとまった考えの一つも書いておく。</p>
+<p><span class="math display">\[ \mu = \mu^0 + RT \ln a \]</span></p>
+<p>この式の <span class="math inline">\(RT \ln a\)</span> の部分だが、直接的なイメージが難しかったのだが、要するに <span class="math inline">\(S=k\ln W\)</span> によってエントロピーを定義していて、そこからエネルギーなどとの関係性を考えている。エントロピーを粒子の居心地の悪さと考えると、その尺度は対数を使っているわけだ。同様にしてそのつながりて話を進める化学ポテンシャルも、要するに粒子の居心地の悪さを別の尺度で見ているだけで、その尺度は対数を使っているだけだ。</p>
+<p>2-4 は知識問題。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>2-1</p>
+<ol type="A">
+<li>は <span class="math inline">\(\ce{Zn^{2+}}\)</span>、(B) は <span class="math inline">\(\ce{Zn(OH)2}\)</span>、(C) は <span class="math inline">\(\ce{Zn}\)</span> である。</li>
+</ol>
+<p>理由としては、(C)は電極の電位が低くても安定しているということは、完全に還元された形、 (A), (B) についてはpHから酸性か塩基性かを考えればいい。</p>
+<p>2-2</p>
+<p><span class="math display">\[
+E = E^O - \frac{RT}{2F} \ln \frac{a_{\ce{Zn^{2+}}}}{a_{\ce{Zn}}}
+\]</span></p>
+<p>ここで、</p>
+<p><span class="math display">\[E^O = - \frac{\Delta G^O}{nF} = - \frac{147.06 \times 10^3}{2 \times 96485} = -0.763 \ \mathrm{V}\]</span></p>
+<p>である。これが答えそのものだ。注意として、 <span class="math inline">\(\Delta G^O\)</span> は、<span class="math inline">\(\ce{Zn^{2+} + 2e^- -&gt; Zn}\)</span> の反応である。 <span class="math inline">\(\Delta G^O_{\text{Red}} - \Delta G^O_{\text{Ox}}\)</span> なので、符合を間違えないように。</p>
+<p>一応活量は1として良いということなので、計算式は以下の通り。</p>
+<p><span class="math display">\[
+\begin{aligned}
+E &amp;= -0.763 - \frac{8.31 \times 298.15}{2 \times 96485} \ln \frac{1}{1} \\
+&amp;= -0.763 \ \mathrm{V}
+\end{aligned}
+\]</span></p>
+<p>2-3</p>
+<p>ネルンストの式を用いれば、</p>
+<p><span class="math display">\[
+E = E^O + \frac{0.059}{2} \ln \frac{1}{a_{\ce{OH-}}^2}
+\]</span></p>
+<p>となる。ここで、反応式は</p>
+<p><span class="math display">\[
+\ce{Zn(OH)2 + 2e^- -&gt; Zn + 2OH^-}
+\]</span></p>
+<p>である。なので、 <span class="math inline">\(\Delta G^O = 2\Delta G^O_{\ce{OH-}} - \Delta G^O_{\ce{Zn(OH)2}} = 240.5 \times 10^3 \ \mathrm{J/mol}\)</span> となる。注意として、 <span class="math inline">\(\Delta G^O_{\ce{OH-}}\)</span> を忘れないようにしよう。</p>
+<p><span class="math display">\[
+E^O = - \frac{\Delta G^O}{nF} = - \frac{240.5 \times 10^3}{2 \times 96485} = -1.246 \ \mathrm{V}
+\]</span></p>
+<div id="29f68054" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="dv">96485</span>  <span class="co"># C/mol</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fl">8.31</span>  <span class="co"># J/K/mol</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">298.15</span>  <span class="co"># K</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 計算</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>E_O <span class="op">=</span> <span class="op">-</span><span class="fl">240.5e3</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> F)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E^O: </span><span class="sc">{</span>E_O<span class="sc">:.3f}</span><span class="ss"> V"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>E^O: -1.246 V</code></pre>
+</div>
+</div>
+<p>である。</p>
+<p><span class="math display">\[
+E = -1.25 + 0.059  (14 - x) = -0.336 - 0.059x
+\]</span></p>
+<p>2-4</p>
+<p>実際には、</p>
+<ul>
+<li>正極：<span class="math inline">\(\ce{MnO2 + H2O + e^- -&gt; MnOOH + OH^-}\)</span></li>
+<li>負極：<span class="math inline">\(\ce{Zn + 2OH^- -&gt; Zn(OH)2 + 2e^-}\)</span></li>
+<li>全反応：<span class="math inline">\(\boxed{\ce{MnO2 + Zn + H2O -&gt; MnOOH + Zn(OH)2}}\)</span></li>
+</ul>
+<p>ただ、2-5の問題を解くためにはこうせざるを得ない。</p>
+<ul>
+<li>正極：<span class="math inline">\(\ce{MnO2 + 2H2O + 2e^- -&gt; Mn(OH)2 + 2OH^-}\)</span></li>
+<li>負極：<span class="math inline">\(\ce{Zn + 2OH^- -&gt; Zn(OH)2 + 2e^-}\)</span></li>
+<li>全反応：<span class="math inline">\(\ce{MnO2 + Zn + 2H2O -&gt; Mn(OH)2 + Zn(OH)2}\)</span></li>
+</ul>
+<p>2-5</p>
+<p><span class="math display">\[
+\Delta G^O = -555.07 - 618.58 + 2 * 237.13 + 465.14 = -234.25 \ \mathrm{kJ/mol}
+\]</span></p>
+<div id="ebb95a58" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> <span class="op">-</span><span class="fl">555.07</span> <span class="op">-</span> <span class="fl">618.58</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> <span class="fl">237.13</span> <span class="op">+</span> <span class="fl">465.14</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"G: </span><span class="sc">{</span>G<span class="sc">:.3f}</span><span class="ss"> J/mol"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>G: -234.250 J/mol</code></pre>
+</div>
+</div>
+<p><span class="math display">\[
+E = - \frac{\Delta G^O}{nF} = 1.214 \ \mathrm{V}
+\]</span></p>
+<div id="4b71cc56" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> <span class="op">-</span><span class="fl">234.25e3</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> F)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E: </span><span class="sc">{</span>E<span class="sc">:.3f}</span><span class="ss"> V"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>E: -1.214 V</code></pre>
+</div>
+</div>
+<p><a href="https://www.jstage.jst.go.jp/article/itej1978/33/5/33_5_395/_pdf/-char/ja">文献値</a>は1.7Vということなので、結構小さい値が出てくる。</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="問3" class="level3">
+<h3 class="anchored" data-anchor-id="問3">問3</h3>
+<section id="section-21" class="level4">
+<h4 class="anchored" data-anchor-id="section-21">3-1</h4>
+<p>以下の反応における標準酸化還元電位をそれぞれ求めよ。</p>
+<ol type="a">
+<li><p><span class="math inline">\(\ce{Al^{3+} + 3e^- &lt;=&gt; Al}\)</span></p></li>
+<li><p><span class="math inline">\(\ce{Fe &lt;=&gt; Fe^{2+} + 2e^-}\)</span></p></li>
+<li><p><span class="math inline">\(\ce{Cu^{2+} + 2e^- &lt;=&gt; Cu}\)</span></p></li>
+<li><p><span class="math inline">\(\ce{Pb + 2Cl^- &lt;=&gt; PbCl2 + 2e^-}\)</span></p></li>
+<li><p><span class="math inline">\(\ce{Na &lt;=&gt; Na^+ + e^-}\)</span></p></li>
+</ol>
+</section>
+<section id="section-22" class="level4">
+<h4 class="anchored" data-anchor-id="section-22">3-2</h4>
+<p>ダニエル電池の電池反応を記述せよ。<br>
+また、液相間電位を <span class="math inline">\(0\ \mathrm{V}\)</span> とし、<span class="math inline">\(\ce{Zn^{2+}}\)</span> の活量を <span class="math inline">\(0.05\)</span>、<span class="math inline">\(\ce{Cu^{2+}}\)</span> の活量を <span class="math inline">\(0.002\)</span> とした際の起電力を求めよ。</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>3-1はただの計算問題。3-2はちょっと面倒な計算問題。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>3-1</p>
+<ol type="a">
+<li><span class="math inline">\(\ce{Al^{3+} + 3e^- &lt;=&gt; Al}\)</span></li>
+</ol>
+<ul>
+<li><span class="math inline">\(\Delta G^\circ (\ce{Al^{3+}}) = -485\ \mathrm{kJ/mol}\)</span></li>
+<li><span class="math inline">\(n = 3\)</span></li>
+</ul>
+<p><span class="math display">\[
+E^\circ = -\frac{-485000}{3 \times 96485} = \boxed{1.675\ \mathrm{V}}
+\]</span></p>
+<ol start="2" type="a">
+<li><span class="math inline">\(\ce{Fe &lt;=&gt; Fe^{2+} + 2e^-}\)</span></li>
+</ol>
+<ul>
+<li><span class="math inline">\(\Delta G^\circ (\ce{Fe^{2+}}) = -78.9\ \mathrm{kJ/mol}\)</span></li>
+<li><span class="math inline">\(n = 2\)</span></li>
+</ul>
+<p><span class="math display">\[
+E^\circ = -\frac{-78900}{2 \times 96485} = \boxed{0.409\ \mathrm{V}}
+\]</span></p>
+<ol start="3" type="a">
+<li><span class="math inline">\(\ce{Cu^{2+} + 2e^- &lt;=&gt; Cu}\)</span></li>
+</ol>
+<ul>
+<li><span class="math inline">\(\Delta G^\circ (\ce{Cu^{2+}}) = 65.49\ \mathrm{kJ/mol}\)</span></li>
+<li><span class="math inline">\(n = 2\)</span></li>
+</ul>
+<p><span class="math display">\[
+E^\circ = -\frac{65490}{2 \times 96485} = \boxed{-0.339\ \mathrm{V}}
+\]</span></p>
+<ol start="4" type="a">
+<li><span class="math inline">\(\ce{Pb + 2Cl^- &lt;=&gt; PbCl2 + 2e^-}\)</span></li>
+</ol>
+<ul>
+<li><span class="math inline">\(\Delta G^\circ (\ce{PbCl2}) = -314.1\ \mathrm{kJ/mol}\)</span></li>
+<li><span class="math inline">\(\Delta G^\circ (\ce{Cl^-}) = -131.23\ \mathrm{kJ/mol}\)</span></li>
+<li><span class="math inline">\(n = 2\)</span></li>
+</ul>
+<p><span class="math display">\[
+\Delta G^\circ_{\text{rxn}} = -314.1 - 2 \times (-131.23) = -314.1 + 262.46 = -51.64\ \mathrm{kJ/mol}
+\]</span></p>
+<p><span class="math display">\[
+E^\circ = -\frac{-51640}{2 \times 96485} = \boxed{0.267\ \mathrm{V}}
+\]</span></p>
+<ol start="5" type="a">
+<li><span class="math inline">\(\ce{Na &lt;=&gt; Na^+ + e^-}\)</span></li>
+</ol>
+<ul>
+<li><span class="math inline">\(\Delta G^\circ (\ce{Na^+}) = -261.91\ \mathrm{kJ/mol}\)</span></li>
+<li><span class="math inline">\(n = 1\)</span></li>
+</ul>
+<p><span class="math display">\[
+E^\circ = -\frac{-261910}{1 \times 96485} = \boxed{2.715\ \mathrm{V}}
+\]</span></p>
+<hr>
+<p>3-2</p>
+<p><span class="math display">\[
+\ce{Zn + Cu^{2+} -&gt; Zn^{2+} + Cu}
+\]</span></p>
+<p>これは、Znが酸化、Cuが還元される反応。</p>
+<ul>
+<li><span class="math inline">\(\ce{Zn^{2+} + 2e^- &lt;=&gt; Zn}\)</span>
+<ul>
+<li><span class="math inline">\(\Delta G^\circ = -147.06\ \mathrm{kJ/mol}\)</span><br>
+</li>
+<li><span class="math inline">\(E^\circ_{\ce{Zn}} = -\frac{-147060}{2 \times 96485} = 0.762\ \mathrm{V}\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\ce{Cu^{2+} + 2e^- &lt;=&gt; Cu}\)</span>
+<ul>
+<li><span class="math inline">\(E^\circ_{\ce{Cu}} = -0.339\ \mathrm{V}\)</span></li>
+</ul></li>
+</ul>
+<p>ネルンスト式で計算：</p>
+<p><span class="math display">\[
+E_{\text{cell}} = E^\circ_{\ce{Cu}} - E^\circ_{\ce{Zn}} + \frac{RT}{nF} \ln \left( \frac{a_{\ce{Cu^{2+}}}}{a_{\ce{Zn^{2+}}}} \right)
+\]</span></p>
+<p>常温（<span class="math inline">\(25^\circ\mathrm{C}\)</span>）なら $ &nbsp; $、よって：</p>
+<p><span class="math display">\[
+\begin{aligned}
+E_{\text{cell}} &amp;= -0.339 - 0.762 + \frac{0.059}{2} \log_{10} \left( \frac{0.002}{0.05} \right) \\
+&amp;= -1.101 + 0.0295 \times \log_{10}(0.04) \\
+&amp;= -1.101 + 0.0295 \times (-1.398) \\
+&amp;= -1.101 - 0.0413 \\
+&amp;= \boxed{-1.142\ \mathrm{V}}
+\end{aligned}
+\]</span></p>
+<div id="bd7c38ca" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>E_cell <span class="op">=</span> <span class="op">-</span><span class="fl">0.339</span> <span class="op">-</span> <span class="fl">0.762</span> <span class="op">+</span> <span class="fl">0.0295</span> <span class="op">*</span> np.log10(<span class="fl">0.002</span> <span class="op">/</span> <span class="fl">0.05</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E_cell: </span><span class="sc">{</span>E_cell<span class="sc">:.3f}</span><span class="ss"> V"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>E_cell: -1.142 V</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="問4" class="level3">
+<h3 class="anchored" data-anchor-id="問4">問4</h3>
+<p>以下の (A)〜(G) の内 2 つを選び、それぞれ 1〜2 行程度で簡単に説明せよ。</p>
+<p>A. アノード反応<br>
+B. コールラウシュの平方根則<br>
+C. ルイスの塩基性<br>
+D. 電気伝導度滴定<br>
+E. 光電気化学<br>
+F. ボルタ電位差<br>
+G. 水素過電圧</p>
+<p><strong>解答例</strong><br>
+X. 電池：化学エネルギーを電気エネルギーとして取り出す装置</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>用語</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>アノード</td>
+<td>酸化反応が起こる（陽極）。電子を放出して電極を通じて外部回路に流す。</td>
+</tr>
+<tr class="even">
+<td>コールラウシュの平方根則</td>
+<td>電解質の電気伝導度は、希薄溶液において濃度の平方根に比例して減少する（特に強電解質で有効）。</td>
+</tr>
+<tr class="odd">
+<td>ルイスの塩基性</td>
+<td>電子対を供与できる物質。アンモニアなどがその例。</td>
+</tr>
+<tr class="even">
+<td>電気伝導度滴定</td>
+<td>導電率の変化から中和点などを判断する滴定法。</td>
+</tr>
+<tr class="odd">
+<td>光電気化学</td>
+<td>光エネルギーによって起こる電気化学反応を扱う。太陽光水分解など。</td>
+</tr>
+<tr class="even">
+<td>ボルタ電位差</td>
+<td>異種金属電極間に生じる電位差で、電子の移動しやすさの違いに起因する。</td>
+</tr>
+<tr class="odd">
+<td>水素過電圧</td>
+<td>水素発生に必要な理論電位よりも高い電圧。電極材に依存する。</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
 </section>
 </section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
       });
     }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = true;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
         }
-        return container.innerHTML
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1801,189 +2424,193 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
-<script src="https://giscus.app/client.js" data-repo="SerikaYuzuki/Developing-Journal" data-repo-id="R_kgDOKdxfxA" data-category="General" data-category-id="DIC_kwDOKdxfxM4CZ-FP" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="transparent_dark" data-lang="en" crossorigin="anonymous" async="">
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <input type="hidden" id="giscus-base-theme" value="transparent_dark">
 <input type="hidden" id="giscus-alt-theme" value="transparent_dark">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "SerikaYuzuki/Developing-Journal";
+    script.dataset.repoId = "R_kgDOKdxfxA";
+    script.dataset.category = "General";
+    script.dataset.categoryId = "DIC_kwDOKdxfxM4CZ-FP";
+    script.dataset.mapping = "title";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../../../posts/univ_lecs/3S/材料強度学.html" class="pagination-link" aria-label="材料強度学">
