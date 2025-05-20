@@ -836,9 +836,9 @@ $$
 
 となる。これによって、ある温度において被覆率が一定になるような圧力を実験的に求め、プロットすることによって、吸着エンタルピーを求めることができる。
 
-### Wigner-Polanyiの関係式
+### Wigner-Polanyiの関係式 {#sec-wigner-polanyi}
 
-ここでは表面からの **脱離** について考えている。
+ここでは表面からの **脱離** について考えている。あと、講義資料と違って、1molあたりのエネルギーで考えているので、 $k_B$ ではなく、$R$ を使っている。
 
 とりあえず式としての形は
 
@@ -853,7 +853,7 @@ $$
 
 これの導出については、とりあえず質量作用の法則に従った形だということは覚えておけばいいのだが、 $\nu_n$ などについての詳しいことは、[TST](https://ja.wikipedia.org/wiki/遷移状態理論)などの話に任せた方が良さそう。はっきり言って、講義内の資料で理解するのは不可能と思われる。
 
-### TPDデータによるRedhead法。
+### TPDデータ {#sec-tpd}
 
 TPDは、Temperature Programmed Desorptionの略で、温度を変化させることによって、吸着している分子が脱離する過程を観察する手法である。
 
@@ -874,36 +874,26 @@ $$
 \frac{d}{dT}\bigl[r_{\rm des}(T)\bigr]_{T=T_{\rm max}} = 0
 $$
 
-を満たし、解析すると以下の関係が得られる：
+でもとまる。
 
 $$
-\frac{\nu}{\beta}
-\exp\!\Bigl(-\frac{E_{\rm des}}{R\,T_{\rm max}}\Bigr)
-= \frac{E_{\rm des}}{R\,T_{\rm max}^2}
+\begin{aligned}
+-\beta \dv{\theta}{T} &= \nu \theta \exp\!\Bigl(-\frac{E_{\rm des}}{R\,T}\Bigr) \\
+\dv{r_{\rm des}}{T} &= \dv{}{T} \dv{\theta}{t} = \dv{}{T} \beta \dv{\theta}{T} = \beta \dv[2]{\theta}{T} \\
+\beta \dv[2]{\theta}{T} &= -\nu \dv{\theta}{T} \exp\!\Bigl(-\frac{E_{\rm des}}{R\,T}\Bigr) - \nu \theta \exp\!\Bigl(-\frac{E_{\rm des}}{R\,T}\Bigr) \frac{E_{\rm des}}{R\,T^2} = 0 \\
+0 &= \dv{\theta}{T} + \frac{E_{\rm des}}{R\,T^2}\theta \\
+&=-\frac{\nu}{\beta} \theta \exp\!\Bigl(-\frac{E_{\rm des}}{R\,T}\Bigr) + \frac{E_{\rm des}}{R\,T^2}\theta \\
+\frac{E_{\rm des}}{R\,T^2}&= \frac{\nu}{\beta}\exp\!\Bigl(-\frac{E_{\rm des}}{R\,T}\Bigr) \\
+
+\end{aligned}
+$$
+
+対数を取るとと以下の関係が得られる：
+
+$$
+2\ln T_{\rm max} - \ln \beta = \ln \frac{E_{\rm des}}{R \nu} + \frac{E_{\rm des}}{R\,T_{\rm max}}
 \tag{★}
 $$
-
-Redhead (1962) は式(★)を近似して解析解を導出した：
-
-1. $\ln\bigl(\tfrac{E_{\rm des}}{R\,T_{\rm max}^2}\bigr)$ 項を無視  
-2. $\displaystyle \exp\!\Bigl(\tfrac{E_{\rm des}}{R\,T_{\rm max}}\Bigr)\approx \tfrac{\nu}{\beta}$  
-3. 両辺の対数を取って整理すると  
-
-$$
-E_{\rm des}
-\approx R\,T_{\rm max}
-\ln\!\Bigl(\frac{\nu}{\beta}\Bigr)
-$$
-4. 経験的補正 $-3.64$ を加えた最終式：
-
-$$
-E_{\rm des}
-\approx R\,T_{\rm max}
-\Bigl[\ln\!\Bigl(\tfrac{\nu\,T_{\rm max}}{\beta}\Bigr)
-         \;-\;3.64\Bigr]
-$$
-
-となる。
 
 ### Thieleモジュール {#sec-thiele-module}
 
@@ -1252,6 +1242,70 @@ $$
 
 #### 問１
 
+０次反応では昇温とともに脱離量が指数関数的に増加し、あるところで突然0となる。この振る舞いをする理由を Wigner-Polanyi の関係式を用いて説明せよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+Wigner-Polanyiの関係式は、@sec-wigner-polanyi で述べた通り。
+
+$$
+\begin{aligned}
+r_{\text{des}} &= - \dv{\theta}{t} = k \theta^n \\
+&= \nu_n \theta^n \exp \qty(-\frac{E_n}{RT})
+\end{aligned}
+$$
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+0次反応では、$n=0$ となる。このとき、
+
+$$
+r_{\text{des}} = -\dv{\theta}{t} = \nu_0 \exp \qty(-\frac{E_0}{RT})
+$$
+
+となる。ここで昇温処理をしているので、
+
+$$
+\dv{\theta}{t} = \beta \dv{\theta}{T}
+$$
+
+となる。これを代入すると、
+
+$$
+-\beta \dv{\theta}{T} = \nu_0 \exp \qty(-\frac{E_0}{RT})
+$$
+
+となる。これを積分すると、
+
+$$
+\theta_0 - \theta(T) = \frac{\nu_0}{\beta} \int_{T_0}^{T_1} \exp \qty(-\frac{E_0}{RT}) \dd{T}
+$$
+
+となる。これは、昇温とともに指数関数的に脱離が増えることを示しているが、 $\theta(T) = 0$ となるところで、被覆物質がなくなり、つまり脱離が止まることを示している。
+
+::: 
+
+#### 問２
+
+一次反応では、昇温と共に脱離量が山形のピークを形成する。
+このように振舞う理由を Wigner–Polanyi 型速度式の $\theta$ と $\exp\bigl(-E/(k_B T)\bigr)$ の温度依存性から説明せよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+@sec-tpd で述べた通り。
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+This is an example of a callout with a title.
+::: 
 
 
 
