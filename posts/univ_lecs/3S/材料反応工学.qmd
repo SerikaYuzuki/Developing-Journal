@@ -505,9 +505,754 @@ $$
 \begin{aligned}
 \dv{[\ce{A_0}] - [\ce{X}]}{t} &= -k([\ce{A_0}] - [\ce{X}])([\ce{B_0}] - [\ce{X}]) \\
 \dfrac{\dd{} [\ce{X}]}{([\ce{A_0}] - [\ce{X}])([\ce{B_0}] - [\ce{X}])} &= kdt \\
-
+\ln \frac{[\ce{A_0}] - [\ce{X}]}{[\ce{B_0}] - [\ce{X}]} &= kt
 \end{aligned}
 $$
+
+## 後半戦 (昔のやつ)
+
+### 不均一反応
+
+不均一反応の速度表示には次のようなものがある
+
+| 記号 | 定義 | 単位 | 意味 |
+|------|------|------|------|
+| $r_i$ | $-\dfrac{1}{V}\dfrac{d}{dt}n_i$ | $\mathrm{mol \cdot m^{-3} \cdot s^{-1}}$ | 単位時間あたりの体積反応量 |
+| $r_i'$ | $-\dfrac{1}{W}\dfrac{d}{dt}n_i$ | $\mathrm{mol \cdot kg^{-1} \cdot s^{-1}}$ | 単位時間あたりの質量反応量 |
+| $r_i''$ | $-\dfrac{1}{S}\dfrac{d}{dt}n_i$ | $\mathrm{mol \cdot m^{-2} \cdot s^{-1}}$ | 単位時間あたりの表面反応量 |
+
+これらはすべて互換可能である。
+
+$$
+r_i = \dfrac{W}{V}r_i' = \dfrac{S}{V}r_i''
+$$
+
+ここで、 $W$ は質量、 $S$ は表面積、 $V$ は体積である。
+
+### 固液界面における反応
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+
+# プロファイルのxとy座標を設定
+x_vals = [0.0, 0.2, 0.4, 0.41, 0.6]
+y_vals = [1.0, 1.0, 0.6, 0.0, 0.0]  # Solid内部でC_A2=0
+
+x_vals1 = x_vals[:3]
+y_vals1 = y_vals[:3]
+x_vals2 = x_vals[2:4]
+y_vals2 = y_vals[2:4]
+x_vals3 = x_vals[3:]
+y_vals3 = y_vals[3:]
+
+# グローエフェクト設定
+n_lines = 10
+diff_linewidth = 1.05
+alpha_value = 0.05
+neon_blue = '#00f0ff'
+
+# 図と軸のセットアップ
+fig, ax = plt.subplots(figsize=(6, 3))
+fig.patch.set_facecolor('#0f0f23')  # 背景
+ax.set_facecolor('#1a1a2e')         # プロットエリア背景
+
+# グロー部分
+for n in range(1, n_lines + 1):
+    lw = 2 + (diff_linewidth * n)
+    ax.plot(x_vals1, y_vals1, color=neon_blue, linewidth=lw, alpha=alpha_value, zorder=1)
+    ax.plot(x_vals2, y_vals2, color=neon_blue, linewidth=lw, alpha=alpha_value, zorder=1)
+    ax.plot(x_vals3, y_vals3, color=neon_blue, linewidth=lw, alpha=alpha_value, zorder=1)
+
+# メイン線
+ax.plot(x_vals1, y_vals1, color=neon_blue, linewidth=2.5, zorder=2)
+ax.plot(x_vals2, y_vals2, color=neon_blue, linewidth=2.5, zorder=2)
+ax.plot(x_vals3, y_vals3, color=neon_blue, linewidth=2.5, zorder=2)
+
+# ラベル類
+label_color = '#39ff14'
+ax.text(0.2, 1.05, r'$C_{A\ell}$', fontsize=12, color=label_color)
+ax.text(0.4, 0.62, r'$C_{AS}$', fontsize=12, color=label_color)
+ax.text(0.42, 0.02, r'$C_{A2}=0$', fontsize=12, color=label_color)
+ax.text(0.05, 1.05, 'Main body\nof liquid', fontsize=10, color='#ff00ff')
+ax.text(0.25, 0.9, 'Liquid film', fontsize=10, color='#ff00ff')
+ax.text(0.45, 0.9, 'Solid', fontsize=10, color='#ff00ff')
+
+# Δx の矢印とラベル
+ax.annotate('', xy=(0.2, 0.1), xytext=(0.4, 0.1),
+            arrowprops=dict(arrowstyle='<->', color='#ff4500', linewidth=2))
+ax.text(0.3, 0.12, r'$\Delta x$', ha='center', fontsize=12, color='#ff4500')
+
+# 縦線（界面と固体開始点）
+ax.axvline(x=0.2, color='#8888ff', linewidth=1, linestyle='--')
+ax.axvline(x=0.4, color='#8888ff', linewidth=1, linestyle='--')
+
+# 軸非表示と範囲調整
+ax.axis('off')
+ax.set_xlim(0, 0.7)
+ax.set_ylim(-0.1, 1.2)
+plt.tight_layout()
+plt.show()
+```
+
+このグラフで考える。縦軸は濃度で、横軸は位置である。
+
+Interfaceの部分では、Fickの法則による拡散が起きている。
+
+$$
+r_i = -D\frac{dC}{dx} = -D\frac{C_{AS}-C_{AE}}{\Delta x} = - k_{\text{diff}}(C_{AS}-C_{AE})
+$$
+
+次に、固体表面では、化学反応が起きている。定常状態なので、反応速度は等しいから、
+
+$$
+r_i = k_{\text{rxn}}C_{AS}
+$$
+
+これで、見なしの速度定数 $k$ が $r_i = kC_{AE}$ と定義されるので、
+
+$$
+\frac{1}{k} = \frac{1}{k_{\text{rxn}}} + \frac{1}{k_{\text{diff}}}
+$$
+
+となる。この式ってのは、どちらが律速になるのかというのを判断するのにかなり有効である。
+
+このモデルでは固体内での拡散は考えていない。固体の中での濃度分布というのは、のちに語るThieleモジュールとか、Weisz-Prater基準とか (@sec-thiele-module) って話題と関連がある。
+
+### 触媒反応(Langmuir-Hinshelwood)
+
+触媒（固体）表面上で起こる流体反応には、以下のような一連のステップがあり、最も遅いステップが**律速段階（律速ステップ）**となる。
+
+1.	流体バルク中から固体外表面への移動（バルク拡散）
+2.	外表面から細孔内表面までの孔内拡散
+3.	反応物の固体表面への吸着
+4.	固体表面上での化学反応
+5.	生成物の表面からの脱着
+6.	孔内から外表面への拡散（生成物の孔内拡散）
+7.	バルクへの生成物輸送（バルク拡散）
+
+Langmuir-Hinshelwood式は3→5の部分をモデル化している。表面被覆率を $\theta$ とすると、3の部分からして、
+
+$$
+r_{\text{ads}} = k_{\text{ads}}(1-\theta)p
+$$
+
+となる。ここで、$p$ は反応物の圧力である。これに合わせて、5の部分は
+
+$$
+r_{\text{des}} = k_{\text{des}}\theta
+$$
+
+となる。並行状態なので、
+
+$$
+r = r_{\text{ads}} = r_{\text{des}}
+$$
+
+となる。これを解くと、
+
+$$
+\theta = \frac{k_{\text{ads}}p}{k_{\text{des}} + k_{\text{ads}}p}
+$$
+
+となる。ここで吸着平衡定数 $K_{\text{ads}} = k_{\text{ads}}/k_{\text{des}}$ を用いると、
+
+$$
+\theta = \frac{K_{\text{ads}}p}{1 + K_{\text{ads}}p}
+$$
+
+となる。以下にグラフ化するが、$p$ の代わりに濃度も同じことができる。
+
+```{python}
+#| fig-width: 75%
+
+import plotly.graph_objects as go
+import numpy as np
+
+# 濃度範囲
+C = np.linspace(0, 10, 200)
+K_values = [0.5, 1.0, 2.0]
+colors = ['orange', 'tomato', 'crimson']
+
+# Langmuir吸着等温線（θ）
+fig_theta = go.Figure()
+for K, color in zip(K_values, colors):
+    theta = (K * C) / (1 + K * C)
+    fig_theta.add_trace(go.Scatter(x=C, y=theta, mode='lines',
+                                   name=f'K = {K}', line=dict(color=color)))
+fig_theta.update_layout(title='Langmuir吸着等温線（被覆率 θ）',
+                        xaxis_title='濃度 C',
+                        yaxis_title='被覆率 θ',
+                        template='plotly_dark')
+
+fig_theta.show()
+```
+
+
+飽和吸着量を $q_m$ とすると、
+
+$$
+\theta = \frac{q}{q_m}
+$$
+
+となる。これを代入すると、
+
+$$
+\begin{aligned}
+q &= \frac{K_{\text{ads}}p}{1 + K_{\text{ads}}p}q_m \\
+\frac{1}{q} &= \frac{1}{q_m} + \frac{1}{K_{\text{ads}}q_m} \frac{1}{p}
+\end{aligned}
+$$
+
+となる。これをLangmuirプロットと呼ばれる。
+
+### 解離吸着の場合のLangmuir-Hinshelwood式
+
+解離吸着の場合のLangmuir-Hinshelwood式は、次のように導出される。
+
+$$
+r_{\text{ads}} = k_{\text{ads}}(1-\theta)^2p
+$$
+
+となる。空いてる穴が二つ必要だから、２乗されている。ここで、$p$ は反応物の圧力である。これに合わせて、5の部分は
+
+$$
+r_{\text{des}} = k_{\text{des}}\theta^2
+$$
+
+となる。これも同様に、塞がっている穴二つ必要だから、２乗されている。並行状態なので、
+
+$$
+r = r_{\text{ads}} = r_{\text{des}}
+$$
+
+となる。これを解くと、
+
+$$
+\theta = \frac{\sqrt{k_{\text{ads}}p}}{\sqrt{k_{\text{des}}} + \sqrt{k_{\text{ads}}p}} = \frac{\sqrt{{Kp}}}{\sqrt{Kp} + 1}
+$$
+
+となる。
+
+$$
+\begin{aligned}
+K &= \frac{k_{\text{ads}}}{k_{\text{des}}} \\
+&= \frac{\theta^2}{(1-\theta)^2p}
+\end{aligned}
+$$
+
+っていうのが導出の仕方だけど、質量作用の法則を考えれば、
+
+$$
+K = \frac{[\ce{AS}]^2}{[\ce{A2}][\ce{S}]^2}
+$$
+
+となる。ここで、 $[\ce{AS}]$ は $\theta$ に比例して、 $[\ce{S}]$ は $1-\theta$ に比例する。だから、
+
+$$
+K = \frac{\theta^2}{(1-\theta)^2p}
+$$
+
+となるという導き方が簡単だ。……導出過程で色々スキップはしてしまってるので解答では使わないように。
+
+### ２分子吸着の場合のLangmuir-Hinshelwood式
+
+$$
+\begin{aligned}
+r_{\rm ads,A} &= k_{\rm ads,A}\,(1 - \theta_A - \theta_B)\,p_A,\\
+r_{\rm des,A} &= k_{\rm des,A}\,\theta_A,\\
+r_{\rm ads,B} &= k_{\rm ads,B}\,(1 - \theta_A - \theta_B)\,p_B,\\
+r_{\rm des,B} &= k_{\rm des,B}\,\theta_B.
+\end{aligned}
+$$
+
+となる。定常状態なので、
+
+$$
+\begin{aligned}
+r_{\rm ads,A} &= r_{\rm des,A} \\
+r_{\rm ads,B} &= r_{\rm des,B}
+\end{aligned}
+$$
+
+となる。これを解くと、
+
+$$
+\begin{aligned}
+\theta_A &= \frac{K_A\,p_A}{\,1 + K_A\,p_A + K_B\,p_B\,} \\
+\theta_B &= \frac{K_B\,p_B}{\,1 + K_A\,p_A + K_B\,p_B\,}
+\end{aligned}
+$$
+
+となる。
+
+これについても、質量作用の法則で
+
+$$
+K = \frac{[\ce{AS}]}{[\ce{A}][\ce{S}]}
+$$
+
+となる。ここで、 $[\ce{AS}]$ は $\theta_A$ に比例して、 $[\ce{A}]$ と $[\ce{S}]$ は $1-\theta_A-\theta_B$ に比例する。だから、
+
+$$
+K_A = \frac{\theta_A}{(1-\theta_A-\theta_B)p_A}
+$$
+
+とできるが……。まあ、式の確認に使おう。
+
+### 吸着エンタルピー
+
+$$
+K = \frac{\theta}{(1 - \theta)p}
+$$
+
+となる。ここで、対数をとって、
+
+$$
+\ln K = \ln \theta - \ln (1 - \theta) - \ln p
+$$
+
+となる。これを $\theta$ 固定すると、
+
+$$
+\pdv{\ln K}{T} + \pdv{\ln p}{T} = 0
+$$
+
+となる。ここで 
+$$
+K = \exp \qty(\frac{-\Delta G}{RT}) = \exp \qty(-\frac{\Delta H_{\text{ads}}-T\Delta S_{\text{ads}}}{RT})
+$$ 
+
+を代入すると、
+
+$$
+\begin{aligned}
+\ln K &= -\frac{\Delta H_{\text{ads}}}{RT} + \frac{\Delta S_{\text{ads}}}{R} \\
+\pdv{\ln K}{T} &= \frac{\Delta H_{\text{ads}}}{RT^2} \\
+\pdv{\ln p}{T} &= -\frac{\Delta H_{\text{ads}}}{RT^2} \\
+\pdv{\ln p}{(1/T)} &= \frac{\Delta H_{\text{ads}}}{R}
+\end{aligned}
+$$
+
+となる。これによって、ある温度において被覆率が一定になるような圧力を実験的に求め、プロットすることによって、吸着エンタルピーを求めることができる。
+
+### Wigner-Polanyiの関係式
+
+ここでは表面からの **脱離** について考えている。
+
+とりあえず式としての形は
+
+$$
+\begin{aligned}
+r_{\text{des}} &= - \dv{\theta}{t} = k \theta^n \\
+&= \nu_n \theta^n \exp \qty(-\frac{E_n}{RT})
+\end{aligned}
+$$
+
+となる。ここで、$k$ は速度定数で、$n$ は反応次数で、$\nu_n$ は頻度因子である。
+
+これの導出については、とりあえず質量作用の法則に従った形だということは覚えておけばいいのだが、 $\nu_n$ などについての詳しいことは、[TST](https://ja.wikipedia.org/wiki/遷移状態理論)などの話に任せた方が良さそう。はっきり言って、講義内の資料で理解するのは不可能と思われる。
+
+### TPDデータによるRedhead法。
+
+TPDは、Temperature Programmed Desorptionの略で、温度を変化させることによって、吸着している分子が脱離する過程を観察する手法である。
+
+ここでは、TPDデータによるRedhead法について話す。
+
+温度を一定速度 $\beta=dT/dt$ で上げるとき、  
+
+$$
+T(t) = T_0 + \beta\,t
+\quad\Longrightarrow\quad
+\frac{d\theta}{dt}
+= \beta\,\frac{d\theta}{dT}
+$$
+
+脱離速度 $r_{\rm des}(T)$ が最大をとる温度 $T_{\rm max}$ は
+
+$$
+\frac{d}{dT}\bigl[r_{\rm des}(T)\bigr]_{T=T_{\rm max}} = 0
+$$
+
+を満たし、解析すると以下の関係が得られる：
+
+$$
+\frac{\nu}{\beta}
+\exp\!\Bigl(-\frac{E_{\rm des}}{R\,T_{\rm max}}\Bigr)
+= \frac{E_{\rm des}}{R\,T_{\rm max}^2}
+\tag{★}
+$$
+
+Redhead (1962) は式(★)を近似して解析解を導出した：
+
+1. $\ln\bigl(\tfrac{E_{\rm des}}{R\,T_{\rm max}^2}\bigr)$ 項を無視  
+2. $\displaystyle \exp\!\Bigl(\tfrac{E_{\rm des}}{R\,T_{\rm max}}\Bigr)\approx \tfrac{\nu}{\beta}$  
+3. 両辺の対数を取って整理すると  
+
+$$
+E_{\rm des}
+\approx R\,T_{\rm max}
+\ln\!\Bigl(\frac{\nu}{\beta}\Bigr)
+$$
+4. 経験的補正 $-3.64$ を加えた最終式：
+
+$$
+E_{\rm des}
+\approx R\,T_{\rm max}
+\Bigl[\ln\!\Bigl(\tfrac{\nu\,T_{\rm max}}{\beta}\Bigr)
+         \;-\;3.64\Bigr]
+$$
+
+となる。
+
+### Thieleモジュール {#sec-thiele-module}
+
+触媒が多孔質構造を持つとき、反応物は細孔内に拡散してから反応する。この時の触媒内部の反応物濃度を定量的に解析する。
+
+細孔内の濃度について考える。
+
+```{python}
+import plotly.graph_objects as go
+import numpy as np
+
+# x 軸（相対距離）
+x = np.linspace(0, 1, 200)
+
+# スライダーに使う mL 値のリスト
+mL_values = np.linspace(0.1, 10, 100)
+
+# 初期値
+mL_init = 2
+C_init = np.exp(-mL_init * x)
+C_avg_init = np.trapezoid(C_init, x)
+
+# フィギュア作成
+fig = go.Figure(
+    data=[
+        go.Scatter(x=x, y=C_init, mode='lines', name='Concentration Profile', line=dict(color='deepskyblue', width=3)),
+        go.Scatter(x=[0, 1], y=[C_avg_init, C_avg_init], mode='lines', name='Average', line=dict(color='deepskyblue', dash='dash'))
+    ],
+    layout=go.Layout(
+        title='Concentration Profile in Catalyst Pore (Interactive mL)',
+        xaxis_title='x / L',
+        yaxis_title='C_A / C_AS',
+        template='plotly_white',
+        updatemenus=[{
+            "type": "buttons",
+            "buttons": [
+                {"label": "Play", "method": "animate", "args": [None, {"frame": {"duration": 50, "redraw": True}, "fromcurrent": True}]},
+                {"label": "Pause", "method": "animate", "args": [[None], {"frame": {"duration": 0, "redraw": False}, "mode": "immediate"}]}
+            ]
+        }],
+        sliders=[{
+            "steps": [{
+                "args": [[f"{mL:.2f}"], {"frame": {"duration": 0, "redraw": True}, "mode": "immediate"}],
+                "label": f"{mL:.2f}",
+                "method": "animate"
+            } for mL in mL_values],
+            "currentvalue": {"prefix": "mL = "},
+            "pad": {"t": 50}
+        }]
+    )
+)
+
+# フレームの追加
+fig.frames = [
+    go.Frame(
+        data=[
+            go.Scatter(x=x, y=np.exp(-mL * x)),
+            go.Scatter(x=[0, 1], y=[np.trapezoid(np.exp(-mL * x), x)] * 2)
+        ],
+        name=f"{mL:.2f}"
+    ) for mL in mL_values
+]
+
+fig.show()
+```
+
+ここで、微細な部分 $\Delta x$ を考える。この部分では、
+
+$$
+\dv{N_A}{t}_{\text{in}} - \dv{N_A}{t}_{\text{out}} = \dv{N_A}{t}_{\text{rxn}}
+$$
+
+となる。ここで、左辺はフィックの拡散、右辺は表面における反応速度で、それぞれを式にして表すと次の通り。ただし単位は、単位長さあたりの変化率であることに注意。
+
+$$
+\dv{N_A}{t}_{\text{in}} = -D \pi r^2 \frac{\Delta C_A}{\Delta x}
+$$
+
+$$
+\dv{N_A}{t}_{\text{out}} = -D \pi r^2 \frac{\Delta C_A'}{\Delta x}
+$$
+
+$$
+\dv{N_A}{t}_{\text{rxn}} = - \frac{1}{S} \dv{N_A}{t} \times 2\pi r \Delta x = - k'' C_A \times 2\pi r \Delta x
+$$
+
+これらを代入すると、
+
+$$
+\begin{aligned}
+- (D \pi r^2 \frac{\Delta C_A}{\Delta x} - D \pi r^2 \frac{\Delta C_A'}{\Delta x} ) &= - k'' C_A \times 2\pi r \Delta x \\
+D \dv[2]{C_A}{x} &= k''' C_A
+\end{aligned}
+$$
+
+となる。ここで反応速度定数は表面積ベースから体積ベースに変換した。これをこのままだと扱いにくいというか、個別個別で全部やるのが面倒くさいので、無次元化する。
+
+$$
+\begin{aligned}
+C &= \frac{C_A}{C_{AS}} \\
+\chi &= \frac{x}{L}
+\end{aligned}
+$$
+
+とすると、
+
+$$
+\begin{aligned}
+\dv[2]{C}{\chi} &= L^2\frac{k'''}{D} C = M_T^2 C
+\end{aligned}
+$$
+
+となる。ここで、$M_T$ はThieleモジュールと呼ばれる。
+
+$$
+M_T = L \sqrt{\frac{k'''}{D}}
+$$
+
+この微分方程式を解いて図解したのが上の図。具体的な $k'''$ の中身については追いかけるのが面倒なので放置するが、その大きさによって律速がどっちなのかがわかる。
+
+| $M_T$ | 律速 |
+|-------|------|
+| $\gg 1$ | 拡散律速 |
+| $\ll 1$ | 反応律速 |
+
+次に、先ほどの微分方程式の解は、
+
+$$
+C = \frac{\cosh M_T(1 - \chi)}{\cosh M_T}
+$$
+
+となる。で、この平均というのは
+
+$$
+\int_0^1 C \dd{\chi} = \frac{\tanh M_T}{M_T} = \mathscr{E}
+$$
+
+となって、これを有効性係数と呼んでいる。つまり、これが高ければ高いほど、反応率は高いというわけだ。これを式にまとめると、
+
+$$
+-r_A = k''' C_{AS} \mathscr{E}
+$$
+
+となる。
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Thieleモジュールの範囲
+M_T = np.linspace(0.1, 100, 300)
+
+# 有効性係数 ε = tanh(M_T)/M_T
+epsilon = np.tanh(M_T) / M_T
+
+# プロット
+fig, ax = plt.subplots(figsize=(7, 4))
+ax.plot(M_T, epsilon, label=r'$\varepsilon = \tanh(M_T)/M_T$', color='cyan')
+
+# 理想直線 ε = 1/M_T（拡散律速時の漸近直線）
+ax.plot(M_T, 1 / M_T, '--', color='orange', label=r'$\varepsilon = 1/M_T$ (asymptotic)')
+
+# 軸設定
+ax.set_xscale('log')
+ax.set_yscale('log')
+ax.set_xlabel(r'Thiele modulus $M_T$', fontsize=12)
+ax.set_ylabel(r'Effectiveness factor $\varepsilon$', fontsize=12)
+ax.set_title('Effectiveness Factor vs Thiele Modulus', fontsize=14)
+ax.grid(True, which="both", ls="--", linewidth=0.5)
+ax.legend()
+
+plt.tight_layout()
+plt.show()
+```
+
+ここで、
+
+$$
+M_W = M_T^2 \mathscr{E} = \frac{L^2(-r_A)}{C_{AS} \mathscr{D}}
+$$
+
+というWeiszモジュールを導入する。これは分母が拡散速度のフィックの法則の式になっていて、分子が反応速度になっている。つまり、この式を見ることによって、拡散律速かどうかの実験チェックができる。
+
+なぜこの式を使うかというと、この式の右辺は実験のみで計測が可能なところ。これによって $M_T$ の評価なども可能である。
+
+## 後半戦(今のやつ)
+
+### 速度分布関数
+
+速度分布関数は以下の通り。
+
+$$
+f(v_x) = \qty(\frac{m}{2\pi k_B T})^{1/2} \exp \qty(-\frac{m}{2k_B T} v_x^2)
+$$
+
+これを用いて、速度の平均値は以下の通り。
+
+$$
+\begin{aligned}
+\bar{v}_x &= \int_0^\infty v_x f(v_x) \dd{v_x} \\
+&= \qty(\frac{m}{2\pi k_B T})^{1/2} \int_0^\infty v_x \exp \qty(-\frac{m}{2k_B T} v_x^2) \dd{v_x} \\
+&= \qty(\frac{m}{2\pi k_B T})^{1/2} \frac{k_B T}{m} \\
+&= \sqrt{\frac{k_B T}{2\pi m}}
+\end{aligned}
+$$
+
+これらを３次元に拡張すると、
+
+$$
+\begin{aligned}
+f(v_x, v_y, v_z)\dd{v_x}\dd{v_y}\dd{v_z} &= \qty(\frac{m}{2\pi k_B T})^{3/2} \exp \qty(-\frac{m}{2k_B T} (v_x^2 + v_y^2 + v_z^2)) \dd{v_x}\dd{v_y}\dd{v_z} \\
+&= \qty(\frac{m}{2\pi k_B T})^{3/2} \exp \qty(-\frac{m}{2k_B T} v^2) \dd{v_x}\dd{v_y}\dd{v_z} \\
+&= \qty(\frac{m}{2\pi k_B T})^{3/2} 4\pi v^2 \exp \qty(-\frac{m}{2k_B T} v^2) \dd{v}
+\end{aligned}
+$$
+
+となる。ここで重要なのは、速度分布の変換で
+
+$$
+\begin{aligned}
+\dd{v_x}\dd{v_y}\dd{v_z} &= v^2 \sin \theta \dd{v} \dd{\theta} \dd{\phi} \\
+f(v)\dd{v} &= \int_0^{2\pi} \int_0^\pi \int_0^\infty f(v_x, v_y, v_z) v^2 \sin \theta \dd{v} \dd{\theta} \dd{\phi} \\
+&= 4\pi v^2 f(v_x, v_y, v_z) \dd{v}
+\end{aligned}
+$$
+
+となること。座標変換を挟んでいるので注意。これを用いて、速度の平均値は以下の通り。
+
+$$
+\begin{aligned}
+\bar{v}_x &= \int_0^\infty v f(v) \dd{v} \\
+&= \int_0^\infty v \qty(\frac{m}{2\pi k_B T})^{3/2} 4\pi v^2 \exp \qty(-\frac{m}{2k_B T} v^2) \dd{v} \\
+&= \qty(\frac{m}{2\pi k_B T})^{3/2} 4\pi \int_0^\infty v^3 \exp \qty(-\frac{m}{2k_B T} v^2) \dd{v} \\
+&= \qty(\frac{m}{2\pi k_B T})^{3/2} 4\pi \frac{1}{2} \sqrt{\frac{2k_B T}{m}} \\
+&= \sqrt{\frac{8k_B T}{\pi m}} = 4 \bar{v}_x
+\end{aligned}
+$$
+
+となる。これは、速度の平均値が $4$ 倍になっている。3倍になっていないのは、速度分布ってのには大きさだけじゃなく、向きというものも含まれるから。
+
+矢印をランダムに空間内に並べると考えてみて欲しい。
+
+矢印の $x$ 成分だけ測るなら、向きで半分は捨てるし、投影は短くなる。この“取りこぼし”と“大きさの重みづけ”のサヤ合わせが、“ただ３倍”ではなく“ちょうど４倍”を生んでいる。
+
+逆に、 $x$ 方向だけ矢印の長さを測るなら、そもそも折り畳まれた状態での測定になるから、元に戻すと $4$ 倍になる。
+
+### Hertz-Knudsen式 {#sec-hertz-knudsen}
+
+ここで、Hertz-Knudsen式を導出する。気体の数密度を $N$ とすると、
+
+$$
+z = \bar{v}_x N
+$$
+
+ここで、気体方程式を使うと
+
+$$
+N = \frac{N_An}{V} = \frac{p}{k_B T}
+$$
+
+となる。これを代入すると、
+
+$$
+z = \bar{v}_x \frac{p}{k_B T} = \frac{p}{\sqrt{2\pi m k_B T}}
+$$
+
+
+
+
+
+
+
+
+
+# 演習
+
+## 後半戦
+
+### 1回目
+
+
+#### 問１
+
+面心立方格子をもつ Pt の格子定数 $a = 0.4\ \mathrm{nm}$ としたとき、  
+$(100)$ 面の **1 cm⁻²** あたりに含まれる Pt 原子の個数を求めよ。
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+単位格子表面には、手前の1/4が4つ、真ん中の1があるとして、合計2個の原子があるとする。
+
+$$
+N_s = \frac{2}{a^2} = 1.25 \times 10^{19} \mathrm{m^{-2}}
+$$
+
+これを1 cm²について考えると、
+
+$$
+N_s = \frac{2}{a^2} \times 10^{-15} \mathrm{m^2}
+$$
+
+::: 
+
+#### 問２
+
+Hertz–Knudsen の式から、数秒以内に全ての Pt 原子に分子が吸着することを示せ。  
+
+以下の条件を用いること：  
+- 圧力 $p = 1.33\times10^{-4}\ \mathrm{Pa}$  
+- 分子質量 $m = 28$ （$N_2$ または CO）  
+- 温度 $T = 300\ \mathrm{K}$  
+- ボルツマン定数 $k_B = 1.38\times10^{-23}\ \mathrm{J\,K^{-1}}$  
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+Hertz-Knudsen式は、@sec-hertz-knudsen で述べた通り。
+
+$$
+z = \frac{p}{\sqrt{2\pi m k_B T}}
+$$
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+$$
+z = 3.8 \times 10^{14} \mathrm{cm^{-2}s^{-1}}
+$$
+
+なので、
+
+$$
+r = \frac{N_s}{z} = 3.3 \mathrm{s}
+$$
+
+となる。
+
+::: 
+
+
+
+
+### 2回目
+
+#### 問１
+
+
 
 
 # 過去問
