@@ -115,7 +115,47 @@ $$
 \sigma_{AB} = \frac{Zm_1}{\omega} \left\{ \epsilon_{AB} - \frac{\epsilon_{AA}+\epsilon_{BB}}{2} \right\}
 $$
 
-## 
+## 熱力学的駆動力 {#sec-thermo-driving-force}
+
+熱力学的駆動力は、液体→固体へ相変化が起こるときのモル体積あたりの自由エネルギー差である。
+
+$$
+\Delta G_v = \frac{\Delta G_m}{V_m}
+$$
+
+ここで、$\Delta G_m$ が負であれば、固体化へ自発的に進むことになる。
+
+では、融点付近での動きを見てみることにする。まず、融点においては、固体と液体が平衡にあるので、
+
+$$
+\Delta G_v = 0
+$$
+
+これが融点の定義でもある。なので、
+
+$$
+\Delta S_{\mathrm{fus}} = \frac{\Delta H_{\mathrm{fus}}}{T_m}
+$$
+
+となるのだが、これってのは融点付近の $\Delta S$ 自体の近似値として使用可能。なので、
+
+$$
+\Delta G_v = \frac{\Delta H_{\mathrm{fus}}}{V_m} \frac{T_m - T}{T_m} = \frac{\Delta H_{\mathrm{fus}}}{V_m} \frac{\Delta T}{T_m}
+$$
+
+となる。で、ここまでの議論でかなり重要な話だが、 $\Delta H_{\mathrm{fus}}$ の符号は基本的に負だ。そりゃあ凝固してるんだから。ただし！！　これが融解エンタルピー、つまり、凝固に伴うエンタルピー変化を逆から見て符号を変えたものの時は、マイナスをつけよう。
+
+講義資料では深く触れられていなかったため、まじで注意！！
+
+## 均質核生成 {#sec-homogeneous-nucleation}
+
+均質核生成は、核生成の熱力学的駆動力が負であることが必要である。
+
+TODO: ここに均質核生成の詳細な議論を書く。
+
+
+
+
 
 
 # 過去問
@@ -282,3 +322,92 @@ plt.show()
 
 ::: 
 
+### 問2
+
+A. ある純金属の融解エンタルピー（$\Delta H_{\mathrm{ml}}$）は $10 \mathrm{kJ \cdot mol^{-1}}$、融点は $T_m = 1500 \mathrm{K}$ である。また、モル体積は $V_m = 6 \times 10^{-6} \mathrm{m^3 \cdot mol^{-1}}$ とする。
+
+1. この金属の融解エントロピー $\Delta S_{\mathrm{ml}}$ を求めよ。  
+2. この金属を完全に融解した後、融点より 100 K 低い温度（$T = T_m - 100 \mathrm{K}$）に冷却・保持したとき、固体生成の熱力学的駆動力 $\Delta G_{\mathrm{v}}$ を求めよ。  
+3. この金属の固液界面エネルギーを $\gamma = 0.18 \mathrm{J \cdot m^{-2}}$ とする。 2.の条件下で球状の固体核が液中に生成するときの臨界半径 $r^*$ を求めよ。  
+
+B. 多結晶固体中の核生成はしばしば粒界で起こる。この理由を約100字程度で説明せよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+1. 等温、等圧過程なので、ギブスエネルギーを考えればいい。
+
+$$
+\Delta G = \Delta H - T\Delta S
+$$
+
+TODO：いずれ熱力学ポテンシャルについての総合的な記事を書く。
+
+2. 熱力学的駆動力は、@sec-thermo-driving-force で述べたように、
+$$
+\Delta G_v = \frac{\Delta H_{\mathrm{fus}}}{V_m} \frac{\Delta T}{T_m}
+$$
+ただし、注意として、 $\Delta H_{\mathrm{ml}} = - \Delta H_{\mathrm{fus}}$ である。
+
+3. 臨界半径などの話は @sec-homogeneous-nucleation を参照。
+$$
+r^* = \frac{2\sigma_{SL}}{\Delta G_v}
+$$
+ここで、$\Delta G_v$ は熱力学的駆動力、$\sigma_{SL}$ は核の界面エネルギーである。
+
+
+
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+A.
+    1. 固体と液体が並行状態にあるので、
+$$
+\begin{aligned}
+\Delta G_{\mathrm{ml}} &= \Delta H_{\mathrm{ml}} - T\Delta S_{\mathrm{ml}} = 0 \\
+\Delta S_{\mathrm{ml}} &= \frac{\Delta H_{\mathrm{ml}}}{T_m} = \frac{10 \mathrm{kJ \cdot mol^{-1}}}{1500 \mathrm{K}} = 6.67 \mathrm{kJ \cdot mol^{-1} \cdot K^{-1}}
+\end{aligned}
+$$
+
+    2. 
+$\Delta T = -100 \mathrm{K}$ なので、
+$$
+\Delta G_v = - \frac{10 \mathrm{kJ \cdot mol^{-1}}}{6 \times 10^{-6} \mathrm{m^3 \cdot mol^{-1}}} \frac{100 \mathrm{K}}{1500 \mathrm{K}} = -1.11 \times 10^{5} \mathrm{kJ \cdot m^{-3}}
+$$
+```{python}
+import numpy as np
+
+# 定数
+T_m = 1500 # K
+V_m = 6e-6 # m^3/mol
+H_ml = 10 # kJ/mol
+
+# 計算
+T = T_m - 100
+G_v = - H_ml / V_m * (T_m - T) / T_m
+
+print(f"熱力学的駆動力: {G_v:.2f} kJ/m^3")
+```
+
+    3. 式は以下の通り。
+$$
+r^* = \frac{2 \times 0.18 \mathrm{J \cdot m^{-2}}}{-1.11 \times 10^{5} \mathrm{kJ \cdot m^{-3}}} = 3.2 \times 10^{-9} \mathrm{m}
+$$
+```{python}
+import numpy as np
+
+# 定数
+sigma_SL = 0.18 # J/m^2
+G_v = -1.11e8 # J/m^3
+
+# 計算
+r_star = 2 * sigma_SL / G_v
+print(f"臨界半径: {r_star:.2e} m")
+```
+B. 粒界は格子歪みや欠陥が集中して界面エネルギーが高く、その結果、核生成に必要な自由エネルギー障壁が低下し、かつ原子拡散が促進されるため、多結晶中ではまず粒界で核生成が起こりやすい。  
+
+
+
+::: 

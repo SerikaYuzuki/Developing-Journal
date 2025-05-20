@@ -820,13 +820,15 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#核生成" id="toc-核生成" class="nav-link" data-scroll-target="#核生成">核生成</a></li>
   <li><a href="#表面エネルギー" id="toc-表面エネルギー" class="nav-link" data-scroll-target="#表面エネルギー">表面エネルギー</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#sec-thermo-driving-force" id="toc-sec-thermo-driving-force" class="nav-link" data-scroll-target="#sec-thermo-driving-force">熱力学的駆動力</a></li>
+  <li><a href="#sec-homogeneous-nucleation" id="toc-sec-homogeneous-nucleation" class="nav-link" data-scroll-target="#sec-homogeneous-nucleation">均質核生成</a></li>
   </ul></li>
   <li><a href="#過去問" id="toc-過去問" class="nav-link" data-scroll-target="#過去問">過去問</a>
   <ul class="collapse">
   <li><a href="#年度" id="toc-年度" class="nav-link" data-scroll-target="#年度">2024年度</a>
   <ul class="collapse">
   <li><a href="#問1" id="toc-問1" class="nav-link" data-scroll-target="#問1">問1</a></li>
+  <li><a href="#問2" id="toc-問2" class="nav-link" data-scroll-target="#問2">問2</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -919,8 +921,32 @@ r^* &amp;= \frac{2\sigma_{SL}}{\Delta G_v}
 \sigma_{AB} = \frac{Zm_1}{\omega} \left\{ \epsilon_{AB} - \frac{\epsilon_{AA}+\epsilon_{BB}}{2} \right\}
 \]</span></p>
 </section>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
+<section id="sec-thermo-driving-force" class="level2">
+<h2 class="anchored" data-anchor-id="sec-thermo-driving-force">熱力学的駆動力</h2>
+<p>熱力学的駆動力は、液体→固体へ相変化が起こるときのモル体積あたりの自由エネルギー差である。</p>
+<p><span class="math display">\[
+\Delta G_v = \frac{\Delta G_m}{V_m}
+\]</span></p>
+<p>ここで、<span class="math inline">\(\Delta G_m\)</span> が負であれば、固体化へ自発的に進むことになる。</p>
+<p>では、融点付近での動きを見てみることにする。まず、融点においては、固体と液体が平衡にあるので、</p>
+<p><span class="math display">\[
+\Delta G_v = 0
+\]</span></p>
+<p>これが融点の定義でもある。なので、</p>
+<p><span class="math display">\[
+\Delta S_{\mathrm{fus}} = \frac{\Delta H_{\mathrm{fus}}}{T_m}
+\]</span></p>
+<p>となるのだが、これってのは融点付近の <span class="math inline">\(\Delta S\)</span> 自体の近似値として使用可能。なので、</p>
+<p><span class="math display">\[
+\Delta G_v = \frac{\Delta H_{\mathrm{fus}}}{V_m} \frac{T_m - T}{T_m} = \frac{\Delta H_{\mathrm{fus}}}{V_m} \frac{\Delta T}{T_m}
+\]</span></p>
+<p>となる。で、ここまでの議論でかなり重要な話だが、 <span class="math inline">\(\Delta H_{\mathrm{fus}}\)</span> の符号は基本的に負だ。そりゃあ凝固してるんだから。ただし！！　これが融解エンタルピー、つまり、凝固に伴うエンタルピー変化を逆から見て符号を変えたものの時は、マイナスをつけよう。</p>
+<p>講義資料では深く触れられていなかったため、まじで注意！！</p>
+</section>
+<section id="sec-homogeneous-nucleation" class="level2">
+<h2 class="anchored" data-anchor-id="sec-homogeneous-nucleation">均質核生成</h2>
+<p>均質核生成は、核生成の熱力学的駆動力が負であることが必要である。</p>
+<p>TODO: ここに均質核生成の詳細な議論を書く。</p>
 </section>
 </section>
 <section id="過去問" class="level1">
@@ -942,7 +968,7 @@ This is an example of a callout with a title.
 <h2 class="anchored" data-anchor-id="年度">2024年度</h2>
 <section id="問1" class="level3">
 <h3 class="anchored" data-anchor-id="問1">問1</h3>
-<div id="a73ccd98" class="cell" data-execution_count="1">
+<div id="04b7bce9" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1115,7 +1141,7 @@ This is an example of a callout with a title.
 </figure>
 </div>
 <ol start="3" type="1">
-<li>このダイアグラムを <span class="math inline">\(\LaTeX\)</span> などで書くのは相当面倒なので、 <span class="citation" data-cites="溶接学会no77vol6">溶接学会 (<a href="#ref-溶接学会no77vol6" role="doc-biblioref">TANAKA Toshihiro</a>)</span> から引用した図を以下に示す。</li>
+<li>このダイアグラムを <span class="math inline">\(\LaTeX\)</span> などで書くのは相当面倒なので、 <span class="citation" data-cites="溶接学会no77vol6">Toshihiro (<a href="#ref-溶接学会no77vol6" role="doc-biblioref">2008</a>)</span> から引用した図を以下に示す。</li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1135,6 +1161,118 @@ This is an example of a callout with a title.
 </div>
 </div>
 </div>
+</section>
+<section id="問2" class="level3">
+<h3 class="anchored" data-anchor-id="問2">問2</h3>
+<p>A. ある純金属の融解エンタルピー（<span class="math inline">\(\Delta H_{\mathrm{ml}}\)</span>）は <span class="math inline">\(10 \mathrm{kJ \cdot mol^{-1}}\)</span>、融点は <span class="math inline">\(T_m = 1500 \mathrm{K}\)</span> である。また、モル体積は <span class="math inline">\(V_m = 6 \times 10^{-6} \mathrm{m^3 \cdot mol^{-1}}\)</span> とする。</p>
+<ol type="1">
+<li>この金属の融解エントロピー <span class="math inline">\(\Delta S_{\mathrm{ml}}\)</span> を求めよ。<br>
+</li>
+<li>この金属を完全に融解した後、融点より 100 K 低い温度（<span class="math inline">\(T = T_m - 100 \mathrm{K}\)</span>）に冷却・保持したとき、固体生成の熱力学的駆動力 <span class="math inline">\(\Delta G_{\mathrm{v}}\)</span> を求めよ。<br>
+</li>
+<li>この金属の固液界面エネルギーを <span class="math inline">\(\gamma = 0.18 \mathrm{J \cdot m^{-2}}\)</span> とする。 2.の条件下で球状の固体核が液中に生成するときの臨界半径 <span class="math inline">\(r^*\)</span> を求めよ。</li>
+</ol>
+<p>B. 多結晶固体中の核生成はしばしば粒界で起こる。この理由を約100字程度で説明せよ。</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>等温、等圧過程なので、ギブスエネルギーを考えればいい。</li>
+</ol>
+<p><span class="math display">\[
+\Delta G = \Delta H - T\Delta S
+\]</span></p>
+<p>TODO：いずれ熱力学ポテンシャルについての総合的な記事を書く。</p>
+<ol start="2" type="1">
+<li><p>熱力学的駆動力は、<a href="#sec-thermo-driving-force" class="quarto-xref">Section&nbsp;1.3</a> で述べたように、 <span class="math display">\[
+\Delta G_v = \frac{\Delta H_{\mathrm{fus}}}{V_m} \frac{\Delta T}{T_m}
+\]</span> ただし、注意として、 <span class="math inline">\(\Delta H_{\mathrm{ml}} = - \Delta H_{\mathrm{fus}}\)</span> である。</p></li>
+<li><p>臨界半径などの話は <a href="#sec-homogeneous-nucleation" class="quarto-xref">Section&nbsp;1.4</a> を参照。 <span class="math display">\[
+r^* = \frac{2\sigma_{SL}}{\Delta G_v}
+\]</span> ここで、<span class="math inline">\(\Delta G_v\)</span> は熱力学的駆動力、<span class="math inline">\(\sigma_{SL}\)</span> は核の界面エネルギーである。</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="A">
+<li><ol type="1">
+<li><p>固体と液体が並行状態にあるので、 <span class="math display">\[
+\begin{aligned}
+\Delta G_{\mathrm{ml}} &amp;= \Delta H_{\mathrm{ml}} - T\Delta S_{\mathrm{ml}} = 0 \\
+\Delta S_{\mathrm{ml}} &amp;= \frac{\Delta H_{\mathrm{ml}}}{T_m} = \frac{10 \mathrm{kJ \cdot mol^{-1}}}{1500 \mathrm{K}} = 6.67 \mathrm{kJ \cdot mol^{-1} \cdot K^{-1}}
+\end{aligned}
+\]</span></p></li>
+<li><p><span class="math inline">\(\Delta T = -100 \mathrm{K}\)</span> なので、 <span class="math display">\[
+\Delta G_v = - \frac{10 \mathrm{kJ \cdot mol^{-1}}}{6 \times 10^{-6} \mathrm{m^3 \cdot mol^{-1}}} \frac{100 \mathrm{K}}{1500 \mathrm{K}} = -1.11 \times 10^{5} \mathrm{kJ \cdot m^{-3}}
+\]</span></p></li>
+</ol></li>
+</ol>
+<div id="84d6403e" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>T_m <span class="op">=</span> <span class="dv">1500</span> <span class="co"># K</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>V_m <span class="op">=</span> <span class="fl">6e-6</span> <span class="co"># m^3/mol</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>H_ml <span class="op">=</span> <span class="dv">10</span> <span class="co"># kJ/mol</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 計算</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> T_m <span class="op">-</span> <span class="dv">100</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>G_v <span class="op">=</span> <span class="op">-</span> H_ml <span class="op">/</span> V_m <span class="op">*</span> (T_m <span class="op">-</span> T) <span class="op">/</span> T_m</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"熱力学的駆動力: </span><span class="sc">{</span>G_v<span class="sc">:.2f}</span><span class="ss"> kJ/m^3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>熱力学的駆動力: -111111.11 kJ/m^3</code></pre>
+</div>
+</div>
+<pre><code>3. 式は以下の通り。</code></pre>
+<p><span class="math display">\[
+r^* = \frac{2 \times 0.18 \mathrm{J \cdot m^{-2}}}{-1.11 \times 10^{5} \mathrm{kJ \cdot m^{-3}}} = 3.2 \times 10^{-9} \mathrm{m}
+\]</span></p>
+<div id="e7013213" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>sigma_SL <span class="op">=</span> <span class="fl">0.18</span> <span class="co"># J/m^2</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>G_v <span class="op">=</span> <span class="op">-</span><span class="fl">1.11e8</span> <span class="co"># J/m^3</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 計算</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>r_star <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> sigma_SL <span class="op">/</span> G_v</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"臨界半径: </span><span class="sc">{</span>r_star<span class="sc">:.2e}</span><span class="ss"> m"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>臨界半径: -3.24e-09 m</code></pre>
+</div>
+</div>
+<p>B. 粒界は格子歪みや欠陥が集中して界面エネルギーが高く、その結果、核生成に必要な自由エネルギー障壁が低下し、かつ原子拡散が促進されるため、多結晶中ではまず粒界で核生成が起こりやすい。</p>
+</div>
+</div>
+</div>
 
 
 
@@ -1146,11 +1284,11 @@ This is an example of a callout with a title.
 <div id="ref-newglass2014no113vol29" class="csl-entry" role="listitem">
 Fukumi, Kohei. 2014. <span>“A Primer on Phase Diagrams.”</span> <em>NEW GLASS</em> 29: 34–XX. <a href="https://www.newglass.jp/mag/TITL/maghtml/113-pdf/+113-p034.pdf">https://www.newglass.jp/mag/TITL/maghtml/113-pdf/+113-p034.pdf</a>.
 </div>
+<div id="ref-溶接学会no77vol6" class="csl-entry" role="listitem">
+Toshihiro, TANAKA. 2008. <span>“合金と並行状態図.”</span> <em>溶接学会</em> 6. <a href="https://www-it.jwes.or.jp/lecture_note/pdf/public/2-2.pdf">https://www-it.jwes.or.jp/lecture_note/pdf/public/2-2.pdf</a>.
+</div>
 <div id="ref-材料学入門" class="csl-entry" role="listitem">
 亀川厚則. Unknown. <span>“材料学入門,”</span> Unknown. <a href="https://u.muroran-it.ac.jp/hydrogen/lec/intromat_09_12.pdf">https://u.muroran-it.ac.jp/hydrogen/lec/intromat_09_12.pdf</a>.
-</div>
-<div id="ref-溶接学会no77vol6" class="csl-entry" role="listitem">
-溶接学会. TANAKA Toshihiro. <span>“合金と並行状態図.”</span> <em>溶接学会</em> 6 (TANAKA Toshihiro). <a href="https://www-it.jwes.or.jp/lecture_note/pdf/public/2-2.pdf">https://www-it.jwes.or.jp/lecture_note/pdf/public/2-2.pdf</a>.
 </div>
 <div id="ref-PhaseDiagram" class="csl-entry" role="listitem">
 西谷滋人. 2005. <span>“Phase Diagram.”</span> <a href="https://ist.ksc.kwansei.ac.jp/~nishitani/Lectures/2005/NewMaterialDesign/PhaseDiagram.pdf">https://ist.ksc.kwansei.ac.jp/~nishitani/Lectures/2005/NewMaterialDesign/PhaseDiagram.pdf</a>.
