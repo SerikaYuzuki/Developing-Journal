@@ -827,7 +827,6 @@ window.Quarto = {
   <li><a href="#年度" id="toc-年度" class="nav-link" data-scroll-target="#年度">2024年度</a>
   <ul class="collapse">
   <li><a href="#問1" id="toc-問1" class="nav-link" data-scroll-target="#問1">問1</a></li>
-  <li><a href="#問2" id="toc-問2" class="nav-link" data-scroll-target="#問2">問2</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -943,7 +942,7 @@ This is an example of a callout with a title.
 <h2 class="anchored" data-anchor-id="年度">2024年度</h2>
 <section id="問1" class="level3">
 <h3 class="anchored" data-anchor-id="問1">問1</h3>
-<div id="c94187cd" class="cell" data-execution_count="1">
+<div id="a73ccd98" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1088,7 +1087,8 @@ This is an example of a callout with a title.
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>ここらの理論については、<span class="citation" data-cites="newglass2014no113vol29">Fukumi (<a href="#ref-newglass2014no113vol29" role="doc-biblioref">2014</a>)</span> を参考にすれば非常によく理解できるはず。というか、試験内容ほぼ全てこれを読めばなんとかなるはず。</p>
+<p>ここらの理論については、<span class="citation" data-cites="newglass2014no113vol29">Fukumi (<a href="#ref-newglass2014no113vol29" role="doc-biblioref">2014</a>)</span> や解答で載せた資料を参考にすれば非常によく理解できるはず。というか、試験内容のうち、京商などに関連する内容はほぼ全てこれを読めばなんとかなるはず。</p>
+<p>あまりこういうことは言いたくないけど、完全上位互換な資料が山ほど世の中で転がっている中で、これらの活用をしないのは仕方なきにしても、あまつさえ自身の講義資料すら公開しないような講義の仕方をする講師の方たちというのはいかがなものかね。それに、非常に質の良い資料を商業化するためにクローズドソースにすることを選択するのは仕方なきにしても、いつかインターネットの肥やしになるくらいならば、いっそGitHubなどに公開して欲しいものだ。</p>
 </div>
 </div>
 </div>
@@ -1104,21 +1104,37 @@ This is an example of a callout with a title.
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-
+<ol type="1">
+<li><p>晶出は <span class="math inline">\(1120 {}^\circ\text{C}\)</span> で始まる。それからどんどん晶出が続いて <span class="math inline">\(800 {}^\circ\text{C}\)</span> で液相がなくなる。最終的に得られる共晶組織の割合は、<span class="math inline">\(10/50 = 20\%\)</span> である。このうちの <span class="math inline">\(\alpha\)</span> 相の割合は、<span class="math inline">\(20\% \times 30 / 80 = 7.5\%\)</span> であり、<span class="math inline">\(\beta\)</span> 相の割合は、<span class="math inline">\(20\% \times 50 / 80 = 12.5\%\)</span> である。これについては、ギリギリまで液相だったものが共晶として析出して、その割合がテコの原理で 60% のところを見ることになる。</p></li>
+<li><p>このダイアグラムを <span class="math inline">\(\LaTeX\)</span> などで書くのは相当面倒なので、 <span class="citation" data-cites="材料学入門">亀川厚則 (<a href="#ref-材料学入門" role="doc-biblioref">Unknown</a>)</span> から引用した図を以下に示す。</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/組織生成論/image1.png" class="img-fluid figure-img"></p>
+<figcaption>冷却過程における温度変化</figcaption>
+</figure>
+</div>
+<ol start="3" type="1">
+<li>このダイアグラムを <span class="math inline">\(\LaTeX\)</span> などで書くのは相当面倒なので、 <span class="citation" data-cites="溶接学会no77vol6">溶接学会 (<a href="#ref-溶接学会no77vol6" role="doc-biblioref">TANAKA Toshihiro</a>)</span> から引用した図を以下に示す。</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/組織生成論/image0.png" class="img-fluid figure-img"></p>
+<figcaption>共晶組織の冷却過程</figcaption>
+</figure>
+</div>
+<ol start="4" type="1">
+<li>四苦八苦して動かせるグラフをplotlyで書いてやろうかと思ってたのだが、すっごく綺麗な資料があったので、<span class="citation" data-cites="PhaseDiagram">西谷滋人 (<a href="#ref-PhaseDiagram" role="doc-biblioref">2005</a>)</span> を参考してほしい。</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/組織生成論/image2.png" class="img-fluid figure-img"></p>
+<figcaption>自由エネルギー曲線</figcaption>
+</figure>
 </div>
 </div>
 </div>
-</section>
-<section id="問2" class="level3">
-<h3 class="anchored" data-anchor-id="問2">問2</h3>
-<p>Zenerの線形購買近侍は次のような式である。</p>
-<p><span class="math display">\[
-\zeta = \alpha \sqrt{t}
-\]</span></p>
-<p><span class="math display">\[
-\alpha = \frac{\sqrt{D}(C_m-C_0)}{(C_m-C_p)(C_0-C_p)}
-\]</span></p>
-<p>ここで、 <span class="math inline">\(D\)</span> は拡散係数、 <span class="math inline">\(C_m\)</span> は界面母側の溶質濃度、 <span class="math inline">\(C_0\)</span> は溶質平均濃度、 <span class="math inline">\(C_p\)</span> は界面新相側の溶質濃度である。</p>
+</div>
 
 
 
@@ -1129,6 +1145,15 @@ This is an example of a callout with a title.
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-newglass2014no113vol29" class="csl-entry" role="listitem">
 Fukumi, Kohei. 2014. <span>“A Primer on Phase Diagrams.”</span> <em>NEW GLASS</em> 29: 34–XX. <a href="https://www.newglass.jp/mag/TITL/maghtml/113-pdf/+113-p034.pdf">https://www.newglass.jp/mag/TITL/maghtml/113-pdf/+113-p034.pdf</a>.
+</div>
+<div id="ref-材料学入門" class="csl-entry" role="listitem">
+亀川厚則. Unknown. <span>“材料学入門,”</span> Unknown. <a href="https://u.muroran-it.ac.jp/hydrogen/lec/intromat_09_12.pdf">https://u.muroran-it.ac.jp/hydrogen/lec/intromat_09_12.pdf</a>.
+</div>
+<div id="ref-溶接学会no77vol6" class="csl-entry" role="listitem">
+溶接学会. TANAKA Toshihiro. <span>“合金と並行状態図.”</span> <em>溶接学会</em> 6 (TANAKA Toshihiro). <a href="https://www-it.jwes.or.jp/lecture_note/pdf/public/2-2.pdf">https://www-it.jwes.or.jp/lecture_note/pdf/public/2-2.pdf</a>.
+</div>
+<div id="ref-PhaseDiagram" class="csl-entry" role="listitem">
+西谷滋人. 2005. <span>“Phase Diagram.”</span> <a href="https://ist.ksc.kwansei.ac.jp/~nishitani/Lectures/2005/NewMaterialDesign/PhaseDiagram.pdf">https://ist.ksc.kwansei.ac.jp/~nishitani/Lectures/2005/NewMaterialDesign/PhaseDiagram.pdf</a>.
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
