@@ -822,7 +822,8 @@ window.Quarto = {
   <li><a href="#核生成" id="toc-核生成" class="nav-link" data-scroll-target="#核生成">核生成</a></li>
   <li><a href="#表面エネルギー" id="toc-表面エネルギー" class="nav-link" data-scroll-target="#表面エネルギー">表面エネルギー</a></li>
   <li><a href="#sec-scheil-equation" id="toc-sec-scheil-equation" class="nav-link" data-scroll-target="#sec-scheil-equation">Scheil の式</a></li>
-  <li><a href="#デンドライト成長" id="toc-デンドライト成長" class="nav-link" data-scroll-target="#デンドライト成長">デンドライト成長</a></li>
+  <li><a href="#sec-dendrite-growth" id="toc-sec-dendrite-growth" class="nav-link" data-scroll-target="#sec-dendrite-growth">デンドライト成長</a></li>
+  <li><a href="#sec-jmak-equation" id="toc-sec-jmak-equation" class="nav-link" data-scroll-target="#sec-jmak-equation">JMAK 式</a></li>
   </ul></li>
   <li><a href="#過去問" id="toc-過去問" class="nav-link" data-scroll-target="#過去問">過去問</a>
   <ul class="collapse">
@@ -831,6 +832,7 @@ window.Quarto = {
   <li><a href="#問1" id="toc-問1" class="nav-link" data-scroll-target="#問1">問1</a></li>
   <li><a href="#問2" id="toc-問2" class="nav-link" data-scroll-target="#問2">問2</a></li>
   <li><a href="#問3" id="toc-問3" class="nav-link" data-scroll-target="#問3">問3</a></li>
+  <li><a href="#問4" id="toc-問4" class="nav-link" data-scroll-target="#問4">問4</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -938,7 +940,7 @@ r^* &amp;= \frac{2\sigma_{SL}}{|\Delta G_v|}
 <p>この式の理解には特に時間がかかったので、ゆっくり私の理解したところを述べていく。</p>
 <p>まず、この式が考えているのは、ある金属合金を液体から凝固させていくときのことである。理想論で言えば、十分ゆっくり時間をかけて凝固すれば、合金内の組織というのは状態図から読み取ったものが均一に広がるものになるのだが、現実的には十分ゆっくり冷えることは少ない。</p>
 <p>そこで、凝固の途中の状態について知ろう！　ってわけだ。とはいえ、わかることってのは少ないから、まずは仮定から始めることによって、何がわかるのかを考え始めることになるわけだ。</p>
-<div id="728578d7" class="cell" data-execution_count="1">
+<div id="22f944b6" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1051,8 +1053,146 @@ c_\mathrm{s} &amp;= kc_{0} (1-f_\mathrm{s})^{k-1}
 \]</span></p>
 <p>さあ、こんな式が出てきて何に役に立つの？　って話だ。それは、凝固進行度 <span class="math inline">\(f_\mathrm{s}\)</span> に対して界面での固相濃度が一発で分かるところだ！</p>
 </section>
-<section id="デンドライト成長" class="level2">
-<h2 class="anchored" data-anchor-id="デンドライト成長">デンドライト成長</h2>
+<section id="sec-dendrite-growth" class="level2">
+<h2 class="anchored" data-anchor-id="sec-dendrite-growth">デンドライト成長</h2>
+<p>ところがScheilのモデルっていうのは、どんどん固まっていく過程の中、液相内での溶質濃度は一定と考えているわけなんだけど、ある程度以上の凝固速度に達すると、溶質濃度は局所的にものすっごく高くなるはずだ。つまり、 <span class="math inline">\(k = \frac{c_\mathrm{s}}{c_\mathrm{l}} &lt;1\)</span> ってなる。</p>
+<p>こうなると、界面でものすっごく高い濃度の状態が出来上がり、濃度が高くなる分、凝固点も降下する。そのせいで、過冷却状態が生じるのだ。</p>
+<p>その結果、凸凹な界面の、突出した部分の先端ではさらに凝固点降下が起きて、速く凝固し、逆に凹んだ部分では突出した部分よりも遅く凝固する。結果、樹枝状の成長を見せることになる。これをデンドライト成長と呼んでいる。</p>
+<p>その条件とは、答えだけでいえばこれだ。</p>
+<p><span class="math display">\[
+\frac{D}{V} \frac{G}{\Delta T} &gt; 1
+\]</span></p>
+<p><span class="math inline">\(D\)</span> は拡散係数、 <span class="math inline">\(V\)</span> は凝固速度、 <span class="math inline">\(G\)</span> は温度勾配、 <span class="math inline">\(\Delta T\)</span> はある組成における液相線と固相線の差である。</p>
+<!-- 
+
+TODO: ここからの議論にも重要性はあるが、現在踏み込めていない。
+
+では、デンドライト成長が起きるかどうかはどのようにモデル化で考えるかというと、
+
+- 過冷却状態になり、凝固点がどれほどになるのか
+- 界面付近の濃度勾配はどうなっているのか
+
+これら二つで考えている。
+
+まず、凝固点の降下は単純な一次元の式で考えている。
+
+$$
+\Delta T_{\mathrm{L}}(c) = T_{\mathrm{m}} - mc 
+$$
+
+ここで、 $m$ は凝固点降下係数で、 $c$ は濃度だ。
+
+次に、濃度勾配はどうなっているのかについてだが、これは流体のナビエ–ストークス方程式の片方で考えている。
+
+$$
+\begin{aligned}
+\pdv{c}{t} + \nabla \cdot \symbfit{J} &= 0 \\
+\symbfit{J} &= -D \nabla c + c \symbfit{v}
+\end{aligned}
+$$
+
+ここで、 $D$ は拡散係数、 $\symbfit{v} = (0,0,-V)$ は流体の速度ベクトルである。これを解くに当たって、数個の前提を置く。
+
+- 濃度の時間変化は、座標変化に比べて非常に小さいので、 $\pdv{c}{t} = 0$ とする
+- 流体の速度は一定で、 $\nabla \cdot \symbfit{v} = 0$ とする
+
+$$
+\begin{aligned}
+\nabla c \cdot \symbfit{v} &= D \nabla^2 c \\
+\pdv{c}{x} &= -\frac{D}{V} \pdv[2]{c}{x} \\
+\end{aligned}
+$$
+
+これを解くと、
+
+$$
+c = c_{\mathrm{l}} + (c_{\mathrm{s}} - c_{\mathrm{l}}) \exp \left( -\frac{V}{D} x\right)
+$$
+
+$x \to \infty$ で $c \to c_{\mathrm{l}}$ となるのは、まあ遠くは液相だから当然だね。
+
+で、界面付近における温度っていうのは、凝固点降下を含めた凝固点と、その周辺の温度勾配を足し合わせたものになるから、
+
+$$
+T = T_{\mathrm{s}} + \int_0^x \pdv{T}{x} \dd x = T_{\mathrm{m}} - mc_{\mathrm{l}} + \int_0^x \pdv{T}{x} \dd x
+$$
+
+になるわけで、これの効果が凝固点降下の効果より小さければ、界面の平衡が崩れて、デンドライト成長が起きるということになる。
+
+$$
+G \triangleq \pdv{T}{x} < \left. \pdv{x}mc \right|_{x=0} = m \frac{V}{D} (c_{\mathrm{l}} - c_0)
+$$
+
+これを解くと、
+
+
+ここで、 $c_\infty$ は流体の無限遠方での濃度である。ただ、これは重要じゃない。
+
+この濃度勾配に、ちょっとした界面自体の位置的な揺らぎが加わるときの挙動を考える。なぜこんなことをするかというと、揺らぎがなければそもそも大きすぎる濃度勾配が局所的に発生しないからだ。相当理想的にデンドライト成長が生じない、なんて状態を考えても仕方ないのだ。
+
+$$
+\zeta(x,t) = \delta e^{\sigma t} e^{i\kappa x}
+$$
+
+こんな揺らぎが存在して、 $c_{\mathrm{tot}} = c(x) + c'(x,t)e^{\sigma t} e^{i\kappa x}$ となる。なんて考えてやれば、
+
+$$
+\begin{aligned}
+\sigma c' + V\pdv{c'}{x} &= -D\qty{\pdv[2]{c'}{x} - \kappa^2 c'} \\
+c' &= C_0e^{qz} \quad \qty(q = - \frac{V}{2D} \pm \sqrt{\frac{V^2}{4D^2} + \frac{\kappa^2}{4}} \approx - \frac{V}{D}) \\
+\sigma &= Vq + D(q^2-\kappa ^2) 
+\end{aligned}
+$$
+
+これで、この微小な濃度の揺らぎが界面で何をやらかすのかを考えてやると、確実にフラックスを変化させる。その量は、
+
+$$
+J' = \left. -D \pdv{c'}{x} \right|_{x=0} = -D C_0 q
+$$
+
+で、これってのは単位時間あたりに液体の方から固体の方に取り込まれていくものなのだから、界面がズレた部分の溶質の収支を考えてやれば、
+
+$$
+J' =\left. (c_{\mathrm{l}} - c_{\mathrm{s}}) \pdv{\zeta}{t} \right|_{x=0} = c_{\mathrm{l}} (1 - k) \delta \sigma
+$$
+
+まとめてみたら、
+
+$$
+\begin{aligned}
+D C_0 q &= c_{\mathrm{l}} (1 - k) \delta \sigma C_0 \\
+\sigma &= - \frac{DqC_0}{c_{\mathrm{l}} \delta (1 - k)} \\
+&= \frac{VC_0}{c_{\mathrm{l}} \delta (1 - k)}
+\end{aligned}
+$$
+
+で、その揺らぎによって、界面の平衡はどのように成り立っているのかというと、温度勾配 $G$ があったとしたら、
+
+$$
+m\left. c' \right|_{x=0} + G\delta = 0
+$$
+
+これを解くと、
+
+$$
+\sigma = \frac{V}{(1-k)c_{\mathrm{l}}}\frac{G}{m}
+$$ 
+
+-->
+</section>
+<section id="sec-jmak-equation" class="level2">
+<h2 class="anchored" data-anchor-id="sec-jmak-equation">JMAK 式</h2>
+<p>微粒子の再結晶の速度についての理論。</p>
+<p>ランダムな場所からどんどん核ができて、それの体積が増えているという仮定のもと、その体積を <span class="math inline">\(V_\mathrm{ex}\)</span> として、結晶化の割合というのは、</p>
+<p><span class="math display">\[
+f = 1 - \exp \left( - \frac{V_\mathrm{ex}}{V_\mathrm{0}} \right)
+\]</span></p>
+<p>ここで、<span class="math inline">\(V_\mathrm{0}\)</span> は初期の総体積である。何でこんな式になるかというと、これから考える <span class="math inline">\(V_\mathrm{ex}\)</span> ってのは、かぶることを前提として考えるものだからだ。</p>
+<p>で、その件の <span class="math inline">\(V_\mathrm{ex}\)</span> ってのは、</p>
+<p><span class="math display">\[
+V_\mathrm{ex} = \int_0^t I \frac{4}{3} \pi r^3 \dd \tau = \int_0^t I \frac{4}{3} \pi \qty{G(t-\tau)}^3 \dd \tau = \frac{\pi}{3} IG^3 t^4
+\]</span></p>
+<p>って感じになる。</p>
 </section>
 </section>
 <section id="過去問" class="level1">
@@ -1074,7 +1214,7 @@ This is an example of a callout with a title.
 <h2 class="anchored" data-anchor-id="年度">2024年度</h2>
 <section id="問1" class="level3">
 <h3 class="anchored" data-anchor-id="問1">問1</h3>
-<div id="f5e99a9a" class="cell" data-execution_count="2">
+<div id="769d3a29" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1334,7 +1474,7 @@ r^* = \frac{2\sigma_{SL}}{\Delta G_v}
 \]</span></p></li>
 </ol></li>
 </ol>
-<div id="4628ea0e" class="cell" data-execution_count="3">
+<div id="5732f799" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1358,7 +1498,7 @@ r^* = \frac{2\sigma_{SL}}{\Delta G_v}
 <p><span class="math display">\[
 r^* = \frac{2 \times 0.18 \mathrm{J \cdot m^{-2}}}{-1.11 \times 10^{5} \mathrm{kJ \cdot m^{-3}}} = 3.2 \times 10^{-9} \mathrm{m}
 \]</span></p>
-<div id="e16be3e3" class="cell" data-execution_count="4">
+<div id="b5c38a25" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1383,7 +1523,7 @@ r^* = \frac{2 \times 0.18 \mathrm{J \cdot m^{-2}}}{-1.11 \times 10^{5} \mathrm{k
 <section id="問3" class="level3">
 <h3 class="anchored" data-anchor-id="問3">問3</h3>
 <p>二元系合金 A–B の状態図を図２に示す。A–12 wt% B 合金の凝固過程について検討したい。液相線、固相線、相境界をすべて直線と仮定して、以下の問いに答えよ。</p>
-<div id="e4a10607" class="cell" data-execution_count="5">
+<div id="792ecc8a" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1448,7 +1588,7 @@ r^* = \frac{2 \times 0.18 \mathrm{J \cdot m^{-2}}}{-1.11 \times 10^{5} \mathrm{k
 <span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>        linestyle<span class="op">=</span><span class="st">'-'</span>, color<span class="op">=</span><span class="st">'black'</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a><span class="co"># 垂直線 x=20, 60</span></span>
-<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>x_lines <span class="op">=</span> [<span class="dv">20</span>, <span class="dv">60</span>, <span class="dv">90</span>]</span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>x_lines <span class="op">=</span> [<span class="dv">12</span>, <span class="dv">20</span>, <span class="dv">60</span>, <span class="dv">90</span>]</span>
 <span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x_v <span class="kw">in</span> x_lines:</span>
 <span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>    ax.axvline(x<span class="op">=</span>x_v, linestyle<span class="op">=</span><span class="st">'--'</span>, color<span class="op">=</span><span class="st">'gray'</span>)</span>
 <span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 交点計算</span></span>
@@ -1507,6 +1647,9 @@ G = 2\times10^6\,\mathrm{K \cdot m^{-1}}
 c_\mathrm{s} \dd f_\mathrm{s} = \dd (c_\mathrm{l} f_\mathrm{l})
 \]</span></p>
 <p>という式を解けばいい。</p>
+<ol start="3" type="1">
+<li>については <a href="#sec-dendrite-growth" class="quarto-xref">Section&nbsp;1.5</a> を参照。詳しくは……誰か書いてくれ。</li>
+</ol>
 </div>
 </div>
 </div>
@@ -1541,7 +1684,7 @@ c_\mathrm{s} \dd f_\mathrm{s} = \dd (c_\mathrm{l} f_\mathrm{l})
 \bar{c}_\mathrm{s} = \dfrac{20}{0.5} \left( 1 - (1-0.5)^{1/3} \right) \approx 8.25 \mathrm{wt\%}
 \]</span></li>
 </ol>
-<div id="888d92f7" class="cell" data-execution_count="6">
+<div id="39ce2503" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1560,8 +1703,313 @@ c_\mathrm{s} \dd f_\mathrm{s} = \dd (c_\mathrm{l} f_\mathrm{l})
 </div>
 </div>
 <ol start="3" type="1">
-<li>式は以下の通り。 $$</li>
+<li>式は以下の通り。 <span class="math display">\[
+\frac{D}{V} \frac{G}{\Delta T} &gt; 1
+\]</span> ここで、 <span class="math inline">\(\Delta T = 160 \mathrm{K}\)</span> なので、 <span class="math display">\[
+\frac{1 \times 10^{-9} \mathrm{m^2 \cdot s^{-1}}}{V} \frac{2 \times 10^6 \mathrm{K \cdot m^{-1}}}{160 \mathrm{K}} &gt; 1
+\]</span> <span class="math display">\[
+\frac{1}{V} &gt; 1.25 \times 10^{-6} \mathrm{s^{-1}}
+\]</span> <span class="math display">\[
+V &lt; 8 \times 10^5 \mathrm{K \cdot m \cdot s^{-1}}
+\]</span></li>
 </ol>
+</div>
+</div>
+</div>
+</section>
+<section id="問4" class="level3">
+<h3 class="anchored" data-anchor-id="問4">問4</h3>
+<div id="031a0b0a" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># --- ヘルパー関数 ---</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bezier_curve(P, Q, offset_y, t):</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""2次ベジェ曲線を返す"""</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    mid <span class="op">=</span> (P <span class="op">+</span> Q) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    C <span class="op">=</span> mid <span class="op">+</span> np.array([<span class="dv">0</span>, offset_y])</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.outer((<span class="dv">1</span> <span class="op">-</span> t)<span class="op">**</span><span class="dv">2</span>, P) <span class="op">+</span> np.outer(<span class="dv">2</span><span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> t)<span class="op">*</span>t, C) <span class="op">+</span> np.outer(t<span class="op">**</span><span class="dv">2</span>, Q)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> line_interpolate(P, Q, x<span class="op">=</span><span class="va">None</span>, y<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">    直線上の補間</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">    x 指定 → y,  y 指定 → x</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    x0, y0 <span class="op">=</span> P</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    x1, y1 <span class="op">=</span> Q</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="kw">and</span> y <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> y0 <span class="op">+</span> (y1 <span class="op">-</span> y0) <span class="op">/</span> (x1 <span class="op">-</span> x0) <span class="op">*</span> (x <span class="op">-</span> x0)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> y <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="kw">and</span> x <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x0 <span class="op">+</span> (x1 <span class="op">-</span> x0) <span class="op">/</span> (y1 <span class="op">-</span> y0) <span class="op">*</span> (y <span class="op">-</span> y0)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"x か y のどちらか片方を指定"</span>)</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="co"># --- 主要点の設定 ---</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>A       <span class="op">=</span> np.array([<span class="fl">0.025</span>,  <span class="dv">600</span>])</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>point0  <span class="op">=</span> np.array([ <span class="fl">0.03</span>,  <span class="dv">700</span>])</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>point1  <span class="op">=</span> np.array([  <span class="dv">0</span>, <span class="dv">1000</span>])</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>point2  <span class="op">=</span> np.array([ <span class="fl">0.93</span>,  <span class="dv">700</span>])</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>point3  <span class="op">=</span> np.array([<span class="dv">1</span>,  <span class="dv">960</span>])</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>point4  <span class="op">=</span> np.array([ <span class="dv">2</span>,  <span class="dv">700</span>])</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>B       <span class="op">=</span> np.array([ <span class="dv">2</span>,  <span class="dv">300</span>])</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a><span class="co"># ベジェ曲線の定義</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>segments <span class="op">=</span> [</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    (A,      point0, <span class="dv">0</span>),</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    (point0, point1, <span class="dv">0</span>),</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    (point1, point2, <span class="dv">0</span>),</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>    (point2, point3, <span class="dv">0</span>),</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>    (point3, point4, <span class="dv">0</span>),</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>    (point4, B,      <span class="dv">0</span>),</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">300</span>)</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>curves <span class="op">=</span> [bezier_curve(P, Q, off, t) <span class="cf">for</span> P, Q, off <span class="kw">in</span> segments]</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a><span class="co"># --- プロット ---</span></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">600</span>, <span class="dv">1100</span>)</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'B (wt%)'</span>)</span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Temperature (°C)'</span>)</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Combined Phase Diagram'</span>)</span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a><span class="co"># ベジェ曲線描画</span></span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> curve <span class="kw">in</span> curves:</span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>    ax.plot(curve[:,<span class="dv">0</span>], curve[:,<span class="dv">1</span>], color<span class="op">=</span><span class="st">'black'</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a><span class="co"># point0-point4 の直線</span></span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>ax.plot([point0[<span class="dv">0</span>], point4[<span class="dv">0</span>]], [point0[<span class="dv">1</span>], point4[<span class="dv">1</span>]], </span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>        linestyle<span class="op">=</span><span class="st">'-'</span>, color<span class="op">=</span><span class="st">'black'</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a><span class="co"># 水平線</span></span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>y_lines <span class="op">=</span> [<span class="dv">800</span>, <span class="dv">929</span>]</span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y_h <span class="kw">in</span> y_lines:</span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>    ax.axhline(y<span class="op">=</span>y_h, linestyle<span class="op">=</span><span class="st">'--'</span>, color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 交点計算</span></span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> curve <span class="kw">in</span> curves:</span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>        xs, ys <span class="op">=</span> curve[:,<span class="dv">0</span>], curve[:,<span class="dv">1</span>]</span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>        idx <span class="op">=</span> np.where((ys[:<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span>y_h)<span class="op">*</span>(ys[<span class="dv">1</span>:]<span class="op">-</span>y_h) <span class="op">&lt;=</span> <span class="dv">0</span>)[<span class="dv">0</span>]</span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> idx:</span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>            x0, y0 <span class="op">=</span> xs[i], ys[i]</span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>            x1, y1 <span class="op">=</span> xs[i<span class="op">+</span><span class="dv">1</span>], ys[i<span class="op">+</span><span class="dv">1</span>]</span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>            x_cross <span class="op">=</span> x0 <span class="op">+</span> (y_h<span class="op">-</span>y0)<span class="op">/</span>(y1<span class="op">-</span>y0)<span class="op">*</span>(x1<span class="op">-</span>x0)</span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a>            ax.scatter(x_cross, y_h, color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a>            ax.annotate(<span class="ss">f'(</span><span class="sc">{</span>x_cross<span class="sc">:.2f}</span><span class="ss">, </span><span class="sc">{</span>y_h<span class="sc">}</span><span class="ss">)'</span>, (x_cross, y_h),</span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>                        textcoords<span class="op">=</span><span class="st">'offset points'</span>, xytext<span class="op">=</span>(<span class="dv">5</span>,<span class="dv">5</span>))</span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a><span class="co"># 垂直線</span></span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>x_lines <span class="op">=</span> [<span class="fl">0.03</span>, <span class="fl">0.93</span>, <span class="fl">0.22</span>]</span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x_v <span class="kw">in</span> x_lines:</span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a>    ax.axvline(x<span class="op">=</span>x_v, linestyle<span class="op">=</span><span class="st">'--'</span>, color<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 交点計算</span></span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> curve <span class="kw">in</span> curves:</span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a>        xs, ys <span class="op">=</span> curve[:,<span class="dv">0</span>], curve[:,<span class="dv">1</span>]</span>
+<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a>        idx <span class="op">=</span> np.where((xs[:<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span>x_v)<span class="op">*</span>(xs[<span class="dv">1</span>:]<span class="op">-</span>x_v) <span class="op">&lt;=</span> <span class="dv">0</span>)[<span class="dv">0</span>]</span>
+<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> idx:</span>
+<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a>            x0, y0 <span class="op">=</span> xs[i], ys[i]</span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a>            x1, y1 <span class="op">=</span> xs[i<span class="op">+</span><span class="dv">1</span>], ys[i<span class="op">+</span><span class="dv">1</span>]</span>
+<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a>            <span class="co"># 線形補間</span></span>
+<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a>            y_cross <span class="op">=</span> y0 <span class="op">+</span> (y1<span class="op">-</span>y0)<span class="op">/</span>(x1<span class="op">-</span>x0)<span class="op">*</span>(x_v<span class="op">-</span>x0)</span>
+<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a>            ax.scatter(x_v, y_cross, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a>            ax.annotate(<span class="ss">f'(</span><span class="sc">{</span>x_v<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>y_cross<span class="sc">:.2f}</span><span class="ss">)'</span>, (x_v, y_cross),</span>
+<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a>                        textcoords<span class="op">=</span><span class="st">'offset points'</span>, xytext<span class="op">=</span>(<span class="dv">5</span>,<span class="op">-</span><span class="dv">10</span>))</span>
+<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="組織生成論_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>二元系合金 C–D の拡大状態図を示す（相境界はすべて直線と仮定する）。<br>
+この合金には 半径 <span class="math inline">\(r_p = 100\ \text{nm}\)</span> の微細酸化物粒子が <span class="math inline">\(N = 3 \times 10^{17}\ \text{m}^{-3}\)</span> の割合で一様分散しており、下記の各プロセス中に粒子は成長しないものとする。<br>
+微粒子は固相変態の不均一核生成核にはならないが、<span class="math inline">\(\beta\)</span> 相の粒成長をピン止めする。</p>
+<ol type="1">
+<li>粒成長</li>
+</ol>
+<p>この合金を室温から加熱して <span class="math inline">\(\beta\)</span> 単相とした。</p>
+<ul>
+<li>初期平均粒径（直径）　　　　　: <span class="math inline">\(d_0 = 3\ \mu\text{m}\)</span><br>
+</li>
+<li>同温度で 10 s 等温保持後　　　 : <span class="math inline">\(d = 30\ \mu\text{m}\)</span></li>
+</ul>
+<p>同じ温度で保持を続け，保持開始から 200 s 後の平均粒径を求めよ。</p>
+<ol start="2" type="1">
+<li>拡散変態（β → α）</li>
+</ol>
+<p>組成 C–0.22 wt % D の合金を高温から急冷し、800 °C で保持したところ、<br>
+<span class="math inline">\(\beta\)</span> 粒界から <span class="math inline">\(\alpha\)</span> 相が拡散変態により生成し、平滑な界面で粒内へ一次元的に成長した。 Zener の線形勾配近似が適用できるとする。</p>
+<ol type="1">
+<li>変態開始から 40 s 後の <span class="math inline">\(\alpha\)</span> 相厚さを求めよ。<br>
+</li>
+<li>同時点での界面移動速度を求めよ。</li>
+</ol>
+<p>与えられた定数：</p>
+<ul>
+<li>800 °C における <span class="math inline">\(\beta\)</span> 相中 D 原子の拡散係数<br>
+<span class="math display">\[
+D^{\beta}_{\mathrm{D}} = 3 \times 10^{-12}\ \text{m}^2\!\cdot\!\text{s}^{-1}
+\]</span></li>
+</ul>
+<p>※ 分散酸化物粒子は変態界面の移動を妨げないものとする。</p>
+<ol start="3" type="1">
+<li>再結晶（薄箔）</li>
+</ol>
+<p>冷間圧延で酸化物粒子と同程度の厚さの非常に薄い箔を作製し、それを <span class="math inline">\(\alpha\)</span> 単相域の高温で保持したところ、酸化物微粒子を核とした再結晶が起こり、10 s で 99 % 完了した。 - すべての微粒子が潜伏時間なく再結晶核として作用する。<br>
+- 再結晶粒の成長速度は一定である。<br>
+この条件下で <span class="math inline">\(\alpha\)</span> 相再結晶粒の成長速度を求めよ。</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>核生成におけるオストヴァルト熟成の量的モデルは、 <span class="math display">\[
+\langle R \rangle^3 - \langle R \rangle^3_0 = \frac{8 \gamma c_\infty v^2 D}{9R_gT}t
+\]</span></li>
+</ol>
+<p>らしい。詳しい話はわからない。</p>
+<ol start="2" type="1">
+<li><p>Zenerの直線勾配近似 <span class="math display">\[
+\begin{aligned}
+\xi &amp;= \alpha t \\
+\alpha &amp;= \frac{\sqrt{D_C}(C_m - C_0)}{\sqrt{(C_m-C_p)(C_0-C_p)}} \\
+\end{aligned}
+\]</span> ここで、<span class="math inline">\(C_m\)</span> は界面母相側の溶質濃度、<span class="math inline">\(C_0\)</span> は溶質平均濃度、<span class="math inline">\(C_p\)</span> は界面新相側の溶質濃度である。これについても詳しくはわからない。</p></li>
+<li><p><a href="#sec-jmak-equation" class="quarto-xref">Section&nbsp;1.6</a> の若干の変形をした形を使う。</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><span class="math display">\[
+\begin{aligned}
+30^3 - 3^3 &amp;= k \times 10 \\
+k &amp;= \frac{30^3 - 3^3}{10} = 26.997 \times 10^6 \mathrm{\mu m^3 \cdot s^{-1}} \\
+\sqrt[3]{3^3 + 200k} &amp;= 81.41 \mathrm{\mu m}
+\end{aligned}
+\]</span></li>
+</ol>
+<div id="7ee8b9f8" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>d_0 <span class="op">=</span> <span class="dv">3</span> <span class="co"># μm</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="dv">30</span> <span class="co"># μm</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="dv">10</span> <span class="co"># s</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 計算</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> (d<span class="op">**</span><span class="dv">3</span> <span class="op">-</span> d_0<span class="op">**</span><span class="dv">3</span>) <span class="op">/</span> t</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>d_avg <span class="op">=</span> np.cbrt(d_0<span class="op">**</span><span class="dv">3</span> <span class="op">+</span> <span class="dv">200</span> <span class="op">*</span> k)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"平均粒径: </span><span class="sc">{</span>d_avg<span class="sc">:.2f}</span><span class="ss"> μm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>平均粒径: 81.41 μm</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li><span class="math display">\[
+C_m = 0.62,\ C_0 = 0.22,\ C_p = 0.02
+\]</span> <span class="math display">\[
+\begin{aligned}
+\alpha &amp;= \frac{\sqrt{D_C}(C_m - C_0)}{\sqrt{(C_m-C_p)(C_0-C_p)}} \\
+&amp;= \frac{\sqrt{3 \times 10^{-12}}(  0.62 - 0.22)}{\sqrt{(0.62-0.02)(0.22-0.02)}} \\
+&amp;= 2.00 \times 10^{-6} \mathrm{m \cdot s^{-1/2}} \\
+\xi &amp;= \alpha \sqrt{t} = 2.0 \times 10^{-6} \times \sqrt{40} = 1.26 \times 10^{-4} \mathrm{m} \\
+&amp;= 0.126 \mathrm{mm} \\
+v &amp;= \dv{\xi}{t} = \frac{1}{2} \alpha \frac{1}{\sqrt{t}} = 1.58 \times 10^{-7} \mathrm{m \cdot s^{-1}}
+\end{aligned}  
+\]</span></li>
+</ol>
+<div id="cfdfae9a" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>D_C <span class="op">=</span> <span class="fl">3e-12</span> <span class="co"># m^2/s</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>C_m <span class="op">=</span> <span class="fl">0.62</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>C_0 <span class="op">=</span> <span class="fl">0.22</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>C_p <span class="op">=</span> <span class="fl">0.02</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 計算</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> np.sqrt(D_C )<span class="op">*</span> (C_m <span class="op">-</span> C_0) <span class="op">/</span> np.sqrt((C_m <span class="op">-</span> C_p) <span class="op">*</span> (C_0 <span class="op">-</span> C_p))</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>xi <span class="op">=</span> alpha <span class="op">*</span> np.sqrt(<span class="dv">40</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> alpha <span class="op">/</span> <span class="dv">2</span> <span class="op">/</span> np.sqrt(<span class="dv">40</span>)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"α: </span><span class="sc">{</span>alpha<span class="sc">:.2e}</span><span class="ss"> m/s^1/2"</span>)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ξ: </span><span class="sc">{</span>xi<span class="sc">:.2e}</span><span class="ss"> m"</span>)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"v: </span><span class="sc">{</span>v<span class="sc">:.2e}</span><span class="ss"> m/s"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>α: 2.00e-06 m/s^1/2
+ξ: 1.26e-05 m
+v: 1.58e-07 m/s</code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li>問題文にある通り、2次元での成長のことを考えているわけだから、簡単に考えるために初期の総面積を1とする。面積に対して <span class="math inline">\(V\)</span> という変数を使うのを厭わずに続けると、 <span class="math display">\[
+f = 1 - \exp \left( - V_\mathrm{ex} \right)
+\]</span> ここで、<span class="math inline">\(V_\mathrm{ex}\)</span> は、再結晶によってどれだけの面積が増えたか、という値なので、面積1あたりの粒子の数 <span class="math inline">\(N_s\)</span> に粒子の面積 <span class="math inline">\(\pi R^2\)</span> をかけた値になる。 <span class="math display">\[
+N_s = 3 \times 10^{17} \mathrm{m}^{-3} \times 100 \times 10^{-9} \mathrm{m} = 3 \times 10^8 \mathrm{m}^{-2}
+\]</span> これらをまとめれば、 <span class="math display">\[
+\begin{aligned}
+0.99 &amp;= 1 - \exp \left( - N_s \pi R^2 \right) \\
+R &amp;= \sqrt{-\frac{\ln 0.01}{N_s \pi}} \\
+&amp;= 7.0 \times 10^{-5} \mathrm{m}
+\end{aligned}
+\]</span></li>
+</ol>
+<div id="84a32606" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="fl">0.99</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>N_s <span class="op">=</span> <span class="fl">3e8</span>  <span class="co"># 3e17 * 100e-9 = 3e8 m^-2 (面積密度に変換)</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 計算</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> np.sqrt(<span class="op">-</span>np.log(<span class="dv">1</span><span class="op">-</span>f) <span class="op">/</span> (N_s <span class="op">*</span> np.pi))</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R: </span><span class="sc">{</span>R<span class="sc">:.2e}</span><span class="ss"> m"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>R: 6.99e-05 m</code></pre>
+</div>
+</div>
+<p>ここで、成長までに <span class="math inline">\(10 \mathrm{s}\)</span> かかっていて、さらに成長速度一定だというので、成長速度は、 <span class="math display">\[
+\begin{aligned}
+G &amp;= \frac{R}{t} = \frac{7.0 \times 10^{-5} \mathrm{m}}{10 \mathrm{s}} = 7.0 \times 10^{-6} \mathrm{m \cdot s^{-1}}
+\end{aligned}
+\]</span> である。</p>
 </div>
 </div>
 </div>
