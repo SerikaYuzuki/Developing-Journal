@@ -13,6 +13,38 @@ $$
 
 # ノート
 
+## 熱力学的駆動力 {#sec-thermo-driving-force}
+
+熱力学的駆動力は、液体→固体へ相変化が起こるときのモル体積あたりの自由エネルギー差である。
+
+$$
+\Delta G_v \triangleq \frac{\Delta G_m}{V_m}
+$$
+
+ここで、$\Delta G_m$ が負であれば、固体化へ自発的に進むことになる。
+
+では、融点付近での動きを見てみることにする。まず、融点においては、固体と液体が平衡にあるので、
+
+$$
+\Delta G_v = 0
+$$
+
+これが融点の定義でもある。なので、
+
+$$
+\Delta S_{\mathrm{fus}} = \frac{\Delta H_{\mathrm{fus}}}{T_m}
+$$
+
+となるのだが、これってのは融点付近の $\Delta S$ 自体の近似値として使用可能。なので、
+
+$$
+\Delta G_v = \frac{\Delta H_{\mathrm{fus}}}{V_m} \frac{T_m - T}{T_m} = \frac{\Delta H_{\mathrm{fus}}}{V_m} \frac{\Delta T}{T_m}
+$$
+
+となる。で、ここまでの議論でかなり重要な話だが、 $\Delta H_{\mathrm{fus}}$ の符号は基本的に負だ。そりゃあ凝固してるんだから。ただし！！　これが融解エンタルピー、つまり、凝固に伴うエンタルピー変化を逆から見て符号を変えたものの時は、マイナスをつけよう。
+
+講義資料では深く触れられていなかったため、まじで注意！！
+
 ## 核生成
 
 液相中に古層の角が生成する時、自由エネルギー変化は次のように表される。
@@ -27,21 +59,6 @@ $$
 
 $$
 \Delta G = \frac{\Delta H_f\Delta T}{T_m}
-$$
-
-$\Delta T$ は過冷却温度差、 $T_m$ は融点、$\Delta H_f$ は融解エンタルピーである。
-
-これの導出には、次のようにする。 $\Delta G$ とは個体と液体の自由エネルギー差である。
-
-$$
-\begin{align*}
-\Delta G &= \Delta H_f - T\Delta S\\
-0 &= \Delta H_f - T_m\Delta S\\
-\Delta S &= \frac{\Delta H_f}{T_m} \\
-\Delta G &= \Delta H_f - T\frac{\Delta H_f}{T_m} \\
-&= \frac{T_m - T}{T_m}\Delta H_f\\
-&= \frac{\Delta T}{T_m}\Delta H_f
-\end{align*}
 $$
 
 ここで、核生成の自由エネルギーを考えると、
@@ -92,7 +109,7 @@ $$
 E_{Int} &= 4\pi r^2 \sigma_{SL} \\
 \dv{E}{V} &= \frac{2\sigma_{SL}}{r}\\
 \frac{\Delta G}{\Delta V} &= \Delta G_v + \frac{2\sigma_{SL}}{r^*} = 0 \\
-r^* &= \frac{2\sigma_{SL}}{\Delta G_v}
+r^* &= \frac{2\sigma_{SL}}{|\Delta G_v|}
 \end{aligned}
 $$
 
@@ -115,47 +132,292 @@ $$
 \sigma_{AB} = \frac{Zm_1}{\omega} \left\{ \epsilon_{AB} - \frac{\epsilon_{AA}+\epsilon_{BB}}{2} \right\}
 $$
 
-## 熱力学的駆動力 {#sec-thermo-driving-force}
+## Scheil の式 {#sec-scheil-equation}
 
-熱力学的駆動力は、液体→固体へ相変化が起こるときのモル体積あたりの自由エネルギー差である。
+この式の理解には特に時間がかかったので、ゆっくり私の理解したところを述べていく。
+
+まず、この式が考えているのは、ある金属合金を液体から凝固させていくときのことである。理想論で言えば、十分ゆっくり時間をかけて凝固すれば、合金内の組織というのは状態図から読み取ったものが均一に広がるものになるのだが、現実的には十分ゆっくり冷えることは少ない。
+
+そこで、凝固の途中の状態について知ろう！　ってわけだ。とはいえ、わかることってのは少ないから、まずは仮定から始めることによって、何がわかるのかを考え始めることになるわけだ。
+
+```{python}
+import numpy as np
+import numpy as np
+import matplotlib.pyplot as plt
+
+# --- ヘルパー関数 ---
+def bezier_curve(P, Q, offset_y, t):
+    """2次ベジェ曲線を返す"""
+    mid = (P + Q) / 2
+    C = mid + np.array([0, offset_y])
+    return np.outer((1 - t)**2, P) + np.outer(2*(1 - t)*t, C) + np.outer(t**2, Q)
+
+def line_interpolate(P, Q, x=None, y=None):
+    """
+    直線上の補間
+    x 指定 → y,  y 指定 → x
+    """
+    x0, y0 = P
+    x1, y1 = Q
+    if x is not None and y is None:
+        return y0 + (y1 - y0) / (x1 - x0) * (x - x0)
+    if y is not None and x is None:
+        return x0 + (x1 - x0) / (y1 - y0) * (y - y0)
+    raise ValueError("x か y のどちらか片方を指定")
+
+# --- 主要点の設定 ---
+A       = np.array([  6,  300])
+point0  = np.array([ 20,  800])
+point1  = np.array([  0, 1200])
+point2  = np.array([ 60,  800])
+point3  = np.array([100,  960])
+point4  = np.array([ 90,  800])
+B       = np.array([ 96,  300])
+
+# ベジェ曲線の定義
+segments = [
+    (A,      point0, 0),
+    (point0, point1, 0),
+    (point1, point2, 0),
+    (point2, point3, 0),
+    (point3, point4, 0),
+    (point4, B,      0),
+]
+t = np.linspace(0, 1, 300)
+curves = [bezier_curve(P, Q, off, t) for P, Q, off in segments]
+
+# --- プロット ---
+fig, ax = plt.subplots(figsize=(8, 6))
+ax.set_xlim(0, 100)
+ax.set_ylim(300, 1300)
+ax.set_xlabel('B (wt%)')
+ax.set_ylabel('Temperature (°C)')
+ax.set_title('Combined Phase Diagram')
+
+# ベジェ曲線描画
+for curve in curves:
+    ax.plot(curve[:,0], curve[:,1], lw=2)
+
+# point0-point4 の直線
+ax.plot([point0[0], point4[0]], [point0[1], point4[1]], 
+        linestyle='-', color='black', lw=1)
+
+plt.tight_layout()
+plt.show()
+
+```
+
+状態図のこの色とりどりの線を見てみてほしい。何と直線ではないか！　当然だけど曲線だよね。うん。けど、直線で近似ができるってわけだ。
+
+ってことは、ある温度における、固液平衡状態での、固相と液相の溶質組成比ってのは一定になるわけだ。 $T = a\text{ratio}_1+b, T = a'\text{ratio}_2 +b \rightarrow \text{ratio}_1/\text{ratio}_2 = a'/a = \text{Const.}$ ということになる。
+
+次に、この比が固液平衡状態でずーっと保持され続けるのだから、凝固の途中の界面では局所的にもこの比が維持される。つまり、
 
 $$
-\Delta G_v = \frac{\Delta G_m}{V_m}
+\frac{c_\mathrm{s}}{c_\mathrm{l}} = \frac{\text{ratio}_1}{\text{ratio}_2} = \text{Const.}
 $$
 
-ここで、$\Delta G_m$ が負であれば、固体化へ自発的に進むことになる。
-
-では、融点付近での動きを見てみることにする。まず、融点においては、固体と液体が平衡にあるので、
+ということになる。ここで $c_\mathrm{s}$ は固相中の溶質組成、 $c_\mathrm{l}$ は液相中の溶質組成である。
 
 $$
-\Delta G_v = 0
+\frac{c_\mathrm{s}}{c_\mathrm{l}} \triangleq k
 $$
 
-これが融点の定義でもある。なので、
+という平衡分配係数を定義できるわけだ。ここまではミクロの話。
+
+次にマクロな話として、急速に冷やされているわけだから、固相内で溶質の拡散は全然行えていないという前提を考える。つまり、一度固まった中に溶質は入り込まず、溶質の収支は界面での変化だけを考えればいいという前提だ。
+
+固相内溶質濃度 $c_\mathrm{s}, c_\mathrm{l}$ は、都度変化するので注意！　状態図からもわかるけど、これは変わり続ける値だしね。ただ、そのマクロである溶質濃度の変化が起きるのが、ミクロ界面での溶質の収支だけだという想定だ。ここまでの話で分かる通り、濃度は均一と考えている。
+
+ただしここで重要なこととして、$c_\mathrm{l}$ ってのは液相として界面にずーっと存在するけど、 $c_\mathrm{s}$ ってのは濃度としてずーっと界面に存在するわけじゃない。新たに固相が生成されると、そこには新たな $c_\mathrm{s}$ の溶質の界面が存在するわけだ。凝固したものの表面がどんどん塗り替えられていっているということだね。
+
+マクロとミクロを反復横跳びしているが、頑張ってついてきてね〜！
+
+で、その固相内溶質濃度ってのは、どんな収支をするかというと、液体の中のものが減って、固相の中のものが増えるという単純な話。つまり、液相と固相の組成比を $f_\mathrm{l}, f_\mathrm{s}$ とすると、
 
 $$
-\Delta S_{\mathrm{fus}} = \frac{\Delta H_{\mathrm{fus}}}{T_m}
+-c_\mathrm{s} \dd f_\mathrm{s} = \dd (c_\mathrm{l} f_\mathrm{l})
 $$
 
-となるのだが、これってのは融点付近の $\Delta S$ 自体の近似値として使用可能。なので、
+ということになる。ここで、$c_\mathrm{l}$ は液相中の溶質濃度である。まだ納得いかない？
+何で $- \dd (c_\mathrm{s}  f_\mathrm{s}) = \dd (c_\mathrm{l} f_\mathrm{l})$ じゃないの？　うんうん、分かるよその疑問！　私もかなり引っかかった。けどこう考えればいい。
 
 $$
-\Delta G_v = \frac{\Delta H_{\mathrm{fus}}}{V_m} \frac{T_m - T}{T_m} = \frac{\Delta H_{\mathrm{fus}}}{V_m} \frac{\Delta T}{T_m}
+\dd (c_\mathrm{s}  f_\mathrm{s}) = c_\mathrm{s} \dd f_\mathrm{s} + f_\mathrm{s} \dd c_\mathrm{s}
 $$
 
-となる。で、ここまでの議論でかなり重要な話だが、 $\Delta H_{\mathrm{fus}}$ の符号は基本的に負だ。そりゃあ凝固してるんだから。ただし！！　これが融解エンタルピー、つまり、凝固に伴うエンタルピー変化を逆から見て符号を変えたものの時は、マイナスをつけよう。
+これだと、固体内での溶質濃度の変化があることを表している。これは考えていた前提と違うよね。だって、拡散しないって話だったから。つまり、 $\dd c_\mathrm{s} = 0$ なんだよ！
 
-講義資料では深く触れられていなかったため、まじで注意！！
+よし、それじゃあ、この微分方程式を解いていこう！
 
-## 均質核生成 {#sec-homogeneous-nucleation}
+$$
+\begin{aligned}
+-c_\mathrm{s} \dd f_\mathrm{s} &= \dd (c_\mathrm{l} f_\mathrm{l}) \\
+- k c_\mathrm{l} \dd f_\mathrm{s} &= -c_\mathrm{l} \dd f_\mathrm{s} + (1-f_\mathrm{s}) \dd c_\mathrm{l}  \\
+(1 - k) c_\mathrm{l} \dd f_\mathrm{s} &= (1-f_\mathrm{s}) \dd c_\mathrm{l}  \\
+(1 - k) \frac{\dd f_\mathrm{s}}{1-f_\mathrm{s}} &= \frac{\dd c_\mathrm{l}}{c_\mathrm{l}} \\
+- (1-k) \ln (1-f_\mathrm{s}) &= \ln c_\mathrm{l} + \text{const} \\
+c_\mathrm{l} &= c_{0} (1-f_\mathrm{s})^{k-1} \\
+c_\mathrm{s} &= kc_{0} (1-f_\mathrm{s})^{k-1}
+\end{aligned}
+$$
 
-均質核生成は、核生成の熱力学的駆動力が負であることが必要である。
+さあ、こんな式が出てきて何に役に立つの？　って話だ。それは、凝固進行度 $f_\mathrm{s}$ に対して界面での固相濃度が一発で分かるところだ！
 
-TODO: ここに均質核生成の詳細な議論を書く。
+## デンドライト成長 {#sec-dendrite-growth}
+
+ところがScheilのモデルっていうのは、どんどん固まっていく過程の中、液相内での溶質濃度は一定と考えているわけなんだけど、ある程度以上の凝固速度に達すると、溶質濃度は局所的にものすっごく高くなるはずだ。つまり、 $k = \frac{c_\mathrm{s}}{c_\mathrm{l}} <1$ ってなる。
+
+こうなると、界面でものすっごく高い濃度の状態が出来上がり、濃度が高くなる分、凝固点も降下する。そのせいで、過冷却状態が生じるのだ。
+
+その結果、凸凹な界面の、突出した部分の先端ではさらに凝固点降下が起きて、速く凝固し、逆に凹んだ部分では突出した部分よりも遅く凝固する。結果、樹枝状の成長を見せることになる。これをデンドライト成長と呼んでいる。
+
+その条件とは、答えだけでいえばこれだ。
+
+$$
+\frac{D}{V} \frac{G}{\Delta T} > 1
+$$
+
+$D$ は拡散係数、 $V$ は凝固速度、 $G$ は温度勾配、 $\Delta T$ はある組成における液相線と固相線の差である。
 
 
 
+<!-- 
 
+TODO: ここからの議論にも重要性はあるが、現在踏み込めていない。
+
+では、デンドライト成長が起きるかどうかはどのようにモデル化で考えるかというと、
+
+- 過冷却状態になり、凝固点がどれほどになるのか
+- 界面付近の濃度勾配はどうなっているのか
+
+これら二つで考えている。
+
+まず、凝固点の降下は単純な一次元の式で考えている。
+
+$$
+\Delta T_{\mathrm{L}}(c) = T_{\mathrm{m}} - mc 
+$$
+
+ここで、 $m$ は凝固点降下係数で、 $c$ は濃度だ。
+
+次に、濃度勾配はどうなっているのかについてだが、これは流体のナビエ–ストークス方程式の片方で考えている。
+
+$$
+\begin{aligned}
+\pdv{c}{t} + \nabla \cdot \symbfit{J} &= 0 \\
+\symbfit{J} &= -D \nabla c + c \symbfit{v}
+\end{aligned}
+$$
+
+ここで、 $D$ は拡散係数、 $\symbfit{v} = (0,0,-V)$ は流体の速度ベクトルである。これを解くに当たって、数個の前提を置く。
+
+- 濃度の時間変化は、座標変化に比べて非常に小さいので、 $\pdv{c}{t} = 0$ とする
+- 流体の速度は一定で、 $\nabla \cdot \symbfit{v} = 0$ とする
+
+$$
+\begin{aligned}
+\nabla c \cdot \symbfit{v} &= D \nabla^2 c \\
+\pdv{c}{x} &= -\frac{D}{V} \pdv[2]{c}{x} \\
+\end{aligned}
+$$
+
+これを解くと、
+
+$$
+c = c_{\mathrm{l}} + (c_{\mathrm{s}} - c_{\mathrm{l}}) \exp \left( -\frac{V}{D} x\right)
+$$
+
+$x \to \infty$ で $c \to c_{\mathrm{l}}$ となるのは、まあ遠くは液相だから当然だね。
+
+で、界面付近における温度っていうのは、凝固点降下を含めた凝固点と、その周辺の温度勾配を足し合わせたものになるから、
+
+$$
+T = T_{\mathrm{s}} + \int_0^x \pdv{T}{x} \dd x = T_{\mathrm{m}} - mc_{\mathrm{l}} + \int_0^x \pdv{T}{x} \dd x
+$$
+
+になるわけで、これの効果が凝固点降下の効果より小さければ、界面の平衡が崩れて、デンドライト成長が起きるということになる。
+
+$$
+G \triangleq \pdv{T}{x} < \left. \pdv{x}mc \right|_{x=0} = m \frac{V}{D} (c_{\mathrm{l}} - c_0)
+$$
+
+これを解くと、
+
+
+ここで、 $c_\infty$ は流体の無限遠方での濃度である。ただ、これは重要じゃない。
+
+この濃度勾配に、ちょっとした界面自体の位置的な揺らぎが加わるときの挙動を考える。なぜこんなことをするかというと、揺らぎがなければそもそも大きすぎる濃度勾配が局所的に発生しないからだ。相当理想的にデンドライト成長が生じない、なんて状態を考えても仕方ないのだ。
+
+$$
+\zeta(x,t) = \delta e^{\sigma t} e^{i\kappa x}
+$$
+
+こんな揺らぎが存在して、 $c_{\mathrm{tot}} = c(x) + c'(x,t)e^{\sigma t} e^{i\kappa x}$ となる。なんて考えてやれば、
+
+$$
+\begin{aligned}
+\sigma c' + V\pdv{c'}{x} &= -D\qty{\pdv[2]{c'}{x} - \kappa^2 c'} \\
+c' &= C_0e^{qz} \quad \qty(q = - \frac{V}{2D} \pm \sqrt{\frac{V^2}{4D^2} + \frac{\kappa^2}{4}} \approx - \frac{V}{D}) \\
+\sigma &= Vq + D(q^2-\kappa ^2) 
+\end{aligned}
+$$
+
+これで、この微小な濃度の揺らぎが界面で何をやらかすのかを考えてやると、確実にフラックスを変化させる。その量は、
+
+$$
+J' = \left. -D \pdv{c'}{x} \right|_{x=0} = -D C_0 q
+$$
+
+で、これってのは単位時間あたりに液体の方から固体の方に取り込まれていくものなのだから、界面がズレた部分の溶質の収支を考えてやれば、
+
+$$
+J' =\left. (c_{\mathrm{l}} - c_{\mathrm{s}}) \pdv{\zeta}{t} \right|_{x=0} = c_{\mathrm{l}} (1 - k) \delta \sigma
+$$
+
+まとめてみたら、
+
+$$
+\begin{aligned}
+D C_0 q &= c_{\mathrm{l}} (1 - k) \delta \sigma C_0 \\
+\sigma &= - \frac{DqC_0}{c_{\mathrm{l}} \delta (1 - k)} \\
+&= \frac{VC_0}{c_{\mathrm{l}} \delta (1 - k)}
+\end{aligned}
+$$
+
+で、その揺らぎによって、界面の平衡はどのように成り立っているのかというと、温度勾配 $G$ があったとしたら、
+
+$$
+m\left. c' \right|_{x=0} + G\delta = 0
+$$
+
+これを解くと、
+
+$$
+\sigma = \frac{V}{(1-k)c_{\mathrm{l}}}\frac{G}{m}
+$$ 
+
+-->
+
+## JMAK 式 {#sec-jmak-equation}
+
+微粒子の再結晶の速度についての理論。
+
+ランダムな場所からどんどん核ができて、それの体積が増えているという仮定のもと、その体積を $V_\mathrm{ex}$ として、結晶化の割合というのは、
+
+$$
+f = 1 - \exp \left( - \frac{V_\mathrm{ex}}{V_\mathrm{0}} \right)
+$$
+
+ここで、$V_\mathrm{0}$ は初期の総体積である。何でこんな式になるかというと、これから考える $V_\mathrm{ex}$ ってのは、かぶることを前提として考えるものだからだ。
+
+で、その件の $V_\mathrm{ex}$ ってのは、
+
+$$
+V_\mathrm{ex} = \int_0^t I \frac{4}{3} \pi r^3 \dd \tau = \int_0^t I \frac{4}{3} \pi \qty{G(t-\tau)}^3 \dd \tau = \frac{\pi}{3} IG^3 t^4
+$$
+
+って感じになる。
 
 
 # 過去問
@@ -408,6 +670,444 @@ print(f"臨界半径: {r_star:.2e} m")
 ```
 B. 粒界は格子歪みや欠陥が集中して界面エネルギーが高く、その結果、核生成に必要な自由エネルギー障壁が低下し、かつ原子拡散が促進されるため、多結晶中ではまず粒界で核生成が起こりやすい。  
 
+::: 
 
+### 問3
+
+二元系合金 A–B の状態図を図２に示す。A–12 wt% B 合金の凝固過程について検討したい。液相線、固相線、相境界をすべて直線と仮定して、以下の問いに答えよ。
+
+```{python}
+import numpy as np
+import numpy as np
+import matplotlib.pyplot as plt
+
+# --- ヘルパー関数 ---
+def bezier_curve(P, Q, offset_y, t):
+    """2次ベジェ曲線を返す"""
+    mid = (P + Q) / 2
+    C = mid + np.array([0, offset_y])
+    return np.outer((1 - t)**2, P) + np.outer(2*(1 - t)*t, C) + np.outer(t**2, Q)
+
+def line_interpolate(P, Q, x=None, y=None):
+    """
+    直線上の補間
+    x 指定 → y,  y 指定 → x
+    """
+    x0, y0 = P
+    x1, y1 = Q
+    if x is not None and y is None:
+        return y0 + (y1 - y0) / (x1 - x0) * (x - x0)
+    if y is not None and x is None:
+        return x0 + (x1 - x0) / (y1 - y0) * (y - y0)
+    raise ValueError("x か y のどちらか片方を指定")
+
+# --- 主要点の設定 ---
+A       = np.array([  6,  300])
+point0  = np.array([ 20,  800])
+point1  = np.array([  0, 1200])
+point2  = np.array([ 60,  800])
+point3  = np.array([100,  960])
+point4  = np.array([ 90,  800])
+B       = np.array([ 96,  300])
+
+# ベジェ曲線の定義
+segments = [
+    (A,      point0, 0),
+    (point0, point1, 0),
+    (point1, point2, 0),
+    (point2, point3, 0),
+    (point3, point4, 0),
+    (point4, B,      0),
+]
+t = np.linspace(0, 1, 300)
+curves = [bezier_curve(P, Q, off, t) for P, Q, off in segments]
+
+# --- プロット ---
+fig, ax = plt.subplots(figsize=(8, 6))
+ax.set_xlim(0, 100)
+ax.set_ylim(300, 1300)
+ax.set_xlabel('B (wt%)')
+ax.set_ylabel('Temperature (°C)')
+ax.set_title('Combined Phase Diagram')
+
+# ベジェ曲線描画
+for curve in curves:
+    ax.plot(curve[:,0], curve[:,1], color='black', lw=2)
+
+# point0-point4 の直線
+ax.plot([point0[0], point4[0]], [point0[1], point4[1]], 
+        linestyle='-', color='black', lw=1)
+
+# 垂直線 x=20, 60
+x_lines = [12, 20, 60, 90]
+for x_v in x_lines:
+    ax.axvline(x=x_v, linestyle='--', color='gray')
+    # 交点計算
+    for curve in curves:
+        xs, ys = curve[:,0], curve[:,1]
+        idx = np.where((xs[:-1]-x_v)*(xs[1:]-x_v) <= 0)[0]
+        for i in idx:
+            x0, y0 = xs[i], ys[i]
+            x1, y1 = xs[i+1], ys[i+1]
+            # 線形補間
+            y_cross = y0 + (y1-y0)/(x1-x0)*(x_v-x0)
+            ax.scatter(x_v, y_cross, color='blue')
+            ax.annotate(f'({x_v}, {y_cross:.1f})', (x_v, y_cross),
+                        textcoords='offset points', xytext=(5,-10))
+
+plt.tight_layout()
+plt.show()
+
+```
+
+(1) 凝固が平衡凝固ではなく、溶質 B が液相中で均一、固相中で拡散しないと仮定すると、Scheil の式の溶質分布の仮定が成り立つ。界面が微小量移動した際の溶質のつり合いを考えることで、Scheil の式を導出し、固液界面における固相中の濃度 $c_s$ を固相分率 $f_s$ および分配係数 $k$ で表せ。
+
+(2) (1) の凝固の途中で固相が 50% になった時点で、未凝固の液体部分を捨てた。  
+固相中の溶質 B の平均濃度は何 % か。
+
+(3) この合金を一方向から凝固させたとき、凝固の界面が平滑となる（デンドライト凝固しない）凝固速度範囲を求めよ。  
+ただし、この合金の液相中の溶質 B の拡散定数は  
+$$
+D = 1\times10^{-9}\,\mathrm{m^2 \cdot s^{-1}}
+$$
+であり、一方向凝固の固液界面前方の温度勾配は  
+$$
+G = 2\times10^6\,\mathrm{K \cdot m^{-1}}
+$$
+である。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+Scheilの式は、@sec-scheil-equation で述べた。かなり頑張って書いたので記事を読んでほしいが、とりあえず問題を解くだけなら
+
+$$
+c_\mathrm{s} \dd f_\mathrm{s} = \dd (c_\mathrm{l} f_\mathrm{l})
+$$
+
+という式を解けばいい。
+
+3. については @sec-dendrite-growth を参照。詳しくは……誰か書いてくれ。
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+1. 式は以下の通り。
+$$
+\begin{aligned}
+-c_\mathrm{s} \dd f_\mathrm{s} &= \dd (c_\mathrm{l} f_\mathrm{l}) \\
+- k c_\mathrm{l} \dd f_\mathrm{s} &= -c_\mathrm{l} \dd f_\mathrm{s} + (1-f_\mathrm{s}) \dd c_\mathrm{l}  \\
+(1 - k) c_\mathrm{l} \dd f_\mathrm{s} &= (1-f_\mathrm{s}) \dd c_\mathrm{l}  \\
+(1 - k) \frac{\dd f_\mathrm{s}}{1-f_\mathrm{s}} &= \frac{\dd c_\mathrm{l}}{c_\mathrm{l}} \\
+- (1-k) \ln (1-f_\mathrm{s}) &= \ln c_\mathrm{l} + \text{const} \\
+c_\mathrm{l} &= c_{0} (1-f_\mathrm{s})^{k-1} \\
+c_\mathrm{s} &= kc_{0} (1-f_\mathrm{s})^{k-1}
+\end{aligned}
+$$
+
+2. 式は以下の通り。
+まず、$k$ はグラフから読み取ると、$k = 1/3$ である。
+$$
+\begin{aligned}
+\bar{c}_\mathrm{s} &= \frac{1}{f_\mathrm{s}} \int_0^{f_\mathrm{s}} c_\mathrm{s} \dd f_\mathrm{s} \\
+&= \frac{1}{f_\mathrm{s}} \int_0^{f_\mathrm{s}} kc_{0} (1-f_\mathrm{s})^{k-1} \dd f_\mathrm{s} \\
+&= \dfrac{kc_{0}}{f_\mathrm{s}} \left[ - \frac{ (1-f_\mathrm{s})^{k} }{k} \right]_0^{f_\mathrm{s}} \\
+&= \dfrac{c_{0}}{f_\mathrm{s}} \left( 1 - (1-f_\mathrm{s})^{k} \right) 
+\end{aligned}
+$$
+ここで $c_0 = 20 \mathrm{wt\%}, f_\mathrm{s} = 0.5$ を代入すると、
+$$
+\bar{c}_\mathrm{s} = \dfrac{20}{0.5} \left( 1 - (1-0.5)^{1/3} \right) \approx 8.25 \mathrm{wt\%}
+$$
+```{python}
+import numpy as np
+
+# 定数
+c_0 = 20 # wt%
+f_s = 0.5
+
+# 計算
+c_s = c_0 / f_s * (1 - (1-f_s)**(1/3))
+
+print(f"固相中の溶質 B の平均濃度: {c_s:.2f} wt%")
+```
+3. 式は以下の通り。
+$$
+\frac{D}{V} \frac{G}{\Delta T} > 1
+$$
+ここで、 $\Delta T = 160 \mathrm{K}$ なので、
+$$
+\frac{1 \times 10^{-9} \mathrm{m^2 \cdot s^{-1}}}{V} \frac{2 \times 10^6 \mathrm{K \cdot m^{-1}}}{160 \mathrm{K}} > 1
+$$
+$$
+\frac{1}{V} > 1.25 \times 10^{-6} \mathrm{s^{-1}}
+$$
+$$
+V < 8 \times 10^5 \mathrm{K \cdot m \cdot s^{-1}}
+$$
+
+:::
+
+### 問4
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# --- ヘルパー関数 ---
+def bezier_curve(P, Q, offset_y, t):
+    """2次ベジェ曲線を返す"""
+    mid = (P + Q) / 2
+    C = mid + np.array([0, offset_y])
+    return np.outer((1 - t)**2, P) + np.outer(2*(1 - t)*t, C) + np.outer(t**2, Q)
+
+def line_interpolate(P, Q, x=None, y=None):
+    """
+    直線上の補間
+    x 指定 → y,  y 指定 → x
+    """
+    x0, y0 = P
+    x1, y1 = Q
+    if x is not None and y is None:
+        return y0 + (y1 - y0) / (x1 - x0) * (x - x0)
+    if y is not None and x is None:
+        return x0 + (x1 - x0) / (y1 - y0) * (y - y0)
+    raise ValueError("x か y のどちらか片方を指定")
+
+# --- 主要点の設定 ---
+A       = np.array([0.025,  600])
+point0  = np.array([ 0.03,  700])
+point1  = np.array([  0, 1000])
+point2  = np.array([ 0.93,  700])
+point3  = np.array([1,  960])
+point4  = np.array([ 2,  700])
+B       = np.array([ 2,  300])
+
+# ベジェ曲線の定義
+segments = [
+    (A,      point0, 0),
+    (point0, point1, 0),
+    (point1, point2, 0),
+    (point2, point3, 0),
+    (point3, point4, 0),
+    (point4, B,      0),
+]
+t = np.linspace(0, 1, 300)
+curves = [bezier_curve(P, Q, off, t) for P, Q, off in segments]
+
+# --- プロット ---
+fig, ax = plt.subplots(figsize=(8, 6))
+ax.set_xlim(0, 1)
+ax.set_ylim(600, 1100)
+ax.set_xlabel('B (wt%)')
+ax.set_ylabel('Temperature (°C)')
+ax.set_title('Combined Phase Diagram')
+
+# ベジェ曲線描画
+for curve in curves:
+    ax.plot(curve[:,0], curve[:,1], color='black', lw=2)
+
+# point0-point4 の直線
+ax.plot([point0[0], point4[0]], [point0[1], point4[1]], 
+        linestyle='-', color='black', lw=1)
+
+# 水平線
+y_lines = [800, 929]
+for y_h in y_lines:
+    ax.axhline(y=y_h, linestyle='--', color='gray')
+    # 交点計算
+    for curve in curves:
+        xs, ys = curve[:,0], curve[:,1]
+        idx = np.where((ys[:-1]-y_h)*(ys[1:]-y_h) <= 0)[0]
+        for i in idx:
+            x0, y0 = xs[i], ys[i]
+            x1, y1 = xs[i+1], ys[i+1]
+            x_cross = x0 + (y_h-y0)/(y1-y0)*(x1-x0)
+            ax.scatter(x_cross, y_h, color='red')
+            ax.annotate(f'({x_cross:.2f}, {y_h})', (x_cross, y_h),
+                        textcoords='offset points', xytext=(5,5))
+
+# 垂直線
+x_lines = [0.03, 0.93, 0.22]
+for x_v in x_lines:
+    ax.axvline(x=x_v, linestyle='--', color='gray')
+    # 交点計算
+    for curve in curves:
+        xs, ys = curve[:,0], curve[:,1]
+        idx = np.where((xs[:-1]-x_v)*(xs[1:]-x_v) <= 0)[0]
+        for i in idx:
+            x0, y0 = xs[i], ys[i]
+            x1, y1 = xs[i+1], ys[i+1]
+            # 線形補間
+            y_cross = y0 + (y1-y0)/(x1-x0)*(x_v-x0)
+            ax.scatter(x_v, y_cross, color='blue')
+            ax.annotate(f'({x_v}, {y_cross:.2f})', (x_v, y_cross),
+                        textcoords='offset points', xytext=(5,-10))
+
+plt.tight_layout()
+plt.show()
+
+```
+
+二元系合金 C–D の拡大状態図を示す（相境界はすべて直線と仮定する）。  
+この合金には 半径 $r_p = 100\ \text{nm}$ の微細酸化物粒子が $N = 3 \times 10^{17}\ \text{m}^{-3}$ の割合で一様分散しており、下記の各プロセス中に粒子は成長しないものとする。  
+微粒子は固相変態の不均一核生成核にはならないが、$\beta$ 相の粒成長をピン止めする。
+
+(1) 粒成長
+
+この合金を室温から加熱して $\beta$ 単相とした。  
+
+* 初期平均粒径（直径）　　　　　: $d_0 = 3\ \mu\text{m}$  
+* 同温度で 10 s 等温保持後　　　 : $d = 30\ \mu\text{m}$
+
+同じ温度で保持を続け，保持開始から 200 s 後の平均粒径を求めよ。
+
+(2) 拡散変態（β → α）
+
+組成 C–0.22 wt % D の合金を高温から急冷し、800 °C で保持したところ、  
+$\beta$ 粒界から $\alpha$ 相が拡散変態により生成し、平滑な界面で粒内へ一次元的に成長した。 Zener の線形勾配近似が適用できるとする。
+
+1. 変態開始から 40 s 後の $\alpha$ 相厚さを求めよ。  
+2. 同時点での界面移動速度を求めよ。  
+
+与えられた定数：  
+
+* 800 °C における $\beta$ 相中 D 原子の拡散係数  
+$$
+D^{\beta}_{\mathrm{D}} = 3 \times 10^{-12}\ \text{m}^2\!\cdot\!\text{s}^{-1}
+$$
+
+※ 分散酸化物粒子は変態界面の移動を妨げないものとする。
+
+(3) 再結晶（薄箔）
+
+冷間圧延で酸化物粒子と同程度の厚さの非常に薄い箔を作製し、それを $\alpha$ 単相域の高温で保持したところ、酸化物微粒子を核とした再結晶が起こり、10 s で 99 % 完了した。
+- すべての微粒子が潜伏時間なく再結晶核として作用する。  
+- 再結晶粒の成長速度は一定である。  
+この条件下で $\alpha$ 相再結晶粒の成長速度を求めよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+1. 核生成におけるオストヴァルト熟成の量的モデルは、
+$$
+\langle R \rangle^3 - \langle R \rangle^3_0 = \frac{8 \gamma c_\infty v^2 D}{9R_gT}t
+$$
+
+らしい。詳しい話はわからない。
+
+2. Zenerの直線勾配近似
+$$
+\begin{aligned}
+\xi &= \alpha t \\
+\alpha &= \frac{\sqrt{D_C}(C_m - C_0)}{\sqrt{(C_m-C_p)(C_0-C_p)}} \\
+\end{aligned}
+$$
+ここで、$C_m$ は界面母相側の溶質濃度、$C_0$ は溶質平均濃度、$C_p$ は界面新相側の溶質濃度である。これについても詳しくはわからない。
+
+3. @sec-jmak-equation の若干の変形をした形を使う。
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+1. 
+$$
+\begin{aligned}
+30^3 - 3^3 &= k \times 10 \\
+k &= \frac{30^3 - 3^3}{10} = 26.997 \times 10^6 \mathrm{\mu m^3 \cdot s^{-1}} \\
+\sqrt[3]{3^3 + 200k} &= 81.41 \mathrm{\mu m}
+\end{aligned}
+$$
+```{python}
+import numpy as np
+
+# 定数
+d_0 = 3 # μm
+d = 30 # μm
+t = 10 # s
+
+# 計算
+k = (d**3 - d_0**3) / t
+d_avg = np.cbrt(d_0**3 + 200 * k)
+
+print(f"平均粒径: {d_avg:.2f} μm")
+```
+2. 
+$$
+C_m = 0.62,\ C_0 = 0.22,\ C_p = 0.02
+$$
+$$
+\begin{aligned}
+\alpha &= \frac{\sqrt{D_C}(C_m - C_0)}{\sqrt{(C_m-C_p)(C_0-C_p)}} \\
+&= \frac{\sqrt{3 \times 10^{-12}}(  0.62 - 0.22)}{\sqrt{(0.62-0.02)(0.22-0.02)}} \\
+&= 2.00 \times 10^{-6} \mathrm{m \cdot s^{-1/2}} \\
+\xi &= \alpha \sqrt{t} = 2.0 \times 10^{-6} \times \sqrt{40} = 1.26 \times 10^{-4} \mathrm{m} \\
+&= 0.126 \mathrm{mm} \\
+v &= \dv{\xi}{t} = \frac{1}{2} \alpha \frac{1}{\sqrt{t}} = 1.58 \times 10^{-7} \mathrm{m \cdot s^{-1}}
+\end{aligned}  
+$$
+```{python}
+import numpy as np
+
+# 定数
+D_C = 3e-12 # m^2/s
+C_m = 0.62
+C_0 = 0.22
+C_p = 0.02
+
+# 計算
+alpha = np.sqrt(D_C )* (C_m - C_0) / np.sqrt((C_m - C_p) * (C_0 - C_p))
+xi = alpha * np.sqrt(40)
+v = alpha / 2 / np.sqrt(40)
+
+print(f"α: {alpha:.2e} m/s^1/2")
+print(f"ξ: {xi:.2e} m")
+print(f"v: {v:.2e} m/s")
+```
+3.
+問題文にある通り、2次元での成長のことを考えているわけだから、簡単に考えるために初期の総面積を1とする。面積に対して $V$ という変数を使うのを厭わずに続けると、
+$$
+f = 1 - \exp \left( - V_\mathrm{ex} \right)
+$$
+ここで、$V_\mathrm{ex}$ は、再結晶によってどれだけの面積が増えたか、という値なので、面積1あたりの粒子の数 $N_s$ に粒子の面積 $\pi R^2$ をかけた値になる。
+$$
+N_s = 3 \times 10^{17} \mathrm{m}^{-3} \times 100 \times 10^{-9} \mathrm{m} = 3 \times 10^8 \mathrm{m}^{-2}
+$$
+これらをまとめれば、
+$$
+\begin{aligned}
+0.99 &= 1 - \exp \left( - N_s \pi R^2 \right) \\
+R &= \sqrt{-\frac{\ln 0.01}{N_s \pi}} \\
+&= 7.0 \times 10^{-5} \mathrm{m}
+\end{aligned}
+$$
+
+```{python}
+import numpy as np
+
+# 定数
+f = 0.99
+N_s = 3e8  # 3e17 * 100e-9 = 3e8 m^-2 (面積密度に変換)
+
+# 計算
+R = np.sqrt(-np.log(1-f) / (N_s * np.pi))
+
+print(f"R: {R:.2e} m")
+```
+ここで、成長までに $10 \mathrm{s}$ かかっていて、さらに成長速度一定だというので、成長速度は、
+$$
+\begin{aligned}
+G &= \frac{R}{t} = \frac{7.0 \times 10^{-5} \mathrm{m}}{10 \mathrm{s}} = 7.0 \times 10^{-6} \mathrm{m \cdot s^{-1}}
+\end{aligned}
+$$
+である。
 
 ::: 
+
+
+
+
