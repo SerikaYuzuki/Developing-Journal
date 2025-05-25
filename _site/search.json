@@ -3060,5 +3060,19 @@
       "3S",
       "組織生成論"
     ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/組織生成論.html#年度-1",
+    "href": "posts/univ_lecs/3S/組織生成論.html#年度-1",
+    "title": "組織生成論",
+    "section": "2021年度",
+    "text": "2021年度\n\n問1\n表面エネルギーは表面の1原子あたりの未結合数（Broken bond数）を考えることで推定できる。結晶構造が fcc の（111）面が表面に出ている場合の Broken bond 数を求めよ。また、fcc の（111）面の表面エネルギーが \\(1.0 \\mathrm{J \\cdot m^{-2}}\\) の場合，（110）面の表面エネルギーを推定せよ。\n\n\n\n\n\n\n理論\n\n\n\n\n\nBroken bondの数さえわかれば何とかなるかと。Broken‐bond 数というのは「表面を作るために切り離された、もともとその原子とつながっていた近接結合の本数」を数えたもの。詳しくは、 Ebeid (2017) を参照。\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\nfccの面のbroken bonds数は\n\n\n\n面\nBroken bonds数 \\(Z\\)\n\n\n\n\n(111)\n3\n\n\n(110)\n5\n\n\n(100)\n4\n\n\n\nこれらの面の表面エネルギー \\(\\sigma\\) は、原子あたりの面積を \\(\\omega\\) として、\n\\[\n\\sigma \\propto \\frac{Z}{\\omega}\n\\]\nとなる。ここで、それぞれの面あたりの原子数は、\n\n\n\n面\n原子数 \\(N=1/\\omega\\)\n\n\n\n\n(111)\n\\(\\frac{4}{\\sqrt{3}a^2}\\)\n\n\n(110)\n\\(\\frac{2}{\\sqrt{2}a^2}\\)\n\n\n\nとなる。これあら、\n\\[\nr = \\frac{\\sigma_{\\mathrm{(111)}}}{\\sigma_{\\mathrm{(110)}}} = \\frac{\\frac{Z_{\\mathrm{(111)}}}{\\omega_{\\mathrm{(111)}}}}{\\frac{Z_{\\mathrm{(110)}}}{\\omega_{\\mathrm{(110)}}}} = \\frac{Z_{\\mathrm{(111)}} \\omega_{\\mathrm{(110)}}}{Z_{\\mathrm{(110)}} \\omega_{\\mathrm{(111)}}} = \\frac{3 \\times \\frac{\\sqrt{2}a^2}{2}}{5 \\times \\frac{\\sqrt{3}a^2}{4}} = \\frac{4 \\sqrt{2}}{5 \\sqrt{3}} \\approx 0.98\n\\]\n\n\nShow Code\nimport numpy as np\n\nZ111 = 3\nZ110 = 5\nomega111 = np.sqrt(3) / 4\nomega110 = np.sqrt(2) / 2\n\nprint(Z111 * omega110 / Z110 / omega111)\n\n\n0.9797958971132714\n\n\nよって、\n\\[\n\\sigma_{\\mathrm{(110)}} = \\frac{1}{r} \\times 1.0 \\mathrm{J \\cdot m^{-2}} = 1.02 \\mathrm{J \\cdot m^{-2}}\n\\]",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "組織生成論"
+    ]
   }
 ]

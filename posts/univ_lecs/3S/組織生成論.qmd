@@ -1108,6 +1108,64 @@ $$
 
 ::: 
 
+## 2021年度
+
+### 問1
+
+表面エネルギーは表面の1原子あたりの未結合数（Broken bond数）を考えることで推定できる。結晶構造が fcc の（111）面が表面に出ている場合の Broken bond 数を求めよ。また、fcc の（111）面の表面エネルギーが $1.0 \mathrm{J \cdot m^{-2}}$ の場合，（110）面の表面エネルギーを推定せよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+Broken bondの数さえわかれば何とかなるかと。Broken‐bond 数というのは「表面を作るために切り離された、もともとその原子とつながっていた近接結合の本数」を数えたもの。詳しくは、 @Dangling-bonds-2017 を参照。
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+fccの面のbroken bonds数は
+
+| 面 | Broken bonds数 $Z$ |
+| --- | --- |
+| (111) | 3 |
+| (110) | 5 |
+| (100) | 4 |
+
+これらの面の表面エネルギー $\sigma$ は、原子あたりの面積を $\omega$ として、
+
+$$
+\sigma \propto \frac{Z}{\omega}
+$$
+
+となる。ここで、それぞれの面あたりの原子数は、
+
+| 面 | 原子数 $N=1/\omega$ |
+| --- | --- |
+| (111) | $\frac{4}{\sqrt{3}a^2}$ |
+| (110) | $\frac{2}{\sqrt{2}a^2}$ |
+
+となる。これあら、
+
+$$
+r = \frac{\sigma_{\mathrm{(111)}}}{\sigma_{\mathrm{(110)}}} = \frac{\frac{Z_{\mathrm{(111)}}}{\omega_{\mathrm{(111)}}}}{\frac{Z_{\mathrm{(110)}}}{\omega_{\mathrm{(110)}}}} = \frac{Z_{\mathrm{(111)}} \omega_{\mathrm{(110)}}}{Z_{\mathrm{(110)}} \omega_{\mathrm{(111)}}} = \frac{3 \times \frac{\sqrt{2}a^2}{2}}{5 \times \frac{\sqrt{3}a^2}{4}} = \frac{4 \sqrt{2}}{5 \sqrt{3}} \approx 0.98
+$$
+```{python}
+import numpy as np
+
+Z111 = 3
+Z110 = 5
+omega111 = np.sqrt(3) / 4
+omega110 = np.sqrt(2) / 2
+
+print(Z111 * omega110 / Z110 / omega111)
+```
 
 
+よって、
 
+$$
+\sigma_{\mathrm{(110)}} = \frac{1}{r} \times 1.0 \mathrm{J \cdot m^{-2}} = 1.02 \mathrm{J \cdot m^{-2}}
+$$
+
+::: 
