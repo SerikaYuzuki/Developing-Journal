@@ -844,6 +844,10 @@ window.Quarto = {
   <li><a href="#問2" id="toc-問2" class="nav-link" data-scroll-target="#問2">問2</a></li>
   <li><a href="#問3" id="toc-問3" class="nav-link" data-scroll-target="#問3">問3</a></li>
   </ul></li>
+  <li><a href="#年度-1" id="toc-年度-1" class="nav-link" data-scroll-target="#年度-1">2021年度</a>
+  <ul class="collapse">
+  <li><a href="#問3b" id="toc-問3b" class="nav-link" data-scroll-target="#問3b">問3(b)</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -879,7 +883,7 @@ window.Quarto = {
 <li>基本単位胞内の任意の点を格子点と呼んでいる。ただし、全ての別の単位胞に対して同じ位置として考える。バラバラに選ぶものではない。</li>
 <li>格子点同士を最短で結ぶベクトルを基本並進ベクトルと呼ぶ。</li>
 </ul>
-<div id="66cb5340" class="cell" data-execution_count="1">
+<div id="8a41b71a" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -944,7 +948,7 @@ window.Quarto = {
 \]</span></p></li>
 <li><p>基本単位胞では面倒なことがあるので、慣用単位砲で考えることもある。その一例として、ウィグナー・ツァイト胞がある。ウィグナーサイツ胞とは、ある格子点と、その周りの格子点との間の垂直二等分面で囲まれた領域における最小のセル（胞）のことである。</p></li>
 </ul>
-<div id="29081c1e" class="cell" data-execution_count="2">
+<div id="e9a7b414" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -991,7 +995,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="5bf587f5" class="cell" data-execution_count="3">
+<div id="36d32692" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1300,7 +1304,7 @@ D(E) &amp;= \frac{dN}{dE} = \frac{L^3}{2\pi^2} \left( \frac{2m_e}{\hbar^2} \righ
 <p><span class="math display">\[
 \phi(\symbfit{r}) = \sum_{\symbfit{R}_n} \sum_j \sum_\mu c_{j \mu} \exp \qty{i \symbfit{k}\cdot (\symbfit{R}_n + \symbfit{r}_j)} \phi_{j \mu}(\symbfit{r} - \symbfit{R}_n - \symbfit{r}_j)
 \]</span></p>
-<p>と表せる。ここで <span class="math inline">\(\mu\)</span> は原子の軌道関数の指定に使われる。例えば <span class="math inline">\(1s, \ 2s, \ 2p_x, \ 2p_y, \ 2p_z\)</span> など。つまり、 <span class="math inline">\(n\)</span> 個目の単位胞の <span class="math inline">\(j\)</span> 番目の原子の <span class="math inline">\(\mu\)</span> 番目の軌道関数による波動関数を <span class="math inline">\(\phi_{j \mu}(\symbfit{r} - \symbfit{R}_n - \symbfit{r}_j)\)</span> として、それぞれの軌道関数による波動関数を <span class="math inline">\(\c_{j \mu}\)</span> の重みをつけて、線型結合で表しているだけ。</p>
+<p>と表せる。ここで <span class="math inline">\(\mu\)</span> は原子の軌道関数の指定に使われる。例えば <span class="math inline">\(1s, \ 2s, \ 2p_x, \ 2p_y, \ 2p_z\)</span> など。つまり、 <span class="math inline">\(n\)</span> 個目の単位胞の <span class="math inline">\(j\)</span> 番目の原子の <span class="math inline">\(\mu\)</span> 番目の軌道関数による波動関数を <span class="math inline">\(\phi_{j \mu}(\symbfit{r} - \symbfit{R}_n - \symbfit{r}_j)\)</span> として、それぞれの軌道関数による波動関数を <span class="math inline">\(c_{j \mu}\)</span> の重みをつけて、線型結合で表しているだけ。</p>
 <p>これが満たすべき波動方程式は、</p>
 <p><span class="math display">\[
 \hat{H} \phi(\symbfit{r}) - E \phi(\symbfit{r}) = 0
@@ -1363,7 +1367,7 @@ This is an example of a callout with a title.
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="f9178e46" class="cell" data-execution_count="4">
+<div id="0f117935" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1410,7 +1414,7 @@ This is an example of a callout with a title.
 </div>
 </div>
 </div>
-<div id="4313edc4" class="cell" data-execution_count="5">
+<div id="fdb8d44e" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1514,7 +1518,7 @@ This is an example of a callout with a title.
 \symbfit{b}_3 &amp;= \frac{2\pi}{c} \symbfit{e}_z
 \end{aligned}
 \]</span></p>
-<div id="17d4686d" class="cell" data-execution_count="6">
+<div id="c767bac1" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1641,7 +1645,7 @@ x_j(t) = A e^{i(kja - \omega t)}
 <p><span class="math display">\[
 m\omega^2 = 2K(1 - \cos(ka))
 \]</span></p>
-<div id="e1ece81b" class="cell" data-execution_count="7">
+<div id="723b7528" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1696,7 +1700,7 @@ m\omega^2 = 2K(1 - \cos(ka))
 \end{aligned}
 \]</span></p>
 <p>となる。</p>
-<div id="5c7b99bf" class="cell" data-execution_count="8">
+<div id="22c6564d" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1883,7 +1887,7 @@ E_F &amp;= \frac{\hbar^2}{2m_e} \left( \frac{3\pi^2 N}{L^3} \right)^{2/3} \\
 \end{aligned}
 \]</span></p>
 <p>ここで、 <span class="math inline">\(n'\)</span> は最近接原子の単位胞の番号。</p>
-<div id="058bdbe6" class="cell" data-execution_count="9">
+<div id="0bc8dfc6" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1922,6 +1926,134 @@ E_F &amp;= \frac{\hbar^2}{2m_e} \left( \frac{3\pi^2 N}{L^3} \right)^{2/3} \\
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="年度-1" class="level2">
+<h2 class="anchored" data-anchor-id="年度-1">2021年度</h2>
+<section id="問3b" class="level3">
+<h3 class="anchored" data-anchor-id="問3b">問3(b)</h3>
+<p>周期ポテンシャル</p>
+<p><span class="math display">\[
+V(x) = V_1 \cos\!\Bigl(\frac{2\pi}{a}x\Bigr)
+\]</span></p>
+<p>で電子の振る舞いを考える。ブリュアンゾーン端 (<span class="math inline">\(k = \pi/a\)</span>) で電子波 <span class="math inline">\(\exp(ikx)\)</span> はブラッグ反射され、その結果 <span class="math inline">\(\exp(i k x)\)</span> と <span class="math inline">\(\exp(-i k x)\)</span> が重畳した 2 種類の定在波が形成される。</p>
+<p>波動関数：</p>
+<p><span class="math display">\[
+\phi_+(x)
+= \frac{1}{\sqrt{2a}}\Bigl\{e^{i\frac{\pi}{a}x}+e^{-i\frac{\pi}{a}x}\Bigr\}
+= \sqrt{\frac{2}{a}}\cos\!\Bigl(\frac{\pi}{a}x\Bigr)
+\]</span></p>
+<p><span class="math display">\[
+\phi_-(x)
+= \frac{1}{\sqrt{2a}}\Bigl\{e^{i\frac{\pi}{a}x}-e^{-i\frac{\pi}{a}x}\Bigr\}
+= i\,\sqrt{\frac{2}{a}}\sin\!\Bigl(\frac{\pi}{a}x\Bigr)
+\]</span></p>
+<p>（これらの波動関数は単位胞 <span class="math inline">\(0 \le x \le a\)</span> の範囲で規格化されている。）</p>
+<section id="i.-1" class="level4">
+<h4 class="anchored" data-anchor-id="i.-1">i.</h4>
+<p><span class="math inline">\(|\phi_+(x)|^2\)</span> と <span class="math inline">\(|\phi_-(x)|^2\)</span> を求め、<span class="math inline">\(V(x)\)</span> とともに図示せよ。</p>
+</section>
+<section id="ii.-1" class="level4">
+<h4 class="anchored" data-anchor-id="ii.-1">ii.</h4>
+<p>2つの状態 <span class="math inline">\(\phi_+(x)\)</span> と <span class="math inline">\(\phi_-(x)\)</span> のエネルギー期待値の差を計算せよ。<br>
+&gt; ※ これらは固有関数ではないので固有エネルギーを求めようとしてはいけない。<br>
+&gt; また、個々の状態の期待値を計算するより、期待値の差を直接計算する方がやさしい。</p>
+</section>
+<section id="iii." class="level4">
+<h4 class="anchored" data-anchor-id="iii.">iii.</h4>
+<p>以上の結果に基づき、結晶のエネルギーバンド構造形成のメカニズムを論ぜよ。</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>やることは基本的な波動関数の操作。ただ、固有関数、固有エネルギーじゃないのに、色々と議論を進めるせいで混乱する可能性がある。これは詳しくは書かないが、近侍として扱っていると思っておけば良さそうだ。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="i">
+<li>単純計算すれば、 <span class="math display">\[
+\begin{aligned}
+|\phi_+(x)|^2 &amp;= \frac{2}{a} \cos^2\!\Bigl(\frac{\pi}{a}x\Bigr) \\
+|\phi_-(x)|^2 &amp;= \frac{2}{a} \sin^2\!\Bigl(\frac{\pi}{a}x\Bigr) \\
+\end{aligned}
+\]</span></li>
+</ol>
+<div id="82223242" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># パラメータ設定</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>V1 <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># x座標</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, a, <span class="dv">500</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 確率密度とポテンシャル</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>phi_plus_sq <span class="op">=</span> (<span class="dv">1</span><span class="op">/</span>a)<span class="op">*</span>(<span class="dv">1</span> <span class="op">+</span> np.cos(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>x<span class="op">/</span>a))</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>phi_minus_sq <span class="op">=</span> (<span class="dv">1</span><span class="op">/</span>a)<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> np.cos(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>x<span class="op">/</span>a))</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> V1 <span class="op">*</span> np.cos(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>x<span class="op">/</span>a)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co"># プロット</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>plt.plot(x, phi_plus_sq, label<span class="op">=</span><span class="vs">r'</span><span class="dv">$</span><span class="cf">|</span><span class="er">\</span><span class="vs">phi_</span><span class="op">+</span><span class="kw">(</span><span class="vs">x</span><span class="kw">)</span><span class="cf">|</span><span class="dv">^</span><span class="vs">2</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>plt.plot(x, phi_minus_sq, label<span class="op">=</span><span class="vs">r'</span><span class="dv">$</span><span class="cf">|</span><span class="er">\</span><span class="vs">phi_-</span><span class="kw">(</span><span class="vs">x</span><span class="kw">)</span><span class="cf">|</span><span class="dv">^</span><span class="vs">2</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>plt.plot(x, V, label<span class="op">=</span><span class="vs">r'</span><span class="dv">$</span><span class="vs">V</span><span class="kw">(</span><span class="vs">x</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Probability density / Potential'</span>)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'|</span><span class="ch">\u03C6</span><span class="st">_+|^2, |</span><span class="ch">\u03C6</span><span class="st">_-|^2 and V(x)'</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="固体物性学_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="2" type="i">
+<li><span class="math display">\[
+\hat{H}\phi_{\pm}(x) = E_0 \phi_{\pm}(x)
+\]</span> を満たすことから、次のような計算が可能である。 <span class="math display">\[
+\begin{aligned}
+\Delta E &amp;= \bra{\phi_+(x)} \hat{H} \ket{\phi_+(x)} - \bra{\phi_-(x)} \hat{H} \ket{\phi_-(x)} \\
+&amp;= V(x)\qty{\bra{\phi_+^{\ast}(x)}\ket{\phi_+(x)} - \bra{\phi_-^{\ast}(x)}\ket{\phi_-(x)}} \\
+&amp;= \int_0^a V(x) \qty{\frac{2}{a}\cos^2 \frac{\pi}{a}x - \frac{2}{a}\sin^2 \frac{\pi}{a}x} \dd x \\
+&amp;= \frac{2V_1}{a} \int_0^a \cos^2 \frac{2\pi}{a}x \dd x \\
+&amp;= V_1
+\end{aligned}
+\]</span></li>
+<li><span class="math inline">\(\phi_+\)</span> ではポテンシャルが高い場所での電子存在確率が高くなり、電子エネルギーが高く、 <span class="math inline">\(\phi_-\)</span> ではポテンシャルが低い場所での電子存在確率が高くなり、電子エネルギーが低くなる。このようにポテンシャルの周期性がバンドギャップの原因となる。</li>
+</ol>
 </div>
 </div>
 </div>

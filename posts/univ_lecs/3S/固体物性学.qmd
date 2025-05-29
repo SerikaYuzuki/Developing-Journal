@@ -500,7 +500,7 @@ $$
 \phi(\symbfit{r}) = \sum_{\symbfit{R}_n} \sum_j \sum_\mu c_{j \mu} \exp \qty{i \symbfit{k}\cdot (\symbfit{R}_n + \symbfit{r}_j)} \phi_{j \mu}(\symbfit{r} - \symbfit{R}_n - \symbfit{r}_j)
 $$
 
-と表せる。ここで $\mu$ は原子の軌道関数の指定に使われる。例えば $1s, \ 2s, \ 2p_x, \ 2p_y, \ 2p_z$ など。つまり、 $n$ 個目の単位胞の $j$ 番目の原子の $\mu$ 番目の軌道関数による波動関数を $\phi_{j \mu}(\symbfit{r} - \symbfit{R}_n - \symbfit{r}_j)$ として、それぞれの軌道関数による波動関数を $\c_{j \mu}$ の重みをつけて、線型結合で表しているだけ。
+と表せる。ここで $\mu$ は原子の軌道関数の指定に使われる。例えば $1s, \ 2s, \ 2p_x, \ 2p_y, \ 2p_z$ など。つまり、 $n$ 個目の単位胞の $j$ 番目の原子の $\mu$ 番目の軌道関数による波動関数を $\phi_{j \mu}(\symbfit{r} - \symbfit{R}_n - \symbfit{r}_j)$ として、それぞれの軌道関数による波動関数を $c_{j \mu}$ の重みをつけて、線型結合で表しているだけ。
 
 これが満たすべき波動方程式は、
 
@@ -1028,3 +1028,105 @@ plt.show()
 
 ::: 
 
+## 2021年度
+
+### 問3(b)
+
+周期ポテンシャル  
+
+$$
+V(x) = V_1 \cos\!\Bigl(\frac{2\pi}{a}x\Bigr)
+$$  
+
+で電子の振る舞いを考える。ブリュアンゾーン端 ($k = \pi/a$) で電子波 $\exp(ikx)$ はブラッグ反射され、その結果 $\exp(i k x)$ と $\exp(-i k x)$ が重畳した 2 種類の定在波が形成される。
+
+波動関数：
+
+$$
+\phi_+(x)
+= \frac{1}{\sqrt{2a}}\Bigl\{e^{i\frac{\pi}{a}x}+e^{-i\frac{\pi}{a}x}\Bigr\}
+= \sqrt{\frac{2}{a}}\cos\!\Bigl(\frac{\pi}{a}x\Bigr)
+$$
+
+$$
+\phi_-(x)
+= \frac{1}{\sqrt{2a}}\Bigl\{e^{i\frac{\pi}{a}x}-e^{-i\frac{\pi}{a}x}\Bigr\}
+= i\,\sqrt{\frac{2}{a}}\sin\!\Bigl(\frac{\pi}{a}x\Bigr)
+$$
+
+（これらの波動関数は単位胞 $0 \le x \le a$ の範囲で規格化されている。）
+
+#### i.  
+$|\phi_+(x)|^2$ と $|\phi_-(x)|^2$ を求め、$V(x)$ とともに図示せよ。
+
+#### ii.  
+2つの状態 $\phi_+(x)$ と $\phi_-(x)$ のエネルギー期待値の差を計算せよ。  
+> ※ これらは固有関数ではないので固有エネルギーを求めようとしてはいけない。  
+> また、個々の状態の期待値を計算するより、期待値の差を直接計算する方がやさしい。
+
+#### iii.  
+以上の結果に基づき、結晶のエネルギーバンド構造形成のメカニズムを論ぜよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+やることは基本的な波動関数の操作。ただ、固有関数、固有エネルギーじゃないのに、色々と議論を進めるせいで混乱する可能性がある。これは詳しくは書かないが、近侍として扱っていると思っておけば良さそうだ。
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+i. 単純計算すれば、
+$$
+\begin{aligned}
+|\phi_+(x)|^2 &= \frac{2}{a} \cos^2\!\Bigl(\frac{\pi}{a}x\Bigr) \\
+|\phi_-(x)|^2 &= \frac{2}{a} \sin^2\!\Bigl(\frac{\pi}{a}x\Bigr) \\
+\end{aligned}
+$$
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# パラメータ設定
+a = 1.0
+V1 = 1.0
+
+# x座標
+x = np.linspace(0, a, 500)
+
+# 確率密度とポテンシャル
+phi_plus_sq = (1/a)*(1 + np.cos(2*np.pi*x/a))
+phi_minus_sq = (1/a)*(1 - np.cos(2*np.pi*x/a))
+V = V1 * np.cos(2*np.pi*x/a)
+
+# プロット
+plt.figure()
+plt.plot(x, phi_plus_sq, label=r'$|\phi_+(x)|^2$')
+plt.plot(x, phi_minus_sq, label=r'$|\phi_-(x)|^2$')
+plt.plot(x, V, label=r'$V(x)$')
+plt.xlabel('x')
+plt.ylabel('Probability density / Potential')
+plt.title('|\u03C6_+|^2, |\u03C6_-|^2 and V(x)')
+plt.legend()
+plt.tight_layout()
+plt.show()
+```
+ii.
+$$
+\hat{H}\phi_{\pm}(x) = E_0 \phi_{\pm}(x)
+$$
+を満たすことから、次のような計算が可能である。
+$$
+\begin{aligned}
+\Delta E &= \bra{\phi_+(x)} \hat{H} \ket{\phi_+(x)} - \bra{\phi_-(x)} \hat{H} \ket{\phi_-(x)} \\
+&= V(x)\qty{\bra{\phi_+^{\ast}(x)}\ket{\phi_+(x)} - \bra{\phi_-^{\ast}(x)}\ket{\phi_-(x)}} \\
+&= \int_0^a V(x) \qty{\frac{2}{a}\cos^2 \frac{\pi}{a}x - \frac{2}{a}\sin^2 \frac{\pi}{a}x} \dd x \\
+&= \frac{2V_1}{a} \int_0^a \cos^2 \frac{2\pi}{a}x \dd x \\
+&= V_1
+\end{aligned}
+$$
+iii.
+$\phi_+$ ではポテンシャルが高い場所での電子存在確率が高くなり、電子エネルギーが高く、 $\phi_-$ ではポテンシャルが低い場所での電子存在確率が高くなり、電子エネルギーが低くなる。このようにポテンシャルの周期性がバンドギャップの原因となる。
+
+::: 
