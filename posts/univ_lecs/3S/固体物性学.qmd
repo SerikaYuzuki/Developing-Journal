@@ -4,6 +4,7 @@ author: "Serika Yuzuki"
 date: "2024-4-5"
 categories: [University, 2024]
 image: "images/thumbnail.png"
+bibliography: ../../../bibliography.bib
 ---
 
 $$ \require{physics} 
@@ -313,11 +314,18 @@ X線回折になると、単位胞子の中身だけを考えれば、その原�
 
 #### 共有結合
 
+水素の原子軌道を考える。
+
 $$
 \hat{H} = -\frac{\hbar^2}{2me} \nabla - \frac{e^2}{4\pi\epsilon_0 r_1} - \frac{e^2}{4\pi\epsilon_0 r_2} + \frac{e^2}{4\pi\epsilon_0 R}
 $$
 
-この軌道方程式を解く。
+この軌道方程式を解く。式がかなり面倒なので、次のような前提で解くことになる。
+
+- $\phi$ は二つの波動関数 $\phi_1$ と $\phi_2$ の線形結合で表せる
+- $\phi_1$ と $\phi_2$ はそれぞれ、二つの陽子が片方だけ存在する時に表される電子の波動関数である
+
+これがLCAO法と呼ばれる。
 
 $$
 \hat{H} (c_1\phi_1 + c_2\phi_2) = E(c_1\phi_1 + c_2\phi_2)
@@ -474,6 +482,39 @@ D(E) &= \frac{dN}{dE} = \frac{L^3}{2\pi^2} \left( \frac{2m_e}{\hbar^2} \right)^{
 \end{aligned}
 $$
 
+## バンド理論 {#sec-band-theory}
+
+詳しくは教科書 @初歩から学ぶ固体物理学 を参照。ここでは大まかに理論を追うだけにする。
+
+まず、ブロッホの定理。これは、繰り返し単位がある結晶内での波動関数が、
+
+$$
+\psi_{\symbfit{k}}(\symbfit{r} + \symbfit{R}) = \psi_{\symbfit{k}}(\symbfit{r}) \exp(i \symbfit{k} \cdot \symbfit{R})
+$$
+
+と表せるという定理。つまりは、繰り返し単位が存在するって話。
+
+次に、そんな繰り返し単位がある結晶内での波動関数というのは、繰り返し単位である基本単位胞の位置からくる位置ベクトル $\symbfit{R}_n$ と、その単位胞内に存在する原子による位置ベクトル $\symbfit{r}_j$ を用いて、
+
+$$
+\phi(\symbfit{r}) = \sum_{\symbfit{R}_n} \sum_j \sum_\mu c_{j \mu} \exp \qty{i \symbfit{k}\cdot (\symbfit{R}_n + \symbfit{r}_j)} \phi_{j \mu}(\symbfit{r} - \symbfit{R}_n - \symbfit{r}_j)
+$$
+
+と表せる。ここで $\mu$ は原子の軌道関数の指定に使われる。例えば $1s, \ 2s, \ 2p_x, \ 2p_y, \ 2p_z$ など。つまり、 $n$ 個目の単位胞の $j$ 番目の原子の $\mu$ 番目の軌道関数による波動関数を $\phi_{j \mu}(\symbfit{r} - \symbfit{R}_n - \symbfit{r}_j)$ として、それぞれの軌道関数による波動関数を $\c_{j \mu}$ の重みをつけて、線型結合で表しているだけ。
+
+これが満たすべき波動方程式は、
+
+$$
+\hat{H} \phi(\symbfit{r}) - E \phi(\symbfit{r}) = 0
+$$
+
+これを左辺から $\exp \qty{ - i \symbfit{k}\cdot (\symbfit{R}_n + \symbfit{r}_j)} \phi_{j \mu}^{\ast}(\symbfit{r} - \symbfit{R}_{n'} - \symbfit{r}_{j'})$ とかけて解析をしていく。
+
+$$
+\sum_{\symbfit{R}_n} \sum_j \sum_\mu c_{j \mu} \exp \qty{i \symbfit{k}\cdot (\symbfit{R}_n + \symbfit{r}_j - \symbfit{R}_{n'} - \symbfit{r}_{j'})} \qty( \bra{n'j'\mu'} \hat{H} \ket{n j \mu} - E \bra{n'j'\mu'} \ket{n j \mu} ) = 0
+$$
+
+これで、色々とモデル化をして考えていくわけだ。その具体例については、過去問に掲載する。
 
 # 過去問
 
@@ -739,8 +780,6 @@ $$
 import numpy as np
 import matplotlib.pyplot as plt
 
-plt.rcParams['text.usetex'] = True
-
 # パラメータ設定
 m = 1.0  # 質量
 K = 1.0  # バネ定数
@@ -917,12 +956,75 @@ $$
 
 これを微分してやると、状態密度が出てくる。この密度をフェルミエネルギーまで積分したら状態数 $N$ になるのは定義。
 
+(b) については、@sec-band-theory で軽くまとめた。実際に問題を解く際に気をつけるべきは、$\sum$ しているのは、 $n,\ \mu$ だけであって、 $n',\ \mu'$ はその都度代入して考えているところ。実際に手を動かせばわかるはず。
+
 :::
 
 ::: {.callout-tip collapse="true"}
 ##### 解答
 
-$$\dv{E}2 \frac{4\pi}{3} k^3 \frac{1}{(2\pi/L)^3} = \frac{L^3}{2\pi^2} \left( \frac{2m_e}{\hbar^2} \right)^{3/2} \sqrt{E}$$
+(a) i.
+
+$$ 
+\begin{aligned}
+D(E)\dd E &= 2 \times 4\pi k^2 \dd k \times \frac{1}{(2\pi/L)^3} \\
+&= \frac{L^3}{2\pi^2} \left( \frac{2m_e}{\hbar^2} \right)^{3/2} \sqrt{E} \dd E
+\end{aligned}
+$$
+
+(a) ii.
+
+$$
+\begin{aligned}
+\int _0^{E_F} D(E) \dd E &\triangleq N \\
+E_F &= \frac{\hbar^2}{2m_e} \left( \frac{3\pi^2 N}{L^3} \right)^{2/3} \\
+\end{aligned}
+$$
+
+(b)
+
+$\mu = \mathrm{1s}$ の場合、
+
+$$
+\begin{aligned}
+\mathcal{E}_{\mathrm{1s}} &= E_{\mathrm{1s}} + 2t_{\mathrm{1s}} \cos(ka) \\
+\mathcal{E}_{\mathrm{2s}} &= E_{\mathrm{2s}} + 2t_{\mathrm{2s}} \cos(ka) \\
+\end{aligned}
+$$
+
+ここで、 $n'$ は最近接原子の単位胞の番号。
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# パラメータの設定（必要に応じて変更してください）
+a = 1.0       # 格子定数
+E1s = 0.0     # 1s 軌道のオンサイトエネルギー
+t1s = 1.0     # 1s 軌道のホッピング積分 (t1s > 0)
+E2s = 1.0     # 2s 軌道のオンサイトエネルギー
+t2s = -0.5    # 2s 軌道のホッピング積分 (t2s < 0)
+
+# k の範囲を第一ブリュアンゾーン内で設定
+k = np.linspace(-np.pi/a, np.pi/a, 400)
+
+# バンド分散を計算
+E_1s = E1s + 2 * t1s * np.cos(k * a)
+E_2s = E2s + 2 * t2s * np.cos(k * a)
+
+# プロット
+plt.figure()
+plt.plot(k * a, E_1s, label='1s')
+plt.plot(k * a, E_2s, label='2s')
+plt.xlabel('ka')
+plt.ylabel('E')
+plt.title('Band dispersion of 1D crystal')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+
 
 ::: 
 
