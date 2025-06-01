@@ -57,7 +57,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -808,24 +828,39 @@ window.Quarto = {
   <li><a href="#イオン活量" id="toc-イオン活量" class="nav-link" data-scroll-target="#イオン活量">イオン活量</a></li>
   <li><a href="#平均活量係数" id="toc-平均活量係数" class="nav-link" data-scroll-target="#平均活量係数">平均活量係数</a></li>
   <li><a href="#デバイヒュッケルの法則" id="toc-デバイヒュッケルの法則" class="nav-link" data-scroll-target="#デバイヒュッケルの法則">デバイ・ヒュッケルの法則</a></li>
-  <li><a href="#ボルンの式" id="toc-ボルンの式" class="nav-link" data-scroll-target="#ボルンの式">ボルンの式</a></li>
+  <li><a href="#sec-born_eq" id="toc-sec-born_eq" class="nav-link" data-scroll-target="#sec-born_eq">ボルンの式</a></li>
   <li><a href="#sec-nerst_eq" id="toc-sec-nerst_eq" class="nav-link" data-scroll-target="#sec-nerst_eq">ネルンストの式</a></li>
   </ul></li>
   <li><a href="#演習問題" id="toc-演習問題" class="nav-link" data-scroll-target="#演習問題">演習問題</a>
   <ul class="collapse">
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">2.1</a></li>
-  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">2.2</a></li>
-  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">2.3</a></li>
-  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">2.4</a></li>
-  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4">2.5</a></li>
-  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5">3.1</a></li>
-  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6">3.2</a></li>
-  <li><a href="#section-7" id="toc-section-7" class="nav-link" data-scroll-target="#section-7">3.3</a></li>
-  <li><a href="#section-8" id="toc-section-8" class="nav-link" data-scroll-target="#section-8">3.4</a></li>
-  <li><a href="#section-9" id="toc-section-9" class="nav-link" data-scroll-target="#section-9">4.1</a></li>
-  <li><a href="#section-10" id="toc-section-10" class="nav-link" data-scroll-target="#section-10">4.2</a></li>
-  <li><a href="#section-11" id="toc-section-11" class="nav-link" data-scroll-target="#section-11">4-3</a></li>
-  <li><a href="#section-12" id="toc-section-12" class="nav-link" data-scroll-target="#section-12">4-4</a></li>
+  <li><a href="#問題1" id="toc-問題1" class="nav-link" data-scroll-target="#問題1">問題1</a>
+  <ul class="collapse">
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">1-1.</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">1-2.</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">1-3.</a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">1-4.</a></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4">1-5.</a></li>
+  </ul></li>
+  <li><a href="#問題2" id="toc-問題2" class="nav-link" data-scroll-target="#問題2">問題2</a>
+  <ul class="collapse">
+  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5">2-1.</a></li>
+  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6">2-2.</a></li>
+  <li><a href="#section-7" id="toc-section-7" class="nav-link" data-scroll-target="#section-7">2-3.</a></li>
+  <li><a href="#section-8" id="toc-section-8" class="nav-link" data-scroll-target="#section-8">2-4.</a></li>
+  <li><a href="#section-9" id="toc-section-9" class="nav-link" data-scroll-target="#section-9">2-5.</a></li>
+  <li><a href="#section-10" id="toc-section-10" class="nav-link" data-scroll-target="#section-10">2-6.</a></li>
+  </ul></li>
+  <li><a href="#問題3" id="toc-問題3" class="nav-link" data-scroll-target="#問題3">問題3</a>
+  <ul class="collapse">
+  <li><a href="#section-11" id="toc-section-11" class="nav-link" data-scroll-target="#section-11">3-1.</a></li>
+  <li><a href="#section-12" id="toc-section-12" class="nav-link" data-scroll-target="#section-12">3-2.</a></li>
+  <li><a href="#section-13" id="toc-section-13" class="nav-link" data-scroll-target="#section-13">3-3.</a></li>
+  <li><a href="#section-14" id="toc-section-14" class="nav-link" data-scroll-target="#section-14">3-4.</a></li>
+  <li><a href="#section-15" id="toc-section-15" class="nav-link" data-scroll-target="#section-15">3-5.</a></li>
+  <li><a href="#section-16" id="toc-section-16" class="nav-link" data-scroll-target="#section-16">3-6.</a></li>
+  <li><a href="#section-17" id="toc-section-17" class="nav-link" data-scroll-target="#section-17">4-1.</a></li>
+  <li><a href="#section-18" id="toc-section-18" class="nav-link" data-scroll-target="#section-18">4-2.</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#過去問" id="toc-過去問" class="nav-link" data-scroll-target="#過去問">過去問</a>
   <ul class="collapse">
@@ -1083,9 +1118,17 @@ A^{\ast} = \frac{1}{8\pi}\qty(\frac{2N_A}{1000})^{1/2}\left(\frac{e^2}{\epsilon_
 \ln \gamma_{\pm} = \frac{A^{\ast}z_+ z_- I^{1/2}}{1+BaI^{1/2}} + bI
 \]</span></p>
 </section>
-<section id="ボルンの式" class="level2">
-<h2 class="anchored" data-anchor-id="ボルンの式">ボルンの式</h2>
-<p>今までは充電する時の話だったが、</p>
+<section id="sec-born_eq" class="level2">
+<h2 class="anchored" data-anchor-id="sec-born_eq">ボルンの式</h2>
+<p>真空と溶液内には自由エネルギー差があるのだが、その差ってのはイオンを真空から溶液内に移すだけの仕事の差だと考えるモデル。</p>
+<p><span class="math display">\[
+w = \int_0^{Ze} \frac{q}{4\pi r \epsilon_0 \epsilon_r} \dd q = \frac{Ze^2}{8\pi \epsilon_0 \epsilon_r}
+\]</span></p>
+<p>これを真空から溶液内に移すと、</p>
+<p><span class="math display">\[
+\Delta G_S^\circ = \frac{ZN_Ae^2}{8\pi \epsilon_0 r} \qty(1 - \frac{1}{\epsilon_r})
+\]</span></p>
+<p>これをボルン式と呼んでいる。</p>
 </section>
 <section id="sec-nerst_eq" class="level2">
 <h2 class="anchored" data-anchor-id="sec-nerst_eq">ネルンストの式</h2>
@@ -1117,29 +1160,96 @@ A^{\ast} = \frac{1}{8\pi}\qty(\frac{2N_A}{1000})^{1/2}\left(\frac{e^2}{\epsilon_
 <p><span id="eq-nerst_eq"><span class="math display">\[
 \Delta \phi = E^O + \frac{RT}{nF} \ln \frac{a_{\ce{Ox}}}{a_{\ce{Red}}}
 \tag{7}\]</span></span></p>
-<p>となる。これをネルンストの式という。ただし、ネルンストの式と呼ばれているものは数種類以上存在しているらしく、そこらの混乱について端的にわかりやすい解説は<a href="https://www.jstage.jst.go.jp/article/electrochemistry/70/10/70_821/_pdf/-char/ja">ここ</a>にある。</p>
+<p>となる。これをネルンストの式という。ただし、ネルンストの式と呼ばれているものは数種類以上存在しているらしく、そこらの混乱について端的にわかりやすい解説は <span class="citation" data-cites="電気化学ーそこを知りたい議論したい">測定法小委員会 (<a href="#ref-電気化学ーそこを知りたい議論したい" role="doc-biblioref">2002</a>)</span> にある。</p>
+<!-- 
+::: {.callout-note collapse="true"}
+##### 理論
+
+This is an example of a callout with a title.
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+This is an example of a callout with a title.
+::: 
+-->
 </section>
 </section>
 <section id="演習問題" class="level1">
 <h1>演習問題</h1>
-<p><img src="images/電気化学/image0.png" class="img-fluid"></p>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section">2.1</h2>
+<section id="問題1" class="level2">
+<h2 class="anchored" data-anchor-id="問題1">問題1</h2>
+<section id="section" class="level3">
+<h3 class="anchored" data-anchor-id="section">1-1.</h3>
+<p>Cuめっき反応を、電流密度50 mA/cm²にて10分間行った。100%の電流効率を仮定した際、めっき膜の厚さを求めよ。</p>
+<p>反応式：<br>
+<span class="math display">\[
+\mathrm{Cu^{2+} + 2e^- \rightarrow Cu}
+\]</span></p>
+<p>与えられたデータ： - 電流密度：50 mA/cm² - めっき時間：10 分 = 600 秒 - 電流効率：100% - Cuの原子量：63.55 - Cuの密度：8.94 g/cm³ - ファラデー定数：<span class="math inline">\(F = 96500 \ \mathrm{C/mol}\)</span></p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>50 <span class="math inline">\(\symup{mA/cm}^2\)</span> で10分間電流を流すと、合計で 30 <span class="math inline">\(\symup{C/cm}^2\)</span> の電荷が流れる。これは、1 <span class="math inline">\(\symup{cm}^2\)</span> の面積につき 30 <span class="math inline">\(\symup{C}\)</span> の電荷が流れたことを意味する。</p>
 <p>1 <span class="math inline">\(\symup{mol}\)</span> の電子は <span class="math inline">\(eN_A = 96485 \symup{C/mol}\)</span> の電荷を持つので、1 <span class="math inline">\(\symup{cm}^2\)</span> の面積につき 30 <span class="math inline">\(\symup{C}\)</span> の電荷が流れることは、<span class="math inline">\(30/96485 = 3.1 \times 10^{-4} \symup{mol}\)</span> の電子が流れたことを意味する。つまり、<span class="math inline">\(1.6 \times 10^{-4} \symup{mol}\)</span> の <span class="math inline">\(\ce{Cu}\)</span> が生成したことになるわけで、これの重量は、<span class="math inline">\(1.6 \times 10^{-4} \times 63.5 = 1.0 \times 10^{-2} \symup{g}\)</span> である。</p>
 <p>膜の密度が <span class="math inline">\(8.94 \symup{g/cm^3}\)</span> であることを考慮すると、面積あたりの生成量である <span class="math inline">\(1.0 \times 10^{-2} \symup{g/cm^2}\)</span> で割ってやれば、 <span class="math inline">\(1.1 \times 10^{-3} \symup{cm} = 1.1 \symup{\mu m}\)</span> となる。</p>
+</div>
+</div>
+</div>
 </section>
-<section id="section-1" class="level2">
-<h2 class="anchored" data-anchor-id="section-1">2.2</h2>
+<section id="section-1" class="level3">
+<h3 class="anchored" data-anchor-id="section-1">1-2.</h3>
+<p>温度 1 eV は 何 [K] に対応するか求めよ。</p>
+<p>（※ 厳密には正しくない換算かもしれないが、eVの感覚を得るために行う。）</p>
+<p>与えられた定数： - <span class="math inline">\(1\ \mathrm{eV} = 1.602 \times 10^{-19}\ \mathrm{J}\)</span> - ボルツマン定数：<span class="math inline">\(k_B = 1.381 \times 10^{-23}\ \mathrm{J/K}\)</span></p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p><span class="math inline">\(1 \symup{eV}\)</span> とは、<span class="math inline">\(1.6 \times 10^{-19} \symup{J}\)</span> である。このエネルギーを内部運動エネルギーに持つ何らかの粒子群の温度は、３次元運動として考えれば、<span class="math inline">\(\frac{3}{2}k_BT = 1.6 \times 10^{-19} \symup{J}\)</span> となる。ここで、<span class="math inline">\(k_B = 1.38 \times 10^{-23} \symup{J/K}\)</span> である。これを解くと、<span class="math inline">\(T = 7.7 \times 10^3 \symup{K}\)</span> となる。</p>
 <p>ただし厳密的には、 <span class="math inline">\(1 \symup{eV} = k_BT\)</span> から、 <span class="math inline">\(T= 1.16 \times 10^4 \symup{K}\)</span> となる。これについては理解できるまでに時間がかかりそうだ。</p>
-<p><img src="images/電気化学/image1.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
 </section>
-<section id="section-2" class="level2">
-<h2 class="anchored" data-anchor-id="section-2">2.3</h2>
+<section id="section-2" class="level3">
+<h3 class="anchored" data-anchor-id="section-2">1-3.</h3>
+<p>金属を100%の電流効率でアノード溶解したとき、単位時間当たり単位面積当たりの溶解量は、電流密度に比例する。<br>
+Fe, Zn, Alの3種の金属について、1 [A/m²] の電流密度に対応する溶解量 [g·m⁻²·h⁻¹] を求めよ。<br>
+なお、Fe, Znは2価、Alは3価で溶解するとし、それぞれの原子量は、Fe: 55.85, Zn: 65.38, Al: 26.98 とする。</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>これについては 2.1 と同じ計算を行うことになる。</p>
 <p><span class="math inline">\(1 \symup{A \cdot m^{-2}}\)</span> によって流れる電気量は <span class="math inline">\(1/96485 = 1.036 \times 10^{-5} \symup{mol \cdot m^{-2} \cdot s^{-1}}\)</span> である。これに <span class="math inline">\(\ce{Fe, Zn, Al}\)</span> のそれぞれの価数で割って、原子量で掛けることで、それぞれの生成質量の速度を求めることができる。</p>
-<div id="b50d1ff2" class="cell" data-execution_count="1">
+<div id="35828f5b" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1176,20 +1286,241 @@ Zn: 3.388e-04 g/m^2/s
 Al: 9.321e-05 g/m^2/s</code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
 </section>
-<section id="section-3" class="level2">
-<h2 class="anchored" data-anchor-id="section-3">2.4</h2>
+<section id="section-3" class="level3">
+<h3 class="anchored" data-anchor-id="section-3">1-4.</h3>
+<p>アルカリ水溶液の電気分解によって水10 gを1時間で分解したい。何 A の定電流を流したらよいか求めよ。</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>水 <span class="math inline">\(10 \symup{g}\)</span> を電気分解するには、<span class="math inline">\(10/18 \times 2 = 1.12 \symup{mol}\)</span> の電子が必要で、$ 1 $ で <span class="math inline">\(1/96485 = 1.036 \times 10^{-5} \symup{mol/s}\)</span> の電子が流れるので、 <span class="math inline">\(3600 \symup{s}\)</span> で完全に電気分解するには、 <span class="math inline">\(1.12/(1.036 \times 10^{-5} \times 3600) = 30 \symup{A}\)</span> が必要である。</p>
+</div>
+</div>
+</div>
 </section>
-<section id="section-4" class="level2">
-<h2 class="anchored" data-anchor-id="section-4">2.5</h2>
+<section id="section-4" class="level3">
+<h3 class="anchored" data-anchor-id="section-4">1-5.</h3>
+<p>二酸化チタン（アナターゼ型）のバンドギャップは約 3.2 eV、シリコンのものは約 1.1 eV と報告されている。<br>
+バンドギャップに対応した、光の波長 [nm] を計算せよ。<br>
+λ [nm] = 1240 / hν [eV] の関係より（各自確認のこと）</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p><span class="math inline">\(E= hc/\lambda\)</span> なので、 <span class="math inline">\(\lambda = hc/E\)</span> となる。これを <span class="math inline">\(\symup{eV}\)</span> に変換すると、 <span class="math inline">\(\lambda = 1240/E\)</span> となる。これを用いて、 <span class="math inline">\(\lambda = 1240/1.1 = 1127 \symup{nm}\)</span> となる。次に、 <span class="math inline">\(\lambda = 1240/3.2 = 387 \symup{nm}\)</span> となる。</p>
-<p><img src="images/電気化学/image2.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
 </section>
-<section id="section-5" class="level2">
-<h2 class="anchored" data-anchor-id="section-5">3.1</h2>
+</section>
+<section id="問題2" class="level2">
+<h2 class="anchored" data-anchor-id="問題2">問題2</h2>
+<table class="caption-top table">
+<caption>無限希釈におけるイオンのモル電気伝導率</caption>
+<colgroup>
+<col style="width: 21%">
+<col style="width: 25%">
+<col style="width: 27%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>陽イオン</th>
+<th><span class="math inline">\(\lambda^\infty (\times 10^{-4} \symup{S \cdot m^2 \cdot mol^{-1}})\)</span></th>
+<th>陰イオン</th>
+<th><span class="math inline">\(\lambda^\infty (\times 10^{-4} \symup{S \cdot m^2 \cdot mol^{-1}})\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\ce{H^+}\)</span></td>
+<td>349.82</td>
+<td><span class="math inline">\(\ce{OH^-}\)</span></td>
+<td>198.6</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{Li^+}\)</span></td>
+<td>38.69</td>
+<td><span class="math inline">\(\ce{F^-}\)</span></td>
+<td>54.4</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{Na^+}\)</span></td>
+<td>50.11</td>
+<td><span class="math inline">\(\ce{Cl^-}\)</span></td>
+<td>76.35</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{K^+}\)</span></td>
+<td>73.5</td>
+<td><span class="math inline">\(\ce{Br^-}\)</span></td>
+<td>78.1</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{Rb^+}\)</span></td>
+<td>77.8</td>
+<td><span class="math inline">\(\ce{I^-}\)</span></td>
+<td>76.8</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{Cs^+}\)</span></td>
+<td>77.3</td>
+<td><span class="math inline">\(\ce{NO3^-}\)</span></td>
+<td>71.4</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{Ag^+}\)</span></td>
+<td>61.9</td>
+<td><span class="math inline">\(\ce{HCO3^-}\)</span></td>
+<td>44.5</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{1/2 Be^{2+}}\)</span></td>
+<td>45</td>
+<td><span class="math inline">\(\ce{HCOO^-}\)</span></td>
+<td>54.6</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{1/2 Fe^{2+}}\)</span></td>
+<td>54</td>
+<td><span class="math inline">\(\ce{1/3 [Fe(CN)6]^{3-}}\)</span></td>
+<td>101</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{1/2 Cu^{2+}}\)</span></td>
+<td>55</td>
+<td><span class="math inline">\(\ce{1/4 [Fe(CN)6]^{4-}}\)</span></td>
+<td>111</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{1/2 Zn^{2+}}\)</span></td>
+<td>52.8</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{1/2 Cd^{2+}}\)</span></td>
+<td>54</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{1/2 Hg^{2+}}\)</span></td>
+<td>53</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{1/2 Pb^{2+}}\)</span></td>
+<td>71</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{1/3 Al^{3+}}\)</span></td>
+<td>61</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{1/3 Cr^{3+}}\)</span></td>
+<td>67</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{1/3 Fe^{3+}}\)</span></td>
+<td>68</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{1/3 La^{3+}}\)</span></td>
+<td>69.6</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{1/3 Ce^{3+}}\)</span></td>
+<td>70</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{NH4^+}\)</span></td>
+<td>73.5</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{(CH3)4N^+}\)</span></td>
+<td>45.3</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{(C2H5)4N^+}\)</span></td>
+<td>33.0</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{(n-C3H7)4N^+}\)</span></td>
+<td>23.5</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{(n-C4H9)4N^+}\)</span></td>
+<td>19.1</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p>※ 多価イオンについては <span class="math inline">\(\lambda^\infty / |z|\)</span> の値を示してある。</p>
+</blockquote>
+<hr>
+<section id="section-5" class="level3">
+<h3 class="anchored" data-anchor-id="section-5">2-1.</h3>
+<p>表「無限希釈におけるイオンのモル電気伝導率」を用いて、<span class="math inline">\(\ce{K^+, Ca^{2+}, Cl^-, SO4^{2-}}\)</span> の移動度を求めよ。<br>
+<span class="math display">\[\lambda^\infty = z_i F u_i \Rightarrow u_i = \lambda^\infty / |z_i| F\]</span><br>
+（表の値はすでに <span class="math inline">\(\lambda/z\)</span> の単位 [<span class="math inline">\(\symup{\Omega^{-1} m^2 mol^{-1}}\)</span>] で与えられている）</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>イオン移動度の式は (<a href="#eq-ion_mobility" class="quarto-xref">Equation&nbsp;2</a>) だから、</p>
-<div id="ebda045b" class="cell" data-execution_count="2">
+<div id="5154ef05" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
@@ -1219,22 +1550,75 @@ Cl-: 7.913e-04 m^2/V/s
 SO42-: 8.291e-04 m^2/V/s</code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
 </section>
-<section id="section-6" class="level2">
-<h2 class="anchored" data-anchor-id="section-6">3.2</h2>
+<section id="section-6" class="level3">
+<h3 class="anchored" data-anchor-id="section-6">2-2.</h3>
+<p><span class="math inline">\(\ce{Li^+}\)</span> は <span class="math inline">\(\ce{Cs^+}\)</span> と比べ、「<span class="math inline">\(r_c\)</span> は小さいが、<span class="math inline">\(r_s\)</span> は大きい」<br>
+その理由を考察せよ。ただし、 <span class="math inline">\(r_c\)</span> はイオン半径、 <span class="math inline">\(r_s\)</span> はストークス半径である。</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>ストークス半径は流体中の水和イオンの見かけ上の大きさで、イオン半径は結晶中のイオンの大きさである。</p>
 <p><span class="math inline">\(\ce{Li+}\)</span> は <span class="math inline">\(\ce{Cs+}\)</span> に比べて電荷密度が高く、水和が強いために <span class="math inline">\(r_s\)</span> が大きくなる。逆に、 <span class="math inline">\(\ce{Cs+}\)</span> は電荷密度が低く、水和が弱いために <span class="math inline">\(r_s\)</span> が小さくなる。</p>
-<p><img src="images/電気化学/image3.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
 </section>
-<section id="section-7" class="level2">
-<h2 class="anchored" data-anchor-id="section-7">3.3</h2>
+<section id="section-7" class="level3">
+<h3 class="anchored" data-anchor-id="section-7">2-3.</h3>
+<p>酢酸の無限希釈モル伝導率を「無限希釈のイオンのモル電気伝導率」から求めよ。<br>
+与えられた値：<br>
+- <span class="math inline">\(\ce{H^+}\)</span>：349.82<br>
+- <span class="math inline">\(\ce{CH3COO^-}\)</span>：40.9<br>
+- 合計：390.72 [<span class="math inline">\(\symup{S \cdot cm^2 \cdot mol^{-1}}\)</span>]</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>この式 (<a href="#eq-molar_conductivity" class="quarto-xref">Equation&nbsp;1</a>) を用いて、 <span class="math inline">\(\ce{CH3COOH}\)</span> のモル電気伝導率を求める。</p>
 <p><span class="math display">\[\Lambda^{\infty}[\ce{CH3COOH}] = 349.82 + 40.9 = 390.7 \ \text{S}\text{m}^2\text{mol}^{-1}\]</span></p>
+</div>
+</div>
+</div>
 </section>
-<section id="section-8" class="level2">
-<h2 class="anchored" data-anchor-id="section-8">3.4</h2>
+<section id="section-8" class="level3">
+<h3 class="anchored" data-anchor-id="section-8">2-4.</h3>
+<p>0.02 M（=0.02 mol/l）酢酸水溶液の導電率が <span class="math inline">\(2.31 \times 10^{-4} \symup{S \cdot cm^{-1}}\)</span> であった。<br>
+上記無限希釈モル伝導率を用い、酢酸の電離度と解離定数を求めよ。</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>式 (<a href="#eq-dilution_law" class="quarto-xref">Equation&nbsp;4</a>) を用いる。</p>
-<div id="c0460707" class="cell" data-execution_count="3">
+<div id="41d57182" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
@@ -1253,29 +1637,16 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 電離定数: 1.801e-05 mol/L</code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
 </section>
-<section id="section-9" class="level2">
-<h2 class="anchored" data-anchor-id="section-9">4.1</h2>
-<p><span class="math inline">\(\ce{NaCl}\)</span> を 0.1 M、<span class="math inline">\(\ce{Al2(SO4)3}\)</span> を 0.01 M 含む水溶液（どちらも <span class="math inline">\(\alpha = 1\)</span> とする）の<strong>イオン強度</strong>は何 M になるか。 また、そのうち <span class="math inline">\(\ce{NaCl}\)</span> の<strong>分担割合</strong>は何 % かもとめよ。</p>
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-理論
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>イオン強度の定義式は (<a href="#eq-ion_strength" class="quarto-xref">Equation&nbsp;6</a>) である。</p>
-<p>ここで、<span class="math inline">\(c_i\)</span> はイオンの濃度、<span class="math inline">\(z_i\)</span> はイオンの電荷数というのを注意！　イオン濃度じゃなくて、水溶液濃度で計算してハマったのでまじで注意。</p>
-</div>
-</div>
-</div>
+<section id="section-9" class="level3">
+<h3 class="anchored" data-anchor-id="section-9">2-5.</h3>
+<p>半径 1 cm の導体球に <span class="math inline">\(10^{-13} \symup{mol}\)</span> の電子を乗せ、真空中におくと、表面電位はいくらになるか求めよ。<br>
+（真空の誘電率 <span class="math inline">\(\epsilon_0 = 8.854 \times 10^{-12} \symup{C^2/N \cdot m^2}\)</span>）</p>
 <div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1284,26 +1655,114 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="4f680492" class="cell" data-execution_count="4">
+<p><span class="math display">\[\phi = \frac{1}{4\pi\epsilon_0} \frac{Q}{r} = \frac{1}{4\pi\epsilon_0} \frac{10^{-13} \times F}{1 \times 10^{-2}} = 8.7 \times 10^{3} \symup{V}\]</span></p>
+<div id="e096c2b4" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>c_Na <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># mol/L</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>c_Cl <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># mol/L</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>c_Al2 <span class="op">=</span> <span class="fl">0.02</span>  <span class="co"># mol/L</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>c_SO4 <span class="op">=</span> <span class="fl">0.03</span>  <span class="co"># mol/L</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>z_Na <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>z_Cl <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>z_Al <span class="op">=</span> <span class="dv">3</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>z_SO4 <span class="op">=</span> <span class="op">-</span><span class="dv">2</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># イオン強度の計算</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> (c_Na <span class="op">*</span> z_Na<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> c_Cl <span class="op">*</span> z_Cl<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> c_Al2 <span class="op">*</span> z_Al<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> c_SO4 <span class="op">*</span> z_SO4<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"イオン強度: </span><span class="sc">{</span>I<span class="sc">:.3f}</span><span class="ss"> M"</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 分担割合の計算</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>fraction_NaCl <span class="op">=</span> (c_Na <span class="op">*</span> z_Na<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> c_Cl <span class="op">*</span> z_Cl<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (c_Na <span class="op">*</span> z_Na<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> c_Cl <span class="op">*</span> z_Cl<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> c_Al2 <span class="op">*</span> z_Al<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> c_SO4 <span class="op">*</span> z_SO4<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"分担割合: </span><span class="sc">{</span>fraction_NaCl<span class="sc">:.3%}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>epsilon_0 <span class="op">=</span> <span class="fl">8.854e-12</span>  <span class="co"># C^2/Jm</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>Q <span class="op">=</span> <span class="dv">10</span><span class="op">**-</span><span class="dv">13</span> <span class="op">*</span> <span class="dv">96485</span>  <span class="co"># C</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">1e-2</span>  <span class="co"># m</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>phi <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> np.pi <span class="op">*</span> epsilon_0) <span class="op">*</span> Q <span class="op">/</span> r</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"表面電位: </span><span class="sc">{</span>phi<span class="sc">:.3e}</span><span class="ss"> V"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>表面電位: 8.672e+03 V</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="section-10" class="level3">
+<h3 class="anchored" data-anchor-id="section-10">2-6.</h3>
+<p>酢酸を水酸化ナトリウム溶液で伝導度滴定した場合の滴定曲線は右図のようになる。<br>
+各イオンの電気伝導率に対する寄与を、前述のラム分図のように示せ。</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>滴定前と、当量点以降では <span class="math inline">\(\ce{H+, OH^-}\)</span> の寄与が大きくなる。それ以外の線形的増加部分は、 <span class="math inline">\(\ce{Na+}\)</span> の寄与が大きくなる。</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="問題3" class="level2">
+<h2 class="anchored" data-anchor-id="問題3">問題3</h2>
+<section id="section-11" class="level3">
+<h3 class="anchored" data-anchor-id="section-11">3-1.</h3>
+<p><span class="math inline">\(\ce{NaCl}\)</span> を 0.1 M、<span class="math inline">\(\ce{Al2(SO4)3}\)</span> を 0.01 M 含む水溶液（どちらも <span class="math inline">\(\alpha = 1\)</span> とする）の<strong>イオン強度</strong>は何 M になるか。 また、そのうち <span class="math inline">\(\ce{NaCl}\)</span> の<strong>分担割合</strong>は何 % かもとめよ。</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>イオン強度の定義式は (<a href="#eq-ion_strength" class="quarto-xref">Equation&nbsp;6</a>) である。</p>
+<p>ここで、<span class="math inline">\(c_i\)</span> はイオンの濃度、<span class="math inline">\(z_i\)</span> はイオンの電荷数というのを注意！　イオン濃度じゃなくて、水溶液濃度で計算してハマったのでまじで注意。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\begin{aligned}
+I_{\ce{NaCl}} &amp;= \frac{1}{2} \left( c_{\ce{Na+}} z_{\ce{Na+}}^2 + c_{\ce{Cl-}} z_{\ce{Cl-}}^2 \right) \\
+&amp;= \frac{1}{2} \left( 0.1 \times 1^2 + 0.1 \times (-1)^2 \right) \\
+&amp;= 0.1 \ \text{M} \\
+I_{\ce{Al2(SO4)3}} &amp;= \frac{1}{2} \left( c_{\ce{Al3+}} z_{\ce{Al3+}}^2 + c_{\ce{SO42-}} z_{\ce{SO42-}}^2 \right) \\
+&amp;= \frac{1}{2} \left( 0.01 \times 3^2 + 0.03 \times (-2)^2 \right) \\
+&amp;= 0.15 \ \text{M} \\
+I_{\ce{NaCl}} + I_{\ce{Al2(SO4)3}} &amp;= 0.1 + 0.15 = \boxed{0.25 \ \text{M} } \\
+\frac{I_{\ce{NaCl}}}{I_{\ce{NaCl}} + I_{\ce{Al2(SO4)3}}} &amp;= \frac{0.1}{0.25} \times 100 = \boxed{40 \ \%}
+\end{aligned}
+\]</span></p>
+<div id="2b9d4d35" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>c_Na <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># mol/L</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>c_Cl <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># mol/L</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>c_Al2 <span class="op">=</span> <span class="fl">0.02</span>  <span class="co"># mol/L</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>c_SO4 <span class="op">=</span> <span class="fl">0.03</span>  <span class="co"># mol/L</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>z_Na <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>z_Cl <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>z_Al <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>z_SO4 <span class="op">=</span> <span class="op">-</span><span class="dv">2</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># イオン強度の計算</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> (c_Na <span class="op">*</span> z_Na<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> c_Cl <span class="op">*</span> z_Cl<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> c_Al2 <span class="op">*</span> z_Al<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> c_SO4 <span class="op">*</span> z_SO4<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"イオン強度: </span><span class="sc">{</span>I<span class="sc">:.3f}</span><span class="ss"> M"</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 分担割合の計算</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>fraction_NaCl <span class="op">=</span> (c_Na <span class="op">*</span> z_Na<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> c_Cl <span class="op">*</span> z_Cl<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (c_Na <span class="op">*</span> z_Na<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> c_Cl <span class="op">*</span> z_Cl<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> c_Al2 <span class="op">*</span> z_Al<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> c_SO4 <span class="op">*</span> z_SO4<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"分担割合: </span><span class="sc">{</span>fraction_NaCl<span class="sc">:.3%}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>イオン強度: 0.250 M
@@ -1314,11 +1773,11 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 </div>
 </div>
 </section>
-<section id="section-10" class="level2">
-<h2 class="anchored" data-anchor-id="section-10">4.2</h2>
+<section id="section-12" class="level3">
+<h3 class="anchored" data-anchor-id="section-12">3-2.</h3>
 <p><span class="math inline">\(\ce{CaCl2}\)</span> 水溶液（強電解質溶液：<span class="math inline">\(25^{\circ}\symup{C}\)</span>）の、0.001 M および 0.01 M における <strong>イオン強度</strong>と<strong>デバイ半径</strong>を計算せよ。</p>
 <div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1327,7 +1786,7 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>デバイ半径は次のように定義される。</p>
 <p><span class="math display">\[
@@ -1337,11 +1796,29 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 \end{aligned}
 \]</span></p>
 <p>ここで、 <span class="math inline">\(n_i\)</span> はイオン濃度。ただし単位は <span class="math inline">\(\symup{mol\ m^{-3}}\)</span> ではなく、 <span class="math inline">\(\symup{m^{-3}}\)</span> であることに注意。つまり、 <span class="math inline">\(N_A\)</span> を掛けてやる必要がある。</p>
+<p>一応の一応、デバイ長を導くことになったら次のように考えよう。</p>
+<p>ボルツマン分布</p>
+<p><span class="math display">\[
+n_i^{'} = n_i \exp \left( -\frac{z_ie\phi(r)}{kT} \right)
+\]</span></p>
+<p>これから濃度分布</p>
+<p><span class="math display">\[
+\begin{aligned}
+\rho(r) &amp;= \sum_i z_i e n_i \exp \left( -\frac{z_ie\phi(r)}{kT} \right) \\
+&amp;\approx -\frac{e^2\phi (r)}{kT} \left( \sum_i n_i z_i^2 \right) \\
+&amp;= -\frac{2 e^2}{kT} \left( \sum_i \frac{1}{2} n_i z_i^2 \phi (r) \right)
+\end{aligned}
+\]</span></p>
+<p>これでポアソン方程式</p>
+<p><span class="math display">\[
+\nabla^2 \phi = \frac{\phi}{\lambda_D^2}
+\]</span></p>
+<p>を解いて <span class="math inline">\(\lambda_D\)</span> を求める。</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1350,32 +1827,56 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="92dabc5c" class="cell" data-execution_count="5">
+<p>イオン強度は、</p>
+<p><span class="math display">\[
+\begin{aligned}
+I_{\ce{CaCl2}, \mathrm{0.001 \ M}} &amp;= \frac{1}{2} \left( c_{\ce{Ca2+}} z_{\ce{Ca2+}}^2 + c_{\ce{Cl-}} z_{\ce{Cl-}}^2 \right) \\
+&amp;= \frac{1}{2} \left( 0.001 \times 2^2 + 0.002 \times (-1)^2 \right) \\
+&amp;= 0.003 \ \text{M} \\
+I_{\ce{CaCl2}, \mathrm{0.01 \ M}} &amp;= \frac{1}{2} \left( c_{\ce{Ca2+}} z_{\ce{Ca2+}}^2 + c_{\ce{Cl-}} z_{\ce{Cl-}}^2 \right) \\
+&amp;= \frac{1}{2} \left( 0.01 \times 2^2 + 0.02 \times (-1)^2 \right) \\
+&amp;= 0.03 \ \text{M} \\
+\end{aligned}
+\]</span></p>
+<p>デバイ半径は</p>
+<p><span class="math display">\[
+\begin{aligned}
+\lambda_D &amp;= \qty(\dfrac{2e^2}{\epsilon_0 \epsilon_r kT} \sum_i \frac{1}{2} c_i z_i^2)^{-1/2} \\
+&amp;= \qty(\dfrac{2e^2}{\epsilon_0 \epsilon_r kT} I_n)^{-1/2} \\
+\lambda_{D,\mathrm{0.001 \ M}} &amp;= \qty(\dfrac{2e^2}{\epsilon_0 \epsilon_r kT} I_{\ce{CaCl2}, \mathrm{0.001 \ M}})^{-1/2} \\
+&amp;= \qty(\dfrac{2e^2}{\epsilon_0 \epsilon_r kT} 0.003)^{-1/2} \\
+&amp;= 5.55 \times 10^{-9} \ \text{m} \\
+\lambda_{D,\mathrm{0.01 \ M}} &amp;= \qty(\dfrac{2e^2}{\epsilon_0 \epsilon_r kT} I_{\ce{CaCl2}, \mathrm{0.01 \ M}})^{-1/2} \\
+&amp;= \qty(\dfrac{2e^2}{\epsilon_0 \epsilon_r kT} 0.03)^{-1/2} \\
+&amp;= 1.76 \times 10^{-9} \ \text{m} \\
+\end{aligned}
+\]</span></p>
+<div id="b82c37c5" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>epsilon_0 <span class="op">=</span> <span class="fl">8.854e-12</span>  <span class="co"># C^2/Jm</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>epsilon_r <span class="op">=</span> <span class="fl">78.5</span>  <span class="co"># 水の誘電率</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="fl">1.38e-23</span>  <span class="co"># J/K</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">298.15</span>  <span class="co"># K</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> <span class="fl">1.6022e-19</span>  <span class="co"># C</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>Na <span class="op">=</span> <span class="fl">6.022e23</span>  <span class="co"># mol^-1</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># イオン濃度</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>c_Ca <span class="op">=</span> [<span class="fl">0.001</span>, <span class="fl">0.01</span>]  <span class="co"># mol/L</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>c_Cl <span class="op">=</span> [<span class="fl">0.002</span>, <span class="fl">0.02</span>]  <span class="co"># mol/L</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>n_Ca <span class="op">=</span> [<span class="dv">1</span><span class="op">*</span>Na, <span class="dv">10</span><span class="op">*</span>Na] <span class="co"># /m^3</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>n_Cl <span class="op">=</span> [<span class="dv">2</span><span class="op">*</span>Na, <span class="dv">20</span><span class="op">*</span>Na] <span class="co"># /m^3</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># イオン強度の計算</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(c_Ca)):</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    I <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> (c_Ca[i] <span class="op">*</span> <span class="dv">2</span><span class="op">**</span><span class="dv">2</span> <span class="op">+</span> c_Cl[i] <span class="op">*</span> (<span class="op">-</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"イオン強度: </span><span class="sc">{</span>I<span class="sc">:.3f}</span><span class="ss"> M"</span>)</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># デバイ半径の計算</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    nI <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> (n_Ca[i] <span class="op">*</span> <span class="dv">2</span><span class="op">**</span><span class="dv">2</span> <span class="op">+</span> n_Cl[i] <span class="op">*</span> (<span class="op">-</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    lambda_D <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> np.sqrt(<span class="dv">2</span> <span class="op">*</span> e<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (epsilon_0 <span class="op">*</span> epsilon_r <span class="op">*</span> k <span class="op">*</span> T) <span class="op">*</span> nI) </span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"デバイ半径: </span><span class="sc">{</span>lambda_D<span class="sc">:.3e}</span><span class="ss"> m"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>epsilon_0 <span class="op">=</span> <span class="fl">8.854e-12</span>  <span class="co"># C^2/Jm</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>epsilon_r <span class="op">=</span> <span class="fl">78.5</span>  <span class="co"># 水の誘電率</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="fl">1.38e-23</span>  <span class="co"># J/K</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">298.15</span>  <span class="co"># K</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> <span class="fl">1.6022e-19</span>  <span class="co"># C</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>Na <span class="op">=</span> <span class="fl">6.022e23</span>  <span class="co"># mol^-1</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># イオン濃度</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>c_Ca <span class="op">=</span> [<span class="fl">0.001</span>, <span class="fl">0.01</span>]  <span class="co"># mol/L</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>c_Cl <span class="op">=</span> [<span class="fl">0.002</span>, <span class="fl">0.02</span>]  <span class="co"># mol/L</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>n_Ca <span class="op">=</span> [<span class="dv">1</span><span class="op">*</span>Na, <span class="dv">10</span><span class="op">*</span>Na] <span class="co"># /m^3</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>n_Cl <span class="op">=</span> [<span class="dv">2</span><span class="op">*</span>Na, <span class="dv">20</span><span class="op">*</span>Na] <span class="co"># /m^3</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co"># イオン強度の計算</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(c_Ca)):</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    I <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> (c_Ca[i] <span class="op">*</span> <span class="dv">2</span><span class="op">**</span><span class="dv">2</span> <span class="op">+</span> c_Cl[i] <span class="op">*</span> (<span class="op">-</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"イオン強度: </span><span class="sc">{</span>I<span class="sc">:.3f}</span><span class="ss"> M"</span>)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># デバイ半径の計算</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    nI <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> (n_Ca[i] <span class="op">*</span> <span class="dv">2</span><span class="op">**</span><span class="dv">2</span> <span class="op">+</span> n_Cl[i] <span class="op">*</span> (<span class="op">-</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    lambda_D <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> np.sqrt(<span class="dv">2</span> <span class="op">*</span> e<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (epsilon_0 <span class="op">*</span> epsilon_r <span class="op">*</span> k <span class="op">*</span> T) <span class="op">*</span> nI) </span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"デバイ半径: </span><span class="sc">{</span>lambda_D<span class="sc">:.3e}</span><span class="ss"> m"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>イオン強度: 0.003 M
@@ -1388,11 +1889,11 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 </div>
 </div>
 </section>
-<section id="section-11" class="level2">
-<h2 class="anchored" data-anchor-id="section-11">4-3</h2>
+<section id="section-13" class="level3">
+<h3 class="anchored" data-anchor-id="section-13">3-3.</h3>
 <p><span class="math inline">\(25^{\circ}\symup{C},\ 5.0 \times 10^{-3} \ \symup{M} \ \ce{KCl}\)</span> 水溶液の<strong>イオン強度</strong>および<strong>平均活量係数</strong>を、<strong>デバイ＝ヒュッケルの極限法則</strong>を用いて求めよ。</p>
 <div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1401,14 +1902,18 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>イオン強度の式 (<a href="#eq-ion_strength" class="quarto-xref">Equation&nbsp;6</a>) と平均活量計数の式 (<a href="#eq-debye_huckel" class="quarto-xref">Equation&nbsp;5</a>) を使う計算問題</p>
+<p><span class="math display">\[
+A^\ast = \frac{1}{8\pi}\qty(\frac{N_A}{1000})^{1/2}\qty(\frac{e^2}{\epsilon_0\epsilon_r kT})^{3/2}
+\]</span></p>
+<p>この値おおよそ <span class="math inline">\(1.2 \ \text{m}^{3/2} \ \text{mol}^{-1/2}\)</span> である。詳しく計算させられることはないはずだ。</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1417,25 +1922,35 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="f051ad53" class="cell" data-execution_count="6">
+<p><span class="math display">\[
+\begin{aligned}
+I &amp;= \frac{1}{2} \left( c_{\ce{K+}} z_{\ce{K+}}^2 + c_{\ce{Cl-}} z_{\ce{Cl-}}^2 \right) \\
+&amp;= \frac{1}{2} \left( 5.0 \times 10^{-3} \times 1^2 + 5.0 \times 10^{-3} \times (-1)^2 \right) \\
+&amp;= 5.0 \times 10^{-3} \ \text{M} \\
+\gamma &amp;= \exp \left( -A^\ast z_{\ce{K+}} z_{\ce{Cl-}} \sqrt{I} \right) \\
+&amp;= \exp \left( -1.2 \times 1 \times (-1) \times \sqrt{5.0 \times 10^{-3}} \right) \\
+&amp;= 0.92
+\end{aligned}
+\]</span></p>
+<div id="2bef3a77" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>c_k <span class="op">=</span> <span class="fl">5.0e-3</span>  <span class="co"># mol/L</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>c_cl <span class="op">=</span> <span class="fl">5.0e-3</span>  <span class="co"># mol/L</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>z_k <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>z_cl <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># デバイ＝ヒュッケルの極限法則</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>A_star <span class="op">=</span> <span class="fl">1.2</span>  <span class="co"># m^3/2/mol^1/2</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># イオン強度の計算</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> (c_k <span class="op">*</span> z_k<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> c_cl <span class="op">*</span> z_cl<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"イオン強度: </span><span class="sc">{</span>I<span class="sc">:.3f}</span><span class="ss"> M"</span>)</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 平均活量係数の計算</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>gamma <span class="op">=</span> np.exp(<span class="op">-</span>A_star <span class="op">*</span> z_k <span class="op">*</span> z_cl <span class="op">*</span> np.sqrt(I))</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"平均活量係数: </span><span class="sc">{</span>gamma<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>c_k <span class="op">=</span> <span class="fl">5.0e-3</span>  <span class="co"># mol/L</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>c_cl <span class="op">=</span> <span class="fl">5.0e-3</span>  <span class="co"># mol/L</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>z_k <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>z_cl <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># デバイ＝ヒュッケルの極限法則</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>A_star <span class="op">=</span> <span class="fl">1.2</span>  <span class="co"># m^3/2/mol^1/2</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># イオン強度の計算</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> (c_k <span class="op">*</span> z_k<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> c_cl <span class="op">*</span> z_cl<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"イオン強度: </span><span class="sc">{</span>I<span class="sc">:.3f}</span><span class="ss"> M"</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 平均活量係数の計算</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>gamma <span class="op">=</span> np.exp(<span class="op">-</span>A_star <span class="op">*</span> z_k <span class="op">*</span> z_cl <span class="op">*</span> np.sqrt(I))</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"平均活量係数: </span><span class="sc">{</span>gamma<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>イオン強度: 0.005 M
@@ -1446,12 +1961,12 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 </div>
 </div>
 </section>
-<section id="section-12" class="level2">
-<h2 class="anchored" data-anchor-id="section-12">4-4</h2>
-<p><span class="math inline">\(25^{\circ}\symup{C},\ 5.0 \times 10^{-3} \ \symup{M} \ \ce{CaCl2}\)</span> 水溶液の<br>
+<section id="section-14" class="level3">
+<h3 class="anchored" data-anchor-id="section-14">3-4.</h3>
+<p><span class="math inline">\(25^{\circ}\symup{C},\ 1.0 \times 10^{-3} \ \symup{M} \ \ce{CaCl2}\)</span> 水溶液の<br>
 <strong>イオン強度</strong>および<strong>平均活量係数</strong>を、<strong>デバイ＝ヒュッケルの極限法則</strong>を用いて求めよ。</p>
 <div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1460,34 +1975,194 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="82c261c6" class="cell" data-execution_count="7">
+<p><span class="math display">\[
+\begin{aligned}
+I &amp;= \frac{1}{2} \left( c_{\ce{Ca2+}} z_{\ce{Ca2+}}^2 + c_{\ce{Cl-}} z_{\ce{Cl-}}^2 \right) \\
+&amp;= \frac{1}{2} \left( 1.0 \times 10^{-3} \times 2^2 + 2.0 \times 10^{-3} \times (-1)^2 \right) \\
+&amp;= 3.0 \times 10^{-3} \ \text{M} \\
+\gamma &amp;= \exp \left( -A^\ast z_{\ce{Ca2+}} z_{\ce{Cl-}} \sqrt{I} \right) \\
+&amp;= \exp \left( -1.2 \times 2 \times (-1) \times \sqrt{3.0 \times 10^{-3}} \right) \\
+&amp;= 0.88
+\end{aligned}
+\]</span></p>
+<div id="355b154e" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>c_ca <span class="op">=</span> <span class="fl">1.0e-3</span>  <span class="co"># mol/L</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>c_cl <span class="op">=</span> <span class="fl">2.0e-3</span>  <span class="co"># mol/L</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>z_ca <span class="op">=</span> <span class="dv">2</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>z_cl <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># デバイ＝ヒュッケルの極限法則</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>A_star <span class="op">=</span> <span class="fl">1.2</span>  <span class="co"># m^3/2/mol^1/2</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># イオン強度の計算</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> (c_ca <span class="op">*</span> z_ca<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> c_cl <span class="op">*</span> z_cl<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"イオン強度: </span><span class="sc">{</span>I<span class="sc">:.3f}</span><span class="ss"> M"</span>)</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 平均活量係数の計算</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>gamma <span class="op">=</span> np.exp(<span class="op">-</span>A_star <span class="op">*</span> z_ca <span class="op">*</span> z_cl <span class="op">*</span> np.sqrt(I))</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"平均活量係数: </span><span class="sc">{</span>gamma<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>c_ca <span class="op">=</span> <span class="fl">1.0e-3</span>  <span class="co"># mol/L</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>c_cl <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="fl">1.0e-3</span>  <span class="co"># mol/L</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>z_ca <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>z_cl <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># デバイ＝ヒュッケルの極限法則</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>A_star <span class="op">=</span> <span class="fl">1.2</span>  <span class="co"># m^3/2/mol^1/2</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># イオン強度の計算</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> (c_ca <span class="op">*</span> z_ca<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> c_cl <span class="op">*</span> z_cl<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"イオン強度: </span><span class="sc">{</span>I<span class="sc">:.3f}</span><span class="ss"> M"</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 平均活量係数の計算</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>gamma <span class="op">=</span> np.exp(A_star <span class="op">*</span> z_ca <span class="op">*</span> z_cl <span class="op">*</span> np.sqrt(I))</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"平均活量係数: </span><span class="sc">{</span>gamma<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>イオン強度: 0.003 M
-平均活量係数: 1.140</code></pre>
+平均活量係数: 0.877</code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
+</section>
+<section id="section-15" class="level3">
+<h3 class="anchored" data-anchor-id="section-15">3-5.</h3>
+<p><span class="math inline">\(25^{\circ}\symup{C}\)</span> の水（比誘電率：78.54）に対し、定数部分を計算し、ボルン式を下記の形で表記せよ。</p>
+<p><span class="math display">\[
+\Delta G_S^\circ = -\frac{z^2}{r_i\ [\mathrm{pm}]} \times (\text{定数})\ \left[\mathrm{kJ\ mol^{-1}}\right]
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+N_A &amp;= 6.022 \times 10^{23}\ [\mathrm{mol}^{-1}] \\
+e &amp;= 1.6022 \times 10^{-19}\ [\mathrm{C}] \\
+\varepsilon_0 &amp;= 8.8542 \times 10^{-12}\ [\mathrm{F\ m^{-1}}]
+\end{aligned}
+\]</span></p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><a href="#sec-born_eq" class="quarto-xref">Section&nbsp;1.11</a> より、</p>
+<p><span class="math display">\[
+\Delta G_S^\circ = -\frac{z^2}{r_i\ [\mathrm{pm}]} \times (\text{定数})\ \left[\mathrm{kJ\ mol^{-1}}\right]
+\]</span></p>
+<p>なので、</p>
+<p><span class="math display">\[
+\text{（定数）} = \frac{N_A e^2}{8 \pi \varepsilon_0} \times 10^9\ \left[\frac{\mathrm{pm}}{\mathrm{m}}\right] \times 10^{-3}\ \left[\frac{\mathrm{kJ}}{\mathrm{J}}\right] \times \left(1 - \frac{1}{\varepsilon_r}\right)
+= 6.86 \times 10^4
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="section-16" class="level3">
+<h3 class="anchored" data-anchor-id="section-16">3-6.</h3>
+<p>上記求めた式を用い、<span class="math inline">\(\ce{Cl-}\)</span> および <span class="math inline">\(\ce{I-}\)</span> における <span class="math inline">\(\Delta G_S^\circ\)</span> を計算してみよ。<br>
+<span class="math inline">\(\ce{Cl-}\)</span> および <span class="math inline">\(\ce{I-}\)</span> のイオン半径はそれぞれ 181 pm, 220 pm とする。</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\begin{aligned}
+\Delta G_S^\circ(\ce{Cl-}) &amp;= -\frac{1^2}{181} \times 6.86 \times 10^4 \ \mathrm{kJ\ mol^{-1}} \\
+&amp;= -379 \ \mathrm{kJ\ mol^{-1}} \\
+\Delta G_S^\circ(\ce{I-}) &amp;= -\frac{1^2}{220} \times 6.86 \times 10^4 \ \mathrm{kJ\ mol^{-1}} \\
+&amp;= -312 \ \mathrm{kJ\ mol^{-1}}
+\end{aligned}
+\]</span></p>
+<div id="5d80e26e" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>r_cl <span class="op">=</span> <span class="dv">181</span>  <span class="co"># pm</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>r_i <span class="op">=</span> <span class="dv">220</span>  <span class="co"># pm</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ボルン式の計算</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>delta_G_S_circ_cl <span class="op">=</span> <span class="op">-</span><span class="dv">1</span> <span class="op">/</span> r_cl <span class="op">*</span> <span class="fl">6.86e4</span>  <span class="co"># kJ/mol</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>delta_G_S_circ_i <span class="op">=</span> <span class="op">-</span><span class="dv">1</span> <span class="op">/</span> r_i <span class="op">*</span> <span class="fl">6.86e4</span>  <span class="co"># kJ/mol</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ΔG_S^°(Cl-): </span><span class="sc">{</span>delta_G_S_circ_cl<span class="sc">:.3f}</span><span class="ss"> kJ/mol"</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ΔG_S^°(I-): </span><span class="sc">{</span>delta_G_S_circ_i<span class="sc">:.3f}</span><span class="ss"> kJ/mol"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>ΔG_S^°(Cl-): -379.006 kJ/mol
+ΔG_S^°(I-): -311.818 kJ/mol</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="section-17" class="level3">
+<h3 class="anchored" data-anchor-id="section-17">4-1.</h3>
+<p>ネルンストの式を導き出せ。</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\ce{Ox^{z+}} + ne^- \ce{&lt;=&gt; Red^{(z-n)+}}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\mu_{\ce{Ox}} &amp;= \mu_{\ce{Ox}}^{O} + RT \ln a_{\ce{Ox}} + z_i F \phi_{Liq} \\
+\mu_{\ce{Red}} &amp;= \mu_{\ce{Red}}^{O} + RT \ln a_{\ce{Red}} + (z-n)F \phi_{Liq} \\
+\mu_{e^-} &amp;= \mu_{e^-}^{O} + RT \ln a_{e^-} - F \phi_{M}
+\end{aligned}
+\]</span></p>
+<p>これらを組み合わせて、</p>
+<p><span class="math display">\[
+\begin{aligned}
+\Delta \phi &amp;= \frac{\mu_{\ce{Ox}} - \mu_{\ce{Red}} + n \mu_{e^-}}{\Delta n F} + \frac{RT}{nF} \ln \frac{a_{\ce{Ox}}}{a_{\ce{Red}}} \\
+&amp;= \frac{\Delta G}{\Delta n F} + \frac{RT}{nF} \ln \frac{a_{\ce{Ox}}}{a_{\ce{Red}}} \\
+&amp;= E^O + \frac{RT}{nF} \ln \frac{a_{\ce{Ox}}}{a_{\ce{Red}}}
+\end{aligned}
+\]</span></p>
+<p>これ以降はこの式一本で色々とやっていくだけ。</p>
+</div>
+</div>
+</div>
+</section>
+<section id="section-18" class="level3">
+<h3 class="anchored" data-anchor-id="section-18">4-2.</h3>
+<p>以下の溶解反応における標準酸化還元電位（標準電位）vs SHE を標準生成ギブズエネルギー変化より求めよ</p>
+<ol type="a">
+<li><p><span class="math display">\[
+\mathrm{Zn} \rightleftharpoons \mathrm{Zn}^{2+} + 2e^-
+\]</span></p></li>
+<li><p><span class="math display">\[
+\mathrm{Al}^{3+} + 3e^- \rightleftharpoons \mathrm{Al}
+\]</span></p></li>
+</ol>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This is an example of a callout with a title.</p>
+</div>
+</div>
+</div>
+</section>
 </section>
 </section>
 <section id="過去問" class="level1">
@@ -1518,7 +2193,7 @@ This is an example of a callout with a title.
 <section id="問2" class="level3">
 <h3 class="anchored" data-anchor-id="問2">問2</h3>
 <div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1527,14 +2202,14 @@ This is an example of a callout with a title.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>フィックの法則の式が書ければ大体大丈夫。</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1543,7 +2218,7 @@ This is an example of a callout with a title.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li>Fickの第一法則は次の式の通り</li>
@@ -1563,15 +2238,15 @@ J = -D \dv{c}{x}
 J = 0.72 \times 10^{-5} \ \symup{cm^2\ s^{-1}} \times 1.0 \times 10^{2} \ \symup{mol\ cm^{-4}} = 7.2 \times 10^{-4} \ \symup{mol\ cm^{-2} s^{-1}}
 \]</span></p>
 <p>電解電流密度なので、<span class="math inline">\(z=2\)</span> を考えて、</p>
-<div id="895f9528" class="cell" data-execution_count="8">
+<div id="f5418a98" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="dv">96485</span>  <span class="co"># C/mol</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>J <span class="op">=</span> <span class="fl">7.2e-4</span>  <span class="co"># mol/cm^2/s</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 電流密度の計算</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>current_density <span class="op">=</span> J <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> F  <span class="co"># A/cm^2</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"電流密度: </span><span class="sc">{</span>current_density<span class="sc">:.3e}</span><span class="ss"> A/cm^2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="dv">96485</span>  <span class="co"># C/mol</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>J <span class="op">=</span> <span class="fl">7.2e-4</span>  <span class="co"># mol/cm^2/s</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 電流密度の計算</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>current_density <span class="op">=</span> J <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> F  <span class="co"># A/cm^2</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"電流密度: </span><span class="sc">{</span>current_density<span class="sc">:.3e}</span><span class="ss"> A/cm^2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>電流密度: 1.389e+02 A/cm^2</code></pre>
@@ -1660,22 +2335,22 @@ J = 7.2 \times 10^{-4} \ \symup{mol\ cm^{-2} s^{-1}} \times 2 \times 96485 \ \sy
 <p>温度は <span class="math inline">\(25^{\circ}\symup{K}\)</span>（<span class="math inline">\(298.15 \symup{K}\)</span>）の標準温度とし、必要に応じてイオンの活量係数は 1 として良い。電位の基準は標準水素電極電位とする。ファラデー定数には <span class="math inline">\(F = 9.65 \times 10^4\;\mathrm{C \cdot mol^{-1}}\)</span> 気体定数には <span class="math inline">\(R = 8.31\;\mathrm{J \cdot K^{-1} \cdot mol^{-1}}\)</span> を用いよ。<strong>計算過程も明記すること。</strong><br>
 単位 [M] は <span class="math inline">\(\mathrm{mol/L}\)</span> である。必要に応じ、表1の値を用いよ。</p>
 <hr>
-<section id="section-13" class="level4">
-<h4 class="anchored" data-anchor-id="section-13">1-1</h4>
+<section id="section-19" class="level4">
+<h4 class="anchored" data-anchor-id="section-19">1-1</h4>
 <p><span class="math inline">\(\ce{HCl}\)</span>、<span class="math inline">\(\ce{NaCl}\)</span>、<span class="math inline">\(\ce{CH3COONa}\)</span> 水溶液の無限希釈モル導電率はそれぞれ<br>
 426.3、126.4、91.0 [<span class="math inline">\(\mathrm{S \cdot cm^2 \cdot mol^{-1}}\)</span>] である。<br>
 酢酸 <span class="math inline">\(\ce{CH3COOH}\)</span> の無限希釈モル導電率を求めよ。</p>
 </section>
-<section id="section-14" class="level4">
-<h4 class="anchored" data-anchor-id="section-14">1-2</h4>
+<section id="section-20" class="level4">
+<h4 class="anchored" data-anchor-id="section-20">1-2</h4>
 <p>0.02 M 酢酸水溶液の導電率は <span class="math inline">\(2.31 \times 10^{-4}\;\mathrm{S \cdot cm^{-1}}\)</span> だった。<br>
 (1-1) の結果を用い、0.02 M における酢酸の電離度 <span class="math inline">\(\alpha\)</span> と、酢酸の解離定数 <span class="math inline">\(K\)</span> を求めよ。</p>
 </section>
-<section id="section-15" class="level4">
-<h4 class="anchored" data-anchor-id="section-15">1-3</h4>
+<section id="section-21" class="level4">
+<h4 class="anchored" data-anchor-id="section-21">1-3</h4>
 <p><span class="math inline">\(\ce{CH3COO-}\)</span> の標準生成ギブスエネルギーを求めよ。</p>
 <div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1684,7 +2359,7 @@ J = 7.2 \times 10^{-4} \ \symup{mol\ cm^{-2} s^{-1}} \times 2 \times 96485 \ \sy
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>1-1 では、 <a href="#eq-molar_conductivity" class="quarto-xref">Equation&nbsp;1</a> を用いる。</p>
 <p>1-2 では、 <a href="#eq-dilution_law_alpha" class="quarto-xref">Equation&nbsp;3</a> と <a href="#eq-dilution_law" class="quarto-xref">Equation&nbsp;4</a> を用いる。ただし、導電率とモル伝導率の単位と換算について注意すること。</p>
@@ -1692,7 +2367,7 @@ J = 7.2 \times 10^{-4} \ \symup{mol\ cm^{-2} s^{-1}} \times 2 \times 96485 \ \sy
 </div>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1701,7 +2376,7 @@ J = 7.2 \times 10^{-4} \ \symup{mol\ cm^{-2} s^{-1}} \times 2 \times 96485 \ \sy
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div id="callout-26" class="callout-26-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>1-1</p>
 <p><span class="math inline">\(\ce{H+},\ \ce{Cl-},\ \ce{CH3COO-}\)</span> のモル電気伝導率をそれぞれ <span class="math inline">\(\lambda_{\ce{H+}},\ \lambda_{\ce{Cl-}},\ \lambda_{\ce{CH3COO-}}\)</span> とすると、</p>
@@ -1731,76 +2406,76 @@ J = 7.2 \times 10^{-4} \ \symup{mol\ cm^{-2} s^{-1}} \times 2 \times 96485 \ \sy
 </section>
 <section id="問2-1" class="level3">
 <h3 class="anchored" data-anchor-id="問2-1">問2</h3>
-<div id="d0d69550" class="cell" data-execution_count="9">
+<div id="f1bea79c" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Show Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> patches</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 図の設定</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 領域の描画</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>ax.add_patch(patches.Polygon([[<span class="dv">0</span>, <span class="op">-</span><span class="fl">0.763</span>], [<span class="dv">7</span>, <span class="op">-</span><span class="fl">0.763</span>], [<span class="dv">7</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>]], closed<span class="op">=</span><span class="va">True</span>, facecolor<span class="op">=</span><span class="st">'lightblue'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>))</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>ax.add_patch(patches.Polygon([[<span class="dv">7</span>, <span class="op">-</span><span class="fl">0.763</span>], [<span class="dv">14</span>, <span class="op">-</span><span class="fl">1.25</span> <span class="op">+</span> <span class="fl">0.059</span> <span class="op">*</span> (<span class="dv">14</span> <span class="op">-</span> <span class="dv">14</span>)], [<span class="dv">14</span>, <span class="dv">1</span>], [<span class="dv">7</span>, <span class="dv">1</span>]], closed<span class="op">=</span><span class="va">True</span>, facecolor<span class="op">=</span><span class="st">'lightgreen'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>))</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>ax.add_patch(patches.Polygon([[<span class="dv">0</span>, <span class="op">-</span><span class="dv">2</span>], [<span class="dv">14</span>, <span class="op">-</span><span class="dv">2</span>], [<span class="dv">14</span>, <span class="op">-</span><span class="fl">1.25</span> <span class="op">+</span> <span class="fl">0.059</span> <span class="op">*</span> (<span class="dv">14</span> <span class="op">-</span> <span class="dv">14</span>)], [<span class="dv">7</span>, <span class="op">-</span><span class="fl">0.763</span>], [<span class="dv">0</span>, <span class="op">-</span><span class="fl">0.763</span>]], closed<span class="op">=</span><span class="va">True</span>, facecolor<span class="op">=</span><span class="st">'lightgray'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>))</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 境界線の描画</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="dv">0</span>, <span class="dv">7</span>], [<span class="op">-</span><span class="fl">0.763</span>, <span class="op">-</span><span class="fl">0.763</span>], <span class="st">'k'</span>, label<span class="op">=</span><span class="st">'①'</span>)</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="dv">7</span>, <span class="dv">14</span>], [<span class="op">-</span><span class="fl">0.763</span>, <span class="op">-</span><span class="fl">1.25</span> <span class="op">+</span> <span class="fl">0.059</span> <span class="op">*</span> (<span class="dv">14</span> <span class="op">-</span> <span class="dv">14</span>)], <span class="st">'k'</span>, label<span class="op">=</span><span class="st">'②'</span>)</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ラベルの追加</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">2</span>, <span class="fl">0.2</span>, <span class="st">'(A)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">10</span>, <span class="fl">0.2</span>, <span class="st">'(B)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">6</span>, <span class="op">-</span><span class="fl">1.6</span>, <span class="st">'(C)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">3.5</span>, <span class="op">-</span><span class="fl">0.64</span>, <span class="st">'①'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">"circle"</span>, fc<span class="op">=</span><span class="st">"white"</span>, ec<span class="op">=</span><span class="st">"black"</span>))</span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">10.5</span>, <span class="op">-</span><span class="fl">0.9</span>, <span class="st">'②'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">"circle"</span>, fc<span class="op">=</span><span class="st">"white"</span>, ec<span class="op">=</span><span class="st">"black"</span>))</span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 軸ラベル</span></span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'pH'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'E [V vs. SHE]'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 軸の範囲</span></span>
-<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">14</span>)</span>
-<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="co"># グリッド</span></span>
-<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
-<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Zn'</span>)</span>
-<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> patches</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 図の設定</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 領域の描画</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>ax.add_patch(patches.Polygon([[<span class="dv">0</span>, <span class="op">-</span><span class="fl">0.763</span>], [<span class="dv">7</span>, <span class="op">-</span><span class="fl">0.763</span>], [<span class="dv">7</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>]], closed<span class="op">=</span><span class="va">True</span>, facecolor<span class="op">=</span><span class="st">'lightblue'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>))</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>ax.add_patch(patches.Polygon([[<span class="dv">7</span>, <span class="op">-</span><span class="fl">0.763</span>], [<span class="dv">14</span>, <span class="op">-</span><span class="fl">1.25</span> <span class="op">+</span> <span class="fl">0.059</span> <span class="op">*</span> (<span class="dv">14</span> <span class="op">-</span> <span class="dv">14</span>)], [<span class="dv">14</span>, <span class="dv">1</span>], [<span class="dv">7</span>, <span class="dv">1</span>]], closed<span class="op">=</span><span class="va">True</span>, facecolor<span class="op">=</span><span class="st">'lightgreen'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>))</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>ax.add_patch(patches.Polygon([[<span class="dv">0</span>, <span class="op">-</span><span class="dv">2</span>], [<span class="dv">14</span>, <span class="op">-</span><span class="dv">2</span>], [<span class="dv">14</span>, <span class="op">-</span><span class="fl">1.25</span> <span class="op">+</span> <span class="fl">0.059</span> <span class="op">*</span> (<span class="dv">14</span> <span class="op">-</span> <span class="dv">14</span>)], [<span class="dv">7</span>, <span class="op">-</span><span class="fl">0.763</span>], [<span class="dv">0</span>, <span class="op">-</span><span class="fl">0.763</span>]], closed<span class="op">=</span><span class="va">True</span>, facecolor<span class="op">=</span><span class="st">'lightgray'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>))</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 境界線の描画</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="dv">0</span>, <span class="dv">7</span>], [<span class="op">-</span><span class="fl">0.763</span>, <span class="op">-</span><span class="fl">0.763</span>], <span class="st">'k'</span>, label<span class="op">=</span><span class="st">'①'</span>)</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="dv">7</span>, <span class="dv">14</span>], [<span class="op">-</span><span class="fl">0.763</span>, <span class="op">-</span><span class="fl">1.25</span> <span class="op">+</span> <span class="fl">0.059</span> <span class="op">*</span> (<span class="dv">14</span> <span class="op">-</span> <span class="dv">14</span>)], <span class="st">'k'</span>, label<span class="op">=</span><span class="st">'②'</span>)</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ラベルの追加</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">2</span>, <span class="fl">0.2</span>, <span class="st">'(A)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">10</span>, <span class="fl">0.2</span>, <span class="st">'(B)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">6</span>, <span class="op">-</span><span class="fl">1.6</span>, <span class="st">'(C)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">3.5</span>, <span class="op">-</span><span class="fl">0.64</span>, <span class="st">'①'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">"circle"</span>, fc<span class="op">=</span><span class="st">"white"</span>, ec<span class="op">=</span><span class="st">"black"</span>))</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">10.5</span>, <span class="op">-</span><span class="fl">0.9</span>, <span class="st">'②'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">"circle"</span>, fc<span class="op">=</span><span class="st">"white"</span>, ec<span class="op">=</span><span class="st">"black"</span>))</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 軸ラベル</span></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'pH'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'E [V vs. SHE]'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 軸の範囲</span></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">14</span>)</span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a><span class="co"># グリッド</span></span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Zn'</span>)</span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="材料電気化学_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="材料電気化学_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<section id="section-16" class="level4">
-<h4 class="anchored" data-anchor-id="section-16">2-1</h4>
+<section id="section-22" class="level4">
+<h4 class="anchored" data-anchor-id="section-22">2-1</h4>
 <p>図1は、<span class="math inline">\(\ce{Zn^{2+}}\)</span> の活量を1とした <span class="math inline">\(\ce{Zn}\)</span> のプールベイ図である。(A)、(B)、(C) には、<span class="math inline">\(\ce{Zn^{2+}}\)</span>、<span class="math inline">\(\ce{Zn}\)</span>、<span class="math inline">\(\ce{Zn(OH)2}\)</span> のいずれかが対応するか記述せよ。</p>
 </section>
-<section id="section-17" class="level4">
-<h4 class="anchored" data-anchor-id="section-17">2-2</h4>
+<section id="section-23" class="level4">
+<h4 class="anchored" data-anchor-id="section-23">2-2</h4>
 <p>(A)と(C)の境界①が位置する平衡電極電位 <span class="math inline">\(E\)</span> を求めよ。</p>
 </section>
-<section id="section-18" class="level4">
-<h4 class="anchored" data-anchor-id="section-18">2-3</h4>
+<section id="section-24" class="level4">
+<h4 class="anchored" data-anchor-id="section-24">2-3</h4>
 <p>(B)と(C)の境界②が示す平衡電極電位 <span class="math inline">\(E\)</span> を、<span class="math inline">\(x = \mathrm{pH}\)</span> として <span class="math inline">\(x\)</span> の関数として求めよ。①との交点（<span class="math inline">\(x\)</span> の範囲）まで求める必要はない。</p>
 </section>
-<section id="section-19" class="level4">
-<h4 class="anchored" data-anchor-id="section-19">2-4</h4>
+<section id="section-25" class="level4">
+<h4 class="anchored" data-anchor-id="section-25">2-4</h4>
 <p>アルカリマンガン電池は、電極材料として <span class="math inline">\(\ce{MnO2}\)</span> および <span class="math inline">\(\ce{Zn}\)</span>、電解質として <span class="math inline">\(\ce{KOH}\)</span> 水溶液を用いた電池である。放電後、正極および負極ともに水酸化物が生成された。</p>
 <p>正極反応、負極反応、および電池反応（全反応）を記述せよ。</p>
 </section>
-<section id="section-20" class="level4">
-<h4 class="anchored" data-anchor-id="section-20">2-5</h4>
+<section id="section-26" class="level4">
+<h4 class="anchored" data-anchor-id="section-26">2-5</h4>
 <p>上記アルカリマンガン電池の開放電圧 <span class="math inline">\([V]\)</span> を求めよ。必要に応じ、電解質の pH は 14 として良い。</p>
 <div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1809,7 +2484,7 @@ J = 7.2 \times 10^{-4} \ \symup{mol\ cm^{-2} s^{-1}} \times 2 \times 96485 \ \sy
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>これは、<a href="@sec-nerst_eq">ネルンストの式</a> を用いる問題。プールベイ図という年によっては講義資料に現れないグラフがあるが、要するにpH vs 電位のグラフである。</p>
 <p>次に、活量について混乱しかけたので、そのメモを置いておく。</p>
@@ -1831,7 +2506,7 @@ J = 7.2 \times 10^{-4} \ \symup{mol\ cm^{-2} s^{-1}} \times 2 \times 96485 \ \sy
 </div>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1840,7 +2515,7 @@ J = 7.2 \times 10^{-4} \ \symup{mol\ cm^{-2} s^{-1}} \times 2 \times 96485 \ \sy
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div id="callout-28" class="callout-28-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>2-1</p>
 <ol type="A">
@@ -1874,17 +2549,17 @@ E = E^O + \frac{0.059}{2} \ln \frac{1}{a_{\ce{OH-}}^2}
 <p><span class="math display">\[
 E^O = - \frac{\Delta G^O}{nF} = - \frac{240.5 \times 10^3}{2 \times 96485} = -1.246 \ \mathrm{V}
 \]</span></p>
-<div id="29f68054" class="cell" data-execution_count="10">
+<div id="827abd6b" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Show Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="dv">96485</span>  <span class="co"># C/mol</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fl">8.31</span>  <span class="co"># J/K/mol</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">298.15</span>  <span class="co"># K</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 計算</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>E_O <span class="op">=</span> <span class="op">-</span><span class="fl">240.5e3</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> F)</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E^O: </span><span class="sc">{</span>E_O<span class="sc">:.3f}</span><span class="ss"> V"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="dv">96485</span>  <span class="co"># C/mol</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fl">8.31</span>  <span class="co"># J/K/mol</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">298.15</span>  <span class="co"># K</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 計算</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>E_O <span class="op">=</span> <span class="op">-</span><span class="fl">240.5e3</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> F)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E^O: </span><span class="sc">{</span>E_O<span class="sc">:.3f}</span><span class="ss"> V"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>E^O: -1.246 V</code></pre>
@@ -1911,11 +2586,11 @@ E = -1.25 + 0.059  (14 - x) = -0.336 - 0.059x
 <p><span class="math display">\[
 \Delta G^O = -555.07 - 618.58 + 2 * 237.13 + 465.14 = -234.25 \ \mathrm{kJ/mol}
 \]</span></p>
-<div id="ebb95a58" class="cell" data-execution_count="11">
+<div id="9c9cf308" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Show Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> <span class="op">-</span><span class="fl">555.07</span> <span class="op">-</span> <span class="fl">618.58</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> <span class="fl">237.13</span> <span class="op">+</span> <span class="fl">465.14</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"G: </span><span class="sc">{</span>G<span class="sc">:.3f}</span><span class="ss"> J/mol"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> <span class="op">-</span><span class="fl">555.07</span> <span class="op">-</span> <span class="fl">618.58</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> <span class="fl">237.13</span> <span class="op">+</span> <span class="fl">465.14</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"G: </span><span class="sc">{</span>G<span class="sc">:.3f}</span><span class="ss"> J/mol"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>G: -234.250 J/mol</code></pre>
@@ -1924,11 +2599,11 @@ E = -1.25 + 0.059  (14 - x) = -0.336 - 0.059x
 <p><span class="math display">\[
 E = - \frac{\Delta G^O}{nF} = 1.214 \ \mathrm{V}
 \]</span></p>
-<div id="4b71cc56" class="cell" data-execution_count="12">
+<div id="1cc37eef" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Show Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> <span class="op">-</span><span class="fl">234.25e3</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> F)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E: </span><span class="sc">{</span>E<span class="sc">:.3f}</span><span class="ss"> V"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> <span class="op">-</span><span class="fl">234.25e3</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> F)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E: </span><span class="sc">{</span>E<span class="sc">:.3f}</span><span class="ss"> V"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>E: -1.214 V</code></pre>
@@ -1943,8 +2618,8 @@ E = - \frac{\Delta G^O}{nF} = 1.214 \ \mathrm{V}
 </section>
 <section id="問3" class="level3">
 <h3 class="anchored" data-anchor-id="問3">問3</h3>
-<section id="section-21" class="level4">
-<h4 class="anchored" data-anchor-id="section-21">3-1</h4>
+<section id="section-27" class="level4">
+<h4 class="anchored" data-anchor-id="section-27">3-1</h4>
 <p>以下の反応における標準酸化還元電位をそれぞれ求めよ。</p>
 <ol type="a">
 <li><p><span class="math inline">\(\ce{Al^{3+} + 3e^- &lt;=&gt; Al}\)</span></p></li>
@@ -1954,12 +2629,12 @@ E = - \frac{\Delta G^O}{nF} = 1.214 \ \mathrm{V}
 <li><p><span class="math inline">\(\ce{Na &lt;=&gt; Na^+ + e^-}\)</span></p></li>
 </ol>
 </section>
-<section id="section-22" class="level4">
-<h4 class="anchored" data-anchor-id="section-22">3-2</h4>
+<section id="section-28" class="level4">
+<h4 class="anchored" data-anchor-id="section-28">3-2</h4>
 <p>ダニエル電池の電池反応を記述せよ。<br>
 また、液相間電位を <span class="math inline">\(0\ \mathrm{V}\)</span> とし、<span class="math inline">\(\ce{Zn^{2+}}\)</span> の活量を <span class="math inline">\(0.05\)</span>、<span class="math inline">\(\ce{Cu^{2+}}\)</span> の活量を <span class="math inline">\(0.002\)</span> とした際の起電力を求めよ。</p>
 <div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1968,14 +2643,14 @@ E = - \frac{\Delta G^O}{nF} = 1.214 \ \mathrm{V}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div id="callout-29" class="callout-29-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>3-1はただの計算問題。3-2はちょっと面倒な計算問題。</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1984,7 +2659,7 @@ E = - \frac{\Delta G^O}{nF} = 1.214 \ \mathrm{V}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div id="callout-30" class="callout-30-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>3-1</p>
 <ol type="a">
@@ -2073,13 +2748,13 @@ E_{\text{cell}} &amp;= -0.339 - 0.762 + \frac{0.059}{2} \log_{10} \left( \frac{0
 &amp;= \boxed{-1.142\ \mathrm{V}}
 \end{aligned}
 \]</span></p>
-<div id="bd7c38ca" class="cell" data-execution_count="13">
+<div id="39044bee" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Show Code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>E_cell <span class="op">=</span> <span class="op">-</span><span class="fl">0.339</span> <span class="op">-</span> <span class="fl">0.762</span> <span class="op">+</span> <span class="fl">0.0295</span> <span class="op">*</span> np.log10(<span class="fl">0.002</span> <span class="op">/</span> <span class="fl">0.05</span>)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E_cell: </span><span class="sc">{</span>E_cell<span class="sc">:.3f}</span><span class="ss"> V"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>E_cell <span class="op">=</span> <span class="op">-</span><span class="fl">0.339</span> <span class="op">-</span> <span class="fl">0.762</span> <span class="op">+</span> <span class="fl">0.0295</span> <span class="op">*</span> np.log10(<span class="fl">0.002</span> <span class="op">/</span> <span class="fl">0.05</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E_cell: </span><span class="sc">{</span>E_cell<span class="sc">:.3f}</span><span class="ss"> V"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>E_cell: -1.142 V</code></pre>
@@ -2104,7 +2779,7 @@ G. 水素過電圧</p>
 <p><strong>解答例</strong><br>
 X. 電池：化学エネルギーを電気エネルギーとして取り出す装置</p>
 <div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2113,7 +2788,7 @@ X. 電池：化学エネルギーを電気エネルギーとして取り出す�
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div id="callout-31" class="callout-31-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <table class="caption-top table">
 <colgroup>
@@ -2162,11 +2837,16 @@ X. 電池：化学エネルギーを電気エネルギーとして取り出す�
 </div>
 
 
+
 </section>
 </section>
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-電気化学ーそこを知りたい議論したい" class="csl-entry" role="listitem">
+測定法小委員会. 2002. <span>“電気化学ーそこを知りたい、議論したい.”</span> <em>Electrochemistry</em> 70: 821–30. <a href="https://www.jstage.jst.go.jp/article/electrochemistry/70/10/70_821/_pdf/-char/ja">https://www.jstage.jst.go.jp/article/electrochemistry/70/10/70_821/_pdf/-char/ja</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

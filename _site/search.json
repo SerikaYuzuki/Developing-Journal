@@ -1358,7 +1358,7 @@
     "href": "posts/univ_lecs/3S/材料電気化学.html#ボルンの式",
     "title": "材料電気化学",
     "section": "ボルンの式",
-    "text": "ボルンの式\n今までは充電する時の話だったが、",
+    "text": "ボルンの式\n真空と溶液内には自由エネルギー差があるのだが、その差ってのはイオンを真空から溶液内に移すだけの仕事の差だと考えるモデル。\n\\[\nw = \\int_0^{Ze} \\frac{q}{4\\pi r \\epsilon_0 \\epsilon_r} \\dd q = \\frac{Ze^2}{8\\pi \\epsilon_0 \\epsilon_r}\n\\]\nこれを真空から溶液内に移すと、\n\\[\n\\Delta G_S^\\circ = \\frac{ZN_Ae^2}{8\\pi \\epsilon_0 r} \\qty(1 - \\frac{1}{\\epsilon_r})\n\\]\nこれをボルン式と呼んでいる。",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
@@ -1372,7 +1372,7 @@
     "href": "posts/univ_lecs/3S/材料電気化学.html#sec-nerst_eq",
     "title": "材料電気化学",
     "section": "ネルンストの式",
-    "text": "ネルンストの式\nイオンの電気化学ポテンシャルは次の式で表される。\n\\[\n\\mu_i = \\mu_i^0 + RT \\ln a_i + z_i F \\phi\n\\]\nここで、\\(\\mu_i^0\\) は標準電気化学ポテンシャル、\\(a_i\\) は活量、\\(z_i\\) はイオンの電荷、\\(F\\) はファラデー定数、\\(\\phi\\) は電位である。\nここで酸化体、還元体の電気化学ポテンシャルを考えると、\n\\[\n\\ce{Ox^{z+}} + ne^- \\ce{&lt;=&gt; Red^{(z-n)+}}\n\\]\n\\[\n\\begin{aligned}\n\\mu_{\\ce{Ox}} &= \\mu_{\\ce{Ox}}^{O} + RT \\ln a_{\\ce{Ox}} + z_i F \\phi_{Liq} \\\\\n\\mu_{\\ce{Red}} &= \\mu_{\\ce{Red}}^{O} + RT \\ln a_{\\ce{Red}} + (z-n)F \\phi_{Liq} \\\\\n\\mu_{e^-} &= \\mu_{e^-}^{O} + RT \\ln a_{e^-} - F \\phi_{M}\n\\end{aligned}\n\\]\nとなる。ここで注意すべきは、\\(\\phi_{Liq}\\) と \\(\\phi_{M}\\) はそれぞれ溶液と電極の電位である。このような状態が平衡に達しているとき、\n\\[\n\\mu_{\\ce{Ox}} + n\\mu_{e^-} = \\mu_{\\ce{Red}}\n\\]\nとなる。これを整理すると、\n\\[\n\\Delta \\phi = \\phi_{M} - \\phi_{Liq} = \\frac{\\mu_{\\ce{Ox}} + n\\mu_{e^-} - \\mu_{\\ce{Red}}}{nF} + \\frac{RT}{nF} \\ln \\frac{a_{\\ce{Ox}}}{a_{\\ce{Red}}}\n\\]\nとなる。ここで、 \\(\\Delta G^O = -(\\mu_{\\ce{Ox}} + n\\mu_{e^-} - \\mu_{\\ce{Red}})\\) で、 \\(E^O = - \\Delta G^O/nF\\) と標準電位を定義して整理すると、\n\\[\n\\Delta \\phi = E^O + \\frac{RT}{nF} \\ln \\frac{a_{\\ce{Ox}}}{a_{\\ce{Red}}}\n\\tag{7}\\]\nとなる。これをネルンストの式という。ただし、ネルンストの式と呼ばれているものは数種類以上存在しているらしく、そこらの混乱について端的にわかりやすい解説はここにある。",
+    "text": "ネルンストの式\nイオンの電気化学ポテンシャルは次の式で表される。\n\\[\n\\mu_i = \\mu_i^0 + RT \\ln a_i + z_i F \\phi\n\\]\nここで、\\(\\mu_i^0\\) は標準電気化学ポテンシャル、\\(a_i\\) は活量、\\(z_i\\) はイオンの電荷、\\(F\\) はファラデー定数、\\(\\phi\\) は電位である。\nここで酸化体、還元体の電気化学ポテンシャルを考えると、\n\\[\n\\ce{Ox^{z+}} + ne^- \\ce{&lt;=&gt; Red^{(z-n)+}}\n\\]\n\\[\n\\begin{aligned}\n\\mu_{\\ce{Ox}} &= \\mu_{\\ce{Ox}}^{O} + RT \\ln a_{\\ce{Ox}} + z_i F \\phi_{Liq} \\\\\n\\mu_{\\ce{Red}} &= \\mu_{\\ce{Red}}^{O} + RT \\ln a_{\\ce{Red}} + (z-n)F \\phi_{Liq} \\\\\n\\mu_{e^-} &= \\mu_{e^-}^{O} + RT \\ln a_{e^-} - F \\phi_{M}\n\\end{aligned}\n\\]\nとなる。ここで注意すべきは、\\(\\phi_{Liq}\\) と \\(\\phi_{M}\\) はそれぞれ溶液と電極の電位である。このような状態が平衡に達しているとき、\n\\[\n\\mu_{\\ce{Ox}} + n\\mu_{e^-} = \\mu_{\\ce{Red}}\n\\]\nとなる。これを整理すると、\n\\[\n\\Delta \\phi = \\phi_{M} - \\phi_{Liq} = \\frac{\\mu_{\\ce{Ox}} + n\\mu_{e^-} - \\mu_{\\ce{Red}}}{nF} + \\frac{RT}{nF} \\ln \\frac{a_{\\ce{Ox}}}{a_{\\ce{Red}}}\n\\]\nとなる。ここで、 \\(\\Delta G^O = -(\\mu_{\\ce{Ox}} + n\\mu_{e^-} - \\mu_{\\ce{Red}})\\) で、 \\(E^O = - \\Delta G^O/nF\\) と標準電位を定義して整理すると、\n\\[\n\\Delta \\phi = E^O + \\frac{RT}{nF} \\ln \\frac{a_{\\ce{Ox}}}{a_{\\ce{Red}}}\n\\tag{7}\\]\nとなる。これをネルンストの式という。ただし、ネルンストの式と呼ばれているものは数種類以上存在しているらしく、そこらの混乱について端的にわかりやすい解説は 測定法小委員会 (2002) にある。",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
@@ -1385,8 +1385,8 @@
     "objectID": "posts/univ_lecs/3S/材料電気化学.html#section",
     "href": "posts/univ_lecs/3S/材料電気化学.html#section",
     "title": "材料電気化学",
-    "section": "2.1",
-    "text": "2.1\n50 \\(\\symup{mA/cm}^2\\) で10分間電流を流すと、合計で 30 \\(\\symup{C/cm}^2\\) の電荷が流れる。これは、1 \\(\\symup{cm}^2\\) の面積につき 30 \\(\\symup{C}\\) の電荷が流れたことを意味する。\n1 \\(\\symup{mol}\\) の電子は \\(eN_A = 96485 \\symup{C/mol}\\) の電荷を持つので、1 \\(\\symup{cm}^2\\) の面積につき 30 \\(\\symup{C}\\) の電荷が流れることは、\\(30/96485 = 3.1 \\times 10^{-4} \\symup{mol}\\) の電子が流れたことを意味する。つまり、\\(1.6 \\times 10^{-4} \\symup{mol}\\) の \\(\\ce{Cu}\\) が生成したことになるわけで、これの重量は、\\(1.6 \\times 10^{-4} \\times 63.5 = 1.0 \\times 10^{-2} \\symup{g}\\) である。\n膜の密度が \\(8.94 \\symup{g/cm^3}\\) であることを考慮すると、面積あたりの生成量である \\(1.0 \\times 10^{-2} \\symup{g/cm^2}\\) で割ってやれば、 \\(1.1 \\times 10^{-3} \\symup{cm} = 1.1 \\symup{\\mu m}\\) となる。",
+    "section": "3.2",
+    "text": "3.2\nストークス半径は流体中の水和イオンの見かけ上の大きさで、イオン半径は結晶中のイオンの大きさである。\n\\(\\ce{Li+}\\) は \\(\\ce{Cs+}\\) に比べて電荷密度が高く、水和が強いために \\(r_s\\) が大きくなる。逆に、 \\(\\ce{Cs+}\\) は電荷密度が低く、水和が弱いために \\(r_s\\) が小さくなる。",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
@@ -1399,8 +1399,8 @@
     "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-1",
     "href": "posts/univ_lecs/3S/材料電気化学.html#section-1",
     "title": "材料電気化学",
-    "section": "2.2",
-    "text": "2.2\n\\(1 \\symup{eV}\\) とは、\\(1.6 \\times 10^{-19} \\symup{J}\\) である。このエネルギーを内部運動エネルギーに持つ何らかの粒子群の温度は、３次元運動として考えれば、\\(\\frac{3}{2}k_BT = 1.6 \\times 10^{-19} \\symup{J}\\) となる。ここで、\\(k_B = 1.38 \\times 10^{-23} \\symup{J/K}\\) である。これを解くと、\\(T = 7.7 \\times 10^3 \\symup{K}\\) となる。\nただし厳密的には、 \\(1 \\symup{eV} = k_BT\\) から、 \\(T= 1.16 \\times 10^4 \\symup{K}\\) となる。これについては理解できるまでに時間がかかりそうだ。",
+    "section": "3.3",
+    "text": "3.3\nこの式 (Equation 1) を用いて、 \\(\\ce{CH3COOH}\\) のモル電気伝導率を求める。\n\\[\\Lambda^{\\infty}[\\ce{CH3COOH}] = 349.82 + 40.9 = 390.7 \\ \\text{S}\\text{m}^2\\text{mol}^{-1}\\]",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
@@ -1413,8 +1413,8 @@
     "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-2",
     "href": "posts/univ_lecs/3S/材料電気化学.html#section-2",
     "title": "材料電気化学",
-    "section": "2.3",
-    "text": "2.3\nこれについては 2.1 と同じ計算を行うことになる。\n\\(1 \\symup{A \\cdot m^{-2}}\\) によって流れる電気量は \\(1/96485 = 1.036 \\times 10^{-5} \\symup{mol \\cdot m^{-2} \\cdot s^{-1}}\\) である。これに \\(\\ce{Fe, Zn, Al}\\) のそれぞれの価数で割って、原子量で掛けることで、それぞれの生成質量の速度を求めることができる。\n\n\nShow Code\nimport numpy as np\n\n# 定数\nF = 96485  # C/mol\nmolar_charge = 1 / F  # mol/C\n\n# 各金属の価数と原子量\nmetals = {\n    'Fe': {'valence': 2, 'molar_mass': 55.85},\n    'Zn': {'valence': 2, 'molar_mass': 65.38},\n    'Al': {'valence': 3, 'molar_mass': 26.98}\n}\n\n# 電流密度\ncurrent_density = 1  # A/m^2\n\n# 各金属の生成質量の速度を計算\nfor metal, properties in metals.items():\n    valence = properties['valence']\n    molar_mass = properties['molar_mass']\n    \n    # 電気量\n    charge_per_m2 = current_density * molar_charge  # mol/m^2/s\n    \n    # 生成質量の速度\n    mass_production_rate = charge_per_m2 * molar_mass / valence  # g/m^2/s\n    print(f\"{metal}: {mass_production_rate:.3e} g/m^2/s\")\n\n\nFe: 2.894e-04 g/m^2/s\nZn: 3.388e-04 g/m^2/s\nAl: 9.321e-05 g/m^2/s",
+    "section": "3.4",
+    "text": "3.4\n式 (Equation 4) を用いる。\n\n\nShow Code\n# 定数\nc = 0.02  # mol/L\nlambda_infinity = 390.7e-4  # S m^2 mol^-1\nlambda_ = 2.31e-5 / c  # S m^2 mol^-1\n\n# 酢酸の電離度と電離定数を計算\nalpha = lambda_ / lambda_infinity\nKa = (lambda_**2) / (lambda_infinity * (lambda_infinity - lambda_)) * c\nprint(f\"電離度: {alpha:.3f}\")\nprint(f\"電離定数: {Ka:.3e} mol/L\")\n\n\n電離度: 0.030\n電離定数: 1.801e-05 mol/L",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
@@ -1427,8 +1427,8 @@
     "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-3",
     "href": "posts/univ_lecs/3S/材料電気化学.html#section-3",
     "title": "材料電気化学",
-    "section": "2.4",
-    "text": "2.4\n水 \\(10 \\symup{g}\\) を電気分解するには、\\(10/18 \\times 2 = 1.12 \\symup{mol}\\) の電子が必要で、$ 1 $ で \\(1/96485 = 1.036 \\times 10^{-5} \\symup{mol/s}\\) の電子が流れるので、 \\(3600 \\symup{s}\\) で完全に電気分解するには、 \\(1.12/(1.036 \\times 10^{-5} \\times 3600) = 30 \\symup{A}\\) が必要である。",
+    "section": "4.1",
+    "text": "4.1\n\\(\\ce{NaCl}\\) を 0.1 M、\\(\\ce{Al2(SO4)3}\\) を 0.01 M 含む水溶液（どちらも \\(\\alpha = 1\\) とする）のイオン強度は何 M になるか。 また、そのうち \\(\\ce{NaCl}\\) の分担割合は何 % かもとめよ。\n\n\n\n\n\n\n理論\n\n\n\n\n\nイオン強度の定義式は (Equation 6) である。\nここで、\\(c_i\\) はイオンの濃度、\\(z_i\\) はイオンの電荷数というのを注意！　イオン濃度じゃなくて、水溶液濃度で計算してハマったのでまじで注意。\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\n# 定数\nc_Na = 0.1  # mol/L\nc_Cl = 0.1  # mol/L\nc_Al2 = 0.02  # mol/L\nc_SO4 = 0.03  # mol/L\nz_Na = 1\nz_Cl = -1\nz_Al = 3\nz_SO4 = -2\n# イオン強度の計算\nI = 0.5 * (c_Na * z_Na**2 + c_Cl * z_Cl**2 + c_Al2 * z_Al**2 + c_SO4 * z_SO4**2)\nprint(f\"イオン強度: {I:.3f} M\")\n# 分担割合の計算\nfraction_NaCl = (c_Na * z_Na**2 + c_Cl * z_Cl**2) / (c_Na * z_Na**2 + c_Cl * z_Cl**2 + c_Al2 * z_Al**2 + c_SO4 * z_SO4**2)\nprint(f\"分担割合: {fraction_NaCl:.3%}\")\n\n\nイオン強度: 0.250 M\n分担割合: 40.000%",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
@@ -1441,8 +1441,8 @@
     "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-4",
     "href": "posts/univ_lecs/3S/材料電気化学.html#section-4",
     "title": "材料電気化学",
-    "section": "2.5",
-    "text": "2.5\n\\(E= hc/\\lambda\\) なので、 \\(\\lambda = hc/E\\) となる。これを \\(\\symup{eV}\\) に変換すると、 \\(\\lambda = 1240/E\\) となる。これを用いて、 \\(\\lambda = 1240/1.1 = 1127 \\symup{nm}\\) となる。次に、 \\(\\lambda = 1240/3.2 = 387 \\symup{nm}\\) となる。",
+    "section": "4.2",
+    "text": "4.2\n\\(\\ce{CaCl2}\\) 水溶液（強電解質溶液：\\(25^{\\circ}\\symup{C}\\)）の、0.001 M および 0.01 M における イオン強度とデバイ半径を計算せよ。\n\n\n\n\n\n\n理論\n\n\n\n\n\nデバイ半径は次のように定義される。\n\\[\n\\begin{aligned}\n\\lambda_D &= \\qty(\\dfrac{2e^2}{\\epsilon_0 \\epsilon_r kT} \\sum_i \\frac{1}{2} c_i z_i^2)^{-1/2} \\\\\n&= \\qty(\\dfrac{2e^2}{\\epsilon_0 \\epsilon_r kT} I_n)^{-1/2}\n\\end{aligned}\n\\]\nここで、 \\(n_i\\) はイオン濃度。ただし単位は \\(\\symup{mol\\ m^{-3}}\\) ではなく、 \\(\\symup{m^{-3}}\\) であることに注意。つまり、 \\(N_A\\) を掛けてやる必要がある。\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\n# 定数\nepsilon_0 = 8.854e-12  # C^2/Jm\nepsilon_r = 78.5  # 水の誘電率\nk = 1.38e-23  # J/K\nT = 298.15  # K\ne = 1.6022e-19  # C\nNa = 6.022e23  # mol^-1\n# イオン濃度\nc_Ca = [0.001, 0.01]  # mol/L\nc_Cl = [0.002, 0.02]  # mol/L\nn_Ca = [1*Na, 10*Na] # /m^3\nn_Cl = [2*Na, 20*Na] # /m^3\n# イオン強度の計算\nfor i in range(len(c_Ca)):\n    I = 0.5 * (c_Ca[i] * 2**2 + c_Cl[i] * (-1)**2)\n    print(f\"イオン強度: {I:.3f} M\")\n    # デバイ半径の計算\n    nI = 0.5 * (n_Ca[i] * 2**2 + n_Cl[i] * (-1)**2)\n    lambda_D = 1 / np.sqrt(2 * e**2 / (epsilon_0 * epsilon_r * k * T) * nI) \n    print(f\"デバイ半径: {lambda_D:.3e} m\")\n\n\nイオン強度: 0.003 M\nデバイ半径: 5.553e-09 m\nイオン強度: 0.030 M\nデバイ半径: 1.756e-09 m",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
@@ -1455,8 +1455,8 @@
     "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-5",
     "href": "posts/univ_lecs/3S/材料電気化学.html#section-5",
     "title": "材料電気化学",
-    "section": "3.1",
-    "text": "3.1\nイオン移動度の式は (Equation 2) だから、\n\n\nShow Code\n# 定数\nF = 96485  # C/mol\n\n# 各物質のイオンモル伝導率\nmetals = {\n    'K+': {'z': 1, 'lambda': 73.5},\n    'Ca2+': {'z': 2, 'lambda': 119},\n    'Cl-': {'z': 1, 'lambda': 76.35},\n    'SO42-': {'z': 2, 'lambda': 160},\n}\n\n# 各物質のイオン移動度を計算\nfor metal, properties in metals.items():\n    z = properties['z']\n    lambda_ = properties['lambda']\n    \n    # イオンモル伝導率\n    ion_mobility = lambda_ / z / F  # m^2/V/s\n    print(f\"{metal}: {ion_mobility:.3e} m^2/V/s\")\n\n\nK+: 7.618e-04 m^2/V/s\nCa2+: 6.167e-04 m^2/V/s\nCl-: 7.913e-04 m^2/V/s\nSO42-: 8.291e-04 m^2/V/s",
+    "section": "4-3",
+    "text": "4-3\n\\(25^{\\circ}\\symup{C},\\ 5.0 \\times 10^{-3} \\ \\symup{M} \\ \\ce{KCl}\\) 水溶液のイオン強度および平均活量係数を、デバイ＝ヒュッケルの極限法則を用いて求めよ。\n\n\n\n\n\n\n理論\n\n\n\n\n\nイオン強度の式 (Equation 6) と平均活量計数の式 (Equation 5) を使う計算問題\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\n# 定数\nc_k = 5.0e-3  # mol/L\nc_cl = 5.0e-3  # mol/L\nz_k = 1\nz_cl = -1\n# デバイ＝ヒュッケルの極限法則\nA_star = 1.2  # m^3/2/mol^1/2\n# イオン強度の計算\nI = 0.5 * (c_k * z_k**2 + c_cl * z_cl**2)\nprint(f\"イオン強度: {I:.3f} M\")\n# 平均活量係数の計算\ngamma = np.exp(-A_star * z_k * z_cl * np.sqrt(I))\nprint(f\"平均活量係数: {gamma:.3f}\")\n\n\nイオン強度: 0.005 M\n平均活量係数: 1.089",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
@@ -1469,8 +1469,8 @@
     "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-6",
     "href": "posts/univ_lecs/3S/材料電気化学.html#section-6",
     "title": "材料電気化学",
-    "section": "3.2",
-    "text": "3.2\nストークス半径は流体中の水和イオンの見かけ上の大きさで、イオン半径は結晶中のイオンの大きさである。\n\\(\\ce{Li+}\\) は \\(\\ce{Cs+}\\) に比べて電荷密度が高く、水和が強いために \\(r_s\\) が大きくなる。逆に、 \\(\\ce{Cs+}\\) は電荷密度が低く、水和が弱いために \\(r_s\\) が小さくなる。",
+    "section": "4-4",
+    "text": "4-4\n\\(25^{\\circ}\\symup{C},\\ 5.0 \\times 10^{-3} \\ \\symup{M} \\ \\ce{CaCl2}\\) 水溶液の\nイオン強度および平均活量係数を、デバイ＝ヒュッケルの極限法則を用いて求めよ。\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\n# 定数\nc_ca = 1.0e-3  # mol/L\nc_cl = 2.0e-3  # mol/L\nz_ca = 2\nz_cl = -1\n# デバイ＝ヒュッケルの極限法則\nA_star = 1.2  # m^3/2/mol^1/2\n# イオン強度の計算\nI = 0.5 * (c_ca * z_ca**2 + c_cl * z_cl**2)\nprint(f\"イオン強度: {I:.3f} M\")\n# 平均活量係数の計算\ngamma = np.exp(-A_star * z_ca * z_cl * np.sqrt(I))\nprint(f\"平均活量係数: {gamma:.3f}\")\n\n\nイオン強度: 0.003 M\n平均活量係数: 1.140",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
@@ -1483,8 +1483,8 @@
     "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-7",
     "href": "posts/univ_lecs/3S/材料電気化学.html#section-7",
     "title": "材料電気化学",
-    "section": "3.3",
-    "text": "3.3\nこの式 (Equation 1) を用いて、 \\(\\ce{CH3COOH}\\) のモル電気伝導率を求める。\n\\[\\Lambda^{\\infty}[\\ce{CH3COOH}] = 349.82 + 40.9 = 390.7 \\ \\text{S}\\text{m}^2\\text{mol}^{-1}\\]",
+    "section": "4-4",
+    "text": "4-4\n\\(25^{\\circ}\\symup{C},\\ 5.0 \\times 10^{-3} \\ \\symup{M} \\ \\ce{CaCl2}\\) 水溶液の\nイオン強度および平均活量係数を、デバイ＝ヒュッケルの極限法則を用いて求めよ。\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\n# 定数\nc_ca = 1.0e-3  # mol/L\nc_cl = 2.0e-3  # mol/L\nz_ca = 2\nz_cl = -1\n# デバイ＝ヒュッケルの極限法則\nA_star = 1.2  # m^3/2/mol^1/2\n# イオン強度の計算\nI = 0.5 * (c_ca * z_ca**2 + c_cl * z_cl**2)\nprint(f\"イオン強度: {I:.3f} M\")\n# 平均活量係数の計算\ngamma = np.exp(-A_star * z_ca * z_cl * np.sqrt(I))\nprint(f\"平均活量係数: {gamma:.3f}\")\n\n\nイオン強度: 0.003 M\n平均活量係数: 1.140",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
@@ -1497,8 +1497,8 @@
     "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-8",
     "href": "posts/univ_lecs/3S/材料電気化学.html#section-8",
     "title": "材料電気化学",
-    "section": "3.4",
-    "text": "3.4\n式 (Equation 4) を用いる。\n\n\nShow Code\n# 定数\nc = 0.02  # mol/L\nlambda_infinity = 390.7e-4  # S m^2 mol^-1\nlambda_ = 2.31e-5 / c  # S m^2 mol^-1\n\n# 酢酸の電離度と電離定数を計算\nalpha = lambda_ / lambda_infinity\nKa = (lambda_**2) / (lambda_infinity * (lambda_infinity - lambda_)) * c\nprint(f\"電離度: {alpha:.3f}\")\nprint(f\"電離定数: {Ka:.3e} mol/L\")\n\n\n電離度: 0.030\n電離定数: 1.801e-05 mol/L",
+    "section": "3.2",
+    "text": "3.2\nストークス半径は流体中の水和イオンの見かけ上の大きさで、イオン半径は結晶中のイオンの大きさである。\n\\(\\ce{Li+}\\) は \\(\\ce{Cs+}\\) に比べて電荷密度が高く、水和が強いために \\(r_s\\) が大きくなる。逆に、 \\(\\ce{Cs+}\\) は電荷密度が低く、水和が弱いために \\(r_s\\) が小さくなる。",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
@@ -1511,8 +1511,8 @@
     "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-9",
     "href": "posts/univ_lecs/3S/材料電気化学.html#section-9",
     "title": "材料電気化学",
-    "section": "4.1",
-    "text": "4.1\n\\(\\ce{NaCl}\\) を 0.1 M、\\(\\ce{Al2(SO4)3}\\) を 0.01 M 含む水溶液（どちらも \\(\\alpha = 1\\) とする）のイオン強度は何 M になるか。 また、そのうち \\(\\ce{NaCl}\\) の分担割合は何 % かもとめよ。\n\n\n\n\n\n\n理論\n\n\n\n\n\nイオン強度の定義式は (Equation 6) である。\nここで、\\(c_i\\) はイオンの濃度、\\(z_i\\) はイオンの電荷数というのを注意！　イオン濃度じゃなくて、水溶液濃度で計算してハマったのでまじで注意。\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\n# 定数\nc_Na = 0.1  # mol/L\nc_Cl = 0.1  # mol/L\nc_Al2 = 0.02  # mol/L\nc_SO4 = 0.03  # mol/L\nz_Na = 1\nz_Cl = -1\nz_Al = 3\nz_SO4 = -2\n# イオン強度の計算\nI = 0.5 * (c_Na * z_Na**2 + c_Cl * z_Cl**2 + c_Al2 * z_Al**2 + c_SO4 * z_SO4**2)\nprint(f\"イオン強度: {I:.3f} M\")\n# 分担割合の計算\nfraction_NaCl = (c_Na * z_Na**2 + c_Cl * z_Cl**2) / (c_Na * z_Na**2 + c_Cl * z_Cl**2 + c_Al2 * z_Al**2 + c_SO4 * z_SO4**2)\nprint(f\"分担割合: {fraction_NaCl:.3%}\")\n\n\nイオン強度: 0.250 M\n分担割合: 40.000%",
+    "section": "3.3",
+    "text": "3.3\nこの式 (Equation 1) を用いて、 \\(\\ce{CH3COOH}\\) のモル電気伝導率を求める。\n\\[\\Lambda^{\\infty}[\\ce{CH3COOH}] = 349.82 + 40.9 = 390.7 \\ \\text{S}\\text{m}^2\\text{mol}^{-1}\\]",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
@@ -1525,8 +1525,8 @@
     "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-10",
     "href": "posts/univ_lecs/3S/材料電気化学.html#section-10",
     "title": "材料電気化学",
-    "section": "4.2",
-    "text": "4.2\n\\(\\ce{CaCl2}\\) 水溶液（強電解質溶液：\\(25^{\\circ}\\symup{C}\\)）の、0.001 M および 0.01 M における イオン強度とデバイ半径を計算せよ。\n\n\n\n\n\n\n理論\n\n\n\n\n\nデバイ半径は次のように定義される。\n\\[\n\\begin{aligned}\n\\lambda_D &= \\qty(\\dfrac{2e^2}{\\epsilon_0 \\epsilon_r kT} \\sum_i \\frac{1}{2} c_i z_i^2)^{-1/2} \\\\\n&= \\qty(\\dfrac{2e^2}{\\epsilon_0 \\epsilon_r kT} I_n)^{-1/2}\n\\end{aligned}\n\\]\nここで、 \\(n_i\\) はイオン濃度。ただし単位は \\(\\symup{mol\\ m^{-3}}\\) ではなく、 \\(\\symup{m^{-3}}\\) であることに注意。つまり、 \\(N_A\\) を掛けてやる必要がある。\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\n# 定数\nepsilon_0 = 8.854e-12  # C^2/Jm\nepsilon_r = 78.5  # 水の誘電率\nk = 1.38e-23  # J/K\nT = 298.15  # K\ne = 1.6022e-19  # C\nNa = 6.022e23  # mol^-1\n# イオン濃度\nc_Ca = [0.001, 0.01]  # mol/L\nc_Cl = [0.002, 0.02]  # mol/L\nn_Ca = [1*Na, 10*Na] # /m^3\nn_Cl = [2*Na, 20*Na] # /m^3\n# イオン強度の計算\nfor i in range(len(c_Ca)):\n    I = 0.5 * (c_Ca[i] * 2**2 + c_Cl[i] * (-1)**2)\n    print(f\"イオン強度: {I:.3f} M\")\n    # デバイ半径の計算\n    nI = 0.5 * (n_Ca[i] * 2**2 + n_Cl[i] * (-1)**2)\n    lambda_D = 1 / np.sqrt(2 * e**2 / (epsilon_0 * epsilon_r * k * T) * nI) \n    print(f\"デバイ半径: {lambda_D:.3e} m\")\n\n\nイオン強度: 0.003 M\nデバイ半径: 5.553e-09 m\nイオン強度: 0.030 M\nデバイ半径: 1.756e-09 m",
+    "section": "3.4",
+    "text": "3.4\n式 (Equation 4) を用いる。\n\n\nShow Code\n# 定数\nc = 0.02  # mol/L\nlambda_infinity = 390.7e-4  # S m^2 mol^-1\nlambda_ = 2.31e-5 / c  # S m^2 mol^-1\n\n# 酢酸の電離度と電離定数を計算\nalpha = lambda_ / lambda_infinity\nKa = (lambda_**2) / (lambda_infinity * (lambda_infinity - lambda_)) * c\nprint(f\"電離度: {alpha:.3f}\")\nprint(f\"電離定数: {Ka:.3e} mol/L\")\n\n\n電離度: 0.030\n電離定数: 1.801e-05 mol/L",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
@@ -1539,8 +1539,8 @@
     "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-11",
     "href": "posts/univ_lecs/3S/材料電気化学.html#section-11",
     "title": "材料電気化学",
-    "section": "4-3",
-    "text": "4-3\n\\(25^{\\circ}\\symup{C},\\ 5.0 \\times 10^{-3} \\ \\symup{M} \\ \\ce{KCl}\\) 水溶液のイオン強度および平均活量係数を、デバイ＝ヒュッケルの極限法則を用いて求めよ。\n\n\n\n\n\n\n理論\n\n\n\n\n\nイオン強度の式 (Equation 6) と平均活量計数の式 (Equation 5) を使う計算問題\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\n# 定数\nc_k = 5.0e-3  # mol/L\nc_cl = 5.0e-3  # mol/L\nz_k = 1\nz_cl = -1\n# デバイ＝ヒュッケルの極限法則\nA_star = 1.2  # m^3/2/mol^1/2\n# イオン強度の計算\nI = 0.5 * (c_k * z_k**2 + c_cl * z_cl**2)\nprint(f\"イオン強度: {I:.3f} M\")\n# 平均活量係数の計算\ngamma = np.exp(-A_star * z_k * z_cl * np.sqrt(I))\nprint(f\"平均活量係数: {gamma:.3f}\")\n\n\nイオン強度: 0.005 M\n平均活量係数: 1.089",
+    "section": "4.1",
+    "text": "4.1\n\\(\\ce{NaCl}\\) を 0.1 M、\\(\\ce{Al2(SO4)3}\\) を 0.01 M 含む水溶液（どちらも \\(\\alpha = 1\\) とする）のイオン強度は何 M になるか。 また、そのうち \\(\\ce{NaCl}\\) の分担割合は何 % かもとめよ。\n\n\n\n\n\n\n理論\n\n\n\n\n\nイオン強度の定義式は (Equation 6) である。\nここで、\\(c_i\\) はイオンの濃度、\\(z_i\\) はイオンの電荷数というのを注意！　イオン濃度じゃなくて、水溶液濃度で計算してハマったのでまじで注意。\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\n# 定数\nc_Na = 0.1  # mol/L\nc_Cl = 0.1  # mol/L\nc_Al2 = 0.02  # mol/L\nc_SO4 = 0.03  # mol/L\nz_Na = 1\nz_Cl = -1\nz_Al = 3\nz_SO4 = -2\n# イオン強度の計算\nI = 0.5 * (c_Na * z_Na**2 + c_Cl * z_Cl**2 + c_Al2 * z_Al**2 + c_SO4 * z_SO4**2)\nprint(f\"イオン強度: {I:.3f} M\")\n# 分担割合の計算\nfraction_NaCl = (c_Na * z_Na**2 + c_Cl * z_Cl**2) / (c_Na * z_Na**2 + c_Cl * z_Cl**2 + c_Al2 * z_Al**2 + c_SO4 * z_SO4**2)\nprint(f\"分担割合: {fraction_NaCl:.3%}\")\n\n\nイオン強度: 0.250 M\n分担割合: 40.000%",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
@@ -1553,8 +1553,8 @@
     "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-12",
     "href": "posts/univ_lecs/3S/材料電気化学.html#section-12",
     "title": "材料電気化学",
-    "section": "4-4",
-    "text": "4-4\n\\(25^{\\circ}\\symup{C},\\ 5.0 \\times 10^{-3} \\ \\symup{M} \\ \\ce{CaCl2}\\) 水溶液の\nイオン強度および平均活量係数を、デバイ＝ヒュッケルの極限法則を用いて求めよ。\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\n# 定数\nc_ca = 1.0e-3  # mol/L\nc_cl = 2.0e-3  # mol/L\nz_ca = 2\nz_cl = -1\n# デバイ＝ヒュッケルの極限法則\nA_star = 1.2  # m^3/2/mol^1/2\n# イオン強度の計算\nI = 0.5 * (c_ca * z_ca**2 + c_cl * z_cl**2)\nprint(f\"イオン強度: {I:.3f} M\")\n# 平均活量係数の計算\ngamma = np.exp(-A_star * z_ca * z_cl * np.sqrt(I))\nprint(f\"平均活量係数: {gamma:.3f}\")\n\n\nイオン強度: 0.003 M\n平均活量係数: 1.140",
+    "section": "4.2",
+    "text": "4.2\n\\(\\ce{CaCl2}\\) 水溶液（強電解質溶液：\\(25^{\\circ}\\symup{C}\\)）の、0.001 M および 0.01 M における イオン強度とデバイ半径を計算せよ。\n\n\n\n\n\n\n理論\n\n\n\n\n\nデバイ半径は次のように定義される。\n\\[\n\\begin{aligned}\n\\lambda_D &= \\qty(\\dfrac{2e^2}{\\epsilon_0 \\epsilon_r kT} \\sum_i \\frac{1}{2} c_i z_i^2)^{-1/2} \\\\\n&= \\qty(\\dfrac{2e^2}{\\epsilon_0 \\epsilon_r kT} I_n)^{-1/2}\n\\end{aligned}\n\\]\nここで、 \\(n_i\\) はイオン濃度。ただし単位は \\(\\symup{mol\\ m^{-3}}\\) ではなく、 \\(\\symup{m^{-3}}\\) であることに注意。つまり、 \\(N_A\\) を掛けてやる必要がある。\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\n# 定数\nepsilon_0 = 8.854e-12  # C^2/Jm\nepsilon_r = 78.5  # 水の誘電率\nk = 1.38e-23  # J/K\nT = 298.15  # K\ne = 1.6022e-19  # C\nNa = 6.022e23  # mol^-1\n# イオン濃度\nc_Ca = [0.001, 0.01]  # mol/L\nc_Cl = [0.002, 0.02]  # mol/L\nn_Ca = [1*Na, 10*Na] # /m^3\nn_Cl = [2*Na, 20*Na] # /m^3\n# イオン強度の計算\nfor i in range(len(c_Ca)):\n    I = 0.5 * (c_Ca[i] * 2**2 + c_Cl[i] * (-1)**2)\n    print(f\"イオン強度: {I:.3f} M\")\n    # デバイ半径の計算\n    nI = 0.5 * (n_Ca[i] * 2**2 + n_Cl[i] * (-1)**2)\n    lambda_D = 1 / np.sqrt(2 * e**2 / (epsilon_0 * epsilon_r * k * T) * nI) \n    print(f\"デバイ半径: {lambda_D:.3e} m\")\n\n\nイオン強度: 0.003 M\nデバイ半径: 5.553e-09 m\nイオン強度: 0.030 M\nデバイ半径: 1.756e-09 m",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
@@ -3101,6 +3101,244 @@
       "Univ Lecs",
       "3S",
       "固体物性学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料電気化学.html#問題1",
+    "href": "posts/univ_lecs/3S/材料電気化学.html#問題1",
+    "title": "材料電気化学",
+    "section": "問題1",
+    "text": "問題1\n\n1-1.\nCuめっき反応を、電流密度50 mA/cm²にて10分間行った。100%の電流効率を仮定した際、めっき膜の厚さを求めよ。\n反応式：\n\\[\n\\mathrm{Cu^{2+} + 2e^- \\rightarrow Cu}\n\\]\n与えられたデータ： - 電流密度：50 mA/cm² - めっき時間：10 分 = 600 秒 - 電流効率：100% - Cuの原子量：63.55 - Cuの密度：8.94 g/cm³ - ファラデー定数：\\(F = 96500 \\ \\mathrm{C/mol}\\)\n\n\n\n\n\n\n解答\n\n\n\n\n\n50 \\(\\symup{mA/cm}^2\\) で10分間電流を流すと、合計で 30 \\(\\symup{C/cm}^2\\) の電荷が流れる。これは、1 \\(\\symup{cm}^2\\) の面積につき 30 \\(\\symup{C}\\) の電荷が流れたことを意味する。\n1 \\(\\symup{mol}\\) の電子は \\(eN_A = 96485 \\symup{C/mol}\\) の電荷を持つので、1 \\(\\symup{cm}^2\\) の面積につき 30 \\(\\symup{C}\\) の電荷が流れることは、\\(30/96485 = 3.1 \\times 10^{-4} \\symup{mol}\\) の電子が流れたことを意味する。つまり、\\(1.6 \\times 10^{-4} \\symup{mol}\\) の \\(\\ce{Cu}\\) が生成したことになるわけで、これの重量は、\\(1.6 \\times 10^{-4} \\times 63.5 = 1.0 \\times 10^{-2} \\symup{g}\\) である。\n膜の密度が \\(8.94 \\symup{g/cm^3}\\) であることを考慮すると、面積あたりの生成量である \\(1.0 \\times 10^{-2} \\symup{g/cm^2}\\) で割ってやれば、 \\(1.1 \\times 10^{-3} \\symup{cm} = 1.1 \\symup{\\mu m}\\) となる。\n\n\n\n\n\n1-2.\n温度 1 eV は 何 [K] に対応するか求めよ。\n（※ 厳密には正しくない換算かもしれないが、eVの感覚を得るために行う。）\n与えられた定数： - \\(1\\ \\mathrm{eV} = 1.602 \\times 10^{-19}\\ \\mathrm{J}\\) - ボルツマン定数：\\(k_B = 1.381 \\times 10^{-23}\\ \\mathrm{J/K}\\)\n\n\n\n\n\n\n解答\n\n\n\n\n\n\\(1 \\symup{eV}\\) とは、\\(1.6 \\times 10^{-19} \\symup{J}\\) である。このエネルギーを内部運動エネルギーに持つ何らかの粒子群の温度は、３次元運動として考えれば、\\(\\frac{3}{2}k_BT = 1.6 \\times 10^{-19} \\symup{J}\\) となる。ここで、\\(k_B = 1.38 \\times 10^{-23} \\symup{J/K}\\) である。これを解くと、\\(T = 7.7 \\times 10^3 \\symup{K}\\) となる。\nただし厳密的には、 \\(1 \\symup{eV} = k_BT\\) から、 \\(T= 1.16 \\times 10^4 \\symup{K}\\) となる。これについては理解できるまでに時間がかかりそうだ。\n\n\n\n\n\n1-3.\n金属を100%の電流効率でアノード溶解したとき、単位時間当たり単位面積当たりの溶解量は、電流密度に比例する。\nFe, Zn, Alの3種の金属について、1 [A/m²] の電流密度に対応する溶解量 [g·m⁻²·h⁻¹] を求めよ。\nなお、Fe, Znは2価、Alは3価で溶解するとし、それぞれの原子量は、Fe: 55.85, Zn: 65.38, Al: 26.98 とする。\n\n\n\n\n\n\n解答\n\n\n\n\n\nこれについては 2.1 と同じ計算を行うことになる。\n\\(1 \\symup{A \\cdot m^{-2}}\\) によって流れる電気量は \\(1/96485 = 1.036 \\times 10^{-5} \\symup{mol \\cdot m^{-2} \\cdot s^{-1}}\\) である。これに \\(\\ce{Fe, Zn, Al}\\) のそれぞれの価数で割って、原子量で掛けることで、それぞれの生成質量の速度を求めることができる。\n\n\nShow Code\nimport numpy as np\n\n# 定数\nF = 96485  # C/mol\nmolar_charge = 1 / F  # mol/C\n\n# 各金属の価数と原子量\nmetals = {\n    'Fe': {'valence': 2, 'molar_mass': 55.85},\n    'Zn': {'valence': 2, 'molar_mass': 65.38},\n    'Al': {'valence': 3, 'molar_mass': 26.98}\n}\n\n# 電流密度\ncurrent_density = 1  # A/m^2\n\n# 各金属の生成質量の速度を計算\nfor metal, properties in metals.items():\n    valence = properties['valence']\n    molar_mass = properties['molar_mass']\n    \n    # 電気量\n    charge_per_m2 = current_density * molar_charge  # mol/m^2/s\n    \n    # 生成質量の速度\n    mass_production_rate = charge_per_m2 * molar_mass / valence  # g/m^2/s\n    print(f\"{metal}: {mass_production_rate:.3e} g/m^2/s\")\n\n\nFe: 2.894e-04 g/m^2/s\nZn: 3.388e-04 g/m^2/s\nAl: 9.321e-05 g/m^2/s\n\n\n\n\n\n\n\n1-4.\nアルカリ水溶液の電気分解によって水10 gを1時間で分解したい。何 A の定電流を流したらよいか求めよ。\n\n\n\n\n\n\n解答\n\n\n\n\n\n水 \\(10 \\symup{g}\\) を電気分解するには、\\(10/18 \\times 2 = 1.12 \\symup{mol}\\) の電子が必要で、$ 1 $ で \\(1/96485 = 1.036 \\times 10^{-5} \\symup{mol/s}\\) の電子が流れるので、 \\(3600 \\symup{s}\\) で完全に電気分解するには、 \\(1.12/(1.036 \\times 10^{-5} \\times 3600) = 30 \\symup{A}\\) が必要である。\n\n\n\n\n\n1-5.\n二酸化チタン（アナターゼ型）のバンドギャップは約 3.2 eV、シリコンのものは約 1.1 eV と報告されている。\nバンドギャップに対応した、光の波長 [nm] を計算せよ。\nλ [nm] = 1240 / hν [eV] の関係より（各自確認のこと）\n\n\n\n\n\n\n解答\n\n\n\n\n\n\\(E= hc/\\lambda\\) なので、 \\(\\lambda = hc/E\\) となる。これを \\(\\symup{eV}\\) に変換すると、 \\(\\lambda = 1240/E\\) となる。これを用いて、 \\(\\lambda = 1240/1.1 = 1127 \\symup{nm}\\) となる。次に、 \\(\\lambda = 1240/3.2 = 387 \\symup{nm}\\) となる。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料電気化学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料電気化学.html#問題2",
+    "href": "posts/univ_lecs/3S/材料電気化学.html#問題2",
+    "title": "材料電気化学",
+    "section": "問題2",
+    "text": "問題2\n\n無限希釈におけるイオンのモル電気伝導率\n\n\n\n\n\n\n\n\n陽イオン\n\\(\\lambda^\\infty (\\times 10^{-4} \\symup{S \\cdot m^2 \\cdot mol^{-1}})\\)\n陰イオン\n\\(\\lambda^\\infty (\\times 10^{-4} \\symup{S \\cdot m^2 \\cdot mol^{-1}})\\)\n\n\n\n\n\\(\\ce{H^+}\\)\n349.82\n\\(\\ce{OH^-}\\)\n198.6\n\n\n\\(\\ce{Li^+}\\)\n38.69\n\\(\\ce{F^-}\\)\n54.4\n\n\n\\(\\ce{Na^+}\\)\n50.11\n\\(\\ce{Cl^-}\\)\n76.35\n\n\n\\(\\ce{K^+}\\)\n73.5\n\\(\\ce{Br^-}\\)\n78.1\n\n\n\\(\\ce{Rb^+}\\)\n77.8\n\\(\\ce{I^-}\\)\n76.8\n\n\n\\(\\ce{Cs^+}\\)\n77.3\n\\(\\ce{NO3^-}\\)\n71.4\n\n\n\\(\\ce{Ag^+}\\)\n61.9\n\\(\\ce{HCO3^-}\\)\n44.5\n\n\n\\(\\ce{1/2 Be^{2+}}\\)\n45\n\\(\\ce{HCOO^-}\\)\n54.6\n\n\n\\(\\ce{1/2 Fe^{2+}}\\)\n54\n\\(\\ce{1/3 [Fe(CN)6]^{3-}}\\)\n101\n\n\n\\(\\ce{1/2 Cu^{2+}}\\)\n55\n\\(\\ce{1/4 [Fe(CN)6]^{4-}}\\)\n111\n\n\n\\(\\ce{1/2 Zn^{2+}}\\)\n52.8\n\n\n\n\n\\(\\ce{1/2 Cd^{2+}}\\)\n54\n\n\n\n\n\\(\\ce{1/2 Hg^{2+}}\\)\n53\n\n\n\n\n\\(\\ce{1/2 Pb^{2+}}\\)\n71\n\n\n\n\n\\(\\ce{1/3 Al^{3+}}\\)\n61\n\n\n\n\n\\(\\ce{1/3 Cr^{3+}}\\)\n67\n\n\n\n\n\\(\\ce{1/3 Fe^{3+}}\\)\n68\n\n\n\n\n\\(\\ce{1/3 La^{3+}}\\)\n69.6\n\n\n\n\n\\(\\ce{1/3 Ce^{3+}}\\)\n70\n\n\n\n\n\\(\\ce{NH4^+}\\)\n73.5\n\n\n\n\n\\(\\ce{(CH3)4N^+}\\)\n45.3\n\n\n\n\n\\(\\ce{(C2H5)4N^+}\\)\n33.0\n\n\n\n\n\\(\\ce{(n-C3H7)4N^+}\\)\n23.5\n\n\n\n\n\\(\\ce{(n-C4H9)4N^+}\\)\n19.1\n\n\n\n\n\n\n※ 多価イオンについては \\(\\lambda^\\infty / |z|\\) の値を示してある。\n\n\n\n2-1.\n表「無限希釈におけるイオンのモル電気伝導率」を用いて、\\(\\ce{K^+, Ca^{2+}, Cl^-, SO4^{2-}}\\) の移動度を求めよ。\n\\[\\lambda^\\infty = z_i F u_i \\Rightarrow u_i = \\lambda^\\infty / |z_i| F\\]\n（表の値はすでに \\(\\lambda/z\\) の単位 [\\(\\symup{\\Omega^{-1} m^2 mol^{-1}}\\)] で与えられている）\n\n\n\n\n\n\n解答\n\n\n\n\n\nイオン移動度の式は (Equation 2) だから、\n\n\nShow Code\n# 定数\nF = 96485  # C/mol\n\n# 各物質のイオンモル伝導率\nmetals = {\n    'K+': {'z': 1, 'lambda': 73.5},\n    'Ca2+': {'z': 2, 'lambda': 119},\n    'Cl-': {'z': 1, 'lambda': 76.35},\n    'SO42-': {'z': 2, 'lambda': 160},\n}\n\n# 各物質のイオン移動度を計算\nfor metal, properties in metals.items():\n    z = properties['z']\n    lambda_ = properties['lambda']\n    \n    # イオンモル伝導率\n    ion_mobility = lambda_ / z / F  # m^2/V/s\n    print(f\"{metal}: {ion_mobility:.3e} m^2/V/s\")\n\n\nK+: 7.618e-04 m^2/V/s\nCa2+: 6.167e-04 m^2/V/s\nCl-: 7.913e-04 m^2/V/s\nSO42-: 8.291e-04 m^2/V/s\n\n\n\n\n\n\n\n2-2.\n\\(\\ce{Li^+}\\) は \\(\\ce{Cs^+}\\) と比べ、「\\(r_c\\) は小さいが、\\(r_s\\) は大きい」\nその理由を考察せよ。ただし、 \\(r_c\\) はイオン半径、 \\(r_s\\) はストークス半径である。\n\n\n\n\n\n\n解答\n\n\n\n\n\nストークス半径は流体中の水和イオンの見かけ上の大きさで、イオン半径は結晶中のイオンの大きさである。\n\\(\\ce{Li+}\\) は \\(\\ce{Cs+}\\) に比べて電荷密度が高く、水和が強いために \\(r_s\\) が大きくなる。逆に、 \\(\\ce{Cs+}\\) は電荷密度が低く、水和が弱いために \\(r_s\\) が小さくなる。\n\n\n\n\n\n2-3.\n酢酸の無限希釈モル伝導率を「無限希釈のイオンのモル電気伝導率」から求めよ。\n与えられた値：\n- \\(\\ce{H^+}\\)：349.82\n- \\(\\ce{CH3COO^-}\\)：40.9\n- 合計：390.72 [\\(\\symup{S \\cdot cm^2 \\cdot mol^{-1}}\\)]\n\n\n\n\n\n\n解答\n\n\n\n\n\nこの式 (Equation 1) を用いて、 \\(\\ce{CH3COOH}\\) のモル電気伝導率を求める。\n\\[\\Lambda^{\\infty}[\\ce{CH3COOH}] = 349.82 + 40.9 = 390.7 \\ \\text{S}\\text{m}^2\\text{mol}^{-1}\\]\n\n\n\n\n\n2-4.\n0.02 M（=0.02 mol/l）酢酸水溶液の導電率が \\(2.31 \\times 10^{-4} \\symup{S \\cdot cm^{-1}}\\) であった。\n上記無限希釈モル伝導率を用い、酢酸の電離度と解離定数を求めよ。\n\n\n\n\n\n\n解答\n\n\n\n\n\n式 (Equation 4) を用いる。\n\n\nShow Code\n# 定数\nc = 0.02  # mol/L\nlambda_infinity = 390.7e-4  # S m^2 mol^-1\nlambda_ = 2.31e-5 / c  # S m^2 mol^-1\n\n# 酢酸の電離度と電離定数を計算\nalpha = lambda_ / lambda_infinity\nKa = (lambda_**2) / (lambda_infinity * (lambda_infinity - lambda_)) * c\nprint(f\"電離度: {alpha:.3f}\")\nprint(f\"電離定数: {Ka:.3e} mol/L\")\n\n\n電離度: 0.030\n電離定数: 1.801e-05 mol/L\n\n\n\n\n\n\n\n2-5.\n半径 1 cm の導体球に \\(10^{-13} \\symup{mol}\\) の電子を乗せ、真空中におくと、表面電位はいくらになるか求めよ。\n（真空の誘電率 \\(\\epsilon_0 = 8.854 \\times 10^{-12} \\symup{C^2/N \\cdot m^2}\\)）\n\n\n\n\n\n\n解答\n\n\n\n\n\n\\[\\phi = \\frac{1}{4\\pi\\epsilon_0} \\frac{Q}{r} = \\frac{1}{4\\pi\\epsilon_0} \\frac{10^{-13} \\times F}{1 \\times 10^{-2}} = 8.7 \\times 10^{3} \\symup{V}\\]\n\n\nShow Code\nimport numpy as np\n# 定数\nepsilon_0 = 8.854e-12  # C^2/Jm\nQ = 10**-13 * 96485  # C\nr = 1e-2  # m\nphi = 1 / (4 * np.pi * epsilon_0) * Q / r\nprint(f\"表面電位: {phi:.3e} V\")\n\n\n表面電位: 8.672e+03 V\n\n\n\n\n\n\n\n2-6.\n酢酸を水酸化ナトリウム溶液で伝導度滴定した場合の滴定曲線は右図のようになる。\n各イオンの電気伝導率に対する寄与を、前述のラム分図のように示せ。\n\n\n\n\n\n\n解答\n\n\n\n\n\n滴定前と、当量点以降では \\(\\ce{H+, OH^-}\\) の寄与が大きくなる。それ以外の線形的増加部分は、 \\(\\ce{Na+}\\) の寄与が大きくなる。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料電気化学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料電気化学.html#無限希釈におけるイオンのモル電気伝導率λ⁰",
+    "href": "posts/univ_lecs/3S/材料電気化学.html#無限希釈におけるイオンのモル電気伝導率λ⁰",
+    "title": "材料電気化学",
+    "section": "無限希釈におけるイオンのモル電気伝導率（λ⁰）",
+    "text": "無限希釈におけるイオンのモル電気伝導率（λ⁰）\n\n\n\n\n\n\n\n\n\n陽イオン\nλ⁰ (×10⁻⁴ S·m²·mol⁻¹)\n陰イオン\nλ⁰ (×10⁻⁴ S·m²·mol⁻¹)\n\n\n\n\nH⁺\n349.82\nOH⁻\n198.6\n\n\nLi⁺\n38.69\nF⁻\n54.4\n\n\nNa⁺\n50.11\nCl⁻\n76.35\n\n\nK⁺\n73.5\nBr⁻\n78.1\n\n\nRb⁺\n77.8\nI⁻\n76.8\n\n\nCs⁺\n77.3\nNO₃⁻\n71.4\n\n\nAg⁺\n61.9\nHCO₃⁻\n44.5\n\n\n1/2 Be²⁺\n45\nHCOO⁻\n54.6\n\n\n1/2 Mg²⁺\n53.06\nCH₃COO⁻\n40.9\n\n\n1/2 Ca²⁺\n59.5\nC₂H₅COO⁻\n35.8\n\n\n1/2 Sr²⁺\n59.46\n1/2 SO₄²⁻\n80.0\n\n\n1/2 Mn²⁺\n53.5\n1/2 CO₃²⁻\n72\n\n\n1/2 Fe²⁺\n54\n1/3 [Fe(CN)₆]³⁻\n101\n\n\n1/2 Cu²⁺\n55\n1/4 [Fe(CN)₆]⁴⁻\n111\n\n\n1/2 Zn²⁺\n52.8\n\n\n\n\n1/2 Cd²⁺\n54\n\n\n\n\n1/2 Hg²⁺\n53\n\n\n\n\n1/2 Pb²⁺\n71\n\n\n\n\n1/3 Al³⁺\n61\n\n\n\n\n1/3 Cr³⁺\n67\n\n\n\n\n1/3 Fe³⁺\n68\n\n\n\n\n1/3 La³⁺\n69.6\n\n\n\n\n1/3 Ce³⁺\n70\n\n\n\n\nNH₄⁺\n73.5\n\n\n\n\n(CH₃)₄N⁺\n45.3\n\n\n\n\n(C₂H₅)₄N⁺\n33.0\n\n\n\n\n(n-C₃H₇)₄N⁺\n23.5\n\n\n\n\n(n-C₄H₉)₄N⁺\n19.1\n\n\n\n\n\n\n※ 多価イオンについては λ⁰ / |z| の値を示してある。\n\n2-1. 表「無限希釈におけるイオンのモル電気伝導率」を用いて、\\(\\ce{K^+, Ca^{2+}, Cl^-, SO4^{2-}}\\) の移動度を求めよ。\n\\[\\lambda^0 = z_i F u_i \\Rightarrow u_i = \\lambda^0 / |z_i| F\\]\n（表の値はすでに \\(\\lambda/z\\) の単位 [\\(\\symup{\\Omega^{-1} m^2 mol^{-1}}\\)] で与えられている）\n2-2. \\(\\ce{Li^+}\\) は \\(\\ce{Cs^+}\\) と比べ、「\\(\\mu\\) は小さいが、\\(\\lambda\\) は大きい」\nその理由を考察せよ。\n2-3. 酢酸の無限希釈モル伝導率を「無限希釈のイオンのモル電気伝導率」から求めよ。\n与えられた値：\n- \\(\\ce{H^+}\\)：349.82\n- \\(\\ce{CH3COO^-}\\)：40.9\n- 合計：390.72 [\\(\\symup{S \\cdot cm^2 \\cdot mol^{-1}}\\)]\n2-4. 0.02 M（=0.02 mol/l）酢酸水溶液の導電率が \\(2.31 \\times 10^{-4} \\symup{S \\cdot cm^{-1}}\\) であった。\n上記無限希釈モル伝導率を用い、酢酸の電離度と解離定数を求めよ。\n2-5. 半径 1 cm の導体球に \\(10^{-13} \\symup{mol}\\) の電子を乗せ、真空中におくと、表面電位はいくらになるか求めよ。\n（真空の誘電率 \\(\\epsilon_0 = 8.854 \\times 10^{-12} \\symup{C^2/N \\cdot m^2}\\)）\n2-6. 酢酸を水酸化ナトリウム溶液で伝導度滴定した場合の滴定曲線は右図のようになる。\n各イオンの電気伝導率に対する寄与を、前述のラム分図のように示せ。\n\n\n\n\n\n\n解答\n\n\n\n\n\nイオン移動度の式は (Equation 2) だから、\n\n\nShow Code\n# 定数\nF = 96485  # C/mol\n\n# 各物質のイオンモル伝導率\nmetals = {\n    'K+': {'z': 1, 'lambda': 73.5},\n    'Ca2+': {'z': 2, 'lambda': 119},\n    'Cl-': {'z': 1, 'lambda': 76.35},\n    'SO42-': {'z': 2, 'lambda': 160},\n}\n\n# 各物質のイオン移動度を計算\nfor metal, properties in metals.items():\n    z = properties['z']\n    lambda_ = properties['lambda']\n    \n    # イオンモル伝導率\n    ion_mobility = lambda_ / z / F  # m^2/V/s\n    print(f\"{metal}: {ion_mobility:.3e} m^2/V/s\")\n\n\nK+: 7.618e-04 m^2/V/s\nCa2+: 6.167e-04 m^2/V/s\nCl-: 7.913e-04 m^2/V/s\nSO42-: 8.291e-04 m^2/V/s\n\n\n\n3.2\nストークス半径は流体中の水和イオンの見かけ上の大きさで、イオン半径は結晶中のイオンの大きさである。\n\\(\\ce{Li+}\\) は \\(\\ce{Cs+}\\) に比べて電荷密度が高く、水和が強いために \\(r_s\\) が大きくなる。逆に、 \\(\\ce{Cs+}\\) は電荷密度が低く、水和が弱いために \\(r_s\\) が小さくなる。\n\n\n\n3.3\nこの式 (Equation 1) を用いて、 \\(\\ce{CH3COOH}\\) のモル電気伝導率を求める。\n\\[\\Lambda^{\\infty}[\\ce{CH3COOH}] = 349.82 + 40.9 = 390.7 \\ \\text{S}\\text{m}^2\\text{mol}^{-1}\\]\n\n\n3.4\n式 (Equation 4) を用いる。\n\n\nShow Code\n# 定数\nc = 0.02  # mol/L\nlambda_infinity = 390.7e-4  # S m^2 mol^-1\nlambda_ = 2.31e-5 / c  # S m^2 mol^-1\n\n# 酢酸の電離度と電離定数を計算\nalpha = lambda_ / lambda_infinity\nKa = (lambda_**2) / (lambda_infinity * (lambda_infinity - lambda_)) * c\nprint(f\"電離度: {alpha:.3f}\")\nprint(f\"電離定数: {Ka:.3e} mol/L\")\n\n\n電離度: 0.030\n電離定数: 1.801e-05 mol/L",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料電気化学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料電気化学.html#無限希釈におけるイオンのモル電気伝導率lambdainfty",
+    "href": "posts/univ_lecs/3S/材料電気化学.html#無限希釈におけるイオンのモル電気伝導率lambdainfty",
+    "title": "材料電気化学",
+    "section": "無限希釈におけるイオンのモル電気伝導率（\\(\\lambda^\\infty\\)）",
+    "text": "無限希釈におけるイオンのモル電気伝導率（\\(\\lambda^\\infty\\)）\n\n無限希釈におけるイオンのモル電気伝導率\n\n\n\n\n\n\n\n\n陽イオン\n\\(\\lambda^\\infty (\\times 10^{-4} \\symup{S \\cdot m^2 \\cdot mol^{-1}})\\)\n陰イオン\n\\(\\lambda^\\infty (\\times 10^{-4} \\symup{S \\cdot m^2 \\cdot mol^{-1}})\\)\n\n\n\n\n\\(\\ce{H^+}\\)\n349.82\n\\(\\ce{OH^-}\\)\n198.6\n\n\n\\(\\ce{Li^+}\\)\n38.69\n\\(\\ce{F^-}\\)\n54.4\n\n\n\\(\\ce{Na^+}\\)\n50.11\n\\(\\ce{Cl^-}\\)\n76.35\n\n\n\\(\\ce{K^+}\\)\n73.5\n\\(\\ce{Br^-}\\)\n78.1\n\n\n\\(\\ce{Rb^+}\\)\n77.8\n\\(\\ce{I^-}\\)\n76.8\n\n\n\\(\\ce{Cs^+}\\)\n77.3\n\\(\\ce{NO3^-}\\)\n71.4\n\n\n\\(\\ce{Ag^+}\\)\n61.9\n\\(\\ce{HCO3^-}\\)\n44.5\n\n\n\\(\\ce{1/2 Be^{2+}}\\)\n45\n\\(\\ce{HCOO^-}\\)\n54.6\n\n\n\\(\\ce{1/2 Fe^{2+}}\\)\n54\n\\(\\ce{1/3 [Fe(CN)6]^{3-}}\\)\n101\n\n\n\\(\\ce{1/2 Cu^{2+}}\\)\n55\n\\(\\ce{1/4 [Fe(CN)6]^{4-}}\\)\n111\n\n\n\\(\\ce{1/2 Zn^{2+}}\\)\n52.8\n\n\n\n\n\\(\\ce{1/2 Cd^{2+}}\\)\n54\n\n\n\n\n\\(\\ce{1/2 Hg^{2+}}\\)\n53\n\n\n\n\n\\(\\ce{1/2 Pb^{2+}}\\)\n71\n\n\n\n\n\\(\\ce{1/3 Al^{3+}}\\)\n61\n\n\n\n\n\\(\\ce{1/3 Cr^{3+}}\\)\n67\n\n\n\n\n\\(\\ce{1/3 Fe^{3+}}\\)\n68\n\n\n\n\n\\(\\ce{1/3 La^{3+}}\\)\n69.6\n\n\n\n\n\\(\\ce{1/3 Ce^{3+}}\\)\n70\n\n\n\n\n\\(\\ce{NH4^+}\\)\n73.5\n\n\n\n\n\\(\\ce{(CH3)4N^+}\\)\n45.3\n\n\n\n\n\\(\\ce{(C2H5)4N^+}\\)\n33.0\n\n\n\n\n\\(\\ce{(n-C3H7)4N^+}\\)\n23.5\n\n\n\n\n\\(\\ce{(n-C4H9)4N^+}\\)\n19.1\n\n\n\n\n\n\n※ 多価イオンについては \\(\\lambda^\\infty / |z|\\) の値を示してある。\n\n\n2-1.\n表「無限希釈におけるイオンのモル電気伝導率」を用いて、\\(\\ce{K^+, Ca^{2+}, Cl^-, SO4^{2-}}\\) の移動度を求めよ。\n\\[\\lambda^\\infty = z_i F u_i \\Rightarrow u_i = \\lambda^\\infty / |z_i| F\\]\n（表の値はすでに \\(\\lambda/z\\) の単位 [\\(\\symup{\\Omega^{-1} m^2 mol^{-1}}\\)] で与えられている）\n2-2. \\(\\ce{Li^+}\\) は \\(\\ce{Cs^+}\\) と比べ、「\\(r_c\\) は小さいが、\\(r_s\\) は大きい」\nその理由を考察せよ。ただし、 \\(r_c\\) はイオン半径、 \\(r_s\\) はストークス半径である。\n2-3. 酢酸の無限希釈モル伝導率を「無限希釈のイオンのモル電気伝導率」から求めよ。\n与えられた値：\n- \\(\\ce{H^+}\\)：349.82\n- \\(\\ce{CH3COO^-}\\)：40.9\n- 合計：390.72 [\\(\\symup{S \\cdot cm^2 \\cdot mol^{-1}}\\)]\n2-4. 0.02 M（=0.02 mol/l）酢酸水溶液の導電率が \\(2.31 \\times 10^{-4} \\symup{S \\cdot cm^{-1}}\\) であった。\n上記無限希釈モル伝導率を用い、酢酸の電離度と解離定数を求めよ。\n2-5. 半径 1 cm の導体球に \\(10^{-13} \\symup{mol}\\) の電子を乗せ、真空中におくと、表面電位はいくらになるか求めよ。\n（真空の誘電率 \\(\\epsilon_0 = 8.854 \\times 10^{-12} \\symup{C^2/N \\cdot m^2}\\)）\n2-6. 酢酸を水酸化ナトリウム溶液で伝導度滴定した場合の滴定曲線は右図のようになる。\n各イオンの電気伝導率に対する寄与を、前述のラム分図のように示せ。\n\n\n\n\n\n\n解答\n\n\n\n\n\nイオン移動度の式は (Equation 2) だから、\n\n\nShow Code\n# 定数\nF = 96485  # C/mol\n\n# 各物質のイオンモル伝導率\nmetals = {\n    'K+': {'z': 1, 'lambda': 73.5},\n    'Ca2+': {'z': 2, 'lambda': 119},\n    'Cl-': {'z': 1, 'lambda': 76.35},\n    'SO42-': {'z': 2, 'lambda': 160},\n}\n\n# 各物質のイオン移動度を計算\nfor metal, properties in metals.items():\n    z = properties['z']\n    lambda_ = properties['lambda']\n    \n    # イオンモル伝導率\n    ion_mobility = lambda_ / z / F  # m^2/V/s\n    print(f\"{metal}: {ion_mobility:.3e} m^2/V/s\")\n\n\nK+: 7.618e-04 m^2/V/s\nCa2+: 6.167e-04 m^2/V/s\nCl-: 7.913e-04 m^2/V/s\nSO42-: 8.291e-04 m^2/V/s\n\n\n\n3.2\nストークス半径は流体中の水和イオンの見かけ上の大きさで、イオン半径は結晶中のイオンの大きさである。\n\\(\\ce{Li+}\\) は \\(\\ce{Cs+}\\) に比べて電荷密度が高く、水和が強いために \\(r_s\\) が大きくなる。逆に、 \\(\\ce{Cs+}\\) は電荷密度が低く、水和が弱いために \\(r_s\\) が小さくなる。\n\n\n3.3\nこの式 (Equation 1) を用いて、 \\(\\ce{CH3COOH}\\) のモル電気伝導率を求める。\n\\[\\Lambda^{\\infty}[\\ce{CH3COOH}] = 349.82 + 40.9 = 390.7 \\ \\text{S}\\text{m}^2\\text{mol}^{-1}\\]\n\n\n3.4\n式 (Equation 4) を用いる。\n\n\nShow Code\n# 定数\nc = 0.02  # mol/L\nlambda_infinity = 390.7e-4  # S m^2 mol^-1\nlambda_ = 2.31e-5 / c  # S m^2 mol^-1\n\n# 酢酸の電離度と電離定数を計算\nalpha = lambda_ / lambda_infinity\nKa = (lambda_**2) / (lambda_infinity * (lambda_infinity - lambda_)) * c\nprint(f\"電離度: {alpha:.3f}\")\nprint(f\"電離定数: {Ka:.3e} mol/L\")\n\n\n電離度: 0.030\n電離定数: 1.801e-05 mol/L",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料電気化学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-13",
+    "href": "posts/univ_lecs/3S/材料電気化学.html#section-13",
+    "title": "材料電気化学",
+    "section": "4-3",
+    "text": "4-3\n\\(25^{\\circ}\\symup{C},\\ 5.0 \\times 10^{-3} \\ \\symup{M} \\ \\ce{KCl}\\) 水溶液のイオン強度および平均活量係数を、デバイ＝ヒュッケルの極限法則を用いて求めよ。\n\n\n\n\n\n\n理論\n\n\n\n\n\nイオン強度の式 (Equation 6) と平均活量計数の式 (Equation 5) を使う計算問題\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\n# 定数\nc_k = 5.0e-3  # mol/L\nc_cl = 5.0e-3  # mol/L\nz_k = 1\nz_cl = -1\n# デバイ＝ヒュッケルの極限法則\nA_star = 1.2  # m^3/2/mol^1/2\n# イオン強度の計算\nI = 0.5 * (c_k * z_k**2 + c_cl * z_cl**2)\nprint(f\"イオン強度: {I:.3f} M\")\n# 平均活量係数の計算\ngamma = np.exp(-A_star * z_k * z_cl * np.sqrt(I))\nprint(f\"平均活量係数: {gamma:.3f}\")\n\n\nイオン強度: 0.005 M\n平均活量係数: 1.089",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料電気化学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-14",
+    "href": "posts/univ_lecs/3S/材料電気化学.html#section-14",
+    "title": "材料電気化学",
+    "section": "4-4",
+    "text": "4-4\n\\(25^{\\circ}\\symup{C},\\ 5.0 \\times 10^{-3} \\ \\symup{M} \\ \\ce{CaCl2}\\) 水溶液の\nイオン強度および平均活量係数を、デバイ＝ヒュッケルの極限法則を用いて求めよ。\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\n# 定数\nc_ca = 1.0e-3  # mol/L\nc_cl = 2.0e-3  # mol/L\nz_ca = 2\nz_cl = -1\n# デバイ＝ヒュッケルの極限法則\nA_star = 1.2  # m^3/2/mol^1/2\n# イオン強度の計算\nI = 0.5 * (c_ca * z_ca**2 + c_cl * z_cl**2)\nprint(f\"イオン強度: {I:.3f} M\")\n# 平均活量係数の計算\ngamma = np.exp(-A_star * z_ca * z_cl * np.sqrt(I))\nprint(f\"平均活量係数: {gamma:.3f}\")\n\n\nイオン強度: 0.003 M\n平均活量係数: 1.140",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料電気化学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-18",
+    "href": "posts/univ_lecs/3S/材料電気化学.html#section-18",
+    "title": "材料電気化学",
+    "section": "4-4",
+    "text": "4-4\n\\(25^{\\circ}\\symup{C},\\ 5.0 \\times 10^{-3} \\ \\symup{M} \\ \\ce{CaCl2}\\) 水溶液の\nイオン強度および平均活量係数を、デバイ＝ヒュッケルの極限法則を用いて求めよ。\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\n# 定数\nc_ca = 1.0e-3  # mol/L\nc_cl = 2.0e-3  # mol/L\nz_ca = 2\nz_cl = -1\n# デバイ＝ヒュッケルの極限法則\nA_star = 1.2  # m^3/2/mol^1/2\n# イオン強度の計算\nI = 0.5 * (c_ca * z_ca**2 + c_cl * z_cl**2)\nprint(f\"イオン強度: {I:.3f} M\")\n# 平均活量係数の計算\ngamma = np.exp(-A_star * z_ca * z_cl * np.sqrt(I))\nprint(f\"平均活量係数: {gamma:.3f}\")\n\n\nイオン強度: 0.003 M\n平均活量係数: 1.140",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料電気化学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-19",
+    "href": "posts/univ_lecs/3S/材料電気化学.html#section-19",
+    "title": "材料電気化学",
+    "section": "4.2",
+    "text": "4.2\n\\(\\ce{CaCl2}\\) 水溶液（強電解質溶液：\\(25^{\\circ}\\symup{C}\\)）の、0.001 M および 0.01 M における イオン強度とデバイ半径を計算せよ。\n\n\n\n\n\n\n理論\n\n\n\n\n\nデバイ半径は次のように定義される。\n\\[\n\\begin{aligned}\n\\lambda_D &= \\qty(\\dfrac{2e^2}{\\epsilon_0 \\epsilon_r kT} \\sum_i \\frac{1}{2} c_i z_i^2)^{-1/2} \\\\\n&= \\qty(\\dfrac{2e^2}{\\epsilon_0 \\epsilon_r kT} I_n)^{-1/2}\n\\end{aligned}\n\\]\nここで、 \\(n_i\\) はイオン濃度。ただし単位は \\(\\symup{mol\\ m^{-3}}\\) ではなく、 \\(\\symup{m^{-3}}\\) であることに注意。つまり、 \\(N_A\\) を掛けてやる必要がある。\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\n# 定数\nepsilon_0 = 8.854e-12  # C^2/Jm\nepsilon_r = 78.5  # 水の誘電率\nk = 1.38e-23  # J/K\nT = 298.15  # K\ne = 1.6022e-19  # C\nNa = 6.022e23  # mol^-1\n# イオン濃度\nc_Ca = [0.001, 0.01]  # mol/L\nc_Cl = [0.002, 0.02]  # mol/L\nn_Ca = [1*Na, 10*Na] # /m^3\nn_Cl = [2*Na, 20*Na] # /m^3\n# イオン強度の計算\nfor i in range(len(c_Ca)):\n    I = 0.5 * (c_Ca[i] * 2**2 + c_Cl[i] * (-1)**2)\n    print(f\"イオン強度: {I:.3f} M\")\n    # デバイ半径の計算\n    nI = 0.5 * (n_Ca[i] * 2**2 + n_Cl[i] * (-1)**2)\n    lambda_D = 1 / np.sqrt(2 * e**2 / (epsilon_0 * epsilon_r * k * T) * nI) \n    print(f\"デバイ半径: {lambda_D:.3e} m\")\n\n\nイオン強度: 0.003 M\nデバイ半径: 5.553e-09 m\nイオン強度: 0.030 M\nデバイ半径: 1.756e-09 m",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料電気化学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-20",
+    "href": "posts/univ_lecs/3S/材料電気化学.html#section-20",
+    "title": "材料電気化学",
+    "section": "4-3",
+    "text": "4-3\n\\(25^{\\circ}\\symup{C},\\ 5.0 \\times 10^{-3} \\ \\symup{M} \\ \\ce{KCl}\\) 水溶液のイオン強度および平均活量係数を、デバイ＝ヒュッケルの極限法則を用いて求めよ。\n\n\n\n\n\n\n理論\n\n\n\n\n\nイオン強度の式 (Equation 6) と平均活量計数の式 (Equation 5) を使う計算問題\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\n# 定数\nc_k = 5.0e-3  # mol/L\nc_cl = 5.0e-3  # mol/L\nz_k = 1\nz_cl = -1\n# デバイ＝ヒュッケルの極限法則\nA_star = 1.2  # m^3/2/mol^1/2\n# イオン強度の計算\nI = 0.5 * (c_k * z_k**2 + c_cl * z_cl**2)\nprint(f\"イオン強度: {I:.3f} M\")\n# 平均活量係数の計算\ngamma = np.exp(-A_star * z_k * z_cl * np.sqrt(I))\nprint(f\"平均活量係数: {gamma:.3f}\")\n\n\nイオン強度: 0.005 M\n平均活量係数: 1.089",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料電気化学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-21",
+    "href": "posts/univ_lecs/3S/材料電気化学.html#section-21",
+    "title": "材料電気化学",
+    "section": "4-4",
+    "text": "4-4\n\\(25^{\\circ}\\symup{C},\\ 5.0 \\times 10^{-3} \\ \\symup{M} \\ \\ce{CaCl2}\\) 水溶液の\nイオン強度および平均活量係数を、デバイ＝ヒュッケルの極限法則を用いて求めよ。\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\n# 定数\nc_ca = 1.0e-3  # mol/L\nc_cl = 2.0e-3  # mol/L\nz_ca = 2\nz_cl = -1\n# デバイ＝ヒュッケルの極限法則\nA_star = 1.2  # m^3/2/mol^1/2\n# イオン強度の計算\nI = 0.5 * (c_ca * z_ca**2 + c_cl * z_cl**2)\nprint(f\"イオン強度: {I:.3f} M\")\n# 平均活量係数の計算\ngamma = np.exp(-A_star * z_ca * z_cl * np.sqrt(I))\nprint(f\"平均活量係数: {gamma:.3f}\")\n\n\nイオン強度: 0.003 M\n平均活量係数: 1.140",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料電気化学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-22",
+    "href": "posts/univ_lecs/3S/材料電気化学.html#section-22",
+    "title": "材料電気化学",
+    "section": "4-3",
+    "text": "4-3\n\\(25^{\\circ}\\symup{C},\\ 5.0 \\times 10^{-3} \\ \\symup{M} \\ \\ce{KCl}\\) 水溶液のイオン強度および平均活量係数を、デバイ＝ヒュッケルの極限法則を用いて求めよ。\n\n\n\n\n\n\n理論\n\n\n\n\n\nイオン強度の式 (Equation 6) と平均活量計数の式 (Equation 5) を使う計算問題\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\n# 定数\nc_k = 5.0e-3  # mol/L\nc_cl = 5.0e-3  # mol/L\nz_k = 1\nz_cl = -1\n# デバイ＝ヒュッケルの極限法則\nA_star = 1.2  # m^3/2/mol^1/2\n# イオン強度の計算\nI = 0.5 * (c_k * z_k**2 + c_cl * z_cl**2)\nprint(f\"イオン強度: {I:.3f} M\")\n# 平均活量係数の計算\ngamma = np.exp(-A_star * z_k * z_cl * np.sqrt(I))\nprint(f\"平均活量係数: {gamma:.3f}\")\n\n\nイオン強度: 0.005 M\n平均活量係数: 1.089",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料電気化学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-23",
+    "href": "posts/univ_lecs/3S/材料電気化学.html#section-23",
+    "title": "材料電気化学",
+    "section": "4-4",
+    "text": "4-4\n\\(25^{\\circ}\\symup{C},\\ 5.0 \\times 10^{-3} \\ \\symup{M} \\ \\ce{CaCl2}\\) 水溶液の\nイオン強度および平均活量係数を、デバイ＝ヒュッケルの極限法則を用いて求めよ。\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\n# 定数\nc_ca = 1.0e-3  # mol/L\nc_cl = 2.0e-3  # mol/L\nz_ca = 2\nz_cl = -1\n# デバイ＝ヒュッケルの極限法則\nA_star = 1.2  # m^3/2/mol^1/2\n# イオン強度の計算\nI = 0.5 * (c_ca * z_ca**2 + c_cl * z_cl**2)\nprint(f\"イオン強度: {I:.3f} M\")\n# 平均活量係数の計算\ngamma = np.exp(-A_star * z_ca * z_cl * np.sqrt(I))\nprint(f\"平均活量係数: {gamma:.3f}\")\n\n\nイオン強度: 0.003 M\n平均活量係数: 1.140",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料電気化学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-15",
+    "href": "posts/univ_lecs/3S/材料電気化学.html#section-15",
+    "title": "材料電気化学",
+    "section": "4.1",
+    "text": "4.1\n\\(\\ce{NaCl}\\) を 0.1 M、\\(\\ce{Al2(SO4)3}\\) を 0.01 M 含む水溶液（どちらも \\(\\alpha = 1\\) とする）のイオン強度は何 M になるか。 また、そのうち \\(\\ce{NaCl}\\) の分担割合は何 % かもとめよ。\n\n\n\n\n\n\n理論\n\n\n\n\n\nイオン強度の定義式は (Equation 6) である。\nここで、\\(c_i\\) はイオンの濃度、\\(z_i\\) はイオンの電荷数というのを注意！　イオン濃度じゃなくて、水溶液濃度で計算してハマったのでまじで注意。\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\n# 定数\nc_Na = 0.1  # mol/L\nc_Cl = 0.1  # mol/L\nc_Al2 = 0.02  # mol/L\nc_SO4 = 0.03  # mol/L\nz_Na = 1\nz_Cl = -1\nz_Al = 3\nz_SO4 = -2\n# イオン強度の計算\nI = 0.5 * (c_Na * z_Na**2 + c_Cl * z_Cl**2 + c_Al2 * z_Al**2 + c_SO4 * z_SO4**2)\nprint(f\"イオン強度: {I:.3f} M\")\n# 分担割合の計算\nfraction_NaCl = (c_Na * z_Na**2 + c_Cl * z_Cl**2) / (c_Na * z_Na**2 + c_Cl * z_Cl**2 + c_Al2 * z_Al**2 + c_SO4 * z_SO4**2)\nprint(f\"分担割合: {fraction_NaCl:.3%}\")\n\n\nイオン強度: 0.250 M\n分担割合: 40.000%",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料電気化学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-16",
+    "href": "posts/univ_lecs/3S/材料電気化学.html#section-16",
+    "title": "材料電気化学",
+    "section": "4.2",
+    "text": "4.2\n\\(\\ce{CaCl2}\\) 水溶液（強電解質溶液：\\(25^{\\circ}\\symup{C}\\)）の、0.001 M および 0.01 M における イオン強度とデバイ半径を計算せよ。\n\n\n\n\n\n\n理論\n\n\n\n\n\nデバイ半径は次のように定義される。\n\\[\n\\begin{aligned}\n\\lambda_D &= \\qty(\\dfrac{2e^2}{\\epsilon_0 \\epsilon_r kT} \\sum_i \\frac{1}{2} c_i z_i^2)^{-1/2} \\\\\n&= \\qty(\\dfrac{2e^2}{\\epsilon_0 \\epsilon_r kT} I_n)^{-1/2}\n\\end{aligned}\n\\]\nここで、 \\(n_i\\) はイオン濃度。ただし単位は \\(\\symup{mol\\ m^{-3}}\\) ではなく、 \\(\\symup{m^{-3}}\\) であることに注意。つまり、 \\(N_A\\) を掛けてやる必要がある。\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\n# 定数\nepsilon_0 = 8.854e-12  # C^2/Jm\nepsilon_r = 78.5  # 水の誘電率\nk = 1.38e-23  # J/K\nT = 298.15  # K\ne = 1.6022e-19  # C\nNa = 6.022e23  # mol^-1\n# イオン濃度\nc_Ca = [0.001, 0.01]  # mol/L\nc_Cl = [0.002, 0.02]  # mol/L\nn_Ca = [1*Na, 10*Na] # /m^3\nn_Cl = [2*Na, 20*Na] # /m^3\n# イオン強度の計算\nfor i in range(len(c_Ca)):\n    I = 0.5 * (c_Ca[i] * 2**2 + c_Cl[i] * (-1)**2)\n    print(f\"イオン強度: {I:.3f} M\")\n    # デバイ半径の計算\n    nI = 0.5 * (n_Ca[i] * 2**2 + n_Cl[i] * (-1)**2)\n    lambda_D = 1 / np.sqrt(2 * e**2 / (epsilon_0 * epsilon_r * k * T) * nI) \n    print(f\"デバイ半径: {lambda_D:.3e} m\")\n\n\nイオン強度: 0.003 M\nデバイ半径: 5.553e-09 m\nイオン強度: 0.030 M\nデバイ半径: 1.756e-09 m",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料電気化学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料電気化学.html#section-17",
+    "href": "posts/univ_lecs/3S/材料電気化学.html#section-17",
+    "title": "材料電気化学",
+    "section": "4-3",
+    "text": "4-3\n\\(25^{\\circ}\\symup{C},\\ 5.0 \\times 10^{-3} \\ \\symup{M} \\ \\ce{KCl}\\) 水溶液のイオン強度および平均活量係数を、デバイ＝ヒュッケルの極限法則を用いて求めよ。\n\n\n\n\n\n\n理論\n\n\n\n\n\nイオン強度の式 (Equation 6) と平均活量計数の式 (Equation 5) を使う計算問題\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\n\nShow Code\nimport numpy as np\n# 定数\nc_k = 5.0e-3  # mol/L\nc_cl = 5.0e-3  # mol/L\nz_k = 1\nz_cl = -1\n# デバイ＝ヒュッケルの極限法則\nA_star = 1.2  # m^3/2/mol^1/2\n# イオン強度の計算\nI = 0.5 * (c_k * z_k**2 + c_cl * z_cl**2)\nprint(f\"イオン強度: {I:.3f} M\")\n# 平均活量係数の計算\ngamma = np.exp(-A_star * z_k * z_cl * np.sqrt(I))\nprint(f\"平均活量係数: {gamma:.3f}\")\n\n\nイオン強度: 0.005 M\n平均活量係数: 1.089",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料電気化学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料電気化学.html#問題3",
+    "href": "posts/univ_lecs/3S/材料電気化学.html#問題3",
+    "title": "材料電気化学",
+    "section": "問題3",
+    "text": "問題3\n\n3-1.\n\\(\\ce{NaCl}\\) を 0.1 M、\\(\\ce{Al2(SO4)3}\\) を 0.01 M 含む水溶液（どちらも \\(\\alpha = 1\\) とする）のイオン強度は何 M になるか。 また、そのうち \\(\\ce{NaCl}\\) の分担割合は何 % かもとめよ。\n\n\n\n\n\n\n理論\n\n\n\n\n\nイオン強度の定義式は (Equation 6) である。\nここで、\\(c_i\\) はイオンの濃度、\\(z_i\\) はイオンの電荷数というのを注意！　イオン濃度じゃなくて、水溶液濃度で計算してハマったのでまじで注意。\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\\[\n\\begin{aligned}\nI_{\\ce{NaCl}} &= \\frac{1}{2} \\left( c_{\\ce{Na+}} z_{\\ce{Na+}}^2 + c_{\\ce{Cl-}} z_{\\ce{Cl-}}^2 \\right) \\\\\n&= \\frac{1}{2} \\left( 0.1 \\times 1^2 + 0.1 \\times (-1)^2 \\right) \\\\\n&= 0.1 \\ \\text{M} \\\\\nI_{\\ce{Al2(SO4)3}} &= \\frac{1}{2} \\left( c_{\\ce{Al3+}} z_{\\ce{Al3+}}^2 + c_{\\ce{SO42-}} z_{\\ce{SO42-}}^2 \\right) \\\\\n&= \\frac{1}{2} \\left( 0.01 \\times 3^2 + 0.03 \\times (-2)^2 \\right) \\\\\n&= 0.15 \\ \\text{M} \\\\\nI_{\\ce{NaCl}} + I_{\\ce{Al2(SO4)3}} &= 0.1 + 0.15 = \\boxed{0.25 \\ \\text{M} } \\\\\n\\frac{I_{\\ce{NaCl}}}{I_{\\ce{NaCl}} + I_{\\ce{Al2(SO4)3}}} &= \\frac{0.1}{0.25} \\times 100 = \\boxed{40 \\ \\%}\n\\end{aligned}\n\\]\n\n\nShow Code\n# 定数\nc_Na = 0.1  # mol/L\nc_Cl = 0.1  # mol/L\nc_Al2 = 0.02  # mol/L\nc_SO4 = 0.03  # mol/L\nz_Na = 1\nz_Cl = -1\nz_Al = 3\nz_SO4 = -2\n# イオン強度の計算\nI = 0.5 * (c_Na * z_Na**2 + c_Cl * z_Cl**2 + c_Al2 * z_Al**2 + c_SO4 * z_SO4**2)\nprint(f\"イオン強度: {I:.3f} M\")\n# 分担割合の計算\nfraction_NaCl = (c_Na * z_Na**2 + c_Cl * z_Cl**2) / (c_Na * z_Na**2 + c_Cl * z_Cl**2 + c_Al2 * z_Al**2 + c_SO4 * z_SO4**2)\nprint(f\"分担割合: {fraction_NaCl:.3%}\")\n\n\nイオン強度: 0.250 M\n分担割合: 40.000%\n\n\n\n\n\n\n\n3-2.\n\\(\\ce{CaCl2}\\) 水溶液（強電解質溶液：\\(25^{\\circ}\\symup{C}\\)）の、0.001 M および 0.01 M における イオン強度とデバイ半径を計算せよ。\n\n\n\n\n\n\n理論\n\n\n\n\n\nデバイ半径は次のように定義される。\n\\[\n\\begin{aligned}\n\\lambda_D &= \\qty(\\dfrac{2e^2}{\\epsilon_0 \\epsilon_r kT} \\sum_i \\frac{1}{2} c_i z_i^2)^{-1/2} \\\\\n&= \\qty(\\dfrac{2e^2}{\\epsilon_0 \\epsilon_r kT} I_n)^{-1/2}\n\\end{aligned}\n\\]\nここで、 \\(n_i\\) はイオン濃度。ただし単位は \\(\\symup{mol\\ m^{-3}}\\) ではなく、 \\(\\symup{m^{-3}}\\) であることに注意。つまり、 \\(N_A\\) を掛けてやる必要がある。\n一応の一応、デバイ長を導くことになったら次のように考えよう。\nボルツマン分布\n\\[\nn_i^{'} = n_i \\exp \\left( -\\frac{z_ie\\phi(r)}{kT} \\right)\n\\]\nこれから濃度分布\n\\[\n\\begin{aligned}\n\\rho(r) &= \\sum_i z_i e n_i \\exp \\left( -\\frac{z_ie\\phi(r)}{kT} \\right) \\\\\n&\\approx -\\frac{e^2\\phi (r)}{kT} \\left( \\sum_i n_i z_i^2 \\right) \\\\\n&= -\\frac{2 e^2}{kT} \\left( \\sum_i \\frac{1}{2} n_i z_i^2 \\phi (r) \\right)\n\\end{aligned}\n\\]\nこれでポアソン方程式\n\\[\n\\nabla^2 \\phi = \\frac{\\phi}{\\lambda_D^2}\n\\]\nを解いて \\(\\lambda_D\\) を求める。\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\nイオン強度は、\n\\[\n\\begin{aligned}\nI_{\\ce{CaCl2}, \\mathrm{0.001 \\ M}} &= \\frac{1}{2} \\left( c_{\\ce{Ca2+}} z_{\\ce{Ca2+}}^2 + c_{\\ce{Cl-}} z_{\\ce{Cl-}}^2 \\right) \\\\\n&= \\frac{1}{2} \\left( 0.001 \\times 2^2 + 0.002 \\times (-1)^2 \\right) \\\\\n&= 0.003 \\ \\text{M} \\\\\nI_{\\ce{CaCl2}, \\mathrm{0.01 \\ M}} &= \\frac{1}{2} \\left( c_{\\ce{Ca2+}} z_{\\ce{Ca2+}}^2 + c_{\\ce{Cl-}} z_{\\ce{Cl-}}^2 \\right) \\\\\n&= \\frac{1}{2} \\left( 0.01 \\times 2^2 + 0.02 \\times (-1)^2 \\right) \\\\\n&= 0.03 \\ \\text{M} \\\\\n\\end{aligned}\n\\]\nデバイ半径は\n\\[\n\\begin{aligned}\n\\lambda_D &= \\qty(\\dfrac{2e^2}{\\epsilon_0 \\epsilon_r kT} \\sum_i \\frac{1}{2} c_i z_i^2)^{-1/2} \\\\\n&= \\qty(\\dfrac{2e^2}{\\epsilon_0 \\epsilon_r kT} I_n)^{-1/2} \\\\\n\\lambda_{D,\\mathrm{0.001 \\ M}} &= \\qty(\\dfrac{2e^2}{\\epsilon_0 \\epsilon_r kT} I_{\\ce{CaCl2}, \\mathrm{0.001 \\ M}})^{-1/2} \\\\\n&= \\qty(\\dfrac{2e^2}{\\epsilon_0 \\epsilon_r kT} 0.003)^{-1/2} \\\\\n&= 5.55 \\times 10^{-9} \\ \\text{m} \\\\\n\\lambda_{D,\\mathrm{0.01 \\ M}} &= \\qty(\\dfrac{2e^2}{\\epsilon_0 \\epsilon_r kT} I_{\\ce{CaCl2}, \\mathrm{0.01 \\ M}})^{-1/2} \\\\\n&= \\qty(\\dfrac{2e^2}{\\epsilon_0 \\epsilon_r kT} 0.03)^{-1/2} \\\\\n&= 1.76 \\times 10^{-9} \\ \\text{m} \\\\\n\\end{aligned}\n\\]\n\n\nShow Code\nimport numpy as np\n# 定数\nepsilon_0 = 8.854e-12  # C^2/Jm\nepsilon_r = 78.5  # 水の誘電率\nk = 1.38e-23  # J/K\nT = 298.15  # K\ne = 1.6022e-19  # C\nNa = 6.022e23  # mol^-1\n# イオン濃度\nc_Ca = [0.001, 0.01]  # mol/L\nc_Cl = [0.002, 0.02]  # mol/L\nn_Ca = [1*Na, 10*Na] # /m^3\nn_Cl = [2*Na, 20*Na] # /m^3\n# イオン強度の計算\nfor i in range(len(c_Ca)):\n    I = 0.5 * (c_Ca[i] * 2**2 + c_Cl[i] * (-1)**2)\n    print(f\"イオン強度: {I:.3f} M\")\n    # デバイ半径の計算\n    nI = 0.5 * (n_Ca[i] * 2**2 + n_Cl[i] * (-1)**2)\n    lambda_D = 1 / np.sqrt(2 * e**2 / (epsilon_0 * epsilon_r * k * T) * nI) \n    print(f\"デバイ半径: {lambda_D:.3e} m\")\n\n\nイオン強度: 0.003 M\nデバイ半径: 5.553e-09 m\nイオン強度: 0.030 M\nデバイ半径: 1.756e-09 m\n\n\n\n\n\n\n\n3-3.\n\\(25^{\\circ}\\symup{C},\\ 5.0 \\times 10^{-3} \\ \\symup{M} \\ \\ce{KCl}\\) 水溶液のイオン強度および平均活量係数を、デバイ＝ヒュッケルの極限法則を用いて求めよ。\n\n\n\n\n\n\n理論\n\n\n\n\n\nイオン強度の式 (Equation 6) と平均活量計数の式 (Equation 5) を使う計算問題\n\\[\nA^\\ast = \\frac{1}{8\\pi}\\qty(\\frac{N_A}{1000})^{1/2}\\qty(\\frac{e^2}{\\epsilon_0\\epsilon_r kT})^{3/2}\n\\]\nこの値おおよそ \\(1.2 \\ \\text{m}^{3/2} \\ \\text{mol}^{-1/2}\\) である。詳しく計算させられることはないはずだ。\n\n\n\n\n\n\n\n\n\n解答\n\n\n\n\n\n\\[\n\\begin{aligned}\nI &= \\frac{1}{2} \\left( c_{\\ce{K+}} z_{\\ce{K+}}^2 + c_{\\ce{Cl-}} z_{\\ce{Cl-}}^2 \\right) \\\\\n&= \\frac{1}{2} \\left( 5.0 \\times 10^{-3} \\times 1^2 + 5.0 \\times 10^{-3} \\times (-1)^2 \\right) \\\\\n&= 5.0 \\times 10^{-3} \\ \\text{M} \\\\\n\\gamma &= \\exp \\left( -A^\\ast z_{\\ce{K+}} z_{\\ce{Cl-}} \\sqrt{I} \\right) \\\\\n&= \\exp \\left( -1.2 \\times 1 \\times (-1) \\times \\sqrt{5.0 \\times 10^{-3}} \\right) \\\\\n&= 0.92\n\\end{aligned}\n\\]\n\n\nShow Code\nimport numpy as np\n# 定数\nc_k = 5.0e-3  # mol/L\nc_cl = 5.0e-3  # mol/L\nz_k = 1\nz_cl = -1\n# デバイ＝ヒュッケルの極限法則\nA_star = 1.2  # m^3/2/mol^1/2\n# イオン強度の計算\nI = 0.5 * (c_k * z_k**2 + c_cl * z_cl**2)\nprint(f\"イオン強度: {I:.3f} M\")\n# 平均活量係数の計算\ngamma = np.exp(-A_star * z_k * z_cl * np.sqrt(I))\nprint(f\"平均活量係数: {gamma:.3f}\")\n\n\nイオン強度: 0.005 M\n平均活量係数: 1.089\n\n\n\n\n\n\n\n3-4.\n\\(25^{\\circ}\\symup{C},\\ 1.0 \\times 10^{-3} \\ \\symup{M} \\ \\ce{CaCl2}\\) 水溶液の\nイオン強度および平均活量係数を、デバイ＝ヒュッケルの極限法則を用いて求めよ。\n\n\n\n\n\n\n解答\n\n\n\n\n\n\\[\n\\begin{aligned}\nI &= \\frac{1}{2} \\left( c_{\\ce{Ca2+}} z_{\\ce{Ca2+}}^2 + c_{\\ce{Cl-}} z_{\\ce{Cl-}}^2 \\right) \\\\\n&= \\frac{1}{2} \\left( 1.0 \\times 10^{-3} \\times 2^2 + 2.0 \\times 10^{-3} \\times (-1)^2 \\right) \\\\\n&= 3.0 \\times 10^{-3} \\ \\text{M} \\\\\n\\gamma &= \\exp \\left( -A^\\ast z_{\\ce{Ca2+}} z_{\\ce{Cl-}} \\sqrt{I} \\right) \\\\\n&= \\exp \\left( -1.2 \\times 2 \\times (-1) \\times \\sqrt{3.0 \\times 10^{-3}} \\right) \\\\\n&= 0.88\n\\end{aligned}\n\\]\n\n\nShow Code\nimport numpy as np\n# 定数\nc_ca = 1.0e-3  # mol/L\nc_cl = 2 * 1.0e-3  # mol/L\nz_ca = 2\nz_cl = -1\n# デバイ＝ヒュッケルの極限法則\nA_star = 1.2  # m^3/2/mol^1/2\n# イオン強度の計算\nI = 0.5 * (c_ca * z_ca**2 + c_cl * z_cl**2)\nprint(f\"イオン強度: {I:.3f} M\")\n# 平均活量係数の計算\ngamma = np.exp(A_star * z_ca * z_cl * np.sqrt(I))\nprint(f\"平均活量係数: {gamma:.3f}\")\n\n\nイオン強度: 0.003 M\n平均活量係数: 0.877\n\n\n\n\n\n\n\n3-5.\n\\(25^{\\circ}\\symup{C}\\) の水（比誘電率：78.54）に対し、定数部分を計算し、ボルン式を下記の形で表記せよ。\n\\[\n\\Delta G_S^\\circ = -\\frac{z^2}{r_i\\ [\\mathrm{pm}]} \\times (\\text{定数})\\ \\left[\\mathrm{kJ\\ mol^{-1}}\\right]\n\\]\n\\[\n\\begin{aligned}\nN_A &= 6.022 \\times 10^{23}\\ [\\mathrm{mol}^{-1}] \\\\\ne &= 1.6022 \\times 10^{-19}\\ [\\mathrm{C}] \\\\\n\\varepsilon_0 &= 8.8542 \\times 10^{-12}\\ [\\mathrm{F\\ m^{-1}}]\n\\end{aligned}\n\\]\n\n\n\n\n\n\n解答\n\n\n\n\n\nSection 1.11 より、\n\\[\n\\Delta G_S^\\circ = -\\frac{z^2}{r_i\\ [\\mathrm{pm}]} \\times (\\text{定数})\\ \\left[\\mathrm{kJ\\ mol^{-1}}\\right]\n\\]\nなので、\n\\[\n\\text{（定数）} = \\frac{N_A e^2}{8 \\pi \\varepsilon_0} \\times 10^9\\ \\left[\\frac{\\mathrm{pm}}{\\mathrm{m}}\\right] \\times 10^{-3}\\ \\left[\\frac{\\mathrm{kJ}}{\\mathrm{J}}\\right] \\times \\left(1 - \\frac{1}{\\varepsilon_r}\\right)\n= 6.86 \\times 10^4\n\\]\n\n\n\n\n\n3-6.\n上記求めた式を用い、\\(\\ce{Cl-}\\) および \\(\\ce{I-}\\) における \\(\\Delta G_S^\\circ\\) を計算してみよ。\n\\(\\ce{Cl-}\\) および \\(\\ce{I-}\\) のイオン半径はそれぞれ 181 pm, 220 pm とする。\n\n\n\n\n\n\n解答\n\n\n\n\n\n\\[\n\\begin{aligned}\n\\Delta G_S^\\circ(\\ce{Cl-}) &= -\\frac{1^2}{181} \\times 6.86 \\times 10^4 \\ \\mathrm{kJ\\ mol^{-1}} \\\\\n&= -379 \\ \\mathrm{kJ\\ mol^{-1}} \\\\\n\\Delta G_S^\\circ(\\ce{I-}) &= -\\frac{1^2}{220} \\times 6.86 \\times 10^4 \\ \\mathrm{kJ\\ mol^{-1}} \\\\\n&= -312 \\ \\mathrm{kJ\\ mol^{-1}}\n\\end{aligned}\n\\]\n\n\nShow Code\n# 定数\nr_cl = 181  # pm\nr_i = 220  # pm\n# ボルン式の計算\ndelta_G_S_circ_cl = -1 / r_cl * 6.86e4  # kJ/mol\ndelta_G_S_circ_i = -1 / r_i * 6.86e4  # kJ/mol\nprint(f\"ΔG_S^°(Cl-): {delta_G_S_circ_cl:.3f} kJ/mol\")\nprint(f\"ΔG_S^°(I-): {delta_G_S_circ_i:.3f} kJ/mol\")\n\n\nΔG_S^°(Cl-): -379.006 kJ/mol\nΔG_S^°(I-): -311.818 kJ/mol\n\n\n\n\n\n\n\n4-1.\nネルンストの式を導き出せ。\n\n\n\n\n\n\n解答\n\n\n\n\n\n\\[\n\\ce{Ox^{z+}} + ne^- \\ce{&lt;=&gt; Red^{(z-n)+}}\n\\]\n\\[\n\\begin{aligned}\n\\mu_{\\ce{Ox}} &= \\mu_{\\ce{Ox}}^{O} + RT \\ln a_{\\ce{Ox}} + z_i F \\phi_{Liq} \\\\\n\\mu_{\\ce{Red}} &= \\mu_{\\ce{Red}}^{O} + RT \\ln a_{\\ce{Red}} + (z-n)F \\phi_{Liq} \\\\\n\\mu_{e^-} &= \\mu_{e^-}^{O} + RT \\ln a_{e^-} - F \\phi_{M}\n\\end{aligned}\n\\]\nこれらを組み合わせて、\n\\[\n\\begin{aligned}\n\\Delta \\phi &= \\frac{\\mu_{\\ce{Ox}} - \\mu_{\\ce{Red}} + n \\mu_{e^-}}{\\Delta n F} + \\frac{RT}{nF} \\ln \\frac{a_{\\ce{Ox}}}{a_{\\ce{Red}}} \\\\\n&= \\frac{\\Delta G}{\\Delta n F} + \\frac{RT}{nF} \\ln \\frac{a_{\\ce{Ox}}}{a_{\\ce{Red}}} \\\\\n&= E^O + \\frac{RT}{nF} \\ln \\frac{a_{\\ce{Ox}}}{a_{\\ce{Red}}}\n\\end{aligned}\n\\]\nこれ以降はこの式一本で色々とやっていくだけ。\n\n\n\n\n\n4-2.\n以下の溶解反応における標準酸化還元電位（標準電位）vs SHE を標準生成ギブズエネルギー変化より求めよ\n\n\\[\n\\mathrm{Zn} \\rightleftharpoons \\mathrm{Zn}^{2+} + 2e^-\n\\]\n\\[\n\\mathrm{Al}^{3+} + 3e^- \\rightleftharpoons \\mathrm{Al}\n\\]\n\n\n\n\n\n\n\n解答\n\n\n\n\n\nThis is an example of a callout with a title.",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料電気化学"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3S/材料電気化学.html#sec-born_eq",
+    "href": "posts/univ_lecs/3S/材料電気化学.html#sec-born_eq",
+    "title": "材料電気化学",
+    "section": "ボルンの式",
+    "text": "ボルンの式\n真空と溶液内には自由エネルギー差があるのだが、その差ってのはイオンを真空から溶液内に移すだけの仕事の差だと考えるモデル。\n\\[\nw = \\int_0^{Ze} \\frac{q}{4\\pi r \\epsilon_0 \\epsilon_r} \\dd q = \\frac{Ze^2}{8\\pi \\epsilon_0 \\epsilon_r}\n\\]\nこれを真空から溶液内に移すと、\n\\[\n\\Delta G_S^\\circ = \\frac{ZN_Ae^2}{8\\pi \\epsilon_0 r} \\qty(1 - \\frac{1}{\\epsilon_r})\n\\]\nこれをボルン式と呼んでいる。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3S",
+      "材料電気化学"
     ]
   }
 ]
