@@ -1509,11 +1509,20 @@ $$
 
 #### (2) 鎖長と濃度の関係
 
-熱力学的鎖長の逆数が $[S]/[M]$ に比例することを示せ。ただし、[S] は開始剤濃度、[M] はモノマー濃度とする。
+熱力学的鎖長の逆数が $[S]/[M]$ に比例することを示せ。ただし、[S] は連鎖移動剤濃度、[M] はモノマー濃度とする。
 
 #### (3) 計算問題
 
-作問中。
+ラジカル重合において、モノマー濃度 $[\mathrm{M}] = 1.0\ \mathrm{mol/L}$ に固定し、
+開始剤とは別に連鎖移動剤 S を加えて重合を行ったところ、以下のような結果が得られた。
+
+| $[\mathrm{S}] \ \mathrm{M}$ | $\nu$ |
+|---|---|
+| 0.002 | 100 |
+| 0.004 | 100/3 |
+
+このとき、連鎖移動定数 $C_{tr}$ を求めよ。また、 $[\ce{S}] = 0.006\ \mathrm{M}$ のときの $\nu$ を求めよ。
+
 
 ::: {.callout-note collapse="true"}
 ##### 理論
@@ -1522,6 +1531,8 @@ $$
 
 - 開始反応、連鎖開始、連鎖成長、連鎖停止、連鎖移動反応
 - ポリマーの生成速度は、 $\ce{P+R^.->P^.}$ の反応速度に等しい
+
+(3) は、まあ学生が作れる程度の問題だとこんなもの。
 
 :::
 
@@ -1582,8 +1593,7 @@ $$
 
 (3)
 
-
-
+代入すれば、 $C_{tr} = 2.5, \nu = 50$ となる。
 
 ::: 
 
@@ -1594,7 +1604,83 @@ $$
 - $\ce{A -> R}$（反応速度定数 $k_1$）
 - $\ce{A -> S}$（反応速度定数 $k_2$）
 
-これらの反応における正味の生成速度と平衡時の濃度関係を示す図を描き、反応速度式を導出せよ。
+これらの反応における正味の生成速度と平衡時の濃度関係を示す図を描き $k_1/k_2$ の関係を確かめよ。
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+$\ce{A}$ の量についての微分方程式は次のとおり。
+
+$$
+\begin{aligned}
+\dv{[\ce{A}]}{t} &= - (k_1 + k_2)[\ce{A}] \\
+[\ce{A}] &= [\ce{A}]_0 \exp\qty{-(k_1 + k_2)t}
+\end{aligned}
+$$
+
+ここで、 $\ce{R}$ の生成量は、
+
+$$
+\begin{aligned}
+\dv{[\ce{R}]}{t} &= k_1[\ce{A}] \\
+[\ce{R}] &= \int_0^t k_1[\ce{A}]_0 \exp\qty{-(k_1 + k_2)t} \dd t \\
+&= \frac{k_1[\ce{A}]_0}{k_1 + k_2} \qty{1 - \exp\qty{-(k_1 + k_2)t}}
+\end{aligned}
+$$
+
+$\ce{S}$ の生成量も同様にして、
+
+$$
+[\ce{S}] = \frac{k_2[\ce{A}]_0}{k_1 + k_2} \qty{1 - \exp\qty{-(k_1 + k_2)t}}
+$$
+
+これらは以下のようにグラフにできて、
+
+```{python}
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# 初期濃度と速度定数
+A0 = 1.0  # mol/L
+k1 = 0.1  # s^-1
+k2 = 0.05  # s^-1
+k_total = k1 + k2
+
+# 時間範囲
+t = np.linspace(0, 100, 500)
+
+# 濃度の時間変化
+A_t = A0 * np.exp(-k_total * t)
+R_t = (k1 / k_total) * A0 * (1 - np.exp(-k_total * t))
+S_t = (k2 / k_total) * A0 * (1 - np.exp(-k_total * t))
+
+# グラフの描画
+plt.figure(figsize=(10, 6))
+plt.plot(t, A_t, label='[A] (mol/L)')
+plt.plot(t, R_t, label='[R] (mol/L)')
+plt.plot(t, S_t, label='[S] (mol/L)')
+plt.xlabel('Time (s)')
+plt.ylabel('Concentration (mol/L)')
+plt.title('R, S Density')
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+```
+
+$$
+\begin{aligned}
+[\ce{R}]_\infty &= \frac{k_1[\ce{A}]_0}{k_1 + k_2} \\
+[\ce{S}]_\infty &= \frac{k_2[\ce{A}]_0}{k_1 + k_2} \\
+\frac{k_1}{k_2} &= \frac{[\ce{R}]_\infty}{[\ce{S}]_\infty}
+\end{aligned}
+$$
+
+この比がグラフから読み取れる。
+
+
+:::
 
 ### [4] 固体表面との反応速度
 
