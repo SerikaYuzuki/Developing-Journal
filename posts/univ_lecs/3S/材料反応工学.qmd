@@ -1162,143 +1162,6 @@ $$
 
 ## 後半戦
 
-### 1回目
-
-
-#### 問１
-
-面心立方格子をもつ Pt の格子定数 $a = 0.4\ \mathrm{nm}$ としたとき、  
-$(100)$ 面の **1 cm⁻²** あたりに含まれる Pt 原子の個数を求めよ。
-
-::: {.callout-tip collapse="true"}
-##### 解答
-
-単位格子表面には、手前の1/4が4つ、真ん中の1があるとして、合計2個の原子があるとする。
-
-$$
-N_s = \frac{2}{a^2} = 1.25 \times 10^{19} \mathrm{m^{-2}}
-$$
-
-これを1 cm²について考えると、
-
-$$
-N_s = \frac{2}{a^2} \times 10^{-15} \mathrm{m^2}
-$$
-
-::: 
-
-#### 問２
-
-Hertz–Knudsen の式から、数秒以内に全ての Pt 原子に分子が吸着することを示せ。  
-
-以下の条件を用いること：  
-- 圧力 $p = 1.33\times10^{-4}\ \mathrm{Pa}$  
-- 分子質量 $m = 28$ （$N_2$ または CO）  
-- 温度 $T = 300\ \mathrm{K}$  
-- ボルツマン定数 $k_B = 1.38\times10^{-23}\ \mathrm{J\,K^{-1}}$  
-
-::: {.callout-note collapse="true"}
-##### 理論
-
-Hertz-Knudsen式は、@sec-hertz-knudsen で述べた通り。
-
-$$
-z = \frac{p}{\sqrt{2\pi m k_B T}}
-$$
-
-:::
-
-::: {.callout-tip collapse="true"}
-##### 解答
-
-$$
-z = 3.8 \times 10^{14} \mathrm{cm^{-2}s^{-1}}
-$$
-
-なので、
-
-$$
-r = \frac{N_s}{z} = 3.3 \mathrm{s}
-$$
-
-となる。
-
-::: 
-
-
-
-
-### 2回目
-
-#### 問１
-
-０次反応では昇温とともに脱離量が指数関数的に増加し、あるところで突然0となる。この振る舞いをする理由を Wigner-Polanyi の関係式を用いて説明せよ。
-
-::: {.callout-note collapse="true"}
-##### 理論
-
-Wigner-Polanyiの関係式は、@sec-wigner-polanyi で述べた通り。
-
-$$
-\begin{aligned}
-r_{\text{des}} &= - \dv{\theta}{t} = k \theta^n \\
-&= \nu_n \theta^n \exp \qty(-\frac{E_n}{RT})
-\end{aligned}
-$$
-
-:::
-
-::: {.callout-tip collapse="true"}
-##### 解答
-
-0次反応では、$n=0$ となる。このとき、
-
-$$
-r_{\text{des}} = -\dv{\theta}{t} = \nu_0 \exp \qty(-\frac{E_0}{RT})
-$$
-
-となる。ここで昇温処理をしているので、
-
-$$
-\dv{\theta}{t} = \beta \dv{\theta}{T}
-$$
-
-となる。これを代入すると、
-
-$$
--\beta \dv{\theta}{T} = \nu_0 \exp \qty(-\frac{E_0}{RT})
-$$
-
-となる。これを積分すると、
-
-$$
-\theta_0 - \theta(T) = \frac{\nu_0}{\beta} \int_{T_0}^{T_1} \exp \qty(-\frac{E_0}{RT}) \dd{T}
-$$
-
-となる。これは、昇温とともに指数関数的に脱離が増えることを示しているが、 $\theta(T) = 0$ となるところで、被覆物質がなくなり、つまり脱離が止まることを示している。
-
-::: 
-
-#### 問２
-
-一次反応では、昇温と共に脱離量が山形のピークを形成する。
-このように振舞う理由を Wigner–Polanyi 型速度式の $\theta$ と $\exp\bigl(-E/(k_B T)\bigr)$ の温度依存性から説明せよ。
-
-::: {.callout-note collapse="true"}
-##### 理論
-
-@sec-tpd で述べた通り。
-
-:::
-
-::: {.callout-tip collapse="true"}
-##### 解答
-
-This is an example of a callout with a title.
-::: 
-
-
-
 # 過去問
 
 <!-- 
@@ -1756,7 +1619,252 @@ $$
 ::: 
 
 
+## 後半戦確認テスト
 
 
+### 1回目
 
 
+#### 問１
+
+面心立方格子をもつ Pt の格子定数 $a = 0.4\ \mathrm{nm}$ としたとき、  
+$(100)$ 面の **1 cm⁻²** あたりに含まれる Pt 原子の個数を求めよ。
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+単位格子表面には、手前の1/4が4つ、真ん中の1があるとして、合計2個の原子があるとする。
+
+$$
+N_s = \frac{2}{a^2} = 1.25 \times 10^{19} \mathrm{m^{-2}}
+$$
+
+これを1 cm²について考えると、
+
+$$
+N_s = \frac{2}{a^2} \times 10^{-15} \mathrm{m^2}
+$$
+
+::: 
+
+#### 問２
+
+Hertz–Knudsen の式から、数秒以内に全ての Pt 原子に分子が吸着することを示せ。  
+
+以下の条件を用いること：  
+- 圧力 $p = 1.33\times10^{-4}\ \mathrm{Pa}$  
+- 分子質量 $m = 28$ （$N_2$ または CO）  
+- 温度 $T = 300\ \mathrm{K}$  
+- ボルツマン定数 $k_B = 1.38\times10^{-23}\ \mathrm{J\,K^{-1}}$  
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+Hertz-Knudsen式は、@sec-hertz-knudsen で述べた通り。
+
+$$
+z = \frac{p}{\sqrt{2\pi m k_B T}}
+$$
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+$$
+z = 3.8 \times 10^{14} \mathrm{cm^{-2}s^{-1}}
+$$
+
+なので、
+
+$$
+r = \frac{N_s}{z} = 3.3 \mathrm{s}
+$$
+
+となる。
+
+::: 
+
+### 2回目
+
+#### 問１
+
+2種類の分子が表面吸着する場合の吸着等温式を導け。
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+$$
+\begin{aligned}
+k_a^A(1 -\theta_A - \theta_B)[\ce{A}] &= k_d^A \theta_A \\
+k_a^B(1 -\theta_A - \theta_B)[\ce{B}] &= k_d^B \theta_B \\
+K^A[\ce{A}] \triangleq \frac{k_a^A}{k_d^A} &= \frac{\theta_A}{1 -\theta_A - \theta_B} \\
+K^B[\ce{B}] \triangleq \frac{k_a^B}{k_d^B} &= \frac{\theta_B}{1 -\theta_A - \theta_B} \\
+\frac{K^A[\ce{A}]}{K^B[\ce{B}]} &= \frac{\theta_A}{\theta_B} \\
+\theta_A &= \frac{K^A[\ce{A}]}{1 + K^A[\ce{A}] + K^B[\ce{B}]} \\
+\theta_B &= \frac{K^B[\ce{B}]}{1 + K^A[\ce{A}] + K^B[\ce{B}]} \\
+\end{aligned}
+$$
+
+ここで、 $\theta_A, \theta_B$ はそれぞれA, Bの表面被覆率である。
+
+```{python}
+import numpy as np
+import plotly.graph_objs as go
+
+# K^A[A] の範囲（x軸）
+x = np.linspace(0, 20, 500)
+
+# 吸着率 θ_A の定義
+theta_A_case1 = x / (x + 2)    # K^B[B] = 1
+theta_A_case2 = x / (x + 11)   # K^B[B] = 10
+
+# グラフ描画
+fig = go.Figure()
+
+fig.add_trace(go.Scatter(
+    x=x, y=theta_A_case1,
+    mode='lines',
+    name='K^B[B] = 1'
+))
+
+fig.add_trace(go.Scatter(
+    x=x, y=theta_A_case2,
+    mode='lines',
+    name='K^B[B] = 10'
+))
+
+fig.update_layout(
+    title='θ_A と K^A[A] の関係（競合吸着）',
+    xaxis_title='K^A [A]',
+    yaxis_title='θ_A',
+    legend_title='条件',
+    yaxis=dict(range=[0, 1]),
+    font=dict(family="Arial", size=16)  # 日本語化はブラウザ依存
+)
+
+fig.show()
+```
+
+::: 
+
+### 3回目
+
+#### 問１
+
+０次反応では昇温とともに脱離量が指数関数的に増加し、あるところで突然0となる。この振る舞いをする理由を Wigner-Polanyi の関係式を用いて説明せよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+Wigner-Polanyiの関係式は、@sec-wigner-polanyi で述べた通り。
+
+$$
+\begin{aligned}
+r_{\text{des}} &= - \dv{\theta}{t} = k \theta^n \\
+&= \nu_n \theta^n \exp \qty(-\frac{E_n}{RT})
+\end{aligned}
+$$
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+0次反応では、$n=0$ となる。このとき、
+
+$$
+r_{\text{des}} = -\dv{\theta}{t} = \nu_0 \exp \qty(-\frac{E_0}{RT})
+$$
+
+となる。ここで昇温処理をしているので、
+
+$$
+\dv{\theta}{t} = \beta \dv{\theta}{T}
+$$
+
+となる。これを代入すると、
+
+$$
+-\beta \dv{\theta}{T} = \nu_0 \exp \qty(-\frac{E_0}{RT})
+$$
+
+となる。これを積分すると、
+
+$$
+\theta_0 - \theta(T) = \frac{\nu_0}{\beta} \int_{T_0}^{T_1} \exp \qty(-\frac{E_0}{RT}) \dd{T}
+$$
+
+となる。これは、昇温とともに指数関数的に脱離が増えることを示しているが、 $\theta(T) = 0$ となるところで、被覆物質がなくなり、つまり脱離が止まることを示している。
+
+::: 
+
+#### 問２
+
+一次反応では、昇温と共に脱離量が山形のピークを形成する。
+このように振舞う理由を Wigner–Polanyi 型速度式の $\theta$ と $\exp\bigl(-E/(k_B T)\bigr)$ の温度依存性から説明せよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+@sec-tpd で述べた通り。
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+0次については吸着が有限のため、離脱料がある程度以上増えると離脱が止まる。
+
+1次については、一度指数関数的に増加するも、次第に小さくなる。
+
+::: 
+
+### 4回目
+
+#### 問1
+
+ある種の反応では温度上昇に伴って反応の速度が低下することが観測される。この理由について見かけの活性化エネルギーに着目してエネルギーダイアグラムを使って説明せよ。
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+![](images/%E5%8F%8D%E5%BF%9C%E5%B7%A5%E5%AD%A6/3.png)
+
+見かけ上の活性化エネルギーが負になり、温度が上がるにつれて反応速度が遅くなる。
+
+::: 
+
+#### 問2
+
+Roginsky-Zeldovich 型吸着等温式は以下の様に書かれる：
+
+吸着：
+$$
+v_a = k_a p_a \exp(-\alpha \theta)
+$$
+
+脱離：
+$$
+v_d = k_d \exp(\beta \theta)
+$$
+
+ここで $\alpha$, $\beta$ は定数である。  
+吸着と脱離が平衡のときの被覆率 $\theta$ を求めよ。
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+イコールで結ぶだけで、
+
+$$
+\theta = \frac{1}{\alpha + \beta}\ln K p_a
+$$
+
+::: 
+
+### 5回目
+
+眠気のため、答えだけ。
+
+$\ce{CO}$ 酸化反応では、$\ce{O2}$ の解離吸着が律速段階となることが多く、$\ce{O2}$ の表面供給が重要である。$\ce{CO}/\ce{O2}$ 比が大きくなると、$\ce{CO}$ が表面を占有して $\ce{O2}$ の吸着・解離が妨げられる。その結果、$\ce{CO2}$ 生成反応が進行するにはより高温が必要となり、反応の活性温度が高温側にシフトする。
