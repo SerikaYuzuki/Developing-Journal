@@ -1430,7 +1430,10 @@ $$
 また、次のような反応式の場合についても考えよ。
 
 $$
-r = \frac{K_1[\ce{A}]^2[\ce{B}]}{1+K_2[\ce{A}]}
+\begin{aligned}
+&\ce { 2A + B -> A2B} \\
+&r = \frac{K_1[\ce{A}]^2[\ce{B}]}{1+K_2[\ce{A}]}
+\end{aligned}
 $$
 
 ::: {.callout-note collapse="true"}
@@ -1448,7 +1451,7 @@ $$
 $$
 \begin{aligned}
 \ce{B + B -> B2} \quad &r_1 = k_1[\ce{B}]^2 \\
-\ce{A + B2 -> AB} \quad &r_3 = k_3[\ce{A}][\ce{B2}] \\
+\ce{2A + B2 -> 2AB} \quad &r_3 = k_3[\ce{A}]^2[\ce{B2}] \\
 \end{aligned}
 $$
 
@@ -1457,8 +1460,8 @@ $$
 $$
 \begin{aligned}
 K &= \frac{[\ce{B2}]}{[\ce{B}]^2} \\
-r_{\mathrm{total}} &= k_2[\ce{A}][\ce{B2}] \\
-&= Kk_1[\ce{B}]^2[\ce{A}]
+r_{\mathrm{total}} &= k_2[\ce{A}]^2[\ce{B2}] \\
+&= Kk_1[\ce{B}]^2[\ce{A}]^2
 \end{aligned}
 $$
 
@@ -1468,10 +1471,10 @@ $$
 
 $$
 \begin{aligned}
-\dv{[\ce{B2}]}{t} &= k_1[\ce{B}]^2 -k_2[\ce{B2}] - k_3[\ce{A}][\ce{B2}] + k_4[\ce{AB}] = 0\\
-[\ce{B2}] &= \frac{k_1[\ce{B}]^2 + k_4[\ce{AB}]}{k_2 + k_3[\ce{A}]} \\
-r_{\mathrm{total}} &= k_2[\ce{A}][\ce{B2}] \\
-&= \frac{k_1k_2[\ce{A}][\ce{B}]^2 + k_1k_4[\ce{A}][\ce{AB}]}{k_2 + k_3[\ce{A}]}
+\dv{[\ce{B2}]}{t} &= k_1[\ce{B}]^2 -k_2[\ce{B2}] - k_3[\ce{A}]^2[\ce{B2}] + k_4[\ce{AB}]^2 = 0\\
+[\ce{B2}] &= \frac{k_1[\ce{B}]^2 + k_4[\ce{AB}]^2}{k_2 + k_3[\ce{A}]^2} \\
+r_{\mathrm{total}} &= k_2[\ce{A}]^2[\ce{B2}] \\
+&= \frac{k_1k_2[\ce{A}]^2[\ce{B}]^2 + k_1k_4[\ce{A}]^2[\ce{AB}]^2}{k_2 + k_3[\ce{A}]^2}
 \end{aligned}
 $$
 
@@ -1695,6 +1698,32 @@ $$
 - $k_l$：液-固間の物質移動速度定数
 - $k''$：表面反応速度定数
 - $C_A$：液中のAの濃度
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+拡散段階では、
+
+$$
+r_\mathrm{diff} = k_l ([\ce{A}] - [\ce{A}]_s)
+$$
+
+ここで、 $[\ce{A}]_s$ は表面の濃度である。
+
+表面反応段階では、
+
+$$
+r_\mathrm{surf} = k'' [\ce{A}]_s
+$$
+
+これに対して、 $r_\mathrm{diff} = r_\mathrm{surf}$ となる定常状態仮定をする。
+
+$$
+\begin{aligned}
+[\ce{A}]_s &= \frac{k_l [\ce{A}]}{k_l + k''} \\
+r_\mathrm{total} &= \frac{k_l k'' [\ce{A}]}{k_l + k''}
+$$
+::: 
 
 ### [5] 拡散と触媒粒子サイズの関係
 
