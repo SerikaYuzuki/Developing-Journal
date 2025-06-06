@@ -1,5 +1,8 @@
 project:
   type: website
+
+execute:
+  freeze: auto
     
 website:
   title: "芹香のブログ：セリポンポン 気軽にコメント残してね！"
@@ -24,18 +27,20 @@ website:
     # Contents of sidebar
     contents: 
       - about.qmd
-      - section: UE5 Aura Courses
-        contents: posts/ue5_aura_courses/*
-      - section: UE5 Project
-        contents: posts/ue5_project/*
-      - section: PlayGround
-        contents: posts/play_ground/*
-      - section: AtCoder
-        contents: posts/at_coder/*
+      # - section: UE5 Aura Courses
+      #   contents: posts/ue5_aura_courses/*
+      # - section: UE5 Project
+      #   contents: posts/ue5_project/*
+      # - section: PlayGround
+      #   contents: posts/play_ground/*
+      # - section: AtCoder
+      #   contents: posts/at_coder/*
       - section: 大学関連
         contents: posts/univ_lecs/
       - section: 収容所配布用
         contents: posts/収容所配布用/数学/
+      - section: 技術関連
+        contents: posts/tech/*
 
     # Tools of sidebar
     tools: 

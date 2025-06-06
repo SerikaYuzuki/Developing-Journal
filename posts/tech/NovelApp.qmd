@@ -1,0 +1,281 @@
+---
+title: "SwiftUIで開発する小説執筆支援アプリ"
+author: "Serika Yuzuki"
+date: "2025-6-7"
+categories: [programming, 2025]
+image: "images/logo.png"
+---
+
+# はじめに
+
+SwiftUIで開発する小説執筆支援アプリを作ってみる。
+
+::: {.column-margin}
+
+あ、当然Nolaさまには文句があるわけでも何でもなく、ただただ自身の学習のために作っています。
+
+それに、私は有料会員でもあるんですよ！〜
+
+:::
+
+## 目的
+
+とりあえず達成したいことは、
+
+- [Nolaノベル](https://nola-novel.com/)さまのような、執筆画面。
+- キャラクターの管理画面
+- フラグや伏線の管理
+- ルビなどのレンダー
+- APIを公開している小説サイトへの投稿管理
+- そうでないサイトでも無理やり投稿できるようにする
+
+## 技術選定
+
+- SwiftUI
+
+とりあえずこれだけで始めた。パッケージを使う際は都度追加していく。
+
+## 開発記録
+
+### セットアップ
+
+SwiftUIを使ったmacOSのセットアップをした。
+
+```swift
+//
+//  ContentView.swift
+//  Novel
+//
+//  Created by SerikaYuzuki on 2025/06/05.
+//
+
+import SwiftUI
+import AppKit
+import Observation
+
+struct ContentView: View {
+    @State private var doc = NovelDocument()
+    
+    var body: some View {
+        NovelTextView(text: $doc.text)
+            .frame(minWidth: 500, minHeight: 600)
+            .navigationTitle("Novel Draft")
+            .toolbar {
+                // 手動保存ボタンも一応
+                Button("Save Now") {
+                    doc.saveNow()
+                }
+            }
+    }
+}
+
+/// 小説本文モデル（Swift 5.9+ 新 Observation）
+@Observable
+final class NovelDocument {
+    /// 画面と双方向バインディングされる本文
+    var text: String = "" {
+        didSet { scheduleSave() }
+    }
+
+    // MARK: - Private
+
+    private let saveURL: URL
+    private var saveWorkItem: DispatchWorkItem?
+
+    init() {
+        let dir = FileManager.default.urls(for: .documentDirectory,
+                                           in: .userDomainMask).first!
+        self.saveURL = dir.appendingPathComponent("Novel.txt")
+        // 起動時にロード
+        self.text = (try? String(contentsOf: saveURL, encoding: .utf8)) ?? ""
+    }
+
+    /// 2 秒間入力が止まったら保存（前回予約があればキャンセル）
+    private func scheduleSave() {
+        saveWorkItem?.cancel()
+        let currentText = text
+        let url = saveURL
+        let task = DispatchWorkItem {
+            try? currentText.write(to: url, atomically: true, encoding: .utf8)
+        }
+        saveWorkItem = task
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: task)
+    }
+
+    /// 明示的に即時保存したいときに呼ぶ
+    func saveNow() {
+        try? text.write(to: saveURL, atomically: true, encoding: .utf8)
+    }
+}
+
+/// SwiftUI から使う AppKit NSTextView ラッパ
+struct NovelTextView: NSViewRepresentable {
+    @Binding var text: String
+    
+    func makeCoordinator() -> Coordinator { Coordinator(self) }
+    
+    func makeNSView(context: Context) -> NSScrollView {
+        // スクロールビュー
+        let scroll = NSScrollView()
+        scroll.hasVerticalScroller = true
+        
+        // NSTextView（inset 0）
+        let textView = IndentAwareTextView()
+        textView.isRichText = false
+        textView.isAutomaticQuoteSubstitutionEnabled = false
+        textView.usesFindPanel = true
+        textView.font = .userFixedPitchFont(ofSize: 14)
+        textView.delegate = context.coordinator
+        
+        // --- visual & layout fixes ---
+        textView.backgroundColor = .textBackgroundColor   // 1. 背景ハッキリ
+        textView.textColor = .labelColor                  // 2. 常に見える文字色
+        textView.drawsBackground = true                   // 3. 透明禁止
+        
+        textView.autoresizingMask = [.width]              // follow scroll width
+        textView.minSize = NSSize(width: 0, height: 0)
+        textView.maxSize = NSSize(width: CGFloat.greatestFiniteMagnitude,
+                                  height: CGFloat.greatestFiniteMagnitude)
+        textView.isVerticallyResizable = true
+        textView.isHorizontallyResizable = false
+        
+        // スクロールビューと結合（*ここ*より後に containerSize を設定する）
+        scroll.documentView = textView
+        
+        textView.textContainer?.containerSize = NSSize(
+            width: scroll.contentSize.width,
+            height: CGFloat.greatestFiniteMagnitude)
+        textView.textContainer?.widthTracksTextView = true
+        
+        textView.typingAttributes = [
+            .foregroundColor: NSColor.labelColor,
+            .font: textView.font ?? NSFont.monospacedSystemFont(ofSize: 14, weight: .regular)
+        ]
+        
+        // SwiftUI→AppKit の初期値
+        textView.string = text
+        context.coordinator.textView = textView
+        return scroll
+    }
+    
+    func updateNSView(_ nsView: NSScrollView, context: Context) {
+        // AppKit→SwiftUI の反映は delegate 側で行うのでここは空
+    }
+    
+    class Coordinator: NSObject, NSTextViewDelegate {
+        var parent: NovelTextView
+        weak var textView: NSTextView?
+        init(_ parent: NovelTextView) { self.parent = parent }
+        
+        func textDidChange(_ notification: Notification) {
+            guard let tv = textView, tv.string != parent.text else { return }
+            parent.text = tv.string
+        }
+    }
+}
+
+/// 改行時に自動字下げするカスタム NSTextView
+final class IndentAwareTextView: NSTextView {
+    private let indent = "　"
+    
+    override func insertNewline(_ sender: Any?) {
+        super.insertNewline(sender)        // ← まず普通に改行
+        super.insertText(indent, replacementRange: selectedRange()) // 字下げ
+    }
+}
+
+// #Previewブロックの中では、このコンテナビューを呼び出すだけにする
+#Preview {
+    ContentView()
+}
+```
+
+#### Optional
+
+SwiftのOptionalは、`nil`を許容するかどうかを表す型。
+
+```swift
+// Swift
+var name: String?    // これは「名前があるかもしれないし、ないかもしれない」変数
+
+name = "さくら"      // 値を入れる
+print(name)          // Optional("さくら")
+
+name = nil           // 値がない状態にする
+print(name)          // nil
+```
+
+Rustでやってた時の、`Option<T>`というtypeに近いことをやっていそう。unwrapする必要がないみたい。
+
+#### Observartion
+
+[WWDC2023で発表された](https://developer.apple.com/jp/videos/play/wwdc2023/10149) 機能。デレゲートってわけでもなく、コンパイラーが勝手にクラス内のVariableの変更を検知してくれるとかっていう摩訶不思議なことをやっているらしい。
+
+::: {.column-margin}
+
+Apple公式で説明がされてるんだが、マジでわかりやすかった。開発者としてこういうのが手厚いといいよねと思う。他の言語やライブラリって、手書きのドキュメントは充実してることはあっても、こういうのはないよね。ちょっと新鮮。
+
+ただ、swiftはドキュメントがあまり充実してないのは、ちょっと困る。
+
+:::
+
+えーと、……どういうこと？
+
+内部で実際に何が行われているのかはわからないが、
+
+```swift
+import SwiftUI
+import Observation
+
+@Observable
+class CounterModel {
+    var count = 0
+}
+
+struct ContentView: View {
+    @State private var model = CounterModel()
+    
+    var body: some View {
+        VStack {
+            Text("カウント: \(model.count)")
+            Button("増やす") {
+                model.count += 1
+            }
+        }
+        .padding()
+    }
+}
+```
+
+こんな感じで書くと、ボタンを押したらUIが勝手にリフレッシュして、カウントが増えた状態のUIにアップデートされるみたい。
+
+#### Grand Central Dispatch
+
+Concurrent execution を手伝ってくれるクッソ有能なフレームワーク。とりあえず今はディレイをかけることに使っているので、そのSample Codeだけ載せておく。
+
+```swift
+import Foundation
+
+let task = DispatchWorkItem {
+    print("3秒後に実行されるよ")
+}
+
+DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: task)
+
+// もし途中でキャンセルしたい場合
+// task.cancel()
+```
+
+`main`というのは、メインスレッドのこと。UIとかはこのスレッドに入れて処理させてる。メインスレッド以外には`high, default, low, background`という優先度があって、`DispatchQueue.global(qos: .background)`とかで指定できる。
+
+`sync, async`は、synchronously execute させるかどうか。`sync`を`main`で使うと、終わるまでプロセスが固まる。
+
+#### 
+
+
+
+
+
+
+
+
