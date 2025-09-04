@@ -251,7 +251,7 @@ struct ContentView: View {
 
 #### Grand Central Dispatch
 
-Concurrent execution を手伝ってくれるクッソ有能なフレームワーク。とりあえず今はディレイをかけることに使っているので、そのSample Codeだけ載せておく。
+Concurrent execution を手伝ってくれるクッソ有能なフレームワーク。公式ドキュメントは[ここ](https://developer.apple.com/documentation/dispatch/dispatchqueue)。とりあえず今はディレイをかけることに使っているので、そのSample Codeだけ載せておく。
 
 ```swift
 import Foundation
@@ -270,12 +270,64 @@ DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: task)
 
 `sync, async`は、synchronously execute させるかどうか。`sync`を`main`で使うと、終わるまでプロセスが固まる。
 
-#### 
+#### モジュール化
 
+Swift Package Manager を使って、モジュール化をしていく。 File > Add > Packages で、モジュールを追加できる。
 
+これで、自分が作ってるアプリ自体を指定すれば、その中にモジュールを追加できるみたいだ。これでただ独立して開発しやすくなるだけじゃなく、コンパイルキャッシュも勝手に使ってくれるらしい。
 
+あ、注意として、PackageのDependenciesは都度いじらないといけない。
 
+#### Swift Data
 
+プレーンテキストで扱うのはすぐに限界が来そうなので、この時点でデータベースを導入していく。`@Model`とつけるだけの簡単なお仕事でちょっと面白い。
+
+モデル同士のやり取りは、
+
+```swift
+@Model
+class Author {
+    @Attribute(.unique) var id: UUID
+    var name: String
+
+    // One-to-Many（親側ビュー）
+    @Relationship(delete: .cascade, inverse: \Book.author)
+    var books: [Book]
+}
+
+@Model
+class Book {
+    @Attribute(.unique) var id: UUID
+    var title: String
+
+    // Many-to-One（子側ビュー）
+    @Relationship(inverse: \Author.books)
+    var author: Author?
+}
+```
+
+こんな感じで`@Relationship`とつけるだけで、モデル同士のやり取りができる。
+
+##### SchemaやContext、Container周りの話
+
+![この動画](https://developer.apple.com/jp/videos/play/wwdc2023/10195/)にかなりちゃんとまとめられているが、
+
+{{< video https://developer.apple.com/jp/videos/play/wwdc2023/10195/ >}}
+
+簡単にまとめる。
+
+Schemaってのはモデルで定義したクラス自体の話をしていて、ContainerはそのSchemaをどの様に保存したり、どこに保存したりを指定するときに使うクラス、ContextはそのContainerを使ってSchemaの中身、つまりデータの中身自体の保存などをする時に使う。
+
+```swift
+let configuration = ModelConfiguration(
+    isStoredInMemoryOnly: true)
+let container = try! ModelContainer(
+    for: NovelDocument.self,
+    configurations: configuration)
+let context = ModelContext(container)
+```
+
+とりあえずこんな感じでやってみたんだが、詳しいことは書けない。
 
 
 

@@ -6,6 +6,7 @@ categories: [Math]
 image: "images/thumbnail.jpg"
 ---
 
+$\require{physics}$
 
 ## 1
 
@@ -143,3 +144,132 @@ $$
 を求めよ。ただし $a, b$ は正の定数とする。
 
 ### 解答
+
+## 6
+
+|難易度|所要時間|
+|---|---|
+|B|20分|
+
+### 問題
+
+(1) $x > 0,\; 0<\theta<\frac{\pi}{2}$ とする。
+
+$$
+\frac{e^x+e^{-x}}{2} = \frac{1}{\cos \theta}
+$$
+
+となるとき、 $\dv{x}{\theta}$ を求めよ。
+
+(2) 次の極限値を求めよ
+
+$$
+\int_{-\infty}^{\infty} \qty( \frac{2}{e^x+e^{-x}} )^n \dd x
+$$
+
+ただし、この極限は収束することは示さなくとも良い。
+
+### 解答
+
+(1)
+
+$$
+x = \frac{e^x + e^{-x}}{2} \cdot \frac{1}{\cos\theta}
+\tag{1}
+$$
+
+両辺を $\theta$ で微分して、
+
+$$
+\frac{dx}{d\theta} = \frac{e^x - e^{-x}}{2} \cdot \frac{\sin\theta}{\cos^2\theta}
+$$
+
+ここで
+
+$$
+y = \frac{e^x + e^{-x}}{2}, \quad y' = \frac{e^x - e^{-x}}{2}
+$$
+
+を用いると、
+
+$$
+\left(\frac{e^x - e^{-x}}{2}\right)^2 = \left(\frac{e^x + e^{-x}}{2}\right)^2 - 1
+$$
+
+となり、
+
+$$
+\frac{e^x - e^{-x}}{2} = \frac{e^x + e^{-x}}{2} \cdot \frac{\sin\theta}{\cos\theta}
+$$
+
+が成り立つ。
+
+これを (2) に代入して、
+
+$$
+\frac{dx}{d\theta} = \frac{\sin\theta}{\cos\theta} \cdot \frac{dx}{d\theta} \cdot \frac{1}{\cos\theta}
+$$
+
+
+(2)
+
+$a \to \infty$ を考えるので、$a>0$ とする。
+
+$$
+\int_{-a}^a \left(\frac{2}{e^x + e^{-x}}\right)^n dx
+= 2\int_{0}^a \left(\frac{2}{e^x + e^{-x}}\right)^n dx
+\tag{5}
+$$
+
+ここで
+
+$$
+e^x + e^{-x} = 2\cosh x
+$$
+
+を用い、$x=0$ のとき $\theta=0$, $x=a$ のとき $\theta = \theta_a$ として変数変換すると、
+
+$$
+(5) = 2\int_{0}^{\theta_a} \cos^{n-1}\theta \, d\theta
+$$
+
+極限 $a\to\infty$ のとき $\theta_a \to \pi/2$ だから、
+
+$$
+I_n = \int_0^{\pi/2} \cos^{n-1}\theta \, d\theta
+\tag{6}
+$$
+
+を得る。部分積分より、
+
+$$
+I_n = (n-1) \int_0^{\pi/2} (1 - \cos^2\theta)\cos^{n-2}\theta \, d\theta
+$$
+
+$$
+I_n = (n-1)(I_{n-2} - I_n)
+$$
+
+$$
+I_n = \frac{n-1}{n} I_{n-2}
+$$
+
+$$
+I_0 = \int_0^{\pi/2} d\theta = \frac{\pi}{2}, \quad
+I_1 = \int_0^{\pi/2} \cos\theta \, d\theta = 1
+$$
+
+- $n=1$ のとき $2I_{n-1} = \pi$  
+- $n$ が奇数のとき：
+
+$$
+2I_{n-1} = \frac{2}{n-2} \cdot \frac{n-2}{n-1} \cdot \frac{n-4}{n-3} \cdots \frac{2}{3} \cdot \frac{\pi}{2}
+$$
+
+- $n=2$ のとき $2I_{n-1} = 2$  
+- $n$ が偶数のとき：
+
+$$
+2I_{n-1} = \frac{2}{n-2} \cdot \frac{n-2}{n-1} \cdot \frac{n-4}{n-3} \cdots \frac{2}{3}
+$$
+

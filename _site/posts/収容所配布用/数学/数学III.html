@@ -638,6 +638,11 @@ window.Quarto = {
   <li><a href="#問題-4" id="toc-問題-4" class="nav-link" data-scroll-target="#問題-4">問題</a></li>
   <li><a href="#解答-4" id="toc-解答-4" class="nav-link" data-scroll-target="#解答-4">解答</a></li>
   </ul></li>
+  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5">6</a>
+  <ul class="collapse">
+  <li><a href="#問題-5" id="toc-問題-5" class="nav-link" data-scroll-target="#問題-5">問題</a></li>
+  <li><a href="#解答-5" id="toc-解答-5" class="nav-link" data-scroll-target="#解答-5">解答</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -649,6 +654,7 @@ window.Quarto = {
 
 
 
+<p><span class="math inline">\(\require{physics}\)</span></p>
 <section id="section" class="level2">
 <h2 class="anchored" data-anchor-id="section">1</h2>
 <table class="caption-top table">
@@ -818,6 +824,123 @@ k \in \left[ -\frac{1}{\sqrt{3} }, \frac{1}{\sqrt{3} } \right]
 </section>
 <section id="解答-4" class="level3">
 <h3 class="anchored" data-anchor-id="解答-4">解答</h3>
+</section>
+</section>
+<section id="section-5" class="level2">
+<h2 class="anchored" data-anchor-id="section-5">6</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>難易度</th>
+<th>所要時間</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>B</td>
+<td>20分</td>
+</tr>
+</tbody>
+</table>
+<section id="問題-5" class="level3">
+<h3 class="anchored" data-anchor-id="問題-5">問題</h3>
+<ol type="1">
+<li><span class="math inline">\(x &gt; 0,\; 0&lt;\theta&lt;\frac{\pi}{2}\)</span> とする。</li>
+</ol>
+<p><span class="math display">\[
+\frac{e^x+e^{-x}}{2} = \frac{1}{\cos \theta}
+\]</span></p>
+<p>となるとき、 <span class="math inline">\(\dv{x}{\theta}\)</span> を求めよ。</p>
+<ol start="2" type="1">
+<li>次の極限値を求めよ</li>
+</ol>
+<p><span class="math display">\[
+\int_{-\infty}^{\infty} \qty( \frac{2}{e^x+e^{-x}} )^n \dd x
+\]</span></p>
+<p>ただし、この極限は収束することは示さなくとも良い。</p>
+</section>
+<section id="解答-5" class="level3">
+<h3 class="anchored" data-anchor-id="解答-5">解答</h3>
+<ol type="1">
+<li></li>
+</ol>
+<p><span class="math display">\[
+x = \frac{e^x + e^{-x}}{2} \cdot \frac{1}{\cos\theta}
+\tag{1}
+\]</span></p>
+<p>両辺を <span class="math inline">\(\theta\)</span> で微分して、</p>
+<p><span class="math display">\[
+\frac{dx}{d\theta} = \frac{e^x - e^{-x}}{2} \cdot \frac{\sin\theta}{\cos^2\theta}
+\]</span></p>
+<p>ここで</p>
+<p><span class="math display">\[
+y = \frac{e^x + e^{-x}}{2}, \quad y' = \frac{e^x - e^{-x}}{2}
+\]</span></p>
+<p>を用いると、</p>
+<p><span class="math display">\[
+\left(\frac{e^x - e^{-x}}{2}\right)^2 = \left(\frac{e^x + e^{-x}}{2}\right)^2 - 1
+\]</span></p>
+<p>となり、</p>
+<p><span class="math display">\[
+\frac{e^x - e^{-x}}{2} = \frac{e^x + e^{-x}}{2} \cdot \frac{\sin\theta}{\cos\theta}
+\]</span></p>
+<p>が成り立つ。</p>
+<p>これを (2) に代入して、</p>
+<p><span class="math display">\[
+\frac{dx}{d\theta} = \frac{\sin\theta}{\cos\theta} \cdot \frac{dx}{d\theta} \cdot \frac{1}{\cos\theta}
+\]</span></p>
+<ol start="2" type="1">
+<li></li>
+</ol>
+<p><span class="math inline">\(a \to \infty\)</span> を考えるので、<span class="math inline">\(a&gt;0\)</span> とする。</p>
+<p><span class="math display">\[
+\int_{-a}^a \left(\frac{2}{e^x + e^{-x}}\right)^n dx
+= 2\int_{0}^a \left(\frac{2}{e^x + e^{-x}}\right)^n dx
+\tag{5}
+\]</span></p>
+<p>ここで</p>
+<p><span class="math display">\[
+e^x + e^{-x} = 2\cosh x
+\]</span></p>
+<p>を用い、<span class="math inline">\(x=0\)</span> のとき <span class="math inline">\(\theta=0\)</span>, <span class="math inline">\(x=a\)</span> のとき <span class="math inline">\(\theta = \theta_a\)</span> として変数変換すると、</p>
+<p><span class="math display">\[
+(5) = 2\int_{0}^{\theta_a} \cos^{n-1}\theta \, d\theta
+\]</span></p>
+<p>極限 <span class="math inline">\(a\to\infty\)</span> のとき <span class="math inline">\(\theta_a \to \pi/2\)</span> だから、</p>
+<p><span class="math display">\[
+I_n = \int_0^{\pi/2} \cos^{n-1}\theta \, d\theta
+\tag{6}
+\]</span></p>
+<p>を得る。部分積分より、</p>
+<p><span class="math display">\[
+I_n = (n-1) \int_0^{\pi/2} (1 - \cos^2\theta)\cos^{n-2}\theta \, d\theta
+\]</span></p>
+<p><span class="math display">\[
+I_n = (n-1)(I_{n-2} - I_n)
+\]</span></p>
+<p><span class="math display">\[
+I_n = \frac{n-1}{n} I_{n-2}
+\]</span></p>
+<p><span class="math display">\[
+I_0 = \int_0^{\pi/2} d\theta = \frac{\pi}{2}, \quad
+I_1 = \int_0^{\pi/2} \cos\theta \, d\theta = 1
+\]</span></p>
+<ul>
+<li><span class="math inline">\(n=1\)</span> のとき <span class="math inline">\(2I_{n-1} = \pi\)</span><br>
+</li>
+<li><span class="math inline">\(n\)</span> が奇数のとき：</li>
+</ul>
+<p><span class="math display">\[
+2I_{n-1} = \frac{2}{n-2} \cdot \frac{n-2}{n-1} \cdot \frac{n-4}{n-3} \cdots \frac{2}{3} \cdot \frac{\pi}{2}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(n=2\)</span> のとき <span class="math inline">\(2I_{n-1} = 2\)</span><br>
+</li>
+<li><span class="math inline">\(n\)</span> が偶数のとき：</li>
+</ul>
+<p><span class="math display">\[
+2I_{n-1} = \frac{2}{n-2} \cdot \frac{n-2}{n-1} \cdot \frac{n-4}{n-3} \cdots \frac{2}{3}
+\]</span></p>
 
 
 </section>

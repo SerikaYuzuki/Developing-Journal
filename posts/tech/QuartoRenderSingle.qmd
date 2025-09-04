@@ -1,0 +1,26 @@
+---
+title: "Quartoで単一ファイルにレンダリングする方法"
+author: "Serika Yuzuki"
+date: "2025-9-5"
+categories: [programming, 2025]
+image: "https://quarto.org/quarto.png"
+---
+
+当たり前の話かもしれないけど、今更だがQuartoで単一ファイルにレンダリングする方法を知ったのでメモ。
+
+これをすれば、単一ファイルだけをレンダリングして、navbarやsidebarのリストも同時に更新される。どうやら都度index.qmdは同時に更新されて、それにつられてnavbarやsidebarも更新されるようだ。
+
+## 方法
+
+```bash
+quarto render hoo.qmd
+```
+
+これだけ。なんで今までずーっと全プロジェクトをレンダーしてたんだ俺は……。
+
+あと、Previewでも同じことができるので、ファイルを作るたびにPreviewをすれば十分だ。
+
+言うまでもないだろうがPreviewのHot Keyは⌘+⇧+Kね。
+
+
+

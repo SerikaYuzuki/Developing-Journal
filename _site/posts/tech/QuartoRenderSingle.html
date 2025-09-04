@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Serika Yuzuki">
-<meta name="dcterms.date" content="2025-05-13">
+<meta name="dcterms.date" content="2025-09-05">
 
-<title>Linkwardenにブックマーク管理を任せる – 芹香のブログ：セリポンポン 気軽にコメント残してね！</title>
+<title>Quartoで単一ファイルにレンダリングする方法 – 芹香のブログ：セリポンポン 気軽にコメント残してね！</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -32,8 +67,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../posts/tech/NovelApp.html" rel="next">
-<link href="../../posts/収容所配布用/数学/過去問演習.html" rel="prev">
+<link href="../../posts/tech/StartUsingCodex.html" rel="next">
+<link href="../../posts/tech/NovelApp.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -291,7 +326,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/tech/linkwarden.html">技術関連</a></li><li class="breadcrumb-item"><a href="../../posts/tech/linkwarden.html">Linkwardenにブックマーク管理を任せる</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/tech/linkwarden.html">技術関連</a></li><li class="breadcrumb-item"><a href="../../posts/tech/QuartoRenderSingle.html">Quartoで単一ファイルにレンダリングする方法</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -303,10 +338,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/tech/linkwarden.html">技術関連</a></li><li class="breadcrumb-item"><a href="../../posts/tech/linkwarden.html">Linkwardenにブックマーク管理を任せる</a></li></ol></nav>
-      <h1 class="title">Linkwardenにブックマーク管理を任せる</h1>
+    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/tech/linkwarden.html">技術関連</a></li><li class="breadcrumb-item"><a href="../../posts/tech/QuartoRenderSingle.html">Quartoで単一ファイルにレンダリングする方法</a></li></ol></nav>
+      <h1 class="title">Quartoで単一ファイルにレンダリングする方法</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">homeserver</div>
                 <div class="quarto-category">programming</div>
                 <div class="quarto-category">2025</div>
               </div>
@@ -326,7 +360,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">May 13, 2025</p>
+        <p class="date">September 5, 2025</p>
       </div>
     </div>
     
@@ -564,7 +598,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/tech/linkwarden.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../posts/tech/linkwarden.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linkwardenにブックマーク管理を任せる</span></a>
   </div>
 </li>
@@ -576,7 +610,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/tech/QuartoRenderSingle.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/QuartoRenderSingle.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Quartoで単一ファイルにレンダリングする方法</span></a>
   </div>
 </li>
@@ -598,13 +632,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#はじめに" id="toc-はじめに" class="nav-link active" data-scroll-target="#はじめに">はじめに</a>
-  <ul class="collapse">
-  <li><a href="#欲しかったブックマーク管理システム" id="toc-欲しかったブックマーク管理システム" class="nav-link" data-scroll-target="#欲しかったブックマーク管理システム">欲しかったブックマーク管理システム</a></li>
-  <li><a href="#linkwarden" id="toc-linkwarden" class="nav-link" data-scroll-target="#linkwarden">Linkwarden</a></li>
-  <li><a href="#mac-iosで使う" id="toc-mac-iosで使う" class="nav-link" data-scroll-target="#mac-iosで使う">mac, iosで使う</a></li>
-  <li><a href="#その後" id="toc-その後" class="nav-link" data-scroll-target="#その後">その後</a></li>
-  </ul></li>
+  <li><a href="#方法" id="toc-方法" class="nav-link active" data-scroll-target="#方法">方法</a></li>
   </ul>
 </nav>
     </div>
@@ -616,41 +644,16 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="はじめに" class="level1">
-<h1>はじめに</h1>
-<p>safariのブックマーク管理って使いやすいんだけど、使いにくくない？（自己矛盾）</p>
-<p>確かにApple ecosystemにいるワイにとってはクッソ便利なんやけど、なんだかんだえっちっちなリンクの保管のためだけに使ってるし、プログラミング的に有用なリンクとなってのもそういうのに目移りしてしまって、……ね？</p>
-<p>他のブラウザとの互換性もないし、ページが消えたらちゃんちゃんおしまい！　悲しいね。</p>
-<p>だから、Linkwardenに任せることにした。</p>
-<section id="欲しかったブックマーク管理システム" class="level2">
-<h2 class="anchored" data-anchor-id="欲しかったブックマーク管理システム">欲しかったブックマーク管理システム</h2>
-<ul>
-<li>ブックマークマネージャー</li>
-<li>新しいタブに使える</li>
-<li>ブックマークページの自動アーカイブ</li>
-<li>ブックマークページの自動カテゴリ分け</li>
-</ul>
-</section>
-<section id="linkwarden" class="level2">
-<h2 class="anchored" data-anchor-id="linkwarden">Linkwarden</h2>
-<p>casaOSのデフォルトのやつをとりあえず使ってみた。</p>
-<p>PORTを3000から外すと問題を起こしたので、環境変数を</p>
-<pre><code>CLIENT_PORT=3010</code></pre>
-<p>として起動したら動いた。</p>
-</section>
-<section id="mac-iosで使う" class="level2">
-<h2 class="anchored" data-anchor-id="mac-iosで使う">mac, iosで使う</h2>
-<p>shortcutsでやるんだけど、できれば正規の拡張機能が欲しいよね。</p>
-<p>てな訳で時間があったらやるわ（）</p>
-</section>
-<section id="その後" class="level2">
-<h2 class="anchored" data-anchor-id="その後">その後</h2>
-<p>結局、色々と使いにくさが発覚。</p>
-<p>トップページにするには、いちいちローカルではなく、リモートにあるものにアクセスする不便さ、ショートカットはあるとはいえど、それだけではちょっと使いにくい。</p>
-<p>それに、当初の目的であったアーカイブ昨日もなかなか面倒であることが発覚したので、時間があればSafariの拡張機能として開発することにした。</p>
+<p>当たり前の話かもしれないけど、今更だがQuartoで単一ファイルにレンダリングする方法を知ったのでメモ。</p>
+<p>これをすれば、単一ファイルだけをレンダリングして、navbarやsidebarのリストも同時に更新される。どうやら都度index.qmdは同時に更新されて、それにつられてnavbarやsidebarも更新されるようだ。</p>
+<section id="方法" class="level2">
+<h2 class="anchored" data-anchor-id="方法">方法</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render hoo.qmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>これだけ。なんで今までずーっと全プロジェクトをレンダーしてたんだ俺は……。</p>
+<p>あと、Previewでも同じことができるので、ファイルを作るたびにPreviewをすれば十分だ。</p>
+<p>言うまでもないだろうがPreviewのHot Keyは⌘+⇧+Kね。</p>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -1100,13 +1103,13 @@ ul.task-list li input[type="checkbox"] {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../posts/収容所配布用/数学/過去問演習.html" class="pagination-link" aria-label="過去問演習">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">過去問演習</span>
+      <a href="../../posts/tech/NovelApp.html" class="pagination-link" aria-label="SwiftUIで開発する小説執筆支援アプリ">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">SwiftUIで開発する小説執筆支援アプリ</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../posts/tech/NovelApp.html" class="pagination-link" aria-label="SwiftUIで開発する小説執筆支援アプリ">
-        <span class="nav-page-text">SwiftUIで開発する小説執筆支援アプリ</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../posts/tech/StartUsingCodex.html" class="pagination-link" aria-label="Codexを使い始めた件">
+        <span class="nav-page-text">Codexを使い始めた件</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -80,6 +80,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-bea5cecadd40e1fc1e7972c16070bfb3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-dark-6a83da12ef8fb2471e73786fb2a11b83.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="../../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -863,7 +865,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="grand-central-dispatch" class="level4">
 <h4 class="anchored" data-anchor-id="grand-central-dispatch">Grand Central Dispatch</h4>
-<p>Concurrent execution を手伝ってくれるクッソ有能なフレームワーク。とりあえず今はディレイをかけることに使っているので、そのSample Codeだけ載せておく。</p>
+<p>Concurrent execution を手伝ってくれるクッソ有能なフレームワーク。公式ドキュメントは<a href="https://developer.apple.com/documentation/dispatch/dispatchqueue">ここ</a>。とりあえず今はディレイをかけることに使っているので、そのSample Codeだけ載せておく。</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode swift code-with-copy"><code class="sourceCode swift"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">Foundation</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="va">task</span> <span class="op">=</span> DispatchWorkItem <span class="op">{</span></span>
@@ -877,10 +879,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>main</code>というのは、メインスレッドのこと。UIとかはこのスレッドに入れて処理させてる。メインスレッド以外には<code>high, default, low, background</code>という優先度があって、<code>DispatchQueue.global(qos: .background)</code>とかで指定できる。</p>
 <p><code>sync, async</code>は、synchronously execute させるかどうか。<code>sync</code>を<code>main</code>で使うと、終わるまでプロセスが固まる。</p>
 </section>
-<section id="section" class="level4">
-<h4 class="anchored" data-anchor-id="section"></h4>
+<section id="モジュール化" class="level4">
+<h4 class="anchored" data-anchor-id="モジュール化">モジュール化</h4>
+<p>Swift Package Manager を使って、モジュール化をしていく。 File &gt; Add &gt; Packages で、モジュールを追加できる。</p>
+<p>これで、自分が作ってるアプリ自体を指定すれば、その中にモジュールを追加できるみたいだ。これでただ独立して開発しやすくなるだけじゃなく、コンパイルキャッシュも勝手に使ってくれるらしい。</p>
+<p>あ、注意として、PackageのDependenciesは都度いじらないといけない。</p>
+</section>
+<section id="swift-data" class="level4">
+<h4 class="anchored" data-anchor-id="swift-data">Swift Data</h4>
+<p>プレーンテキストで扱うのはすぐに限界が来そうなので、この時点でデータベースを導入していく。<code>@Model</code>とつけるだけの簡単なお仕事でちょっと面白い。</p>
+<p>モデル同士のやり取りは、</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode swift code-with-copy"><code class="sourceCode swift"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="at">@Model</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Author <span class="op">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Attribute</span><span class="op">(.</span>unique<span class="op">)</span> <span class="kw">var</span> <span class="va">id</span><span class="op">:</span> UUID</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> <span class="va">name</span><span class="op">:</span> String</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// One-to-Many（親側ビュー）</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Relationship</span><span class="op">(</span>delete<span class="op">:</span> <span class="op">.</span>cascade<span class="op">,</span> inverse<span class="op">:</span> \Book<span class="op">.</span>author<span class="op">)</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> <span class="va">books</span><span class="op">:</span> <span class="op">[</span>Book<span class="op">]</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="at">@Model</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Book <span class="op">{</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Attribute</span><span class="op">(.</span>unique<span class="op">)</span> <span class="kw">var</span> <span class="va">id</span><span class="op">:</span> UUID</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> <span class="va">title</span><span class="op">:</span> String</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Many-to-One（子側ビュー）</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Relationship</span><span class="op">(</span>inverse<span class="op">:</span> \Author<span class="op">.</span>books<span class="op">)</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> <span class="va">author</span><span class="op">:</span> Author<span class="op">?</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>こんな感じで<code>@Relationship</code>とつけるだけで、モデル同士のやり取りができる。</p>
+<section id="schemaやcontextcontainer周りの話" class="level5">
+<h5 class="anchored" data-anchor-id="schemaやcontextcontainer周りの話">SchemaやContext、Container周りの話</h5>
+<p><img src="https://developer.apple.com/jp/videos/play/wwdc2023/10195/.png" class="img-fluid" alt="この動画">にかなりちゃんとまとめられているが、</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="https://developer.apple.com/jp/videos/play/wwdc2023/10195/"></video></div>
+<p>簡単にまとめる。</p>
+<p>Schemaってのはモデルで定義したクラス自体の話をしていて、ContainerはそのSchemaをどの様に保存したり、どこに保存したりを指定するときに使うクラス、ContextはそのContainerを使ってSchemaの中身、つまりデータの中身自体の保存などをする時に使う。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode swift code-with-copy"><code class="sourceCode swift"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="va">configuration</span> <span class="op">=</span> ModelConfiguration<span class="op">(</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    isStoredInMemoryOnly<span class="op">:</span> <span class="kw">true</span><span class="op">)</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="va">container</span> <span class="op">=</span> <span class="cf">try</span><span class="op">!</span> ModelContainer<span class="op">(</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">:</span> NovelDocument<span class="op">.</span><span class="kw">self</span><span class="op">,</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    configurations<span class="op">:</span> configuration<span class="op">)</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="va">context</span> <span class="op">=</span> ModelContext<span class="op">(</span>container<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>とりあえずこんな感じでやってみたんだが、詳しいことは書けない。</p>
 
 
+</section>
 </section>
 </section>
 </section>
@@ -1354,6 +1398,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
   </div>
 </footer>
+<script>videojs(video_shortcode_videojs_video1);</script>
 
 
 
