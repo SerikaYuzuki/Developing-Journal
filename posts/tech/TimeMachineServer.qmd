@@ -1,0 +1,112 @@
+---
+title: "Time Machine ServerをSambaで作った話"
+author: "Serika Yuzuki"
+date: "2025-9-7"
+categories: [programming, 2025, swift]
+image: "https://www.svgrepo.com/show/87565/backup-thin-outline-symbol-in-a-circle.svg"
+---
+
+## 概要
+
+Time Machine ServerをSambaで作った話。
+
+手元に14TBのHDDが仕事をせずに、起動のたびただ無駄に回っていただけなので、これを機に仕事を与えてみた。
+
+## 手順
+
+### パーティションを作成
+
+まずはHDDにTimeMachin用のパーティションを作る。
+
+```bash
+sudo parted /dev/sdX
+mklabel gpt
+mkpart TimeMachine ext4 1MiB 2TiB
+mkpart Data ext4 2TiB 100%
+quit
+```
+
+ここからは、マウントポイントを固定して、SambaでTime Machine用共有を公開する。
+
+### /etc/fstabでマウントポイントを固定
+
+まずUUIDを確認。
+
+```bash
+lsblk -f   # または: sudo blkid
+```
+
+マウントポイントを作成。
+
+```bash
+sudo mkdir -p /srv/timemachine /srv/data
+```
+
+`/etc/fstab`にUUIDで追記（例）。
+
+```bash
+sudo nano /etc/fstab
+
+# 例: UUIDは環境の値に置き換え
+/dev/disk/by-uuid/例のUUID /srv/timemachine ext4 defaults 0 2
+```
+
+反映してマウント確認。
+
+```bash
+systemctl daemon-reload
+sudo mount -a
+df -h | grep -E "/srv/(timemachine|data)"
+```
+
+Time Machine専用ユーザーを用意（任意だが分離推奨）。
+
+```bash
+sudo adduser timemachine
+sudo usermod -aG sambashare timemachine
+sudo chown -R timemachine:sambashare /srv/timemachine
+```
+
+### SambaでTime Machine共有を公開
+
+Sambaをインストールし、設定を追加。
+
+```bash
+sudo apt update && sudo apt install -y samba
+sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
+sudoedit /etc/samba/smb.conf
+```
+
+`/etc/samba/smb.conf` に以下を追記（必要に応じて既存設定にマージ）。
+
+```ini
+[TimeMachine]
+   path = /srv/timemachine
+   valid users = timemachine
+   read only = no
+   create mask = 0660
+   directory mask = 0770
+   force user = timemachine
+   vfs objects = catia fruit streams_xattr
+   fruit:time machine = yes
+   # 容量上限（MiB）。例: 約2TB = 2000000
+   fruit:time machine max size = 2000000
+```
+
+Sambaユーザーを有効化して再起動。
+
+```bash
+sudo smbpasswd -a timemachine
+sudo systemctl restart smbd nmbd
+sudo systemctl status smbd --no-pager
+```
+
+### macOSから接続
+
+Finderで `smb://<サーバー名またはIP>/TimeMachine` に接続。
+
+「Time Machine」→「バックアップディスクを選択…」から、サーバーの`TimeMachine`を選ぶ。
+
+:::{.callout-tip}
+`fruit:time machine max size` はTime Machineの上限。それ無視しても勝手にやってくれる。
+:::

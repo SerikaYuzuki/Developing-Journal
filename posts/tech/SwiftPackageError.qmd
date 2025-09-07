@@ -1,0 +1,18 @@
+---
+title: "Codexを使い始めた件"
+author: "Serika Yuzuki"
+date: "2025-9-5"
+categories: [programming, 2025, swift]
+image: "https://www.svgrepo.com/show/374112/swift.svg"
+---
+
+## エラー内容
+
+ビルドした瞬間にUnable to find module dependency: 'ModuleName'って出てビルドに失敗するけど、失敗したって確定するとこのエラーコードが消える
+
+## 解決方法
+
+Xcode → Project → Targets: Novel → General → Frameworks, Libraries, and Embedded Content にちゃんとパッケージが入ってるのを確認する。
+
+どうやらパッケージを追加するだけじゃ依存関係に自動で入らないこともあるらしい。
+

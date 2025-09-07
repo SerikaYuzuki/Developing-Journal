@@ -1,0 +1,21 @@
+---
+title: "ミスって/boot/efiを消した話"
+author: "Serika Yuzuki"
+date: "2025-9-7"
+categories: [programming, 2025, swift]
+image: "https://www.svgrepo.com/show/422224/disk-drive-external-2.svg"
+---
+
+## 概要
+
+`sudo parted`を作る時はマジで注意してね。0と1を間違えただけで死ぬかと思った。
+
+とりあえず適当に`mklabel gpt`をやってしまって、テーブル情報まで無くしてしまった人へ。
+
+`sudo apt install testdisk`をして、`sudo testdisk`を実行すれば、パーティションの復元ができる。俺の場合何故かIntel Partitionをお勧めされたけど、EFI GPTを決意で選んで、Quick Searchを選んだら、無事にパーティションが復元できた。
+
+P なんちゃらみたいな画面になって↩︎を押して、Writeを選んで、Yを押して、再起動すれば、無事に/boot/efiが復元されるが、grubが死んでいるので、`sudo grub-install /dev/sda`をして、`sudo update-grub`をすれば、無事に起動するようになる。
+
+
+
+
