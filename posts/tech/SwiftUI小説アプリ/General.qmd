@@ -1,0 +1,43 @@
+---
+title: "小説執筆アプリを作る"
+author: "Serika Yuzuki"
+date: "2025-9-10"
+categories: [programming, 2025, swift, novel]
+image: "https://www.svgrepo.com/show/528057/book-2.svg"
+---
+
+# はじめに
+
+SwiftUIで小説執筆アプリを作る話。
+
+[個別記事](../NovelApp.qmd)にするのでは膨大になりそうだったので、こちらにまとめる。
+
+### 開発方針
+
+[GitHub Flow](gitflow.qmd)で開発する。
+
+ここで開発時に、依存関係についての疑念が生まれた。
+
+このプロジェクトの依存関係は概略図として以下の通りだ。
+
+```{mermaid}
+graph TD;
+    A[NovelApp] --> B[EditorKit]
+    A --> C[NovelUI]
+    B --> D[NovelCore]
+    C --> D
+    E[NovelStorage] --> D
+    A --> E
+    A --> F[PreviewSupport]
+    B --> F
+    C --> F
+```
+
+見るだけで複雑だとわかると思うが、これから開発していく際にはどんどんとスパゲッティ化する。（３敗）
+
+これを解決する方法として、swiftが提示しているのは、[Protocol Oriented Programming](https://youtu.be/OWfxexSE2aM)である。
+
+実際に実践するのは
+
+
+```

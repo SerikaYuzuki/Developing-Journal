@@ -68,7 +68,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
 <link href="../../posts/tech/UbuntuPartitionMissing.html" rel="next">
-<link href="../../posts/tech/SwiftPackageError.html" rel="prev">
+<link href="../../posts/tech/TailscaleAndNord.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -326,7 +326,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/tech/linkwarden.html">技術関連</a></li><li class="breadcrumb-item"><a href="../../posts/tech/TimeMachineServer.html">Time Machine ServerをSambaで作った話</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/tech/ENovelEpubConverter.html">技術関連</a></li><li class="breadcrumb-item"><a href="../../posts/tech/TimeMachineServer.html">Time Machine ServerをSambaで作った話</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -338,7 +338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/tech/linkwarden.html">技術関連</a></li><li class="breadcrumb-item"><a href="../../posts/tech/TimeMachineServer.html">Time Machine ServerをSambaで作った話</a></li></ol></nav>
+    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/tech/ENovelEpubConverter.html">技術関連</a></li><li class="breadcrumb-item"><a href="../../posts/tech/TimeMachineServer.html">Time Machine ServerをSambaで作った話</a></li></ol></nav>
       <h1 class="title">Time Machine ServerをSambaで作った話</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">programming</div>
@@ -599,7 +599,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/tech/linkwarden.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/ENovelEpubConverter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">小説をEPUBに変換するpythonパッケージを作った話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/tech/Linkwarden.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linkwardenにブックマーク管理を任せる</span></a>
   </div>
 </li>
@@ -617,6 +623,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/tech/SetUpNewDebianServer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Debianサーバーを立てた話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/tech/StartUsingCodex.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Codexを使い始めた件</span></a>
   </div>
@@ -625,6 +637,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../posts/tech/SwiftPackageError.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Codexを使い始めた件</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/tech/TailscaleAndNord.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NordとTailscaleで自宅サーバーを安全に公開する</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -659,6 +677,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sambaでtime-machine共有を公開" id="toc-sambaでtime-machine共有を公開" class="nav-link" data-scroll-target="#sambaでtime-machine共有を公開">SambaでTime Machine共有を公開</a></li>
   <li><a href="#macosから接続" id="toc-macosから接続" class="nav-link" data-scroll-target="#macosから接続">macOSから接続</a></li>
   </ul></li>
+  <li><a href="#成功した方法" id="toc-成功した方法" class="nav-link" data-scroll-target="#成功した方法">成功した方法</a></li>
   </ul>
 </nav>
     </div>
@@ -702,6 +721,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> daemon-reload</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount <span class="at">-a</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span> <span class="at">-h</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-E</span> <span class="st">"/srv/(timemachine|data)"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-simple callout-warning">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>これ以降の手順は失敗に終わったので注意</p>
+</div>
+</div>
+</div>
 <p>Time Machine専用ユーザーを用意（任意だが分離推奨）。</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> adduser timemachine</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> usermod <span class="at">-aG</span> sambashare timemachine</span>
@@ -734,19 +763,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="macosから接続">macOSから接続</h3>
 <p>Finderで <code>smb://&lt;サーバー名またはIP&gt;/TimeMachine</code> に接続。</p>
 <p>「Time Machine」→「バックアップディスクを選択…」から、サーバーの<code>TimeMachine</code>を選ぶ。</p>
-<div class="callout callout-style-simple callout-tip">
+<div class="callout callout-style-simple callout-warning">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><code>fruit:time machine max size</code> はTime Machineの上限。それ無視しても勝手にやってくれる。</p>
+<p>この設定のおかげで、サーバーのどっかー設定ファイルが全部飛んだ。マジでくそ。もう二度とやらん。</p>
 </div>
 </div>
 </div>
-
-
 </section>
+</section>
+<section id="成功した方法" class="level2">
+<h2 class="anchored" data-anchor-id="成功した方法">成功した方法</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># docker-compose.yml</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">timemachine</span><span class="kw">:</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> mbentley/timemachine:smb</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">container_name</span><span class="kw">:</span><span class="at"> timemachine</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">hostname</span><span class="kw">:</span><span class="at"> timemachine</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">restart</span><span class="kw">:</span><span class="at"> unless-stopped</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">    # Avahi/SMB はコンテナ内で起動。macvlan なので自動発見OK</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">TM_USERNAME</span><span class="kw">:</span><span class="at"> </span><span class="st">"timemachine"</span><span class="co">     # 変えるなら下のボリュームパスも要調整</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">TM_GROUPNAME</span><span class="kw">:</span><span class="at"> </span><span class="st">"timemachine"</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">PASSWORD</span><span class="kw">:</span><span class="at"> </span><span class="st">"強いパスワードに変えてね"</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">TM_UID</span><span class="kw">:</span><span class="at"> </span><span class="st">"1000"</span><span class="co">                 # /mnt/TimeMachine の所有者に合わせる</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">TM_GID</span><span class="kw">:</span><span class="at"> </span><span class="st">"1000"</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">SET_PERMISSIONS</span><span class="kw">:</span><span class="at"> </span><span class="st">"false"</span><span class="co">       # 既存権限を変えたくない場合は false</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">SHARE_NAME</span><span class="kw">:</span><span class="at"> </span><span class="st">"TimeMachine"</span><span class="co">      # Finder に見える共有名</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">VOLUME_SIZE_LIMIT</span><span class="kw">:</span><span class="at"> </span><span class="st">"0"</span><span class="co">         # 容量上限 (MiB または "1 T" など)。0 は無制限</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">WORKGROUP</span><span class="kw">:</span><span class="at"> </span><span class="st">"WORKGROUP"</span><span class="co">         # 必要なら変更</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co">      # macvlan なので ADVERTISED_HOSTNAME は通常不要</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co">      # TM_USERNAME=timemachine の場合、コンテナ内の実パスは /opt/timemachine</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> /mnt/TimeMachine:/opt/timemachine</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co">    # Samba の一時ディレクトリ（公式推奨）</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">tmpfs</span><span class="kw">:</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> /run/samba</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="co">    # ulimit は公式既知問題の回避に推奨</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">ulimits</span><span class="kw">:</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">nofile</span><span class="kw">:</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">soft</span><span class="kw">:</span><span class="at"> </span><span class="dv">65536</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">hard</span><span class="kw">:</span><span class="at"> </span><span class="dv">65536</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="co">    # ここがキモ：別IPを直接コンテナに割り当てる</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">networks</span><span class="kw">:</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">timemachine_net</span><span class="kw">:</span></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">ipv4_address</span><span class="kw">:</span><span class="at"> </span><span class="fl">192.168.11.50</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="fu">networks</span><span class="kw">:</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">timemachine_net</span><span class="kw">:</span></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">driver</span><span class="kw">:</span><span class="at"> macvlan</span></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">driver_opts</span><span class="kw">:</span></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">parent</span><span class="kw">:</span><span class="at"> enp3s0</span><span class="co">            # あなたのLAN NIC</span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">ipam</span><span class="kw">:</span></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">config</span><span class="kw">:</span></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">subnet</span><span class="kw">:</span><span class="at"> 192.168.11.0/24</span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">gateway</span><span class="kw">:</span><span class="at"> </span><span class="fl">192.168.11.1</span><span class="co"> # ルータが別ならここを合わせてね</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>timjdfletcherさんの<a href="https://hub.docker.com/r/timjdfletcher/samba-timemachine">イメージ</a>を使わせていただきました。</p>
+<p>CasaOSのsambaと被らないように別のIPを割り当ててやりました。</p>
+
+
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -1196,8 +1279,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../posts/tech/SwiftPackageError.html" class="pagination-link" aria-label="Codexを使い始めた件">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Codexを使い始めた件</span>
+      <a href="../../posts/tech/TailscaleAndNord.html" class="pagination-link" aria-label="NordとTailscaleで自宅サーバーを安全に公開する">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">NordとTailscaleで自宅サーバーを安全に公開する</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

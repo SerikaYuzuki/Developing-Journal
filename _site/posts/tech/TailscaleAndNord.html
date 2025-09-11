@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Serika Yuzuki">
-<meta name="dcterms.date" content="2023-10-15">
+<meta name="dcterms.date" content="2025-09-11">
 
-<title>section_03 – 芹香のブログ：セリポンポン 気軽にコメント残してね！</title>
+<title>NordとTailscaleで自宅サーバーを安全に公開する – 芹香のブログ：セリポンポン 気軽にコメント残してね！</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,6 +67,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../posts/tech/TimeMachineServer.html" rel="next">
+<link href="../../posts/tech/SwiftPackageError.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -324,7 +326,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">section_03</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/tech/ENovelEpubConverter.html">技術関連</a></li><li class="breadcrumb-item"><a href="../../posts/tech/TailscaleAndNord.html">NordとTailscaleで自宅サーバーを安全に公開する</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -336,14 +338,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">section_03</h1>
+    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/tech/ENovelEpubConverter.html">技術関連</a></li><li class="breadcrumb-item"><a href="../../posts/tech/TailscaleAndNord.html">NordとTailscaleで自宅サーバーを安全に公開する</a></li></ol></nav>
+      <h1 class="title">NordとTailscaleで自宅サーバーを安全に公開する</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">UE5</div>
-                <div class="quarto-category">Aura</div>
-                <div class="quarto-category">Udemy</div>
-                <div class="quarto-category">Game</div>
-                <div class="quarto-category">Programming</div>
+                <div class="quarto-category">programming</div>
+                <div class="quarto-category">2025</div>
               </div>
                   </div>
   </div>
@@ -361,7 +360,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">October 15, 2023</p>
+        <p class="date">September 11, 2025</p>
       </div>
     </div>
     
@@ -641,7 +640,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/tech/TailscaleAndNord.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/TailscaleAndNord.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">NordとTailscaleで自宅サーバーを安全に公開する</span></a>
   </div>
 </li>
@@ -670,12 +669,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#概要" id="toc-概要" class="nav-link active" data-scroll-target="#概要">概要</a></li>
-  <li><a href="#発見" id="toc-発見" class="nav-link" data-scroll-target="#発見">発見</a>
-  <ul class="collapse">
-  <li><a href="#cのディレクトリ構成を変更する際" id="toc-cのディレクトリ構成を変更する際" class="nav-link" data-scroll-target="#cのディレクトリ構成を変更する際">C++のディレクトリ構成を変更する際</a></li>
-  <li><a href="#icloudでの作業" id="toc-icloudでの作業" class="nav-link" data-scroll-target="#icloudでの作業">iCloudでの作業</a></li>
-  <li><a href="#server-side-と-client-side-の問題" id="toc-server-side-と-client-side-の問題" class="nav-link" data-scroll-target="#server-side-と-client-side-の問題">Server side と Client side の問題</a></li>
-  </ul></li>
+  <li><a href="#tailscaleの設定" id="toc-tailscaleの設定" class="nav-link" data-scroll-target="#tailscaleの設定">Tailscaleの設定</a></li>
   </ul>
 </nav>
     </div>
@@ -687,100 +681,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>Sec 03 について</p>
 <section id="概要" class="level2">
 <h2 class="anchored" data-anchor-id="概要">概要</h2>
-<ol type="1">
-<li>What is Gameplay Ability System: GAS?
-<ol type="1">
-<li>Built for Paragon but cancelled</li>
-<li>Best for RPGs</li>
-</ol></li>
-<li>Attach Ability System to Characters
-<ol type="1">
-<li>It is possible to attach systems to Actor or Actor assosiated Class
-<ol type="1">
-<li>In this course, we will attach to both for studying</li>
-</ol></li>
-</ol></li>
-<li>Setup GAS
-<ol type="1">
-<li>Enable Plugin in Plugin Setting and Build.cs</li>
-<li>Create Ability System Component both on base-enemy and playerstate
-<ol type="1">
-<li>create default object for both abilitySystem and AttributeSet, and set replicated for AbilitySystem</li>
-</ol></li>
-<li>Impliment IAbilitySystemInterface on both characterbase and playerstate
-<ol type="1">
-<li><strong>Question</strong> Why IAbilitySystemInterface? Why not normal getter?? <strong>Answer</strong> This is discribed in <a href="https://docs.unrealengine.com/5.0/en-US/gameplay-ability-system-component-and-gameplay-attributes-in-unreal-engine/">here</a></li>
-</ol></li>
-<li>Set player state belonging to controlled player</li>
-</ol></li>
-</ol>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Distinguish Owner Actor and Avatar Actor. For example, Aura enemy is both owner and avatar, player state is owner, controlled character is avatar. <img src="images/3-1.png" class="img-fluid"></p>
-</div>
-</div>
-</div>
-<pre><code>    1. Consider server side and client side
-        - detail will be inplemented in other lec</code></pre>
-<div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> AAuraCharacter<span class="op">::</span>InitAbilityActorInfo<span class="op">()</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    AAuraPlayerState<span class="op">*</span> AuraPlayerState <span class="op">=</span> GetPlayerState<span class="op">&lt;</span>AAuraPlayerState<span class="op">&gt;();</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    check<span class="op">(</span>AuraPlayerState<span class="op">);</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    AuraPlayerState<span class="op">-&gt;</span>GetAbilitySystemComponent<span class="op">()-&gt;</span>InitAbilityActorInfo<span class="op">(</span>AuraPlayerState<span class="op">,</span> this<span class="op">);</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    AbilitySystemComponent <span class="op">=</span> AuraPlayerState<span class="op">-&gt;</span>GetAbilitySystemComponent<span class="op">();</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    AttributeSet <span class="op">=</span> AuraPlayerState<span class="op">-&gt;</span>GetAttributeSet<span class="op">();</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> AAuraCharacter<span class="op">::</span>PossessedBy<span class="op">(</span>AController<span class="op">*</span> NewController<span class="op">)</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    Super<span class="op">::</span>PossessedBy<span class="op">(</span>NewController<span class="op">);</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Init ability system component for the server</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    InitAbilityActorInfo<span class="op">();</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> AAuraCharacter<span class="op">::</span>OnRep_PlayerState<span class="op">()</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    Super<span class="op">::</span>OnRep_PlayerState<span class="op">();</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Init ability system component for the client</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    InitAbilityActorInfo<span class="op">();</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>自宅のサーバーをtailscaleのExit Nodeに設定して、そのExit NodeをNordVPNで接続する。</p>
+<p>これで通信の安全が確保され、我々の勝利だ。</p>
+<p><img src="https://livedoor.blogimg.jp/anigei-mangabox/imgs/1/2/121ab6a9.jpg" class="img-fluid" style="width:50.0%"></p>
 </section>
-<section id="発見" class="level2">
-<h2 class="anchored" data-anchor-id="発見">発見</h2>
-<section id="cのディレクトリ構成を変更する際" class="level3">
-<h3 class="anchored" data-anchor-id="cのディレクトリ構成を変更する際">C++のディレクトリ構成を変更する際</h3>
-<ol type="1">
-<li>マジで面倒なので出来ればやらないこと。</li>
-<li>BinaryとIntermediateは消して、直接ディレクトリを編集する</li>
-<li>ビルドしなおす。ただRiderでエディタを開いてもコンパイルエラーが出る</li>
-<li>Epic Game Launcherから直接開く</li>
-<li>Refresh Rider Projectを実行する</li>
-</ol>
-</section>
-<section id="icloudでの作業" class="level3">
-<h3 class="anchored" data-anchor-id="icloudでの作業">iCloudでの作業</h3>
-<p>やめた方が良い。</p>
-<pre><code>resource fork, Finder information, or similar detritus not allowed</code></pre>
-<p>こんなエラーを吐いてくるが、</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xattr</span> <span class="at">-cr</span> .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>これで解決できない。</p>
-</section>
-<section id="server-side-と-client-side-の問題" class="level3">
-<h3 class="anchored" data-anchor-id="server-side-と-client-side-の問題">Server side と Client side の問題</h3>
-<p>これについては後でじっくりドキュメントを読む必要がありそうだ。</p>
+<section id="tailscaleの設定" class="level2">
+<h2 class="anchored" data-anchor-id="tailscaleの設定">Tailscaleの設定</h2>
+<p>普通に<a href="https://tailscale.com/kb/1031/install-linux">チュートリアル</a>に従ってインストールする。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> tailscale up <span class="at">--advertise-exit-node</span> <span class="at">--accept-routes</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>次に、<a href="https://login.tailscale.com/admin/machines">管理画面</a>でExit Nodeに設定したいサーバーを選択して、Exit Nodeに設定する。</p>
+<p>routingの設定をNordVPNのIPアドレスに向ける。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># IP転送を有効化</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"net.ipv4.ip_forward=1"</span> <span class="kw">|</span> <span class="fu">sudo</span> tee <span class="at">-a</span> /etc/sysctl.conf</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> sysctl <span class="at">-p</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># NAT設定</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> iptables <span class="at">-t</span> nat <span class="at">-A</span> POSTROUTING <span class="at">-o</span> nordlynx <span class="at">-j</span> MASQUERADE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>その後、</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nordvpn</span> connect</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>でNordVPNに接続する。以上で設定は完了だ。</p>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -1228,6 +1151,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
   loadGiscus();
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../posts/tech/SwiftPackageError.html" class="pagination-link" aria-label="Codexを使い始めた件">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Codexを使い始めた件</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../posts/tech/TimeMachineServer.html" class="pagination-link" aria-label="Time Machine ServerをSambaで作った話">
+        <span class="nav-page-text">Time Machine ServerをSambaで作った話</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

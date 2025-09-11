@@ -1,0 +1,44 @@
+---
+title: "NordとTailscaleで自宅サーバーを安全に公開する"
+author: "Serika Yuzuki"
+date: "2025-9-11"
+categories: [programming, 2025]
+image: "https://www.svgrepo.com/show/528057/book-2.svg"
+---
+
+## 概要
+
+自宅のサーバーをtailscaleのExit Nodeに設定して、そのExit NodeをNordVPNで接続する。
+
+これで通信の安全が確保され、我々の勝利だ。
+
+![](https://livedoor.blogimg.jp/anigei-mangabox/imgs/1/2/121ab6a9.jpg){width="50%"}
+
+## Tailscaleの設定
+
+普通に[チュートリアル](https://tailscale.com/kb/1031/install-linux)に従ってインストールする。
+
+```zsh
+sudo tailscale up --advertise-exit-node --accept-routes 
+```
+
+次に、[管理画面](https://login.tailscale.com/admin/machines)でExit Nodeに設定したいサーバーを選択して、Exit Nodeに設定する。
+
+routingの設定をNordVPNのIPアドレスに向ける。
+
+```zsh
+# IP転送を有効化
+echo "net.ipv4.ip_forward=1" | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p
+
+# NAT設定
+sudo iptables -t nat -A POSTROUTING -o nordlynx -j MASQUERADE
+```
+
+その後、
+
+```zsh
+nordvpn connect
+```
+
+でNordVPNに接続する。以上で設定は完了だ。

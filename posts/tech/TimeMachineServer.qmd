@@ -59,6 +59,10 @@ sudo mount -a
 df -h | grep -E "/srv/(timemachine|data)"
 ```
 
+:::{.callout-warning}
+これ以降の手順は失敗に終わったので注意
+:::
+
 Time Machine専用ユーザーを用意（任意だが分離推奨）。
 
 ```bash
@@ -107,6 +111,65 @@ Finderで `smb://<サーバー名またはIP>/TimeMachine` に接続。
 
 「Time Machine」→「バックアップディスクを選択…」から、サーバーの`TimeMachine`を選ぶ。
 
-:::{.callout-tip}
-`fruit:time machine max size` はTime Machineの上限。それ無視しても勝手にやってくれる。
+:::{.callout-warning}
+この設定のおかげで、サーバーのどっかー設定ファイルが全部飛んだ。マジでくそ。もう二度とやらん。
 :::
+
+## 成功した方法
+
+```yaml
+# docker-compose.yml
+services:
+  timemachine:
+    image: mbentley/timemachine:smb
+    container_name: timemachine
+    hostname: timemachine
+    restart: unless-stopped
+
+    # Avahi/SMB はコンテナ内で起動。macvlan なので自動発見OK
+    environment:
+      TM_USERNAME: "timemachine"     # 変えるなら下のボリュームパスも要調整
+      TM_GROUPNAME: "timemachine"
+      PASSWORD: "強いパスワードに変えてね"
+      TM_UID: "1000"                 # /mnt/TimeMachine の所有者に合わせる
+      TM_GID: "1000"
+      SET_PERMISSIONS: "false"       # 既存権限を変えたくない場合は false
+      SHARE_NAME: "TimeMachine"      # Finder に見える共有名
+      VOLUME_SIZE_LIMIT: "0"         # 容量上限 (MiB または "1 T" など)。0 は無制限
+      WORKGROUP: "WORKGROUP"         # 必要なら変更
+      # macvlan なので ADVERTISED_HOSTNAME は通常不要
+
+    volumes:
+      # TM_USERNAME=timemachine の場合、コンテナ内の実パスは /opt/timemachine
+      - /mnt/TimeMachine:/opt/timemachine
+
+    # Samba の一時ディレクトリ（公式推奨）
+    tmpfs:
+      - /run/samba
+
+    # ulimit は公式既知問題の回避に推奨
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+
+    # ここがキモ：別IPを直接コンテナに割り当てる
+    networks:
+      timemachine_net:
+        ipv4_address: 192.168.11.50
+
+networks:
+  timemachine_net:
+    driver: macvlan
+    driver_opts:
+      parent: enp3s0            # あなたのLAN NIC
+    ipam:
+      config:
+        - subnet: 192.168.11.0/24
+          gateway: 192.168.11.1 # ルータが別ならここを合わせてね
+```
+
+timjdfletcherさんの[イメージ](https://hub.docker.com/r/timjdfletcher/samba-timemachine)を使わせていただきました。
+
+CasaOSのsambaと被らないように別のIPを割り当ててやりました。
+
