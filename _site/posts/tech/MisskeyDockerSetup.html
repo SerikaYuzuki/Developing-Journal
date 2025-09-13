@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Serika Yuzuki">
-<meta name="dcterms.date" content="2023-10-10">
+<meta name="dcterms.date" content="2025-09-13">
 
-<title>材料速度論 – 芹香のブログ：セリポンポン 気軽にコメント残してね！</title>
+<title>DockerでMisskeyを立てる – 芹香のブログ：セリポンポン 気軽にコメント残してね！</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,27 +25,27 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../../posts/univ_lecs/2A/材料量子力学.html" rel="next">
-<link href="../../../posts/univ_lecs/2A/材料統計力学.html" rel="prev">
-<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-43998d56548821d04db92fa7baf5cea8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-43998d56548821d04db92fa7baf5cea8.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-bea5cecadd40e1fc1e7972c16070bfb3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-6a83da12ef8fb2471e73786fb2a11b83.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../posts/tech/NovelApp.html" rel="next">
+<link href="../../posts/tech/Linkwarden.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-43998d56548821d04db92fa7baf5cea8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-43998d56548821d04db92fa7baf5cea8.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-bea5cecadd40e1fc1e7972c16070bfb3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-6a83da12ef8fb2471e73786fb2a11b83.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -245,7 +245,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">芹香のブログ：セリポンポン 気軽にコメント残してね！</span>
     </a>
   </div>
@@ -256,7 +256,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../../../about.html" aria-current="page"> 
+    <a class="nav-link active" href="../../about.html" aria-current="page"> 
 <span class="menu-text">Serika Yuzuki</span></a>
   </li>  
   <li class="nav-item compact">
@@ -291,7 +291,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">大学関連</li><li class="breadcrumb-item">Univ Lecs</li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/2A/材料力学.html">2A</a></li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/2A/材料速度論.html">材料速度論</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/tech/ENovelEpubConverter.html">技術関連</a></li><li class="breadcrumb-item"><a href="../../posts/tech/MisskeyDockerSetup.html">DockerでMisskeyを立てる</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -303,11 +303,11 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">大学関連</li><li class="breadcrumb-item">Univ Lecs</li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/2A/材料力学.html">2A</a></li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/2A/材料速度論.html">材料速度論</a></li></ol></nav>
-      <h1 class="title">材料速度論</h1>
+    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/tech/ENovelEpubConverter.html">技術関連</a></li><li class="breadcrumb-item"><a href="../../posts/tech/MisskeyDockerSetup.html">DockerでMisskeyを立てる</a></li></ol></nav>
+      <h1 class="title">DockerでMisskeyを立てる</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">University</div>
-                <div class="quarto-category">2023</div>
+                <div class="quarto-category">programming</div>
+                <div class="quarto-category">2025</div>
               </div>
                   </div>
   </div>
@@ -325,7 +325,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">October 10, 2023</p>
+        <p class="date">September 13, 2025</p>
       </div>
     </div>
     
@@ -351,7 +351,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../about.html" class="sidebar-item-text sidebar-link">
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Serika Yuzuki</span></a>
   </div>
 </li>
@@ -366,49 +366,49 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">Univ Lecs</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">2A</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth3 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/2A/材料力学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/2A/材料力学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">統計力学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/2A/材料相平衡論.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/2A/材料相平衡論.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料相平衡論</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/2A/材料統計力学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/2A/材料統計力学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料統計力学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/2A/材料速度論.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../posts/univ_lecs/2A/材料速度論.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料速度論</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/2A/材料量子力学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/2A/材料量子力学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料量子力学</span></a>
   </div>
 </li>
@@ -425,25 +425,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/3A/セラミック材料学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3A/セラミック材料学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">セラミックノート</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/3A/デバイス材料工学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3A/デバイス材料工学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">デバイス材料工学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/3A/生産プロセス.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3A/生産プロセス.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">生産プロセス</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/3A/高分子２.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3A/高分子２.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">高分子ノート</span></a>
   </div>
 </li>
@@ -460,31 +460,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/3S/固体物性学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3S/固体物性学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">固体物性学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/3S/材料反応工学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3S/材料反応工学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料反応工学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/3S/材料強度学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3S/材料強度学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料強度学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/3S/材料電気化学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3S/材料電気化学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料電気化学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/3S/組織生成論.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3S/組織生成論.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">組織生成論</span></a>
   </div>
 </li>
@@ -514,37 +514,37 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/収容所配布用/数学/数学A.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/収容所配布用/数学/数学A.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学A</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/収容所配布用/数学/数学B.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/収容所配布用/数学/数学B.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学B</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/収容所配布用/数学/数学I.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/収容所配布用/数学/数学I.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学I</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/収容所配布用/数学/数学II.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/収容所配布用/数学/数学II.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学II</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/収容所配布用/数学/数学III.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/収容所配布用/数学/数学III.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学III</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/収容所配布用/数学/過去問演習.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/収容所配布用/数学/過去問演習.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">過去問演習</span></a>
   </div>
 </li>
@@ -563,67 +563,67 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/tech/ENovelEpubConverter.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/ENovelEpubConverter.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">小説をEPUBに変換するpythonパッケージを作った話</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/tech/Linkwarden.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/Linkwarden.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linkwardenにブックマーク管理を任せる</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/tech/MisskeyDockerSetup.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/MisskeyDockerSetup.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">DockerでMisskeyを立てる</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/tech/NovelApp.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/NovelApp.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SwiftUIで開発する小説執筆支援アプリ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/tech/QuartoRenderSingle.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/QuartoRenderSingle.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Quartoで単一ファイルにレンダリングする方法</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/tech/SetUpNewDebianServer.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/SetUpNewDebianServer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Debianサーバーを立てた話</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/tech/StartUsingCodex.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/StartUsingCodex.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Codexを使い始めた件</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/tech/SwiftPackageError.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/SwiftPackageError.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Swift Packageの読み込みエラー</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/tech/TailscaleAndNord.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/TailscaleAndNord.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">NordとTailscaleで自宅サーバーを安全に公開する</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/tech/TimeMachineServer.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/TimeMachineServer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Time Machine ServerをSambaで作った話</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/tech/UbuntuPartitionMissing.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/UbuntuPartitionMissing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ミスって/boot/efiを消した話</span></a>
   </div>
 </li>
@@ -645,16 +645,10 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>軽いまとめと問題の過去問を手書きで解いてます。</p>
-<p>TeXにまとめるのは面倒でした。</p>
-<p><img src="images/速度/1.png" class="img-fluid"></p>
-<p><img src="images/速度/2.png" class="img-fluid"></p>
-<p><img src="images/速度/3.png" class="img-fluid"></p>
-<p><img src="images/速度/4.png" class="img-fluid"></p>
-<p><img src="images/速度/5.png" class="img-fluid"></p>
-<p><img src="images/速度/6.png" class="img-fluid"></p>
-<p><img src="images/速度/7.png" class="img-fluid"></p>
-<p><img src="images/速度/8.png" class="img-fluid"></p>
+<p>dockerでMisskeyを立てる話。</p>
+<p>casaOSでクリックで操作できるようにできたら最高なので、頑張ってみる。</p>
+<p><a href="https://misskey-hub.net/ja/docs/for-admin/install/guides/docker/">公式ドキュメント</a>を参考にする。</p>
+<p>とりあえず設定ファイルのコピーが終わったら、vscodeで開く。nanoは使いにくいし、vimは使いこなせないので当たり前だよなぁ？</p>
 
 
 
@@ -1105,13 +1099,13 @@ ul.task-list li input[type="checkbox"] {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../posts/univ_lecs/2A/材料統計力学.html" class="pagination-link" aria-label="材料統計力学">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">材料統計力学</span>
+      <a href="../../posts/tech/Linkwarden.html" class="pagination-link" aria-label="Linkwardenにブックマーク管理を任せる">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Linkwardenにブックマーク管理を任せる</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../posts/univ_lecs/2A/材料量子力学.html" class="pagination-link" aria-label="材料量子力学">
-        <span class="nav-page-text">材料量子力学</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../posts/tech/NovelApp.html" class="pagination-link" aria-label="SwiftUIで開発する小説執筆支援アプリ">
+        <span class="nav-page-text">SwiftUIで開発する小説執筆支援アプリ</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
