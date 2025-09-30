@@ -1,0 +1,26 @@
+---
+title: "Protocol Oriented Programming"
+author: "Serika Yuzuki"
+date: "2025-9-19"
+categories: [programming, 2025, swift, novel]
+image: "https://www.svgrepo.com/show/354421/swift.svg"
+---
+
+## 概要
+
+Protocol Oriented programmingの概念を使用して考えた場所についての備忘録。
+
+このプロジェクトにおいて、NovelStorageとEditorViewというのは独立している。なぜなら、NovelStorageは小説のデータを保存・管理する役割を担い、EditorViewはそのデータを表示・編集するためのUIコンポーネントで、それらは相互に依存しないからである。
+
+EditorViewにおいて、具体的に小説を書いたときのそのデータの中身や保存方法を知らせないといけない場合が現れる。だって編集画面なのだから。
+
+ここで、
+
+```swift
+public protocol EditorAdapter: AnyObject {
+    func setText(_ text: String)
+    func getText() -> String
+}
+```
+
+こういったプロトコルを定義することによって、EditorView自体は小説データの中身の弄り方などを一切知らなくても、できる前提でテストすることができるわけだ。あとは、NovelApp自体が二つのコンポーネントを結びつける際に、NovelStorageからいじり方を教えてもらって、それをEditorViewにぶち込めばいい。

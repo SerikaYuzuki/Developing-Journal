@@ -1,0 +1,23 @@
+---
+title: "SwiftUIとAppKitの連携"
+author: "Serika Yuzuki"
+date: "2025-9-21"
+categories: [programming, 2025, swift, novel]
+image: "https://www.svgrepo.com/show/354421/swift.svg"
+---
+
+## 概要
+
+SwiftUIとAppKitの連携での話。こいつらを繋げる際には、NSViewRepresentableというプロトコルを使うことになる。
+
+```{python}
+class number_class:
+  a = 1
+  def print_a(self):
+    print(self.a)
+
+a_class = number_class()
+b_class = a_class
+a_class.a = 2
+b_class.print_a()
+```
