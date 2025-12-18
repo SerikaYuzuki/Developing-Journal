@@ -851,10 +851,16 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#レポート課題" id="toc-レポート課題" class="nav-link active" data-scroll-target="#レポート課題">レポート課題</a></li>
-  <li><a href="#過去問まとめ" id="toc-過去問まとめ" class="nav-link" data-scroll-target="#過去問まとめ">過去問まとめ</a>
+  <li><a href="#過去問まとめ" id="toc-過去問まとめ" class="nav-link active" data-scroll-target="#過去問まとめ">過去問まとめ</a>
   <ul class="collapse">
-  <li><a href="#年度" id="toc-年度" class="nav-link" data-scroll-target="#年度">2014年度</a></li>
+  <li><a href="#年度" id="toc-年度" class="nav-link" data-scroll-target="#年度">2023年度</a>
+  <ul class="collapse">
+  <li><a href="#問1" id="toc-問1" class="nav-link" data-scroll-target="#問1">問1</a></li>
+  <li><a href="#問2" id="toc-問2" class="nav-link" data-scroll-target="#問2">問2</a></li>
+  <li><a href="#問3" id="toc-問3" class="nav-link" data-scroll-target="#問3">問3</a></li>
+  <li><a href="#問4" id="toc-問4" class="nav-link" data-scroll-target="#問4">問4</a></li>
+  <li><a href="#問5" id="toc-問5" class="nav-link" data-scroll-target="#問5">問5</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -872,163 +878,6 @@ window.Quarto = {
 \require{mhchem}
 \require{ams}
 \]</span></p>
-<section id="レポート課題" class="level1">
-<h1>レポート課題</h1>
-<p>Standard Gibss free energy のまとめ。</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Compounds</th>
-<th><span class="math inline">\(\Delta G\  \text{KJ}\ \text{mol}^{-1}\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Ba(s)</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td>BaO(s)</td>
-<td>-520.40592</td>
-</tr>
-<tr class="odd">
-<td>BaS(s)</td>
-<td>-456.056</td>
-</tr>
-<tr class="even">
-<td>BaSO4(s)</td>
-<td>-1362.3104</td>
-</tr>
-<tr class="odd">
-<td>O2(g)</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td>S2(g)</td>
-<td>80.08176</td>
-</tr>
-</tbody>
-</table>
-<div id="63736d24" class="cell" data-execution_count="1">
-<details class="code-fold">
-<summary>Show Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>delta_G1 <span class="op">=</span> <span class="op">-</span><span class="fl">520.40592</span>  <span class="co"># Ba(s) -&gt; BaO(s)</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>delta_G2 <span class="op">=</span> <span class="op">-</span><span class="fl">456.056</span><span class="op">-</span>(<span class="fl">80.08176</span><span class="op">/</span><span class="dv">2</span>)   <span class="co"># Ba(s) -&gt; BaS(s)</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>delta_G3 <span class="op">=</span> <span class="op">-</span><span class="fl">1362.3104</span><span class="op">-</span>(<span class="fl">80.08176</span><span class="op">/</span><span class="dv">2</span>)  <span class="co"># Ba(s) -&gt; BaSO4(s)</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>delta_G4 <span class="op">=</span> <span class="op">-</span><span class="fl">1362.3104</span><span class="op">+</span><span class="fl">520.40592</span><span class="op">-</span>(<span class="fl">80.08176</span><span class="op">/</span><span class="dv">2</span>)  <span class="co"># BaO(s) -&gt; BaSO4(s)</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>delta_G5 <span class="op">=</span> <span class="op">-</span><span class="fl">1362.3104</span><span class="op">+</span><span class="fl">456.056</span>  <span class="co"># BaS(s) -&gt; BaSO4(s)</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>delta_G6 <span class="op">=</span> <span class="op">-</span><span class="fl">520.40592</span><span class="op">+</span>(<span class="fl">80.08176</span><span class="op">/</span><span class="dv">2</span>)<span class="op">+</span><span class="fl">456.056</span>  <span class="co"># BaS(s) -&gt; BaO(s) + S2(g)</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>delta_G1, delta_G2, delta_G3, delta_G4, delta_G5, delta_G6</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>(-520.40592,
- -496.09688,
- -1402.35128,
- -881.94536,
- -906.2544,
- -24.30904000000004)</code></pre>
-</div>
-</div>
-<p><span class="math display">\[
-\begin{aligned}
-&amp; \ce{Ba(s) + 1/2 O2(g) -&gt; BaO(s)} \quad \Delta G_1 = -520.406\ \text{KJ mol}^{-1} \\
-&amp; \ce{Ba(s) + 1/2 S2(g) -&gt; BaS(s)} \quad \Delta G_2 = -496.097\ \text{KJ mol}^{-1} \\
-&amp; \ce{Ba(s) + 1/2 S2(g) + 2O2(g) -&gt; BaSO4(s)} \quad \Delta G_3 = -1402.35\ \text{KJ mol}^{-1} \\
-&amp; \ce{BaO(s) + 1/2 S2(g) + \frac{3}{2}O2(g) -&gt; BaSO4(s)} \quad \Delta G_4 = -881.945\ \text{KJ mol}^{-1} \\
-&amp; \ce{BaS(s) + 2O2 -&gt; BaSO4(s)} \quad \Delta G_5 = -906.254\ \text{KJ mol}^{-1} \\
-&amp; \ce{BaS(s) + \frac{1}{2}O2 -&gt; BaO(s) + \frac{1}{2}S2(g)} \quad \Delta G_6 = -24.3090\ \text{KJ mol}^{-1} \\
-\end{aligned}
-\]</span></p>
-<p><span class="math display">\[
-\begin{aligned}
-\frac{G_1}{RT} &amp;= \frac{1}{2}\log P_{\ce{O_2}} \\
-\frac{G_2}{RT} &amp;= \frac{1}{2}\log P_{\ce{S_2}} \\
-\frac{G_3}{RT} &amp;= \frac{1}{2}\log P_{\ce{S_2}} + 2\log P_{\ce{O_2}} \\
-\frac{G_4}{RT} &amp;= \frac{1}{2}\log P_{\ce{S_2}} + \frac{3}{2}\log P_{\ce{O_2}} \\
-\frac{G_5}{RT} &amp;= 2\log P_{\ce{O_2}} \\
-\frac{G_6}{RT} &amp;= \frac{1}{2}\log P_{\ce{O_2}} - \frac{1}{2}\log P_{\ce{S_2}} \\
-\end{aligned}
-\]</span></p>
-<div id="3c31dde3" class="cell" data-execution_count="2">
-<details class="code-fold">
-<summary>Show Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数設定</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fl">8.314</span>  <span class="co"># 気体定数 (J/(mol*K))</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">900</span>    <span class="co"># 温度 (K)</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ギブズ自由エネルギー変化 (J/mol)</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>delta_G1 <span class="op">=</span> <span class="op">-</span><span class="fl">520.406</span> <span class="op">*</span> <span class="fl">1e3</span>  <span class="co"># Ba -&gt; BaO</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>delta_G2 <span class="op">=</span> <span class="op">-</span><span class="fl">496.097</span> <span class="op">*</span> <span class="fl">1e3</span>  <span class="co"># Ba -&gt; BaS</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>delta_G3 <span class="op">=</span> <span class="op">-</span><span class="fl">1402.35</span> <span class="op">*</span> <span class="fl">1e3</span>  <span class="co"># Ba -&gt; BaSO4</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>delta_G4 <span class="op">=</span> <span class="op">-</span><span class="fl">881.945</span> <span class="op">*</span> <span class="fl">1e3</span>  <span class="co"># BaO -&gt; BaSO4</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>delta_G5 <span class="op">=</span> <span class="op">-</span><span class="fl">906.254</span> <span class="op">*</span> <span class="fl">1e3</span>  <span class="co"># BaS -&gt; BaSO4</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>delta_G6 <span class="op">=</span> <span class="op">-</span><span class="fl">24.3090</span> <span class="op">*</span> <span class="fl">1e3</span>  <span class="co"># BaS -&gt; BaO + S2</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 直線の描画</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># y = log_PO2, x = log_PS2</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Ba -&gt; BaO</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">150</span>, <span class="dv">0</span>, <span class="dv">500</span>)</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>log_PO2 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> delta_G1 <span class="op">/</span> (R <span class="op">*</span> T)</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.full_like(x, log_PO2)</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, label<span class="op">=</span><span class="st">'Ba -&gt; BaO'</span>)</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Ba -&gt; BaS</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">150</span>, <span class="dv">0</span>, <span class="dv">500</span>)</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>log_PS2 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> delta_G2 <span class="op">/</span> (R <span class="op">*</span> T)</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.full_like(y, log_PS2)</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, label<span class="op">=</span><span class="st">'Ba -&gt; BaS'</span>)</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Ba -&gt; BaSO4</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">150</span>, <span class="dv">0</span>, <span class="dv">500</span>)</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="op">-</span>x <span class="op">/</span> <span class="dv">4</span> <span class="op">+</span> delta_G3 <span class="op">/</span> (R <span class="op">*</span> T) <span class="op">/</span> <span class="dv">2</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, label<span class="op">=</span><span class="st">'Ba -&gt; BaSO4'</span>)</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="co"># BaO -&gt; BaSO4</span></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">150</span>, <span class="dv">0</span>, <span class="dv">500</span>)</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="op">-</span> x <span class="op">/</span> <span class="dv">3</span> <span class="op">+</span> delta_G4 <span class="op">/</span> (R <span class="op">*</span> T) <span class="op">/</span> <span class="dv">3</span> <span class="op">*</span> <span class="dv">2</span></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, label<span class="op">=</span><span class="st">'BaO -&gt; BaSO4'</span>)</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="co"># BaS -&gt; BaSO4</span></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">150</span>, <span class="dv">0</span>, <span class="dv">500</span>)</span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>log_PO2 <span class="op">=</span> delta_G5 <span class="op">/</span> (R <span class="op">*</span> T) <span class="op">/</span> <span class="dv">2</span></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.full_like(x, log_PO2)</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, label<span class="op">=</span><span class="st">'BaS -&gt; BaSO4'</span>)</span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="co"># BaS -&gt; BaO + S2</span></span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">150</span>, <span class="dv">0</span>, <span class="dv">500</span>)</span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x  <span class="op">+</span> delta_G6 <span class="op">/</span> (R <span class="op">*</span> T) <span class="op">*</span> <span class="dv">2</span></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, label<span class="op">=</span><span class="st">'BaS -&gt; BaO + S2'</span>)</span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw</span></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'log_PS2'</span>)</span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'log_PO2'</span>)</span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Graph of log_PS2 and log_PO2'</span>)</span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="生産プロセス_files/figure-html/cell-3-output-1.png" width="604" height="449" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
 <section id="過去問まとめ" class="level1">
 <h1>過去問まとめ</h1>
 <!-- 
@@ -1045,9 +894,250 @@ This is an example of a callout with a title.
 ::: 
 -->
 <section id="年度" class="level2">
-<h2 class="anchored" data-anchor-id="年度">2014年度</h2>
+<h2 class="anchored" data-anchor-id="年度">2023年度</h2>
+<section id="問1" class="level3">
+<h3 class="anchored" data-anchor-id="問1">問1</h3>
+<p><img src="pimages/image0.jpeg" class="img-fluid"></p>
+<p>製錬：　鉱石中の化合物状態で存在している元素を、熱や化学的エネルギーを加えて金属状態にすること</p>
+<p>精錬：　製錬で得られた金属から不純物を取り除き、純度を高める工程のこと</p>
+</section>
+<section id="問2" class="level3">
+<h3 class="anchored" data-anchor-id="問2">問2</h3>
+<p>略</p>
+</section>
+<section id="問3" class="level3">
+<h3 class="anchored" data-anchor-id="問3">問3</h3>
+<p><img src="pimages/image3.png" class="img-fluid"></p>
+<ol type="1">
+<li>高炉挿入原料：鉄鉱石、コークス、石灰石</li>
+</ol>
+<p>間接還元：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\ce{3Fe2O3 + CO &amp;-&gt; 2Fe3O4 + CO2} \\
+\ce{Fe3O4 + CO &amp;-&gt; 3FeO + CO2} \\
+\ce{FeO + CO &amp;-&gt; Fe + CO2} \\
+\end{aligned}
+\]</span></p>
+<p>直接還元：</p>
+<p><span class="math display">\[
+\ce{FeO + C -&gt; Fe + CO}
+\]</span></p>
+<ol start="2" type="1">
+<li></li>
+</ol>
+<ul>
+<li>水素還元は条件によって吸熱反応である。</li>
+<li>コークスの通気性を保つ性質の代替が不可能。</li>
+<li>銑鉄化(浸炭)ができない。</li>
+</ul>
+<ol start="3" type="1">
+<li></li>
+</ol>
+<ul>
+<li>高炉に<strong>微粉化プラスチック</strong>を吹込み、熱分解で <span class="math inline">\(\ce{CO, H2}\)</span> を発生し、<strong>還元剤・燃料</strong>として<strong>コークスや微粉炭を代替</strong>する。</li>
+<li>コークス炉で<strong>微粉化プラスチックを原料として利用</strong>しつつ、<strong>コークス使用量を削減</strong>する。</li>
+</ul>
+<ol start="4" type="1">
+<li></li>
+</ol>
+<ol type="1">
+<li></li>
+</ol>
+<p>除冷スラグ：　<strong>自然放冷</strong>した<strong>結晶質</strong>のスラグ。<strong>空隙</strong>を含む岩石城で、道路やコンクリートに使われる。</p>
+<p>水砕スラグ：　高温の溶融スラグを<strong>加圧水噴射急冷</strong>した<strong>非晶質</strong>のスラグ。<strong>気泡</strong>を含む粒子状。セメントの原料や路床材に使われる。</p>
+<ol start="2" type="1">
+<li></li>
+</ol>
+<div id="04c06bce" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Vertices of ternary diagram ---</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>V_CaO <span class="op">=</span> np.array([<span class="fl">0.0</span>, <span class="fl">0.0</span>])</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>V_Al  <span class="op">=</span> np.array([<span class="fl">1.0</span>, <span class="fl">0.0</span>])</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>V_Si  <span class="op">=</span> np.array([<span class="fl">0.5</span>, math.sqrt(<span class="dv">3</span>)<span class="op">/</span><span class="dv">2</span>])</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bary_to_xy(cao, al, si):</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> cao <span class="op">+</span> al <span class="op">+</span> si</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    cao, al, si <span class="op">=</span> cao<span class="op">/</span>s, al<span class="op">/</span>s, si<span class="op">/</span>s</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cao<span class="op">*</span>V_CaO <span class="op">+</span> al<span class="op">*</span>V_Al <span class="op">+</span> si<span class="op">*</span>V_Si</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">6</span>))</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Draw triangle ---</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>tri <span class="op">=</span> np.vstack([V_CaO, V_Al, V_Si, V_CaO])</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>ax.plot(tri[:,<span class="dv">0</span>], tri[:,<span class="dv">1</span>], color<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Axis ticks every 10% ---</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>ticks <span class="op">=</span> np.linspace(<span class="fl">0.1</span>, <span class="fl">0.9</span>, <span class="dv">9</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># SiO2 ticks (parallel to base)</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> ticks:</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    p1 <span class="op">=</span> bary_to_xy(<span class="dv">1</span><span class="op">-</span>s, <span class="dv">0</span>, s)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    p2 <span class="op">=</span> bary_to_xy(<span class="dv">0</span>, <span class="dv">1</span><span class="op">-</span>s, s)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    ax.plot([p1[<span class="dv">0</span>], p2[<span class="dv">0</span>]], [p1[<span class="dv">1</span>], p2[<span class="dv">1</span>]], color<span class="op">=</span><span class="st">"lightgray"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    ax.text(p2[<span class="dv">0</span>]<span class="op">+</span><span class="fl">0.02</span>, p2[<span class="dv">1</span>], <span class="ss">f"</span><span class="sc">{</span><span class="bu">int</span>(s<span class="op">*</span><span class="dv">100</span>)<span class="sc">}</span><span class="ss">%"</span>, fontsize<span class="op">=</span><span class="dv">8</span>, va<span class="op">=</span><span class="st">"center"</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co"># CaO ticks (parallel to Al2O3–SiO2 edge)</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> ticks:</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    p1 <span class="op">=</span> bary_to_xy(c, <span class="dv">1</span><span class="op">-</span>c, <span class="dv">0</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    p2 <span class="op">=</span> bary_to_xy(c, <span class="dv">0</span>, <span class="dv">1</span><span class="op">-</span>c)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    ax.plot([p1[<span class="dv">0</span>], p2[<span class="dv">0</span>]], [p1[<span class="dv">1</span>], p2[<span class="dv">1</span>]], color<span class="op">=</span><span class="st">"lightgray"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Al2O3 ticks (parallel to CaO–SiO2 edge)</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a <span class="kw">in</span> ticks:</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    p1 <span class="op">=</span> bary_to_xy(<span class="dv">1</span><span class="op">-</span>a, a, <span class="dv">0</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    p2 <span class="op">=</span> bary_to_xy(<span class="dv">0</span>, a, <span class="dv">1</span><span class="op">-</span>a)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    ax.plot([p1[<span class="dv">0</span>], p2[<span class="dv">0</span>]], [p1[<span class="dv">1</span>], p2[<span class="dv">1</span>]], color<span class="op">=</span><span class="st">"lightgray"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Highlight required lines ---</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="co"># CaO : Al2O3 = 2 : 1</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">200</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>cao <span class="op">=</span> (<span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> t)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>al  <span class="op">=</span> (<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> t)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>si  <span class="op">=</span> t</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>xy_ratio <span class="op">=</span> np.vstack([bary_to_xy(cao[i], al[i], si[i]) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(t))])</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>ax.plot(xy_ratio[:,<span class="dv">0</span>], xy_ratio[:,<span class="dv">1</span>], color<span class="op">=</span><span class="st">"red"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"CaO:Al$_2$O$_3$ = 2:1"</span>)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="co"># SiO2 = 30%</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">=</span> bary_to_xy(<span class="fl">0.70</span>, <span class="fl">0.00</span>, <span class="fl">0.30</span>)</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>p2 <span class="op">=</span> bary_to_xy(<span class="fl">0.00</span>, <span class="fl">0.70</span>, <span class="fl">0.30</span>)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>ax.plot([p1[<span class="dv">0</span>], p2[<span class="dv">0</span>]], [p1[<span class="dv">1</span>], p2[<span class="dv">1</span>]], color<span class="op">=</span><span class="st">"blue"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"SiO$_2$ = 30%"</span>)</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Labels ---</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>ax.text(V_CaO[<span class="dv">0</span>]<span class="op">-</span><span class="fl">0.05</span>, V_CaO[<span class="dv">1</span>]<span class="op">-</span><span class="fl">0.05</span>, <span class="st">"CaO"</span>, ha<span class="op">=</span><span class="st">"right"</span>, va<span class="op">=</span><span class="st">"top"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>ax.text(V_Al[<span class="dv">0</span>]<span class="op">+</span><span class="fl">0.05</span>,  V_Al[<span class="dv">1</span>]<span class="op">-</span><span class="fl">0.05</span>,  <span class="st">"Al$_2$O$_3$"</span>, ha<span class="op">=</span><span class="st">"left"</span>, va<span class="op">=</span><span class="st">"top"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>ax.text(V_Si[<span class="dv">0</span>],       V_Si[<span class="dv">1</span>]<span class="op">+</span><span class="fl">0.06</span>,  <span class="st">"SiO$_2$"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"bottom"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">"equal"</span>)</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">"off"</span>)</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">"upper right"</span>, frameon<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="生産プロセス_files/figure-html/cell-2-output-1.png" width="608" height="507" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>3)4)</p>
+<p><img src="pimages/image1.png" class="img-fluid"></p>
+<p><img src="pimages/image2.png" class="img-fluid"></p>
+</section>
+<section id="問4" class="level3">
+<h3 class="anchored" data-anchor-id="問4">問4</h3>
+<p><img src="pimages/image6-1.png" class="img-fluid"></p>
+<p><img src="pimages/image6-2.png" class="img-fluid"></p>
+<ol type="1">
+<li></li>
+</ol>
+<ol type="1">
+<li></li>
+</ol>
+<p><span class="math display">\[
+\ce{P + \frac{5}{4}O2 + \frac{3}{2}O^{2-} -&gt; PO4^{3-}}
+\]</span></p>
+<p>低温・高塩基性・高酸素分圧でリン酸イオンが安定。</p>
+<ol start="2" type="1">
+<li></li>
+</ol>
+<p>定義式は次のとおり</p>
+<p><span class="math display">\[
+e_{\ce{P}}^{\ce{C}} = \lim _{ [\%1] \to 100} \pdv{\log_{10} f_{\ce{P}}}{[\%\ce{C}]}
+\]</span></p>
+<p>実際の値は、</p>
+<p><span class="math display">\[
+\begin{aligned}
+\log_{10}f_{\ce{P}} &amp;= e_{\ce{P}}^{\ce{C}} [\%\ce{C}] \\
+&amp;= 0.079 \times 4.5 \\
+&amp;= 0.3555 \\
+\therefore \quad f_{\ce{P}} &amp;= 10^{0.3555} = 2.27
+\end{aligned}
+\]</span></p>
+<ol start="3" type="1">
+<li></li>
+</ol>
+<p><span class="math display">\[
+\begin{aligned}
+\Delta G_1^\circ &amp;= -122200 - 19.25T\;(\mathrm{J/mol}) \\
+\Delta G_1^\circ &amp;= -RT\ln K_1 \\
+\Rightarrow
+\ln K_1 &amp;= -\frac{\Delta G_1^\circ}{RT} \\
+&amp;= \frac{122200+19.25T}{RT}
+\end{aligned}
+\]</span></p>
+<ol start="4" type="1">
+<li></li>
+</ol>
+<p><span class="math display">\[
+\begin{aligned}
+L_\ce{P} &amp;= \frac{0.326 f_{\ce{P}} C_{\ce{PO4^{3-}}}p_{\ce{O2}}^{\frac{5}{4}}}{K_1} \\
+&amp;= \frac{0.326 \times 2.27  \times (10^{-15})^{\frac{5}{4}}}{\exp\qty(\frac{-(122200 + 19.25 \times 1573)}{8.314 \times 1573})} C_{\ce{PO4^{3-}}}\\
+&amp;= 1.14 \times 10^{-24} C_{\ce{PO4^{3-}}} \\
+&amp;= 5.00 \times 10^{2} \\
+\therefore \quad C_{\ce{PO4^{3-}}} &amp;= 4.40 \times 10^{26} \, \mathrm{mol/m^3}
+\end{aligned}
+\]</span></p>
+<div id="94c11d1a" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fl">8.314</span>  <span class="co"># J/(mol·K)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">1573</span>  <span class="co"># K</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>f_P <span class="op">=</span> <span class="fl">2.27</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>p_O2 <span class="op">=</span> <span class="fl">1e-15</span>  <span class="co"># atm</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>delta_G1_0 <span class="op">=</span> <span class="op">-</span><span class="dv">122200</span> <span class="op">-</span> <span class="fl">19.25</span> <span class="op">*</span> T  <span class="co"># J/mol</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>K1 <span class="op">=</span> np.exp(<span class="op">-</span>delta_G1_0 <span class="op">/</span> (R <span class="op">*</span> T))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>L_P <span class="op">=</span> <span class="fl">5.00e2</span>  <span class="co"># given</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>C_PO4_3_minus <span class="op">=</span> L_P <span class="op">*</span> K1 <span class="op">/</span> (<span class="fl">0.326</span> <span class="op">*</span> f_P <span class="op">*</span> p_O2<span class="op">**</span>(<span class="dv">5</span><span class="op">/</span><span class="dv">4</span>))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"C_PO4^3- is:"</span>, C_PO4_3_minus, <span class="st">"mol/m^3"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>C_PO4^3- is: 4.398695474423597e+26 mol/m^3</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li><p>転炉精錬の主目的は、<strong>溶銑中の炭素を酸化反応によって除去</strong>し、所定の炭素量をもつ鋼を得ること。同時に<strong>SiやMnは優先的に酸化</strong>されスラグ中へ移行し、<strong>塩基性スラグと高い酸素ポテンシャル下でリンもリン酸塩として除去</strong>される。これらの<strong>処理を同時に実現</strong>し、外部加熱を用いずに<strong>溶鋼温度を上昇</strong>させることができる。</p></li>
+<li></li>
+</ol>
+<ol type="1">
+<li></li>
+</ol>
+<ul>
+<li><strong>RD</strong>：<strong>アルゴンガスにの吹き込み</strong>によって<strong>真空槽</strong>に溶鉱を<strong>循環</strong>させる方法。H, N, COの除去に有効。</li>
+<li><strong>VD</strong>：真空槽内で溶鉱を<strong>攪拌</strong>し、真空引きによって<strong>Hを効率的</strong>に除去する方法.</li>
+</ul>
+<ol start="2" type="1">
+<li></li>
+</ol>
+<p>クロム酸化損失の抑制のために、AODやVODが用いられる。前者は<strong>アルゴンガスを吹き込んでCO分圧を下げる</strong>手法で、後者は真空下で<strong>酸素を吹き込むことでCO</strong>を吸い上げる手法。</p>
+</section>
+<section id="問5" class="level3">
+<h3 class="anchored" data-anchor-id="問5">問5</h3>
+<p><img src="pimages/image5.png" class="img-fluid"></p>
+<ol type="1">
+<li></li>
+</ol>
+<p><span class="math inline">\(\ln p_{\ce{O2}}\)</span> を表している。ある温度での縦軸の値から、反応が平衡となる酸素分圧を読み取れば良い。</p>
+<ol start="2" type="1">
+<li></li>
+</ol>
+<p>傾きは <span class="math inline">\(-\Delta S\)</span> であり、切片は <span class="math inline">\(\Delta H\)</span> である。酸化反応でエントロピー変化が類似するため。</p>
+<ol start="3" type="1">
+<li></li>
+</ol>
+<p>1600 Kでは <span class="math inline">\(\ce{SiO2}\)</span> の生成Gibbsエネルギーが <span class="math inline">\(\ce{CO}\)</span> の酸化反応より低く、<span class="math inline">\(\ce{SiO2}\)</span> が熱力学的に安定であるため、 <span class="math inline">\(\ce{CO}\)</span> による還元は困難である</p>
 
 
+</section>
 </section>
 </section>
 
