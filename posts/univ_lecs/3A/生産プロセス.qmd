@@ -12,123 +12,6 @@ $$
 \require{ams}
 $$
 
-# レポート課題
-
-Standard Gibss free energy のまとめ。
-
-|Compounds|$\Delta G\  \text{KJ}\ \text{mol}^{-1}$|
-|---|---|
-|Ba(s)|0|
-|BaO(s)|-520.40592|
-|BaS(s)|-456.056|
-|BaSO4(s)|-1362.3104|
-|O2(g)|0|
-|S2(g)|80.08176|
-
-```{python}
-import numpy as np
-
-delta_G1 = -520.40592  # Ba(s) -> BaO(s)
-delta_G2 = -456.056-(80.08176/2)   # Ba(s) -> BaS(s)
-delta_G3 = -1362.3104-(80.08176/2)  # Ba(s) -> BaSO4(s)
-delta_G4 = -1362.3104+520.40592-(80.08176/2)  # BaO(s) -> BaSO4(s)
-delta_G5 = -1362.3104+456.056  # BaS(s) -> BaSO4(s)
-delta_G6 = -520.40592+(80.08176/2)+456.056  # BaS(s) -> BaO(s) + S2(g)
-
-delta_G1, delta_G2, delta_G3, delta_G4, delta_G5, delta_G6
-```
-
-$$
-\begin{aligned}
-& \ce{Ba(s) + 1/2 O2(g) -> BaO(s)} \quad \Delta G_1 = -520.406\ \text{KJ mol}^{-1} \\
-& \ce{Ba(s) + 1/2 S2(g) -> BaS(s)} \quad \Delta G_2 = -496.097\ \text{KJ mol}^{-1} \\
-& \ce{Ba(s) + 1/2 S2(g) + 2O2(g) -> BaSO4(s)} \quad \Delta G_3 = -1402.35\ \text{KJ mol}^{-1} \\
-& \ce{BaO(s) + 1/2 S2(g) + \frac{3}{2}O2(g) -> BaSO4(s)} \quad \Delta G_4 = -881.945\ \text{KJ mol}^{-1} \\
-& \ce{BaS(s) + 2O2 -> BaSO4(s)} \quad \Delta G_5 = -906.254\ \text{KJ mol}^{-1} \\
-& \ce{BaS(s) + \frac{1}{2}O2 -> BaO(s) + \frac{1}{2}S2(g)} \quad \Delta G_6 = -24.3090\ \text{KJ mol}^{-1} \\
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
-\frac{G_1}{RT} &= \frac{1}{2}\log P_{\ce{O_2}} \\
-\frac{G_2}{RT} &= \frac{1}{2}\log P_{\ce{S_2}} \\
-\frac{G_3}{RT} &= \frac{1}{2}\log P_{\ce{S_2}} + 2\log P_{\ce{O_2}} \\
-\frac{G_4}{RT} &= \frac{1}{2}\log P_{\ce{S_2}} + \frac{3}{2}\log P_{\ce{O_2}} \\
-\frac{G_5}{RT} &= 2\log P_{\ce{O_2}} \\
-\frac{G_6}{RT} &= \frac{1}{2}\log P_{\ce{O_2}} - \frac{1}{2}\log P_{\ce{S_2}} \\
-\end{aligned}
-$$
-
-
-
-```{python}
-import numpy as np
-import matplotlib.pyplot as plt
-
-# 定数設定
-R = 8.314  # 気体定数 (J/(mol*K))
-T = 900    # 温度 (K)
-
-# ギブズ自由エネルギー変化 (J/mol)
-delta_G1 = -520.406 * 1e3  # Ba -> BaO
-delta_G2 = -496.097 * 1e3  # Ba -> BaS
-delta_G3 = -1402.35 * 1e3  # Ba -> BaSO4
-delta_G4 = -881.945 * 1e3  # BaO -> BaSO4
-delta_G5 = -906.254 * 1e3  # BaS -> BaSO4
-delta_G6 = -24.3090 * 1e3  # BaS -> BaO + S2
-
-# 直線の描画
-# y = log_PO2, x = log_PS2
-
-# Ba -> BaO
-x = np.linspace(-150, 0, 500)
-log_PO2 = 2 * delta_G1 / (R * T)
-y = np.full_like(x, log_PO2)
-
-plt.plot(x, y, label='Ba -> BaO')
-
-# Ba -> BaS
-y = np.linspace(-150, 0, 500)
-log_PS2 = 2 * delta_G2 / (R * T)
-x = np.full_like(y, log_PS2)
-
-plt.plot(x, y, label='Ba -> BaS')
-
-# Ba -> BaSO4
-x = np.linspace(-150, 0, 500)
-y = -x / 4 + delta_G3 / (R * T) / 2
-
-plt.plot(x, y, label='Ba -> BaSO4')
-
-# BaO -> BaSO4
-x = np.linspace(-150, 0, 500)
-y = - x / 3 + delta_G4 / (R * T) / 3 * 2
-
-plt.plot(x, y, label='BaO -> BaSO4')
-
-# BaS -> BaSO4
-x = np.linspace(-150, 0, 500)
-log_PO2 = delta_G5 / (R * T) / 2
-y = np.full_like(x, log_PO2)
-
-plt.plot(x, y, label='BaS -> BaSO4')
-
-# BaS -> BaO + S2
-x = np.linspace(-150, 0, 500)
-y = x  + delta_G6 / (R * T) * 2
-
-plt.plot(x, y, label='BaS -> BaO + S2')
-
-# Draw
-plt.xlabel('log_PS2')
-plt.ylabel('log_PO2')
-plt.title('Graph of log_PS2 and log_PO2')
-plt.legend()
-plt.grid()
-plt.show()
-
-```
 
 # 過去問まとめ
 
@@ -146,8 +29,240 @@ This is an example of a callout with a title.
 ::: 
 -->
 
-## 2014年度
+## 2023年度
 
+### 問1
+
+![](pimages/image0.jpeg)
+
+製錬：　鉱石中の化合物状態で存在している元素を、熱や化学的エネルギーを加えて金属状態にすること
+
+精錬：　製錬で得られた金属から不純物を取り除き、純度を高める工程のこと
+
+### 問2
+
+略
+
+### 問3
+
+![](pimages/image3.png)
+
+(1)
+高炉挿入原料：鉄鉱石、コークス、石灰石
+
+間接還元： 
+
+$$
+\begin{aligned}
+\ce{3Fe2O3 + CO &-> 2Fe3O4 + CO2} \\
+\ce{Fe3O4 + CO &-> 3FeO + CO2} \\
+\ce{FeO + CO &-> Fe + CO2} \\
+\end{aligned}
+$$
+
+直接還元：
+
+$$
+\ce{FeO + C -> Fe + CO}
+$$
+
+(2)
+
+- 水素還元は条件によって吸熱反応である。
+- コークスの通気性を保つ性質の代替が不可能。
+- 銑鉄化(浸炭)ができない。
+
+(3)
+
+- 高炉に**微粉化プラスチック**を吹込み、熱分解で $\ce{CO, H2}$ を発生し、**還元剤・燃料**として**コークスや微粉炭を代替**する。
+- コークス炉で**微粉化プラスチックを原料として利用**しつつ、**コークス使用量を削減**する。
+
+(4)
+
+1) 
+
+除冷スラグ：　**自然放冷**した**結晶質**のスラグ。**空隙**を含む岩石城で、道路やコンクリートに使われる。
+
+水砕スラグ：　高温の溶融スラグを**加圧水噴射急冷**した**非晶質**のスラグ。**気泡**を含む粒子状。セメントの原料や路床材に使われる。
+
+2)
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+import math
+
+# --- Vertices of ternary diagram ---
+V_CaO = np.array([0.0, 0.0])
+V_Al  = np.array([1.0, 0.0])
+V_Si  = np.array([0.5, math.sqrt(3)/2])
+
+def bary_to_xy(cao, al, si):
+    s = cao + al + si
+    cao, al, si = cao/s, al/s, si/s
+    return cao*V_CaO + al*V_Al + si*V_Si
+
+fig, ax = plt.subplots(figsize=(7, 6))
+
+# --- Draw triangle ---
+tri = np.vstack([V_CaO, V_Al, V_Si, V_CaO])
+ax.plot(tri[:,0], tri[:,1], color="black")
+
+# --- Axis ticks every 10% ---
+ticks = np.linspace(0.1, 0.9, 9)
+
+# SiO2 ticks (parallel to base)
+for s in ticks:
+    p1 = bary_to_xy(1-s, 0, s)
+    p2 = bary_to_xy(0, 1-s, s)
+    ax.plot([p1[0], p2[0]], [p1[1], p2[1]], color="lightgray", linewidth=0.8)
+    ax.text(p2[0]+0.02, p2[1], f"{int(s*100)}%", fontsize=8, va="center")
+
+# CaO ticks (parallel to Al2O3–SiO2 edge)
+for c in ticks:
+    p1 = bary_to_xy(c, 1-c, 0)
+    p2 = bary_to_xy(c, 0, 1-c)
+    ax.plot([p1[0], p2[0]], [p1[1], p2[1]], color="lightgray", linewidth=0.8)
+
+# Al2O3 ticks (parallel to CaO–SiO2 edge)
+for a in ticks:
+    p1 = bary_to_xy(1-a, a, 0)
+    p2 = bary_to_xy(0, a, 1-a)
+    ax.plot([p1[0], p2[0]], [p1[1], p2[1]], color="lightgray", linewidth=0.8)
+
+# --- Highlight required lines ---
+# CaO : Al2O3 = 2 : 1
+t = np.linspace(0, 1, 200)
+cao = (2/3) * (1 - t)
+al  = (1/3) * (1 - t)
+si  = t
+xy_ratio = np.vstack([bary_to_xy(cao[i], al[i], si[i]) for i in range(len(t))])
+ax.plot(xy_ratio[:,0], xy_ratio[:,1], color="red", linewidth=2, label="CaO:Al$_2$O$_3$ = 2:1")
+
+# SiO2 = 30%
+p1 = bary_to_xy(0.70, 0.00, 0.30)
+p2 = bary_to_xy(0.00, 0.70, 0.30)
+ax.plot([p1[0], p2[0]], [p1[1], p2[1]], color="blue", linewidth=2, label="SiO$_2$ = 30%")
+
+# --- Labels ---
+ax.text(V_CaO[0]-0.05, V_CaO[1]-0.05, "CaO", ha="right", va="top", fontsize=12)
+ax.text(V_Al[0]+0.05,  V_Al[1]-0.05,  "Al$_2$O$_3$", ha="left", va="top", fontsize=12)
+ax.text(V_Si[0],       V_Si[1]+0.06,  "SiO$_2$", ha="center", va="bottom", fontsize=12)
+
+ax.set_aspect("equal")
+ax.axis("off")
+ax.legend(loc="upper right", frameon=False)
+
+plt.show()
+```
+
+3)4)
+
+![](pimages/image1.png)
+
+![](pimages/image2.png)
+
+### 問4
+
+![](pimages/image6-1.png)
+
+![](pimages/image6-2.png)
+
+(1)
+
+1) 
+
+$$
+\ce{P + \frac{5}{4}O2 + \frac{3}{2}O^{2-} -> PO4^{3-}}
+$$
+
+低温・高塩基性・高酸素分圧でリン酸イオンが安定。
+
+2)
+
+定義式は次のとおり
+
+$$
+e_{\ce{P}}^{\ce{C}} = \lim _{ [\%1] \to 100} \pdv{\log_{10} f_{\ce{P}}}{[\%\ce{C}]}
+$$
+
+実際の値は、
+
+$$
+\begin{aligned}
+\log_{10}f_{\ce{P}} &= e_{\ce{P}}^{\ce{C}} [\%\ce{C}] \\
+&= 0.079 \times 4.5 \\
+&= 0.3555 \\
+\therefore \quad f_{\ce{P}} &= 10^{0.3555} = 2.27
+\end{aligned}
+$$
+
+3)
+
+$$
+\begin{aligned}
+\Delta G_1^\circ &= -122200 - 19.25T\;(\mathrm{J/mol}) \\
+\Delta G_1^\circ &= -RT\ln K_1 \\
+\Rightarrow
+\ln K_1 &= -\frac{\Delta G_1^\circ}{RT} \\
+&= \frac{122200+19.25T}{RT}
+\end{aligned}
+$$
+
+4)
+
+$$
+\begin{aligned}
+L_\ce{P} &= \frac{0.326 f_{\ce{P}} C_{\ce{PO4^{3-}}}p_{\ce{O2}}^{\frac{5}{4}}}{K_1} \\
+&= \frac{0.326 \times 2.27  \times (10^{-15})^{\frac{5}{4}}}{\exp\qty(\frac{-(122200 + 19.25 \times 1573)}{8.314 \times 1573})} C_{\ce{PO4^{3-}}}\\
+&= 1.14 \times 10^{-24} C_{\ce{PO4^{3-}}} \\
+&= 5.00 \times 10^{2} \\
+\therefore \quad C_{\ce{PO4^{3-}}} &= 4.40 \times 10^{26} \, \mathrm{mol/m^3}
+\end{aligned}
+$$
+
+```{python}
+import numpy as np
+R = 8.314  # J/(mol·K)
+T = 1573  # K
+f_P = 2.27
+p_O2 = 1e-15  # atm
+
+delta_G1_0 = -122200 - 19.25 * T  # J/mol
+K1 = np.exp(-delta_G1_0 / (R * T))
+L_P = 5.00e2  # given
+C_PO4_3_minus = L_P * K1 / (0.326 * f_P * p_O2**(5/4))
+print("C_PO4^3- is:", C_PO4_3_minus, "mol/m^3")
+```
+
+(2) 転炉精錬の主目的は、**溶銑中の炭素を酸化反応によって除去**し、所定の炭素量をもつ鋼を得ること。同時に**SiやMnは優先的に酸化**されスラグ中へ移行し、**塩基性スラグと高い酸素ポテンシャル下でリンもリン酸塩として除去**される。これらの**処理を同時に実現**し、外部加熱を用いずに**溶鋼温度を上昇**させることができる。
+
+(3)
+
+1) 
+
+- **RD**：**アルゴンガスにの吹き込み**によって**真空槽**に溶鉱を**循環**させる方法。H, N, COの除去に有効。
+- **VD**：真空槽内で溶鉱を**攪拌**し、真空引きによって**Hを効率的**に除去する方法.
+
+2)
+
+クロム酸化損失の抑制のために、AODやVODが用いられる。前者は**アルゴンガスを吹き込んでCO分圧を下げる**手法で、後者は真空下で**酸素を吹き込むことでCO**を吸い上げる手法。
+
+### 問5
+
+![](pimages/image5.png)
+
+(1)
+
+$\ln p_{\ce{O2}}$ を表している。ある温度での縦軸の値から、反応が平衡となる酸素分圧を読み取れば良い。
+
+(2)
+
+傾きは $-\Delta S$ であり、切片は $\Delta H$ である。酸化反応でエントロピー変化が類似するため。
+
+(3)
+
+1600 Kでは $ \ce{SiO2}$ の生成Gibbsエネルギーが $\ce{CO}$ の酸化反応より低く、$ \ce{SiO2}$ が熱力学的に安定であるため、 $\ce{CO}$ による還元は困難である
 
 
 
