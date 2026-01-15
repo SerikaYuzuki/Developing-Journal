@@ -1,0 +1,609 @@
+---
+title: "数学"
+author: "Serika Yuzuki"
+date: "2026-1-5"
+categories: [University, 2026]
+image: "images/thumbnail.png"
+---
+
+$$
+\require{physics}
+$$
+
+以降、pythonコードセル内で`dsolve`関数を使って常微分方程式を解く。
+
+### 同次型
+
+$$
+\begin{aligned}
+x\dv{y}{x} &= x + y \\
+(x + y) \dv{y}{x} &= 2x - y 
+\end{aligned}
+$$
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+$$
+\dv{y}{x} = f\qty(\frac{y}{x})
+$$
+
+この形に落とし込めば、 $t=\frac{y}{x}$ と置換して解ける。
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+1問目は簡単なので解答だけ。
+
+```{python}
+#| output: asis
+
+from sympy import symbols, Function, Eq, dsolve, latex
+
+x = symbols('x')
+y = Function('y')(x)
+
+ode = Eq(x*y.diff(x), x + y)
+
+sol = dsolve(ode)
+print("$$" + latex(sol) + "$$")
+```
+
+２問目。
+
+$$
+\begin{aligned}
+(x + y) \dv{y}{x} &= 2x - y \\
+\dv{y}{x} &= \frac{2x - y}{x + y} = \frac{2 - \frac{y}{x}}{1 + \frac{y}{x}} \\
+t &= \frac{y}{x} \\
+\dv{y}{x} &= t + x \dv{t}{x} \\
+t + x \dv{t}{x} &= \frac{2 - t}{1 + t} \\
+x \dv{t}{x} &= \frac{2 - t}{1 + t} - t = \frac{2 - t - t - t^2}{1 + t} = \frac{2 - 2t - t^2}{1 + t} \\
+\frac{1 + t}{2 - 2t - t^2} \dd{t} &= \frac{1}{x} \dd{x} \\
+\int \frac{1 + t}{2 - 2t - t^2} \dd{t} &= \int \frac{1}{x} \dd{x} \\
+\ln \abs{x} + C_1 &= -\frac{1}{2} \ln \abs{t^2 + 2t - 2} \\
+\frac{C_1}{x^2} &= \frac{1}{t^2 + 2t - 2} \\
+t & = -1 \pm \sqrt{ \frac{C_1}{x^2} + 1 } \\
+y & = x \qty( -1 \pm \sqrt{ \frac{C_1}{x^2} + 1 } )
+\end{aligned}
+$$
+
+もしくは、
+
+$$
+y^2 + 2xy - 2x^2 = C_1
+$$
+
+::: 
+
+### 一階線型常微分方程式
+
+$$
+\begin{align}
+\dv{y}{x} + P(x)y &= Q(x) \\
+\dv{y}{x} + 5y &= 6e^x
+\end{align}
+$$
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+一次線型常微分方程式は、積分因子 $e^{\int P(x) \dd{x}}$ を用いて解く。
+
+と書くと分かりづらいから、要するに、
+
+$$
+?\dv{y}{x} + ?P(x)y = \dv{x} ?
+$$
+
+という形を目指して、
+
+$$
+e^{\textcolor{orange}{\int P(x) \dd{x}}}\dv{y}{x} + y e^{\textcolor{orange}{\int P(x) \dd{x}}} \textcolor{red}{P(x)} = \dv{x} \qty(y e^{\int P(x) \dd{x}})
+$$
+
+という形に落ち着くって話。
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+１問目は、
+
+$$
+\begin{aligned}
+\dv{x} \qty(y e^{\int P(x) \dd{x}}) &= Q(x) e^{\int P(x) \dd{x}} \\
+y e^{\int P(x) \dd{x}} &= \int Q(x) e^{\int P(x) \dd{x}} \dd{x} + C \\
+y &= e^{-\int P(x) \dd{x}} \qty( \int Q(x) e^{\int P(x) \dd{x}} \dd{x} + C )
+\end{aligned}
+$$
+
+後半でこの式を覚えて当てはめるのは無理。覚えられうものなら覚えてみろ。
+
+２問目。
+
+$$
+\begin{aligned}
+e^{\textcolor{orange}{5x}} \dv{y}{x} + \textcolor{red}{5} y e^{\textcolor{orange}{5x}} &= 6e^{6x} \\
+y e^{5x} &= \int 6e^{6x} \dd{x} + C \\
+y &= e^{x} + C e^{-5x}
+\end{aligned}
+$$
+
+```{python}
+#| output: asis
+
+from sympy import symbols, Function, Eq, dsolve, exp, integrate, latex
+
+x = symbols('x')
+y = Function('y')(x)
+ode = Eq(y.diff(x) + 5*y, 6*exp(x))
+sol = dsolve(ode)
+print("$$" + latex(sol) + "$$")
+```
+
+::: 
+
+### 一階非線型常微分方程式
+
+$$
+\begin{align}
+\dv{y}{x} + P(x)y &= Q(x)y^n \\
+\dv{y}{x} &= P(x)y^2 + Q(x)y + R(x) \quad \text{解き方のみ} \\
+x^2 \dv{y}{x} &= x^2y^2 - xy - 1
+\end{align}
+$$
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+ベルヌーイの微分方程式は、$y^n$ で割ってから線形微分方程式に変形する。これは、 $y$ の次数が１だけズレてるから。
+
+2番目のはリッカチの微分方程式。特殊解 $y_p$ を知っているとき、 $y = y_p + t$ と置換することで線形微分方程式に変形できる。
+
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+１問目。
+
+$$
+\begin{aligned}
+\frac{1}{y^ \textcolor{red}{n}} \dv{y}{x} + P(x) \frac{1}{y^{\textcolor{red}{n-1}}} &= Q(x) \\
+(n-1)\dv{x} \qty(\frac{1}{y^{ \textcolor{red}{n-1} }}) + P(x) \frac{1}{y^{\textcolor{red}{n-1}}} &= Q(x) \\
+\dv{x} \qty(\textcolor{orange}{\frac{1}{y^{ n-1 }}}) + \frac{P(x)}{n-1} \textcolor{orange}{\frac{1}{y^{ n-1 }}} &= \frac{Q(x)}{n-1} \\
+\end{aligned}
+$$
+
+2問目はスキップして、具体例の３問目。
+
+$$
+\begin{aligned}
+x^2 \dv{y}{x} &= x^2y^2 - xy - 1 \\
+y &= \frac{1}{x} + t \\
+-1 + x^2 \dv{t}{x} &= x^2 t^2 + xt - 1\\
+\dv{t}{x} &= \frac{x^2 t^2 + xt}{x^2} = t^2 + \frac{t}{x} \\
+\frac{1}{t^2} \dv{t}{x} - \frac{1}{x} \frac{1}{t} &= 1 \\
+-\dv{x} \qty(\frac{1}{t}) - \frac{1}{x} \frac{1}{t} &= 1 \\
+\dv{x} \qty(\frac{1}{t}) + \frac{1}{x} \frac{1}{t} &= -1 \\
+s &= \frac{1}{t} \\
+\dv{s}{x} + \frac{s}{x} &= -1 \\
+u &= \frac{s}{x} \\
+\dv{x} (ux) + u &= -1 \\
+\dv{u}{x} x + 2u &= -1 \\
+\frac{\dd x}{x} &= - \frac{\dd u}{2u + 1} \\
+x = C \sqrt {2u + 1} \\
+u = \frac{C^2}{x^2} - \frac{1}{2} \\
+s = x \qty( \frac{C^2}{x^2} - \frac{1}{2} ) = \frac{C^2}{x} - \frac{x}{2} \\
+t = \frac{1}{s} = \frac{1}{ \frac{C^2}{x} - \frac{x}{2} } \\
+y = \frac{1}{x} + t &= \frac{1}{x} + \frac{1}{ \frac{C}{x} - \frac{x}{2} } = \frac{1}{x} \qty( 1 + \frac{1}{ \frac{C}{x^2} - \frac{1}{2} } ) \\
+&= \frac{1}{x} \frac{C + x^2}{C - x^2}
+\end{aligned}
+$$
+
+ってな感じだが、この問題に限って言えば、もっと簡単な方法がある。$y=u/x$ とおくと
+
+$$
+\begin{aligned}
+x^2 \dv{y}{x} -x^2y^2 + xy + 1 &= 0 \\
+\dv{y}{x} + \frac{1}{x}y &= y^2 - \frac{1}{x^2} \\
+\frac{1}{x}\dv{u}{x} &= \frac{u^2-1}{x^2} \\
+\frac{\dd x}{x}  &= \frac{\dd u}{u^2-1} \\
+\ln x &= \frac{1}{2}\ln\qty(\frac{u-1}{u+1}) + C \\
+\frac{u-1}{u+1} &= Cx^2 \\
+u &= \frac{1+Cx^2}{1-Cx^2} \\
+y &= \frac{1}{x} \frac{1+Cx^2}{1-Cx^2}
+\end{aligned}
+$$
+
+```{python}
+#| output: asis
+from sympy import symbols, Function, Eq, dsolve, latex
+
+x = symbols('x')
+y = Function('y')(x)
+ode = Eq(y.diff(x), y**2 - y/x - 1/x**2)
+sol = dsolve(ode)
+print("$$" + latex(sol) + "$$")
+```
+
+::: 
+
+### ２階斉次常微分方程式
+
+$$
+\begin{aligned}
+\dv[2]{y}{x} + a\dv{y}{x} + by &= 0 \\
+\dv[2]{y}{x} + 4\dv{y}{x} - 5y &= 0 \\
+\dv[2]{y}{x} - 6\dv{y}{x} + 9y &= 0 \\
+\dv[2]{y}{x} + 2\dv{y}{x} + 5y &= 0
+\end{aligned}
+$$
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+二次方程式を解いて、異なる基底の二つの解を重ねる。
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+１問目。
+
+$ \lambda^2 + a\lambda + b = 0 $ を解いた解を $ \lambda_1, \lambda_2 $ とすると、
+
+$$
+\begin{aligned}
+y &= C_1 e^{\lambda_1 x} + C_2 e^{\lambda_2 x} &&\quad \text{異なる実数解} \\
+y &= C_1 e^{\lambda x} + C_2 x e^{\lambda x} &&\quad \text{重解} \\
+y &= e^{\alpha x} \qty( C_1 \cos \beta x + C_2 \sin \beta x ) &&\quad \text{複素解 }
+\end{aligned}
+$$
+
+２〜４問目。
+
+$$
+\begin{aligned}
+y &= C_1 e^{x} + C_2 e^{-5x} \\
+y &= (C_1 + C_2 x) e^{3x} \\
+y &= e^{-x} \qty( C_1 \cos 2x + C_2 \sin 2x )
+\end{aligned}
+$$
+
+```{python}
+#| output: asis
+from sympy import symbols, Function, Eq, dsolve, exp, cos, sin, latex
+
+x = symbols('x')
+y = Function('y')(x)
+odes = [
+    Eq(y.diff(x, 2) + 4*y.diff(x) - 5*y, 0),
+    Eq(y.diff(x, 2) - 6*y.diff(x) + 9*y, 0),
+    Eq(y.diff(x, 2) + 2*y.diff(x) + 5*y, 0)
+]
+for ode in odes:
+    sol = dsolve(ode)
+    print("$$" + latex(sol) + "$$")
+```
+
+::: 
+
+### ２階非斉次常微分方程式
+
+$$
+\begin{aligned}
+\dv[2]{y}{x} + a\dv{y}{x} + by &= R(x) \quad \text{解き方のみ} \\
+\dv[2]{y}{x} + 2\dv{y}{x} - 3y &= e^{2x} \\
+\dv[2]{y}{x} - 3\dv{y}{x} + 2y &= 20 \sin 2x \\
+\dv[2]{y}{x} + 4\dv{y}{x} - 5y &= 6x \\
+\dv[2]{y}{x} + 4\dv{y}{x} + 4y &= 4e^{2x}
+\end{aligned}
+$$
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+非斉次常微分方程式の解 = 斉次方程式の一般解 + 特殊解
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+１問目。
+
+特殊解の求め方は、$R(x)$ の形によって場合分けする。似たような形の $y_p$ を仮定して、定数を決める。
+
+２問目。
+
+$$
+\begin{aligned}
+y_p &= e^{2x} \\
+y &= C_1 e^{3x} + C_2 e^{-x} + e^{2x}
+\end{aligned}
+$$
+
+3問目。
+
+$$
+\begin{aligned}
+y_p &= A \sin 2x + B \cos 2x \\
+20 \sin 2x &= - 4A \sin 2x - 4B \cos 2x - 6A \cos 2x + 6B \sin 2x + 2A \sin 2x + 2B \cos 2x \\
+&= (-2A + 6B) \sin 2x + (-2B - 6A) \cos 2x  \\
+-2A + 6B &= 20 \\
+-2B - 6A &= 0 \\
+A &= -1, \quad B = 3 \\
+y &= C_1 e^{x} + C_2 e^{2x} - \sin 2x + 3 \cos 2x
+\end{aligned}
+$$
+
+4問目。
+
+$$
+\begin{aligned}
+y_p &= Ax + B \\
+6x &= 4A - 5Ax - 5B \\
+6x &= (-A) x + (4A - B) \\
+-A &= 6 \Rightarrow A = -6 \\
+4A - B &= 0 \Rightarrow B = 4(-6) = -24 \\
+y &= C_1 e^{x} + C_2 e^{-5x} - 6x - 24
+\end{aligned}
+$$
+
+5問目。
+
+$$
+y = (C_1 + C_2 x) e^{-2x} + \frac{1}{4}e^{2x}
+$$
+
+::: 
+
+### ２階線形微分⽅程式
+
+$$
+\begin{aligned}
+x^2 \dv[2]{y}{x} + a x \dv{y}{x} + by &= 0 \quad \text{解き方のみ} \\
+x^2 \dv[2]{y}{x} -x \dv{y}{x} + y &= x^2 \\
+\dv[4]{y}{x} - 2 \dv[3]{y}{x} + 2 \dv{y}{x} - y &= 9e^{-2x} \\
+x^2 \dv[2]{y}{x} - 8x \dv{y}{x} - 8y &= x^2 \\
+\end{aligned}
+$$
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+1問目。
+
+$x = e^t$ と置換して、 $t$ に関する常微分方程式に変形する。
+
+2問目。
+
+$$
+\begin{aligned}
+x^2 \dv[2]{y}{x} -x \dv{y}{x} + y &= x^2 \\
+t &= \ln x \\
+\dv{y}{x} = \dv{y}{t} \dv{t}{x} &= \frac{1}{x} \dv{y}{t} \\
+&= e^{-t} \dv{y}{t} \\
+\dv[2]{y}{x} &= \dv{x} \qty( \frac{1}{x} \dv{y}{t} ) \\
+&= -\frac{1}{x^2} \dv{y}{t} + \frac{1}{x} \textcolor{red}{\dv{x}\dv{y}{t}} \\
+&= -\frac{1}{x^2} \dv{y}{t} + \frac{1}{x} \textcolor{red}{\qty( \dv{t}{x} \dv[2]{y}{t} )} \\
+&= -\frac{1}{x^2} \dv{y}{t} + \frac{1}{x^2} \dv[2]{y}{t} \\
+-\dv{y}{t} + \dv[2]{y}{t} -\dv{y}{t} + y &= e^{2t} \\
+\dv[2]{y}{t} - 2\dv{y}{t} + y &= e^{2t} \\
+y &= C_1 e^{t} + C_2 t e^{t} + e^{2t} \\
+&= C_1 x + C_2 x \ln x + x^2
+\end{aligned}
+$$
+
+```{python}
+#| output: asis
+from sympy import symbols, Function, Eq, dsolve, exp, ln, latex
+
+x = symbols('x')
+y = Function('y')(x)
+ode = Eq(x**2 * y.diff(x, 2) - x * y.diff(x) + y, x**2)
+sol = dsolve(ode)
+print("$$" + latex(sol) + "$$")
+```
+
+3問目。
+
+$$
+\begin{aligned}
+y = C_1 e^x + C_2 x e^x + C_3 x^2 e^x + C_4 e^{-x} + \frac{1}{3}e^{-2x}
+\end{aligned}
+$$
+
+```{python}
+#| output: asis
+from sympy import symbols, Function, Eq, dsolve, exp, latex
+
+x = symbols('x')
+y = Function('y')(x)
+ode = Eq(y.diff(x, 4) - 2*y.diff(x, 3) + 2*y.diff(x) - y, 9*exp(-2*x))
+sol = dsolve(ode)
+print("$$" + latex(sol) + "$$")
+```
+
+4問目。
+
+$$
+\begin{aligned}
+t &= \ln x \\
+\dv{y}{x} = \dv{y}{t} \dv{t}{x} &= \frac{1}{x} \dv{y}{t} \\
+\dv[2]{y}{x} &= -\frac{1}{x^2} \dv{y}{t} + \frac{1}{x^2} \dv[2]{y}{t} \\
+\dv[2]{y}{t} - 2\dv{y}{t} - 8y &= e^{2t} \\
+y &= C_1 e^{4t} + C_2 e^{-2t} - \frac{1}{8} e^{2t} \\
+&= C_1 x^{4} + C_2 x^{-2} - \frac{1}{8} x^{2}
+\end{aligned}
+$$
+
+::: 
+
+### 線形偏微分⽅程式
+
+$$
+\begin{aligned}
+
+\pdv{u}{x} &= 4 \pdv{u}{y} &&\quad u(0,y) = 8e^{-3y} \\
+\pdv{u}{t} &= 2 \pdv[2]{u}{x} &&\quad u(0,t)=u(3,t)=0, u(x,0) = 5\sin 4\pi x - 3 \sin 8 \pi x \\
+\pdv{u}{x} &= 2 \pdv{u}{y} + u &&\quad u(x,0) = 3e^{-5x} + 2e^{-3x} \\
+\pdv[2]{y}{t} &= 16 \pdv[2]{y}{x} &&\quad y(0,t) = y(2,t) = 0, y(x,0) = 6\sin \pi x - 3\sin 4 \pi x, \pdv{y}{t}(x,0) = 0 = \eval{\pdv{y}{t}}_{t=0}
+
+\end{aligned}
+$$
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+とりあえず変数分離。そうしてから、次数に合わせて $\lambda$ を設定する。
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+$u=X(x)Y(y)T(t)$ とおいて考える。
+
+1問目。
+
+$$
+\begin{aligned}
+\dv{X}{x} Y &= 4 X \dv{Y}{y} \\
+\frac{1}{X} \dv{X}{x} &= 4 \frac{1}{Y} \dv{Y}{y} = -\lambda \\
+X = C_1 e^{-\lambda x} &, \quad Y = C_2 e^{-\frac{\lambda}{4} y} \\
+u &= C e^{-\lambda x} e^{-\frac{\lambda}{4} y} \\
+u(0,y) &= 8 e^{-3y} \\
+C e^{-\frac{\lambda}{4} y} &= 8 e^{-3y} \\
+\lambda = 12&, \quad C = 8 \\
+u &= 8 e^{-12 x} e^{-3 y}
+\end{aligned}
+$$
+
+2問目。
+
+$$
+\begin{aligned}
+X \dv{T}{t} &= 2 T \dv[2]{X}{x} \\
+\frac{1}{T} \dv{T}{t} &= 2 \frac{1}{X} \dv[2]{X}{x} = -\lambda^2 \\
+T &= C_1 e^{-\lambda^2 t} \\
+\dv[2]{X}{x} + \frac{\lambda^2}{2} X &= 0 \\
+X &= C_2 \sin \qty( \frac{\lambda}{\sqrt{2}} x ) + C_3 \cos \qty( \frac{\lambda}{\sqrt{2}} x ) \\
+X(0) &= 0 \Rightarrow C_3 = 0 \\
+X(3) &= 0 \Rightarrow \frac{\lambda}{\sqrt{2}} 3 = n \pi \Rightarrow \lambda = \frac{n \pi \sqrt{2}}{3} \\
+u &= C e^{-\frac{2n^2 \pi^2}{9} t} \sin \qty( \frac{n \pi}{3} x ) \\
+&= C_1 e^{-\frac{2n_1^2 \pi^2}{9} t} \sin \qty( \frac{n_1 \pi}{3} x ) + C_2 e^{-\frac{2n_2^2 \pi^2}{9} t} \sin \qty( \frac{n_2 \pi}{3} x ) \\
+u(x,0) &= 5 \sin 4 \pi x - 3 \sin 8 \pi x \\
+C_1 = 5&, \quad n_1 = 12 \\
+C_2 = -3&, \quad n_2 = 24 \\
+u &= 5 e^{-32 \pi^2 t} \sin 4 \pi x - 3 e^{-128 \pi^2 t} \sin 8 \pi x
+\end{aligned}
+$$
+
+3問目。
+
+$$
+\begin{aligned}
+
+Y \dv{X}{x} &= 2 X \dv{Y}{y} + X Y \\
+\frac{1}{X} \dv{X}{x} - 1 &= 2 \frac{1}{Y} \dv{Y}{y} = \lambda \\
+X &= C_1 e^{(\lambda + 1) x} \\
+Y &= C_2 e^{\frac{\lambda}{2} y} \\
+u &= C_1 e^{(\lambda_1 + 1) x} e^{\frac{\lambda_1}{2} y} + C_2 e^{(\lambda_2 + 1) x} e^{\frac{\lambda_2}{2} y} \\
+u(x,0) &= 3e^{-5x} + 2e^{-3x} \\
+C_1 e^{(\lambda_1 + 1) x} + C_2 e^{(\lambda_2 + 1) x} &= 3e^{-5x} + 2e^{-3x} \\
+C_1 = 3&, \quad \lambda_1 = -6 \\
+C_2 = 2&, \quad \lambda_2 = -4 \\
+u &= 3 e^{-5x} e^{-3y} + 2 e^{-3x} e^{-2y}
+\end{aligned}
+$$
+
+4問目。
+
+$$
+\begin{aligned}
+X &= C_1 \sin \lambda x + C_2 \cos \lambda x \\
+T &= C_3 \cos 4 \lambda t + C_4 \sin 4 \lambda t \\
+X(0) &= 0 \Rightarrow C_2 = 0 \\
+X(2) &= 0 \Rightarrow \lambda = \frac{n \pi}{2} \\
+u(0, t) &= C_2 T(t) = 0\\
+C_2 &= 0 \\
+u(2, t) &= C_1 \sin (2\lambda) T(t) = 0 \\
+\lambda &= \frac{n \pi}{2} \\
+\pdv{u}{t} &= 2C_1 n\pi \sin \qty( \frac{n \pi}{2} x ) \qty( - C_3 \sin \qty( 2 n \pi t ) + C_4 \cos \qty( 2 n \pi t ) ) \\
+u(x,0) &= C_1C_4 \sin \qty( \frac{n \pi}{2} x ) = 0 \\
+C_4 &= 0 \\
+u &= C_1 \sin \qty( \frac{n \pi}{2} x ) C_3 \cos \qty( 2 n \pi t ) \\
+u(x, 0) &= C_1' \qty( \frac{n_1 \pi}{2} x ) + C_2' \sin \qty( \frac{n_2 \pi}{2} x ) \\
+&= 6 \sin \pi x - 3 \sin 4 \pi x \\
+C_1' = 6&, \quad n_1 = 2 \\
+C_2' = -3&, \quad n_2 = 8 \\
+u &= 6 \sin \pi x \cos 4 \pi t - 3 \sin 4 \pi x \cos 16 \pi t
+\end{aligned}
+$$
+
+
+::: 
+
+### フーリエ級数
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+def plot_an_area(n, num=4000):
+    # 区間 [-pi, pi]
+    x = np.linspace(-np.pi, np.pi, num)
+    f = x**2
+    g = f * np.cos(n*x)   # integrand
+
+    # 数値積分（台形則）
+    integral = np.trapz(g, x)      # ∫ g(x) dx
+    a_n = integral / np.pi         # a_n = (1/pi) ∫ ...
+
+    plt.figure()
+    plt.axhline(0, linewidth=1)
+
+    # 曲線
+    plt.plot(x, g, linewidth=2, label=r"$g_n(x)=x^2\cos(nx)$")
+
+    # +面積（0以上）
+    plt.fill_between(x, 0, g, where=(g >= 0), alpha=0.35, interpolate=True,
+                     label="+ area (adds)")
+    # -面積（0未満）
+    plt.fill_between(x, 0, g, where=(g < 0), alpha=0.35, interpolate=True,
+                     label="- area (subtracts)")
+
+    plt.title(fr"Signed area for $a_{n}$   "
+              fr"$\int_{{-\pi}}^{{\pi}} x^2\cos({n}x)\,dx = {integral:.6f}$,  "
+              fr"$a_{n}={a_n:.6f}$")
+    plt.xlabel("x")
+    plt.ylabel(r"$x^2\cos(nx)$")
+    plt.legend()
+    plt.show()
+
+for n in [1, 2, 3]:
+    plot_an_area(n)
+```
+
+<!-- 
+::: {.callout-note collapse="true"}
+##### 理論
+
+This is an example of a callout with a title.
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+This is an example of a callout with a title.
+::: 
+-->
+

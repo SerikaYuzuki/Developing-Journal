@@ -1,0 +1,1884 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Serika Yuzuki">
+<meta name="dcterms.date" content="2026-01-05">
+
+<title>数学 – 芹香のブログ：セリポンポン 気軽にコメント残してね！</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../posts/univ_lecs/3A/生産プロセス.html" rel="next">
+<link href="../../../posts/univ_lecs/3A/信頼性学.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dddeef630d1ce9d268eb36642e6e288b.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-dddeef630d1ce9d268eb36642e6e288b.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-5f2dbc65a0fd7a1177fde5d317e5c8be.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-f7a595915c072b1638a7530862449908.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script defer="" src="https://analytics.serika.work/script.js" data-website-id="cmfi6s4p200011l07qudz1s5f"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const darkModeDefault = authorPrefersDark;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">芹香のブログ：セリポンポン 気軽にコメント残してね！</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../about.html" aria-current="page"> 
+<span class="menu-text">Serika Yuzuki</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://syosetu.org/novel/309340/"> <i class="bi bi-book" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/SerikaYuzuki"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/serika_yuzuki"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://discord.gg/zUUkFzYZvK"> <i class="bi bi-discord" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">大学関連</li><li class="breadcrumb-item">Univ Lecs</li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3A/セラミック材料学.html">3A</a></li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3A/数学.html">数学</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">大学関連</li><li class="breadcrumb-item">Univ Lecs</li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3A/セラミック材料学.html">3A</a></li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3A/数学.html">数学</a></li></ol></nav>
+      <h1 class="title">数学</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">University</div>
+                <div class="quarto-category">2026</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Serika Yuzuki </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">January 5, 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../../index.html" class="sidebar-logo-link">
+      </a>
+      <div class="sidebar-tools-main tools-wide">
+    <a href="https://syosetu.org/novel/309340/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-book"></i></a>
+    <a href="https://github.com/SerikaYuzuki" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://twitter.com/serika_yuzuki" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
+    <a href="https://discord.gg/zUUkFzYZvK" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-discord"></i></a>
+</div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Serika Yuzuki</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">AtCoder</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/cargo_compete.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cargo Compete</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/template.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">template</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-01</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-02</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-03</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-04</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-05</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-06</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-07</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-08</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-09</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-10</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-11</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">大学関連</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Univ Lecs</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">2A</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料力学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">統計力学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料相平衡論.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料相平衡論</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料統計力学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料統計力学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料速度論.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料速度論</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料量子力学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料量子力学</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">3A</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/セラミック材料学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">セラミックノート</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/デバイス材料工学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">デバイス材料工学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/信頼性学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">信頼性学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/数学.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">数学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/生産プロセス.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">生産プロセス</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/高分子２.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">高分子ノート</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">3S</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/固体物性学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">固体物性学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/材料反応工学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料反応工学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/材料強度学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料強度学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/材料電気化学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料電気化学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/組織生成論.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">組織生成論</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">収容所配布用</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">数学</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学A</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学B</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学I.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学I</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学II.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学II</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学III.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学III</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/過去問演習.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">過去問演習</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">技術関連</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false">
+ <span class="menu-text">Tech</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/ENovelEpubConverter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">小説をEPUBに変換するpythonパッケージを作った話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/linkwarden.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linkwardenにブックマーク管理を任せる</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/MisskeyDockerSetup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DockerでMisskeyを立てる</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/NovelApp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SwiftUIで開発する小説執筆支援アプリ</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/QuartoRenderSingle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quartoで単一ファイルにレンダリングする方法</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SetUpNewDebianServer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Debianサーバーを立てた話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/StartUsingCodex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Codexを使い始めた件</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftPackageError.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Swift Packageの読み込みエラー</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/TailscaleAndNord.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NordとTailscaleで自宅サーバーを安全に公開する</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/TimeMachineServer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time Machine ServerをSambaで作った話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/UbuntuPartitionMissing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ミスって/boot/efiを消した話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
+ <span class="menu-text">SwiftUI小説アプリ</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftUI小説アプリ/EditorKitPlugin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EditorKitのいじり方をプラグイン形式にする話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftUI小説アプリ/General.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">小説執筆アプリを作る</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftUI小説アプリ/Gitflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git FlowとGitHub Flow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftUI小説アプリ/POP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Protocol Oriented Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftUI小説アプリ/SwiftUIAndAppKit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SwiftUIとAppKitの連携</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="3">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#同次型" id="toc-同次型" class="nav-link active" data-scroll-target="#同次型">同次型</a></li>
+  <li><a href="#一階線型常微分方程式" id="toc-一階線型常微分方程式" class="nav-link" data-scroll-target="#一階線型常微分方程式">一階線型常微分方程式</a></li>
+  <li><a href="#一階非線型常微分方程式" id="toc-一階非線型常微分方程式" class="nav-link" data-scroll-target="#一階非線型常微分方程式">一階非線型常微分方程式</a></li>
+  <li><a href="#階斉次常微分方程式" id="toc-階斉次常微分方程式" class="nav-link" data-scroll-target="#階斉次常微分方程式">２階斉次常微分方程式</a></li>
+  <li><a href="#階非斉次常微分方程式" id="toc-階非斉次常微分方程式" class="nav-link" data-scroll-target="#階非斉次常微分方程式">２階非斉次常微分方程式</a></li>
+  <li><a href="#階線形微分程式" id="toc-階線形微分程式" class="nav-link" data-scroll-target="#階線形微分程式">２階線形微分⽅程式</a></li>
+  <li><a href="#線形偏微分程式" id="toc-線形偏微分程式" class="nav-link" data-scroll-target="#線形偏微分程式">線形偏微分⽅程式</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<p><span class="math display">\[
+\require{physics}
+\]</span></p>
+<p>以降、pythonコードセル内で<code>dsolve</code>関数を使って常微分方程式を解く。</p>
+<section id="同次型" class="level3">
+<h3 class="anchored" data-anchor-id="同次型">同次型</h3>
+<p><span class="math display">\[
+\begin{aligned}
+x\dv{y}{x} &amp;= x + y \\
+(x + y) \dv{y}{x} &amp;= 2x - y
+\end{aligned}
+\]</span></p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\dv{y}{x} = f\qty(\frac{y}{x})
+\]</span></p>
+<p>この形に落とし込めば、 <span class="math inline">\(t=\frac{y}{x}\)</span> と置換して解ける。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>1問目は簡単なので解答だけ。</p>
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, Function, Eq, dsolve, latex</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> symbols(<span class="st">'x'</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> Function(<span class="st">'y'</span>)(x)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>ode <span class="op">=</span> Eq(x<span class="op">*</span>y.diff(x), x <span class="op">+</span> y)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>sol <span class="op">=</span> dsolve(ode)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"$$"</span> <span class="op">+</span> latex(sol) <span class="op">+</span> <span class="st">"$$"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p><span class="math display">\[y{\left(x \right)} = x \left(C_{1} + \log{\left(x \right)}\right)\]</span></p>
+<p>２問目。</p>
+<p><span class="math display">\[
+\begin{aligned}
+(x + y) \dv{y}{x} &amp;= 2x - y \\
+\dv{y}{x} &amp;= \frac{2x - y}{x + y} = \frac{2 - \frac{y}{x}}{1 + \frac{y}{x}} \\
+t &amp;= \frac{y}{x} \\
+\dv{y}{x} &amp;= t + x \dv{t}{x} \\
+t + x \dv{t}{x} &amp;= \frac{2 - t}{1 + t} \\
+x \dv{t}{x} &amp;= \frac{2 - t}{1 + t} - t = \frac{2 - t - t - t^2}{1 + t} = \frac{2 - 2t - t^2}{1 + t} \\
+\frac{1 + t}{2 - 2t - t^2} \dd{t} &amp;= \frac{1}{x} \dd{x} \\
+\int \frac{1 + t}{2 - 2t - t^2} \dd{t} &amp;= \int \frac{1}{x} \dd{x} \\
+\ln \abs{x} + C_1 &amp;= -\frac{1}{2} \ln \abs{t^2 + 2t - 2} \\
+\frac{C_1}{x^2} &amp;= \frac{1}{t^2 + 2t - 2} \\
+t &amp; = -1 \pm \sqrt{ \frac{C_1}{x^2} + 1 } \\
+y &amp; = x \qty( -1 \pm \sqrt{ \frac{C_1}{x^2} + 1 } )
+\end{aligned}
+\]</span></p>
+<p>もしくは、</p>
+<p><span class="math display">\[
+y^2 + 2xy - 2x^2 = C_1
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="一階線型常微分方程式" class="level3">
+<h3 class="anchored" data-anchor-id="一階線型常微分方程式">一階線型常微分方程式</h3>
+<p><span class="math display">\[
+\begin{align}
+\dv{y}{x} + P(x)y &amp;= Q(x) \\
+\dv{y}{x} + 5y &amp;= 6e^x
+\end{align}
+\]</span></p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>一次線型常微分方程式は、積分因子 <span class="math inline">\(e^{\int P(x) \dd{x}}\)</span> を用いて解く。</p>
+<p>と書くと分かりづらいから、要するに、</p>
+<p><span class="math display">\[
+?\dv{y}{x} + ?P(x)y = \dv{x} ?
+\]</span></p>
+<p>という形を目指して、</p>
+<p><span class="math display">\[
+e^{\textcolor{orange}{\int P(x) \dd{x}}}\dv{y}{x} + y e^{\textcolor{orange}{\int P(x) \dd{x}}} \textcolor{red}{P(x)} = \dv{x} \qty(y e^{\int P(x) \dd{x}})
+\]</span></p>
+<p>という形に落ち着くって話。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>１問目は、</p>
+<p><span class="math display">\[
+\begin{aligned}
+\dv{x} \qty(y e^{\int P(x) \dd{x}}) &amp;= Q(x) e^{\int P(x) \dd{x}} \\
+y e^{\int P(x) \dd{x}} &amp;= \int Q(x) e^{\int P(x) \dd{x}} \dd{x} + C \\
+y &amp;= e^{-\int P(x) \dd{x}} \qty( \int Q(x) e^{\int P(x) \dd{x}} \dd{x} + C )
+\end{aligned}
+\]</span></p>
+<p>後半でこの式を覚えて当てはめるのは無理。覚えられうものなら覚えてみろ。</p>
+<p>２問目。</p>
+<p><span class="math display">\[
+\begin{aligned}
+e^{\textcolor{orange}{5x}} \dv{y}{x} + \textcolor{red}{5} y e^{\textcolor{orange}{5x}} &amp;= 6e^{6x} \\
+y e^{5x} &amp;= \int 6e^{6x} \dd{x} + C \\
+y &amp;= e^{x} + C e^{-5x}
+\end{aligned}
+\]</span></p>
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, Function, Eq, dsolve, exp, integrate, latex</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> symbols(<span class="st">'x'</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> Function(<span class="st">'y'</span>)(x)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>ode <span class="op">=</span> Eq(y.diff(x) <span class="op">+</span> <span class="dv">5</span><span class="op">*</span>y, <span class="dv">6</span><span class="op">*</span>exp(x))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>sol <span class="op">=</span> dsolve(ode)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"$$"</span> <span class="op">+</span> latex(sol) <span class="op">+</span> <span class="st">"$$"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p><span class="math display">\[y{\left(x \right)} = C_{1} e^{- 5 x} + e^{x}\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="一階非線型常微分方程式" class="level3">
+<h3 class="anchored" data-anchor-id="一階非線型常微分方程式">一階非線型常微分方程式</h3>
+<p><span class="math display">\[
+\begin{align}
+\dv{y}{x} + P(x)y &amp;= Q(x)y^n \\
+\dv{y}{x} &amp;= P(x)y^2 + Q(x)y + R(x) \quad \text{解き方のみ} \\
+x^2 \dv{y}{x} &amp;= x^2y^2 - xy - 1
+\end{align}
+\]</span></p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>ベルヌーイの微分方程式は、<span class="math inline">\(y^n\)</span> で割ってから線形微分方程式に変形する。これは、 <span class="math inline">\(y\)</span> の次数が１だけズレてるから。</p>
+<p>2番目のはリッカチの微分方程式。特殊解 <span class="math inline">\(y_p\)</span> を知っているとき、 <span class="math inline">\(y = y_p + t\)</span> と置換することで線形微分方程式に変形できる。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>１問目。</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{1}{y^ \textcolor{red}{n}} \dv{y}{x} + P(x) \frac{1}{y^{\textcolor{red}{n-1}}} &amp;= Q(x) \\
+(n-1)\dv{x} \qty(\frac{1}{y^{ \textcolor{red}{n-1} }}) + P(x) \frac{1}{y^{\textcolor{red}{n-1}}} &amp;= Q(x) \\
+\dv{x} \qty(\textcolor{orange}{\frac{1}{y^{ n-1 }}}) + \frac{P(x)}{n-1} \textcolor{orange}{\frac{1}{y^{ n-1 }}} &amp;= \frac{Q(x)}{n-1} \\
+\end{aligned}
+\]</span></p>
+<p>2問目はスキップして、具体例の３問目。</p>
+<p><span class="math display">\[
+\begin{aligned}
+x^2 \dv{y}{x} &amp;= x^2y^2 - xy - 1 \\
+y &amp;= \frac{1}{x} + t \\
+-1 + x^2 \dv{t}{x} &amp;= x^2 t^2 + xt - 1\\
+\dv{t}{x} &amp;= \frac{x^2 t^2 + xt}{x^2} = t^2 + \frac{t}{x} \\
+\frac{1}{t^2} \dv{t}{x} - \frac{1}{x} \frac{1}{t} &amp;= 1 \\
+-\dv{x} \qty(\frac{1}{t}) - \frac{1}{x} \frac{1}{t} &amp;= 1 \\
+\dv{x} \qty(\frac{1}{t}) + \frac{1}{x} \frac{1}{t} &amp;= -1 \\
+s &amp;= \frac{1}{t} \\
+\dv{s}{x} + \frac{s}{x} &amp;= -1 \\
+u &amp;= \frac{s}{x} \\
+\dv{x} (ux) + u &amp;= -1 \\
+\dv{u}{x} x + 2u &amp;= -1 \\
+\frac{\dd x}{x} &amp;= - \frac{\dd u}{2u + 1} \\
+x = C \sqrt {2u + 1} \\
+u = \frac{C^2}{x^2} - \frac{1}{2} \\
+s = x \qty( \frac{C^2}{x^2} - \frac{1}{2} ) = \frac{C^2}{x} - \frac{x}{2} \\
+t = \frac{1}{s} = \frac{1}{ \frac{C^2}{x} - \frac{x}{2} } \\
+y = \frac{1}{x} + t &amp;= \frac{1}{x} + \frac{1}{ \frac{C}{x} - \frac{x}{2} } = \frac{1}{x} \qty( 1 + \frac{1}{ \frac{C}{x^2} - \frac{1}{2} } ) \\
+&amp;= \frac{1}{x} \frac{C + x^2}{C - x^2}
+\end{aligned}
+\]</span></p>
+<p>ってな感じだが、この問題に限って言えば、もっと簡単な方法がある。<span class="math inline">\(y=u/x\)</span> とおくと</p>
+<p><span class="math display">\[
+\begin{aligned}
+x^2 \dv{y}{x} -x^2y^2 + xy + 1 &amp;= 0 \\
+\dv{y}{x} + \frac{1}{x}y &amp;= y^2 - \frac{1}{x^2} \\
+\frac{1}{x}\dv{u}{x} &amp;= \frac{u^2-1}{x^2} \\
+\frac{\dd x}{x}  &amp;= \frac{\dd u}{u^2-1} \\
+\ln x &amp;= \frac{1}{2}\ln\qty(\frac{u-1}{u+1}) + C \\
+\frac{u-1}{u+1} &amp;= Cx^2 \\
+u &amp;= \frac{1+Cx^2}{1-Cx^2} \\
+y &amp;= \frac{1}{x} \frac{1+Cx^2}{1-Cx^2}
+\end{aligned}
+\]</span></p>
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, Function, Eq, dsolve, latex</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> symbols(<span class="st">'x'</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> Function(<span class="st">'y'</span>)(x)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>ode <span class="op">=</span> Eq(y.diff(x), y<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> y<span class="op">/</span>x <span class="op">-</span> <span class="dv">1</span><span class="op">/</span>x<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>sol <span class="op">=</span> dsolve(ode)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"$$"</span> <span class="op">+</span> latex(sol) <span class="op">+</span> <span class="st">"$$"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p><span class="math display">\[y{\left(x \right)} = \frac{i \tan{\left(C_{1} + i \log{\left(x \right)} \right)}}{x}\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="階斉次常微分方程式" class="level3">
+<h3 class="anchored" data-anchor-id="階斉次常微分方程式">２階斉次常微分方程式</h3>
+<p><span class="math display">\[
+\begin{aligned}
+\dv[2]{y}{x} + a\dv{y}{x} + by &amp;= 0 \\
+\dv[2]{y}{x} + 4\dv{y}{x} - 5y &amp;= 0 \\
+\dv[2]{y}{x} - 6\dv{y}{x} + 9y &amp;= 0 \\
+\dv[2]{y}{x} + 2\dv{y}{x} + 5y &amp;= 0
+\end{aligned}
+\]</span></p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>二次方程式を解いて、異なる基底の二つの解を重ねる。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>１問目。</p>
+<p>$ ^2 + a+ b = 0 $ を解いた解を $ _1, _2 $ とすると、</p>
+<p><span class="math display">\[
+\begin{aligned}
+y &amp;= C_1 e^{\lambda_1 x} + C_2 e^{\lambda_2 x} &amp;&amp;\quad \text{異なる実数解} \\
+y &amp;= C_1 e^{\lambda x} + C_2 x e^{\lambda x} &amp;&amp;\quad \text{重解} \\
+y &amp;= e^{\alpha x} \qty( C_1 \cos \beta x + C_2 \sin \beta x ) &amp;&amp;\quad \text{複素解 }
+\end{aligned}
+\]</span></p>
+<p>２〜４問目。</p>
+<p><span class="math display">\[
+\begin{aligned}
+y &amp;= C_1 e^{x} + C_2 e^{-5x} \\
+y &amp;= (C_1 + C_2 x) e^{3x} \\
+y &amp;= e^{-x} \qty( C_1 \cos 2x + C_2 \sin 2x )
+\end{aligned}
+\]</span></p>
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, Function, Eq, dsolve, exp, cos, sin, latex</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> symbols(<span class="st">'x'</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> Function(<span class="st">'y'</span>)(x)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>odes <span class="op">=</span> [</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    Eq(y.diff(x, <span class="dv">2</span>) <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>y.diff(x) <span class="op">-</span> <span class="dv">5</span><span class="op">*</span>y, <span class="dv">0</span>),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    Eq(y.diff(x, <span class="dv">2</span>) <span class="op">-</span> <span class="dv">6</span><span class="op">*</span>y.diff(x) <span class="op">+</span> <span class="dv">9</span><span class="op">*</span>y, <span class="dv">0</span>),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    Eq(y.diff(x, <span class="dv">2</span>) <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>y.diff(x) <span class="op">+</span> <span class="dv">5</span><span class="op">*</span>y, <span class="dv">0</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ode <span class="kw">in</span> odes:</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    sol <span class="op">=</span> dsolve(ode)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"$$"</span> <span class="op">+</span> latex(sol) <span class="op">+</span> <span class="st">"$$"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p><span class="math display">\[y{\left(x \right)} = C_{1} e^{- 5 x} + C_{2} e^{x}\]</span> <span class="math display">\[y{\left(x \right)} = \left(C_{1} + C_{2} x\right) e^{3 x}\]</span> <span class="math display">\[y{\left(x \right)} = \left(C_{1} \sin{\left(2 x \right)} + C_{2} \cos{\left(2 x \right)}\right) e^{- x}\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="階非斉次常微分方程式" class="level3">
+<h3 class="anchored" data-anchor-id="階非斉次常微分方程式">２階非斉次常微分方程式</h3>
+<p><span class="math display">\[
+\begin{aligned}
+\dv[2]{y}{x} + a\dv{y}{x} + by &amp;= R(x) \quad \text{解き方のみ} \\
+\dv[2]{y}{x} + 2\dv{y}{x} - 3y &amp;= e^{2x} \\
+\dv[2]{y}{x} - 3\dv{y}{x} + 2y &amp;= 20 \sin 2x \\
+\dv[2]{y}{x} + 4\dv{y}{x} - 5y &amp;= 6x \\
+\dv[2]{y}{x} + 4\dv{y}{x} + 4y &amp;= 4e^{2x}
+\end{aligned}
+\]</span></p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>非斉次常微分方程式の解 = 斉次方程式の一般解 + 特殊解</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>１問目。</p>
+<p>特殊解の求め方は、<span class="math inline">\(R(x)\)</span> の形によって場合分けする。似たような形の <span class="math inline">\(y_p\)</span> を仮定して、定数を決める。</p>
+<p>２問目。</p>
+<p><span class="math display">\[
+\begin{aligned}
+y_p &amp;= e^{2x} \\
+y &amp;= C_1 e^{3x} + C_2 e^{-x} + e^{2x}
+\end{aligned}
+\]</span></p>
+<p>3問目。</p>
+<p><span class="math display">\[
+\begin{aligned}
+y_p &amp;= A \sin 2x + B \cos 2x \\
+20 \sin 2x &amp;= - 4A \sin 2x - 4B \cos 2x - 6A \cos 2x + 6B \sin 2x + 2A \sin 2x + 2B \cos 2x \\
+&amp;= (-2A + 6B) \sin 2x + (-2B - 6A) \cos 2x  \\
+-2A + 6B &amp;= 20 \\
+-2B - 6A &amp;= 0 \\
+A &amp;= -1, \quad B = 3 \\
+y &amp;= C_1 e^{x} + C_2 e^{2x} - \sin 2x + 3 \cos 2x
+\end{aligned}
+\]</span></p>
+<p>4問目。</p>
+<p><span class="math display">\[
+\begin{aligned}
+y_p &amp;= Ax + B \\
+6x &amp;= 4A - 5Ax - 5B \\
+6x &amp;= (-A) x + (4A - B) \\
+-A &amp;= 6 \Rightarrow A = -6 \\
+4A - B &amp;= 0 \Rightarrow B = 4(-6) = -24 \\
+y &amp;= C_1 e^{x} + C_2 e^{-5x} - 6x - 24
+\end{aligned}
+\]</span></p>
+<p>5問目。</p>
+<p><span class="math display">\[
+y = (C_1 + C_2 x) e^{-2x} + \frac{1}{4}e^{2x}
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="階線形微分程式" class="level3">
+<h3 class="anchored" data-anchor-id="階線形微分程式">２階線形微分⽅程式</h3>
+<p><span class="math display">\[
+\begin{aligned}
+x^2 \dv[2]{y}{x} + a x \dv{y}{x} + by &amp;= 0 \quad \text{解き方のみ} \\
+x^2 \dv[2]{y}{x} -x \dv{y}{x} + y &amp;= x^2 \\
+\dv[4]{y}{x} - 2 \dv[3]{y}{x} + 2 \dv{y}{x} - y &amp;= 9e^{-2x} \\
+x^2 \dv[2]{y}{x} - 8x \dv{y}{x} - 8y &amp;= x^2 \\
+\end{aligned}
+\]</span></p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>1問目。</p>
+<p><span class="math inline">\(x = e^t\)</span> と置換して、 <span class="math inline">\(t\)</span> に関する常微分方程式に変形する。</p>
+<p>2問目。</p>
+<p><span class="math display">\[
+\begin{aligned}
+x^2 \dv[2]{y}{x} -x \dv{y}{x} + y &amp;= x^2 \\
+t &amp;= \ln x \\
+\dv{y}{x} = \dv{y}{t} \dv{t}{x} &amp;= \frac{1}{x} \dv{y}{t} \\
+&amp;= e^{-t} \dv{y}{t} \\
+\dv[2]{y}{x} &amp;= \dv{x} \qty( \frac{1}{x} \dv{y}{t} ) \\
+&amp;= -\frac{1}{x^2} \dv{y}{t} + \frac{1}{x} \textcolor{red}{\dv{x}\dv{y}{t}} \\
+&amp;= -\frac{1}{x^2} \dv{y}{t} + \frac{1}{x} \textcolor{red}{\qty( \dv{t}{x} \dv[2]{y}{t} )} \\
+&amp;= -\frac{1}{x^2} \dv{y}{t} + \frac{1}{x^2} \dv[2]{y}{t} \\
+-\dv{y}{t} + \dv[2]{y}{t} -\dv{y}{t} + y &amp;= e^{2t} \\
+\dv[2]{y}{t} - 2\dv{y}{t} + y &amp;= e^{2t} \\
+y &amp;= C_1 e^{t} + C_2 t e^{t} + e^{2t} \\
+&amp;= C_1 x + C_2 x \ln x + x^2
+\end{aligned}
+\]</span></p>
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, Function, Eq, dsolve, exp, ln, latex</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> symbols(<span class="st">'x'</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> Function(<span class="st">'y'</span>)(x)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>ode <span class="op">=</span> Eq(x<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> y.diff(x, <span class="dv">2</span>) <span class="op">-</span> x <span class="op">*</span> y.diff(x) <span class="op">+</span> y, x<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>sol <span class="op">=</span> dsolve(ode)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"$$"</span> <span class="op">+</span> latex(sol) <span class="op">+</span> <span class="st">"$$"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p><span class="math display">\[y{\left(x \right)} = x \left(C_{1} + C_{2} \log{\left(x \right)} + x\right)\]</span></p>
+<p>3問目。</p>
+<p><span class="math display">\[
+\begin{aligned}
+y = C_1 e^x + C_2 x e^x + C_3 x^2 e^x + C_4 e^{-x} + \frac{1}{3}e^{-2x}
+\end{aligned}
+\]</span></p>
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, Function, Eq, dsolve, exp, latex</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> symbols(<span class="st">'x'</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> Function(<span class="st">'y'</span>)(x)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>ode <span class="op">=</span> Eq(y.diff(x, <span class="dv">4</span>) <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>y.diff(x, <span class="dv">3</span>) <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>y.diff(x) <span class="op">-</span> y, <span class="dv">9</span><span class="op">*</span>exp(<span class="op">-</span><span class="dv">2</span><span class="op">*</span>x))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>sol <span class="op">=</span> dsolve(ode)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"$$"</span> <span class="op">+</span> latex(sol) <span class="op">+</span> <span class="st">"$$"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p><span class="math display">\[y{\left(x \right)} = C_{4} e^{- x} + \left(C_{1} + x \left(C_{2} + C_{3} x\right)\right) e^{x} + \frac{e^{- 2 x}}{3}\]</span></p>
+<p>4問目。</p>
+<p><span class="math display">\[
+\begin{aligned}
+t &amp;= \ln x \\
+\dv{y}{x} = \dv{y}{t} \dv{t}{x} &amp;= \frac{1}{x} \dv{y}{t} \\
+\dv[2]{y}{x} &amp;= -\frac{1}{x^2} \dv{y}{t} + \frac{1}{x^2} \dv[2]{y}{t} \\
+\dv[2]{y}{t} - 2\dv{y}{t} - 8y &amp;= e^{2t} \\
+y &amp;= C_1 e^{4t} + C_2 e^{-2t} - \frac{1}{8} e^{2t} \\
+&amp;= C_1 x^{4} + C_2 x^{-2} - \frac{1}{8} x^{2}
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="線形偏微分程式" class="level3">
+<h3 class="anchored" data-anchor-id="線形偏微分程式">線形偏微分⽅程式</h3>
+$$
+<span class="math display">\[\begin{aligned}
+
+\pdv{u}{x} &amp;= 4 \pdv{u}{y} &amp;&amp;\quad u(0,y) = 8e^{-3y} \\
+\pdv{u}{t} &amp;= 2 \pdv[2]{u}{x} &amp;&amp;\quad u(0,t)=u(3,t)=0, u(x,0) = 5\sin 4\pi x - 3 \sin 8 \pi x \\
+\pdv{u}{x} &amp;= 2 \pdv{u}{y} + u &amp;&amp;\quad u(x,0) = 3e^{-5x} + 2e^{-3x} \\
+\pdv[2]{y}{t} &amp;= 16 \pdv[2]{y}{x} &amp;&amp;\quad y(0,t) = y(2,t) = 0, y(x,0) = 6\sin \pi x - 3\sin 4 \pi x, \pdv{y}{t}(x,0) = 0 = \eval{\pdv{y}{t}}_{t=0}
+
+\end{aligned}\]</span>
+<p>$$</p>
+<!-- 
+::: {.callout-note collapse="true"}
+##### 理論
+
+This is an example of a callout with a title.
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+This is an example of a callout with a title.
+::: 
+-->
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<input type="hidden" id="giscus-base-theme" value="transparent_dark">
+<input type="hidden" id="giscus-alt-theme" value="transparent_dark">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "SerikaYuzuki/Developing-Journal";
+    script.dataset.repoId = "R_kgDOKdxfxA";
+    script.dataset.category = "General";
+    script.dataset.categoryId = "DIC_kwDOKdxfxM4CZ-FP";
+    script.dataset.mapping = "title";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../posts/univ_lecs/3A/信頼性学.html" class="pagination-link" aria-label="信頼性学">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">信頼性学</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../posts/univ_lecs/3A/生産プロセス.html" class="pagination-link" aria-label="生産プロセス">
+        <span class="nav-page-text">生産プロセス</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>My Journal</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with Quarto</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

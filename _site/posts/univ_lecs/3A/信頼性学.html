@@ -1,0 +1,1913 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Serika Yuzuki">
+<meta name="dcterms.date" content="2026-01-05">
+
+<title>信頼性学 – 芹香のブログ：セリポンポン 気軽にコメント残してね！</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../posts/univ_lecs/3A/数学.html" rel="next">
+<link href="../../../posts/univ_lecs/3A/デバイス材料工学.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dddeef630d1ce9d268eb36642e6e288b.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-dddeef630d1ce9d268eb36642e6e288b.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-5f2dbc65a0fd7a1177fde5d317e5c8be.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-f7a595915c072b1638a7530862449908.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script defer="" src="https://analytics.serika.work/script.js" data-website-id="cmfi6s4p200011l07qudz1s5f"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const darkModeDefault = authorPrefersDark;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">芹香のブログ：セリポンポン 気軽にコメント残してね！</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../about.html" aria-current="page"> 
+<span class="menu-text">Serika Yuzuki</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://syosetu.org/novel/309340/"> <i class="bi bi-book" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/SerikaYuzuki"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/serika_yuzuki"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://discord.gg/zUUkFzYZvK"> <i class="bi bi-discord" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">大学関連</li><li class="breadcrumb-item">Univ Lecs</li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3A/セラミック材料学.html">3A</a></li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3A/信頼性学.html">信頼性学</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">大学関連</li><li class="breadcrumb-item">Univ Lecs</li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3A/セラミック材料学.html">3A</a></li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3A/信頼性学.html">信頼性学</a></li></ol></nav>
+      <h1 class="title">信頼性学</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">University</div>
+                <div class="quarto-category">2026</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Serika Yuzuki </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">January 5, 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../../index.html" class="sidebar-logo-link">
+      </a>
+      <div class="sidebar-tools-main tools-wide">
+    <a href="https://syosetu.org/novel/309340/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-book"></i></a>
+    <a href="https://github.com/SerikaYuzuki" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://twitter.com/serika_yuzuki" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
+    <a href="https://discord.gg/zUUkFzYZvK" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-discord"></i></a>
+</div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Serika Yuzuki</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">AtCoder</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/cargo_compete.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cargo Compete</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/template.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">template</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-01</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-02</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-03</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-04</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-05</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-06</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-07</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-08</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-09</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-10</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-11</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">大学関連</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Univ Lecs</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">2A</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料力学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">統計力学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料相平衡論.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料相平衡論</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料統計力学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料統計力学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料速度論.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料速度論</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料量子力学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料量子力学</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">3A</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/セラミック材料学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">セラミックノート</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/デバイス材料工学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">デバイス材料工学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/信頼性学.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">信頼性学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/数学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/生産プロセス.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">生産プロセス</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/高分子２.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">高分子ノート</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">3S</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/固体物性学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">固体物性学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/材料反応工学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料反応工学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/材料強度学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料強度学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/材料電気化学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料電気化学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/組織生成論.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">組織生成論</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">収容所配布用</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">数学</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学A</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学B</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学I.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学I</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学II.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学II</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学III.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学III</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/過去問演習.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">過去問演習</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">技術関連</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false">
+ <span class="menu-text">Tech</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/ENovelEpubConverter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">小説をEPUBに変換するpythonパッケージを作った話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/linkwarden.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linkwardenにブックマーク管理を任せる</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/MisskeyDockerSetup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DockerでMisskeyを立てる</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/NovelApp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SwiftUIで開発する小説執筆支援アプリ</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/QuartoRenderSingle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quartoで単一ファイルにレンダリングする方法</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SetUpNewDebianServer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Debianサーバーを立てた話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/StartUsingCodex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Codexを使い始めた件</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftPackageError.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Swift Packageの読み込みエラー</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/TailscaleAndNord.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NordとTailscaleで自宅サーバーを安全に公開する</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/TimeMachineServer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time Machine ServerをSambaで作った話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/UbuntuPartitionMissing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ミスって/boot/efiを消した話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
+ <span class="menu-text">SwiftUI小説アプリ</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftUI小説アプリ/EditorKitPlugin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EditorKitのいじり方をプラグイン形式にする話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftUI小説アプリ/General.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">小説執筆アプリを作る</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftUI小説アプリ/Gitflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git FlowとGitHub Flow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftUI小説アプリ/POP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Protocol Oriented Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftUI小説アプリ/SwiftUIAndAppKit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SwiftUIとAppKitの連携</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="3">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#理想破壊強度" id="toc-理想破壊強度" class="nav-link active" data-scroll-target="#理想破壊強度">理想破壊強度</a></li>
+  <li><a href="#亀裂の力学" id="toc-亀裂の力学" class="nav-link" data-scroll-target="#亀裂の力学">亀裂の力学</a>
+  <ul class="collapse">
+  <li><a href="#inglisの応力集中ミクロの世界の話" id="toc-inglisの応力集中ミクロの世界の話" class="nav-link" data-scroll-target="#inglisの応力集中ミクロの世界の話">Inglisの応力集中（ミクロの世界の話）</a></li>
+  <li><a href="#airy関数マクロな世界の話" id="toc-airy関数マクロな世界の話" class="nav-link" data-scroll-target="#airy関数マクロな世界の話">Airy関数（マクロな世界の話）</a></li>
+  <li><a href="#griffithのエネルギー論" id="toc-griffithのエネルギー論" class="nav-link" data-scroll-target="#griffithのエネルギー論">Griffithのエネルギー論</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<p><span class="math display">\[
+\require{physics}
+\]</span></p>
+<section id="理想破壊強度" class="level2">
+<h2 class="anchored" data-anchor-id="理想破壊強度">理想破壊強度</h2>
+<p>完全に欠陥のない結晶を、原子間結合そのものを引きちぎるには、どれくらいの応力が必要か？　という話。</p>
+<p>とりあえずなモデルとして、 Lennard–Jones ポテンシャルを考える。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Argon_dimer_potential_and_Lennard-Jones.png/960px-Argon_dimer_potential_and_Lennard-Jones.png" class="img-fluid"> 出典: https://en.wikipedia.org/wiki/Lennard-Jones_potential</p>
+<p>ここで考えるべきは、極小点より右側だけ。破壊しようと思うのなら、それぞれの距離に対応した力を考えないといけない。</p>
+<p><span class="math display">\[
+F(r) = -\frac{dU}{dr}
+\]</span></p>
+<p>この原子間力を凝縮力と呼んでいて、単位面積あたりにして考えると応力になる。</p>
+<p>具体的には次のような形になる。まず、Lennard–Jones ポテンシャルは、</p>
+<p><span class="math display">\[
+U(r) = 4\epsilon \left[ \left( \frac{\sigma}{r} \right)^{12} - \left( \frac{\sigma}{r} \right)^6 \right]
+\]</span></p>
+<p>という形で書かれる。ここで、<span class="math inline">\(\epsilon\)</span> は井戸の深さ、<span class="math inline">\(\sigma\)</span> は長さスケール。応力とかではないので注意！</p>
+<p>で、これを微分して力に変換すると、</p>
+<p><span class="math display">\[
+F(r) = -\frac{dU}{dr} = 24\epsilon \left[ \frac{2\sigma^{12}}{r^{13}} - \frac{\sigma^6}{r^7} \right]
+\]</span></p>
+<p>となる。わけで、実際にこれをグラフに起こしたら次のようになる。</p>
+<div id="88ac9584" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Parameters (dimensionless) ---</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>eps <span class="op">=</span> <span class="fl">1.0</span>          <span class="co"># LJ井戸の深さ</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>sigma_LJ <span class="op">=</span> <span class="fl">1.0</span>     <span class="co"># LJの長さスケール</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>r0 <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">6</span>) <span class="op">*</span> sigma_LJ  <span class="co"># 平衡距離 (LJの最小点)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 距離 r の範囲</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.linspace(<span class="fl">0.85</span><span class="op">*</span>r0, <span class="fl">2.8</span><span class="op">*</span>r0, <span class="dv">1200</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Lennard–Jones potential U(r)</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>U <span class="op">=</span> <span class="dv">4</span><span class="op">*</span>eps<span class="op">*</span>((sigma_LJ<span class="op">/</span>r)<span class="op">**</span><span class="dv">12</span> <span class="op">-</span> (sigma_LJ<span class="op">/</span>r)<span class="op">**</span><span class="dv">6</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Cohesive force: F = -dU/dr</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>dUdr <span class="op">=</span> np.gradient(U, r)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> dUdr</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 応力っぽくする（形の比較用に最大引張を1に正規化）</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>F_tensile <span class="op">=</span> np.clip(F, <span class="dv">0</span>, <span class="va">None</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>Fmax <span class="op">=</span> F_tensile.<span class="bu">max</span>()</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>sigma_from_LJ <span class="op">=</span> F <span class="op">/</span> Fmax   <span class="co"># “stress-like” (dimensionless)</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 変位 u = r - r0</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> r <span class="op">-</span> r0</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># sin近似：ピーク位置をLJの引張ピークに合わせて λ を決める</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>peak_idx <span class="op">=</span> np.argmax(F_tensile)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>u_peak <span class="op">=</span> u[peak_idx]</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>lam <span class="op">=</span> <span class="dv">4</span><span class="op">*</span>u_peak <span class="cf">if</span> u_peak <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> r0   <span class="co"># sinの最大が u=λ/4 なので λ=4u_peak</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>sigma0 <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>sigma_sin <span class="op">=</span> sigma0 <span class="op">*</span> np.sin(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>u<span class="op">/</span>lam)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Plot 1: LJ potential ---</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>plt.plot(r<span class="op">/</span>r0, U<span class="op">/</span>eps)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="fl">1.0</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"r / r0"</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"U / ε"</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Lennard–Jones potential (normalized)"</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="fl">0.75</span>, <span class="fl">2.0</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="fl">1.2</span>, <span class="fl">2.0</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Plot 2: cohesive stress vs displacement ---</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>plt.plot(u<span class="op">/</span>r0, sigma_from_LJ, label<span class="op">=</span><span class="st">"from LJ:  -dU/dr (normalized)"</span>)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>plt.plot(u<span class="op">/</span>r0, sigma_sin, label<span class="op">=</span><span class="st">"σ = σ0 sin(2πu/λ) (normalized)"</span>)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>u_norm <span class="op">=</span> u <span class="op">/</span> r0</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>start_idx <span class="op">=</span> np.argmax(u <span class="op">&gt;=</span> <span class="dv">0</span>)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>cross_rel <span class="op">=</span> np.where((u[start_idx <span class="op">+</span> <span class="dv">1</span>:] <span class="op">&gt;</span> <span class="dv">0</span>) <span class="op">&amp;</span> (sigma_sin[start_idx <span class="op">+</span> <span class="dv">1</span>:] <span class="op">&lt;=</span> <span class="dv">0</span>))[<span class="dv">0</span>]</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> cross_rel.size:</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    end_idx <span class="op">=</span> start_idx <span class="op">+</span> <span class="dv">1</span> <span class="op">+</span> cross_rel[<span class="dv">0</span>]</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    fill_mask <span class="op">=</span> (u_norm <span class="op">&gt;=</span> u_norm[start_idx]) <span class="op">&amp;</span> (u_norm <span class="op">&lt;=</span> u_norm[end_idx])</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    plt.fill_between(</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>        u_norm,</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>        sigma_sin,</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>        <span class="dv">0</span>,</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>        where<span class="op">=</span>fill_mask,</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">"C1"</span>,</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>        alpha<span class="op">=</span><span class="fl">0.25</span>,</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>        interpolate<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="fl">0.0</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="fl">0.0</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"u / r0   (u = r - r0)"</span>)</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"normalized stress"</span>)</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Cohesive stress vs displacement: LJ vs sinusoidal approximation"</span>)</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="fl">0.25</span>, <span class="dv">1</span>)</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="fl">1.2</span>, <span class="fl">1.2</span>)</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="信頼性学_files/figure-html/cell-2-output-1.png" width="611" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="信頼性学_files/figure-html/cell-2-output-2.png" width="611" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>ところが、 <span class="math inline">\(F\)</span> はめっちゃ面倒なので、近似した形として</p>
+<p><span class="math display">\[
+\sigma(u) = \sigma_0 \sin\left( \frac{2\pi u}{\lambda} \right)
+\]</span></p>
+<p>を使うことになる。この時点から力から応力に変換して考えている。ここで、<span class="math inline">\(\sigma_0\)</span> は最大応力、<span class="math inline">\(\lambda\)</span> は原子間距離スケールに対応する長さ、<span class="math inline">\(u\)</span> は変位を表す。</p>
+<p>それで、 <span class="math inline">\(\lambda\)</span> は長さの単位を持つけど、とりあえずあってそうな値を入れてるだけのフィッティング係数である。</p>
+<p>弾性領域、つまりこのサインカーブの最初の方では、</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sigma(u) &amp;= E \frac{u}{r_0} = \sigma_0 \frac{2\pi}{\lambda} u \\
+\sigma_0 &amp;= \frac{E \lambda}{2\pi r_0}
+\end{aligned}
+\]</span></p>
+<p>また、このグラフのオレンジで囲われた部分が、破壊に必要なエネルギーに対応するので、表面エネルギーの2倍 <span class="math inline">\(2\gamma\)</span> に等しい。すなわち、</p>
+<p><span class="math display">\[
+\begin{aligned}
+2\gamma &amp;= \int_0^{\lambda/2} \sigma(u) du \\
+&amp;= \sigma_0 \int_0^{\lambda/2} \sin\left( \frac{2\pi u}{\lambda} \right) du \\
+&amp;= \sigma_0 \cdot \frac{\lambda}{\pi}
+\end{aligned}
+\]</span></p>
+<p>これらを組み合わせると、</p>
+<p><span class="math display">\[
+\sigma_0 = \sqrt{\frac{E \gamma}{r_0}} \sim \frac{E}{10}
+\]</span></p>
+<p>という式が得られる。これが理想破壊強度の見積もり式であるが、オーダーに関しては実際の値に比べて <span class="math inline">\(1/100\)</span> 〜 <span class="math inline">\(1/1000\)</span> 程度になることが知られている。</p>
+<p>この理由としては、</p>
+<ul>
+<li>塑性変形の介入。つまり、延性破壊が起きる。</li>
+<li>化学的効果。不純物や環境要因によるもの。</li>
+<li>欠陥の存在。実際の材料には欠陥があるので、応力集中が起きて破壊が起きやすくなる。</li>
+</ul>
+<p>が考えられる。</p>
+<p>次からは欠陥の含まれた材料の破壊について考える。</p>
+</section>
+<section id="亀裂の力学" class="level2">
+<h2 class="anchored" data-anchor-id="亀裂の力学">亀裂の力学</h2>
+<p>これからの話はかなり面倒で、自分の理解が追いつくのに時間がかかったため、かなり例え話や正しいかどうかわからない前提を含むので注意。</p>
+<p>まず、ゴムバンドを引っ張ることを考えてみる。ゴムバンドに切れ目が入っていない場合、ビヨーンって伸びてくんだけど、穴が入っていると、そこからビリッと裂けてしまう。</p>
+<p>これはどんな現象かというと、穴の切れ目の先端に力が集中してるんだってモデル化をしている。切れ目の穴が空いた部分は力を通さないから、その余分な力が穴の先端に集まってしまうって話だ。</p>
+<p>それを応力として数式的に出すのが次の話。</p>
+<section id="inglisの応力集中ミクロの世界の話" class="level3">
+<h3 class="anchored" data-anchor-id="inglisの応力集中ミクロの世界の話">Inglisの応力集中（ミクロの世界の話）</h3>
+<div id="a87a5bec" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Ellipse</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 板のサイズ（適当なスケール）</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>width, height <span class="op">=</span> <span class="dv">10</span>, <span class="dv">6</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 板（長方形）の外枠</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="dv">0</span>, width, width, <span class="dv">0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">0</span>, height, height, <span class="dv">0</span>])</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 楕円き裂の中心</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>center_x, center_y <span class="op">=</span> width <span class="op">/</span> <span class="dv">2</span>, height <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 楕円き裂の半長軸 a と半短軸 b</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">3.0</span>   <span class="co"># x方向（き裂長さの半分）</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fl">0.5</span>   <span class="co"># y方向</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 楕円き裂</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>ellipse <span class="op">=</span> Ellipse((center_x, center_y), <span class="dv">2</span><span class="op">*</span>a, <span class="dv">2</span><span class="op">*</span>b, fill<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>ax.add_patch(ellipse)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 主軸（a方向）・副軸（b方向）を点線で表示</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>ax.plot([center_x <span class="op">-</span> a, center_x <span class="op">+</span> a], [center_y, center_y], linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>ax.plot([center_x, center_x], [center_y <span class="op">-</span> b, center_y <span class="op">+</span> b], linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># a のラベル</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>ax.annotate(</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">""</span>, xy<span class="op">=</span>(center_x <span class="op">+</span> a, center_y <span class="op">+</span> <span class="fl">0.4</span>), xytext<span class="op">=</span>(center_x, center_y <span class="op">+</span> <span class="fl">0.4</span>),</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">"&lt;-&gt;"</span>)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>ax.text(center_x <span class="op">+</span> a<span class="op">/</span><span class="dv">2</span>, center_y <span class="op">+</span> <span class="fl">0.55</span>, <span class="st">"a"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"bottom"</span>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="co"># b のラベル</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>ax.annotate(</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">""</span>, xy<span class="op">=</span>(center_x <span class="op">+</span> <span class="fl">0.4</span>, center_y <span class="op">+</span> b), xytext<span class="op">=</span>(center_x <span class="op">+</span> <span class="fl">0.4</span>, center_y),</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">"&lt;-&gt;"</span>)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>ax.text(center_x <span class="op">+</span> <span class="fl">0.6</span>, center_y <span class="op">+</span> b<span class="op">/</span><span class="dv">2</span>, <span class="st">"b"</span>, ha<span class="op">=</span><span class="st">"left"</span>, va<span class="op">=</span><span class="st">"center"</span>)</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="co"># 遠方引張応力 σ を左・右に描く</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>y_pos <span class="op">=</span> np.linspace(<span class="fl">0.7</span>, height <span class="op">-</span> <span class="fl">0.7</span>, <span class="dv">5</span>)</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y <span class="kw">in</span> y_pos:</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 左側の矢印（→）</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    ax.annotate(<span class="st">""</span>, xy<span class="op">=</span>(<span class="op">-</span><span class="fl">0.4</span>, y), xytext<span class="op">=</span>(<span class="dv">0</span>, y),</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>                arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">"-&gt;"</span>))</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 右側の矢印（←）</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    ax.annotate(<span class="st">""</span>, xy<span class="op">=</span>(width <span class="op">+</span> <span class="fl">0.4</span>, y), xytext<span class="op">=</span>(width, y),</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>                arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">"-&gt;"</span>))</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">0.2</span>, height<span class="op">/</span><span class="dv">2</span>, <span class="vs">r"</span><span class="dv">$\s</span><span class="vs">igma</span><span class="dv">$</span><span class="vs">"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>, rotation<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>ax.text(width <span class="op">-</span> <span class="fl">0.2</span>, height<span class="op">/</span><span class="dv">2</span>, <span class="vs">r"</span><span class="dv">$\s</span><span class="vs">igma</span><span class="dv">$</span><span class="vs">"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>, rotation<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="co"># 体裁整え</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">"equal"</span>)</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">-</span><span class="fl">0.5</span>, width <span class="op">+</span> <span class="fl">0.5</span>)</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="fl">0.5</span>, height <span class="op">+</span> <span class="fl">0.5</span>)</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">"off"</span>)</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Elliptical crack in a plate"</span>)</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="信頼性学_files/figure-html/cell-3-output-1.png" width="484" height="335" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>上図のような状態だと、最大引っ張り応力は、<span class="citation" data-cites="InglisStressesIA">Inglis (<a href="#ref-InglisStressesIA" role="doc-biblioref">n.d.</a>)</span> によって示されるように、</p>
+<p><span class="math display">\[
+\sigma_{max} = \sigma \left( 1 + 2\frac{a}{b} \right)
+\]</span></p>
+<p>になる。曲率半径 <span class="math inline">\(ρ = \frac{a^2}{b}\)</span> を用いると、</p>
+<p><span class="math display">\[
+\sigma_{max} = \sigma \left( 1 + 2\sqrt{\frac{a}{\rho}} \right) \approx 2\sigma \sqrt{\frac{a}{\rho}}
+\]</span></p>
+<p>最後の近似は鋭い亀裂の場合のこと。これから先は鋭い亀裂について考える。</p>
+<p>亀裂先端では、与えられた応力よりも増幅された応力 <span class="math inline">\(\sigma_{max}\)</span> が働くことになる。亀裂が進展するためには、この応力が材料の理想破壊強度 <span class="math inline">\(\sigma_0\)</span> を超える必要がある。すなわち、</p>
+<p><span class="math display">\[
+2\sigma \sqrt{\frac{a}{\rho}} = \sqrt{\frac{E\gamma}{r_0}}
+\]</span></p>
+<p>理論的にどれだけ鋭いき裂を考えても、原子1個より細かい曲率は作れないので、<span class="math inline">\(\rho \sim r_0\)</span> と考える。これを代入すると、</p>
+<p><span class="math display">\[
+\sigma = \sqrt{\frac{E\gamma}{4a}}
+\]</span></p>
+<p>これが亀裂先端で破壊が起きるための遠方応力の条件式である。亀裂長さ <span class="math inline">\(2a\)</span> が大きくなるほど、必要な応力 <span class="math inline">\(\sigma\)</span> は小さくなることがわかる。</p>
+<p>これまでが、ミクロの世界の話。</p>
+</section>
+<section id="airy関数マクロな世界の話" class="level3">
+<h3 class="anchored" data-anchor-id="airy関数マクロな世界の話">Airy関数（マクロな世界の話）</h3>
+<p>講義の板書だけで理解するのは難しかった。なので、調べて考えた結果もざっくばらんにまとめる。</p>
+<p>Airy関数は、2次元の弾性体における応力場を記述するための数学的な道具である。2次元の弾性体では、応力テンソルの成分は互いに独立ではなく、互いに関連している。この関係を満たすために、Airy関数 <span class="math inline">\(\phi(x, y)\)</span> を導入する。</p>
+<p>具体的には</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sigma_{xx} &amp;= \frac{\partial^2 \phi}{\partial y^2} \\
+\sigma_{yy} &amp;= \frac{\partial^2 \phi}{\partial x^2} \\
+\sigma_{xy} &amp;= -\frac{\partial^2 \phi}{\partial x \partial y}
+\end{aligned}
+\]</span></p>
+<p>こうやって定義しておけば、釣り合いが取れるわけだ。つまり次の式が自動で成立する。</p>
+<p><span class="math display">\[
+\frac{\partial \sigma_{xx}}{\partial x} + \frac{\partial \sigma_{xy}}{\partial y} = 0
+\]</span></p>
+<p>で、 <span class="math inline">\(\nabla ^2 \phi = \sigma_{xx} + \sigma_{yy}\)</span> という値が、ある点においての応力の和で、物体が滑らかだという条件は、この式で満たされる。</p>
+<p><span class="math display">\[\nabla^2 \qty( \nabla ^2 \phi ) = 0\]</span></p>
+<p>で、これを色んな境界条件で解いた解のうち、</p>
+<div id="dcb6efe3" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters (normalized)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Domain (avoid the singularity exactly at x=±a)</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>x_left  <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span><span class="op">*</span>a, <span class="op">-</span><span class="fl">1.001</span><span class="op">*</span>a, <span class="dv">1500</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>x_right <span class="op">=</span> np.linspace( <span class="fl">1.001</span><span class="op">*</span>a,  <span class="dv">3</span><span class="op">*</span>a, <span class="dv">1500</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.concatenate([x_left, x_right])</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Crack-front normal stress along x-axis</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>sigma_y <span class="op">=</span> sigma <span class="op">*</span> np.<span class="bu">abs</span>(x) <span class="op">/</span> np.sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> a<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>plt.plot(x, sigma_y, label<span class="op">=</span><span class="vs">r'</span><span class="dv">$\s</span><span class="vs">igma_y</span><span class="kw">(</span><span class="vs">x</span><span class="kw">)</span><span class="vs">=</span><span class="dv">\s</span><span class="vs">igma</span><span class="ch">\,</span><span class="cf">|</span><span class="vs">x</span><span class="cf">|</span><span class="vs">/</span><span class="dv">\s</span><span class="vs">qrt{x</span><span class="dv">^</span><span class="vs">2-a</span><span class="dv">^</span><span class="vs">2}</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>plt.axhline(sigma, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="vs">r'far-field </span><span class="dv">$\s</span><span class="vs">igma</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="op">-</span>a, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>plt.axvline(a, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Schematic: crack on the x-axis (drawn below the plot)</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>y_schem <span class="op">=</span> <span class="op">-</span><span class="fl">0.25</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="op">-</span>a, a], [y_schem, y_schem], linewidth<span class="op">=</span><span class="dv">6</span>, solid_capstyle<span class="op">=</span><span class="st">'butt'</span>, label<span class="op">=</span><span class="st">'crack (length 2a)'</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotations</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>plt.text(a, y_schem<span class="op">+</span><span class="fl">0.04</span>, <span class="vs">r'</span><span class="dv">$</span><span class="vs">a</span><span class="dv">$</span><span class="vs">'</span>, ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'bottom'</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">2.85</span><span class="op">*</span>a, sigma<span class="op">*</span><span class="fl">1.02</span>, <span class="vs">r'</span><span class="dv">$\s</span><span class="vs">igma</span><span class="dv">$</span><span class="vs">'</span>, ha<span class="op">=</span><span class="st">'right'</span>, va<span class="op">=</span><span class="st">'bottom'</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>plt.ylim(y_schem<span class="op">-</span><span class="fl">0.2</span>, <span class="dv">8</span>)   <span class="co"># show divergence trend without going infinite</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">0</span>, <span class="dv">3</span><span class="op">*</span>a)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x (normalized)'</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'</span><span class="dv">$\s</span><span class="vs">igma_y/</span><span class="dv">\s</span><span class="vs">igma</span><span class="dv">$</span><span class="vs">'</span>)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Crack-front stress distribution + schematic (normalized)'</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="信頼性学_files/figure-html/cell-4-output-1.png" width="590" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>境界で応力が無限に集中して、遠方では一定の応力 <span class="math inline">\(\sigma\)</span> に収束するようなものがある。これが亀裂先端の応力場のモデルになる。</p>
+<p>え、前の節じゃ鋭い亀裂の応力集中は <span class="math inline">\(\sigma_{max} = 2\sigma \sqrt{\frac{a}{\rho}}\)</span> じゃなかったのかって？　そうなんだけど、あれはミクロの話で、こっちはマクロの話だから、無限大っていうモデルを採用してるってさ。</p>
+<p><span class="math display">\[
+\sigma_y(x) = \sigma \frac{|x|}{\sqrt{x^2 - a^2}}
+\]</span></p>
+<p>亀裂近傍における <span class="math inline">\(x \approx a\)</span> のとき、応力は次の式になる。</p>
+<p><span class="math display">\[
+\sigma_y(x) \approx \sigma \frac{a + \Delta}{(a + \Delta)^2 - a^2}^{1/2} = \sigma \frac{a + \Delta}{(2a\Delta + \Delta^2)^{1/2}} \approx \sigma \sqrt{\frac{a}{2 \Delta}}
+\]</span></p>
+<p>つまりは、 <span class="math inline">\(\Delta\)</span> が小さければ応力はどんどん集中するわけだけど、実際には無限の応力は存在しない。これはあくまでも、「亀裂先端近傍の応力は非常に大きくなる」という事実を示していて、どのタイミングで破壊が起きるかは <span class="math inline">\(\sigma\)</span> をデカくして行くことによって決まってくる。</p>
+<p>ここで、応力拡大係数を次の式で定義する。変数は <span class="math inline">\(x \to \Delta\)</span> に変えて書く。</p>
+<p><span class="math display">\[
+K_{\mathrm{I}} = \lim_{\Delta \to 0} \qty[ \sigma_y(\Delta) \sqrt{2 \pi \Delta} ] = \sigma \sqrt{\pi a}
+\]</span></p>
+<p>と定義する。この定義の理由は、 <span class="math inline">\(\sqrt{\text{応力}} \times \sqrt{\text{長さ}}\)</span> で初めて <span class="math inline">\(\Delta\)</span> によらない数になるから。</p>
+<p><span class="math inline">\(\sigma_{\mathrm{max}}\)</span> で扱うと、穴の形や原子構造とか諸々のファクター全てを含む形で決まってくるから、材料的な定数として扱えない。</p>
+<p>ところが、 <span class="math inline">\(K_{\mathrm{I}}\)</span> は亀裂長さ <span class="math inline">\(a\)</span> と遠方応力 <span class="math inline">\(\sigma\)</span> のみで決まるので、材料的な定数として扱いやすい。</p>
+<p><span class="math inline">\(\pi\)</span> は一周で積分することによってできるらしいが、こっちの方はよくわからん。</p>
+<p>そうすることによって、破壊される際の <span class="math inline">\(K_{\mathrm{I}}\)</span> の値を <span class="math inline">\(K_{\mathrm{IC}}\)</span> として材料定数として扱うことができる。</p>
+<p><span id="eq-fracture_toughness"><span class="math display">\[
+K_{\mathrm{IC}} = \sigma_{\mathrm{破壊時}} \sqrt{\pi a}
+\tag{1}\]</span></span></p>
+<p>となる。この <span class="math inline">\(K_{\mathrm{IC}}\)</span> を破壊靭性と呼ぶ。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 37%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>値</th>
+<th>単位</th>
+<th>名前</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(K_{\mathrm{I}}\)</span></td>
+<td><span class="math inline">\(\mathrm{MPa}\cdot\mathrm{m}^{1/2}\)</span></td>
+<td>応力拡大係数</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(K_{\mathrm{IC}}\)</span></td>
+<td><span class="math inline">\(\mathrm{MPa}\cdot\mathrm{m}^{1/2}\)</span></td>
+<td>破壊靭性</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="griffithのエネルギー論" class="level3">
+<h3 class="anchored" data-anchor-id="griffithのエネルギー論">Griffithのエネルギー論</h3>
+<p>ここまでは、亀裂周辺で応力がどのように働くかのモデル化で破壊の条件を考えたわけだが、次はエネルギー論的に破壊の条件を考える。</p>
+<div id="e2295588" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Ellipse</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 板のサイズ（適当なスケール）</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>width, height <span class="op">=</span> <span class="dv">10</span>, <span class="dv">6</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 板（長方形）の外枠</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="dv">0</span>, width, width, <span class="dv">0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">0</span>, height, height, <span class="dv">0</span>])</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 楕円き裂の中心</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>center_x, center_y <span class="op">=</span> width <span class="op">/</span> <span class="dv">2</span>, height <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 楕円き裂の半長軸 a と半短軸 b</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">3.0</span>   <span class="co"># x方向（き裂長さの半分）</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fl">0.5</span>   <span class="co"># y方向</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 楕円き裂</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>ellipse <span class="op">=</span> Ellipse((center_x, center_y), <span class="dv">2</span><span class="op">*</span>a, <span class="dv">2</span><span class="op">*</span>b, fill<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>ax.add_patch(ellipse)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 主軸（a方向）・副軸（b方向）を点線で表示</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>ax.plot([center_x <span class="op">-</span> a, center_x <span class="op">+</span> a], [center_y, center_y], linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>ax.plot([center_x, center_x], [center_y <span class="op">-</span> b, center_y <span class="op">+</span> b], linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co"># a のラベル</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>ax.annotate(</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">""</span>, xy<span class="op">=</span>(center_x <span class="op">+</span> a, center_y <span class="op">+</span> <span class="fl">0.4</span>), xytext<span class="op">=</span>(center_x, center_y <span class="op">+</span> <span class="fl">0.4</span>),</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">"&lt;-&gt;"</span>)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>ax.text(center_x <span class="op">+</span> a<span class="op">/</span><span class="dv">2</span>, center_y <span class="op">+</span> <span class="fl">0.55</span>, <span class="st">"a"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"bottom"</span>)</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 遠方引張応力 σ を左・右に描く</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>y_pos <span class="op">=</span> np.linspace(<span class="fl">0.7</span>, height <span class="op">-</span> <span class="fl">0.7</span>, <span class="dv">5</span>)</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y <span class="kw">in</span> y_pos:</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 左側の矢印（→）</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    ax.annotate(<span class="st">""</span>, xy<span class="op">=</span>(<span class="op">-</span><span class="fl">0.4</span>, y), xytext<span class="op">=</span>(<span class="dv">0</span>, y),</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>                arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">"-&gt;"</span>))</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 右側の矢印（←）</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    ax.annotate(<span class="st">""</span>, xy<span class="op">=</span>(width <span class="op">+</span> <span class="fl">0.4</span>, y), xytext<span class="op">=</span>(width, y),</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>                arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">"-&gt;"</span>))</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">0.2</span>, height<span class="op">/</span><span class="dv">2</span>, <span class="vs">r"</span><span class="dv">$\s</span><span class="vs">igma</span><span class="dv">$</span><span class="vs">"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>, rotation<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>ax.text(width <span class="op">-</span> <span class="fl">0.2</span>, height<span class="op">/</span><span class="dv">2</span>, <span class="vs">r"</span><span class="dv">$\s</span><span class="vs">igma</span><span class="dv">$</span><span class="vs">"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>, rotation<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="co"># 体裁整え</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">"equal"</span>)</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">-</span><span class="fl">0.5</span>, width <span class="op">+</span> <span class="fl">0.5</span>)</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="fl">0.5</span>, height <span class="op">+</span> <span class="fl">0.5</span>)</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">"off"</span>)</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Elliptical crack in a plate"</span>)</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="信頼性学_files/figure-html/cell-5-output-1.png" width="484" height="335" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>これで、まずは亀裂が進行することによって増えるエネルギーは、</p>
+<p><span class="math display">\[
+W_\mathrm{e} = \frac{\pi a^2 \sigma^2}{E}
+\]</span></p>
+<p>となる。次元的にエネルギーの単位になる。実際の計算は無理だった。</p>
+<p>次に表面が増えるのでその分の表面エネルギーは次の式になる。</p>
+<p><span class="math display">\[
+W_\mathrm{s} = 4 a \gamma
+\]</span></p>
+<div id="7e3a6660" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Parameters (dimensionless / schematic) ---</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>gamma <span class="op">=</span> <span class="fl">0.18</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.45</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Crack half-length a</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="fl">1.2</span>, <span class="dv">600</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Griffith model (schematic, plane stress-like)</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>We <span class="op">=</span> (np.pi <span class="op">*</span> a<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> sigma<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> E          <span class="co"># elastic energy released (positive quantity)</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>Ws <span class="op">=</span> <span class="dv">4</span> <span class="op">*</span> a <span class="op">*</span> gamma                          <span class="co"># surface energy cost</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>U <span class="op">=</span> <span class="op">-</span>We <span class="op">+</span> Ws                                <span class="co"># total potential energy change</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Critical crack length from dU/da = 0  -&gt; 4γ - 2πσ^2 a / E = 0</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>ac <span class="op">=</span> (<span class="dv">2</span> <span class="op">*</span> E <span class="op">*</span> gamma) <span class="op">/</span> (np.pi <span class="op">*</span> sigma<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Plot 1: Energy balance diagram ---</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>plt.plot(a, <span class="op">-</span>We, label<span class="op">=</span><span class="vs">r"</span><span class="dv">$</span><span class="vs">-W_e</span><span class="dv">$</span><span class="vs">  </span><span class="kw">(</span><span class="vs">elastic energy release</span><span class="kw">)</span><span class="vs">"</span>)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>plt.plot(a, Ws,  label<span class="op">=</span><span class="vs">r"</span><span class="dv">$</span><span class="vs">W_s</span><span class="dv">$</span><span class="vs">   </span><span class="kw">(</span><span class="vs">surface energy cost</span><span class="kw">)</span><span class="vs">"</span>)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>plt.plot(a, U,   label<span class="op">=</span><span class="vs">r"</span><span class="dv">$</span><span class="vs">U</span><span class="kw">(</span><span class="vs">a</span><span class="kw">)</span><span class="vs">=-W_e</span><span class="op">+</span><span class="vs">W_s</span><span class="dv">$</span><span class="vs">"</span>)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>plt.axvline(ac, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>plt.text(ac, np.interp(ac, a, U), <span class="vs">r"  </span><span class="dv">$</span><span class="vs">a_c</span><span class="dv">$</span><span class="vs">"</span>, va<span class="op">=</span><span class="st">"bottom"</span>)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r"crack half-length </span><span class="dv">$</span><span class="vs">a</span><span class="dv">$</span><span class="vs">"</span>)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"energy (schematic units)"</span>)</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Griffith energy balance (schematic)"</span>)</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="bu">min</span>(U.<span class="bu">min</span>(), (<span class="op">-</span>We).<span class="bu">min</span>()) <span class="op">*</span> <span class="fl">1.1</span>, <span class="bu">max</span>(Ws.<span class="bu">max</span>(), U.<span class="bu">max</span>()) <span class="op">*</span> <span class="fl">1.1</span>)</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">0</span>, a.<span class="bu">max</span>())</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="信頼性学_files/figure-html/cell-6-output-1.png" width="619" height="451" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="math display">\[
+U = -W_\mathrm{e} + W_\mathrm{s} = -\frac{\pi a^2 \sigma^2}{E} + 4 a \gamma
+\]</span></p>
+<p>このグラフを見ればわかるのが、極大点の <span class="math inline">\(a_\mathrm{c}\)</span> を超えると、同じ応力があれば亀裂が勝手に伸びていくことになる。</p>
+<p>逆に、その前だと、亀裂は力を加え続けなければ進まない。</p>
+<p><span class="math display">\[
+\begin{aligned}
+\dv{U}{a}(a_\mathrm{c}) &amp;= -\frac{2\pi a \sigma^2}{E} + 4 \gamma = 0 \\
+a_\mathrm{c} &amp;= \frac{2 E \gamma}{\pi \sigma^2}
+\end{aligned}
+\]</span></p>
+<p>また、見方を変えれば、ある亀裂長さ <span class="math inline">\(a\)</span> に対して、亀裂が進展するための応力は、</p>
+<p><span class="math display">\[
+\sigma_\mathrm{c} = \sqrt{\frac{2 E \gamma}{\pi a}}
+\]</span></p>
+<p>となる。これは、Inglisの応力集中を考えたときの式と係数以外は一致する。当然だ。だって、Inglisの応力集中もエネルギー論も、同じ物理現象を説明しているし、また、かなり大雑把なモデル化をしているから、多少の違いは出てくる。</p>
+<p><span class="math inline">\(2\gamma = \Gamma\)</span> と表面エネルギーを置き換えると、</p>
+<p><span class="math display">\[
+\sigma_\mathrm{c} = \sqrt{\frac{E \Gamma}{\pi a}}
+\]</span></p>
+<p>この <span class="math inline">\(\Gamma\)</span> というのは、エネルギー解放率と呼ばれているのだが、その理由は、この亀裂の進展を片方だけで見た時、</p>
+<p><span class="math display">\[
+U = -\frac{\pi a^2 \sigma^2}{2E} + a \Gamma
+\]</span></p>
+<p>と、半分の値になってて、そのうちの弾性エネルギーがどれだけ解放されるかを示しているから。</p>
+<p><a href="#eq-fracture_toughness" class="quarto-xref">Equation&nbsp;1</a> で示される <span class="math inline">\(K_{\mathrm{IC}}\)</span> を用いると、破壊の条件式は次のように書ける。</p>
+
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-InglisStressesIA" class="csl-entry" role="listitem">
+Inglis, Ce. n.d. <span>“Stresses in a Plate Due to the Presence of Cracks and Sharp Corners.”</span> In. <a href="https://api.semanticscholar.org/CorpusID:210616206">https://api.semanticscholar.org/CorpusID:210616206</a>.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<input type="hidden" id="giscus-base-theme" value="transparent_dark">
+<input type="hidden" id="giscus-alt-theme" value="transparent_dark">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "SerikaYuzuki/Developing-Journal";
+    script.dataset.repoId = "R_kgDOKdxfxA";
+    script.dataset.category = "General";
+    script.dataset.categoryId = "DIC_kwDOKdxfxM4CZ-FP";
+    script.dataset.mapping = "title";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../posts/univ_lecs/3A/デバイス材料工学.html" class="pagination-link" aria-label="デバイス材料工学">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">デバイス材料工学</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../posts/univ_lecs/3A/数学.html" class="pagination-link" aria-label="数学">
+        <span class="nav-page-text">数学</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>My Journal</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with Quarto</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

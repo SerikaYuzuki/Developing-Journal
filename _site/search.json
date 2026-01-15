@@ -1032,451 +1032,59 @@
     ]
   },
   {
-    "objectID": "posts/univ_lecs/3A/高分子２.html",
-    "href": "posts/univ_lecs/3A/高分子２.html",
-    "title": "高分子ノート",
+    "objectID": "posts/univ_lecs/3A/数学.html",
+    "href": "posts/univ_lecs/3A/数学.html",
+    "title": "数学",
     "section": "",
-    "text": "\\[\n\\require{physics}\n\\require{mhchem}\n\\require{ams}\n\\]",
+    "text": "\\[\n\\require{physics}\n\\]\n以降、pythonコードセル内でdsolve関数を使って常微分方程式を解く。\n\n同次型\n\\[\n\\begin{aligned}\nx\\dv{y}{x} &= x + y \\\\\n(x + y) \\dv{y}{x} &= 2x - y\n\\end{aligned}\n\\]\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n\\[\n\\dv{y}{x} = f\\qty(\\frac{y}{x})\n\\]\nこの形に落とし込めば、 \\(t=\\frac{y}{x}\\) と置換して解ける。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n1問目は簡単なので解答だけ。\n\nShow Code\nfrom sympy import symbols, Function, Eq, dsolve, latex\n\nx = symbols('x')\ny = Function('y')(x)\n\node = Eq(x*y.diff(x), x + y)\n\nsol = dsolve(ode)\nprint(\"$$\" + latex(sol) + \"$$\")\n\n\\[y{\\left(x \\right)} = x \\left(C_{1} + \\log{\\left(x \\right)}\\right)\\]\n２問目。\n\\[\n\\begin{aligned}\n(x + y) \\dv{y}{x} &= 2x - y \\\\\n\\dv{y}{x} &= \\frac{2x - y}{x + y} = \\frac{2 - \\frac{y}{x}}{1 + \\frac{y}{x}} \\\\\nt &= \\frac{y}{x} \\\\\n\\dv{y}{x} &= t + x \\dv{t}{x} \\\\\nt + x \\dv{t}{x} &= \\frac{2 - t}{1 + t} \\\\\nx \\dv{t}{x} &= \\frac{2 - t}{1 + t} - t = \\frac{2 - t - t - t^2}{1 + t} = \\frac{2 - 2t - t^2}{1 + t} \\\\\n\\frac{1 + t}{2 - 2t - t^2} \\dd{t} &= \\frac{1}{x} \\dd{x} \\\\\n\\int \\frac{1 + t}{2 - 2t - t^2} \\dd{t} &= \\int \\frac{1}{x} \\dd{x} \\\\\n\\ln \\abs{x} + C_1 &= -\\frac{1}{2} \\ln \\abs{t^2 + 2t - 2} \\\\\n\\frac{C_1}{x^2} &= \\frac{1}{t^2 + 2t - 2} \\\\\nt & = -1 \\pm \\sqrt{ \\frac{C_1}{x^2} + 1 } \\\\\ny & = x \\qty( -1 \\pm \\sqrt{ \\frac{C_1}{x^2} + 1 } )\n\\end{aligned}\n\\]\nもしくは、\n\\[\ny^2 + 2xy - 2x^2 = C_1\n\\]\n\n\n\n\n\n一階線型常微分方程式\n\\[\n\\begin{align}\n\\dv{y}{x} + P(x)y &= Q(x) \\\\\n\\dv{y}{x} + 5y &= 6e^x\n\\end{align}\n\\]\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n一次線型常微分方程式は、積分因子 \\(e^{\\int P(x) \\dd{x}}\\) を用いて解く。\nと書くと分かりづらいから、要するに、\n\\[\n?\\dv{y}{x} + ?P(x)y = \\dv{x} ?\n\\]\nという形を目指して、\n\\[\ne^{\\textcolor{orange}{\\int P(x) \\dd{x}}}\\dv{y}{x} + y e^{\\textcolor{orange}{\\int P(x) \\dd{x}}} \\textcolor{red}{P(x)} = \\dv{x} \\qty(y e^{\\int P(x) \\dd{x}})\n\\]\nという形に落ち着くって話。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n１問目は、\n\\[\n\\begin{aligned}\n\\dv{x} \\qty(y e^{\\int P(x) \\dd{x}}) &= Q(x) e^{\\int P(x) \\dd{x}} \\\\\ny e^{\\int P(x) \\dd{x}} &= \\int Q(x) e^{\\int P(x) \\dd{x}} \\dd{x} + C \\\\\ny &= e^{-\\int P(x) \\dd{x}} \\qty( \\int Q(x) e^{\\int P(x) \\dd{x}} \\dd{x} + C )\n\\end{aligned}\n\\]\n後半でこの式を覚えて当てはめるのは無理。覚えられうものなら覚えてみろ。\n２問目。\n\\[\n\\begin{aligned}\ne^{\\textcolor{orange}{5x}} \\dv{y}{x} + \\textcolor{red}{5} y e^{\\textcolor{orange}{5x}} &= 6e^{6x} \\\\\ny e^{5x} &= \\int 6e^{6x} \\dd{x} + C \\\\\ny &= e^{x} + C e^{-5x}\n\\end{aligned}\n\\]\n\nShow Code\nfrom sympy import symbols, Function, Eq, dsolve, exp, integrate, latex\n\nx = symbols('x')\ny = Function('y')(x)\node = Eq(y.diff(x) + 5*y, 6*exp(x))\nsol = dsolve(ode)\nprint(\"$$\" + latex(sol) + \"$$\")\n\n\\[y{\\left(x \\right)} = C_{1} e^{- 5 x} + e^{x}\\]\n\n\n\n\n\n一階非線型常微分方程式\n\\[\n\\begin{align}\n\\dv{y}{x} + P(x)y &= Q(x)y^n \\\\\n\\dv{y}{x} &= P(x)y^2 + Q(x)y + R(x) \\quad \\text{解き方のみ} \\\\\nx^2 \\dv{y}{x} &= x^2y^2 - xy - 1\n\\end{align}\n\\]\n\n\n\n\n\n\nNote理論\n\n\n\n\n\nベルヌーイの微分方程式は、\\(y^n\\) で割ってから線形微分方程式に変形する。これは、 \\(y\\) の次数が１だけズレてるから。\n2番目のはリッカチの微分方程式。特殊解 \\(y_p\\) を知っているとき、 \\(y = y_p + t\\) と置換することで線形微分方程式に変形できる。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n１問目。\n\\[\n\\begin{aligned}\n\\frac{1}{y^ \\textcolor{red}{n}} \\dv{y}{x} + P(x) \\frac{1}{y^{\\textcolor{red}{n-1}}} &= Q(x) \\\\\n(n-1)\\dv{x} \\qty(\\frac{1}{y^{ \\textcolor{red}{n-1} }}) + P(x) \\frac{1}{y^{\\textcolor{red}{n-1}}} &= Q(x) \\\\\n\\dv{x} \\qty(\\textcolor{orange}{\\frac{1}{y^{ n-1 }}}) + \\frac{P(x)}{n-1} \\textcolor{orange}{\\frac{1}{y^{ n-1 }}} &= \\frac{Q(x)}{n-1} \\\\\n\\end{aligned}\n\\]\n2問目はスキップして、具体例の３問目。\n\\[\n\\begin{aligned}\nx^2 \\dv{y}{x} &= x^2y^2 - xy - 1 \\\\\ny &= \\frac{1}{x} + t \\\\\n-1 + x^2 \\dv{t}{x} &= x^2 t^2 + xt - 1\\\\\n\\dv{t}{x} &= \\frac{x^2 t^2 + xt}{x^2} = t^2 + \\frac{t}{x} \\\\\n\\frac{1}{t^2} \\dv{t}{x} - \\frac{1}{x} \\frac{1}{t} &= 1 \\\\\n-\\dv{x} \\qty(\\frac{1}{t}) - \\frac{1}{x} \\frac{1}{t} &= 1 \\\\\n\\dv{x} \\qty(\\frac{1}{t}) + \\frac{1}{x} \\frac{1}{t} &= -1 \\\\\ns &= \\frac{1}{t} \\\\\n\\dv{s}{x} + \\frac{s}{x} &= -1 \\\\\nu &= \\frac{s}{x} \\\\\n\\dv{x} (ux) + u &= -1 \\\\\n\\dv{u}{x} x + 2u &= -1 \\\\\n\\frac{\\dd x}{x} &= - \\frac{\\dd u}{2u + 1} \\\\\nx = C \\sqrt {2u + 1} \\\\\nu = \\frac{C^2}{x^2} - \\frac{1}{2} \\\\\ns = x \\qty( \\frac{C^2}{x^2} - \\frac{1}{2} ) = \\frac{C^2}{x} - \\frac{x}{2} \\\\\nt = \\frac{1}{s} = \\frac{1}{ \\frac{C^2}{x} - \\frac{x}{2} } \\\\\ny = \\frac{1}{x} + t &= \\frac{1}{x} + \\frac{1}{ \\frac{C}{x} - \\frac{x}{2} } = \\frac{1}{x} \\qty( 1 + \\frac{1}{ \\frac{C}{x^2} - \\frac{1}{2} } ) \\\\\n&= \\frac{1}{x} \\frac{C + x^2}{C - x^2}\n\\end{aligned}\n\\]\nってな感じだが、この問題に限って言えば、もっと簡単な方法がある。\\(y=u/x\\) とおくと\n\\[\n\\begin{aligned}\nx^2 \\dv{y}{x} -x^2y^2 + xy + 1 &= 0 \\\\\n\\dv{y}{x} + \\frac{1}{x}y &= y^2 - \\frac{1}{x^2} \\\\\n\\frac{1}{x}\\dv{u}{x} &= \\frac{u^2-1}{x^2} \\\\\n\\frac{\\dd x}{x}  &= \\frac{\\dd u}{u^2-1} \\\\\n\\ln x &= \\frac{1}{2}\\ln\\qty(\\frac{u-1}{u+1}) + C \\\\\n\\frac{u-1}{u+1} &= Cx^2 \\\\\nu &= \\frac{1+Cx^2}{1-Cx^2} \\\\\ny &= \\frac{1}{x} \\frac{1+Cx^2}{1-Cx^2}\n\\end{aligned}\n\\]\n\nShow Code\nfrom sympy import symbols, Function, Eq, dsolve, latex\n\nx = symbols('x')\ny = Function('y')(x)\node = Eq(y.diff(x), y**2 - y/x - 1/x**2)\nsol = dsolve(ode)\nprint(\"$$\" + latex(sol) + \"$$\")\n\n\\[y{\\left(x \\right)} = \\frac{i \\tan{\\left(C_{1} + i \\log{\\left(x \\right)} \\right)}}{x}\\]\n\n\n\n\n\n２階斉次常微分方程式\n\\[\n\\begin{aligned}\n\\dv[2]{y}{x} + a\\dv{y}{x} + by &= 0 \\\\\n\\dv[2]{y}{x} + 4\\dv{y}{x} - 5y &= 0 \\\\\n\\dv[2]{y}{x} - 6\\dv{y}{x} + 9y &= 0 \\\\\n\\dv[2]{y}{x} + 2\\dv{y}{x} + 5y &= 0\n\\end{aligned}\n\\]\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n二次方程式を解いて、異なる基底の二つの解を重ねる。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n１問目。\n$ ^2 + a+ b = 0 $ を解いた解を $ _1, _2 $ とすると、\n\\[\n\\begin{aligned}\ny &= C_1 e^{\\lambda_1 x} + C_2 e^{\\lambda_2 x} &&\\quad \\text{異なる実数解} \\\\\ny &= C_1 e^{\\lambda x} + C_2 x e^{\\lambda x} &&\\quad \\text{重解} \\\\\ny &= e^{\\alpha x} \\qty( C_1 \\cos \\beta x + C_2 \\sin \\beta x ) &&\\quad \\text{複素解 }\n\\end{aligned}\n\\]\n２〜４問目。\n\\[\n\\begin{aligned}\ny &= C_1 e^{x} + C_2 e^{-5x} \\\\\ny &= (C_1 + C_2 x) e^{3x} \\\\\ny &= e^{-x} \\qty( C_1 \\cos 2x + C_2 \\sin 2x )\n\\end{aligned}\n\\]\n\nShow Code\nfrom sympy import symbols, Function, Eq, dsolve, exp, cos, sin, latex\n\nx = symbols('x')\ny = Function('y')(x)\nodes = [\n    Eq(y.diff(x, 2) + 4*y.diff(x) - 5*y, 0),\n    Eq(y.diff(x, 2) - 6*y.diff(x) + 9*y, 0),\n    Eq(y.diff(x, 2) + 2*y.diff(x) + 5*y, 0)\n]\nfor ode in odes:\n    sol = dsolve(ode)\n    print(\"$$\" + latex(sol) + \"$$\")\n\n\\[y{\\left(x \\right)} = C_{1} e^{- 5 x} + C_{2} e^{x}\\] \\[y{\\left(x \\right)} = \\left(C_{1} + C_{2} x\\right) e^{3 x}\\] \\[y{\\left(x \\right)} = \\left(C_{1} \\sin{\\left(2 x \\right)} + C_{2} \\cos{\\left(2 x \\right)}\\right) e^{- x}\\]\n\n\n\n\n\n２階非斉次常微分方程式\n\\[\n\\begin{aligned}\n\\dv[2]{y}{x} + a\\dv{y}{x} + by &= R(x) \\quad \\text{解き方のみ} \\\\\n\\dv[2]{y}{x} + 2\\dv{y}{x} - 3y &= e^{2x} \\\\\n\\dv[2]{y}{x} - 3\\dv{y}{x} + 2y &= 20 \\sin 2x \\\\\n\\dv[2]{y}{x} + 4\\dv{y}{x} - 5y &= 6x \\\\\n\\dv[2]{y}{x} + 4\\dv{y}{x} + 4y &= 4e^{2x}\n\\end{aligned}\n\\]\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n非斉次常微分方程式の解 = 斉次方程式の一般解 + 特殊解\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n１問目。\n特殊解の求め方は、\\(R(x)\\) の形によって場合分けする。似たような形の \\(y_p\\) を仮定して、定数を決める。\n２問目。\n\\[\n\\begin{aligned}\ny_p &= e^{2x} \\\\\ny &= C_1 e^{3x} + C_2 e^{-x} + e^{2x}\n\\end{aligned}\n\\]\n3問目。\n\\[\n\\begin{aligned}\ny_p &= A \\sin 2x + B \\cos 2x \\\\\n20 \\sin 2x &= - 4A \\sin 2x - 4B \\cos 2x - 6A \\cos 2x + 6B \\sin 2x + 2A \\sin 2x + 2B \\cos 2x \\\\\n&= (-2A + 6B) \\sin 2x + (-2B - 6A) \\cos 2x  \\\\\n-2A + 6B &= 20 \\\\\n-2B - 6A &= 0 \\\\\nA &= -1, \\quad B = 3 \\\\\ny &= C_1 e^{x} + C_2 e^{2x} - \\sin 2x + 3 \\cos 2x\n\\end{aligned}\n\\]\n4問目。\n\\[\n\\begin{aligned}\ny_p &= Ax + B \\\\\n6x &= 4A - 5Ax - 5B \\\\\n6x &= (-A) x + (4A - B) \\\\\n-A &= 6 \\Rightarrow A = -6 \\\\\n4A - B &= 0 \\Rightarrow B = 4(-6) = -24 \\\\\ny &= C_1 e^{x} + C_2 e^{-5x} - 6x - 24\n\\end{aligned}\n\\]\n5問目。\n\\[\ny = (C_1 + C_2 x) e^{-2x} + \\frac{1}{4}e^{2x}\n\\]\n\n\n\n\n\n２階線形微分⽅程式\n\\[\n\\begin{aligned}\nx^2 \\dv[2]{y}{x} + a x \\dv{y}{x} + by &= 0 \\quad \\text{解き方のみ} \\\\\nx^2 \\dv[2]{y}{x} -x \\dv{y}{x} + y &= x^2 \\\\\n\\dv[4]{y}{x} - 2 \\dv[3]{y}{x} + 2 \\dv{y}{x} - y &= 9e^{-2x} \\\\\nx^2 \\dv[2]{y}{x} - 8x \\dv{y}{x} - 8y &= x^2 \\\\\n\\end{aligned}\n\\]\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n1問目。\n\\(x = e^t\\) と置換して、 \\(t\\) に関する常微分方程式に変形する。\n2問目。\n\\[\n\\begin{aligned}\nx^2 \\dv[2]{y}{x} -x \\dv{y}{x} + y &= x^2 \\\\\nt &= \\ln x \\\\\n\\dv{y}{x} = \\dv{y}{t} \\dv{t}{x} &= \\frac{1}{x} \\dv{y}{t} \\\\\n&= e^{-t} \\dv{y}{t} \\\\\n\\dv[2]{y}{x} &= \\dv{x} \\qty( \\frac{1}{x} \\dv{y}{t} ) \\\\\n&= -\\frac{1}{x^2} \\dv{y}{t} + \\frac{1}{x} \\textcolor{red}{\\dv{x}\\dv{y}{t}} \\\\\n&= -\\frac{1}{x^2} \\dv{y}{t} + \\frac{1}{x} \\textcolor{red}{\\qty( \\dv{t}{x} \\dv[2]{y}{t} )} \\\\\n&= -\\frac{1}{x^2} \\dv{y}{t} + \\frac{1}{x^2} \\dv[2]{y}{t} \\\\\n-\\dv{y}{t} + \\dv[2]{y}{t} -\\dv{y}{t} + y &= e^{2t} \\\\\n\\dv[2]{y}{t} - 2\\dv{y}{t} + y &= e^{2t} \\\\\ny &= C_1 e^{t} + C_2 t e^{t} + e^{2t} \\\\\n&= C_1 x + C_2 x \\ln x + x^2\n\\end{aligned}\n\\]\n\nShow Code\nfrom sympy import symbols, Function, Eq, dsolve, exp, ln, latex\n\nx = symbols('x')\ny = Function('y')(x)\node = Eq(x**2 * y.diff(x, 2) - x * y.diff(x) + y, x**2)\nsol = dsolve(ode)\nprint(\"$$\" + latex(sol) + \"$$\")\n\n\\[y{\\left(x \\right)} = x \\left(C_{1} + C_{2} \\log{\\left(x \\right)} + x\\right)\\]\n3問目。\n\\[\n\\begin{aligned}\ny = C_1 e^x + C_2 x e^x + C_3 x^2 e^x + C_4 e^{-x} + \\frac{1}{3}e^{-2x}\n\\end{aligned}\n\\]\n\nShow Code\nfrom sympy import symbols, Function, Eq, dsolve, exp, latex\n\nx = symbols('x')\ny = Function('y')(x)\node = Eq(y.diff(x, 4) - 2*y.diff(x, 3) + 2*y.diff(x) - y, 9*exp(-2*x))\nsol = dsolve(ode)\nprint(\"$$\" + latex(sol) + \"$$\")\n\n\\[y{\\left(x \\right)} = C_{4} e^{- x} + \\left(C_{1} + x \\left(C_{2} + C_{3} x\\right)\\right) e^{x} + \\frac{e^{- 2 x}}{3}\\]\n4問目。\n\\[\n\\begin{aligned}\nt &= \\ln x \\\\\n\\dv{y}{x} = \\dv{y}{t} \\dv{t}{x} &= \\frac{1}{x} \\dv{y}{t} \\\\\n\\dv[2]{y}{x} &= -\\frac{1}{x^2} \\dv{y}{t} + \\frac{1}{x^2} \\dv[2]{y}{t} \\\\\n\\dv[2]{y}{t} - 2\\dv{y}{t} - 8y &= e^{2t} \\\\\ny &= C_1 e^{4t} + C_2 e^{-2t} - \\frac{1}{8} e^{2t} \\\\\n&= C_1 x^{4} + C_2 x^{-2} - \\frac{1}{8} x^{2}\n\\end{aligned}\n\\]\n\n\n\n\n\n線形偏微分⽅程式\n$$\n\\[\\begin{aligned}\n\n\\pdv{u}{x} &= 4 \\pdv{u}{y} &&\\quad u(0,y) = 8e^{-3y} \\\\\n\\pdv{u}{t} &= 2 \\pdv[2]{u}{x} &&\\quad u(0,t)=u(3,t)=0, u(x,0) = 5\\sin 4\\pi x - 3 \\sin 8 \\pi x \\\\\n\\pdv{u}{x} &= 2 \\pdv{u}{y} + u &&\\quad u(x,0) = 3e^{-5x} + 2e^{-3x} \\\\\n\\pdv[2]{y}{t} &= 16 \\pdv[2]{y}{x} &&\\quad y(0,t) = y(2,t) = 0, y(x,0) = 6\\sin \\pi x - 3\\sin 4 \\pi x, \\pdv{y}{t}(x,0) = 0 = \\eval{\\pdv{y}{t}}_{t=0}\n\n\\end{aligned}\\]\n$$\n\n\n\n\n\n Back to top",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
       "Univ Lecs",
       "3A",
-      "高分子ノート"
+      "数学"
     ]
   },
   {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題1-1",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題1-1",
-    "title": "高分子ノート",
-    "section": "課題1-1",
-    "text": "課題1-1\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\nポリビニルアルコールとアセトンの反応\n\n\n\n\n\n\n\n\n\nTip解答",
+    "objectID": "posts/univ_lecs/3A/信頼性学.html",
+    "href": "posts/univ_lecs/3A/信頼性学.html",
+    "title": "信頼性学",
+    "section": "",
+    "text": "\\[\n\\require{physics}\n\\]",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
       "Univ Lecs",
       "3A",
-      "高分子ノート"
+      "信頼性学"
     ]
   },
   {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題1-2",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題1-2",
-    "title": "高分子ノート",
-    "section": "課題1-2",
-    "text": "課題1-2\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n計算問題です\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n重合度を\\(n\\)としたとき、ホルムアルデヒドの反応では \\[694n-2\\cdot 359 n= -24n \\; \\text{kJ/mol}\\] と発熱反応になるが、二酸化炭素では \\[803n -2\\cdot 359 n= 85n \\; \\text{kJ/mol} \\] と吸熱反応になるため。",
+    "objectID": "posts/univ_lecs/3A/信頼性学.html#理想破壊強度",
+    "href": "posts/univ_lecs/3A/信頼性学.html#理想破壊強度",
+    "title": "信頼性学",
+    "section": "理想破壊強度",
+    "text": "理想破壊強度\n完全に欠陥のない結晶を、原子間結合そのものを引きちぎるには、どれくらいの応力が必要か？　という話。\nとりあえずなモデルとして、 Lennard–Jones ポテンシャルを考える。\n 出典: https://en.wikipedia.org/wiki/Lennard-Jones_potential\nここで考えるべきは、極小点より右側だけ。破壊しようと思うのなら、それぞれの距離に対応した力を考えないといけない。\n\\[\nF(r) = -\\frac{dU}{dr}\n\\]\nこの原子間力を凝縮力と呼んでいて、単位面積あたりにして考えると応力になる。\n具体的には次のような形になる。まず、Lennard–Jones ポテンシャルは、\n\\[\nU(r) = 4\\epsilon \\left[ \\left( \\frac{\\sigma}{r} \\right)^{12} - \\left( \\frac{\\sigma}{r} \\right)^6 \\right]\n\\]\nという形で書かれる。ここで、\\(\\epsilon\\) は井戸の深さ、\\(\\sigma\\) は長さスケール。応力とかではないので注意！\nで、これを微分して力に変換すると、\n\\[\nF(r) = -\\frac{dU}{dr} = 24\\epsilon \\left[ \\frac{2\\sigma^{12}}{r^{13}} - \\frac{\\sigma^6}{r^7} \\right]\n\\]\nとなる。わけで、実際にこれをグラフに起こしたら次のようになる。\n\n\nShow Code\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# --- Parameters (dimensionless) ---\neps = 1.0          # LJ井戸の深さ\nsigma_LJ = 1.0     # LJの長さスケール\nr0 = 2**(1/6) * sigma_LJ  # 平衡距離 (LJの最小点)\n\n# 距離 r の範囲\nr = np.linspace(0.85*r0, 2.8*r0, 1200)\n\n# Lennard–Jones potential U(r)\nU = 4*eps*((sigma_LJ/r)**12 - (sigma_LJ/r)**6)\n\n# Cohesive force: F = -dU/dr\ndUdr = np.gradient(U, r)\nF = dUdr\n\n# 応力っぽくする（形の比較用に最大引張を1に正規化）\nF_tensile = np.clip(F, 0, None)\nFmax = F_tensile.max()\nsigma_from_LJ = F / Fmax   # “stress-like” (dimensionless)\n\n# 変位 u = r - r0\nu = r - r0\n\n# sin近似：ピーク位置をLJの引張ピークに合わせて λ を決める\npeak_idx = np.argmax(F_tensile)\nu_peak = u[peak_idx]\nlam = 4*u_peak if u_peak &gt; 0 else r0   # sinの最大が u=λ/4 なので λ=4u_peak\nsigma0 = 1.0\nsigma_sin = sigma0 * np.sin(2*np.pi*u/lam)\n\n# --- Plot 1: LJ potential ---\nplt.figure()\nplt.plot(r/r0, U/eps)\nplt.axvline(1.0, linestyle='--')\nplt.xlabel(\"r / r0\")\nplt.ylabel(\"U / ε\")\nplt.title(\"Lennard–Jones potential (normalized)\")\nplt.xlim(0.75, 2.0)\nplt.ylim(-1.2, 2.0)\nplt.grid(True)\n\n# --- Plot 2: cohesive stress vs displacement ---\nplt.figure()\nplt.plot(u/r0, sigma_from_LJ, label=\"from LJ:  -dU/dr (normalized)\")\nplt.plot(u/r0, sigma_sin, label=\"σ = σ0 sin(2πu/λ) (normalized)\")\nu_norm = u / r0\nstart_idx = np.argmax(u &gt;= 0)\ncross_rel = np.where((u[start_idx + 1:] &gt; 0) & (sigma_sin[start_idx + 1:] &lt;= 0))[0]\nif cross_rel.size:\n    end_idx = start_idx + 1 + cross_rel[0]\n    fill_mask = (u_norm &gt;= u_norm[start_idx]) & (u_norm &lt;= u_norm[end_idx])\n    plt.fill_between(\n        u_norm,\n        sigma_sin,\n        0,\n        where=fill_mask,\n        color=\"C1\",\n        alpha=0.25,\n        interpolate=True,\n    )\nplt.axhline(0.0, linestyle='--')\nplt.axvline(0.0, linestyle='--')\nplt.xlabel(\"u / r0   (u = r - r0)\")\nplt.ylabel(\"normalized stress\")\nplt.title(\"Cohesive stress vs displacement: LJ vs sinusoidal approximation\")\nplt.xlim(-0.25, 1)\nplt.ylim(-1.2, 1.2)\nplt.grid(True)\nplt.legend()\n\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nところが、 \\(F\\) はめっちゃ面倒なので、近似した形として\n\\[\n\\sigma(u) = \\sigma_0 \\sin\\left( \\frac{2\\pi u}{\\lambda} \\right)\n\\]\nを使うことになる。この時点から力から応力に変換して考えている。ここで、\\(\\sigma_0\\) は最大応力、\\(\\lambda\\) は原子間距離スケールに対応する長さ、\\(u\\) は変位を表す。\nそれで、 \\(\\lambda\\) は長さの単位を持つけど、とりあえずあってそうな値を入れてるだけのフィッティング係数である。\n弾性領域、つまりこのサインカーブの最初の方では、\n\\[\n\\begin{aligned}\n\\sigma(u) &= E \\frac{u}{r_0} = \\sigma_0 \\frac{2\\pi}{\\lambda} u \\\\\n\\sigma_0 &= \\frac{E \\lambda}{2\\pi r_0}\n\\end{aligned}\n\\]\nまた、このグラフのオレンジで囲われた部分が、破壊に必要なエネルギーに対応するので、表面エネルギーの2倍 \\(2\\gamma\\) に等しい。すなわち、\n\\[\n\\begin{aligned}\n2\\gamma &= \\int_0^{\\lambda/2} \\sigma(u) du \\\\\n&= \\sigma_0 \\int_0^{\\lambda/2} \\sin\\left( \\frac{2\\pi u}{\\lambda} \\right) du \\\\\n&= \\sigma_0 \\cdot \\frac{\\lambda}{\\pi}\n\\end{aligned}\n\\]\nこれらを組み合わせると、\n\\[\n\\sigma_0 = \\sqrt{\\frac{E \\gamma}{r_0}} \\sim \\frac{E}{10}\n\\]\nという式が得られる。これが理想破壊強度の見積もり式であるが、オーダーに関しては実際の値に比べて \\(1/100\\) 〜 \\(1/1000\\) 程度になることが知られている。\nこの理由としては、\n\n塑性変形の介入。つまり、延性破壊が起きる。\n化学的効果。不純物や環境要因によるもの。\n欠陥の存在。実際の材料には欠陥があるので、応力集中が起きて破壊が起きやすくなる。\n\nが考えられる。\n次からは欠陥の含まれた材料の破壊について考える。",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
       "Univ Lecs",
       "3A",
-      "高分子ノート"
+      "信頼性学"
     ]
   },
   {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題1-3",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題1-3",
-    "title": "高分子ノート",
-    "section": "課題1-3",
-    "text": "課題1-3\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n逐次重合と連鎖重合の比較\n\n\n\n\n\n\n\n\n項目\n逐次重合\n連鎖重合\n\n\n\n\n成長の進行\n基質全体で成長が進行\n各分子鎖の一端もしくは両端でのみ成長が進行\n\n\nモノマーの消滅\nモノマーは反応の初期段階で消滅\n反応進行中の長い間モノマーが残存\n\n\n反応の段階\n類似の段階的成長が反応過程全体にわたって繰り返される\n開始反応、伝播反応、停止反応、連鎖移動の異なる段階を踏んで進行\n\n\n平均分子量の増加\n低転換率では平均分子量はゆっくりと増大し、長い分子鎖長を得るためには高度に反応が進行する必要がある\n主鎖分子量は反応中の速い段階で迅速に増加し、重合反応中にわたっておおよそ変化しない\n\n\n反応後の活性\n活性を保ったまま終了（停止しない）\n停止反応後には活性がなくなる\n\n\n重合開始剤の必要性\n重合開始剤の必要がない\n重合開始剤を必要とする\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n連鎖重合であると考えられる。次が理由である。 1. 重合開始材が必要なのは連鎖重合の特徴 2. モノマーと高分子量のポリマーが混ざっている 3. 問題文から粘度の増加が反応開始とともに見られていると推測される",
+    "objectID": "posts/univ_lecs/3A/信頼性学.html#亀裂の力学",
+    "href": "posts/univ_lecs/3A/信頼性学.html#亀裂の力学",
+    "title": "信頼性学",
+    "section": "亀裂の力学",
+    "text": "亀裂の力学\nこれからの話はかなり面倒で、自分の理解が追いつくのに時間がかかったため、かなり例え話や正しいかどうかわからない前提を含むので注意。\nまず、ゴムバンドを引っ張ることを考えてみる。ゴムバンドに切れ目が入っていない場合、ビヨーンって伸びてくんだけど、穴が入っていると、そこからビリッと裂けてしまう。\nこれはどんな現象かというと、穴の切れ目の先端に力が集中してるんだってモデル化をしている。切れ目の穴が空いた部分は力を通さないから、その余分な力が穴の先端に集まってしまうって話だ。\nそれを応力として数式的に出すのが次の話。\n\nInglisの応力集中（ミクロの世界の話）\n\n\nShow Code\nimport matplotlib.pyplot as plt\nfrom matplotlib.patches import Ellipse\nimport numpy as np\n\n# 板のサイズ（適当なスケール）\nwidth, height = 10, 6\n\nfig, ax = plt.subplots(figsize=(8, 4))\n\n# 板（長方形）の外枠\nax.plot([0, width, width, 0, 0], [0, 0, height, height, 0])\n\n# 楕円き裂の中心\ncenter_x, center_y = width / 2, height / 2\n\n# 楕円き裂の半長軸 a と半短軸 b\na = 3.0   # x方向（き裂長さの半分）\nb = 0.5   # y方向\n\n# 楕円き裂\nellipse = Ellipse((center_x, center_y), 2*a, 2*b, fill=False)\nax.add_patch(ellipse)\n\n# 主軸（a方向）・副軸（b方向）を点線で表示\nax.plot([center_x - a, center_x + a], [center_y, center_y], linestyle='--')\nax.plot([center_x, center_x], [center_y - b, center_y + b], linestyle='--')\n\n# a のラベル\nax.annotate(\n    \"\", xy=(center_x + a, center_y + 0.4), xytext=(center_x, center_y + 0.4),\n    arrowprops=dict(arrowstyle=\"&lt;-&gt;\")\n)\nax.text(center_x + a/2, center_y + 0.55, \"a\", ha=\"center\", va=\"bottom\")\n\n# b のラベル\nax.annotate(\n    \"\", xy=(center_x + 0.4, center_y + b), xytext=(center_x + 0.4, center_y),\n    arrowprops=dict(arrowstyle=\"&lt;-&gt;\")\n)\nax.text(center_x + 0.6, center_y + b/2, \"b\", ha=\"left\", va=\"center\")\n\n# 遠方引張応力 σ を左・右に描く\ny_pos = np.linspace(0.7, height - 0.7, 5)\nfor y in y_pos:\n    # 左側の矢印（→）\n    ax.annotate(\"\", xy=(-0.4, y), xytext=(0, y),\n                arrowprops=dict(arrowstyle=\"-&gt;\"))\n    # 右側の矢印（←）\n    ax.annotate(\"\", xy=(width + 0.4, y), xytext=(width, y),\n                arrowprops=dict(arrowstyle=\"-&gt;\"))\n\nax.text(0.2, height/2, r\"$\\sigma$\", ha=\"center\", va=\"center\", rotation=90)\nax.text(width - 0.2, height/2, r\"$\\sigma$\", ha=\"center\", va=\"center\", rotation=90)\n\n# 体裁整え\nax.set_aspect(\"equal\")\nax.set_xlim(-0.5, width + 0.5)\nax.set_ylim(-0.5, height + 0.5)\nax.axis(\"off\")\nax.set_title(\"Elliptical crack in a plate\")\n\nplt.show()\n\n\n\n\n\n\n\n\n\n上図のような状態だと、最大引っ張り応力は、Inglis (n.d.) によって示されるように、\n\\[\n\\sigma_{max} = \\sigma \\left( 1 + 2\\frac{a}{b} \\right)\n\\]\nになる。曲率半径 \\(ρ = \\frac{a^2}{b}\\) を用いると、\n\\[\n\\sigma_{max} = \\sigma \\left( 1 + 2\\sqrt{\\frac{a}{\\rho}} \\right) \\approx 2\\sigma \\sqrt{\\frac{a}{\\rho}}\n\\]\n最後の近似は鋭い亀裂の場合のこと。これから先は鋭い亀裂について考える。\n亀裂先端では、与えられた応力よりも増幅された応力 \\(\\sigma_{max}\\) が働くことになる。亀裂が進展するためには、この応力が材料の理想破壊強度 \\(\\sigma_0\\) を超える必要がある。すなわち、\n\\[\n2\\sigma \\sqrt{\\frac{a}{\\rho}} = \\sqrt{\\frac{E\\gamma}{r_0}}\n\\]\n理論的にどれだけ鋭いき裂を考えても、原子1個より細かい曲率は作れないので、\\(\\rho \\sim r_0\\) と考える。これを代入すると、\n\\[\n\\sigma = \\sqrt{\\frac{E\\gamma}{4a}}\n\\]\nこれが亀裂先端で破壊が起きるための遠方応力の条件式である。亀裂長さ \\(2a\\) が大きくなるほど、必要な応力 \\(\\sigma\\) は小さくなることがわかる。\nこれまでが、ミクロの世界の話。\n\n\nAiry関数（マクロな世界の話）\n講義の板書だけで理解するのは難しかった。なので、調べて考えた結果もざっくばらんにまとめる。\nAiry関数は、2次元の弾性体における応力場を記述するための数学的な道具である。2次元の弾性体では、応力テンソルの成分は互いに独立ではなく、互いに関連している。この関係を満たすために、Airy関数 \\(\\phi(x, y)\\) を導入する。\n具体的には\n\\[\n\\begin{aligned}\n\\sigma_{xx} &= \\frac{\\partial^2 \\phi}{\\partial y^2} \\\\\n\\sigma_{yy} &= \\frac{\\partial^2 \\phi}{\\partial x^2} \\\\\n\\sigma_{xy} &= -\\frac{\\partial^2 \\phi}{\\partial x \\partial y}\n\\end{aligned}\n\\]\nこうやって定義しておけば、釣り合いが取れるわけだ。つまり次の式が自動で成立する。\n\\[\n\\frac{\\partial \\sigma_{xx}}{\\partial x} + \\frac{\\partial \\sigma_{xy}}{\\partial y} = 0\n\\]\nで、 \\(\\nabla ^2 \\phi = \\sigma_{xx} + \\sigma_{yy}\\) という値が、ある点においての応力の和で、物体が滑らかだという条件は、この式で満たされる。\n\\[\\nabla^2 \\qty( \\nabla ^2 \\phi ) = 0\\]\nで、これを色んな境界条件で解いた解のうち、\n\n\nShow Code\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# Parameters (normalized)\nsigma = 1.0\na = 1.0\n\n# Domain (avoid the singularity exactly at x=±a)\nx_left  = np.linspace(-3*a, -1.001*a, 1500)\nx_right = np.linspace( 1.001*a,  3*a, 1500)\nx = np.concatenate([x_left, x_right])\n\n# Crack-front normal stress along x-axis\nsigma_y = sigma * np.abs(x) / np.sqrt(x**2 - a**2)\n\nplt.figure()\nplt.plot(x, sigma_y, label=r'$\\sigma_y(x)=\\sigma\\,|x|/\\sqrt{x^2-a^2}$')\nplt.axhline(sigma, linestyle='--', label=r'far-field $\\sigma$')\nplt.axvline(-a, linestyle='--')\nplt.axvline(a, linestyle='--')\n\n# Schematic: crack on the x-axis (drawn below the plot)\ny_schem = -0.25\nplt.plot([-a, a], [y_schem, y_schem], linewidth=6, solid_capstyle='butt', label='crack (length 2a)')\n\n# Annotations\nplt.text(a, y_schem+0.04, r'$a$', ha='center', va='bottom')\nplt.text(2.85*a, sigma*1.02, r'$\\sigma$', ha='right', va='bottom')\n\nplt.ylim(y_schem-0.2, 8)   # show divergence trend without going infinite\nplt.xlim(0, 3*a)\nplt.xlabel('x (normalized)')\nplt.ylabel(r'$\\sigma_y/\\sigma$')\nplt.title('Crack-front stress distribution + schematic (normalized)')\nplt.grid(True)\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\n\n境界で応力が無限に集中して、遠方では一定の応力 \\(\\sigma\\) に収束するようなものがある。これが亀裂先端の応力場のモデルになる。\nえ、前の節じゃ鋭い亀裂の応力集中は \\(\\sigma_{max} = 2\\sigma \\sqrt{\\frac{a}{\\rho}}\\) じゃなかったのかって？　そうなんだけど、あれはミクロの話で、こっちはマクロの話だから、無限大っていうモデルを採用してるってさ。\n\\[\n\\sigma_y(x) = \\sigma \\frac{|x|}{\\sqrt{x^2 - a^2}}\n\\]\n亀裂近傍における \\(x \\approx a\\) のとき、応力は次の式になる。\n\\[\n\\sigma_y(x) \\approx \\sigma \\frac{a + \\Delta}{(a + \\Delta)^2 - a^2}^{1/2} = \\sigma \\frac{a + \\Delta}{(2a\\Delta + \\Delta^2)^{1/2}} \\approx \\sigma \\sqrt{\\frac{a}{2 \\Delta}}\n\\]\nつまりは、 \\(\\Delta\\) が小さければ応力はどんどん集中するわけだけど、実際には無限の応力は存在しない。これはあくまでも、「亀裂先端近傍の応力は非常に大きくなる」という事実を示していて、どのタイミングで破壊が起きるかは \\(\\sigma\\) をデカくして行くことによって決まってくる。\nここで、応力拡大係数を次の式で定義する。変数は \\(x \\to \\Delta\\) に変えて書く。\n\\[\nK_{\\mathrm{I}} = \\lim_{\\Delta \\to 0} \\qty[ \\sigma_y(\\Delta) \\sqrt{2 \\pi \\Delta} ] = \\sigma \\sqrt{\\pi a}\n\\]\nと定義する。この定義の理由は、 \\(\\sqrt{\\text{応力}} \\times \\sqrt{\\text{長さ}}\\) で初めて \\(\\Delta\\) によらない数になるから。\n\\(\\sigma_{\\mathrm{max}}\\) で扱うと、穴の形や原子構造とか諸々のファクター全てを含む形で決まってくるから、材料的な定数として扱えない。\nところが、 \\(K_{\\mathrm{I}}\\) は亀裂長さ \\(a\\) と遠方応力 \\(\\sigma\\) のみで決まるので、材料的な定数として扱いやすい。\n\\(\\pi\\) は一周で積分することによってできるらしいが、こっちの方はよくわからん。\nそうすることによって、破壊される際の \\(K_{\\mathrm{I}}\\) の値を \\(K_{\\mathrm{IC}}\\) として材料定数として扱うことができる。\n\\[\nK_{\\mathrm{IC}} = \\sigma_{\\mathrm{破壊時}} \\sqrt{\\pi a}\n\\tag{1}\\]\nとなる。この \\(K_{\\mathrm{IC}}\\) を破壊靭性と呼ぶ。\n\n\n\n\n\n\n\n\n値\n単位\n名前\n\n\n\n\n\\(K_{\\mathrm{I}}\\)\n\\(\\mathrm{MPa}\\cdot\\mathrm{m}^{1/2}\\)\n応力拡大係数\n\n\n\\(K_{\\mathrm{IC}}\\)\n\\(\\mathrm{MPa}\\cdot\\mathrm{m}^{1/2}\\)\n破壊靭性\n\n\n\n\n\nGriffithのエネルギー論\nここまでは、亀裂周辺で応力がどのように働くかのモデル化で破壊の条件を考えたわけだが、次はエネルギー論的に破壊の条件を考える。\n\n\nShow Code\nimport matplotlib.pyplot as plt\nfrom matplotlib.patches import Ellipse\nimport numpy as np\n\n# 板のサイズ（適当なスケール）\nwidth, height = 10, 6\n\nfig, ax = plt.subplots(figsize=(8, 4))\n\n# 板（長方形）の外枠\nax.plot([0, width, width, 0, 0], [0, 0, height, height, 0])\n\n# 楕円き裂の中心\ncenter_x, center_y = width / 2, height / 2\n\n# 楕円き裂の半長軸 a と半短軸 b\na = 3.0   # x方向（き裂長さの半分）\nb = 0.5   # y方向\n\n# 楕円き裂\nellipse = Ellipse((center_x, center_y), 2*a, 2*b, fill=False)\nax.add_patch(ellipse)\n\n# 主軸（a方向）・副軸（b方向）を点線で表示\nax.plot([center_x - a, center_x + a], [center_y, center_y], linestyle='--')\nax.plot([center_x, center_x], [center_y - b, center_y + b], linestyle='--')\n\n# a のラベル\nax.annotate(\n    \"\", xy=(center_x + a, center_y + 0.4), xytext=(center_x, center_y + 0.4),\n    arrowprops=dict(arrowstyle=\"&lt;-&gt;\")\n)\nax.text(center_x + a/2, center_y + 0.55, \"a\", ha=\"center\", va=\"bottom\")\n\n# 遠方引張応力 σ を左・右に描く\ny_pos = np.linspace(0.7, height - 0.7, 5)\nfor y in y_pos:\n    # 左側の矢印（→）\n    ax.annotate(\"\", xy=(-0.4, y), xytext=(0, y),\n                arrowprops=dict(arrowstyle=\"-&gt;\"))\n    # 右側の矢印（←）\n    ax.annotate(\"\", xy=(width + 0.4, y), xytext=(width, y),\n                arrowprops=dict(arrowstyle=\"-&gt;\"))\n\nax.text(0.2, height/2, r\"$\\sigma$\", ha=\"center\", va=\"center\", rotation=90)\nax.text(width - 0.2, height/2, r\"$\\sigma$\", ha=\"center\", va=\"center\", rotation=90)\n\n# 体裁整え\nax.set_aspect(\"equal\")\nax.set_xlim(-0.5, width + 0.5)\nax.set_ylim(-0.5, height + 0.5)\nax.axis(\"off\")\nax.set_title(\"Elliptical crack in a plate\")\n\nplt.show()\n\n\n\n\n\n\n\n\n\nこれで、まずは亀裂が進行することによって増えるエネルギーは、\n\\[\nW_\\mathrm{e} = \\frac{\\pi a^2 \\sigma^2}{E}\n\\]\nとなる。次元的にエネルギーの単位になる。実際の計算は無理だった。\n次に表面が増えるのでその分の表面エネルギーは次の式になる。\n\\[\nW_\\mathrm{s} = 4 a \\gamma\n\\]\n\n\nShow Code\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# --- Parameters (dimensionless / schematic) ---\nE = 1.0\ngamma = 0.18\nsigma = 0.45\n\n# Crack half-length a\na = np.linspace(0, 1.2, 600)\n\n# Griffith model (schematic, plane stress-like)\nWe = (np.pi * a**2 * sigma**2) / E          # elastic energy released (positive quantity)\nWs = 4 * a * gamma                          # surface energy cost\nU = -We + Ws                                # total potential energy change\n\n# Critical crack length from dU/da = 0  -&gt; 4γ - 2πσ^2 a / E = 0\nac = (2 * E * gamma) / (np.pi * sigma**2)\n\n# --- Plot 1: Energy balance diagram ---\nplt.figure()\nplt.plot(a, -We, label=r\"$-W_e$  (elastic energy release)\")\nplt.plot(a, Ws,  label=r\"$W_s$   (surface energy cost)\")\nplt.plot(a, U,   label=r\"$U(a)=-W_e+W_s$\")\nplt.axvline(ac, linestyle=\"--\")\nplt.text(ac, np.interp(ac, a, U), r\"  $a_c$\", va=\"bottom\")\n\nplt.xlabel(r\"crack half-length $a$\")\nplt.ylabel(\"energy (schematic units)\")\nplt.title(\"Griffith energy balance (schematic)\")\nplt.grid(True)\nplt.legend()\nplt.ylim(min(U.min(), (-We).min()) * 1.1, max(Ws.max(), U.max()) * 1.1)\nplt.xlim(0, a.max())\nplt.show()\n\n\n\n\n\n\n\n\n\n\\[\nU = -W_\\mathrm{e} + W_\\mathrm{s} = -\\frac{\\pi a^2 \\sigma^2}{E} + 4 a \\gamma\n\\]\nこのグラフを見ればわかるのが、極大点の \\(a_\\mathrm{c}\\) を超えると、同じ応力があれば亀裂が勝手に伸びていくことになる。\n逆に、その前だと、亀裂は力を加え続けなければ進まない。\n\\[\n\\begin{aligned}\n\\dv{U}{a}(a_\\mathrm{c}) &= -\\frac{2\\pi a \\sigma^2}{E} + 4 \\gamma = 0 \\\\\na_\\mathrm{c} &= \\frac{2 E \\gamma}{\\pi \\sigma^2}\n\\end{aligned}\n\\]\nまた、見方を変えれば、ある亀裂長さ \\(a\\) に対して、亀裂が進展するための応力は、\n\\[\n\\sigma_\\mathrm{c} = \\sqrt{\\frac{2 E \\gamma}{\\pi a}}\n\\]\nとなる。これは、Inglisの応力集中を考えたときの式と係数以外は一致する。当然だ。だって、Inglisの応力集中もエネルギー論も、同じ物理現象を説明しているし、また、かなり大雑把なモデル化をしているから、多少の違いは出てくる。\n\\(2\\gamma = \\Gamma\\) と表面エネルギーを置き換えると、\n\\[\n\\sigma_\\mathrm{c} = \\sqrt{\\frac{E \\Gamma}{\\pi a}}\n\\]\nこの \\(\\Gamma\\) というのは、エネルギー解放率と呼ばれているのだが、その理由は、この亀裂の進展を片方だけで見た時、\n\\[\nU = -\\frac{\\pi a^2 \\sigma^2}{2E} + a \\Gamma\n\\]\nと、半分の値になってて、そのうちの弾性エネルギーがどれだけ解放されるかを示しているから。\nEquation 1 で示される \\(K_{\\mathrm{IC}}\\) を用いると、破壊の条件式は次のように書ける。",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
       "Univ Lecs",
       "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題2-1",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題2-1",
-    "title": "高分子ノート",
-    "section": "課題2-1",
-    "text": "課題2-1\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n数平均重合度\n\\[\n\\mathrm{DP} = \\frac{\\text{反応前の物質量}}{\\text{反応後の物質量}} = \\frac{1}{1-p}\n\\]\nただし、\\(p\\) は反応率\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n\n\n数平均重合度は\n\\[\n\\mathrm{DP} = \\frac{1}{1-0.99} = 100\n\\]\nとなる。\n\n\n\n数平均重合度は\n\\[\n\\mathrm{DP} = \\frac{2.02}{0.03+0.01} = 50.5\n\\]\n\n\nShow Code\ndp = 2.02 / (0.03 + 0.01)\nprint(dp)\n\n\n50.5\n\n\nとなる。",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題2-2",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題2-2",
-    "title": "高分子ノート",
-    "section": "課題2-2",
-    "text": "課題2-2\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n濃度についての微分方程式を解けばいい。テキストの解答は面倒。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n反応後の濃度 \\(C\\) は時間 \\(t\\) 後に\n\\[\n\\begin{aligned}\n\\dv{C}{t} &= -k_1 C^2 \\\\\nC &= \\frac{1}{k_1t + \\frac{1}{C_0}}\n\\end{aligned}\n\\] となるので、数平均重合度は\n\\[\n\\mathrm{DP} = \\frac{C_0}{C} = k_1 C_0 t + 1\n\\]\nと示される。",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題3-1",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題3-1",
-    "title": "高分子ノート",
-    "section": "課題3-1",
-    "text": "課題3-1\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n平衡定数が絡んだ数平均重合度の問題は、反応度をまず求めれば楽。\n\\[\nK = \\frac{C_0p}{C_0^2(1-p)^2} = \\frac{p}{C_0(1-p)^2}\n\\]\nこれから \\(p\\) を求め、その後数平均重合度 \\(1/1-p\\) を求める。一応解の公式とかを使った面倒な方の式は出しておく。\n\\[\n\\mathrm{DP} = \\frac{2KC_{0}}{\\sqrt{ 4KC_{0}+1} - 1 }\n\\]\nこれを使おうと覚えるのはきついと思われる。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n\n\n\\[\n\\begin{aligned}\np &= \\frac{2KC_{0}+1-\\sqrt{ (2KC_{0}+1)^2 - 4K^2C_{0}^2 }}{2KC_{0}} \\\\\n\\bar{X_{n}} &= \\frac{2KC_{0}}{\\sqrt{ 4KC_{0}+1} - 1 }\n\\end{aligned}\n\\]\n\n\nShow Code\nimport numpy as np\n\nK = 2000\nC = 5\n\nX = (2*K*C) / (np.sqrt(4*K*C+1) - 1)\nprint(X)\n\n\n100.5012499921876\n\n\n\n\n\n\\(C_0\\)\n\\(\\bar{X_n}\\)\n\n\n\n\n0.1\n14.7\n\n\n5\n100",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題3-2",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題3-2",
-    "title": "高分子ノート",
-    "section": "課題3-2",
-    "text": "課題3-2\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\nイソシアネートとはRNCOの形の有機化合物。これにROHが攻撃をする。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n水がイソシアネートと反応し、カルバミン酸となり、これが自発的に脱炭酸することによって二酸化炭素が発生し、ポリウレタンの液状混合物の中に気泡を形成し、そのまま硬化するため。",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題4-1",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題4-1",
-    "title": "高分子ノート",
-    "section": "課題4-1",
-    "text": "課題4-1\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n液性\n生成物\n配向性\n特徴\n可塑性\n\n\n\n\n塩基性\nレゾール\nフェノールの電離による求核付加反応\nメチロール基が多い\n熱硬化樹脂\n\n\n酸性\nノボラック\nホルムアルデヒドのプロトン化\nメチロール基が少ない\n熱可塑樹脂\n\n\n\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n\n\n\n(2)(3)\n塩基性条件下では側鎖にメチロール基が多いレゾールが生成される。このため、メチロール同士やフェノールとの脱水によって熱硬化樹脂が得られる。酸性条件下では付加反応より縮合反応が優先され、熱可塑樹脂であるノボラックが得られる。",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題4-2",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題4-2",
-    "title": "高分子ノート",
-    "section": "課題4-2",
-    "text": "課題4-2\n\n\n\n\n\n\n\nTip解答",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題5-1",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題5-1",
-    "title": "高分子ノート",
-    "section": "課題5-1",
-    "text": "課題5-1\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n速度係数の名前の意味の一覧。\n\n\n\nプロセス\n英語\n速度係数\n\n\n\n\n開始剤の分解\nDissociation\n\\(k_d\\)\n\n\n開始反応\nInitiation\n\\(k_i\\)\n\n\n成長反応\nPropagation\n\\(k_p\\)\n\n\n終了反応\nTermination\n\\(k_t\\)\n\n\n\n必要な前提は３つ。\n\nモノマーの消費は \\(k_p\\) のみ。\nラジカル濃度は一定。\n長さの違うポリマーラジカルは全部同じ扱い。\n\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\[\n\\begin{aligned}\n\\left. \\dv{[\\ce{P^.}]}{t} \\right|_{\\text{増加}} &= k_d 2f [\\ce{I}] &\\text{開始剤は速攻}\\ce{P^.}になる\\\\\n-\\dv{[\\ce{M}]}{t} &= k_p [\\ce{M}][\\ce{P.}] &\\text{モノマーの消費は $k_p$ のみ}\\\\\n\\left.　\\dv{[\\ce{P^.}]}{t}\\right|_{\\text{減少}} &= k_t [\\ce{P^.}]^2 &\\ce{P^.}\\text{の消費はこれだけ}\\\\\n\\end{aligned}\n\\]\n必要式はこの３つだけ。\n\\[\n\\begin{aligned}\n{}[\\ce{P^.}] &= \\sqrt{\\frac{k_d 2f [\\ce{I}]}{k_t}} \\\\\n-\\dv{[\\ce{M}]}{t} &= k_p \\sqrt{\\frac{k_d 2f [\\ce{I}]}{k_t}} [\\ce{M}] \\\\\n\\end{aligned}\n\\]",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題5-2",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題5-2",
-    "title": "高分子ノート",
-    "section": "課題5-2",
-    "text": "課題5-2\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n半減期についてだが、ただの一階微分方程式の問題。\n\\[\n[\\ce{I}] = [\\ce{I}]_0 e^{-k_dt}\n\\]\nなので、半減期は\n\\[\nt_{1/2} = \\frac{\\ln 2}{k_d}\n\\]\nという式。 \\(k_d = A\\exp{-E/RT}\\) を入れて考えるだけ。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n半減期の式は次のとおり\n\\[\nt_{1/2} = \\frac{\\ln 2}{Ae^{-E_a/RT}}\n\\]\n\\(E_a = 139.0 \\mathrm{kJ\\ mol^{-1}},\\ A= 9.34 \\times 10^{15}\\) なので、\n\n\n\n温度(°C)\n半減期(s)\n\n\n\n\n\\(60\\)\n\\(4.7 \\times 10^5\\)\n\n\n\\(80\\)\n\\(2.7 \\times 10^5\\)\n\n\n\\(100\\)\n\\(2.2 \\times 10^4\\)\n\n\n\n\n\nShow Code\nimport numpy as np\n\nA = 9.34e15\nEa = 139.0e3\nR = 8.314\nT = [273+60, 273+80, 273+100]\n\nt = [np.log(2)/(A*np.exp(-Ea/(R*Ti))) for Ti in T]\nt\n\n\n[np.float64(473058.2278643466),\n np.float64(27512.863243222408),\n np.float64(2170.8873092440117)]",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題6-1",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題6-1",
-    "title": "高分子ノート",
-    "section": "課題6-1",
-    "text": "課題6-1\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n共重合組成式 may-lewis の式の導出を軽くしておく。\n\\[\n\\begin{aligned}\n\\ce{P1^. + M1 &-&gt; P1^.} &\\quad k_{11} \\\\\n\\ce{P1^. + M2 &-&gt; P1^.} &\\quad k_{12} \\\\\n\\ce{P2^. + M1 &-&gt; P2^.} &\\quad k_{21} \\\\\n\\ce{P2^. + M2 &-&gt; P2^.} &\\quad k_{22} \\\\\n\\end{aligned}\n\\]\n以上の反応から\n\\[\n\\begin{aligned}\n\\dv{[\\ce{P1^.}]}{t} = k_{11}[\\ce{P1^.}][\\ce{M1}] + \\textcolor{red}{k_{12}[\\ce{P1^.}][\\ce{M2}]} \\\\\n\\dv{[\\ce{P2^.}]}{t} = \\textcolor{red}{k_{21}[\\ce{P2^.}][\\ce{M1}]} + k_{22}[\\ce{P2^.}][\\ce{M2}] \\\\\n\\end{aligned}\n\\]\n定常状態濃度が一定だから、末端が変わる赤い部分が同じになる。それで、約分処理をしてあげると、 \\(r_1 = k_{11} / k_{12}\\), \\(r_2 = k_{22} / k_{21}\\) として\n\\[\n\\frac{\\mathrm{d}[\\mathrm{M} 1]}{\\mathrm{d}[\\mathrm{M} 2]}=\\frac{[\\mathrm{M} 1]}{[\\mathrm{M} 2]}\\left(\\frac{r_1[\\mathrm{M} 1]+[\\mathrm{M} 2]}{[\\mathrm{M} 1]+r_2[\\mathrm{M} 2]}\\right)\n\\]\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n(1)mayo-lewisの式は次のとおり\n\\[\nR = \\frac{\\mathrm{d}[\\mathrm{M} 1]}{\\mathrm{d}[\\mathrm{M} 2]}=\\frac{[\\mathrm{M} 1]}{[\\mathrm{M} 2]}\\left(\\frac{r_1[\\mathrm{M} 1]+[\\mathrm{M} 2]}{[\\mathrm{M} 1]+r_2[\\mathrm{M} 2]}\\right)\n\\]\n\\(F_1 = \\frac{\\dd {}[\\mathrm{M1}]}{\\dd {}[\\mathrm{M1}] + \\dd {}[\\mathrm{M2}]}\\) なので、 \\(F_1 = \\frac{R}{1+R}\\) , \\(f_1 = \\frac{[\\mathrm{M1}]}{[\\mathrm{M1}] + [\\mathrm{M2}]}\\) より、 \\(\\frac{[\\mathrm{M1}]}{[\\mathrm{M2}]} = \\frac{f_1}{f_2}\\)\n\\[\n\\begin{aligned}\nF &= \\frac{R}{R+1} = \\frac{\\qty(\\frac{f_1}{f_2})^2r_1+\\qty(\\frac{f_1}{f_2})}{\\qty(\\frac{f_1}{f_2})^2r_1 + 2\\qty(\\frac{f_1}{f_2}) + r_2} \\\\\n&=\\frac{f_1^2r_1 + f_1f_2}{f_1^2r_1 + 2f_1f_2 + f_2^2r_2}\n\\end{aligned}\n\\]\n\n\n\n\n\nShow Code\nr1 = 0.75\nr2 = 0.18\nf1 = 0.2\nf2 = 0.8\n\nF = (f1**2*r1 + f1*f2)/(f1**2*r1 + 2*f1*f2 + f2**2*r2)\nF\n\n\n0.408426483233018\n\n\n\\(F_1 = 0.41\\) となる。",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題6-2",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題6-2",
-    "title": "高分子ノート",
-    "section": "課題6-2",
-    "text": "課題6-2\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n経験則の式として次がある。\n\\[\nr_1=\\frac{Q_1}{Q_2} e^{\\left(-e_1\\left(e_1-e_2\\right)\\right)}, \\quad r_2=\\frac{Q_2}{Q_1} e^{\\left(-e_2\\left(e_2-e_1\\right)\\right)}\n\\]\n覚えるしかない。 \\(Q\\) は共役効果、 \\(e\\) は極性効果。\n\n\n\nモノマー\n\\(Q\\) 値\n\\(e\\) 値\n\n\n\n\nアクリル酸メチル\n0.45\n0.64\n\n\nメタクリル酸メチル\n0.78\n0.40\n\n\nスチレン\n1.0\n-0.8\n\n\n酢酸ビニル\n0.026\n-0.88\n\n\n\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n\n\n\\[\nr_1=\\frac{Q_1}{Q_2} e^{\\left(-e_1\\left(e_1-e_2\\right)\\right)}\n\\]\n\\[\nr_2=\\frac{Q_2}{Q_1} e^{\\left(-e_2\\left(e_2-e_1\\right)\\right)}\n\\]\n\n\nShow Code\nimport numpy as np\n\nQ1 = 1.0\nQ2 = 0.45\ne1 = -0.8\ne2 = 0.64\n\nr1 = Q1/Q2*np.exp(-e1*(e1-e2))\nr2 = Q2/Q1*np.exp(-e2*(e2-e1))\nr1, r2\n\n\n(np.float64(0.702231397093028), np.float64(0.1790468642030421))\n\n\n\\(r_1\\) | 0.70 |\n\\(r_2\\) | 0.18 |",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題7-1",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題7-1",
-    "title": "高分子ノート",
-    "section": "課題7-1",
-    "text": "課題7-1\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\nスチレンには無理矢理にでも電子を与えて反応をさせていく。ナフタレン錯体については２官能性開始剤となることを覚える。\n\n\n\n\n\n\n\n\n\nTip解答",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題7-2",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題7-2",
-    "title": "高分子ノート",
-    "section": "課題7-2",
-    "text": "課題7-2\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n\nこの表は全部覚える必要はなさそう。だけど、大体は頭に入れとかないといけないみたい。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n\n\n\n\nShow Code\nfrom rdkit import Chem\nfrom rdkit.Chem import Draw\n\n# Define SMILES strings for each compound\nsmiles = {\n    \"α-シアノアクリル酸エチル\": \"C=C(C#N)C(=O)OCC\",\n    \"メタクリル酸メチル\": \"CC(=C)C(=O)OC\",\n    \"スチレン\": \"C=Cc1ccccc1\"\n}\n\n# Convert SMILES to RDKit molecule objects\nmolecules = [Chem.MolFromSmiles(smile) for smile in smiles.values()]\n\n# Draw molecules\nDraw.MolsToImage(molecules, legends=list(smiles.keys()))\n\n\n\n\n\n\n\n\n\n\\(\\ce{C=C}\\) に結合した置換基の電子吸引性が高いものほどアニオン重合反応性が強い。\n\n\\(\\ce{C6H5MgBr}\\) はグリニャール試薬であり，b群の開始剤である．A群に属するスチレンのアニオン重合は開始できないが，B群に属するメタクリル酸メチルのアニオン重合は開始できる．よってメタクリル酸メチルの単独重合体，すなわちポリメタクリル酸メチルが生成する．",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題7-3",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題7-3",
-    "title": "高分子ノート",
-    "section": "課題7-3",
-    "text": "課題7-3\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n一番近いやつと一番遠いやつ。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n\n\n\n(2)スチレン。電子求引性の置換基をもつp-シアノスチレンの成長末端は求核剤としての反応性が低下しており，その成長末端はスチレンの重合を開始できないから．",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題8-1",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題8-1",
-    "title": "高分子ノート",
-    "section": "課題8-1",
-    "text": "課題8-1\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n\n\n\nスチレン、イソブテン、n-ブチルビニルエーテル\nC=C上の電子密度が上昇し、カチオンからの求電子付加を受けやすいため。",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題8-2",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題8-2",
-    "title": "高分子ノート",
-    "section": "課題8-2",
-    "text": "課題8-2\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n異性化についての知識が必要。\n\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n付加する前に一部，水素が転移して第2級カルボカチオンからより安定な第3級カルボカチオンに異性化する．重合温度が低いほどカルボカチオンとモノマーの反応速度が遅くなるため，付加する前に異性化する割合が増えるから．",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題9-1",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題9-1",
-    "title": "高分子ノート",
-    "section": "課題9-1",
-    "text": "課題9-1\n\n\n\n\n\n\n\nTip解答",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題9-2",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題9-2",
-    "title": "高分子ノート",
-    "section": "課題9-2",
-    "text": "課題9-2\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n高圧下ラジカル重合で合成されたポリエチレンは分岐が多く密度が低い（低密度ポリエチレン）．分岐構造が規則正しくパッキングして結晶化するのを阻害するため，結晶化度は低く軟らかい．低圧下チーグラー・ナッタ触媒を用いて重合されたポリエチレンは，ほぼ直鎖状の構造をしている．分岐が少ないため，分子鎖がパッキングし結晶化しやすく密度が高い（高密度ポリエチレン）．また，高密度ポリエチレンの方が低密度ポリエチレンよりも結晶のサイズが大きく融点も高い．\n\n高圧下ラジカル重合で合成されたポリエチレン\n低圧下チーグラー・ナッタ触媒を用いて合成されたポリエチレン",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題9-3",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題9-3",
-    "title": "高分子ノート",
-    "section": "課題9-3",
-    "text": "課題9-3\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n\n\n\n2.過冷却度が小さい融点（240 \\({}^{\\circ}\\text{C}\\) ）近傍では，分子運動が激しいことから結晶核ができづらい．温度をここから下げていくと結晶核の生成速度があがっていく．しかし，ガラス転移温度（100 \\({}^{\\circ}\\text{C}\\) ）に近づいていくと今度は分子鎖の運動性が著しく落ちて，結晶核の成長が遅くなっていく．そのため，融点とガラス転移温度の中間あたりにピークトップをもつ釣鐘型の曲線となる．",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題10-1",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題10-1",
-    "title": "高分子ノート",
-    "section": "課題10-1",
-    "text": "課題10-1\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n焦らずこの式使うだけですね。\n\\[\n\\Delta G = \\Delta H - T\\Delta S\n\\]\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\nγ-ブチロラクトン",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題10-2",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題10-2",
-    "title": "高分子ノート",
-    "section": "課題10-2",
-    "text": "課題10-2\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\nマイナスになって、Oの隣を攻めていく\n\n\n\n\n\n\n\n\n\nTip解答",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題10-3",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題10-3",
-    "title": "高分子ノート",
-    "section": "課題10-3",
-    "text": "課題10-3\n\n\n\n\n\n\n\nTip解答",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題11-1",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題11-1",
-    "title": "高分子ノート",
-    "section": "課題11-1",
-    "text": "課題11-1\n\n\n\n\n\n\n\nかさ高い置換基がエクアトリアル位にある方が立体的に安定である．α体とβ体のいす形配置を比較すると，1位の炭素に結合したOH基がα体はアキシアル位にあるのに対し，β体はエクアトリアル位にある．したがって，β体のほうが多くなる．",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#課題11-2",
-    "href": "posts/univ_lecs/3A/高分子２.html#課題11-2",
-    "title": "高分子ノート",
-    "section": "課題11-2",
-    "text": "課題11-2\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\nポリ乳酸は一個分だけに注目して \\(\\ce{C3H4O2}\\) として考える。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\[\n\\ce{C3H4O2 + 3O2 -&gt; 3CO2 + 2H2O}\n\\]\nから、1.0gのPLAが分解した時に発生する二酸化炭素は\n\\[\n\\frac{1.0}{72} \\times 3 \\times 44 = 1.83 \\mathrm{g}\n\\]\nゆえに分解度は\n\\[\n\\frac{0.72-0.08}{1.83} = 0.35\n\\]",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#共重合組成曲線",
-    "href": "posts/univ_lecs/3A/高分子２.html#共重合組成曲線",
-    "title": "高分子ノート",
-    "section": "共重合組成曲線",
-    "text": "共重合組成曲線\n\n\n\nShow Code\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# データ設定\nr_values = {\n    \"(r1=0.04, r2=0)\": (0.04, 0),\n    \"(r1=0.52, r2=0.46)\": (0.52, 0.46),\n    \"(r1=0.78, r2=1.3)\": (0.78, 1.3),\n    \"(r1=0.1, r2=9.0)\": (0.1, 9.0),\n    \"(r1=17, r2=0.02)\": (17, 0.02),\n}\n\n# プロット関数\ndef generate_copolymer_composition_curves(r_values):\n    f1 = np.linspace(0, 1, 500)  # モノマー比 (f1)\n    f2 = 1 - f1  # f2 = 1 - f1\n\n    plt.figure(figsize=(10, 8))\n\n    for label, (r1, r2) in r_values.items():\n        # 共重合組成式\n        with np.errstate(divide='ignore', invalid='ignore'):  # 0除算の警告を無視\n            F1 = (r1 * f1**2 + f1 * f2) / (r1 * f1**2 + 2 * f1 * f2 + r2 * f2**2)\n            F1 = np.nan_to_num(F1)  # NaNを0に変換\n        plt.plot(f1, F1, label=label)\n\n    plt.title(\"Copolymer Composition Curves\", fontsize=16)\n    plt.xlabel(\"$f_1$ (Monomer Fraction in Feed)\", fontsize=14)\n    plt.ylabel(\"$F_1$ (Monomer Fraction in Polymer)\", fontsize=14)\n    plt.grid(True)\n    plt.legend(fontsize=12)\n    plt.show()\n\n# 実行\ngenerate_copolymer_composition_curves(r_values)",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#かご効果",
-    "href": "posts/univ_lecs/3A/高分子２.html#かご効果",
-    "title": "高分子ノート",
-    "section": "かご効果",
-    "text": "かご効果\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n別れた時のことを考えればいい。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\nAIBOは脱膣するが、BPOは脱膣しない。",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#リビング重合",
-    "href": "posts/univ_lecs/3A/高分子２.html#リビング重合",
-    "title": "高分子ノート",
-    "section": "リビング重合",
-    "text": "リビング重合\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n条件：連鎖移動反応や停止反応などの生長末端を失活させる副反応を伴わない\n確認方法：ポリマーの長さが一定であることを確認する",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#ラジカル重合周辺",
-    "href": "posts/univ_lecs/3A/高分子２.html#ラジカル重合周辺",
-    "title": "高分子ノート",
-    "section": "ラジカル重合周辺",
-    "text": "ラジカル重合周辺\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\nバルク\n混濁\n乳化\n0.5\n1",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3A/高分子２.html#スチレンの重合",
-    "href": "posts/univ_lecs/3A/高分子２.html#スチレンの重合",
-    "title": "高分子ノート",
-    "section": "スチレンの重合",
-    "text": "スチレンの重合\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\nカチオン\nラジカル\nアニオン",
-    "crumbs": [
-      "Serika Yuzuki",
-      "大学関連",
-      "Univ Lecs",
-      "3A",
-      "高分子ノート"
+      "信頼性学"
     ]
   },
   {
@@ -2422,13 +2030,461 @@
     "href": "posts/univ_lecs/3A/生産プロセス.html#年度",
     "title": "生産プロセス",
     "section": "2023年度",
-    "text": "2023年度\n\n問1\n\n製錬：　鉱石中の化合物状態で存在している元素を、熱や化学的エネルギーを加えて金属状態にすること\n精錬：　製錬で得られた金属から不純物を取り除き、純度を高める工程のこと\n\n\n問2\n略\n\n\n問3\n\n\n高炉挿入原料：鉄鉱石、コークス、石灰石\n\n間接還元：\n\\[\n\\begin{aligned}\n\\ce{3Fe2O3 + CO &-&gt; 2Fe3O4 + CO2} \\\\\n\\ce{Fe3O4 + CO &-&gt; 3FeO + CO2} \\\\\n\\ce{FeO + CO &-&gt; Fe + CO2} \\\\\n\\end{aligned}\n\\]\n直接還元：\n\\[\n\\ce{FeO + C -&gt; Fe + CO}\n\\]\n\n\n\n\n水素還元は条件によって吸熱反応である。\nコークスの通気性を保つ性質の代替が不可能。\n銑鉄化(浸炭)ができない。\n\n\n\n\n\n高炉に微粉化プラスチックを吹込み、熱分解で \\(\\ce{CO, H2}\\) を発生し、還元剤・燃料としてコークスや微粉炭を代替する。\nコークス炉で微粉化プラスチックを原料として利用しつつ、コークス使用量を削減する。\n\n\n\n\n\n\n\n除冷スラグ：　自然放冷した結晶質のスラグ。空隙を含む岩石城で、道路やコンクリートに使われる。\n水砕スラグ：　高温の溶融スラグを加圧水噴射急冷した非晶質のスラグ。気泡を含む粒子状。セメントの原料や路床材に使われる。\n\n\n\n\n\nShow Code\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport math\n\n# --- Vertices of ternary diagram ---\nV_CaO = np.array([0.0, 0.0])\nV_Al  = np.array([1.0, 0.0])\nV_Si  = np.array([0.5, math.sqrt(3)/2])\n\ndef bary_to_xy(cao, al, si):\n    s = cao + al + si\n    cao, al, si = cao/s, al/s, si/s\n    return cao*V_CaO + al*V_Al + si*V_Si\n\nfig, ax = plt.subplots(figsize=(7, 6))\n\n# --- Draw triangle ---\ntri = np.vstack([V_CaO, V_Al, V_Si, V_CaO])\nax.plot(tri[:,0], tri[:,1], color=\"black\")\n\n# --- Axis ticks every 10% ---\nticks = np.linspace(0.1, 0.9, 9)\n\n# SiO2 ticks (parallel to base)\nfor s in ticks:\n    p1 = bary_to_xy(1-s, 0, s)\n    p2 = bary_to_xy(0, 1-s, s)\n    ax.plot([p1[0], p2[0]], [p1[1], p2[1]], color=\"lightgray\", linewidth=0.8)\n    ax.text(p2[0]+0.02, p2[1], f\"{int(s*100)}%\", fontsize=8, va=\"center\")\n\n# CaO ticks (parallel to Al2O3–SiO2 edge)\nfor c in ticks:\n    p1 = bary_to_xy(c, 1-c, 0)\n    p2 = bary_to_xy(c, 0, 1-c)\n    ax.plot([p1[0], p2[0]], [p1[1], p2[1]], color=\"lightgray\", linewidth=0.8)\n\n# Al2O3 ticks (parallel to CaO–SiO2 edge)\nfor a in ticks:\n    p1 = bary_to_xy(1-a, a, 0)\n    p2 = bary_to_xy(0, a, 1-a)\n    ax.plot([p1[0], p2[0]], [p1[1], p2[1]], color=\"lightgray\", linewidth=0.8)\n\n# --- Highlight required lines ---\n# CaO : Al2O3 = 2 : 1\nt = np.linspace(0, 1, 200)\ncao = (2/3) * (1 - t)\nal  = (1/3) * (1 - t)\nsi  = t\nxy_ratio = np.vstack([bary_to_xy(cao[i], al[i], si[i]) for i in range(len(t))])\nax.plot(xy_ratio[:,0], xy_ratio[:,1], color=\"red\", linewidth=2, label=\"CaO:Al$_2$O$_3$ = 2:1\")\n\n# SiO2 = 30%\np1 = bary_to_xy(0.70, 0.00, 0.30)\np2 = bary_to_xy(0.00, 0.70, 0.30)\nax.plot([p1[0], p2[0]], [p1[1], p2[1]], color=\"blue\", linewidth=2, label=\"SiO$_2$ = 30%\")\n\n# --- Labels ---\nax.text(V_CaO[0]-0.05, V_CaO[1]-0.05, \"CaO\", ha=\"right\", va=\"top\", fontsize=12)\nax.text(V_Al[0]+0.05,  V_Al[1]-0.05,  \"Al$_2$O$_3$\", ha=\"left\", va=\"top\", fontsize=12)\nax.text(V_Si[0],       V_Si[1]+0.06,  \"SiO$_2$\", ha=\"center\", va=\"bottom\", fontsize=12)\n\nax.set_aspect(\"equal\")\nax.axis(\"off\")\nax.legend(loc=\"upper right\", frameon=False)\n\nplt.show()\n\n\n\n\n\n\n\n\n\n3)4)\n\n\n\n\n問4\n\n\n\n\n\n\n\n\n\\[\n\\ce{P + \\frac{5}{4}O2 + \\frac{3}{2}O^{2-} -&gt; PO4^{3-}}\n\\]\n低温・高塩基性・高酸素分圧でリン酸イオンが安定。\n\n\n\n定義式は次のとおり\n\\[\ne_{\\ce{P}}^{\\ce{C}} = \\lim _{ [\\%1] \\to 100} \\pdv{\\log_{10} f_{\\ce{P}}}{[\\%\\ce{C}]}\n\\]\n実際の値は、\n\\[\n\\begin{aligned}\n\\log_{10}f_{\\ce{P}} &= e_{\\ce{P}}^{\\ce{C}} [\\%\\ce{C}] \\\\\n&= 0.079 \\times 4.5 \\\\\n&= 0.3555 \\\\\n\\therefore \\quad f_{\\ce{P}} &= 10^{0.3555} = 2.27\n\\end{aligned}\n\\]\n\n\n\n\\[\n\\begin{aligned}\n\\Delta G_1^\\circ &= -122200 - 19.25T\\;(\\mathrm{J/mol}) \\\\\n\\Delta G_1^\\circ &= -RT\\ln K_1 \\\\\n\\Rightarrow\n\\ln K_1 &= -\\frac{\\Delta G_1^\\circ}{RT} \\\\\n&= \\frac{122200+19.25T}{RT}\n\\end{aligned}\n\\]\n\n\n\n\\[\n\\begin{aligned}\nL_\\ce{P} &= \\frac{0.326 f_{\\ce{P}} C_{\\ce{PO4^{3-}}}p_{\\ce{O2}}^{\\frac{5}{4}}}{K_1} \\\\\n&= \\frac{0.326 \\times 2.27  \\times (10^{-15})^{\\frac{5}{4}}}{\\exp\\qty(\\frac{-(122200 + 19.25 \\times 1573)}{8.314 \\times 1573})} C_{\\ce{PO4^{3-}}}\\\\\n&= 1.14 \\times 10^{-24} C_{\\ce{PO4^{3-}}} \\\\\n&= 5.00 \\times 10^{2} \\\\\n\\therefore \\quad C_{\\ce{PO4^{3-}}} &= 4.40 \\times 10^{26} \\, \\mathrm{mol/m^3}\n\\end{aligned}\n\\]\n\n\nShow Code\nimport numpy as np\nR = 8.314  # J/(mol·K)\nT = 1573  # K\nf_P = 2.27\np_O2 = 1e-15  # atm\n\ndelta_G1_0 = -122200 - 19.25 * T  # J/mol\nK1 = np.exp(-delta_G1_0 / (R * T))\nL_P = 5.00e2  # given\nC_PO4_3_minus = L_P * K1 / (0.326 * f_P * p_O2**(5/4))\nprint(\"C_PO4^3- is:\", C_PO4_3_minus, \"mol/m^3\")\n\n\nC_PO4^3- is: 4.398695474423597e+26 mol/m^3\n\n\n\n転炉精錬の主目的は、溶銑中の炭素を酸化反応によって除去し、所定の炭素量をもつ鋼を得ること。同時にSiやMnは優先的に酸化されスラグ中へ移行し、塩基性スラグと高い酸素ポテンシャル下でリンもリン酸塩として除去される。これらの処理を同時に実現し、外部加熱を用いずに溶鋼温度を上昇させることができる。\n\n\n\n\n\n\nRD：アルゴンガスにの吹き込みによって真空槽に溶鉱を循環させる方法。H, N, COの除去に有効。\nVD：真空槽内で溶鉱を攪拌し、真空引きによってHを効率的に除去する方法.\n\n\n\n\nクロム酸化損失の抑制のために、AODやVODが用いられる。前者はアルゴンガスを吹き込んでCO分圧を下げる手法で、後者は真空下で酸素を吹き込むことでCOを吸い上げる手法。\n\n\n問5\n\n\n\n\n\\(\\ln p_{\\ce{O2}}\\) を表している。ある温度での縦軸の値から、反応が平衡となる酸素分圧を読み取れば良い。\n\n\n\n傾きは \\(-\\Delta S\\) であり、切片は \\(\\Delta H\\) である。酸化反応でエントロピー変化が類似するため。\n\n\n\n1600 Kでは \\(\\ce{SiO2}\\) の生成Gibbsエネルギーが \\(\\ce{CO}\\) の酸化反応より低く、\\(\\ce{SiO2}\\) が熱力学的に安定であるため、 \\(\\ce{CO}\\) による還元は困難である",
+    "text": "2023年度\n\n問1\n\n製錬：　鉱石中の化合物状態で存在している元素を、熱や化学的エネルギーを加えて金属状態にすること\n精錬：　製錬で得られた金属から不純物を取り除き、純度を高める工程のこと\n\n\n問2\n略\n\n\n問3\n\n\n高炉挿入原料：鉄鉱石、コークス、石灰石\n\n間接還元：\n\\[\n\\begin{aligned}\n\\ce{3Fe2O3 + CO &-&gt; 2Fe3O4 + CO2} \\\\\n\\ce{Fe3O4 + CO &-&gt; 3FeO + CO2} \\\\\n\\ce{FeO + CO &-&gt; Fe + CO2} \\\\\n\\end{aligned}\n\\]\n直接還元：\n\\[\n\\ce{FeO + C -&gt; Fe + CO}\n\\]\n\n\n\n\n水素還元は条件によって吸熱反応である。\nコークスの通気性を保つ性質の代替が不可能。\n銑鉄化(浸炭)ができない。\n\n\n\n\n\n高炉に微粉化プラスチックを吹込み、熱分解で \\(\\ce{CO, H2}\\) を発生し、還元剤・燃料としてコークスや微粉炭を代替する。\nコークス炉で微粉化プラスチックを原料として利用しつつ、コークス使用量を削減する。\n\n\n\n\n\n\n\n除冷スラグ：　自然放冷した結晶質のスラグ。空隙を含む岩石城で、道路やコンクリートに使われる。\n水砕スラグ：　高温の溶融スラグを加圧水噴射急冷した非晶質のスラグ。気泡を含む粒子状。セメントの原料や路床材に使われる。\n\n\n\n\n\nShow Code\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport math\n\n# --- Vertices of ternary diagram ---\nV_CaO = np.array([0.0, 0.0])\nV_Al  = np.array([1.0, 0.0])\nV_Si  = np.array([0.5, math.sqrt(3)/2])\n\ndef bary_to_xy(cao, al, si):\n    s = cao + al + si\n    cao, al, si = cao/s, al/s, si/s\n    return cao*V_CaO + al*V_Al + si*V_Si\n\nfig, ax = plt.subplots(figsize=(7, 6))\n\n# --- Draw triangle ---\ntri = np.vstack([V_CaO, V_Al, V_Si, V_CaO])\nax.plot(tri[:,0], tri[:,1], color=\"black\")\n\n# --- Axis ticks every 10% ---\nticks = np.linspace(0.1, 0.9, 9)\n\n# SiO2 ticks (parallel to base)\nfor s in ticks:\n    p1 = bary_to_xy(1-s, 0, s)\n    p2 = bary_to_xy(0, 1-s, s)\n    ax.plot([p1[0], p2[0]], [p1[1], p2[1]], color=\"lightgray\", linewidth=0.8)\n    ax.text(p2[0]+0.02, p2[1], f\"{int(s*100)}%\", fontsize=8, va=\"center\")\n\n# CaO ticks (parallel to Al2O3–SiO2 edge)\nfor c in ticks:\n    p1 = bary_to_xy(c, 1-c, 0)\n    p2 = bary_to_xy(c, 0, 1-c)\n    ax.plot([p1[0], p2[0]], [p1[1], p2[1]], color=\"lightgray\", linewidth=0.8)\n\n# Al2O3 ticks (parallel to CaO–SiO2 edge)\nfor a in ticks:\n    p1 = bary_to_xy(1-a, a, 0)\n    p2 = bary_to_xy(0, a, 1-a)\n    ax.plot([p1[0], p2[0]], [p1[1], p2[1]], color=\"lightgray\", linewidth=0.8)\n\n# --- Highlight required lines ---\n# CaO : Al2O3 = 2 : 1\nt = np.linspace(0, 1, 200)\ncao = (2/3) * (1 - t)\nal  = (1/3) * (1 - t)\nsi  = t\nxy_ratio = np.vstack([bary_to_xy(cao[i], al[i], si[i]) for i in range(len(t))])\nax.plot(xy_ratio[:,0], xy_ratio[:,1], color=\"red\", linewidth=2, label=\"CaO:Al$_2$O$_3$ = 2:1\")\n\n# SiO2 = 30%\np1 = bary_to_xy(0.70, 0.00, 0.30)\np2 = bary_to_xy(0.00, 0.70, 0.30)\nax.plot([p1[0], p2[0]], [p1[1], p2[1]], color=\"blue\", linewidth=2, label=\"SiO$_2$ = 30%\")\n\n# --- Labels ---\nax.text(V_CaO[0]-0.05, V_CaO[1]-0.05, \"CaO\", ha=\"right\", va=\"top\", fontsize=12)\nax.text(V_Al[0]+0.05,  V_Al[1]-0.05,  \"Al$_2$O$_3$\", ha=\"left\", va=\"top\", fontsize=12)\nax.text(V_Si[0],       V_Si[1]+0.06,  \"SiO$_2$\", ha=\"center\", va=\"bottom\", fontsize=12)\n\nax.set_aspect(\"equal\")\nax.axis(\"off\")\nax.legend(loc=\"upper right\", frameon=False)\n\nplt.show()\n\n\n\n\n\n\n\n\n\n3)4)\n\n\n\n\n問4\n\n\n\n\n\n\n\n\n\\[\n\\ce{P + \\frac{5}{4}O2 + \\frac{3}{2}O^{2-} -&gt; PO4^{3-}}\n\\]\n低温・高塩基性・高酸素分圧でリン酸イオンが安定。\n\n\n\n定義式は次のとおり\n\\[\ne_{\\ce{P}}^{\\ce{C}} = \\lim _{ [\\%1] \\to 100} \\pdv{\\log_{10} f_{\\ce{P}}}{[\\%\\ce{C}]}\n\\]\n実際の値は、\n\\[\n\\begin{aligned}\n\\log_{10}f_{\\ce{P}} &= e_{\\ce{P}}^{\\ce{C}} [\\%\\ce{C}] \\\\\n&= 0.079 \\times 4.5 \\\\\n&= 0.3555 \\\\\n\\therefore \\quad f_{\\ce{P}} &= 10^{0.3555} = 2.27\n\\end{aligned}\n\\]\n\n\n\n\\[\n\\begin{aligned}\n\\Delta G_1^\\circ &= -122200 - 19.25T\\;(\\mathrm{J/mol}) \\\\\n\\Delta G_1^\\circ &= -RT\\ln K_1 \\\\\n\\Rightarrow\n\\ln K_1 &= -\\frac{\\Delta G_1^\\circ}{RT} \\\\\n&= \\frac{122200+19.25T}{RT}\n\\end{aligned}\n\\]\n\n\n\n\\[\n\\begin{aligned}\nL_\\ce{P} &= \\frac{0.326 f_{\\ce{P}} C_{\\ce{PO4^{3-}}}p_{\\ce{O2}}^{\\frac{5}{4}}}{K_1} \\\\\n&= \\frac{0.326 \\times 2.27  \\times (10^{-15})^{\\frac{5}{4}}}{\\exp\\qty(\\frac{-(122200 + 19.25 \\times 1573)}{8.314 \\times 1573})} C_{\\ce{PO4^{3-}}}\\\\\n&= 1.14 \\times 10^{-24} C_{\\ce{PO4^{3-}}} \\\\\n&= 5.00 \\times 10^{2} \\\\\n\\therefore \\quad C_{\\ce{PO4^{3-}}} &= 4.40 \\times 10^{26}\n\\end{aligned}\n\\]\n\n\nShow Code\nimport numpy as np\nR = 8.314  # J/(mol·K)\nT = 1573  # K\nf_P = 2.27\np_O2 = 1e-15  # atm\n\ndelta_G1_0 = -122200 - 19.25 * T  # J/mol\nK1 = np.exp(-delta_G1_0 / (R * T))\nL_P = 5.00e2  # given\nC_PO4_3_minus = L_P * K1 / (0.326 * f_P * p_O2**(5/4))\nprint(\"C_PO4^3- is:\", C_PO4_3_minus, \"mol/m^3\")\n\n\nC_PO4^3- is: 4.398695474423597e+26 mol/m^3\n\n\n\n転炉精錬の主目的は、溶銑中の炭素を酸化反応によって除去し、所定の炭素量をもつ鋼を得ること。同時にSiやMnは優先的に酸化されスラグ中へ移行し、塩基性スラグと高い酸素ポテンシャル下でリンもリン酸塩として除去される。これらの処理を同時に実現し、外部加熱を用いずに溶鋼温度を上昇させることができる。\n\n\n\n\n\n\nRD：アルゴンガスにの吹き込みによって真空槽に溶鉱を循環させる方法。H, N, COの除去に有効。\nVD：真空槽内で溶鉱を攪拌し、真空引きによってHを効率的に除去する方法.\n\n\n\n\nクロム酸化損失の抑制のために、AODやVODが用いられる。前者はアルゴンガスを吹き込んでCO分圧を下げる手法で、後者は真空下で酸素を吹き込むことでCOを吸い上げる手法。\n\n\n問5\n\n\n\n\n\\(\\ln p_{\\ce{O2}}\\) を表している。ある温度での縦軸の値から、反応が平衡となる酸素分圧を読み取れば良い。\n\n\n\n傾きは \\(-\\Delta S\\) であり、切片は \\(\\Delta H\\) である。酸化反応でエントロピー変化が類似するため。\n\n\n\n1600 Kでは \\(\\ce{SiO2}\\) の生成Gibbsエネルギーが \\(\\ce{CO}\\) の酸化反応より低く、\\(\\ce{SiO2}\\) が熱力学的に安定であるため、 \\(\\ce{CO}\\) による還元は困難である\n\n\n問題",
     "crumbs": [
       "Serika Yuzuki",
       "大学関連",
       "Univ Lecs",
       "3A",
       "生産プロセス"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html",
+    "href": "posts/univ_lecs/3A/高分子２.html",
+    "title": "高分子ノート",
+    "section": "",
+    "text": "\\[\n\\require{physics}\n\\require{mhchem}\n\\require{ams}\n\\]",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題1-1",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題1-1",
+    "title": "高分子ノート",
+    "section": "課題1-1",
+    "text": "課題1-1\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\nポリビニルアルコールとアセトンの反応\n\n\n\n\n\n\n\n\n\nTip解答",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題1-2",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題1-2",
+    "title": "高分子ノート",
+    "section": "課題1-2",
+    "text": "課題1-2\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n計算問題です\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n重合度を\\(n\\)としたとき、ホルムアルデヒドの反応では \\[694n-2\\cdot 359 n= -24n \\; \\text{kJ/mol}\\] と発熱反応になるが、二酸化炭素では \\[803n -2\\cdot 359 n= 85n \\; \\text{kJ/mol} \\] と吸熱反応になるため。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題1-3",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題1-3",
+    "title": "高分子ノート",
+    "section": "課題1-3",
+    "text": "課題1-3\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n逐次重合と連鎖重合の比較\n\n\n\n\n\n\n\n\n項目\n逐次重合\n連鎖重合\n\n\n\n\n成長の進行\n基質全体で成長が進行\n各分子鎖の一端もしくは両端でのみ成長が進行\n\n\nモノマーの消滅\nモノマーは反応の初期段階で消滅\n反応進行中の長い間モノマーが残存\n\n\n反応の段階\n類似の段階的成長が反応過程全体にわたって繰り返される\n開始反応、伝播反応、停止反応、連鎖移動の異なる段階を踏んで進行\n\n\n平均分子量の増加\n低転換率では平均分子量はゆっくりと増大し、長い分子鎖長を得るためには高度に反応が進行する必要がある\n主鎖分子量は反応中の速い段階で迅速に増加し、重合反応中にわたっておおよそ変化しない\n\n\n反応後の活性\n活性を保ったまま終了（停止しない）\n停止反応後には活性がなくなる\n\n\n重合開始剤の必要性\n重合開始剤の必要がない\n重合開始剤を必要とする\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n連鎖重合であると考えられる。次が理由である。 1. 重合開始材が必要なのは連鎖重合の特徴 2. モノマーと高分子量のポリマーが混ざっている 3. 問題文から粘度の増加が反応開始とともに見られていると推測される",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題2-1",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題2-1",
+    "title": "高分子ノート",
+    "section": "課題2-1",
+    "text": "課題2-1\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n数平均重合度\n\\[\n\\mathrm{DP} = \\frac{\\text{反応前の物質量}}{\\text{反応後の物質量}} = \\frac{1}{1-p}\n\\]\nただし、\\(p\\) は反応率\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n\n\n数平均重合度は\n\\[\n\\mathrm{DP} = \\frac{1}{1-0.99} = 100\n\\]\nとなる。\n\n\n\n数平均重合度は\n\\[\n\\mathrm{DP} = \\frac{2.02}{0.03+0.01} = 50.5\n\\]\n\n\nShow Code\ndp = 2.02 / (0.03 + 0.01)\nprint(dp)\n\n\n50.5\n\n\nとなる。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題2-2",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題2-2",
+    "title": "高分子ノート",
+    "section": "課題2-2",
+    "text": "課題2-2\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n濃度についての微分方程式を解けばいい。テキストの解答は面倒。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n反応後の濃度 \\(C\\) は時間 \\(t\\) 後に\n\\[\n\\begin{aligned}\n\\dv{C}{t} &= -k_1 C^2 \\\\\nC &= \\frac{1}{k_1t + \\frac{1}{C_0}}\n\\end{aligned}\n\\] となるので、数平均重合度は\n\\[\n\\mathrm{DP} = \\frac{C_0}{C} = k_1 C_0 t + 1\n\\]\nと示される。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題3-1",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題3-1",
+    "title": "高分子ノート",
+    "section": "課題3-1",
+    "text": "課題3-1\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n平衡定数が絡んだ数平均重合度の問題は、反応度をまず求めれば楽。\n\\[\nK = \\frac{C_0p}{C_0^2(1-p)^2} = \\frac{p}{C_0(1-p)^2}\n\\]\nこれから \\(p\\) を求め、その後数平均重合度 \\(1/1-p\\) を求める。一応解の公式とかを使った面倒な方の式は出しておく。\n\\[\n\\mathrm{DP} = \\frac{2KC_{0}}{\\sqrt{ 4KC_{0}+1} - 1 }\n\\]\nこれを使おうと覚えるのはきついと思われる。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n\n\n\\[\n\\begin{aligned}\np &= \\frac{2KC_{0}+1-\\sqrt{ (2KC_{0}+1)^2 - 4K^2C_{0}^2 }}{2KC_{0}} \\\\\n\\bar{X_{n}} &= \\frac{2KC_{0}}{\\sqrt{ 4KC_{0}+1} - 1 }\n\\end{aligned}\n\\]\n\n\nShow Code\nimport numpy as np\n\nK = 2000\nC = 5\n\nX = (2*K*C) / (np.sqrt(4*K*C+1) - 1)\nprint(X)\n\n\n100.5012499921876\n\n\n\n\n\n\\(C_0\\)\n\\(\\bar{X_n}\\)\n\n\n\n\n0.1\n14.7\n\n\n5\n100",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題3-2",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題3-2",
+    "title": "高分子ノート",
+    "section": "課題3-2",
+    "text": "課題3-2\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\nイソシアネートとはRNCOの形の有機化合物。これにROHが攻撃をする。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n水がイソシアネートと反応し、カルバミン酸となり、これが自発的に脱炭酸することによって二酸化炭素が発生し、ポリウレタンの液状混合物の中に気泡を形成し、そのまま硬化するため。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題4-1",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題4-1",
+    "title": "高分子ノート",
+    "section": "課題4-1",
+    "text": "課題4-1\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n液性\n生成物\n配向性\n特徴\n可塑性\n\n\n\n\n塩基性\nレゾール\nフェノールの電離による求核付加反応\nメチロール基が多い\n熱硬化樹脂\n\n\n酸性\nノボラック\nホルムアルデヒドのプロトン化\nメチロール基が少ない\n熱可塑樹脂\n\n\n\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n\n\n\n(2)(3)\n塩基性条件下では側鎖にメチロール基が多いレゾールが生成される。このため、メチロール同士やフェノールとの脱水によって熱硬化樹脂が得られる。酸性条件下では付加反応より縮合反応が優先され、熱可塑樹脂であるノボラックが得られる。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題4-2",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題4-2",
+    "title": "高分子ノート",
+    "section": "課題4-2",
+    "text": "課題4-2\n\n\n\n\n\n\n\nTip解答",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題5-1",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題5-1",
+    "title": "高分子ノート",
+    "section": "課題5-1",
+    "text": "課題5-1\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n速度係数の名前の意味の一覧。\n\n\n\nプロセス\n英語\n速度係数\n\n\n\n\n開始剤の分解\nDissociation\n\\(k_d\\)\n\n\n開始反応\nInitiation\n\\(k_i\\)\n\n\n成長反応\nPropagation\n\\(k_p\\)\n\n\n終了反応\nTermination\n\\(k_t\\)\n\n\n\n必要な前提は３つ。\n\nモノマーの消費は \\(k_p\\) のみ。\nラジカル濃度は一定。\n長さの違うポリマーラジカルは全部同じ扱い。\n\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\[\n\\begin{aligned}\n\\left. \\dv{[\\ce{P^.}]}{t} \\right|_{\\text{増加}} &= k_d 2f [\\ce{I}] &\\text{開始剤は速攻}\\ce{P^.}になる\\\\\n-\\dv{[\\ce{M}]}{t} &= k_p [\\ce{M}][\\ce{P.}] &\\text{モノマーの消費は $k_p$ のみ}\\\\\n\\left.　\\dv{[\\ce{P^.}]}{t}\\right|_{\\text{減少}} &= k_t [\\ce{P^.}]^2 &\\ce{P^.}\\text{の消費はこれだけ}\\\\\n\\end{aligned}\n\\]\n必要式はこの３つだけ。\n\\[\n\\begin{aligned}\n{}[\\ce{P^.}] &= \\sqrt{\\frac{k_d 2f [\\ce{I}]}{k_t}} \\\\\n-\\dv{[\\ce{M}]}{t} &= k_p \\sqrt{\\frac{k_d 2f [\\ce{I}]}{k_t}} [\\ce{M}] \\\\\n\\end{aligned}\n\\]",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題5-2",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題5-2",
+    "title": "高分子ノート",
+    "section": "課題5-2",
+    "text": "課題5-2\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n半減期についてだが、ただの一階微分方程式の問題。\n\\[\n[\\ce{I}] = [\\ce{I}]_0 e^{-k_dt}\n\\]\nなので、半減期は\n\\[\nt_{1/2} = \\frac{\\ln 2}{k_d}\n\\]\nという式。 \\(k_d = A\\exp{-E/RT}\\) を入れて考えるだけ。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n半減期の式は次のとおり\n\\[\nt_{1/2} = \\frac{\\ln 2}{Ae^{-E_a/RT}}\n\\]\n\\(E_a = 139.0 \\mathrm{kJ\\ mol^{-1}},\\ A= 9.34 \\times 10^{15}\\) なので、\n\n\n\n温度(°C)\n半減期(s)\n\n\n\n\n\\(60\\)\n\\(4.7 \\times 10^5\\)\n\n\n\\(80\\)\n\\(2.7 \\times 10^5\\)\n\n\n\\(100\\)\n\\(2.2 \\times 10^4\\)\n\n\n\n\n\nShow Code\nimport numpy as np\n\nA = 9.34e15\nEa = 139.0e3\nR = 8.314\nT = [273+60, 273+80, 273+100]\n\nt = [np.log(2)/(A*np.exp(-Ea/(R*Ti))) for Ti in T]\nt\n\n\n[np.float64(473058.2278643466),\n np.float64(27512.863243222408),\n np.float64(2170.8873092440117)]",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題6-1",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題6-1",
+    "title": "高分子ノート",
+    "section": "課題6-1",
+    "text": "課題6-1\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n共重合組成式 may-lewis の式の導出を軽くしておく。\n\\[\n\\begin{aligned}\n\\ce{P1^. + M1 &-&gt; P1^.} &\\quad k_{11} \\\\\n\\ce{P1^. + M2 &-&gt; P1^.} &\\quad k_{12} \\\\\n\\ce{P2^. + M1 &-&gt; P2^.} &\\quad k_{21} \\\\\n\\ce{P2^. + M2 &-&gt; P2^.} &\\quad k_{22} \\\\\n\\end{aligned}\n\\]\n以上の反応から\n\\[\n\\begin{aligned}\n\\dv{[\\ce{P1^.}]}{t} = k_{11}[\\ce{P1^.}][\\ce{M1}] + \\textcolor{red}{k_{12}[\\ce{P1^.}][\\ce{M2}]} \\\\\n\\dv{[\\ce{P2^.}]}{t} = \\textcolor{red}{k_{21}[\\ce{P2^.}][\\ce{M1}]} + k_{22}[\\ce{P2^.}][\\ce{M2}] \\\\\n\\end{aligned}\n\\]\n定常状態濃度が一定だから、末端が変わる赤い部分が同じになる。それで、約分処理をしてあげると、 \\(r_1 = k_{11} / k_{12}\\), \\(r_2 = k_{22} / k_{21}\\) として\n\\[\n\\frac{\\mathrm{d}[\\mathrm{M} 1]}{\\mathrm{d}[\\mathrm{M} 2]}=\\frac{[\\mathrm{M} 1]}{[\\mathrm{M} 2]}\\left(\\frac{r_1[\\mathrm{M} 1]+[\\mathrm{M} 2]}{[\\mathrm{M} 1]+r_2[\\mathrm{M} 2]}\\right)\n\\]\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n(1)mayo-lewisの式は次のとおり\n\\[\nR = \\frac{\\mathrm{d}[\\mathrm{M} 1]}{\\mathrm{d}[\\mathrm{M} 2]}=\\frac{[\\mathrm{M} 1]}{[\\mathrm{M} 2]}\\left(\\frac{r_1[\\mathrm{M} 1]+[\\mathrm{M} 2]}{[\\mathrm{M} 1]+r_2[\\mathrm{M} 2]}\\right)\n\\]\n\\(F_1 = \\frac{\\dd {}[\\mathrm{M1}]}{\\dd {}[\\mathrm{M1}] + \\dd {}[\\mathrm{M2}]}\\) なので、 \\(F_1 = \\frac{R}{1+R}\\) , \\(f_1 = \\frac{[\\mathrm{M1}]}{[\\mathrm{M1}] + [\\mathrm{M2}]}\\) より、 \\(\\frac{[\\mathrm{M1}]}{[\\mathrm{M2}]} = \\frac{f_1}{f_2}\\)\n\\[\n\\begin{aligned}\nF &= \\frac{R}{R+1} = \\frac{\\qty(\\frac{f_1}{f_2})^2r_1+\\qty(\\frac{f_1}{f_2})}{\\qty(\\frac{f_1}{f_2})^2r_1 + 2\\qty(\\frac{f_1}{f_2}) + r_2} \\\\\n&=\\frac{f_1^2r_1 + f_1f_2}{f_1^2r_1 + 2f_1f_2 + f_2^2r_2}\n\\end{aligned}\n\\]\n\n\n\n\n\nShow Code\nr1 = 0.75\nr2 = 0.18\nf1 = 0.2\nf2 = 0.8\n\nF = (f1**2*r1 + f1*f2)/(f1**2*r1 + 2*f1*f2 + f2**2*r2)\nF\n\n\n0.408426483233018\n\n\n\\(F_1 = 0.41\\) となる。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題6-2",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題6-2",
+    "title": "高分子ノート",
+    "section": "課題6-2",
+    "text": "課題6-2\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n経験則の式として次がある。\n\\[\nr_1=\\frac{Q_1}{Q_2} e^{\\left(-e_1\\left(e_1-e_2\\right)\\right)}, \\quad r_2=\\frac{Q_2}{Q_1} e^{\\left(-e_2\\left(e_2-e_1\\right)\\right)}\n\\]\n覚えるしかない。 \\(Q\\) は共役効果、 \\(e\\) は極性効果。\n\n\n\nモノマー\n\\(Q\\) 値\n\\(e\\) 値\n\n\n\n\nアクリル酸メチル\n0.45\n0.64\n\n\nメタクリル酸メチル\n0.78\n0.40\n\n\nスチレン\n1.0\n-0.8\n\n\n酢酸ビニル\n0.026\n-0.88\n\n\n\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n\n\n\\[\nr_1=\\frac{Q_1}{Q_2} e^{\\left(-e_1\\left(e_1-e_2\\right)\\right)}\n\\]\n\\[\nr_2=\\frac{Q_2}{Q_1} e^{\\left(-e_2\\left(e_2-e_1\\right)\\right)}\n\\]\n\n\nShow Code\nimport numpy as np\n\nQ1 = 1.0\nQ2 = 0.45\ne1 = -0.8\ne2 = 0.64\n\nr1 = Q1/Q2*np.exp(-e1*(e1-e2))\nr2 = Q2/Q1*np.exp(-e2*(e2-e1))\nr1, r2\n\n\n(np.float64(0.702231397093028), np.float64(0.1790468642030421))\n\n\n\\(r_1\\) | 0.70 |\n\\(r_2\\) | 0.18 |",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題7-1",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題7-1",
+    "title": "高分子ノート",
+    "section": "課題7-1",
+    "text": "課題7-1\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\nスチレンには無理矢理にでも電子を与えて反応をさせていく。ナフタレン錯体については２官能性開始剤となることを覚える。\n\n\n\n\n\n\n\n\n\nTip解答",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題7-2",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題7-2",
+    "title": "高分子ノート",
+    "section": "課題7-2",
+    "text": "課題7-2\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n\nこの表は全部覚える必要はなさそう。だけど、大体は頭に入れとかないといけないみたい。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n\n\n\n\nShow Code\nfrom rdkit import Chem\nfrom rdkit.Chem import Draw\n\n# Define SMILES strings for each compound\nsmiles = {\n    \"α-シアノアクリル酸エチル\": \"C=C(C#N)C(=O)OCC\",\n    \"メタクリル酸メチル\": \"CC(=C)C(=O)OC\",\n    \"スチレン\": \"C=Cc1ccccc1\"\n}\n\n# Convert SMILES to RDKit molecule objects\nmolecules = [Chem.MolFromSmiles(smile) for smile in smiles.values()]\n\n# Draw molecules\nDraw.MolsToImage(molecules, legends=list(smiles.keys()))\n\n\n\n\n\n\n\n\n\n\\(\\ce{C=C}\\) に結合した置換基の電子吸引性が高いものほどアニオン重合反応性が強い。\n\n\\(\\ce{C6H5MgBr}\\) はグリニャール試薬であり，b群の開始剤である．A群に属するスチレンのアニオン重合は開始できないが，B群に属するメタクリル酸メチルのアニオン重合は開始できる．よってメタクリル酸メチルの単独重合体，すなわちポリメタクリル酸メチルが生成する．",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題7-3",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題7-3",
+    "title": "高分子ノート",
+    "section": "課題7-3",
+    "text": "課題7-3\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n一番近いやつと一番遠いやつ。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n\n\n\n(2)スチレン。電子求引性の置換基をもつp-シアノスチレンの成長末端は求核剤としての反応性が低下しており，その成長末端はスチレンの重合を開始できないから．",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題8-1",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題8-1",
+    "title": "高分子ノート",
+    "section": "課題8-1",
+    "text": "課題8-1\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n\n\n\nスチレン、イソブテン、n-ブチルビニルエーテル\nC=C上の電子密度が上昇し、カチオンからの求電子付加を受けやすいため。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題8-2",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題8-2",
+    "title": "高分子ノート",
+    "section": "課題8-2",
+    "text": "課題8-2\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n異性化についての知識が必要。\n\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n付加する前に一部，水素が転移して第2級カルボカチオンからより安定な第3級カルボカチオンに異性化する．重合温度が低いほどカルボカチオンとモノマーの反応速度が遅くなるため，付加する前に異性化する割合が増えるから．",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題9-1",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題9-1",
+    "title": "高分子ノート",
+    "section": "課題9-1",
+    "text": "課題9-1\n\n\n\n\n\n\n\nTip解答",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題9-2",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題9-2",
+    "title": "高分子ノート",
+    "section": "課題9-2",
+    "text": "課題9-2\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n高圧下ラジカル重合で合成されたポリエチレンは分岐が多く密度が低い（低密度ポリエチレン）．分岐構造が規則正しくパッキングして結晶化するのを阻害するため，結晶化度は低く軟らかい．低圧下チーグラー・ナッタ触媒を用いて重合されたポリエチレンは，ほぼ直鎖状の構造をしている．分岐が少ないため，分子鎖がパッキングし結晶化しやすく密度が高い（高密度ポリエチレン）．また，高密度ポリエチレンの方が低密度ポリエチレンよりも結晶のサイズが大きく融点も高い．\n\n高圧下ラジカル重合で合成されたポリエチレン\n低圧下チーグラー・ナッタ触媒を用いて合成されたポリエチレン",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題9-3",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題9-3",
+    "title": "高分子ノート",
+    "section": "課題9-3",
+    "text": "課題9-3\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n\n\n\n2.過冷却度が小さい融点（240 \\({}^{\\circ}\\text{C}\\) ）近傍では，分子運動が激しいことから結晶核ができづらい．温度をここから下げていくと結晶核の生成速度があがっていく．しかし，ガラス転移温度（100 \\({}^{\\circ}\\text{C}\\) ）に近づいていくと今度は分子鎖の運動性が著しく落ちて，結晶核の成長が遅くなっていく．そのため，融点とガラス転移温度の中間あたりにピークトップをもつ釣鐘型の曲線となる．",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題10-1",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題10-1",
+    "title": "高分子ノート",
+    "section": "課題10-1",
+    "text": "課題10-1\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n焦らずこの式使うだけですね。\n\\[\n\\Delta G = \\Delta H - T\\Delta S\n\\]\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\nγ-ブチロラクトン",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題10-2",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題10-2",
+    "title": "高分子ノート",
+    "section": "課題10-2",
+    "text": "課題10-2\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\nマイナスになって、Oの隣を攻めていく\n\n\n\n\n\n\n\n\n\nTip解答",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題10-3",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題10-3",
+    "title": "高分子ノート",
+    "section": "課題10-3",
+    "text": "課題10-3\n\n\n\n\n\n\n\nTip解答",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題11-1",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題11-1",
+    "title": "高分子ノート",
+    "section": "課題11-1",
+    "text": "課題11-1\n\n\n\n\n\n\n\nかさ高い置換基がエクアトリアル位にある方が立体的に安定である．α体とβ体のいす形配置を比較すると，1位の炭素に結合したOH基がα体はアキシアル位にあるのに対し，β体はエクアトリアル位にある．したがって，β体のほうが多くなる．",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#課題11-2",
+    "href": "posts/univ_lecs/3A/高分子２.html#課題11-2",
+    "title": "高分子ノート",
+    "section": "課題11-2",
+    "text": "課題11-2\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\nポリ乳酸は一個分だけに注目して \\(\\ce{C3H4O2}\\) として考える。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\[\n\\ce{C3H4O2 + 3O2 -&gt; 3CO2 + 2H2O}\n\\]\nから、1.0gのPLAが分解した時に発生する二酸化炭素は\n\\[\n\\frac{1.0}{72} \\times 3 \\times 44 = 1.83 \\mathrm{g}\n\\]\nゆえに分解度は\n\\[\n\\frac{0.72-0.08}{1.83} = 0.35\n\\]",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#共重合組成曲線",
+    "href": "posts/univ_lecs/3A/高分子２.html#共重合組成曲線",
+    "title": "高分子ノート",
+    "section": "共重合組成曲線",
+    "text": "共重合組成曲線\n\n\n\nShow Code\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# データ設定\nr_values = {\n    \"(r1=0.04, r2=0)\": (0.04, 0),\n    \"(r1=0.52, r2=0.46)\": (0.52, 0.46),\n    \"(r1=0.78, r2=1.3)\": (0.78, 1.3),\n    \"(r1=0.1, r2=9.0)\": (0.1, 9.0),\n    \"(r1=17, r2=0.02)\": (17, 0.02),\n}\n\n# プロット関数\ndef generate_copolymer_composition_curves(r_values):\n    f1 = np.linspace(0, 1, 500)  # モノマー比 (f1)\n    f2 = 1 - f1  # f2 = 1 - f1\n\n    plt.figure(figsize=(10, 8))\n\n    for label, (r1, r2) in r_values.items():\n        # 共重合組成式\n        with np.errstate(divide='ignore', invalid='ignore'):  # 0除算の警告を無視\n            F1 = (r1 * f1**2 + f1 * f2) / (r1 * f1**2 + 2 * f1 * f2 + r2 * f2**2)\n            F1 = np.nan_to_num(F1)  # NaNを0に変換\n        plt.plot(f1, F1, label=label)\n\n    plt.title(\"Copolymer Composition Curves\", fontsize=16)\n    plt.xlabel(\"$f_1$ (Monomer Fraction in Feed)\", fontsize=14)\n    plt.ylabel(\"$F_1$ (Monomer Fraction in Polymer)\", fontsize=14)\n    plt.grid(True)\n    plt.legend(fontsize=12)\n    plt.show()\n\n# 実行\ngenerate_copolymer_composition_curves(r_values)",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#かご効果",
+    "href": "posts/univ_lecs/3A/高分子２.html#かご効果",
+    "title": "高分子ノート",
+    "section": "かご効果",
+    "text": "かご効果\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n別れた時のことを考えればいい。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\nAIBOは脱膣するが、BPOは脱膣しない。",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#リビング重合",
+    "href": "posts/univ_lecs/3A/高分子２.html#リビング重合",
+    "title": "高分子ノート",
+    "section": "リビング重合",
+    "text": "リビング重合\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n条件：連鎖移動反応や停止反応などの生長末端を失活させる副反応を伴わない\n確認方法：ポリマーの長さが一定であることを確認する",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#ラジカル重合周辺",
+    "href": "posts/univ_lecs/3A/高分子２.html#ラジカル重合周辺",
+    "title": "高分子ノート",
+    "section": "ラジカル重合周辺",
+    "text": "ラジカル重合周辺\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\nバルク\n混濁\n乳化\n0.5\n1",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
+    ]
+  },
+  {
+    "objectID": "posts/univ_lecs/3A/高分子２.html#スチレンの重合",
+    "href": "posts/univ_lecs/3A/高分子２.html#スチレンの重合",
+    "title": "高分子ノート",
+    "section": "スチレンの重合",
+    "text": "スチレンの重合\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\nカチオン\nラジカル\nアニオン",
+    "crumbs": [
+      "Serika Yuzuki",
+      "大学関連",
+      "Univ Lecs",
+      "3A",
+      "高分子ノート"
     ]
   },
   {
@@ -3408,6 +3464,6 @@
     "href": "index.html",
     "title": "Serika’s Blog",
     "section": "",
-    "text": "このブログでは、私個人の日記などの記録や、AtCoderやゲーム開発などでの進捗管理、情報発信をしていくつもりです。\n現時点での各セクションでの概要や目標は次のとおりです。\n\n\n\n\n\n\n\n\nセクション名\n概要\n目標\n\n\n\n\nAtCoder\nTypicala90を解いて行っています\nrustでAtCoderに挑戦する人にとって一助となるドキュメントになること\n\n\nUE5\nAuraというゲームを作るオンライン講義の記録\nコース完了後に自作のコピーゲームを作るときに参考にする\n\n\n大学用\n自作のシケプリを公開する場所\n参考になってくれれば嬉しい。そのうち消すかも\n\n\n収容所\n収容所で公開する問題を載せていく\nデータベース代わりになるといいかなと\n\n\nJournal\nただの日記\nできれば毎日投稿する\n\n\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Author\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nEditorKitのいじり方をプラグイン形式にする話\n\n\n\nprogramming\n\n2025\n\nswift\n\nnovel\n\n\n\n\n\n\n\n\n\nOct 8, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nSwiftUIとAppKitの連携\n\n\n\nprogramming\n\n2025\n\nswift\n\nnovel\n\n\n\n\n\n\n\n\n\nSep 21, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nProtocol Oriented Programming\n\n\n\nprogramming\n\n2025\n\nswift\n\nnovel\n\n\n\n\n\n\n\n\n\nSep 19, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nDockerでMisskeyを立てる\n\n\n\nprogramming\n\n2025\n\n\n\n\n\n\n\n\n\nSep 13, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nNordとTailscaleで自宅サーバーを安全に公開する\n\n\n\nprogramming\n\n2025\n\n\n\n\n\n\n\n\n\nSep 11, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n小説執筆アプリを作る\n\n\n\nprogramming\n\n2025\n\nswift\n\nnovel\n\n\n\n\n\n\n\n\n\nSep 10, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nGit FlowとGitHub Flow\n\n\n\nprogramming\n\n2025\n\nswift\n\nnovel\n\n\n\n\n\n\n\n\n\nSep 10, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n小説をEPUBに変換するpythonパッケージを作った話\n\n\n\nprogramming\n\n2025\n\nswift\n\n\n\n\n\n\n\n\n\nSep 10, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nDebianサーバーを立てた話\n\n\n\nprogramming\n\n2025\n\nserver\n\n\n\n\n\n\n\n\n\nSep 8, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nミスって/boot/efiを消した話\n\n\n\nprogramming\n\n2025\n\nswift\n\n\n\n\n\n\n\n\n\nSep 7, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nTime Machine ServerをSambaで作った話\n\n\n\nprogramming\n\n2025\n\nswift\n\n\n\n\n\n\n\n\n\nSep 7, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nQuartoで単一ファイルにレンダリングする方法\n\n\n\nprogramming\n\n2025\n\n\n\n\n\n\n\n\n\nSep 5, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nCodexを使い始めた件\n\n\n\nprogramming\n\n2025\n\n\n\n\n\n\n\n\n\nSep 5, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nSwift Packageの読み込みエラー\n\n\n\nprogramming\n\n2025\n\nswift\n\n\n\n\n\n\n\n\n\nSep 5, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nSwiftUIで開発する小説執筆支援アプリ\n\n\n\nprogramming\n\n2025\n\n\n\n\n\n\n\n\n\nJun 7, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nLinkwardenにブックマーク管理を任せる\n\n\n\nhomeserver\n\nprogramming\n\n2025\n\n\n\n\n\n\n\n\n\nMay 13, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n生産プロセス\n\n\n\nUniversity\n\n2024\n\n\n\n\n\n\n\n\n\nDec 17, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nデバイス材料工学\n\n\n\nUniversity\n\n2024\n\n\n\n\n\n\n\n\n\nDec 2, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料統計力学\n\n\n\nUniversity\n\n2024\n\n\n\n\n\n\n\n\n\nNov 29, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n高分子ノート\n\n\n\nUniversity\n\n2024\n\n\n\n\n\n\n\n\n\nOct 10, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nセラミックノート\n\n\n\nUniversity\n\n2024\n\n\n\n\n\n\n\n\n\nOct 10, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料電気化学\n\n\n\nUniversity\n\n2024\n\n\n\n\n\n\n\n\n\nApr 8, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n組織生成論\n\n\n\nUniversity\n\n2024\n\n\n\n\n\n\n\n\n\nApr 8, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n過去問演習\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nApr 6, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料強度学\n\n\n\nUniversity\n\n2024\n\n\n\n\n\n\n\n\n\nApr 5, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n固体物性学\n\n\n\nUniversity\n\n2024\n\n\n\n\n\n\n\n\n\nApr 5, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料反応工学\n\n\n\nUniversity\n\n2024\n\n\n\n\n\n\n\n\n\nApr 5, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\nProgramming\n\nWeb\n\nPlayGround\n\n\n\n\n\n\n\n\n\nDec 20, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_06\n\n\n\nUE5\n\nAura\n\nUdemy\n\nGame\n\nProgramming\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学II\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学III\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学B\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学A\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-11\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 30, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nPlanning\n\n\n\nUE5\n\nGame\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 29, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-10\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_05\n\n\n\nUE5\n\nAura\n\nUdemy\n\nGame\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-09\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 24, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_04\n\n\n\nUE5\n\nAura\n\nUdemy\n\nGame\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 20, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-08\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 26, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-07\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-06\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 23, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-05\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 17, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-04\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 16, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-03\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 15, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_03\n\n\n\nUE5\n\nAura\n\nUdemy\n\nGame\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 15, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学I\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nOct 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n物理\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nOct 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料速度論\n\n\n\nUniversity\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料量子力学\n\n\n\nUniversity\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料相平衡論\n\n\n\nUniversity\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n統計力学\n\n\n\nUniversity\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nCargo Compete\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-02\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-01\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nSection 02\n\n\n\nUE5\n\nAura\n\nUdemy\n\nGame\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\nUE5\n\nAura\n\nUdemy\n\nGame\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\nNo matching items\n\n  \n\n Back to top"
+    "text": "このブログでは、私個人の日記などの記録や、AtCoderやゲーム開発などでの進捗管理、情報発信をしていくつもりです。\n現時点での各セクションでの概要や目標は次のとおりです。\n\n\n\n\n\n\n\n\nセクション名\n概要\n目標\n\n\n\n\nAtCoder\nTypicala90を解いて行っています\nrustでAtCoderに挑戦する人にとって一助となるドキュメントになること\n\n\nUE5\nAuraというゲームを作るオンライン講義の記録\nコース完了後に自作のコピーゲームを作るときに参考にする\n\n\n大学用\n自作のシケプリを公開する場所\n参考になってくれれば嬉しい。そのうち消すかも\n\n\n収容所\n収容所で公開する問題を載せていく\nデータベース代わりになるといいかなと\n\n\nJournal\nただの日記\nできれば毎日投稿する\n\n\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Author\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\n信頼性学\n\n\n\nUniversity\n\n2026\n\n\n\n\n\n\n\n\n\nJan 5, 2026\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学\n\n\n\nUniversity\n\n2026\n\n\n\n\n\n\n\n\n\nJan 5, 2026\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nEditorKitのいじり方をプラグイン形式にする話\n\n\n\nprogramming\n\n2025\n\nswift\n\nnovel\n\n\n\n\n\n\n\n\n\nOct 8, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nSwiftUIとAppKitの連携\n\n\n\nprogramming\n\n2025\n\nswift\n\nnovel\n\n\n\n\n\n\n\n\n\nSep 21, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nProtocol Oriented Programming\n\n\n\nprogramming\n\n2025\n\nswift\n\nnovel\n\n\n\n\n\n\n\n\n\nSep 19, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nDockerでMisskeyを立てる\n\n\n\nprogramming\n\n2025\n\n\n\n\n\n\n\n\n\nSep 13, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nNordとTailscaleで自宅サーバーを安全に公開する\n\n\n\nprogramming\n\n2025\n\n\n\n\n\n\n\n\n\nSep 11, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n小説執筆アプリを作る\n\n\n\nprogramming\n\n2025\n\nswift\n\nnovel\n\n\n\n\n\n\n\n\n\nSep 10, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nGit FlowとGitHub Flow\n\n\n\nprogramming\n\n2025\n\nswift\n\nnovel\n\n\n\n\n\n\n\n\n\nSep 10, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n小説をEPUBに変換するpythonパッケージを作った話\n\n\n\nprogramming\n\n2025\n\nswift\n\n\n\n\n\n\n\n\n\nSep 10, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nDebianサーバーを立てた話\n\n\n\nprogramming\n\n2025\n\nserver\n\n\n\n\n\n\n\n\n\nSep 8, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nミスって/boot/efiを消した話\n\n\n\nprogramming\n\n2025\n\nswift\n\n\n\n\n\n\n\n\n\nSep 7, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nTime Machine ServerをSambaで作った話\n\n\n\nprogramming\n\n2025\n\nswift\n\n\n\n\n\n\n\n\n\nSep 7, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nQuartoで単一ファイルにレンダリングする方法\n\n\n\nprogramming\n\n2025\n\n\n\n\n\n\n\n\n\nSep 5, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nCodexを使い始めた件\n\n\n\nprogramming\n\n2025\n\n\n\n\n\n\n\n\n\nSep 5, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nSwift Packageの読み込みエラー\n\n\n\nprogramming\n\n2025\n\nswift\n\n\n\n\n\n\n\n\n\nSep 5, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nSwiftUIで開発する小説執筆支援アプリ\n\n\n\nprogramming\n\n2025\n\n\n\n\n\n\n\n\n\nJun 7, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nLinkwardenにブックマーク管理を任せる\n\n\n\nhomeserver\n\nprogramming\n\n2025\n\n\n\n\n\n\n\n\n\nMay 13, 2025\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n生産プロセス\n\n\n\nUniversity\n\n2024\n\n\n\n\n\n\n\n\n\nDec 17, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nデバイス材料工学\n\n\n\nUniversity\n\n2024\n\n\n\n\n\n\n\n\n\nDec 2, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料統計力学\n\n\n\nUniversity\n\n2024\n\n\n\n\n\n\n\n\n\nNov 29, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n高分子ノート\n\n\n\nUniversity\n\n2024\n\n\n\n\n\n\n\n\n\nOct 10, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nセラミックノート\n\n\n\nUniversity\n\n2024\n\n\n\n\n\n\n\n\n\nOct 10, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料電気化学\n\n\n\nUniversity\n\n2024\n\n\n\n\n\n\n\n\n\nApr 8, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n組織生成論\n\n\n\nUniversity\n\n2024\n\n\n\n\n\n\n\n\n\nApr 8, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n過去問演習\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nApr 6, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料強度学\n\n\n\nUniversity\n\n2024\n\n\n\n\n\n\n\n\n\nApr 5, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n固体物性学\n\n\n\nUniversity\n\n2024\n\n\n\n\n\n\n\n\n\nApr 5, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料反応工学\n\n\n\nUniversity\n\n2024\n\n\n\n\n\n\n\n\n\nApr 5, 2024\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\nProgramming\n\nWeb\n\nPlayGround\n\n\n\n\n\n\n\n\n\nDec 20, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_06\n\n\n\nUE5\n\nAura\n\nUdemy\n\nGame\n\nProgramming\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学II\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学III\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学B\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学A\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nDec 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-11\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 30, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nPlanning\n\n\n\nUE5\n\nGame\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 29, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-10\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_05\n\n\n\nUE5\n\nAura\n\nUdemy\n\nGame\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-09\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 24, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_04\n\n\n\nUE5\n\nAura\n\nUdemy\n\nGame\n\nProgramming\n\n\n\n\n\n\n\n\n\nNov 20, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-08\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 26, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-07\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 25, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-06\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 23, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-05\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 17, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-04\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 16, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-03\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 15, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nsection_03\n\n\n\nUE5\n\nAura\n\nUdemy\n\nGame\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 15, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n数学I\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nOct 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n物理\n\n\n\nMath\n\n\n\n\n\n\n\n\n\nOct 14, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料速度論\n\n\n\nUniversity\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料量子力学\n\n\n\nUniversity\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n材料相平衡論\n\n\n\nUniversity\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\n統計力学\n\n\n\nUniversity\n\n2023\n\n\n\n\n\n\n\n\n\nOct 10, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nCargo Compete\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-02\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntypical90-01\n\n\n\nAtCoder\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\nSection 02\n\n\n\nUE5\n\nAura\n\nUdemy\n\nGame\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\n\n\n\n\n\n\n\ntemplate\n\n\n\nUE5\n\nAura\n\nUdemy\n\nGame\n\nProgramming\n\n\n\n\n\n\n\n\n\nOct 9, 2023\n\n\nSerika Yuzuki\n\n\n\n\n\nNo matching items\n\n  \n\n Back to top"
   }
 ]
