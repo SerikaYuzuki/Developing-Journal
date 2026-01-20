@@ -870,6 +870,7 @@ window.Quarto = {
   <li><a href="#階非斉次常微分方程式" id="toc-階非斉次常微分方程式" class="nav-link" data-scroll-target="#階非斉次常微分方程式">２階非斉次常微分方程式</a></li>
   <li><a href="#階線形微分程式" id="toc-階線形微分程式" class="nav-link" data-scroll-target="#階線形微分程式">２階線形微分⽅程式</a></li>
   <li><a href="#線形偏微分程式" id="toc-線形偏微分程式" class="nav-link" data-scroll-target="#線形偏微分程式">線形偏微分⽅程式</a></li>
+  <li><a href="#フーリエ級数" id="toc-フーリエ級数" class="nav-link" data-scroll-target="#フーリエ級数">フーリエ級数</a></li>
   </ul>
 </nav>
     </div>
@@ -1388,6 +1389,154 @@ $$
 
 \end{aligned}\]</span>
 <p>$$</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>とりあえず変数分離。そうしてから、次数に合わせて <span class="math inline">\(\lambda\)</span> を設定する。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(u=X(x)Y(y)T(t)\)</span> とおいて考える。</p>
+<p>1問目。</p>
+<p><span class="math display">\[
+\begin{aligned}
+\dv{X}{x} Y &amp;= 4 X \dv{Y}{y} \\
+\frac{1}{X} \dv{X}{x} &amp;= 4 \frac{1}{Y} \dv{Y}{y} = -\lambda \\
+X = C_1 e^{-\lambda x} &amp;, \quad Y = C_2 e^{-\frac{\lambda}{4} y} \\
+u &amp;= C e^{-\lambda x} e^{-\frac{\lambda}{4} y} \\
+u(0,y) &amp;= 8 e^{-3y} \\
+C e^{-\frac{\lambda}{4} y} &amp;= 8 e^{-3y} \\
+\lambda = 12&amp;, \quad C = 8 \\
+u &amp;= 8 e^{-12 x} e^{-3 y}
+\end{aligned}
+\]</span></p>
+<p>2問目。</p>
+<p><span class="math display">\[
+\begin{aligned}
+X \dv{T}{t} &amp;= 2 T \dv[2]{X}{x} \\
+\frac{1}{T} \dv{T}{t} &amp;= 2 \frac{1}{X} \dv[2]{X}{x} = -\lambda^2 \\
+T &amp;= C_1 e^{-\lambda^2 t} \\
+\dv[2]{X}{x} + \frac{\lambda^2}{2} X &amp;= 0 \\
+X &amp;= C_2 \sin \qty( \frac{\lambda}{\sqrt{2}} x ) + C_3 \cos \qty( \frac{\lambda}{\sqrt{2}} x ) \\
+X(0) &amp;= 0 \Rightarrow C_3 = 0 \\
+X(3) &amp;= 0 \Rightarrow \frac{\lambda}{\sqrt{2}} 3 = n \pi \Rightarrow \lambda = \frac{n \pi \sqrt{2}}{3} \\
+u &amp;= C e^{-\frac{2n^2 \pi^2}{9} t} \sin \qty( \frac{n \pi}{3} x ) \\
+&amp;= C_1 e^{-\frac{2n_1^2 \pi^2}{9} t} \sin \qty( \frac{n_1 \pi}{3} x ) + C_2 e^{-\frac{2n_2^2 \pi^2}{9} t} \sin \qty( \frac{n_2 \pi}{3} x ) \\
+u(x,0) &amp;= 5 \sin 4 \pi x - 3 \sin 8 \pi x \\
+C_1 = 5&amp;, \quad n_1 = 12 \\
+C_2 = -3&amp;, \quad n_2 = 24 \\
+u &amp;= 5 e^{-32 \pi^2 t} \sin 4 \pi x - 3 e^{-128 \pi^2 t} \sin 8 \pi x
+\end{aligned}
+\]</span></p>
+<p>3問目。</p>
+$$
+<span class="math display">\[\begin{aligned}
+
+Y \dv{X}{x} &amp;= 2 X \dv{Y}{y} + X Y \\
+\frac{1}{X} \dv{X}{x} - 1 &amp;= 2 \frac{1}{Y} \dv{Y}{y} = \lambda \\
+X &amp;= C_1 e^{(\lambda + 1) x} \\
+Y &amp;= C_2 e^{\frac{\lambda}{2} y} \\
+u &amp;= C_1 e^{(\lambda_1 + 1) x} e^{\frac{\lambda_1}{2} y} + C_2 e^{(\lambda_2 + 1) x} e^{\frac{\lambda_2}{2} y} \\
+u(x,0) &amp;= 3e^{-5x} + 2e^{-3x} \\
+C_1 e^{(\lambda_1 + 1) x} + C_2 e^{(\lambda_2 + 1) x} &amp;= 3e^{-5x} + 2e^{-3x} \\
+C_1 = 3&amp;, \quad \lambda_1 = -6 \\
+C_2 = 2&amp;, \quad \lambda_2 = -4 \\
+u &amp;= 3 e^{-5x} e^{-3y} + 2 e^{-3x} e^{-2y}
+\end{aligned}\]</span>
+<p>$$</p>
+<p>4問目。</p>
+<p><span class="math display">\[
+\begin{aligned}
+X &amp;= C_1 \sin \lambda x + C_2 \cos \lambda x \\
+T &amp;= C_3 \cos 4 \lambda t + C_4 \sin 4 \lambda t \\
+X(0) &amp;= 0 \Rightarrow C_2 = 0 \\
+X(2) &amp;= 0 \Rightarrow \lambda = \frac{n \pi}{2} \\
+u(0, t) &amp;= C_2 T(t) = 0\\
+C_2 &amp;= 0 \\
+u(2, t) &amp;= C_1 \sin (2\lambda) T(t) = 0 \\
+\lambda &amp;= \frac{n \pi}{2} \\
+\pdv{u}{t} &amp;= 2C_1 n\pi \sin \qty( \frac{n \pi}{2} x ) \qty( - C_3 \sin \qty( 2 n \pi t ) + C_4 \cos \qty( 2 n \pi t ) ) \\
+u(x,0) &amp;= C_1C_4 \sin \qty( \frac{n \pi}{2} x ) = 0 \\
+C_4 &amp;= 0 \\
+u &amp;= C_1 \sin \qty( \frac{n \pi}{2} x ) C_3 \cos \qty( 2 n \pi t ) \\
+u(x, 0) &amp;= C_1' \qty( \frac{n_1 \pi}{2} x ) + C_2' \sin \qty( \frac{n_2 \pi}{2} x ) \\
+&amp;= 6 \sin \pi x - 3 \sin 4 \pi x \\
+C_1' = 6&amp;, \quad n_1 = 2 \\
+C_2' = -3&amp;, \quad n_2 = 8 \\
+u &amp;= 6 \sin \pi x \cos 4 \pi t - 3 \sin 4 \pi x \cos 16 \pi t
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="フーリエ級数" class="level3">
+<h3 class="anchored" data-anchor-id="フーリエ級数">フーリエ級数</h3>
+<p>フーリエ変換の定義式を書け。</p>
+<p>次の式をフーリエ級数展開せよ。</p>
+<p><span class="math display">\[
+\begin{aligned}
+f(x) &amp;= x^2, \quad \qty(-1 &lt; x &lt; 1) \\
+f(x) &amp;= x(x - 1), \quad \qty(0 &lt; x &lt; 1) \quad \text{フーリエ余弦級数} \\
+f(x) &amp;= x(x - 1), \quad \qty(0 &lt; x &lt; 1) \quad \text{フーリエ正弦級数}
+\end{aligned}
+\]</span></p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>まず、フーリエ変換の定義式。</p>
+<p><span class="math display">\[
+\begin{aligned}
+f(x) &amp;= \frac{a_0}{2} + \sum_{n=1}^{\infty} \qty( a_n \cos \frac{n \pi x}{L} + b_n \sin \frac{n \pi x}{L} ) \\
+a_n &amp;= \frac{1}{L} \int_{-L}^{L} f(x) \cos \frac{n \pi x}{L} \dd{x} \\
+b_n &amp;= \frac{1}{L} \int_{-L}^{L} f(x) \sin \frac{n \pi x}{L} \dd{x}
+\end{aligned}
+\]</span></p>
+<p>次に余弦級数、正弦級数の定義式。</p>
+$$
+<span class="math display">\[\begin{aligned}
+
+f(x) &amp;= \frac{a_0}{2} + \sum_{n=1}^{\infty} a_n \cos \frac{n \pi x}{L} &amp;&amp;\quad \text{余弦級数} \\
+a_n &amp;= \frac{2}{L} \int_{0}^{L} f(x) \cos \frac{n \pi x}{L} \dd{x} \\
+f(x) &amp;= \sum_{n=1}^{\infty} b_n \sin \frac{n \pi x}{L} &amp;&amp;\quad \text{正弦級数} \\
+b_n &amp;= \frac{2}{L} \int_{0}^{L} f(x) \sin \frac{n \pi x}{L} \dd{x}
+
+
+\end{aligned}\]</span>
+<p>$$</p>
+</div>
+</div>
+</div>
 <!-- 
 ::: {.callout-note collapse="true"}
 ##### 理論

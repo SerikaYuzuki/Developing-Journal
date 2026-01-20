@@ -545,7 +545,7 @@ u(x, 0) &= C_1' \qty( \frac{n_1 \pi}{2} x ) + C_2' \sin \qty( \frac{n_2 \pi}{2} 
 &= 6 \sin \pi x - 3 \sin 4 \pi x \\
 C_1' = 6&, \quad n_1 = 2 \\
 C_2' = -3&, \quad n_2 = 8 \\
-u &= 6 \sin \pi x \cos 4 \pi t - 3 \sin 4 \pi x \cos 16 \pi t
+u &= 6 \sin \pi x \cos 4 \pi t - 3 \sin 4 \pi x \cos 16 \pi t 
 \end{aligned}
 $$
 
@@ -554,44 +554,55 @@ $$
 
 ### フーリエ級数
 
-```{python}
-import numpy as np
-import matplotlib.pyplot as plt
+フーリエ変換の定義式を書け。
 
-def plot_an_area(n, num=4000):
-    # 区間 [-pi, pi]
-    x = np.linspace(-np.pi, np.pi, num)
-    f = x**2
-    g = f * np.cos(n*x)   # integrand
+次の式をフーリエ級数展開せよ。
 
-    # 数値積分（台形則）
-    integral = np.trapz(g, x)      # ∫ g(x) dx
-    a_n = integral / np.pi         # a_n = (1/pi) ∫ ...
+$$
+\begin{aligned}
+f(x) &= x^2, \quad \qty(-1 < x < 1) \\
+f(x) &= x(x - 1), \quad \qty(0 < x < 1) \quad \text{フーリエ余弦級数} \\
+f(x) &= x(x - 1), \quad \qty(0 < x < 1) \quad \text{フーリエ正弦級数} 
+\end{aligned}
+$$
 
-    plt.figure()
-    plt.axhline(0, linewidth=1)
+::: {.callout-tip collapse="true"}
+##### 解答
 
-    # 曲線
-    plt.plot(x, g, linewidth=2, label=r"$g_n(x)=x^2\cos(nx)$")
+まず、フーリエ変換の定義式。
 
-    # +面積（0以上）
-    plt.fill_between(x, 0, g, where=(g >= 0), alpha=0.35, interpolate=True,
-                     label="+ area (adds)")
-    # -面積（0未満）
-    plt.fill_between(x, 0, g, where=(g < 0), alpha=0.35, interpolate=True,
-                     label="- area (subtracts)")
+$$
+\begin{aligned}
+f(x) &= \frac{a_0}{2} + \sum_{n=1}^{\infty} \qty( a_n \cos \frac{n \pi x}{L} + b_n \sin \frac{n \pi x}{L} ) \\
+a_n &= \frac{1}{L} \int_{-L}^{L} f(x) \cos \frac{n \pi x}{L} \dd{x} \\
+b_n &= \frac{1}{L} \int_{-L}^{L} f(x) \sin \frac{n \pi x}{L} \dd{x} 
+\end{aligned}
+$$
 
-    plt.title(fr"Signed area for $a_{n}$   "
-              fr"$\int_{{-\pi}}^{{\pi}} x^2\cos({n}x)\,dx = {integral:.6f}$,  "
-              fr"$a_{n}={a_n:.6f}$")
-    plt.xlabel("x")
-    plt.ylabel(r"$x^2\cos(nx)$")
-    plt.legend()
-    plt.show()
+次に余弦級数、正弦級数の定義式。
 
-for n in [1, 2, 3]:
-    plot_an_area(n)
-```
+$$
+\begin{aligned}
+
+f(x) &= \frac{a_0}{2} + \sum_{n=1}^{\infty} a_n \cos \frac{n \pi x}{L} &&\quad \text{余弦級数} \\
+a_n &= \frac{2}{L} \int_{0}^{L} f(x) \cos \frac{n \pi x}{L} \dd{x} \\
+f(x) &= \sum_{n=1}^{\infty} b_n \sin \frac{n \pi x}{L} &&\quad \text{正弦級数} \\
+b_n &= \frac{2}{L} \int_{0}^{L} f(x) \sin \frac{n \pi x}{L} \dd{x}
+
+
+\end{aligned}
+$$
+
+::: 
+
+
+
+
+
+
+
+
+
 
 <!-- 
 ::: {.callout-note collapse="true"}
