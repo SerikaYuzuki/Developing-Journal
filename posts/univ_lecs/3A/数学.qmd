@@ -566,6 +566,26 @@ f(x) &= x(x - 1), \quad \qty(0 < x < 1) \quad \text{フーリエ正弦級数}
 \end{aligned}
 $$
 
+::: {.callout-note collapse="true"}
+##### 理論
+
+瞬間部分分数分解という技法についてまとめておく。
+
+例題として、 $\int \qty(x^3+x) \textcolor{orange}{\cos x} \dd{x}$ を考える。
+
+$$
+\begin{array}{ccc}
++ & x^3 + x & \textcolor{red}{\sin x} \\
+- & 3x^2 + 1 & -\cos x \\
++ & 6x & -\sin x \\
+- & 6 & \cos x \\
+\end{array}
+$$
+
+こんな感じで表を書く。真ん中の列は微分して、右の列は積分していく。一番右の列だけは一番上が積分された形になる。
+
+:::
+
 ::: {.callout-tip collapse="true"}
 ##### 解答
 
@@ -589,6 +609,43 @@ a_n &= \frac{2}{L} \int_{0}^{L} f(x) \cos \frac{n \pi x}{L} \dd{x} \\
 f(x) &= \sum_{n=1}^{\infty} b_n \sin \frac{n \pi x}{L} &&\quad \text{正弦級数} \\
 b_n &= \frac{2}{L} \int_{0}^{L} f(x) \sin \frac{n \pi x}{L} \dd{x}
 
+
+\end{aligned}
+$$
+
+1問目。
+
+$$
+\begin{aligned}
+
+a_0 &= \int_{-1}^{1} x^2 \cos 0 \dd{x} = \frac{2}{3} \\
+a_n &= \int_{-1}^{1} x^2 \cos n \pi x \dd{x} \\
+&\text{部分分数分解の表}\\
+&\begin{array}{ccc}
++ & x^2 & \frac{1}{n\pi}\sin n \pi x \\
+- & 2x & -\frac{1}{(n\pi)^2}\cos n \pi x \\
++ & 2 & -\frac{1}{(n\pi)^3}\sin n \pi x \\
+\end{array} \\
+a_n &= \frac{4}{n^2\pi^2} (-1)^n \\
+b_n &= \int_{-1}^{1} x^2 \sin n \pi x \dd{x} = 0 \\
+&= 0 \\
+
+f(x) &= \frac{1}{3} + \sum_{n=1}^{\infty} \frac{4}{n^2 \pi^2} (-1)^n \cos n \pi x
+\end{aligned}
+$$
+
+2問目。
+
+$$
+\begin{aligned}
+
+a_n &= 2 \int_{0}^{1} x(x-1) \cos n \pi x \dd{x} \\
+&\text{部分分数分解の表}\\
+&\begin{array}{ccc}
++ & x^2 - x & \frac{1}{n\pi} \sin n \pi x \\
+- & 2x - 1 & -\frac{1}{(n\pi)^2} \cos n \pi x \\
++ & 2 & -\frac{1}{(n\pi)^3} \sin n \pi x \\
+\end{array} \\
 
 \end{aligned}
 $$
