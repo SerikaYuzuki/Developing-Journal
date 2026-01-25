@@ -834,10 +834,10 @@ window.Quarto = {
   </ul></li>
   <li><a href="#光デバイス" id="toc-光デバイス" class="nav-link" data-scroll-target="#光デバイス">光デバイス</a>
   <ul class="collapse">
-  <li><a href="#年度" id="toc-年度" class="nav-link" data-scroll-target="#年度">2022年度</a>
-  <ul class="collapse">
-  <li><a href="#問1" id="toc-問1" class="nav-link" data-scroll-target="#問1">問1</a></li>
-  </ul></li>
+  <li><a href="#結合状態密度" id="toc-結合状態密度" class="nav-link" data-scroll-target="#結合状態密度">結合状態密度</a></li>
+  <li><a href="#量子効率" id="toc-量子効率" class="nav-link" data-scroll-target="#量子効率">量子効率</a></li>
+  <li><a href="#効率関連" id="toc-効率関連" class="nav-link" data-scroll-target="#効率関連">効率関連</a></li>
+  <li><a href="#太陽電池" id="toc-太陽電池" class="nav-link" data-scroll-target="#太陽電池">太陽電池</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -1035,10 +1035,8 @@ N_{\mathrm{c}} \exp\left(-\frac{E_{\mathrm{c}} - E_{\mathrm{F}}}{k_{\mathrm{B}} 
 </section>
 <section id="光デバイス" class="level1">
 <h1>光デバイス</h1>
-<section id="年度" class="level2">
-<h2 class="anchored" data-anchor-id="年度">2022年度</h2>
-<section id="問1" class="level3">
-<h3 class="anchored" data-anchor-id="問1">問1</h3>
+<section id="結合状態密度" class="level3">
+<h3 class="anchored" data-anchor-id="結合状態密度">結合状態密度</h3>
 <p>半導体のバンド感繊維による光吸収の吸収係数は結合状態密度</p>
 <p><span class="math display">\[
 J_{\mathrm{cv}}(E) = \frac{1}{V} \sum_k \delta(E_{\mathrm{c}}(k) - E_{\mathrm{v}}(k) - E)\delta(\mathbfit{k} - \mathbfit{k}' - \mathbfit{K})
@@ -1058,6 +1056,7 @@ E_{\mathrm{v}}(k) &amp;= -\frac{\hbar^{2} k^{2}}{2 m_{\mathrm{h}}^{*}}
 <ol start="3" type="1">
 <li><p>SiとGaAsの光吸収スペクトルの違いを説明せよ。</p></li>
 <li><p>Si と GaAs それぞれについて、バンドギャップエネルギーよりも <span class="math inline">\(0.5\ \mathrm{eV}\)</span> 高エネルギーの光を 99% 吸収するために必要な半導体の厚さを求めよ。</p></li>
+<li><p>SiとGaAsの特徴と違いを簡潔に述べよ。</p></li>
 </ol>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
@@ -1089,8 +1088,8 @@ H' &amp;= -e \mathbfit{r} \cdot \mathbfit{E} \\
 W_{0 \to n} = \frac{2\pi}{\hbar} |\langle n | H' | 0 \rangle|^2 \delta(E_n - E_0 - \hbar \omega)
 \]</span></p>
 <p>でこっから結局どれだけ時間あたりにパワーが吸収されるかを考えると、<span class="math inline">\(\mathrm{c} \to \mathrm{v}\)</span> の遷移を全部足し合わせればいいので、</p>
-$$
-<span class="math display">\[\begin{aligned}
+<p><span class="math display">\[
+\begin{aligned}
 E_{\mathrm{c} \to \mathrm{v}} &amp;= E_{\mathrm{g}} + \frac{\hbar ^2 k^2}{2\mu} \\
 P_{\mathrm{abs}} &amp;= \sum_k \hbar \omega W_{\mathrm{c} \to \mathrm{v}} \\
 &amp;= \hbar \omega\frac{2\pi}{\hbar} |\langle \mathrm{c} | H' | \mathrm{v} \rangle|^2 \underbrace{ \sum_k \delta(E_{\mathrm{c} \to \mathrm{v}} - \hbar \omega) }_{= J_{\mathrm{c} \to \mathrm{v}}(E_{\mathrm{c} \to \mathrm{v}}) \times V} \\
@@ -1102,10 +1101,8 @@ P_{\mathrm{abs}} &amp;= \hbar \omega \frac{2\pi}{\hbar} |\langle \mathrm{c} | H'
 J_{\mathrm{c} \to \mathrm{v}}(E) &amp;= \frac{1}{\pi^2} \int \delta\left( E - \hbar \omega \right) k^2 (E - E_\mathrm{g}) \dv{k}{E} \dd E\\
 &amp;= \frac{1}{2\pi^2} \qty( \frac{2\mu}{\hbar^2} )^{3/2}  \underbrace{\int \delta(E - \hbar \omega) \sqrt{E - E_\mathrm{g}} \dd E}_{E = \hbar \omega の時の\sqrt{E - E_\mathrm{g}}の値の定義} \\
 &amp;= \frac{1}{2\pi^2} \qty( \frac{2\mu}{\hbar^2} )^{3/2} \sqrt{\hbar \omega - E_\mathrm{g}}
-
-
-\end{aligned}\]</span>
-<p>$$</p>
+\end{aligned}
+\]</span></p>
 </div>
 </div>
 </div>
@@ -1161,6 +1158,193 @@ I = I_0 e^{-\alpha x}
 </tr>
 </tbody>
 </table>
+<ol start="5" type="1">
+<li></li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>材料</th>
+<th>特徴</th>
+<th>違い</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Si</td>
+<td>間接遷移型半導体、豊富な資源、低コスト</td>
+<td>吸光効率が低い、厚い層が必要</td>
+</tr>
+<tr class="even">
+<td>GaAs</td>
+<td>直接遷移型半導体、高コスト</td>
+<td>吸光効率が高い、薄い層で十分</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="量子効率" class="level3">
+<h3 class="anchored" data-anchor-id="量子効率">量子効率</h3>
+<ol type="1">
+<li>間接遷移型半導体が発光デバイスに不向きな理由を説明せよ。</li>
+<li>Siの発光性再結合寿命は約 <span class="math inline">\(10^{-3}\ \mathrm{s}\)</span> であり、非発光性再結合寿命は約 <span class="math inline">\(10^{-6}\ \mathrm{s}\)</span> である。一方、GaAsの発光性再結合寿命は約 <span class="math inline">\(10^{-9}\ \mathrm{s}\)</span> であり、非発光性再結合寿命は約 <span class="math inline">\(10^{-7}\ \mathrm{s}\)</span> である。これらの値を用いて、SiとGaAsの内量子効率をそれぞれ求めよ。</li>
+</ol>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\begin{aligned}
+\dv{\Delta n}{t}
+&amp;= \underbrace{-\frac{\Delta n}{\tau_r}}_{\text{発光性再結合}} - \underbrace{\frac{\Delta n}{\tau_{nr}}}_{\text{非発光性再結合}}
+= -\frac{\Delta n}{\tau} \\
+\Delta n(t) &amp;= \Delta n(0) \exp\left(-\frac{t}{\tau}\right) \\
+\eta &amp;= \frac{\tau_{nr}}{\tau_r + \tau_{nr}}
+\end{aligned}
+\]</span></p>
+<p>内部量子効率は、1に近いほど発光効率が高いと考えればいい。つまり、発光性再結合時間が短く、非発光性再結合時間が長いほど、内部量子効率は高くなる。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>間接遷移半導体における発光再結合はフォノンの放出または吸収を同時に伴う必要があり、遷移確率が著しく小さくなる。結果として発光再結合寿命が長くなり、非発光再結合が支配的となるため、間接遷移半導体は発光しにくい。</li>
+<li>Siの場合、 <span class="math display">\[
+\begin{aligned}
+\eta_{\mathrm{Si}} &amp;= \frac{\tau_{nr}}{\tau_r + \tau_{nr}} = \frac{10^{-6}}{10^{-3} + 10^{-6}} \approx 0.001
+\end{aligned}
+\]</span> GaAsの場合、 <span class="math display">\[
+\begin{aligned}
+\eta_{\mathrm{GaAs}} &amp;= \frac{\tau_{nr}}{\tau_r + \tau_{nr}} = \frac{10^{-7}}{10^{-9} + 10^{-7}} \approx 0.99
+\end{aligned}
+\]</span></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="効率関連" class="level3">
+<h3 class="anchored" data-anchor-id="効率関連">効率関連</h3>
+<p><img src="dimages/image1.png" class="img-fluid"></p>
+<p>上の図のような赤色半導体発光デバイスにおいて、電流33mAの時のパワー変換効率、スロープ効率、外部量子効率、内部量子効率の概算を求めよ。</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>効率関連は、とりあえず定義をわかっていればいい。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>種類</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>パワー変換効率 <span class="math inline">\(\eta_{\mathrm{P}}\)</span></td>
+<td>出力光パワー <span class="math inline">\(P_{\mathrm{out}}\)</span> を入力電力 <span class="math inline">\(P_{\mathrm{in}}\)</span> で割ったもの。 <span class="math inline">\(\eta_{\mathrm{P}} = \frac{P_{\mathrm{out}}}{P_{\mathrm{in}}}\)</span></td>
+</tr>
+<tr class="even">
+<td>スロープ効率 <span class="math inline">\(\eta_{\mathrm{S}}\)</span></td>
+<td>出力光パワーの電流に対する微分。 <span class="math inline">\(\eta_{\mathrm{S}} = \dv{P_{\mathrm{out}}}{I}\)</span></td>
+</tr>
+<tr class="odd">
+<td>外部量子効率 <span class="math inline">\(\eta_{\mathrm{ext}}\)</span></td>
+<td>入力電流に対する出力光子数の比率。 <span class="math inline">\(\eta_{\mathrm{ext}} = \frac{\text{出力光子数}}{\text{入力電子数}}= \frac{1}{h\nu}\dv{P}{t}/\frac{1}{q}\dv{I}{t}=\frac{q}{h\nu}\dv{P}{I}=\frac{q\lambda}{hc}\dv{P}{I}\)</span></td>
+</tr>
+<tr class="even">
+<td>内部量子効率 <span class="math inline">\(\eta_{\mathrm{int}}\)</span></td>
+<td>発光再結合に寄与する電子と正孔の比率。 <span class="math inline">\(\eta_{\mathrm{int}} = \frac{\text{発光再結合数}}{\text{全再結合数}}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>特に内部量子効率は</p>
+<p><span class="math display">\[
+\begin{aligned}
+\eta_{\mathrm{int}} &amp;= \eta_{\mathrm{ext}} \frac{\alpha_\mathrm{m}}{ \alpha_\mathrm{m} + \alpha_\mathrm{i} } \\
+\alpha_\mathrm{m} &amp;= \frac{1}{L} \ln\left(\frac{1}{R_1 R_2}\right) \\
+L &amp;\approx 300\ \mathrm{\mu m} \\
+R_1 = R_2 &amp;\approx 0.3 \\
+\alpha_\mathrm{i} &amp;\approx 10\ \mathrm{cm^{-1}}
+\end{aligned}
+\]</span></p>
+<p>また、視感効率というあたいが過去問では出てきたのだが、人間の目では <span class="math inline">\(683 \mathrm{lm/W}\)</span> が最大視感効率で、赤色光では約 <span class="math inline">\(0.5\)</span> 倍程度になる。で、その値が必要になる問題が出ることがある。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>グラフを見て値を代入するだけなので略</p>
+</div>
+</div>
+</div>
+</section>
+<section id="太陽電池" class="level3">
+<h3 class="anchored" data-anchor-id="太陽電池">太陽電池</h3>
+<p>下図のようなJ-V特性を持つ太陽電池がある。これの開放電圧、短絡電流密度、FFと電力変換効率を求めよ。</p>
+<p><img src="dimages/image3.png" class="img-fluid"></p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>それぞれ<span class="math inline">\(I = 0\)</span> のときの電圧が開放電圧 <span class="math inline">\(V_{\mathrm{oc}}\)</span> 、<span class="math inline">\(V=0\)</span> のときの電流が短絡電流密度 <span class="math inline">\(J_{\mathrm{sc}}\)</span> である。FFはフィルファクターで、最大出力点の電圧と電流の積を <span class="math inline">\(V_{\mathrm{oc}} J_{\mathrm{sc}}\)</span> で割ったものである。最後に、電力変換効率 <span class="math inline">\(\eta\)</span> は、最大出力を入射光パワーで割ったものである。つまり、 <span class="math inline">\(FF/ V_{\mathrm{oc}} J_{\mathrm{sc}}\)</span></p>
 </div>
 </div>
 </div>
@@ -1179,7 +1363,6 @@ This is an example of a callout with a title.
 -->
 
 
-</section>
 </section>
 </section>
 

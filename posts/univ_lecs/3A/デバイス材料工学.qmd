@@ -215,9 +215,7 @@ $$
 
 # 光デバイス
 
-## 2022年度
-
-### 問1
+### 結合状態密度
 
 半導体のバンド感繊維による光吸収の吸収係数は結合状態密度
 
@@ -243,6 +241,8 @@ $$
 3. SiとGaAsの光吸収スペクトルの違いを説明せよ。
 
 4. Si と GaAs それぞれについて、バンドギャップエネルギーよりも $0.5\ \mathrm{eV}$ 高エネルギーの光を 99% 吸収するために必要な半導体の厚さを求めよ。
+
+5. SiとGaAsの特徴と違いを簡潔に述べよ。
 
 ::: {.callout-note collapse="true"}
 ##### 理論
@@ -287,17 +287,8 @@ P_{\mathrm{abs}} &= \hbar \omega \frac{2\pi}{\hbar} |\langle \mathrm{c} | H' | \
 J_{\mathrm{c} \to \mathrm{v}}(E) &= \frac{1}{\pi^2} \int \delta\left( E - \hbar \omega \right) k^2 (E - E_\mathrm{g}) \dv{k}{E} \dd E\\
 &= \frac{1}{2\pi^2} \qty( \frac{2\mu}{\hbar^2} )^{3/2}  \underbrace{\int \delta(E - \hbar \omega) \sqrt{E - E_\mathrm{g}} \dd E}_{E = \hbar \omega の時の\sqrt{E - E_\mathrm{g}}の値の定義} \\
 &= \frac{1}{2\pi^2} \qty( \frac{2\mu}{\hbar^2} )^{3/2} \sqrt{\hbar \omega - E_\mathrm{g}}
-
-
 \end{aligned}
-
-
 $$
-
-
-
-
-
 
 :::
 
@@ -334,8 +325,109 @@ $$
 | Si   | $10^3$                        | $4.6 \times 10^{-3}$ |
 | GaAs | $30000$                       | $1.5 \times 10^{-4}$ |
 
+5.
+
+| 材料 | 特徴 | 違い |
+|------|------|------|
+| Si   | 間接遷移型半導体、豊富な資源、低コスト | 吸光効率が低い、厚い層が必要 |
+| GaAs | 直接遷移型半導体、高コスト | 吸光効率が高い、薄い層で十分 |
+
 ::: 
 
+### 量子効率
+
+1. 間接遷移型半導体が発光デバイスに不向きな理由を説明せよ。
+2. Siの発光性再結合寿命は約 $10^{-3}\ \mathrm{s}$ であり、非発光性再結合寿命は約 $10^{-6}\ \mathrm{s}$ である。一方、GaAsの発光性再結合寿命は約 $10^{-9}\ \mathrm{s}$ であり、非発光性再結合寿命は約 $10^{-7}\ \mathrm{s}$ である。これらの値を用いて、SiとGaAsの内量子効率をそれぞれ求めよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+$$
+\begin{aligned}
+\dv{\Delta n}{t}
+&= \underbrace{-\frac{\Delta n}{\tau_r}}_{\text{発光性再結合}} - \underbrace{\frac{\Delta n}{\tau_{nr}}}_{\text{非発光性再結合}}
+= -\frac{\Delta n}{\tau} \\
+\Delta n(t) &= \Delta n(0) \exp\left(-\frac{t}{\tau}\right) \\
+\eta &= \frac{\tau_{nr}}{\tau_r + \tau_{nr}}
+\end{aligned}
+$$
+
+内部量子効率は、1に近いほど発光効率が高いと考えればいい。つまり、発光性再結合時間が短く、非発光性再結合時間が長いほど、内部量子効率は高くなる。
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+1. 間接遷移半導体における発光再結合はフォノンの放出または吸収を同時に伴う必要があり、遷移確率が著しく小さくなる。結果として発光再結合寿命が長くなり、非発光再結合が支配的となるため、間接遷移半導体は発光しにくい。
+2. Siの場合、
+$$
+\begin{aligned}
+\eta_{\mathrm{Si}} &= \frac{\tau_{nr}}{\tau_r + \tau_{nr}} = \frac{10^{-6}}{10^{-3} + 10^{-6}} \approx 0.001
+\end{aligned}
+$$ 
+GaAsの場合、
+$$
+\begin{aligned}
+\eta_{\mathrm{GaAs}} &= \frac{\tau_{nr}}{\tau_r + \tau_{nr}} = \frac{10^{-7}}{10^{-9} + 10^{-7}} \approx 0.99
+\end{aligned}
+$$
+
+:::
+
+### 効率関連
+
+![](dimages/image1.png)
+
+上の図のような赤色半導体発光デバイスにおいて、電流33mAの時のパワー変換効率、スロープ効率、外部量子効率、内部量子効率の概算を求めよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+効率関連は、とりあえず定義をわかっていればいい。
+
+| 種類 | 定義 |
+|------|------|
+| パワー変換効率 $\eta_{\mathrm{P}}$ | 出力光パワー $P_{\mathrm{out}}$ を入力電力 $P_{\mathrm{in}}$ で割ったもの。 $\eta_{\mathrm{P}} = \frac{P_{\mathrm{out}}}{P_{\mathrm{in}}}$ |
+| スロープ効率 $\eta_{\mathrm{S}}$ | 出力光パワーの電流に対する微分。 $\eta_{\mathrm{S}} = \dv{P_{\mathrm{out}}}{I}$ |
+| 外部量子効率 $\eta_{\mathrm{ext}}$ | 入力電流に対する出力光子数の比率。 $\eta_{\mathrm{ext}} = \frac{\text{出力光子数}}{\text{入力電子数}}= \frac{1}{h\nu}\dv{P}{t}/\frac{1}{q}\dv{I}{t}=\frac{q}{h\nu}\dv{P}{I}=\frac{q\lambda}{hc}\dv{P}{I}$ |
+| 内部量子効率 $\eta_{\mathrm{int}}$ | 発光再結合に寄与する電子と正孔の比率。 $\eta_{\mathrm{int}} = \frac{\text{発光再結合数}}{\text{全再結合数}}$ |
+
+特に内部量子効率は
+
+$$
+\begin{aligned}
+\eta_{\mathrm{int}} &= \eta_{\mathrm{ext}} \frac{\alpha_\mathrm{m}}{ \alpha_\mathrm{m} + \alpha_\mathrm{i} } \\
+\alpha_\mathrm{m} &= \frac{1}{L} \ln\left(\frac{1}{R_1 R_2}\right) \\
+L &\approx 300\ \mathrm{\mu m} \\
+R_1 = R_2 &\approx 0.3 \\
+\alpha_\mathrm{i} &\approx 10\ \mathrm{cm^{-1}}
+\end{aligned}
+$$
+
+また、視感効率というあたいが過去問では出てきたのだが、人間の目では $683 \mathrm{lm/W}$ が最大視感効率で、赤色光では約 $0.5$ 倍程度になる。で、その値が必要になる問題が出ることがある。
+
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+グラフを見て値を代入するだけなので略
+
+::: 
+
+### 太陽電池
+
+下図のようなJ-V特性を持つ太陽電池がある。これの開放電圧、短絡電流密度、FFと電力変換効率を求めよ。
+
+![](dimages/image3.png)
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+それぞれ$I = 0$ のときの電圧が開放電圧 $V_{\mathrm{oc}}$ 、$V=0$ のときの電流が短絡電流密度 $J_{\mathrm{sc}}$ である。FFはフィルファクターで、最大出力点の電圧と電流の積を $V_{\mathrm{oc}} J_{\mathrm{sc}}$ で割ったものである。最後に、電力変換効率 $\eta$ は、最大出力を入射光パワーで割ったものである。つまり、 $FF/ V_{\mathrm{oc}} J_{\mathrm{sc}}$
+
+:::
 
 <!-- 
 ::: {.callout-note collapse="true"}
