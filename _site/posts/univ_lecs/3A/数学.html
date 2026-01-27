@@ -868,6 +868,7 @@ window.Quarto = {
   <li><a href="#ベクトルあたり" id="toc-ベクトルあたり" class="nav-link" data-scroll-target="#ベクトルあたり">ベクトルあたり</a></li>
   <li><a href="#複素積分" id="toc-複素積分" class="nav-link" data-scroll-target="#複素積分">複素積分</a></li>
   <li><a href="#ジョルダン標準形" id="toc-ジョルダン標準形" class="nav-link" data-scroll-target="#ジョルダン標準形">ジョルダン標準形</a></li>
+  <li><a href="#フーリエ逆変換" id="toc-フーリエ逆変換" class="nav-link" data-scroll-target="#フーリエ逆変換">フーリエ逆変換</a></li>
   </ul>
 </nav>
     </div>
@@ -1701,6 +1702,37 @@ A &amp;=
 \end{pmatrix}
 \end{aligned}
 \]</span></p>
+</section>
+<section id="フーリエ逆変換" class="level3">
+<h3 class="anchored" data-anchor-id="フーリエ逆変換">フーリエ逆変換</h3>
+<p><span class="math display">\[
+\int_0^{\infty} f(x)\sin kx \dd{x} = ke^{-k}
+\]</span></p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\begin{aligned}
+f(x) &amp;= \frac{2}{\pi}\int_0^{\infty} \sin kx \qty( ke^{-k} ) \dd{k} \\
+\int_0^{\infty} k e^{-k} e^{ikx} \dd{k} &amp;= \int_0^{\infty} k e^{-(1-ix)k} \dd{k} \\
+&amp;= \frac{1}{(1-ix)^2} \\
+&amp;= \frac{1-x^2}{(1+x^2)^2} + i \frac{2x}{(1+x^2)^2} \\
+\int_0^{\infty} k e^{-k} \sin kx \dd{k} &amp;= \frac{2x}{(1+x^2)^2} \\
+f(x) &amp;= \frac{2}{\pi} \frac{2x}{(1+x^2)^2} = \frac{4x}{\pi (1+x^2)^2}
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+</div>
 <!-- 
 ::: {.callout-note collapse="true"}
 ##### 理論

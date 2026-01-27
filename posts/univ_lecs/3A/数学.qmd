@@ -751,6 +751,50 @@ A &=
 \end{aligned}
 $$
 
+### フーリエ逆変換
+
+$$
+\int_0^{\infty} f(x)\sin kx \dd{x} = ke^{-k}
+$$
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+$$
+\begin{aligned}
+f(x) &= \frac{2}{\pi}\int_0^{\infty} \sin kx \qty( ke^{-k} ) \dd{k} \\
+\int_0^{\infty} k e^{-k} e^{ikx} \dd{k} &= \int_0^{\infty} k e^{-(1-ix)k} \dd{k} \\
+&= \frac{1}{(1-ix)^2} \\
+&= \frac{1-x^2}{(1+x^2)^2} + i \frac{2x}{(1+x^2)^2} \\
+\int_0^{\infty} k e^{-k} \sin kx \dd{k} &= \frac{2x}{(1+x^2)^2} \\
+f(x) &= \frac{2}{\pi} \frac{2x}{(1+x^2)^2} = \frac{4x}{\pi (1+x^2)^2}
+\end{aligned}
+$$
+
+::: 
+
+最後に、フーリエ変換あたりの式をまとめておく
+
+$$
+\begin{aligned}
+f(x) &= \frac{a_0}{2} + \sum_{n=1}^{\infty} \qty( a_n \cos \frac{n \pi x}{L} + b_n \sin \frac{n \pi x}{L} ) \\
+a_n &= \frac{1}{L} \int_{-L}^{L} f(x) \cos \frac{n \pi x}{L} \dd{x} \\
+b_n &= \frac{1}{L} \int_{-L}^{L} f(x) \sin \frac{n \pi x}{L} \dd{x}  \\
+f(x) &= \sum_{n=\textcolor{red}{-\infty}}^{\infty} c_n e^{\frac{\textcolor{red}{2}n\pi}{T} x} \\
+c_n &= \frac{1}{T} \int_{0}^{T} f(x) e^{\textcolor{red}{-}\frac{\textcolor{red}{2}n\pi}{T} x} \dd{x} \\
+f(x) &= \frac{1}{2\pi} \int_{-\infty}^{\infty} F(k) e^{i k x} \dd{k} \\
+F(k) &= \int_{-\infty}^{\infty} f(x) e^{-i k x} \dd{x} \\
+f(x) &= \frac{2}{\pi} \int_0^{\infty} \sin kx \qty( \int_0^{\infty} f(x) \sin kx \dd{x} ) \dd{k} \\
+&= \frac{2}{\pi} \int_0^{\infty} a(k) \cos kx \dd{k} \\
+
+
+
+
+
+
+
+\end{aligned}
+$$
 
 <!-- 
 ::: {.callout-note collapse="true"}
