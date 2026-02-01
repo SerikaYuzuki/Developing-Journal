@@ -884,6 +884,16 @@ window.Quarto = {
   <li><a href="#airy関数マクロな世界の話" id="toc-airy関数マクロな世界の話" class="nav-link" data-scroll-target="#airy関数マクロな世界の話">Airy関数（マクロな世界の話）</a></li>
   <li><a href="#griffithのエネルギー論" id="toc-griffithのエネルギー論" class="nav-link" data-scroll-target="#griffithのエネルギー論">Griffithのエネルギー論</a></li>
   </ul></li>
+  <li><a href="#雑まとめ" id="toc-雑まとめ" class="nav-link" data-scroll-target="#雑まとめ">雑まとめ</a></li>
+  <li><a href="#問題" id="toc-問題" class="nav-link" data-scroll-target="#問題">問題</a>
+  <ul class="collapse">
+  <li><a href="#応力拡大係数と破壊靱性" id="toc-応力拡大係数と破壊靱性" class="nav-link" data-scroll-target="#応力拡大係数と破壊靱性">応力拡大係数と破壊靱性</a></li>
+  <li><a href="#griffithのエネルギー論による亀裂進展条件" id="toc-griffithのエネルギー論による亀裂進展条件" class="nav-link" data-scroll-target="#griffithのエネルギー論による亀裂進展条件">Griffithのエネルギー論による亀裂進展条件</a></li>
+  <li><a href="#paris則" id="toc-paris則" class="nav-link" data-scroll-target="#paris則">Paris則</a></li>
+  <li><a href="#basquin則-miner則" id="toc-basquin則-miner則" class="nav-link" data-scroll-target="#basquin則-miner則">Basquin則, Miner則</a></li>
+  <li><a href="#ネルンストの式" id="toc-ネルンストの式" class="nav-link" data-scroll-target="#ネルンストの式">ネルンストの式</a></li>
+  <li><a href="#弾性体の運動方程式" id="toc-弾性体の運動方程式" class="nav-link" data-scroll-target="#弾性体の運動方程式">弾性体の運動方程式</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -918,7 +928,7 @@ U(r) = 4\epsilon \left[ \left( \frac{\sigma}{r} \right)^{12} - \left( \frac{\sig
 F(r) = -\frac{dU}{dr} = 24\epsilon \left[ \frac{2\sigma^{12}}{r^{13}} - \frac{\sigma^6}{r^7} \right]
 \]</span></p>
 <p>となる。わけで、実際にこれをグラフに起こしたら次のようになる。</p>
-<div id="72a3999b" class="cell" data-execution_count="1">
+<div id="22b32c33" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1054,7 +1064,7 @@ F(r) = -\frac{dU}{dr} = 24\epsilon \left[ \frac{2\sigma^{12}}{r^{13}} - \frac{\s
 <p>それを応力として数式的に出すのが次の話。</p>
 <section id="inglisの応力集中ミクロの世界の話" class="level3">
 <h3 class="anchored" data-anchor-id="inglisの応力集中ミクロの世界の話">Inglisの応力集中（ミクロの世界の話）</h3>
-<div id="1338c1db" class="cell" data-execution_count="2">
+<div id="5e7577e2" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1167,7 +1177,7 @@ F(r) = -\frac{dU}{dr} = 24\epsilon \left[ \frac{2\sigma^{12}}{r^{13}} - \frac{\s
 <p>で、 <span class="math inline">\(\nabla ^2 \phi = \sigma_{xx} + \sigma_{yy}\)</span> という値が、ある点においての応力の和で、物体が滑らかだという条件は、この式で満たされる。</p>
 <p><span class="math display">\[\nabla^2 \qty( \nabla ^2 \phi ) = 0\]</span></p>
 <p>で、これを色んな境界条件で解いた解のうち、</p>
-<div id="67c2e20c" class="cell" data-execution_count="3">
+<div id="9f273164" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1269,7 +1279,7 @@ K_{\mathrm{IC}} = \sigma_{\mathrm{破壊時}} \sqrt{\pi a}
 <section id="griffithのエネルギー論" class="level3">
 <h3 class="anchored" data-anchor-id="griffithのエネルギー論">Griffithのエネルギー論</h3>
 <p>ここまでは、亀裂周辺で応力がどのように働くかのモデル化で破壊の条件を考えたわけだが、次はエネルギー論的に破壊の条件を考える。</p>
-<div id="802ffe4c" class="cell" data-execution_count="4">
+<div id="0b4f95d2" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1345,7 +1355,7 @@ W_\mathrm{e} = \frac{\pi a^2 \sigma^2}{E}
 <p><span class="math display">\[
 W_\mathrm{s} = 4 a \gamma
 \]</span></p>
-<div id="d6eb8241" class="cell" data-execution_count="5">
+<div id="eb3320cd" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1404,9 +1414,9 @@ a_\mathrm{c} &amp;= \frac{2 E \gamma}{\pi \sigma^2}
 \end{aligned}
 \]</span></p>
 <p>また、見方を変えれば、ある亀裂長さ <span class="math inline">\(a\)</span> に対して、亀裂が進展するための応力は、</p>
-<p><span class="math display">\[
+<p><span id="eq-griffith_critical_stress"><span class="math display">\[
 \sigma_\mathrm{c} = \sqrt{\frac{2 E \gamma}{\pi a}}
-\]</span></p>
+\tag{2}\]</span></span></p>
 <p>となる。これは、Inglisの応力集中を考えたときの式と係数以外は一致する。当然だ。だって、Inglisの応力集中もエネルギー論も、同じ物理現象を説明しているし、また、かなり大雑把なモデル化をしているから、多少の違いは出てくる。</p>
 <p><span class="math inline">\(2\gamma = \Gamma\)</span> と表面エネルギーを置き換えると、</p>
 <p><span class="math display">\[
@@ -1424,6 +1434,412 @@ K_{\mathrm{IC}} &amp;= \sqrt{E \Gamma} \\
 \Gamma &amp;= \frac{K_{\mathrm{IC}}^2}{E}
 \end{aligned}
 \]</span></p>
+</section>
+</section>
+<section id="雑まとめ" class="level2">
+<h2 class="anchored" data-anchor-id="雑まとめ">雑まとめ</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>試験法</th>
+<th>略号</th>
+<th>原理</th>
+<th>検出できる欠陥</th>
+<th>苦手な欠陥・制約</th>
+<th>溶接内部の面状き裂への適性</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>磁粉探傷試験</td>
+<td>MT</td>
+<td>磁化による漏洩磁束に磁粉を付着させて欠陥を可視化</td>
+<td>表面・表面直下のき裂</td>
+<td>深部内部欠陥、非磁性材料</td>
+<td>✕</td>
+</tr>
+<tr class="even">
+<td>浸透探傷試験</td>
+<td>PT</td>
+<td>毛細管現象により表面開口欠陥に浸透液を浸透させ検出</td>
+<td>表面開口き裂</td>
+<td>内部欠陥、表面非開口欠陥</td>
+<td>✕</td>
+</tr>
+<tr class="odd">
+<td>放射線透過試験</td>
+<td>RT</td>
+<td>X線・γ線の透過量差を画像として検出</td>
+<td>体積欠陥（ブローホール、スラグ巻込み）</td>
+<td>面状き裂、欠陥面が薄い場合</td>
+<td>△</td>
+</tr>
+<tr class="even">
+<td>超音波探傷試験</td>
+<td>UT</td>
+<td>超音波の反射・散乱を利用して内部欠陥を検出</td>
+<td>内部き裂、面状欠陥（割れ、未溶着）</td>
+<td>表面極近傍欠陥、粗大組織</td>
+<td>◎</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="問題" class="level1">
+<h1>問題</h1>
+<section id="応力拡大係数と破壊靱性" class="level2">
+<h2 class="anchored" data-anchor-id="応力拡大係数と破壊靱性">応力拡大係数と破壊靱性</h2>
+<p>ひっぱり強度 <span class="math inline">\(\sigma = 800 \mathrm{MPa}\)</span> で破壊靱性 <span class="math inline">\(K_{\mathrm{IC}} = 50 \mathrm{MPa}\cdot\mathrm{m}^{1/2}\)</span> の材料に、長さ <span class="math inline">\(2a = 10 \mathrm{mm}\)</span> の亀裂があるとする。 この材料に <span class="math inline">\(400 \mathrm{MPa}\)</span> の応力がかかったとき、亀裂は進展するか？ 形状係数は <span class="math inline">\(Y=1\)</span> とする。</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><a href="#eq-fracture_toughness" class="quarto-xref">Equation&nbsp;1</a> から、破壊の条件は</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sigma_{\mathrm{破壊時}} &amp;= \frac{K_{\mathrm{IC}}}{Y \sqrt{\pi a}} \\
+&amp;= \frac{60 \mathrm{MPa}\cdot\mathrm{m}^{1/2}}{1 \cdot \sqrt{\pi \cdot 5 \times 10^{-3} \mathrm{m}}} \\
+&amp;\approx 478.64 \mathrm{MPa}
+\end{aligned}
+\]</span></p>
+<p>応力 <span class="math inline">\(400 \mathrm{MPa}\)</span> はこれを下回るので、亀裂は進展しない。</p>
+</div>
+</div>
+</div>
+</section>
+<section id="griffithのエネルギー論による亀裂進展条件" class="level2">
+<h2 class="anchored" data-anchor-id="griffithのエネルギー論による亀裂進展条件">Griffithのエネルギー論による亀裂進展条件</h2>
+<p>ある脆性材料の表面エネルギーが <span class="math inline">\(\gamma = 1.0 \mathrm{J/m^2}\)</span>、ヤング率が <span class="math inline">\(E = 70 \mathrm{GPa}\)</span> であるとする。この材料に存在する長さ <span class="math inline">\(2a = 2.0　\mu \mathrm{m}\)</span> の亀裂が進展するために必要な最小の引張応力を求めよ。ただしGriffithのエネルギー論を用いるものとする。</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><a href="#eq-griffith_critical_stress" class="quarto-xref">Equation&nbsp;2</a> から、</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sigma_\mathrm{c} &amp;= \sqrt{\frac{2 E \gamma}{\pi a}} \\
+&amp;= \sqrt{\frac{2 \times 70 \times 10^9 \mathrm{Pa} \times 1.0 \mathrm{J/m^2}}{\pi \times 1.0 \times 10^{-6} \mathrm{m}}} \\
+&amp;\approx 2.11 \times 10^6 \mathrm{Pa} = 211 \mathrm{MPa}
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="paris則" class="level2">
+<h2 class="anchored" data-anchor-id="paris則">Paris則</h2>
+<p>幅 <span class="math inline">\(W\)</span> 、厚さ <span class="math inline">\(t\)</span> の平板に、繰り返しひっぱり荷重 <span class="math inline">\(P\)</span> がかかる。次に定数の一覧が与えられている。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>定数</th>
+<th>単位</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(P_{\mathrm{max}} = 50\)</span></td>
+<td><span class="math inline">\(\mathrm{kN}\)</span></td>
+<td>最大荷重</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(P_{\mathrm{min}} = 0\)</span></td>
+<td><span class="math inline">\(\mathrm{kN}\)</span></td>
+<td>最小荷重</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(A = 500\)</span></td>
+<td><span class="math inline">\(\mathrm{mm}^2\)</span></td>
+<td>平板面積</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(a = 1.0\)</span></td>
+<td><span class="math inline">\(\mathrm{mm}\)</span></td>
+<td>亀裂長さの半分</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(C = 10^{-11},\ m=4\)</span></td>
+<td>なし</td>
+<td>材料定数</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(a_{\mathrm{f}} = 20\)</span></td>
+<td><span class="math inline">\(\mathrm{mm}\)</span></td>
+<td>限界亀裂長さ</td>
+</tr>
+</tbody>
+</table>
+<p>この時、疲労破壊に要する繰り返し荷重回数 <span class="math inline">\(N_{\mathrm{f}}\)</span> を求めよ。</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Parisの法則によれば、疲労亀裂の進展速度 <span class="math inline">\(da/dN\)</span> は応力拡大係数範囲 <span class="math inline">\(\Delta K\)</span> の関数として次のように表される。</p>
+<p><span class="math display">\[
+\dv{a}{N} = C (\Delta K)^m
+\]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\dd a}{C (\Delta \sigma \sqrt{\pi a})^m} &amp;= \dd N \\
+\int_{a_0}^{a_f} \frac{\dd a}{C (\Delta \sigma \sqrt{\pi a})^m} &amp;= \int_0^{N_f} \dd N \\
+N_f &amp;= \frac{1}{C (\Delta \sigma \sqrt{\pi})^m} \int_{a_0}^{a_f} a^{-m/2} \dd a \\
+&amp;= \frac{1}{C (\Delta \sigma \sqrt{\pi})^m} \cdot \frac{2}{2 - m} \left( a_f^{1 - m/2} - a_0^{1 - m/2} \right) \\
+&amp;= \frac{1}{10^{-11} (500 \times 10^3 / 500 \times \sqrt{\pi})^4} \cdot \frac{2}{2 - 4} \left( (20 \times 10^{-3})^{1 - 4/2} - (1.0 \times 10^{-3})^{1 - 4/2} \right) \\
+&amp;\approx 1.16 \times 10^5
+\end{aligned}
+\]</span></p>
+<div id="ebda6de5" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Parameters ---</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>P_max <span class="op">=</span> <span class="fl">50e3</span>        <span class="co"># 最大荷重 (N)</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>P_min <span class="op">=</span> <span class="dv">0</span>            <span class="co"># 最小荷重 (N)</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> <span class="fl">500e-6</span>           <span class="co"># 平板面積 (m^2)</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>a0 <span class="op">=</span> <span class="fl">1.0e-3</span>          <span class="co"># 亀裂長さの半分 (m)</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>af <span class="op">=</span> <span class="fl">20e-3</span>           <span class="co"># 限界亀裂長さ (m)</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> <span class="fl">1e-11</span>            <span class="co"># 材料定数</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="dv">4</span>                 <span class="co"># 材料定数</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Calculations ---</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>delta_sigma <span class="op">=</span> (P_max <span class="op">-</span> P_min) <span class="op">/</span> A  <span class="co"># 応力範囲 (Pa)</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>N_f <span class="op">=</span> (<span class="dv">1</span> <span class="op">/</span> (C <span class="op">*</span> (delta_sigma <span class="op">*</span> np.sqrt(np.pi))<span class="op">**</span>m)) <span class="op">*</span> (<span class="dv">2</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">-</span> m)) <span class="op">*</span> (af<span class="op">**</span>(<span class="dv">1</span> <span class="op">-</span> m<span class="op">/</span><span class="dv">2</span>) <span class="op">-</span> a0<span class="op">**</span>(<span class="dv">1</span> <span class="op">-</span> m<span class="op">/</span><span class="dv">2</span>))</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"疲労破壊に要する繰り返し荷重回数 N_f ≈ </span><span class="sc">{</span>N_f<span class="sc">:.2e}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>疲労破壊に要する繰り返し荷重回数 N_f ≈ 9.63e-20</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="basquin則-miner則" class="level2">
+<h2 class="anchored" data-anchor-id="basquin則-miner則">Basquin則, Miner則</h2>
+<p>ある合金の疲労試験の結果が以下のデータとなった。</p>
+<p><span class="math display">\[
+\begin{aligned}
+N &amp; : 10^5, 10^6 \\
+\Delta \sigma /2 &amp; : 400, 300 \quad (\mathrm{MPa})
+\end{aligned}
+\]</span></p>
+<p>応力振幅が <span class="math inline">\(250 \mathrm{MPa}\)</span> のときの疲労寿命 <span class="math inline">\(N\)</span> を求めよ。</p>
+<p>次に同じ材料に対して、応力振幅 <span class="math inline">\(400 \mathrm{MPa}\)</span> で <span class="math inline">\(5 \times 10^4\)</span> 回与えたのちに、応力振幅 <span class="math inline">\(300 \mathrm{MPa}\)</span> で疲労負荷を与えたとき、Miner則に基づいて破壊に至るまでの繰り返し回数を求めよ。</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Basquin則は次の式の通り。</p>
+<p><span class="math display">\[
+\qty(\frac{\Delta \sigma}{2})^b N_{\mathrm{f}} = C
+\]</span></p>
+<p>Miner則は次の式の通り。</p>
+<p><span class="math display">\[
+\sum_i \frac{N_i}{N_{\mathrm{f},i}} = 1
+\]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\begin{aligned}
+200^b \cdot 10^5 &amp;= 150^b \cdot 10^6 \\
+b &amp;= \frac{\log_{10} (10)}{\log_{10} (200/150)} \approx 8 \\
+C &amp;= 200^{6.58} \cdot 10^5 \approx 4.00 \times 10^{13} \\
+N_{\mathrm{f}} &amp;= \frac{C}{(125)^b} \approx 4.3 \times 10^6
+\end{aligned}
+\]</span></p>
+<p>次に、</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{5 \times 10^4}{N_{\mathrm{f},1}} + \frac{N_2}{N_{\mathrm{f},2}} &amp;= 1 \\
+\frac{5 \times 10^4}{10^5} + \frac{N_2}{10^6} &amp;= 1 \\
+N_2 &amp;\approx 5 \times 10^5
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="ネルンストの式" class="level2">
+<h2 class="anchored" data-anchor-id="ネルンストの式">ネルンストの式</h2>
+<p><span class="math inline">\(\mathrm{pH} = 0,\ T = 298 \mathrm{K}\)</span> の水溶液中の鉄の腐食を考える。ただし <span class="math inline">\([\mathrm{Fe}^{2+}] = 10^{-6} \mathrm{mol/L}\)</span> とする。</p>
+<ol type="1">
+<li>鉄の溶解反応と水素発生反応の平衡電位をネルンストの式を用いて求めよ。ただし鉄の標準電極電位は <span class="math inline">\(E^\circ (\mathrm{Fe}^{2+}/\mathrm{Fe}) = -0.44 \mathrm{V}\)</span> とする。</li>
+<li>ターフェル式を用いて、腐食電流密度を求めよ。ただし、アノード反応のターフェル定数 <span class="math inline">\(E = -0.62 + 0.06 \log_{10} i\)</span>、カソード反応のターフェル定数 <span class="math inline">\(E = -0.30 - 0.10 \log_{10} i\)</span> として、<span class="math inline">\(i\)</span> の単位は <span class="math inline">\(\mu \mathrm{A/cm^2}\)</span> とする。</li>
+<li>この材料の一年あたりの減肉深さを算出せよ。</li>
+</ol>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>ネルンストの式は次の通り。</p>
+<p><span class="math display">\[
+\begin{aligned}
+\Delta G &amp;= n F E \\
+E &amp;= E^\circ - \frac{RT}{nF} \ln Q \\
+&amp;= E^\circ - \frac{0.059}{n} \log_{10} Q
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>鉄の溶解反応は、 <span class="math display">\[
+E = -0.44 - \frac{0.0592}{2} \log_{10} \frac{1}{10^{-6}} = -0.617 \mathrm{V}
+\]</span> 水素発生反応は、 <span class="math inline">\(0 \mathrm{V}\)</span> 。以上から、鉄の溶解反応の方が電位が低いので、腐食は鉄の溶解反応が支配的である。</li>
+<li><span class="math display">\[
+\begin{aligned}
+-0.62 + 0.06 \log_{10} i &amp;= -0.30 - 0.10 \log_{10} i \\
+0.16 \log_{10} i &amp;= 0.32 \\
+\log_{10} i &amp;= 2 \\
+i &amp;= 100 \mu \mathrm{A/cm^2}
+\end{aligned}
+\]</span></li>
+<li><span class="math display">\[
+\begin{aligned}
+\frac{Miy}{zF\rho} = 1.16 \ \mathrm{mm / year}
+\end{aligned}
+\]</span></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="弾性体の運動方程式" class="level2">
+<h2 class="anchored" data-anchor-id="弾性体の運動方程式">弾性体の運動方程式</h2>
+<p>次の式を導出し、 <span class="math inline">\(E=206 \mathrm{GPa}\)</span> 、密度 <span class="math inline">\(\rho=7.85 \times 10^3 \mathrm{kg/m^3}\)</span> の材料において、波動速度を求めよ。</p>
+<p><span class="math display">\[
+\frac{\partial^2 u}{\partial t^2} = c^2 \frac{\partial^2 u}{\partial x^2}
+\]</span></p>
+<p>また、長さ <span class="math inline">\(L = 2.0 \mathrm{m}\)</span> の鉄棒の両端にAEセンサーを取り付けた時、棒上の位置 <span class="math inline">\(x\)</span> で破壊が発生した。計測の結果、AEセンサーには到達時間差 <span class="math inline">\(\Delta t = 0.2 \mathrm{ms}\)</span> で信号が到達した。このとき、破壊が発生した位置 <span class="math inline">\(x\)</span> を求めよ。</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\begin{aligned}
+A\rho \dd x \pdv[2]{u}{t} &amp;= A\pdv{\sigma}{x} \dd x \\
+\sigma &amp;= E \pdv{u}{x} \\
+\therefore \rho \pdv[2]{u}{t} &amp;= E \pdv[2]{u}{x} \\
+c &amp;= \sqrt{\frac{E}{\rho}} = \sqrt{\frac{206 \times 10^9 \mathrm{Pa}}{7.85 \times 10^3 \mathrm{kg/m^3}}} \\
+&amp;\approx 5.12 \times 10^3 \mathrm{m/s} \\
+\Delta t &amp;= \frac{x}{c} - \frac{L - x}{c} \\
+x &amp;= \frac{c \Delta t + L}{2} \approx 0.49 \mathrm{m}
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+</div>
+<!-- 
+::: {.callout-note collapse="true"}
+### 理論
+
+This is an example of a callout with a title.
+:::
+
+::: {.callout-tip collapse="true"}
+### 解答
+
+This is an example of a callout with a title.
+::: 
+-->
 
 
 

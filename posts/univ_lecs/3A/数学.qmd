@@ -786,15 +786,38 @@ f(x) &= \frac{1}{2\pi} \int_{-\infty}^{\infty} F(k) e^{i k x} \dd{k} \\
 F(k) &= \int_{-\infty}^{\infty} f(x) e^{-i k x} \dd{x} \\
 f(x) &= \frac{2}{\pi} \int_0^{\infty} \sin kx \qty( \int_0^{\infty} f(x) \sin kx \dd{x} ) \dd{k} \\
 &= \frac{2}{\pi} \int_0^{\infty} a(k) \cos kx \dd{k} \\
+\end{aligned}
 
+$$
 
+$$
+\dv[2]{y}{x} + \frac{1}{x} \dv{y}{x} + \frac{4}{x^2}y = \qty(\frac{2\ln x}{x}) ^2
+$$
 
+::: {.callout-tip collapse="true"}
+##### 解答
 
+冪函数仮定を使う
 
-
-
+$$
+\begin{aligned}
+y = x^m \\
+m(m-1)x^{m-2} + \frac{1}{x} mx^{m-1} + \frac{4}{x^2} x^m &= 0 \\
+m^2 + 4 &= 0 \\
+m = \pm 2i \\
+y_h &= C_1 \cos (2 \ln x) + C_2 \sin (2 \ln x) \\
+y_p &= A (\ln x)^2 + B \ln x + C \\
+\dv{y_p}{x} &= \frac{2A \ln x  + B}{x} \\
+\dv[2]{y_p}{x} &= \frac{2A - 2A\ln x - B}{x^2} \\
+\text{左辺} &= \frac{4A (\ln x)^2 + 4B \ln x + 2A +4C}{x^2} = \frac{4(\ln x)^2}{x^2} \\
+A&=1, \quad B=0, \quad C=-\frac{1}{2} \\
+y_p &= (\ln x)^2 - \frac{1}{2} \\
+y &= C_1 \cos (2 \ln x) + C_2 \sin (2 \ln x) + (\ln x)^2 - \frac{1}{2}
 \end{aligned}
 $$
+
+
+::: 
 
 <!-- 
 ::: {.callout-note collapse="true"}

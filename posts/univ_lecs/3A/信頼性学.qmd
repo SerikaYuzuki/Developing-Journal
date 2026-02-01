@@ -518,7 +518,7 @@ $$
 
 $$
 \sigma_\mathrm{c} = \sqrt{\frac{2 E \gamma}{\pi a}}
-$$
+$$ {#eq-griffith_critical_stress}
 
 となる。これは、Inglisの応力集中を考えたときの式と係数以外は一致する。当然だ。だって、Inglisの応力集中もエネルギー論も、同じ物理現象を説明しているし、また、かなり大雑把なモデル化をしているから、多少の違いは出てくる。
 
@@ -547,4 +547,265 @@ $$
 
 
 
+## 雑まとめ
+
+| 試験法 | 略号 | 原理 | 検出できる欠陥 | 苦手な欠陥・制約 | 溶接内部の面状き裂への適性 |
+|---|---|---|---|---|---|
+| 磁粉探傷試験 | MT | 磁化による漏洩磁束に磁粉を付着させて欠陥を可視化 | 表面・表面直下のき裂 | 深部内部欠陥、非磁性材料 | ✕ |
+| 浸透探傷試験 | PT | 毛細管現象により表面開口欠陥に浸透液を浸透させ検出 | 表面開口き裂 | 内部欠陥、表面非開口欠陥 | ✕ |
+| 放射線透過試験 | RT | X線・γ線の透過量差を画像として検出 | 体積欠陥（ブローホール、スラグ巻込み） | 面状き裂、欠陥面が薄い場合 | △ |
+| 超音波探傷試験 | UT | 超音波の反射・散乱を利用して内部欠陥を検出 | 内部き裂、面状欠陥（割れ、未溶着） | 表面極近傍欠陥、粗大組織 | ◎ |
+
+# 問題
+
+## 応力拡大係数と破壊靱性
+
+ひっぱり強度 $\sigma = 800 \mathrm{MPa}$ で破壊靱性 $K_{\mathrm{IC}} = 50 \mathrm{MPa}\cdot\mathrm{m}^{1/2}$ の材料に、長さ $2a = 10 \mathrm{mm}$ の亀裂があるとする。
+この材料に $400 \mathrm{MPa}$ の応力がかかったとき、亀裂は進展するか？ 形状係数は $Y=1$ とする。
+
+::: {.callout-tip collapse="true"}
+### 解答
+
+@eq-fracture_toughness から、破壊の条件は
+
+$$
+\begin{aligned}
+\sigma_{\mathrm{破壊時}} &= \frac{K_{\mathrm{IC}}}{Y \sqrt{\pi a}} \\
+&= \frac{60 \mathrm{MPa}\cdot\mathrm{m}^{1/2}}{1 \cdot \sqrt{\pi \cdot 5 \times 10^{-3} \mathrm{m}}} \\
+&\approx 478.64 \mathrm{MPa}
+\end{aligned}
+$$
+
+応力 $400 \mathrm{MPa}$ はこれを下回るので、亀裂は進展しない。
+
+::: 
+
+## Griffithのエネルギー論による亀裂進展条件
+
+ある脆性材料の表面エネルギーが $\gamma = 1.0 \mathrm{J/m^2}$、ヤング率が $E = 70 \mathrm{GPa}$ であるとする。この材料に存在する長さ $2a = 2.0　\mu \mathrm{m}$ の亀裂が進展するために必要な最小の引張応力を求めよ。ただしGriffithのエネルギー論を用いるものとする。
+
+::: {.callout-tip collapse="true"}
+### 解答
+
+@eq-griffith_critical_stress から、
+
+$$
+\begin{aligned}
+\sigma_\mathrm{c} &= \sqrt{\frac{2 E \gamma}{\pi a}} \\
+&= \sqrt{\frac{2 \times 70 \times 10^9 \mathrm{Pa} \times 1.0 \mathrm{J/m^2}}{\pi \times 1.0 \times 10^{-6} \mathrm{m}}} \\
+&\approx 2.11 \times 10^6 \mathrm{Pa} = 211 \mathrm{MPa}
+\end{aligned}
+$$
+
+::: 
+
+## Paris則
+
+幅 $W$ 、厚さ $t$ の平板に、繰り返しひっぱり荷重 $P$ がかかる。次に定数の一覧が与えられている。
+
+| 定数 | 単位 | 説明 |
+|------|------|------|
+| $P_{\mathrm{max}} = 50$ | $\mathrm{kN}$ | 最大荷重 |
+| $P_{\mathrm{min}} = 0$ | $\mathrm{kN}$ | 最小荷重 |
+| $A = 500$ | $\mathrm{mm}^2$ | 平板面積 |
+| $a = 1.0$ | $\mathrm{mm}$ | 亀裂長さの半分 |
+| $C = 10^{-11},\ m=4$ | なし | 材料定数 |
+| $a_{\mathrm{f}} = 20$ | $\mathrm{mm}$ | 限界亀裂長さ |
+
+この時、疲労破壊に要する繰り返し荷重回数 $N_{\mathrm{f}}$ を求めよ。
+
+::: {.callout-note collapse="true"}
+### 理論
+
+Parisの法則によれば、疲労亀裂の進展速度 $da/dN$ は応力拡大係数範囲 $\Delta K$ の関数として次のように表される。
+
+$$
+\dv{a}{N} = C (\Delta K)^m
+$$
+
+:::
+
+::: {.callout-tip collapse="true"}
+### 解答
+
+$$
+\begin{aligned}
+\frac{\dd a}{C (\Delta \sigma \sqrt{\pi a})^m} &= \dd N \\
+\int_{a_0}^{a_f} \frac{\dd a}{C (\Delta \sigma \sqrt{\pi a})^m} &= \int_0^{N_f} \dd N \\
+N_f &= \frac{1}{C (\Delta \sigma \sqrt{\pi})^m} \int_{a_0}^{a_f} a^{-m/2} \dd a \\
+&= \frac{1}{C (\Delta \sigma \sqrt{\pi})^m} \cdot \frac{2}{2 - m} \left( a_f^{1 - m/2} - a_0^{1 - m/2} \right) \\
+&= \frac{1}{10^{-11} (500 \times 10^3 / 500 \times \sqrt{\pi})^4} \cdot \frac{2}{2 - 4} \left( (20 \times 10^{-3})^{1 - 4/2} - (1.0 \times 10^{-3})^{1 - 4/2} \right) \\
+&\approx 1.16 \times 10^5
+\end{aligned}
+$$
+
+```{python}
+import numpy as np
+
+# --- Parameters ---
+P_max = 50e3        # 最大荷重 (N)
+P_min = 0            # 最小荷重 (N)
+A = 500e-6           # 平板面積 (m^2)
+a0 = 1.0e-3          # 亀裂長さの半分 (m)
+af = 20e-3           # 限界亀裂長さ (m)
+C = 1e-11            # 材料定数
+m = 4                 # 材料定数
+
+# --- Calculations ---
+delta_sigma = (P_max - P_min) / A  # 応力範囲 (Pa)
+N_f = (1 / (C * (delta_sigma * np.sqrt(np.pi))**m)) * (2 / (2 - m)) * (af**(1 - m/2) - a0**(1 - m/2))
+print(f"疲労破壊に要する繰り返し荷重回数 N_f ≈ {N_f:.2e}")
+```
+
+::: 
+
+## Basquin則, Miner則
+
+ある合金の疲労試験の結果が以下のデータとなった。
+
+$$
+\begin{aligned}
+N & : 10^5, 10^6 \\
+\Delta \sigma /2 & : 400, 300 \quad (\mathrm{MPa})
+\end{aligned}
+$$
+
+応力振幅が $250 \mathrm{MPa}$ のときの疲労寿命 $N$ を求めよ。
+
+次に同じ材料に対して、応力振幅 $400 \mathrm{MPa}$ で $5 \times 10^4$ 回与えたのちに、応力振幅 $300 \mathrm{MPa}$ で疲労負荷を与えたとき、Miner則に基づいて破壊に至るまでの繰り返し回数を求めよ。
+
+::: {.callout-note collapse="true"}
+### 理論
+
+Basquin則は次の式の通り。
+
+$$
+\qty(\frac{\Delta \sigma}{2})^b N_{\mathrm{f}} = C
+$$
+
+Miner則は次の式の通り。
+
+$$
+\sum_i \frac{N_i}{N_{\mathrm{f},i}} = 1
+$$
+
+:::
+
+::: {.callout-tip collapse="true"}
+### 解答
+
+$$
+\begin{aligned}
+200^b \cdot 10^5 &= 150^b \cdot 10^6 \\
+b &= \frac{\log_{10} (10)}{\log_{10} (200/150)} \approx 8 \\
+C &= 200^{6.58} \cdot 10^5 \approx 4.00 \times 10^{13} \\
+N_{\mathrm{f}} &= \frac{C}{(125)^b} \approx 4.3 \times 10^6
+\end{aligned}
+$$
+
+次に、
+
+$$
+\begin{aligned}
+\frac{5 \times 10^4}{N_{\mathrm{f},1}} + \frac{N_2}{N_{\mathrm{f},2}} &= 1 \\
+\frac{5 \times 10^4}{10^5} + \frac{N_2}{10^6} &= 1 \\
+N_2 &\approx 5 \times 10^5
+\end{aligned}
+$$
+
+
+::: 
+
+## ネルンストの式
+
+$\mathrm{pH} = 0,\ T = 298 \mathrm{K}$ の水溶液中の鉄の腐食を考える。ただし $[\mathrm{Fe}^{2+}] = 10^{-6} \mathrm{mol/L}$ とする。
+
+1. 鉄の溶解反応と水素発生反応の平衡電位をネルンストの式を用いて求めよ。ただし鉄の標準電極電位は $E^\circ (\mathrm{Fe}^{2+}/\mathrm{Fe}) = -0.44 \mathrm{V}$ とする。
+2. ターフェル式を用いて、腐食電流密度を求めよ。ただし、アノード反応のターフェル定数 $E = -0.62 + 0.06 \log_{10} i$、カソード反応のターフェル定数 $E = -0.30 - 0.10 \log_{10} i$ として、$i$ の単位は $\mu \mathrm{A/cm^2}$ とする。
+3. この材料の一年あたりの減肉深さを算出せよ。
+
+::: {.callout-note collapse="true"}
+### 理論
+
+ネルンストの式は次の通り。
+
+$$
+\begin{aligned}
+\Delta G &= n F E \\
+E &= E^\circ - \frac{RT}{nF} \ln Q \\
+&= E^\circ - \frac{0.059}{n} \log_{10} Q
+\end{aligned}
+$$
+
+
+
+:::
+
+::: {.callout-tip collapse="true"}
+### 解答
+
+1. 鉄の溶解反応は、
+$$
+E = -0.44 - \frac{0.0592}{2} \log_{10} \frac{1}{10^{-6}} = -0.617 \mathrm{V}
+$$
+水素発生反応は、 $0 \mathrm{V}$ 。以上から、鉄の溶解反応の方が電位が低いので、腐食は鉄の溶解反応が支配的である。
+2. 
+$$
+\begin{aligned}
+-0.62 + 0.06 \log_{10} i &= -0.30 - 0.10 \log_{10} i \\
+0.16 \log_{10} i &= 0.32 \\
+\log_{10} i &= 2 \\
+i &= 100 \mu \mathrm{A/cm^2}
+\end{aligned}
+$$
+3.
+$$
+\begin{aligned}
+\frac{Miy}{zF\rho} = 1.16 \ \mathrm{mm / year}
+\end{aligned}
+$$
+
+:::
+
+## 弾性体の運動方程式
+
+次の式を導出し、 $E=206 \mathrm{GPa}$ 、密度 $\rho=7.85 \times 10^3 \mathrm{kg/m^3}$ の材料において、波動速度を求めよ。
+
+$$
+\frac{\partial^2 u}{\partial t^2} = c^2 \frac{\partial^2 u}{\partial x^2}
+$$
+
+また、長さ $L = 2.0 \mathrm{m}$ の鉄棒の両端にAEセンサーを取り付けた時、棒上の位置 $x$ で破壊が発生した。計測の結果、AEセンサーには到達時間差 $\Delta t = 0.2 \mathrm{ms}$ で信号が到達した。このとき、破壊が発生した位置 $x$ を求めよ。
+
+::: {.callout-tip collapse="true"}
+### 解答
+
+$$
+\begin{aligned}
+A\rho \dd x \pdv[2]{u}{t} &= A\pdv{\sigma}{x} \dd x \\
+\sigma &= E \pdv{u}{x} \\
+\therefore \rho \pdv[2]{u}{t} &= E \pdv[2]{u}{x} \\
+c &= \sqrt{\frac{E}{\rho}} = \sqrt{\frac{206 \times 10^9 \mathrm{Pa}}{7.85 \times 10^3 \mathrm{kg/m^3}}} \\
+&\approx 5.12 \times 10^3 \mathrm{m/s} \\
+\Delta t &= \frac{x}{c} - \frac{L - x}{c} \\
+x &= \frac{c \Delta t + L}{2} \approx 0.49 \mathrm{m}
+\end{aligned}
+$$
+
+::: 
+
+
+<!-- 
+::: {.callout-note collapse="true"}
+### 理論
+
+This is an example of a callout with a title.
+:::
+
+::: {.callout-tip collapse="true"}
+### 解答
+
+This is an example of a callout with a title.
+::: 
+-->
 
