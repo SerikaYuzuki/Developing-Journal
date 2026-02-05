@@ -764,7 +764,7 @@ U(r) = 4\epsilon \left[ \left( \frac{\sigma}{r} \right)^{12} - \left( \frac{\sig
 F(r) = -\frac{dU}{dr} = 24\epsilon \left[ \frac{2\sigma^{12}}{r^{13}} - \frac{\sigma^6}{r^7} \right]
 \]</span></p>
 <p>となる。わけで、実際にこれをグラフに起こしたら次のようになる。</p>
-<div id="22b32c33" class="cell" data-execution_count="1">
+<div id="b865f1cc" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -900,7 +900,7 @@ F(r) = -\frac{dU}{dr} = 24\epsilon \left[ \frac{2\sigma^{12}}{r^{13}} - \frac{\s
 <p>それを応力として数式的に出すのが次の話。</p>
 <section id="inglisの応力集中ミクロの世界の話" class="level3">
 <h3 class="anchored" data-anchor-id="inglisの応力集中ミクロの世界の話">Inglisの応力集中（ミクロの世界の話）</h3>
-<div id="5e7577e2" class="cell" data-execution_count="2">
+<div id="54827ee4" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -978,7 +978,7 @@ F(r) = -\frac{dU}{dr} = 24\epsilon \left[ \frac{2\sigma^{12}}{r^{13}} - \frac{\s
 <p><span class="math display">\[
 \sigma_{max} = \sigma \left( 1 + 2\frac{a}{b} \right)
 \]</span></p>
-<p>になる。曲率半径 <span class="math inline">\(ρ = \frac{a^2}{b}\)</span> を用いると、</p>
+<p>になる。曲率半径 <span class="math inline">\(ρ = \frac{b^2}{a}\)</span> を用いると、</p>
 <p><span class="math display">\[
 \sigma_{max} = \sigma \left( 1 + 2\sqrt{\frac{a}{\rho}} \right) \approx 2\sigma \sqrt{\frac{a}{\rho}}
 \]</span></p>
@@ -1013,7 +1013,7 @@ F(r) = -\frac{dU}{dr} = 24\epsilon \left[ \frac{2\sigma^{12}}{r^{13}} - \frac{\s
 <p>で、 <span class="math inline">\(\nabla ^2 \phi = \sigma_{xx} + \sigma_{yy}\)</span> という値が、ある点においての応力の和で、物体が滑らかだという条件は、この式で満たされる。</p>
 <p><span class="math display">\[\nabla^2 \qty( \nabla ^2 \phi ) = 0\]</span></p>
 <p>で、これを色んな境界条件で解いた解のうち、</p>
-<div id="9f273164" class="cell" data-execution_count="3">
+<div id="f9b3d6a3" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1115,7 +1115,7 @@ K_{\mathrm{IC}} = \sigma_{\mathrm{破壊時}} \sqrt{\pi a}
 <section id="griffithのエネルギー論" class="level3">
 <h3 class="anchored" data-anchor-id="griffithのエネルギー論">Griffithのエネルギー論</h3>
 <p>ここまでは、亀裂周辺で応力がどのように働くかのモデル化で破壊の条件を考えたわけだが、次はエネルギー論的に破壊の条件を考える。</p>
-<div id="0b4f95d2" class="cell" data-execution_count="4">
+<div id="072c86e6" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1191,7 +1191,7 @@ W_\mathrm{e} = \frac{\pi a^2 \sigma^2}{E}
 <p><span class="math display">\[
 W_\mathrm{s} = 4 a \gamma
 \]</span></p>
-<div id="eb3320cd" class="cell" data-execution_count="5">
+<div id="de47a809" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1472,7 +1472,7 @@ N_f &amp;= \frac{1}{C (\Delta \sigma \sqrt{\pi})^m} \int_{a_0}^{a_f} a^{-m/2} \d
 &amp;\approx 1.16 \times 10^5
 \end{aligned}
 \]</span></p>
-<div id="ebda6de5" class="cell" data-execution_count="6">
+<div id="54142bf3" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
