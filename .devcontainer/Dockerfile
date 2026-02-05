@@ -1,1 +1,1 @@
-FROM mdivr/quarto:latest
+FROM docker.io/mdivr/quarto:latest

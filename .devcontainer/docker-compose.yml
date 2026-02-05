@@ -3,7 +3,7 @@ services:
   quarto-dev:
     build: .
     volumes:
-      - ..:/workspace
+      - ..:/workspace:Z
     ports:
       - "8888:8888" # Jupyter用
     tty: true
