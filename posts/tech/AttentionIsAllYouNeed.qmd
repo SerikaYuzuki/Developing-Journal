@@ -1,0 +1,39 @@
+---
+title: "Attention Is All You Needを読む話"
+author: "Serika Yuzuki"
+date: "2026-2-6"
+categories: [pogramming, 2026, AI]
+image: "https://www.svgrepo.com/show/528057/book-2.svg"
+---
+
+## RNN
+
+最初にRNNがが昔の覇権を取っていたけど、長期依存関係を捉えるのが苦手で、LSTMやGRUが出てきたけど、それでも限界があったって話をしてる。
+
+### RNN
+
+これは入力によって逐次状態がアップデートされる状態空間モデル。
+
+$$
+h_t = \phi(W_{hh} h_{t-1} + W_{xh} x_t + b_h)
+$$
+
+ここで $h_t$ は $t$ の時点での状態、 $x_t$ は入力、 $\phi$ は活性化関数。活性化関数は $\tanh$ が使われる。$W$ は重み行列、 $b$ はバイアス。
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+
+def tanh(x):
+    return np.tanh(x)
+x = np.linspace(-3, 3, 100)
+y = tanh(x)
+plt.plot(x, y)
+plt.title("Tanh Activation Function")
+plt.xlabel("Input")
+plt.ylabel("Output")
+plt.grid()
+plt.show()
+```
+
+
