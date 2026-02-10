@@ -1,0 +1,12 @@
+{
+  "hash": "f986aeb4fd5e9ea20d6b61080df36738",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Attention Is All You Needを読む話\"\nauthor: \"Serika Yuzuki\"\ndate: \"2026-2-6\"\ncategories: [pogramming, 2026, AI]\nimage: \"https://www.svgrepo.com/show/528057/book-2.svg\"\n---\n\n## RNN\n\n最初にRNNがが昔の覇権を取っていたけど、長期依存関係を捉えるのが苦手で、LSTMやGRUが出てきたけど、それでも限界があったって話をしてる。\n\n### RNN\n\nこれは入力によって逐次状態がアップデートされる状態空間モデル。\n\n$$\nh_t = \\phi(W_{hh} h_{t-1} + W_{xh} x_t + b_h)\n$$\n\nここで $h_t$ は $t$ の時点での状態、 $x_t$ は入力、 $\\phi$ は活性化関数。活性化関数は $\\tanh$ が使われる。$W$ は重み行列、 $b$ はバイアス。\n\n::: {#d1fb9248 .cell execution_count=1}\n``` {.python .cell-code}\nimport matplotlib.pyplot as plt\nimport numpy as np\n\ndef tanh(x):\n    return np.tanh(x)\nx = np.linspace(-3, 3, 100)\ny = tanh(x)\nplt.plot(x, y)\nplt.title(\"Tanh Activation Function\")\nplt.xlabel(\"Input\")\nplt.ylabel(\"Output\")\nplt.grid()\nplt.show()\n```\n\n::: {.cell-output .cell-output-display}\n![](AttentionIsAllYouNeed_files/figure-html/cell-2-output-1.png){width=608 height=449}\n:::\n:::\n\n\n",
+    "supporting": [
+      "AttentionIsAllYouNeed_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

@@ -1,0 +1,437 @@
+---
+title: "Build a Large Language Model from Scratchを読む話"
+author: "Serika Yuzuki"
+date: "2026-2-6"
+categories: [pogramming, 2026, AI]
+image: "https://www.svgrepo.com/show/528057/book-2.svg"
+format:
+  html:
+    code-fold: false
+---
+
+## テキストデータの処理
+
+### テキストデータのtokenizationとインデックス化
+
+テキストデータを数学的に処理するために、まずはテキスト自体を数学的な形式に変換しないといけない。一般的には、テキストをトークンに分割し、各トークンを数値にマッピングする。
+
+| トークン | インデックス |
+|---------|--------------|
+| hello   | 0            |
+| world   | 1            |
+| apple   | 2            |
+| ...     | ...          | 
+
+こんな感じに、辞書と対応させたような数値に変換する。
+
+今勉強する内容は１単語を１インデックスに変換するが、 **Retrieval-Augmented Generation (RAG)** のように、文書全体をベクトル化して扱う方法もある。いずれやるだろう。
+
+また、単語自体上では一次元の値として扱ったが、次元を上げて、各次元の値に対して相似性を持たせる **単語埋め込み (word embedding)** のような方法もある。このような扱い方では、単語一つ一つに対する演算量が増えることになるが、意味的な類似性を捉えやすくなる。[Word2Vec](https://github.com/tmikolov/word2vec) や [GloVe](https://nlp.stanford.edu/projects/glove/) などの手法がある。
+
+| モデル | 単語埋め込みの次元数 |
+|--------|------------------|
+| GPT-2  | 768              |
+| GPT-3  | 12288            |
+
+だが、LLMは既存のword embeddingを使わず、自身でEmbedding層を学習することが多い。これからの実装は、自動学習可能なEmbedding層を書く。
+
+```{mermaid}
+flowchart TB
+  A["Input text:\nThis is an example."] --> B["Tokenized text:\nThis | is | an | example | ."]
+  B --> C["Token IDs:\n40134 | 2052 | 133 | 389 | 12"]
+  C --> D["Token embeddings:\n⬜︎⬜︎⬜︎ | ⬜︎⬜︎⬜︎ | ⬜︎⬜︎⬜︎ | ⬜︎⬜︎⬜︎ | ⬜︎⬜︎⬜︎"]
+  D --> E["GPT-like\ndecoder-only\ntransformer"]
+  E --> F["Postprocessing steps"]
+  F --> G["Output text"]
+```
+
+ここでは1908年に出版された "The Virdict"を題材に使う。
+
+```{python}
+with open("./source/The_Verdict.txt", "r", encoding="utf-8") as f:
+    raw_text = f.read()
+
+print("Text length:", len(raw_text))
+print("First 500 characters:\n", raw_text[:500])
+```
+
+pythonの**re**gular expressionモジュールを使って、テキストをトークンに分割する。
+
+| 記号 | 意味 |
+|------|------|
+| \d   | 数字 |
+| \D   | 非数字 |
+| \w   | 単語構成文字 (アルファベット、数字、アンダースコア) |
+| \W   | 非単語構成文字 (スペース、句読点など) |
+
+こんな感じで分割する。
+
+```{python}
+import re
+
+text = "Hello, world! This is an example."
+result = re.split(r'\s', text)
+print(result, "by re.split(r'\\s', text)")
+result = re.split(r'(\s)', text)
+print(result, "by re.split(r'(\\s)', text)")
+result = re.split(r'(\W+)', text)
+print(result, "by re.split(r'(\\W+)', text)")
+```
+
+実際に与えられたテキストをトークンに分割する。
+
+```{python}
+preprocessed = re.split(r'([,.:;?_!"()\']|--|\s)', raw_text)
+preprocessed = [token for token in preprocessed if token != '' and token != ' ' and token != '\n']
+print("Number of tokens:", len(preprocessed))
+print("First 20 tokens:", preprocessed[:20])
+```
+
+これをこれから、トークンにインデックスを割り当てていく。ただし今回はベクトルにするんじゃなくて、一次元のインデックスにする。
+
+```{python}
+vocab = sorted(set(preprocessed))
+token_to_idx = {token: idx for idx, token in enumerate(vocab)}
+idx_to_token = {idx: token for token, idx in token_to_idx.items()}
+print("Vocabulary size:", len(vocab))
+print("First 10 tokens with indices:")
+for token in vocab[:20]:
+    print(f"'{token}': {token_to_idx[token]}")
+```
+
+これまでの処理をまとめたクラスを作る。
+
+```{python}
+class SimpleTokenizer:
+    def __init__(self, token_to_idx):
+        self.str_to_int = token_to_idx
+        self.int_to_str = {idx: token for token, idx in token_to_idx.items()}
+
+    def encode(self, text):
+        tokens = re.split(r'([,.:;?_!"()\']|--|\s)', text)
+        tokens = [token for token in tokens if token != '' and token != ' ' and token != '\n']
+        return [self.str_to_int[token] for token in tokens]
+
+    def decode(self, indices):
+        text = ' '.join([self.int_to_str[idx] for idx in indices])
+        # Remove spaces before punctuation
+        text = re.sub(r'\s([,.:;?_!"()\'])', r'\1', text)
+        # Fix spacing for double hyphens
+        text = re.sub(r'--', r' -- ', text)
+        return text
+```
+
+上のクラスを試してみると、こんな感じになる。
+
+```{python}
+tokenizer = SimpleTokenizer(token_to_idx)
+sample_text = """"It's the last he painted, you know." Mrs. Gisburn said with pardonable pride. """
+encoded = tokenizer.encode(sample_text)
+decoded = tokenizer.decode(encoded)
+print("Sample text:", sample_text)
+print("Encoded:", encoded)
+print("Decoded:", decoded)
+
+# Error handling for unknown tokens
+try:
+    sample_text2 = "This token does not exist: 😊"
+    encoded2 = tokenizer.encode(sample_text2)
+except KeyError as e:
+    print("Error encoding text with unknown token:", e)
+```
+
+以上のテストからわかるように、適当な設計をすると辞書にない単語とかが出てきたときにエラーになる。実際のLLMでは、未知のトークンを扱うために **Unknown Token (UNK)** を用意する。また、同様にして、文の始まりや終わりを示す **Start of Sequence (SOS)** や **End of Sequence (EOS)** トークンも用意することが多い。これらの特殊トークンを辞書に追加して、モデルが適切に学習できるようにする。
+
+```{python}
+special_tokens = ['<UNK>', '<EOT>']
+vocab_extended = special_tokens + vocab
+token_to_idx_extended = {token: idx for idx, token in enumerate(vocab_extended)}
+idx_to_token_extended = {idx: token for token, idx in token_to_idx_extended.items()}
+
+for token in list(token_to_idx_extended)[:10]:
+    print(f"'{token}': {token_to_idx_extended[token]}")
+
+class SimpleTokenizerV2:
+    def __init__(self, token_to_idx):
+        self.str_to_int = token_to_idx
+        self.int_to_str = {idx: token for token, idx in token_to_idx.items()}
+        self.unk_token = '<UNK>'
+        self.unk_index = token_to_idx[self.unk_token]
+
+    def encode(self, text):
+        tokens = re.split(r'([,.:;?_!"()\']|--|\s)', text)
+        tokens = [token for token in tokens if token != '' and token != ' ' and token != '\n']
+        return [self.str_to_int.get(token, self.unk_index) for token in tokens]
+
+    def decode(self, indices):
+        text = ' '.join([self.int_to_str.get(idx, self.unk_token) for idx in indices])
+        # Remove spaces before punctuation
+        text = re.sub(r'\s([,.:;?_!"()\'])', r'\1', text)
+        # Fix spacing for double hyphens
+        text = re.sub(r'--', r' -- ', text)
+        return text
+
+
+tokenizer_extended = SimpleTokenizerV2(token_to_idx_extended)
+
+sample_text3 = "This token does not exist: 😊"
+encoded3 = tokenizer_extended.encode(sample_text3)
+decoded3 = tokenizer_extended.decode(encoded3)
+print("Sample text with extended tokenizer:", sample_text3)
+print("Encoded with extended tokenizer:", encoded3)
+print("Decoded with extended tokenizer:", decoded3)
+```
+
+ここまでが手動でとりあえずトークン化とインデックス化を行う方法だった。実際には、BPE (Byte Pair Encoding) や WordPiece などのより洗練されたトークナイザーが使われることが多い。これらの手法は、頻出するサブワード単位でトークンを分割し、語彙サイズを抑えつつも意味的な情報を保持することができる。
+
+次に BPE トークナイザーの簡単な実装を見てみる。
+
+### BPE トークナイザーの簡単な実装
+
+これより以降は[tiktoken](https://github.com/openai/tiktoken)を使って実装をしていく。
+
+```{python}
+import tiktoken
+
+tokenizer_bpe = tiktoken.get_encoding("gpt2")
+
+sample_text_bpe = "Hello, world! This is an example. <|endoftext|> Do you get it? おちんちん"
+encoded_bpe = tokenizer_bpe.encode(sample_text_bpe, allowed_special={"<|endoftext|>"})
+decoded_bpe = tokenizer_bpe.decode(encoded_bpe)
+print("Sample text for BPE tokenizer:", sample_text_bpe)
+print("Encoded with BPE tokenizer:", encoded_bpe)
+print("Decoded with BPE tokenizer:", decoded_bpe)
+```
+
+偶然の発見だが、「ち」は２つのトークンに分割されている。
+
+```{python}
+print("22174 is encoded as:", tokenizer_bpe.decode([2515, 94]))
+```
+
+さて、ここから文章データをtokenizerにかけて、インデックス化していく。
+
+```{python}
+with open("./source/The_Verdict.txt", "r", encoding="utf-8") as f:
+    raw_text = f.read()
+encoded_text = tokenizer_bpe.encode(raw_text)
+print("Total number of tokens in text:", len(encoded_text))
+print("First 20 tokens:", encoded_text[:20])
+```
+
+これからやっていく作業は、与えられた文章の先を推定するモデルである。
+
+```{python}
+context_size = 10
+
+for i in range(1, context_size + 1):
+    input_seq = encoded_text[:i]
+    target_token = encoded_text[i] if i < len(encoded_text) else None
+    print(f"Input sequence (length {i}):", input_seq)
+    print("Target token:", target_token)
+    print("Decoded input sequence:", tokenizer_bpe.decode(input_seq))
+    if target_token is not None:
+        print("Decoded target token:", tokenizer_bpe.decode([target_token]))
+    print("---")
+```
+
+これ以降は、pytorchを使って上記のことをやることになる。
+
+### PyTorch
+
+```{python}
+import torch
+from torch.utils.data import Dataset, DataLoader
+
+class GPTDataset(Dataset):
+    def __init__(self, txt, tokenizer, max_length, stride):
+        self.input_ids = []
+        self.target_ids = []
+
+        token_ids = tokenizer.encode(txt)
+
+        for i in range(0, len(token_ids) - max_length, stride):
+            input_seq = token_ids[i:i + max_length]
+            target_token = token_ids[i + 1:i + 1 + max_length]
+            self.input_ids.append(torch.tensor(input_seq, dtype=torch.long))
+            self.target_ids.append(torch.tensor(target_token, dtype=torch.long))
+
+    def __len__(self):
+        return len(self.input_ids)
+
+    def __getitem__(self, idx):
+        return self.input_ids[idx], self.target_ids[idx]
+```
+
+以上のコードのように、テキストデータを`stride`ずつずらしながら、`max_length`の長さの入力シーケンスと対応するターゲットシーケンスを作成するデータセットクラスを定義する。
+
+実際に中身がどうなっているのかを見てみよう。
+
+```{python}
+dataset = GPTDataset(raw_text, tokenizer_bpe, max_length=10, stride=1)
+
+for i in range(10):
+    input_seq, target_seq = dataset[i]
+    print(f"Input sequence {i}:", input_seq)
+    print(f"Target sequence {i}:", target_seq)
+    print("Decoded input sequence:", tokenizer_bpe.decode(input_seq.tolist()))
+    print("Decoded target sequence:", tokenizer_bpe.decode(target_seq.tolist()))
+    print("---")
+```
+
+ちなみにGPT-4oのtokenizer使ってみると、こんな感じになる。
+
+```{python}
+tokenizer_4o = tiktoken.encoding_for_model("gpt-4o")
+
+dataset_4o = GPTDataset(raw_text, tokenizer_4o, max_length=10, stride=1)
+
+# 全件だと多すぎるので最初の5件だけ表示
+for i in range(min(5, len(dataset_4o))):
+    input_seq, target_seq = dataset_4o[i]
+    print(f"Input sequence {i}:", input_seq)
+    print(f"Target sequence {i}:", target_seq)
+    print("Decoded input sequence:", tokenizer_4o.decode(input_seq.tolist()))
+    print("Decoded target sequence:", tokenizer_4o.decode(target_seq.tolist()))
+    print("---")
+```
+
+次に、DataLoaderを使ってバッチ処理を行う。
+
+```{python}
+def create_dataloader_v1(txt, batchsize=4, max_length=10, stride=1, shuffle=True, drop_last=True, num_workers=0):
+    tokenizer = tiktoken.get_encoding("gpt2")
+    dataset = GPTDataset(txt, tokenizer, max_length, stride)
+    dataloader = DataLoader(dataset, batch_size=batchsize, shuffle=shuffle, drop_last=drop_last, num_workers=num_workers)
+
+    return dataloader
+```
+
+実際にこれのテストを行う。
+
+```{python}
+dataloader = create_dataloader_v1(raw_text, batchsize=4, max_length=10, stride=1)
+
+data_iter = iter(dataloader)
+inputs, targets = next(data_iter)
+print("Input:", inputs)
+print("Target:", targets)
+```
+
+問題なさそうだ。
+
+### Embedding
+
+実際にembedding層を作ってみる。
+
+```{python}
+input_ids = torch.tensor([2, 3, 1])  # Example token indices
+vocab_size = 5  # Example vocabulary size
+embedding_dim = 3  # Example embedding dimension
+
+embedding_layer = torch.nn.Embedding(num_embeddings=vocab_size, embedding_dim=embedding_dim)
+embedded_vectors = embedding_layer(input_ids)
+print("Input IDs:", input_ids)
+print("Embedded Vectors:\n", embedded_vectors)
+```
+
+ここで何をしているのかをまとめておく。
+
+まず、単語ってのは高い次元の値として扱われていると話した。例えば、GPT-2では単語埋め込みの次元数は768である。つまり、各単語は768次元のベクトルとして表現される。だけどこれを直接扱うのは大変なので、まずは単語をインデックスに変換し、そのインデックスを使ってEmbeddingから対応するベクトルを取得する。
+
+例えば、語彙量が5の場合を考える。また、高次元の値と言ったけど、今はとりあえずランダムな値にする。
+
+| 単語 | インデックス | 埋め込みベクトル (3次元[^1])      |
+|------|--------------|--------------------------|
+| hello| 0            | [0.1, 0.2, 0.3]      |
+| world| 1            | [0.4, 0.5, 0.6]      |
+| this | 2            | [0.7, 0.8, 0.9]      |
+| is   | 3            | [0.2, 0.4, 0.6]      |
+| an   | 4            | [0.3, 0.5, 0.7]      |
+
+ここで、入力として `this is world` という単語列が与えられたとする。この場合、まずはtokenizerで各単語をインデックスに変換し、 `[2, 3, 1]` というインデックス列を得る。
+
+次に、
+
+$$
+\begin{aligned}
+o^{\mathrm{T}} &= 
+\overbrace{
+\begin{pmatrix}
+0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 \\
+0 & 1 & 0 & 0 & 0
+\end{pmatrix}}^{\text{語彙数}}
+\left.\vphantom{\begin{matrix}a\\b\\c\\ \end{matrix}}\right\} \text{入力単語数}　\stackrel{\Delta}{=} \text{one-hot} \\
+E &= 
+\overbrace{\begin{pmatrix}
+0.1 & 0.2 & 0.3 \\
+0.4 & 0.5 & 0.6 \\
+0.7 & 0.8 & 0.9 \\
+0.2 & 0.4 & 0.6 \\
+0.3 & 0.5 & 0.7
+\end{pmatrix}}^{\text{単語の次元数}} 
+\left.\vphantom{\begin{matrix}a\\b\\c\\d\\e\\\end{matrix}}\right\} \text{語彙数} \\
+\end{aligned}
+$$
+
+こんな感じに定義してやれば、
+
+$$
+o^{\mathrm{T}} E =
+\begin{pmatrix}
+0.7 & 0.8 & 0.9 \\
+0.2 & 0.4 & 0.6 \\
+0.4 & 0.5 & 0.6
+\end{pmatrix}
+$$
+
+こんな感じで、各単語に対応する embedding vector を取り出すことができる。
+
+では実際にGPT-2のembedding層を使ってみる。
+
+```{python}
+from transformers import AutoConfig
+
+model_name = "gpt2"
+
+# 1) tokenizer から語彙サイズと token id を取得
+tok = tiktoken.encoding_for_model(model_name)  # gpt2相当
+vocab_size = tok.n_vocab
+sample_input_ids = torch.tensor(tok.encode("Hello, world!"), dtype=torch.long)
+
+# 2) model config から埋め込み次元を取得
+cfg = AutoConfig.from_pretrained(model_name)
+embedding_dim = cfg.n_embd  # GPT-2 smallなら 768
+
+# 3) Embedding作成
+gpt2_embedding = torch.nn.Embedding(
+    num_embeddings=vocab_size,
+    embedding_dim=embedding_dim
+)
+
+# 4) 埋め込みの取得
+embedded_output = gpt2_embedding(sample_input_ids)
+print("Sample Input IDs:", sample_input_ids)
+print("Embedded Output Shape:", embedded_output.shape)
+print("Embedded Output:\n", embedded_output)
+```
+
+これからは実際に、このembedding層を使ってLLMの実装を進めていく。
+
+
+## Attension Mechanismを導入
+
+
+
+
+
+
+
+
+
+
+
+
+[^1]: pytorchではベクトルに $\mathbb{R}^{1 \times d}$ と $\mathbb{R}^{d \times 1}$ に区別はない。
+

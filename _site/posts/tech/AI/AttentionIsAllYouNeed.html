@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Serika Yuzuki">
-<meta name="dcterms.date" content="2023-12-14">
+<meta name="dcterms.date" content="2026-02-06">
 
-<title>数学A – 芹香のブログ：セリポンポン 気軽にコメント残してね！</title>
+<title>Attention Is All You Needを読む話 – 芹香のブログ：セリポンポン 気軽にコメント残してね！</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -32,8 +67,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../posts/収容所配布用/数学/数学B.html" rel="next">
-<link href="../../../posts/univ_lecs/3S/組織生成論.html" rel="prev">
+<link href="../../../posts/tech/AI/BuildLLM.html" rel="next">
+<link href="../../../posts/tech/UbuntuPartitionMissing.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -321,7 +356,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">収容所配布用</li><li class="breadcrumb-item"><a href="../../../posts/収容所配布用/数学/数学A.html">数学</a></li><li class="breadcrumb-item"><a href="../../../posts/収容所配布用/数学/数学A.html">数学A</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">技術関連</li><li class="breadcrumb-item"><a href="../../../posts/tech/ENovelEpubConverter.html">Tech</a></li><li class="breadcrumb-item"><a href="../../../posts/tech/AI/AttentionIsAllYouNeed.html">AI</a></li><li class="breadcrumb-item"><a href="../../../posts/tech/AI/AttentionIsAllYouNeed.html">Attention Is All You Needを読む話</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -333,10 +368,12 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">収容所配布用</li><li class="breadcrumb-item"><a href="../../../posts/収容所配布用/数学/数学A.html">数学</a></li><li class="breadcrumb-item"><a href="../../../posts/収容所配布用/数学/数学A.html">数学A</a></li></ol></nav>
-      <h1 class="title">数学A</h1>
+    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">技術関連</li><li class="breadcrumb-item"><a href="../../../posts/tech/ENovelEpubConverter.html">Tech</a></li><li class="breadcrumb-item"><a href="../../../posts/tech/AI/AttentionIsAllYouNeed.html">AI</a></li><li class="breadcrumb-item"><a href="../../../posts/tech/AI/AttentionIsAllYouNeed.html">Attention Is All You Needを読む話</a></li></ol></nav>
+      <h1 class="title">Attention Is All You Needを読む話</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">Math</div>
+                <div class="quarto-category">pogramming</div>
+                <div class="quarto-category">2026</div>
+                <div class="quarto-category">AI</div>
               </div>
                   </div>
   </div>
@@ -354,7 +391,7 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">December 14, 2023</p>
+        <p class="date">February 6, 2026</p>
       </div>
     </div>
     
@@ -635,16 +672,16 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
  <span class="menu-text">数学</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/収容所配布用/数学/数学A.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../posts/収容所配布用/数学/数学A.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学A</span></a>
   </div>
 </li>
@@ -693,13 +730,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
  <span class="menu-text">Tech</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/tech/ENovelEpubConverter.html" class="sidebar-item-text sidebar-link">
@@ -768,16 +805,16 @@ window.Quarto = {
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
  <span class="menu-text">AI</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth3 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/tech/AI/AttentionIsAllYouNeed.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/tech/AI/AttentionIsAllYouNeed.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Attention Is All You Needを読む話</span></a>
   </div>
 </li>
@@ -844,35 +881,9 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">1</a>
+  <li><a href="#rnn" id="toc-rnn" class="nav-link active" data-scroll-target="#rnn">RNN</a>
   <ul class="collapse">
-  <li><a href="#問題" id="toc-問題" class="nav-link" data-scroll-target="#問題">問題</a></li>
-  <li><a href="#解答" id="toc-解答" class="nav-link" data-scroll-target="#解答">解答</a></li>
-  </ul></li>
-  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">2</a>
-  <ul class="collapse">
-  <li><a href="#問題-1" id="toc-問題-1" class="nav-link" data-scroll-target="#問題-1">問題</a></li>
-  <li><a href="#解答-1" id="toc-解答-1" class="nav-link" data-scroll-target="#解答-1">解答</a></li>
-  </ul></li>
-  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6">3</a>
-  <ul class="collapse">
-  <li><a href="#問題-2" id="toc-問題-2" class="nav-link" data-scroll-target="#問題-2">問題</a></li>
-  <li><a href="#解答-2" id="toc-解答-2" class="nav-link" data-scroll-target="#解答-2">解答</a></li>
-  </ul></li>
-  <li><a href="#section-7" id="toc-section-7" class="nav-link" data-scroll-target="#section-7">2</a>
-  <ul class="collapse">
-  <li><a href="#問題-3" id="toc-問題-3" class="nav-link" data-scroll-target="#問題-3">問題</a></li>
-  <li><a href="#解答-3" id="toc-解答-3" class="nav-link" data-scroll-target="#解答-3">解答</a></li>
-  </ul></li>
-  <li><a href="#section-8" id="toc-section-8" class="nav-link" data-scroll-target="#section-8">3</a>
-  <ul class="collapse">
-  <li><a href="#問題-4" id="toc-問題-4" class="nav-link" data-scroll-target="#問題-4">問題</a></li>
-  <li><a href="#解答-4" id="toc-解答-4" class="nav-link" data-scroll-target="#解答-4">解答</a></li>
-  </ul></li>
-  <li><a href="#section-9" id="toc-section-9" class="nav-link" data-scroll-target="#section-9">3</a>
-  <ul class="collapse">
-  <li><a href="#問題-5" id="toc-問題-5" class="nav-link" data-scroll-target="#問題-5">問題</a></li>
-  <li><a href="#解答-5" id="toc-解答-5" class="nav-link" data-scroll-target="#解答-5">解答</a></li>
+  <li><a href="#rnn-1" id="toc-rnn-1" class="nav-link" data-scroll-target="#rnn-1">RNN</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -885,255 +896,41 @@ window.Quarto = {
 
 
 
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section">1</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>難易度</th>
-<th>所要時間</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>C</td>
-<td>20分</td>
-</tr>
-</tbody>
-</table>
-<section id="問題" class="level3">
-<h3 class="anchored" data-anchor-id="問題">問題</h3>
-<p>次の値の1の桁の数を求めよ。</p>
+<section id="rnn" class="level2">
+<h2 class="anchored" data-anchor-id="rnn">RNN</h2>
+<p>最初にRNNがが昔の覇権を取っていたけど、長期依存関係を捉えるのが苦手で、LSTMやGRUが出てきたけど、それでも限界があったって話をしてる。</p>
+<section id="rnn-1" class="level3">
+<h3 class="anchored" data-anchor-id="rnn-1">RNN</h3>
+<p>これは入力によって逐次状態がアップデートされる状態空間モデル。</p>
 <p><span class="math display">\[
-\left\lfloor \frac{10^{20000}}{10^{100}+3} \right\rfloor
+h_t = \phi(W_{hh} h_{t-1} + W_{xh} x_t + b_h)
 \]</span></p>
-</section>
-<section id="解答" class="level3">
-<h3 class="anchored" data-anchor-id="解答">解答</h3>
-<p><span class="math inline">\(N\)</span> を次のように定義する</p>
-<p><span class="math display">\[
-N=\frac{10^{20000}-(-3)^{200} }{100^{100} - (-3)} = (100^{100})^{199} - 3 \times (100^{100})^{198} + ... - 3^{199}
-\]</span></p>
-<p>となるので、</p>
-<p><span class="math display">\[
-\frac{10^{20000}}{10^{100}+3} = N + \frac{3^{200} }{10^{100} + 3}
-\]</span></p>
-<p>ここで、</p>
-<p><span class="math display">\[
-\frac{3^{200} }{10^{100} + 3} &lt; 1
-\]</span></p>
-<p>なので、</p>
-<p><span class="math display">\[
-\left\lfloor \frac{10^{20000}}{10^{100}+3} \right\rfloor = N
-\]</span></p>
-<p>とわかる。ここで、<span class="math inline">\(N\)</span> を <span class="math inline">\(10\)</span> を法にして考えれば、</p>
-<p><span class="math display">\[
-N \equiv -3^{199} \equiv -27 \times 81 ^{49} \equiv 3
-\]</span></p>
-<p>となり、答えは <span class="math inline">\(3\)</span> となる。</p>
-</section>
-</section>
-<section id="section-1" class="level2">
-<h2 class="anchored" data-anchor-id="section-1">2</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>難易度</th>
-<th>所要時間</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>C</td>
-<td>20分</td>
-</tr>
-</tbody>
-</table>
-<section id="問題-1" class="level3">
-<h3 class="anchored" data-anchor-id="問題-1">問題</h3>
-<section id="section-2" class="level4">
-<h4 class="anchored" data-anchor-id="section-2">1</h4>
-<p>次の連立方程式の解を <span class="math inline">\((x,y)\)</span> として、 <span class="math inline">\(z=x+yi\)</span> とおく。</p>
-<p><span class="math display">\[\begin{eqnarray}
-  \left\{
-    \begin{array}{l}
-      \dfrac{x}{x^2+y^2}=1 \\
-      -\dfrac{y}{x^2+y^2}=1
-    \end{array}
-  \right.
-\end{eqnarray}\]</span></p>
-<p>次の等式を示せ。</p>
-<p><span class="math display">\[
-z^{-1} = 1 + i
-\]</span></p>
-</section>
-<section id="section-3" class="level4">
-<h4 class="anchored" data-anchor-id="section-3">2</h4>
-<p>次の4つの集合を考える。</p>
-<p><span class="math display">\[\begin{align*}
-A &amp;= \left\{ (x,y): x^2 - y^2 = \frac{x}{x^2+y^2} +1 \right\} \\
-B &amp;= \left\{ (x,y): 2xy = -\frac{y}{x^2+y^2} \right\} \\
-C &amp;= \left\{ (x,y): x^3-3xy^2 = 1+x \right\} \\
-D &amp;= \left\{ (x,y): 3x^2y-y^3 = y \right\}
-\end{align*}\]</span></p>
-<p>この時、 <span class="math inline">\(A \cap B = C \cap D\)</span> であることを示せ。</p>
-</section>
-</section>
-<section id="解答-1" class="level3">
-<h3 class="anchored" data-anchor-id="解答-1">解答</h3>
-<section id="section-4" class="level4">
-<h4 class="anchored" data-anchor-id="section-4">1</h4>
-<p><span class="math inline">\(z=x+yi\)</span> として、 <span class="math inline">\(z^{-1} = 1 + i\)</span> を計算すると、実部と虚部がそれぞれ与えられた式になることがわかる。</p>
-</section>
-<section id="section-5" class="level4">
-<h4 class="anchored" data-anchor-id="section-5">2</h4>
-<p><span class="math inline">\(z = x + yi\)</span> としたとき、<span class="math inline">\(A \cap B\)</span> は <span class="math inline">\(z^2 = z^{-1} + 1\)</span> の実部と虚部を表しており、 <span class="math inline">\(C \cap D\)</span> は <span class="math inline">\(z^3 = 1 + z\)</span> の実部と虚部を表している。</p>
-</section>
-</section>
-</section>
-<section id="section-6" class="level2">
-<h2 class="anchored" data-anchor-id="section-6">3</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>難易度</th>
-<th>所要時間</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>B</td>
-<td>20分</td>
-</tr>
-</tbody>
-</table>
-<section id="問題-2" class="level3">
-<h3 class="anchored" data-anchor-id="問題-2">問題</h3>
-<p><span class="math inline">\(A,B,C\)</span> を <span class="math inline">\(xy\)</span> 平面上の点として、それぞれの座標は整数値であるとする。この時、次の不等式が成り立つのは、3点が正方形の頂点であるとき、その時に限ることを示せ。</p>
-<p><span class="math display">\[
-(|AB|+|BC|) ^2 &lt; 8 \cdot [ABC] + 1
-\]</span></p>
-<p>ただし、 <span class="math inline">\(|AB|\)</span> は <span class="math inline">\(A,B\)</span> の距離、 <span class="math inline">\([ABC]\)</span> は <span class="math inline">\(A,B,C\)</span> で張られる三角形の面積を表す。</p>
-</section>
-<section id="解答-2" class="level3">
-<h3 class="anchored" data-anchor-id="解答-2">解答</h3>
-</section>
-</section>
-<section id="section-7" class="level2">
-<h2 class="anchored" data-anchor-id="section-7">2</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>難易度</th>
-<th>所要時間</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>B</td>
-<td>20分</td>
-</tr>
-</tbody>
-</table>
-<section id="問題-3" class="level3">
-<h3 class="anchored" data-anchor-id="問題-3">問題</h3>
-<p>下図のように、お互いの中心が <span class="math inline">\(r\)</span> だけ離れた、半径 <span class="math inline">\(r\)</span> の2つの円がある。</p>
-<div class="quarto-figure quarto-figure-center">
+<p>ここで <span class="math inline">\(h_t\)</span> は <span class="math inline">\(t\)</span> の時点での状態、 <span class="math inline">\(x_t\)</span> は入力、 <span class="math inline">\(\phi\)</span> は活性化関数。活性化関数は <span class="math inline">\(\tanh\)</span> が使われる。<span class="math inline">\(W\)</span> は重み行列、 <span class="math inline">\(b\)</span> はバイアス。</p>
+<div id="d1fb9248" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Show Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tanh(x):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.tanh(x)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">100</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> tanh(x)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Tanh Activation Function"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Input"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Output"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
 <figure class="figure">
-<p><img src="images/A1.png" class="img-fluid figure-img"></p>
-<figcaption>図</figcaption>
+<p><img src="AttentionIsAllYouNeed_files/figure-html/cell-2-output-1.png" width="608" height="449" class="figure-img"></p>
 </figure>
 </div>
-<p>この時、片方の円に、円の中心同士の結ぶ線に対して対称的な位置にある点を <span class="math inline">\(A,B\)</span> とする。また、 <span class="math inline">\(P\)</span> はもう片方の円の周上にあるとするとき、次の不等式を示せ。</p>
-<p><span class="math display">\[
-PA^2 + PB^2 \geq 2r^2
-\]</span></p>
-</section>
-<section id="解答-3" class="level3">
-<h3 class="anchored" data-anchor-id="解答-3">解答</h3>
-<p>右の円の中心を <span class="math inline">\(O\)</span> として、 <span class="math inline">\(AB\)</span> の中点を <span class="math inline">\(C\)</span> とすると、</p>
-<p><span class="math display">\[
-PA^2 + PB^2 = 2PC^2 + 2AC^2 \geq 2OC^2 + 2AC^2 = 2OA^2 = 2r^2
-\]</span></p>
-<p>となる。等号成立条件は <span class="math inline">\(P\)</span> が <span class="math inline">\(O\)</span> である時である。</p>
-</section>
-</section>
-<section id="section-8" class="level2">
-<h2 class="anchored" data-anchor-id="section-8">3</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>難易度</th>
-<th>所要時間</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>A</td>
-<td>15分</td>
-</tr>
-</tbody>
-</table>
-<section id="問題-4" class="level3">
-<h3 class="anchored" data-anchor-id="問題-4">問題</h3>
-<p>100円と50円と10円の硬貨がそれぞれ無限にあるとする。この時、合計が 1,000円になるように硬貨を選ぶ方法は何通りあるか求めよ。ただし、０枚の場合も含むものとする。</p>
-</section>
-<section id="解答-4" class="level3">
-<h3 class="anchored" data-anchor-id="解答-4">解答</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>100円玉の枚数</th>
-<th>方法の数</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>0</td>
-<td>21</td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td>19</td>
-</tr>
-<tr class="odd">
-<td>2</td>
-<td>17</td>
-</tr>
-<tr class="even">
-<td>…</td>
-<td>…</td>
-</tr>
-<tr class="odd">
-<td>10</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-<p>これらを合計すると、121通りとなる。</p>
-</section>
-</section>
-<section id="section-9" class="level2">
-<h2 class="anchored" data-anchor-id="section-9">3</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>難易度</th>
-<th>所要時間</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>A</td>
-<td>20分</td>
-</tr>
-</tbody>
-</table>
-<section id="問題-5" class="level3">
-<h3 class="anchored" data-anchor-id="問題-5">問題</h3>
-</section>
-<section id="解答-5" class="level3">
-<h3 class="anchored" data-anchor-id="解答-5">解答</h3>
+</div>
+</div>
 
 
 </section>
@@ -1587,13 +1384,13 @@ PA^2 + PB^2 = 2PC^2 + 2AC^2 \geq 2OC^2 + 2AC^2 = 2OA^2 = 2r^2
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../posts/univ_lecs/3S/組織生成論.html" class="pagination-link" aria-label="組織生成論">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">組織生成論</span>
+      <a href="../../../posts/tech/UbuntuPartitionMissing.html" class="pagination-link" aria-label="ミスって/boot/efiを消した話">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">ミスって/boot/efiを消した話</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../posts/収容所配布用/数学/数学B.html" class="pagination-link" aria-label="数学B">
-        <span class="nav-page-text">数学B</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../posts/tech/AI/BuildLLM.html" class="pagination-link" aria-label="Build a Large Language Model from Scratchを読む話">
+        <span class="nav-page-text">Build a Large Language Model from Scratchを読む話</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
