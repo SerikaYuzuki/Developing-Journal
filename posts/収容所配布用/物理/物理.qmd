@@ -95,3 +95,122 @@ $$
 (問 2)と同じ鉄芯が入った同じソレノイドを，図 1 のように，その中心が半径 $R$〔$\text{m}$〕の円環を描くように均一に曲げて鉄芯の端を接続した。ソレノイドには電流 $I$〔$\text{A}$〕が流れているとして，以下の問いに答えよ。
 
 (問 3) ソレノイド全体の巻数  $N$ と $H,R,I$ の間に成り立つ関係式を，これらを用いて表せ。
+
+## 2
+
+### 問題
+
+$xy$ 平面上に円形の非伝導体の紐があって、その紐は次のようにチャージされている。
+
+![](images/04.png)
+
+ここで、 $\lambda$ は単位長さあたりの電荷密度である。紐の中心は原点にあって、半径は $R$ である。紐は回転しておらず、電荷は静止しているとする。以下の問いに答えよ。
+
+(問題 1) 原点における電場の大きさを求めよ。
+
+(問題 2) $x, \ y$ 軸と垂直な軸 $z$ 軸を考える。 $z$ 軸上の点 $(0,0,z)$ における電場の大きさを求めよ。さらに、 $z \gg R$ の時の電場の振る舞いを求めよ。
+
+### 解答
+
+(問題 1)
+
+円環上の微小電荷要素は
+$$
+dq = \lambda(\phi)\, R\, d\phi = \lambda_0 R \cos\phi\, d\phi
+$$
+
+中心から各電荷要素までの距離は常に $R$ であるため、微小電場の大きさは
+$$
+dE = \frac{1}{4\pi\varepsilon_0}\frac{dq}{R^2}
+$$
+
+電場の方向は、電荷要素から中心へ向かう方向であり、対称性より **$x$ 軸方向成分のみが残る**。
+
+$x$ 成分は
+$$
+dE_x = dE \cos\phi
+$$
+
+したがって
+$$
+dE_x
+= \frac{1}{4\pi\varepsilon_0}
+\frac{\lambda_0 R \cos\phi\, d\phi}{R^2}\cos\phi
+= \frac{\lambda_0}{4\pi\varepsilon_0 R}\cos^2\phi\, d\phi
+$$
+
+全電場は
+$$
+E
+= \frac{\lambda_0}{4\pi\varepsilon_0 R}
+\int_0^{2\pi}\cos^2\phi\, d\phi
+$$
+
+$$
+\int_0^{2\pi}\cos^2\phi\, d\phi = \pi
+$$
+
+よって
+$$
+\boxed{
+E_{\text{center}}
+= \frac{\lambda_0}{4\varepsilon_0 R}
+}
+$$
+
+(問題 2)
+
+軸上の点から円環上の任意の電荷要素までの距離は
+$$
+r = \sqrt{R^2 + z^2}
+$$
+
+$y$ 軸や $z$ 軸と水平な成分は対称性より足し合わせれば消えるので、 $z$ 軸と垂直な成分のみを考えると
+$$
+dE
+= \frac{1}{4\pi\varepsilon_0}
+\frac{dq}{r^2}\frac{R}{r}
+$$
+
+ここに $dq = \lambda_0 R \cos\phi\, d\phi$ を代入すると
+$$
+dE
+= \frac{1}{4\pi\varepsilon_0}
+\frac{\lambda_0 R^2 \cos\phi}{(R^2+z^2)^{3/2}}\, d\phi
+$$
+
+そしてそのうち、 $x$ 軸と水平な成分は、
+
+$$
+dE_x = dE \cos\phi
+$$
+
+結果として
+$$
+E(z)
+= \frac{\lambda_0 R^2}{4\pi\varepsilon_0 (R^2+z^2)^{3/2}}
+\int_0^{2\pi}\cos^2\phi\, d\phi
+$$
+
+$$
+\int_0^{2\pi}\cos^2\phi\, d\phi = \pi
+$$
+
+よって
+$$
+\boxed{
+E(z)
+= \frac{\lambda_0 R^2}{4\varepsilon_0 (R^2+z^2)^{3/2}}
+}
+$$
+
+$z \gg R$ では
+$$
+(R^2+z^2)^{3/2} \approx z^3
+$$
+
+したがって
+$$
+E(z)
+\approx \frac{\lambda_0 R^2}{4\varepsilon_0 z^2}
+$$
