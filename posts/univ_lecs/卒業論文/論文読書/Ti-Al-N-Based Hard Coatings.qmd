@@ -1,0 +1,942 @@
+---
+title: "Ti-Al-N系硬質コーティング：熱力学的背景・CVD成膜・特性レビュー"
+subtitle: "Uny et al. (2019) IntechOpen 第9章 詳解まとめ"
+author: "まとめ：芹香 / 原著：Florent Uny, Elisabeth Blanquet, Frédéric Schuster, Frédéric Sanchette"
+date: "2026-05-18"
+bibliography: []
+---
+
+```{python}
+#| include: false
+import numpy as np
+from scipy.optimize import brentq
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+```
+
+---
+
+> **出典：** Uny F. et al., "Ti-Al-N-Based Hard Coatings: Thermodynamical Background, CVD Deposition, and Properties. A Review," in *Coatings and Thin-Film Technologies*, IntechOpen, 2018. DOI: [10.5772/intechopen.79747](https://doi.org/10.5772/intechopen.79747)
+
+---
+
+# はじめに：なぜ Ti₁₋ₓAlₓN なのか？
+
+## 硬質コーティングの歴史的発展
+
+硬質コーティングの工業的利用は**1970年代**に始まりました。最初の材料は **TiN（窒化チタン）** で、熱CVDプロセスにより超硬合金（WC）工具に成膜されました。これにより工具寿命が大幅に延びました。
+
+1980年代半ばにはPVD（物理蒸着）技術が導入され、フランスでは1984年にアーク蒸着技術による商業生産が始まりました。その後、多層構造コーティングやTiCN（炭窒化チタン）など、より高性能な材料への進化が続きました。
+
+## TiN から TiAlN へ：なぜアルミニウムを加えるのか？
+
+TiNは優れたコーティングですが、高速加工などの過酷な条件では**熱安定性と酸化抵抗性**が不十分でした。そこで開発されたのが **Ti₁₋ₓAlₓN（チタンアルミニウム窒化物）** です。
+
+| 材料 | 硬さ | 酸化開始温度 | 特徴 |
+|------|------|------------|------|
+| TiN | ~25 GPa | ~500°C | 成熟技術、経済的 |
+| Ti₁₋ₓAlₓN (fcc, x≈0.6) | 30–38 GPa | ~800–900°C | 高硬度、高耐酸化性 |
+| AlN | ~12 GPa (hcp) | >1000°C | 耐酸化性は高いが脆い |
+
+Ti₁₋ₓAlₓN は現在、切削工具・金型コーティングから電子デバイス・光学コーティングまで幅広い産業に利用されています。
+
+---
+
+# 熱力学的背景
+
+## 相安定性の基礎：ギブス自由エネルギー
+
+相の安定性（または準安定性）はギブス自由エネルギー $G$ の濃度 $c$ 依存性により記述されます：
+
+$$
+\frac{\partial^2 G}{\partial c^2} \geq 0 \quad \text{→ 熱力学的に安定（または準安定）}
+$$
+
+$$
+\frac{\partial^2 G}{\partial c^2} < 0 \quad \text{→ 不安定（スピノーダル分解が自発的に起こる）}
+$$
+
+**スピノーダル分解**とは、核生成を必要とせず、濃度の微小な揺らぎが自発的に成長して二相に分離していく現象です。一方、**バイノーダル分解**（核生成・成長機構）は核生成エネルギーが必要です。
+
+```{python}
+#| label: fig-thermodynamics
+#| fig-cap: "TiN-AlN混合系の熱力学。（左）正則溶液モデルによる混合自由エネルギー。（右）スピノーダル線・バイノーダル線から構成される擬二元系準安定相図。"
+
+x = np.linspace(0.001, 0.999, 500)
+R = 8.314
+omega = 50000
+
+def G_mix(x, T):
+    eps = 1e-10
+    return R * T * (x * np.log(x + eps) + (1-x) * np.log(1-x + eps)) + omega * x * (1-x)
+
+temps = [300, 600, 900, 1200, 2000]
+colors_t = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']
+
+fig = make_subplots(rows=1, cols=2,
+                    subplot_titles=('TiN-AlN 混合自由エネルギー<br>(正則溶液モデル, ω = 50 kJ/mol)',
+                                    'TiN-AlN 擬二元系 準安定相図<br>(正則溶液モデルによる計算)'))
+
+# --- Left: G_mix curves ---
+for T, c in zip(temps, colors_t):
+    G = G_mix(x, T) / 1000
+    fig.add_trace(go.Scatter(x=x, y=G, mode='lines', name=f'T = {T} K',
+                             line=dict(color=c, width=2)), row=1, col=1)
+
+fig.add_hline(y=0, line=dict(color='black', width=1, dash='dash'), row=1, col=1)
+fig.add_annotation(x=0.58, y=8, text='スピノーダル域<br>（この「丘」の内部が不安定）',
+                   showarrow=True, arrowhead=2, ax=0, ay=-40,
+                   font=dict(color='#ff7f0e', size=10), row=1, col=1)
+
+# --- Right: Spinodal / Binodal phase diagram ---
+T_arr = np.linspace(100, 5500, 3000)
+spinodal_x1, spinodal_x2, T_spin = [], [], []
+binodal_x1, binodal_x2, T_bin = [], [], []
+
+for T in T_arr:
+    val = R * T / (2 * omega)
+    if val < 0.25:
+        disc = 0.25 - val
+        spinodal_x1.append(0.5 - np.sqrt(disc))
+        spinodal_x2.append(0.5 + np.sqrt(disc))
+        T_spin.append(T / 1000)
+    def dG_dx(xv, T):
+        eps = 1e-10
+        return R * T * (np.log(xv + eps) - np.log(1 - xv + eps)) + omega * (1 - 2*xv)
+    try:
+        xb = brentq(dG_dx, 0.001, 0.499, args=(T,))
+        binodal_x1.append(xb)
+        binodal_x2.append(1 - xb)
+        T_bin.append(T / 1000)
+    except:
+        pass
+
+# Spinodal fill
+fig.add_trace(go.Scatter(
+    x=spinodal_x1 + spinodal_x2[::-1],
+    y=T_spin + T_spin[::-1],
+    fill='toself', fillcolor='rgba(33,150,243,0.2)',
+    line=dict(color='rgba(0,0,0,0)'), name='スピノーダル分解域', showlegend=True), row=1, col=2)
+fig.add_trace(go.Scatter(x=spinodal_x1, y=T_spin, mode='lines',
+                         line=dict(color='blue', width=2.5),
+                         name='スピノーダル線 (∂²G/∂c²=0)'), row=1, col=2)
+fig.add_trace(go.Scatter(x=spinodal_x2, y=T_spin, mode='lines',
+                         line=dict(color='blue', width=2.5), showlegend=False), row=1, col=2)
+
+# Binodal fill
+fig.add_trace(go.Scatter(
+    x=binodal_x1 + binodal_x2[::-1],
+    y=T_bin + T_bin[::-1],
+    fill='toself', fillcolor='rgba(244,67,54,0.08)',
+    line=dict(color='rgba(0,0,0,0)'), name='核生成・成長域'), row=1, col=2)
+fig.add_trace(go.Scatter(x=binodal_x1, y=T_bin, mode='lines',
+                         line=dict(color='red', width=2), name='バイノーダル線'), row=1, col=2)
+fig.add_trace(go.Scatter(x=binodal_x2, y=T_bin, mode='lines',
+                         line=dict(color='red', width=2), showlegend=False), row=1, col=2)
+
+fig.add_hline(y=1.25, line=dict(color='purple', width=2, dash='dot'),
+              annotation_text='安定相 fcc-TiN/hcp-AlN 上限 (~1250°C)',
+              annotation_font=dict(color='purple', size=9), row=1, col=2)
+
+fig.update_xaxes(title_text='AlN モル分率 (x)', range=[0, 1], row=1, col=1)
+fig.update_yaxes(title_text='ΔG_mix [kJ/mol]', row=1, col=1)
+fig.update_xaxes(title_text='AlN モル分率 (x)', range=[0, 1], row=1, col=2)
+fig.update_yaxes(title_text='温度 [×1000 K]', range=[0, 5], row=1, col=2)
+fig.update_layout(height=480, legend=dict(orientation='v', x=1.02),
+                  margin=dict(t=80))
+fig.show()
+```
+
+**重要なポイント：**
+- TiN-AlN系は**全濃度範囲で熱力学的に不安定**（スピノーダル的）
+- 実験で観察される Ti₁₋ₓAlₓN 固溶体は**準安定相**（動力学的に安定化された）
+- スピノーダル分解域は約4000°C以上まで存在する（Mayrhofer et al.の計算）
+
+## Ti-Al-N 三元系
+
+### 安定状態図
+
+Ti-Al-N系の**安定**相は以下の通りです：
+
+- **低温域（～1250°C以下）：** fcc-TiN + hcp-AlN の二相混合 → TiNとAlNは熱力学的に不混和
+- **高温域（1250°C以上）：** ごくわずかにAlがTiN中に溶解可能
+- **その他の三元化合物：** Ti₂AlN（MAX相）、Ti₃AlN、Ti₃Al₂N₂ など
+
+### 準安定状態図
+
+Ti₁₋ₓAlₓN 固溶体が実際に存在できる2つの結晶構造があります：
+
+| 構造 | 別称 | 原型 | 特徴 |
+|------|------|------|------|
+| **fcc固溶体** | B1構造 | NaCl型 | 高硬度・優れた特性→**目標相** |
+| **hcp固溶体** | B4構造 | ウルツ鉱型 | 軟質・特性悪化→**避けるべき相** |
+
+Cremer et al.（1998年）は実験に基づく擬二元系準安定相図を提案し、広く採用されています。
+
+## スピノーダル分解の理論
+
+### Cahn-Hilliard 理論による自由エネルギー変化
+
+スピノーダル分解に伴う自由エネルギー変化 $\Delta G$ は：
+
+$$
+\Delta G = \frac{1}{2}\frac{\partial^2 G}{\partial c^2}(\Delta c)^2 + \frac{K}{\lambda^2}(\Delta c)^2 + \frac{E}{1-\nu}\eta^2 V_m (\Delta c)^2
+$$
+
+| 項 | 意味 |
+|----|------|
+| $\frac{1}{2}\frac{\partial^2 G}{\partial c^2}(\Delta c)^2$ | 化学的駆動力（スピノーダル分解の推進力） |
+| $\frac{K}{\lambda^2}(\Delta c)^2$ | 組成勾配エネルギー（界面生成コスト） |
+| $\frac{E}{1-\nu}\eta^2 V_m (\Delta c)^2$ | 格子ミスフィットによる弾性歪みエネルギー |
+
+```{python}
+#| label: fig-spinodal-energy
+#| fig-cap: "Cahn-Hilliard理論に基づくスピノーダル分解の自由エネルギー変化（左）と焼鈍による相分解の進行（右）。"
+
+lambda_nm = np.linspace(0.2, 50, 500)
+lambda_m  = lambda_nm * 1e-9
+delta_c   = 0.3
+K = 1e-10; E_mod = 300e9; nu = 0.25; eta = 0.04; Vm = 1.2e-5
+
+fig = make_subplots(rows=1, cols=2,
+                    subplot_titles=('スピノーダル分解の自由エネルギー<br>(Cahn-Hilliard理論)',
+                                    '焼鈍による相分解の進行<br>(x≈0.6, PVD Ti₁₋ₓAlₓN)'))
+
+# --- Left: Cahn-Hilliard ---
+styles = [dict(color='#1f77b4', width=2, dash='solid'),
+          dict(color='#ff7f0e', width=2, dash='dash'),
+          dict(color='#2ca02c', width=2, dash='dot')]
+labels_ch = ['弱い不安定性', '中程度', '強い不安定性']
+for d2G, ls, lbl in zip([-3e8, -5e8, -8e8], styles, labels_ch):
+    term1 = 0.5 * d2G * delta_c**2
+    term2 = K / lambda_m**2 * delta_c**2
+    term3 = E_mod / (1 - nu) * eta**2 * Vm * delta_c**2
+    G_total = (term1 + term2 + term3) / 1e6
+    fig.add_trace(go.Scatter(x=lambda_nm, y=G_total, mode='lines',
+                             name=lbl, line=ls), row=1, col=1)
+
+fig.add_hline(y=0, line=dict(color='black', width=1), row=1, col=1)
+fig.add_annotation(x=15, y=-8, text='ΔG < 0 → 分解が自発的に進む',
+                   showarrow=False, font=dict(color='red', size=10), row=1, col=1)
+fig.add_vrect(x0=2, x1=30, fillcolor='red', opacity=0.04,
+              line_width=0, row=1, col=1)
+
+# --- Right: Phase fractions stackplot ---
+T_s = np.linspace(25, 1200, 300)
+fcc_TiAlN = np.where(T_s < 700, 1.0,
+            np.where(T_s < 900, 1.0 - (T_s-700)/200*0.9,
+            np.where(T_s < 1100, 0.1 - (T_s-900)/200*0.1, 0.0)))
+fcc_TiN   = np.where(T_s < 700, 0.0,
+            np.where(T_s < 900, (T_s-700)/200*0.45,
+            np.where(T_s < 1100, 0.45 - (T_s-900)/200*0.05, 0.40)))
+fcc_AlN   = np.where(T_s < 700, 0.0,
+            np.where(T_s < 900, (T_s-700)/200*0.45,
+            np.where(T_s < 1100, 0.45 - (T_s-900)/200*0.45, 0.0)))
+hcp_AlN   = np.where(T_s < 900, 0.0,
+            np.where(T_s < 1100, (T_s-900)/200*0.6, 0.60))
+
+phase_data = [
+    ('fcc-Ti₁₋ₓAlₓN (準安定・目的相)', fcc_TiAlN, 'rgba(33,150,243,0.85)'),
+    ('fcc-TiN',                         fcc_TiN,   'rgba(76,175,80,0.85)'),
+    ('fcc-AlN',                         fcc_AlN,   'rgba(255,193,7,0.85)'),
+    ('hcp-AlN (安定相)',                 hcp_AlN,   'rgba(244,67,54,0.85)'),
+]
+cumulative = np.zeros_like(T_s)
+for name, vals, color in phase_data:
+    fig.add_trace(go.Scatter(
+        x=T_s, y=cumulative + vals,
+        mode='lines', fill='tonexty' if name != phase_data[0][0] else 'tozeroy',
+        fillcolor=color, line=dict(color=color, width=0.5),
+        name=name, stackgroup='phases'), row=1, col=2)
+    cumulative += vals
+
+for xv, txt in [(700, 'スピノーダル<br>分解開始<br>~700°C'), (900, 'hcp-AlN<br>核生成<br>~900°C')]:
+    fig.add_vline(x=xv, line=dict(color='black', width=1.5, dash='dash'), row=1, col=2)
+    fig.add_annotation(x=xv+15, y=0.55, text=txt,
+                       showarrow=False, font=dict(size=9), textangle=90,
+                       xref='x2', yref='y2')
+
+fig.update_xaxes(title_text='組成変動の波長 λ [nm]', range=[0, 30], row=1, col=1)
+fig.update_yaxes(title_text='ΔG [MJ/m³]', range=[-20, 15], row=1, col=1)
+fig.update_xaxes(title_text='焼鈍温度 [°C]', range=[25, 1200], row=1, col=2)
+fig.update_yaxes(title_text='相の体積分率', range=[0, 1], row=1, col=2)
+fig.update_layout(height=480, legend=dict(orientation='v', x=1.02),
+                  margin=dict(t=80))
+fig.show()
+```
+
+### 歪みエネルギーの役割（エイジ硬化への鍵）
+
+**コヒーレント界面**（格子が連続してつながった界面、界面エネルギー 200–500 mJ/m²）が形成されると、歪みエネルギーがスピノーダル分解の駆動力とつりあい、**分解を抑制できる**場合があります。一方、**インコヒーレント界面**（500–1000 mJ/m²）では格子がずれてしまい、強度が低下します。
+
+このコヒーレントなスピノーダル分解が Ti₁₋ₓAlₓN の**エイジ硬化（age-hardening）効果**の根本メカニズムです。
+
+## 熱安定性
+
+メタ安定相である fcc-Ti₁₋ₓAlₓN は、温度上昇とともに以下の順に分解します：
+
+1. **～700°C：** スピノーダル分解開始 → fcc-TiN + fcc-AlN（コヒーレント）
+2. **～800–900°C：** hcp-AlN の核生成と成長
+3. **～1000°C以上：** fcc-TiN + hcp-AlN の安定二相構造へ
+
+> **注目：** Endler et al.（2008年）のLPCVD Ti₁₋ₓAlₓN（x≈0.8）は1200°Cまで分解の兆候が見られなかった。真空下での例外的な安定性の理由は未解明。
+
+Si・Hf・Ta などの添加元素により熱安定性を向上させることができます。
+
+---
+
+# Ti₁₋ₓAlₓN コーティングの成膜
+
+## 結晶構造と Al 含有量の関係
+
+Al含有量（$x = \text{Al}/(\text{Al}+\text{Ti})$ モル比）が増加すると、結晶構造は以下のように変化します：
+
+```{python}
+#| label: fig-structure-map
+#| fig-cap: "各成膜プロセスにおける結晶構造とAl含有量の関係。CVDとPECVDはPVDより高いAl含有量までfcc単相を維持できる。"
+
+processes = ['APCVD (大気圧CVD)', 'PVD (アーク/スパッタ)', 'PECVD (プラズマCVD)', 'LPCVD (低圧CVD)']
+regions = [
+    (0, 0,    0.40, '#2196F3', 'fcc-Ti₁₋ₓAlₓN（高硬度・目的相）'),
+    (0, 0.40, 0.70, '#FF9800', 'fcc + hcp 混在（硬度低下）'),
+    (0, 0.70, 1.00, '#F44336', 'hcp-Ti₁₋ₓAlₓN または hcp-AlN（低硬度）'),
+    (1, 0,    0.67, '#2196F3', None),
+    (1, 0.67, 0.75, '#FF9800', None),
+    (1, 0.75, 1.00, '#F44336', None),
+    (2, 0,    0.91, '#2196F3', None),
+    (2, 0.91, 1.00, '#FF9800', None),
+    (3, 0,    0.90, '#2196F3', None),
+    (3, 0.90, 1.00, '#FF9800', None),
+]
+
+seen = set()
+fig = go.Figure()
+for proc_y, x0, x1, color, legend_name in regions:
+    show = legend_name is not None and legend_name not in seen
+    if show:
+        seen.add(legend_name)
+    fig.add_trace(go.Bar(
+        x=[x1 - x0], y=[processes[proc_y]],
+        base=x0, orientation='h',
+        marker=dict(color=color, opacity=0.85, line=dict(color='white', width=1)),
+        name=legend_name if legend_name else '',
+        showlegend=show,
+        hovertemplate=f'{processes[proc_y]}: x={x0:.2f}–{x1:.2f}<extra></extra>'
+    ))
+
+fig.add_vline(x=0.67, line=dict(color='blue', width=2, dash='dash'),
+              annotation_text='PVD限界 x≈0.67',
+              annotation_font=dict(color='blue', size=10),
+              annotation_position='top right')
+fig.add_vline(x=0.90, line=dict(color='red', width=2, dash='dash'),
+              annotation_text='CVD/PECVD限界 x≈0.90',
+              annotation_font=dict(color='red', size=10),
+              annotation_position='top left')
+
+fig.update_layout(
+    title='成膜プロセスとAl含有量による結晶構造マップ',
+    xaxis=dict(title='Al 含有量 x  [Al/(Al+Ti)]', range=[0, 1.05]),
+    barmode='stack', height=320,
+    legend=dict(orientation='h', y=-0.25),
+    margin=dict(t=60, b=100)
+)
+fig.show()
+```
+
+**CVD・PECVDがPVDより高いAl含有量でfcc相を維持できる理由**（Mayrhofer et al.）：
+- Al原子の格子内配置が均一（Ti-Al 結合が少ない配置）なほどfcc相の溶解度が上がる
+- CVDプロセスでは原子の移動度が適切に制御され、よりランダムな配置が実現する
+
+## PVD（物理蒸着）法
+
+最も広く工業応用されているPVD法は**陰極アーク蒸着（Cathodic Arc Deposition; CAD）**です：
+
+- **特徴：** 高イオン化率（高エネルギーイオン照射）→ 優れた密着性
+- **制限：** マクロドロップレット（大粒子）発生による表面粗さの悪化
+- **fcc限界：** x ≈ 0.67–0.70（PVD全般共通）
+
+マグネトロンスパッタリング（HiPIMSを含む）でも同様の限界があり、HiPIMSでは最大 x = 0.71 の報告があります。
+
+## CVD（化学蒸着）法
+
+### ガス反応と前駆体
+
+CVDでは金属塩化物前駆体が用いられます：
+
+- **TiCl₄**：気化器（バブラー）または液体流量制御で生成
+- **AlCl₃**：Al板にHClを通じてその場（in situ）生成
+
+主要な成膜反応（NH₃使用時）：
+
+$$6\,\text{TiCl}_4 + 8\,\text{NH}_3 \rightarrow 6\,\text{TiN} + 24\,\text{HCl} + \text{N}_2 \tag{1}$$
+
+$$\text{AlCl}_3 + \text{NH}_3 \rightarrow \text{AlN} + 3\,\text{HCl} \tag{2}$$
+
+> **注意：** AlCl₃はTiCl₄より安定（加水分解されにくい）ため、コーティング中のAl含有量を制御するには **AlCl₃/TiCl₄ モル比**が最も重要なパラメータです。
+
+```{python}
+#| label: fig-cvd-process
+#| fig-cap: "CVD成膜プロセスの制御パラメータ。（左）前駆体比とAl含有量。（右）温度・過飽和度による微細構造マップ。"
+
+ratio = np.linspace(0, 10, 200)
+x_LPCVD = 0.95 / (1 + np.exp(-0.55*(ratio - 3.8)))
+x_APCVD = 0.72 / (1 + np.exp(-0.70*(ratio - 5.5)))
+x_PECVD = 0.93 / (1 + np.exp(-0.50*(ratio - 3.2)))
+
+fig = make_subplots(rows=1, cols=2,
+                    subplot_titles=('CVD前駆体比とAl含有量の関係',
+                                    'CVD微細構造マップ<br>(温度・過飽和度依存性)'))
+
+fig.add_trace(go.Scatter(x=ratio, y=x_LPCVD, mode='lines', name='LPCVD',
+                         line=dict(color='red', width=2.5)), row=1, col=1)
+fig.add_trace(go.Scatter(x=ratio, y=x_APCVD, mode='lines', name='APCVD',
+                         line=dict(color='blue', width=2.5)), row=1, col=1)
+fig.add_trace(go.Scatter(x=ratio, y=x_PECVD, mode='lines', name='PECVD',
+                         line=dict(color='green', width=2.5)), row=1, col=1)
+fig.add_trace(go.Scatter(x=[3, 5, 7, 9], y=[0.30, 0.55, 0.78, 0.88],
+                         mode='markers', name='PECVD実験値（模式）',
+                         marker=dict(color='green', size=9, symbol='diamond')),
+              row=1, col=1)
+
+fig.add_hline(y=0.67, line=dict(color='blue', width=1.5, dash='dash'),
+              annotation_text='PVD限界 x≈0.67',
+              annotation_font=dict(color='blue', size=9), row=1, col=1)
+fig.add_hline(y=0.90, line=dict(color='red', width=1.5, dash='dash'),
+              annotation_text='CVD限界 x≈0.90',
+              annotation_font=dict(color='red', size=9), row=1, col=1)
+
+# --- Right: Microstructure zone map (annotation-based) ---
+zone_data = [
+    (0.15, 0.75, 'エピタキシャル<br>単結晶',  '#4CAF50'),
+    (0.50, 0.75, '粗大な柱状晶',            '#2196F3'),
+    (0.80, 0.75, '粗大な等軸晶',            '#2196F3'),
+    (0.15, 0.35, '微細な柱状晶',            '#FF9800'),
+    (0.50, 0.35, 'ナノ結晶',               '#FF9800'),
+    (0.80, 0.35, 'アモルファス',            '#F44336'),
+]
+for xp, yp, txt, bg in zone_data:
+    fig.add_annotation(x=xp, y=yp, text=txt, showarrow=False,
+                       font=dict(color='white', size=11),
+                       bgcolor=bg, opacity=0.9, borderpad=6,
+                       xref='x2', yref='y2')
+
+# Arrows for axes
+fig.add_annotation(x=0.95, y=0.5, ax=0.05, ay=0.5,
+                   xref='x2', yref='y2', axref='x2', ayref='y2',
+                   showarrow=True, arrowhead=2, arrowsize=1.5,
+                   text='過飽和度（部分圧）↑', font=dict(size=10))
+fig.add_annotation(x=0.5, y=0.95, ax=0.5, ay=0.05,
+                   xref='x2', yref='y2', axref='x2', ayref='y2',
+                   showarrow=True, arrowhead=2, arrowsize=1.5,
+                   text='堆積温度↑', font=dict(size=10), textangle=-90)
+
+fig.update_xaxes(title_text='AlCl₃/TiCl₄ モル比', range=[0, 10], row=1, col=1)
+fig.update_yaxes(title_text='Al 含有量 x', range=[0, 1.0], row=1, col=1)
+fig.update_xaxes(range=[0, 1], showticklabels=False, row=1, col=2)
+fig.update_yaxes(range=[0, 1], showticklabels=False, row=1, col=2)
+fig.update_layout(height=480, legend=dict(x=1.02),
+                  margin=dict(t=80))
+fig.show()
+```
+
+### CVD法の種類と特徴
+
+| プロセス | 圧力 | 温度 | Al最大含有量 | 特徴 |
+|---------|------|------|------------|------|
+| **APCVD** | 大気圧 | 700–900°C | x ≈ 0.4 | 工業的に簡便 |
+| **LPCVD** | 10 Pa以下 | 600–1000°C | x ≈ 0.9 | 均一性が高い |
+| **PECVD** | 150 Pa前後 | 500–600°C | x ≈ 0.91 | 低温成膜、プラズマ活性化 |
+| **MOCVD** | 様々 | 低温可 | 報告少 | 有機金属前駆体使用 |
+
+**低温・高部分圧・低全圧**の組み合わせが fcc-Ti₁₋ₓAlₓN 準安定相の安定化に重要です（表面での原子移動度を制限するため）。
+
+### 微細構造と形態
+
+- **低Al含有量（x < 0.2）：** 微細な柱状組織
+- **中程度（0.2 < x < 0.67 PVD）：** 柱状晶（Van der Drift モデルによる競合成長）
+- **高Al含有量：** 粒状・非晶質組織
+- **特殊構造（x > 0.7 LPCVD）：** fcc/hcp ナノラメラ複合体
+
+> **最新知見：** Ti₀.₁₈Al₀.₈₂N では特殊な「立方体型」ナノ構造が報告されており、Ti-rich/Al-rich fcc-Ti₁₋ₓAlₓN のコヒーレントナノラメラから構成されます。
+
+---
+
+# コーティングの特性
+
+## 機械的特性
+
+### 硬さとAl含有量の関係
+
+硬さはコーティングの耐摩耗性向上に最も重要な特性です。主要な硬化メカニズム：
+
+1. **固溶硬化（Solid Solution Hardening）：** Ti位置にAlが置換されると格子歪みが生じ、転位運動が妨げられる
+2. **粒径硬化（Hall-Petch則）：** ナノ結晶化により硬さが増加
+3. **残留応力：** 圧縮応力は硬さを向上させる場合がある
+
+```{python}
+#| label: fig-hardness
+#| fig-cap: "（左）各成膜法によるAl含有量と硬さの関係。（右）Hall-Petch則による粒径と硬さの関係。"
+
+hardness_data = {
+    'Chen 2012 (マグネトロン)': {
+        'x': [0, 0.62, 0.67, 0.75], 'H': [22.8, 31.3, 27.2, 22.9],
+        'struct': ['fcc', 'fcc', 'fcc/hcp', 'hcp'], 'color': '#1f77b4'},
+    'Hörling 2005 (アーク蒸着)': {
+        'x': [0, 0.66, 0.74], 'H': [28.5, 32.6, 32.3],
+        'struct': ['fcc', 'fcc', 'fcc/hcp'], 'color': '#d62728'},
+    'Ikeda 1991 (陰極アーク)': {
+        'x': [0, 0.6, 0.85], 'H': [20, 30, 18.6],
+        'struct': ['fcc', 'fcc', 'hcp'], 'color': '#2ca02c'},
+    'Shum 2004 (マグネトロン)': {
+        'x': [0, 0.41, 0.48, 1.0], 'H': [23, 31.4, 28.5, 13.8],
+        'struct': ['fcc', 'fcc', 'fcc/hcp', 'hcp'], 'color': '#9467bd'},
+    'Endler 2008 (LPCVD)': {
+        'x': [0.82, 0.9], 'H': [29.2, 32.4],
+        'struct': ['fcc', 'fcc'], 'color': '#e377c2'},
+    'Prange 2000 (PECVD)': {
+        'x': [0.02, 0.83], 'H': [23.5, 38.7],
+        'struct': ['fcc', 'fcc'], 'color': '#ff7f0e'},
+}
+
+fig = make_subplots(rows=1, cols=2,
+                    subplot_titles=('Al含有量と硬さの関係<br>(PVD・CVD・PECVD各種データ)',
+                                    'Hall-Petch則による粒径と硬さの関係<br>H = H₀ + k/√d'))
+
+for name, d in hardness_data.items():
+    fig.add_trace(go.Scatter(x=d['x'], y=d['H'], mode='lines+markers',
+                             name=name, line=dict(color=d['color'], width=1.5),
+                             marker=dict(color=d['color'], size=9,
+                                         symbol=['circle' if s=='fcc' else 'square-open'
+                                                 for s in d['struct']])),
+                  row=1, col=1)
+
+fig.add_vrect(x0=0.65, x1=0.75, fillcolor='orange', opacity=0.12,
+              line_width=0, row=1, col=1)
+fig.add_annotation(x=0.70, y=39, text='fcc→hcp<br>転移域',
+                   showarrow=False, font=dict(color='#FF6F00', size=9), row=1, col=1)
+fig.add_hline(y=25, line=dict(color='gray', dash='dot', width=1),
+              annotation_text='TiN基準 (25 GPa)',
+              annotation_font=dict(color='gray', size=9), row=1, col=1)
+
+# Hall-Petch
+d_nm = np.linspace(1, 200, 300)
+for H0, k, name_hp, color_hp in [(15, 40, 'TiN (H₀=15, k=40)', 'blue'),
+                                   (20, 55, 'Ti₀.₄Al₀.₆N (H₀=20, k=55)', 'red')]:
+    H_hp = H0 + k / np.sqrt(d_nm)
+    fig.add_trace(go.Scatter(x=d_nm, y=H_hp, mode='lines',
+                             name=name_hp, line=dict(color=color_hp, width=2.5)),
+                  row=1, col=2)
+
+fig.add_vrect(x0=5, x1=30, fillcolor='green', opacity=0.10,
+              line_width=0, row=1, col=2)
+fig.add_annotation(x=12, y=52, text='ナノ結晶領域<br>(5–30 nm)',
+                   showarrow=False, font=dict(color='green', size=9), row=1, col=2)
+
+fig.update_xaxes(title_text='Al 含有量 x  [Al/(Al+Ti)]', range=[-0.02, 1.02], row=1, col=1)
+fig.update_yaxes(title_text='硬さ [GPa]', range=[8, 45], row=1, col=1)
+fig.update_xaxes(title_text='結晶粒径 d [nm]', type='log', range=[0, np.log10(200)], row=1, col=2)
+fig.update_yaxes(title_text='硬さ H [GPa]', range=[10, 60], row=1, col=2)
+fig.update_layout(height=480, legend=dict(x=1.02), margin=dict(t=80))
+fig.show()
+```
+
+**観察された硬さの代表値（fcc単相）：**
+
+| プロセス | Al含有量 x | 硬さ [GPa] |
+|---------|-----------|-----------|
+| PVD（アーク蒸着） | 0.60–0.67 | 28–33 |
+| LPCVD | 0.82–0.90 | 29–32 |
+| PECVD | 0.83 | 38.7 |
+| PECVD（biphased nanocomposite） | 0.91 | ~49 |
+
+### エイジ硬化効果（Age-Hardening Effect）
+
+TiNは400°C以上で回復・再結晶により急激に硬さが低下しますが、Ti₁₋ₓAlₓN はコヒーレントなスピノーダル分解により**高温で一時的に硬さが増加**します（エイジ硬化）。
+
+```{python}
+#| label: fig-age-hardening
+#| fig-cap: "エイジ硬化効果。（左）焼鈍温度とAl含有量の依存性。（右）各プロセス・組成の使用温度依存性比較。"
+
+fig = make_subplots(rows=1, cols=2,
+                    subplot_titles=('エイジ硬化効果：焼鈍温度とAl含有量依存性<br>(Chen et al. 2012より模式化)',
+                                    '使用温度と硬さの変化<br>(プロセス・組成比較)'))
+
+data_ah = {
+    'x=0 (TiN)':         ([25,400,600,800,1000,1100], [22.8,21,17,13,8,6],   '#888888', 'dash'),
+    'x=0.40 (fcc)':      ([25,400,600,700,800,900,1000,1100], [26,27,30,31,30,25,17,11], '#1f77b4', 'solid'),
+    'x=0.55 (fcc)':      ([25,400,600,700,800,900,1000,1100], [30,31,33,33.5,30,24,16,10], '#2ca02c', 'solid'),
+    'x=0.62 (fcc)':      ([25,400,600,700,800,900,1000,1100], [31.3,32,34,33,30,23,15,9], '#d62728', 'solid'),
+    'x=0.67 (fcc/hcp)':  ([25,400,700,800,900,1000], [27.2,28,31,29,24,16],  '#ff7f0e', 'solid'),
+}
+
+for name, (T, H, c, dash) in data_ah.items():
+    fig.add_trace(go.Scatter(x=T, y=H, mode='lines+markers', name=name,
+                             line=dict(color=c, width=2, dash=dash),
+                             marker=dict(size=7)), row=1, col=1)
+
+fig.add_vrect(x0=650, x1=900, fillcolor='red', opacity=0.08,
+              line_width=0, row=1, col=1)
+fig.add_annotation(x=775, y=37, text='スピノーダル<br>分解温度域',
+                   showarrow=False, font=dict(color='red', size=9), row=1, col=1)
+fig.add_hline(y=25, line=dict(color='gray', dash='dot', width=1),
+              annotation_text='TiN出発値', annotation_font=dict(size=9), row=1, col=1)
+
+T_field = [25, 200, 400, 600, 800, 1000]
+inservice = {
+    'TiN':                      ([25,22,16,10,7,5],   'black', 'dash'),
+    'Ti₀.₆Al₀.₄N (PVD)':       ([28,29,31,33,31,22], 'blue',  'solid'),
+    'Ti₀.₄Al₀.₆N (PVD, 最適)': ([31,32,33,35,32,20], 'red',   'solid'),
+    'Ti₀.₁Al₀.₉N (LPCVD)':     ([32,33,34,36,34,28], 'green', 'solid'),
+}
+for name, (H, c, dash) in inservice.items():
+    fig.add_trace(go.Scatter(x=T_field, y=H, mode='lines+markers', name=name,
+                             line=dict(color=c, width=2, dash=dash),
+                             marker=dict(size=8)), row=1, col=2)
+
+fig.add_annotation(x=800, y=36, text='エイジ硬化<br>ピーク', showarrow=True,
+                   ax=-60, ay=-30, arrowhead=2, font=dict(color='red', size=9),
+                   xref='x2', yref='y2')
+
+fig.update_xaxes(title_text='焼鈍温度 [°C]', range=[0, 1100], row=1, col=1)
+fig.update_yaxes(title_text='硬さ [GPa]', range=[5, 40], row=1, col=1)
+fig.update_xaxes(title_text='使用温度（焼鈍温度）[°C]', row=1, col=2)
+fig.update_yaxes(title_text='硬さ [GPa]', row=1, col=2)
+fig.update_layout(height=480, legend=dict(x=1.02), margin=dict(t=80))
+fig.show()
+```
+
+**Al含有量とエイジ硬化ピーク温度の関係：**
+
+- Al含有量が高いほど（溶解限界に近いほど）→ **脱混合エネルギーが大きい** → **低温でスピノーダル分解が始まる**
+- つまり、**Al-rich なコーティングほどエイジ硬化は早く起こる**
+
+### 残留応力
+
+残留応力は2成分に分解されます：
+
+$$\sigma_{\text{total}} = \sigma_{\text{thermal}} + \sigma_{\text{intrinsic}}$$
+
+- **熱応力：** 基板とコーティングの熱膨張係数差に起因
+- **固有応力：** プロセスパラメータと形態に依存
+
+**PVD vs CVD の比較：**
+
+| プロセス | 典型的残留応力 | 起源 |
+|---------|-------------|------|
+| PVD（アーク蒸着） | −1 〜 −5 GPa（圧縮） | イオンピーニング（原子衝撃による局所圧縮） |
+| LPCVD | −0.45 〜 −1 GPa 以下 | 熱応力主体 |
+
+**バイアス電圧と残留応力**（Ahlgren et al.）：
+- −40 V → −1.69 GPa
+- −200 V → −5.59 GPa（> 5 GPa で剥離リスク）
+
+## 酸化抵抗性
+
+### 酸化メカニズム
+
+Ti₁₋ₓAlₓN コーティングの酸化抵抗性は、**密な Al₂O₃ 拡散バリア層**の形成に起因します：
+
+1. **初期段階（低温、<600°C）：** N 原子が O 原子に置換 → (Ti,Al)NₓOᵧ 酸窒化物形成
+2. **中間段階：** Al₂O₃ 上層 + (Ti₀.₉Al₀.₁)Oₓ 下層の形成
+3. **高温段階（>800°C）：** Al の外向き拡散 + O の内向き拡散 → Al₂O₃ 保護層成長
+4. **酸化進行：** Al₂O₃ 層にクラック → r-TiO₂ 形成 → 多孔質劣化層
+
+```{python}
+#| label: fig-oxidation
+#| fig-cap: "Ti₁₋ₓAlₓN の酸化挙動。（左）Al含有量と酸化開始温度。（右）温度・Al含有量による酸化挙動マップ。"
+
+x_ox  = [0, 0.2, 0.4, 0.55, 0.65, 0.70, 0.75, 0.82, 0.90]
+T_ox  = [500, 560, 650, 730, 820, 740, 700, 900, 950]
+structs_ox = ['fcc','fcc','fcc','fcc','fcc','fcc/hcp','hcp','fcc(CVD)','fcc(CVD)']
+color_map_ox = {'fcc':'#2196F3','fcc/hcp':'#FF9800','hcp':'#F44336','fcc(CVD)':'#4CAF50'}
+
+fig = make_subplots(rows=1, cols=2,
+                    subplot_titles=('Al含有量と酸化開始温度<br>(各種Ti₁₋ₓAlₓNコーティング)',
+                                    'Ti₁₋ₓAlₓN 酸化挙動マップ<br>(Vaz et al. データを基に模式化)'))
+
+# Left: scatter + lines colored by structure
+seen_struct = set()
+for i in range(len(x_ox) - 1):
+    fig.add_trace(go.Scatter(x=x_ox[i:i+2], y=T_ox[i:i+2], mode='lines',
+                             line=dict(color=color_map_ox[structs_ox[i]], width=2.5),
+                             showlegend=False), row=1, col=1)
+
+for s in ['fcc', 'fcc/hcp', 'hcp', 'fcc(CVD)']:
+    xi = [x_ox[j] for j in range(len(x_ox)) if structs_ox[j] == s]
+    yi = [T_ox[j] for j in range(len(x_ox)) if structs_ox[j] == s]
+    lbl = {'fcc': 'fcc-Ti₁₋ₓAlₓN (PVD)',
+           'fcc/hcp': 'fcc/hcp 混在',
+           'hcp': 'hcp-Ti₁₋ₓAlₓN',
+           'fcc(CVD)': 'fcc-Ti₁₋ₓAlₓN (CVD/PECVD)'}[s]
+    fig.add_trace(go.Scatter(x=xi, y=yi, mode='markers', name=lbl,
+                             marker=dict(color=color_map_ox[s], size=10,
+                                         line=dict(color='black', width=0.8))),
+                  row=1, col=1)
+
+fig.add_hline(y=500, line=dict(color='gray', dash='dot', width=1.5),
+              annotation_text='TiN 酸化開始温度 (~500°C)',
+              annotation_font=dict(color='gray', size=9), row=1, col=1)
+
+# Right: Heatmap of oxidation behavior zones
+x_map = np.linspace(0, 1, 80)
+T_map = np.linspace(400, 1000, 80)
+zone = np.zeros((len(T_map), len(x_map)))
+for i, t in enumerate(T_map):
+    for j, xv in enumerate(x_map):
+        if t < 600:
+            zone[i, j] = 0
+        elif xv < 0.3:
+            zone[i, j] = 1
+        elif xv <= 0.65:
+            zone[i, j] = 2
+        elif xv > 0.65 and t > 700:
+            zone[i, j] = 3
+        else:
+            zone[i, j] = 0
+
+colorscale_ox = [
+    [0.00, '#BBDEFB'], [0.33, '#BBDEFB'],
+    [0.33, '#EF9A9A'], [0.50, '#EF9A9A'],
+    [0.50, '#C8E6C9'], [0.75, '#C8E6C9'],
+    [0.75, '#1B5E20'], [1.00, '#1B5E20'],
+]
+fig.add_trace(go.Heatmap(z=zone, x=x_map, y=T_map,
+                          colorscale=colorscale_ox, showscale=False,
+                          zmin=0, zmax=3, opacity=0.80), row=1, col=2)
+
+zone_labels = [
+    (0.15, 500, '(Ti,Al)NₓOᵧ<br>（酸窒化物のみ）', 'black'),
+    (0.15, 800, 'TiO₂ + Al₂O₃<br>（劣化）',         'black'),
+    (0.47, 800, '密なAl₂O₃<br>+ Ti-Al-O',           'black'),
+    (0.82, 850, '優れたAl₂O₃<br>保護層',             'white'),
+]
+for xp, yp, txt, fc in zone_labels:
+    fig.add_annotation(x=xp, y=yp, text=txt, showarrow=False,
+                       font=dict(size=9, color=fc),
+                       bgcolor=('rgba(27,94,32,0.85)' if fc=='white' else 'rgba(255,255,255,0.75)'),
+                       borderpad=4, xref='x2', yref='y2')
+
+fig.update_xaxes(title_text='Al 含有量 x  [Al/(Al+Ti)]', range=[-0.02, 1.0], row=1, col=1)
+fig.update_yaxes(title_text='酸化開始温度 [°C]', range=[400, 1000], row=1, col=1)
+fig.update_xaxes(title_text='Al 含有量 x', row=1, col=2)
+fig.update_yaxes(title_text='酸化温度 [°C]', row=1, col=2)
+fig.update_layout(height=480, legend=dict(x=1.02), margin=dict(t=80))
+fig.show()
+```
+
+**Al含有量と酸化抵抗性：**
+
+- fcc 単相域（x < 0.65–0.67）：Al 含有量増加 → 酸化層厚さ減少 → **優れた酸化抵抗性**
+- fcc/hcp 混在域：酸化抵抗性**低下**
+- hcp 単相域：一般的に最悪（ただし例外あり）
+- **CVD・PECVD fcc（x > 0.7）：** PVD より高い酸化抵抗性（Al₂O₃ 保護層がより安定）
+
+## 摩耗抵抗性
+
+### 摩耗のメカニズム
+
+工具の摩耗は3段階で進行します（Harris et al. 2003）：
+
+1. **初期段階：** 粗さによる研磨摩耗 → 高摩擦係数・高摩耗速度
+2. **定常段階：** 凝着摩耗 + 研磨摩耗（三体摩耗）→ 摩耗がゆっくり増加
+3. **破壊段階：** 高摩耗速度 → 工具破損
+
+```{python}
+#| label: fig-wear
+#| fig-cap: "摩耗特性の解析。（左）温度と摩耗トラック深さ。（右）塑性指数（耐クラック指標）H³/E*²。"
+
+T_wear = [25, 200, 400, 600, 800]
+wear_data = {
+    'TiN（比較参照）':    ([1.8,2.0,2.5,3.0,3.5], 'black', 'dash'),
+    'x=0.4 (fcc単相)':   ([1.0,0.95,0.85,0.40,0.45], '#1f77b4', 'solid'),
+    'x=0.58 (fcc+hcp)':  ([1.3,1.2,1.0,0.50,0.55], 'orange', 'solid'),
+    'x=0.7 (hcp単相)':   ([1.6,1.5,1.3,0.55,0.65], '#d62728', 'solid'),
+}
+
+fig = make_subplots(rows=1, cols=2,
+                    subplot_titles=('温度と摩耗トラック深さ<br>(Ohnuma et al. データを基に模式化)',
+                                    '塑性指数（耐クラック・耐エロージョン指標）<br>H³/E*²'))
+
+for name, (depth, c, dash) in wear_data.items():
+    fig.add_trace(go.Scatter(x=T_wear, y=depth, mode='lines+markers', name=name,
+                             line=dict(color=c, width=2, dash=dash),
+                             marker=dict(size=9)), row=1, col=1)
+
+fig.add_vrect(x0=550, x1=650, fillcolor='green', opacity=0.12,
+              line_width=0, row=1, col=1)
+fig.add_annotation(x=600, y=0.25, text='Al₂O₃保護層<br>形成による摩耗改善',
+                   showarrow=True, ax=0, ay=-40, arrowhead=2,
+                   font=dict(color='green', size=9), xref='x', yref='y')
+
+# Plasticity index
+E_star = np.linspace(150, 650, 300)
+pi_colors = ['#78909C', '#1565C0', '#2E7D32', '#C62828', '#6A1B9A']
+for H_val, c in zip([20, 25, 30, 35, 38], pi_colors):
+    PI = H_val**3 / E_star**2
+    fig.add_trace(go.Scatter(x=E_star, y=PI, mode='lines', name=f'H = {H_val} GPa',
+                             line=dict(color=c, width=2)), row=1, col=2)
+
+fig.add_hline(y=0.1, line=dict(color='black', dash='dash', width=2),
+              annotation_text='良好な耐摩耗性の目安 (H³/E*² > 0.1)',
+              annotation_font=dict(size=9), row=1, col=2)
+fig.add_hrect(y0=0.1, y1=3, fillcolor='green', opacity=0.04,
+              line_width=0, row=1, col=2)
+
+mat_points = [
+    ('TiN (典型)',        250, 25, 'blue',   'diamond'),
+    ('Ti₀.₄Al₀.₆N (PVD)', 350, 31, 'red',    'square'),
+    ('TiAlN (PECVD高Al)', 380, 38.7,'purple', 'star'),
+]
+for label, E, H, c, sym in mat_points:
+    PI_pt = H**3 / E**2
+    fig.add_trace(go.Scatter(x=[E], y=[PI_pt], mode='markers+text',
+                             name=label, text=[f'{label}<br>({PI_pt:.2f})'],
+                             textposition='top right', textfont=dict(size=8, color=c),
+                             marker=dict(color=c, size=11, symbol=sym)), row=1, col=2)
+
+fig.update_xaxes(title_text='試験温度 [°C]', row=1, col=1)
+fig.update_yaxes(title_text='摩耗トラック深さ [相対値]', row=1, col=1)
+fig.update_xaxes(title_text='有効ヤング率 E* = E/(1-ν²) [GPa]', row=1, col=2)
+fig.update_yaxes(title_text='塑性指数 H³/E*² [GPa]', range=[0, 3], row=1, col=2)
+fig.update_layout(height=480, legend=dict(x=1.02), margin=dict(t=80))
+fig.show()
+```
+
+### 摩擦係数（COF）
+
+- TiN vs M2鋼（アーク蒸着）：COF ≈ 1.4（高い）
+- Ti₁₋ₓAlₓN（x > 0.5）：COF ≈ 0.5（中程度、安定）
+- 温度依存性は不明確（高温での Al₂O₃ 形成による影響が複雑）
+
+### 工具寿命と Al 含有量の最適化
+
+```{python}
+#| label: fig-tool-life
+#| fig-cap: "Al含有量と工具寿命の関係（Hörling et al. 2005のデータを基に模式化）。x≈0.66でピーク、それ以上はhcp相出現で低下。"
+
+x_vals = [0, 0.2, 0.4, 0.5, 0.55, 0.60, 0.65, 0.67, 0.70, 0.74, 0.80]
+life   = [0.3, 0.4, 0.65, 0.78, 0.85, 0.95, 1.0, 0.95, 0.75, 0.45, 0.25]
+bar_colors = ['#2196F3']*7 + ['#FF9800']*2 + ['#F44336']*2
+
+fig = go.Figure()
+
+fig.add_trace(go.Bar(x=x_vals, y=life, width=0.04, marker=dict(color=bar_colors, opacity=0.85),
+                     name='構造別工具寿命',
+                     customdata=(['fcc']*7 + ['fcc/hcp']*2 + ['hcp']*2),
+                     hovertemplate='x=%{x:.2f}<br>寿命=%{y:.2f}<br>構造=%{customdata}<extra></extra>'))
+fig.add_trace(go.Scatter(x=x_vals, y=life, mode='lines+markers', name='工具寿命（相対値）',
+                          line=dict(color='black', width=2), marker=dict(size=6)))
+
+fig.add_vline(x=0.66, line=dict(color='purple', dash='dash', width=2),
+              annotation_text='最適Al含有量 x≈0.66 (最長工具寿命)',
+              annotation_font=dict(color='purple', size=10))
+fig.add_vrect(x0=0.67, x1=0.78, fillcolor='orange', opacity=0.13, line_width=0)
+fig.add_annotation(x=0.725, y=0.88, text='fcc/hcp<br>混在域',
+                   showarrow=False, font=dict(color='#E65100', size=10))
+
+# Legend patches via invisible scatter
+for color, label in [('#2196F3', 'fcc-Ti₁₋ₓAlₓN（高硬度・高耐酸化性）'),
+                      ('#FF9800', 'fcc/hcp 混在（劣化）'),
+                      ('#F44336', 'hcp-Ti₁₋ₓAlₓN（軟質）')]:
+    fig.add_trace(go.Scatter(x=[None], y=[None], mode='markers',
+                             marker=dict(color=color, size=12, symbol='square'),
+                             name=label))
+
+fig.update_layout(
+    title='Al含有量と工具寿命の関係<br>(Hörling et al. 2005より模式化)',
+    xaxis=dict(title='Al 含有量 x  [Al/(Al+Ti)]', range=[-0.05, 0.85]),
+    yaxis=dict(title='工具寿命（相対値）', range=[0, 1.18]),
+    height=450, legend=dict(x=0.01, y=0.99),
+    margin=dict(t=80)
+)
+fig.show()
+```
+
+**重要な関係性（PVD の場合）：**
+- x < 0.66 → 硬さと酸化抵抗性が増加 → **工具寿命延長**
+- x ≈ 0.66 → **工具寿命ピーク**
+- x > 0.66 → hcp 相の出現 → 硬さと酸化抵抗性の低下 → **工具寿命急落**
+
+---
+
+# 各種特性の総合比較
+
+```{python}
+#| label: fig-summary-radar
+#| fig-cap: "Ti₁₋ₓAlₓN の各成膜プロセスと組成による特性レーダーチャート（主観的スコア）。"
+
+categories = ['硬さ', '酸化抵抗性', '熱安定性', '低残留応力', '成膜容易さ', 'Al最大含有量']
+
+radar_data = {
+    'TiN (参照)':             ([5, 3, 3, 6, 9, 1],   'gray'),
+    'Ti₀.₅Al₀.₅N (PVD)':     ([8, 7, 7, 5, 7, 5],   '#1f77b4'),
+    'Ti₀.₄Al₀.₆N (PVD最適)': ([9, 8.5, 8, 4.5, 6, 6.7], '#d62728'),
+    'Ti₀.₁Al₀.₉N (LPCVD)':   ([8.5, 9, 9, 8, 5, 9], '#2ca02c'),
+    'Ti₀.₁Al₀.₉N (PECVD)':   ([9.5, 9, 8.5, 6, 5, 9.1], '#9467bd'),
+}
+
+fig = go.Figure()
+for name, (vals, color) in radar_data.items():
+    fig.add_trace(go.Scatterpolar(
+        r=vals + [vals[0]],
+        theta=categories + [categories[0]],
+        fill='toself', fillcolor=color,
+        opacity=0.18,
+        line=dict(color=color, width=2),
+        name=name
+    ))
+
+fig.update_layout(
+    polar=dict(
+        radialaxis=dict(visible=True, range=[0, 10],
+                        tickvals=[2, 4, 6, 8, 10]),
+        angularaxis=dict(tickfont=dict(size=12))
+    ),
+    title=dict(text='Ti₁₋ₓAlₓN 各プロセス・組成の特性比較<br>(レーダーチャート、主観的スコア)',
+               font=dict(size=14)),
+    showlegend=True,
+    legend=dict(x=1.05, y=0.5),
+    height=520,
+    margin=dict(t=80, r=180)
+)
+fig.show()
+```
+
+---
+
+# まとめ
+
+## 要点の整理
+
+本章では Ti₁₋ₓAlₓN 系硬質コーティングについて以下の観点からレビューしました：
+
+**熱力学的背景：**
+Ti-Al-N系はスピノーダル的性質を持ち、Ti₁₋ₓAlₓN固溶体は**全温度域で熱力学的に不安定**。準安定な fcc 固溶体は成膜動力学により安定化される。コヒーレントなスピノーダル分解（fcc-TiN + fcc-AlN 二相）により**エイジ硬化効果**が生じる。
+
+**成膜プロセス：**
+- PVD では x ≈ 0.67 が fcc 単相の上限
+- LPCVD・PECVD では x ≈ 0.9 まで fcc 単相を維持可能（Al原子配置の均一性が高いため）
+- **低温・高部分圧・低全圧**が fcc 準安定相の安定化に有効
+
+**主要特性（fcc 単相域 x ≈ 0.6–0.7）：**
+
+| 特性 | 代表値 | TiNとの比較 |
+|------|-------|-----------|
+| 硬さ | 28–38 GPa | TiN（25 GPa）より高い |
+| 酸化開始温度 | 800–900°C | TiN（500°C）より大幅に高い |
+| エイジ硬化ピーク | ~800°C | TiN は 400°C 以上で急激に低下 |
+| 工具寿命 | x≈0.66 で最長 | 少量の Al 添加でも劇的改善 |
+
+**今後の方向性：**
+Si・Hf・Ta などの第三元素添加によるさらなる特性向上、ナノコンポジット構造（fcc/hcp ナノラメラ、36–49 GPa 超高硬度）の最適化が進んでいます。
+
+## 一言でいうと
+
+> **Ti₁₋ₓAlₓN は「準安定だからこそ優れた材料」である。熱力学的に不安定なfcc固溶体が、使用中の温度上昇によりコヒーレントなスピノーダル分解を起こし、硬さが上がり、同時にAl₂O₃保護層を形成して酸化を防ぐ。この「積極的に変化することで安定性を得る」逆説的な設計思想が、Ti₁₋ₓAlₓN を現代の切削加工に不可欠な材料にしている。**
+
+---
+
+::: {.callout-note}
+## 参考文献
+Uny F., Blanquet E., Schuster F., Sanchette F. (2018). "Ti-Al-N-Based Hard Coatings: Thermodynamical Background, CVD Deposition, and Properties. A Review." In *Coatings and Thin-Film Technologies*, edited by Perez-Taborda J.A. and Avila Bernal A.G. IntechOpen. DOI: 10.5772/intechopen.79747
+:::

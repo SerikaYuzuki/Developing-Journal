@@ -82,10 +82,10 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       page: 25,
     pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -667,6 +667,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./posts/univ_lecs/卒業論文/レポート.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">演習レポート</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./posts/univ_lecs/卒業論文/卒論輪講.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">卒論輪講</span></a>
   </div>
@@ -683,6 +689,35 @@ window.Quarto = {
  <span class="menu-text">過去論文</span></a>
   </div>
 </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">論文読書</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/univ_lecs/卒業論文/論文読書/GPT-Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ti-Al-N-Based Hard Coatings: Thermodynamical Background, CVD Deposition, and Properties. A Review</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/univ_lecs/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ti-Al-N系硬質コーティング：熱力学的背景・CVD成膜・特性レビュー</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/univ_lecs/卒業論文/論文読書/概要.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">概要</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
       </ul>
   </li>
       </ul>
@@ -691,22 +726,22 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
  <span class="menu-text">収容所配布用</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
  <span class="menu-text">数学</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./posts/収容所配布用/数学/数学A.html" class="sidebar-item-text sidebar-link">
@@ -749,22 +784,22 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
  <span class="menu-text">技術関連</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
  <span class="menu-text">Tech</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./posts/tech/ENovelEpubConverter.html" class="sidebar-item-text sidebar-link">
@@ -833,13 +868,13 @@ window.Quarto = {
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false">
  <span class="menu-text">AI</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./posts/tech/AI/AttentionIsAllYouNeed.html" class="sidebar-item-text sidebar-link">
@@ -856,13 +891,13 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false">
  <span class="menu-text">SwiftUI小説アプリ</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./posts/tech/SwiftUI小説アプリ/EditorKitPlugin.html" class="sidebar-item-text sidebar-link">
@@ -906,7 +941,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(67)</span></div><div class="category" data-category="MjAyMw==">2023 <span class="quarto-category-count">(4)</span></div><div class="category" data-category="MjAyNA==">2024 <span class="quarto-category-count">(10)</span></div><div class="category" data-category="MjAyNQ==">2025 <span class="quarto-category-count">(16)</span></div><div class="category" data-category="MjAyNg==">2026 <span class="quarto-category-count">(9)</span></div><div class="category" data-category="QUk=">AI <span class="quarto-category-count">(2)</span></div><div class="category" data-category="QXRDb2Rlcg==">AtCoder <span class="quarto-category-count">(13)</span></div><div class="category" data-category="QXVyYQ==">Aura <span class="quarto-category-count">(6)</span></div><div class="category" data-category="R2FtZQ==">Game <span class="quarto-category-count">(7)</span></div><div class="category" data-category="aG9tZXNlcnZlcg==">homeserver <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWF0aA==">Math <span class="quarto-category-count">(7)</span></div><div class="category" data-category="bm92ZWw=">novel <span class="quarto-category-count">(5)</span></div><div class="category" data-category="UGxheUdyb3VuZA==">PlayGround <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cG9ncmFtbWluZw==">pogramming <span class="quarto-category-count">(2)</span></div><div class="category" data-category="cHJvZ3JhbW1pbmc=">programming <span class="quarto-category-count">(16)</span></div><div class="category" data-category="UHJvZ3JhbW1pbmc=">Programming <span class="quarto-category-count">(21)</span></div><div class="category" data-category="c2VydmVy">server <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c3dpZnQ=">swift <span class="quarto-category-count">(9)</span></div><div class="category" data-category="VWRlbXk=">Udemy <span class="quarto-category-count">(6)</span></div><div class="category" data-category="VUU1">UE5 <span class="quarto-category-count">(7)</span></div><div class="category" data-category="VW5pdmVyc2l0eQ==">University <span class="quarto-category-count">(21)</span></div><div class="category" data-category="V2Vi">Web <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(71)</span></div><div class="category" data-category="MjAyMw==">2023 <span class="quarto-category-count">(4)</span></div><div class="category" data-category="MjAyNA==">2024 <span class="quarto-category-count">(10)</span></div><div class="category" data-category="MjAyNQ==">2025 <span class="quarto-category-count">(16)</span></div><div class="category" data-category="MjAyNg==">2026 <span class="quarto-category-count">(12)</span></div><div class="category" data-category="QUk=">AI <span class="quarto-category-count">(2)</span></div><div class="category" data-category="QXRDb2Rlcg==">AtCoder <span class="quarto-category-count">(13)</span></div><div class="category" data-category="QXVyYQ==">Aura <span class="quarto-category-count">(6)</span></div><div class="category" data-category="R2FtZQ==">Game <span class="quarto-category-count">(7)</span></div><div class="category" data-category="aG9tZXNlcnZlcg==">homeserver <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWF0aA==">Math <span class="quarto-category-count">(7)</span></div><div class="category" data-category="bm92ZWw=">novel <span class="quarto-category-count">(5)</span></div><div class="category" data-category="UGxheUdyb3VuZA==">PlayGround <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cG9ncmFtbWluZw==">pogramming <span class="quarto-category-count">(2)</span></div><div class="category" data-category="cHJvZ3JhbW1pbmc=">programming <span class="quarto-category-count">(16)</span></div><div class="category" data-category="UHJvZ3JhbW1pbmc=">Programming <span class="quarto-category-count">(21)</span></div><div class="category" data-category="c2VydmVy">server <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c3dpZnQ=">swift <span class="quarto-category-count">(9)</span></div><div class="category" data-category="VGlBbE4=">TiAlN <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VWRlbXk=">Udemy <span class="quarto-category-count">(6)</span></div><div class="category" data-category="VUU1">UE5 <span class="quarto-category-count">(7)</span></div><div class="category" data-category="VW5pdmVyc2l0eQ==">University <span class="quarto-category-count">(24)</span></div><div class="category" data-category="V2Vi">Web <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUU4JUFCJTk2JUU2JTk2JTg3JUU4JUFBJUFEJUU2JTlCJUI4">論文読書 <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-body" id="quarto-document-content">
 
@@ -989,7 +1024,153 @@ window.Quarto = {
     </div>
 </div>
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1778079600000" data-listing-file-modified-sort="1778121476909" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="279">
+<div class="quarto-post image-right" data-index="0" data-categories="VW5pdmVyc2l0eSUyQzIwMjYlMkMlRTglQUIlOTYlRTYlOTYlODclRTglQUElQUQlRTYlOUIlQjglMkNUaUFsTg==" data-listing-date-sort="1779030000000" data-listing-file-modified-sort="1779035733861" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="871">
+<div class="thumbnail"><a href="./posts/univ_lecs/卒業論文/論文読書/GPT-Ti-Al-N-Based Hard Coatings.html" class="no-external">
+
+<p class="card-img-top"><img src="posts/univ_lecs/卒業論文/論文読書/GPT-Ti-Al-N-Based Hard Coatings_files/figure-html/fig-regular-solution-output-1.png"  class="thumbnail-image card-img"/></p>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/univ_lecs/卒業論文/論文読書/GPT-Ti-Al-N-Based Hard Coatings.html" class="no-external">Ti-Al-N-Based Hard Coatings: Thermodynamical Background, CVD Deposition, and Properties. A Review</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/卒業論文/論文読書/GPT-Ti-Al-N-Based Hard Coatings.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('MjAyNg=='); return false;">2026</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('JUU4JUFCJTk2JUU2JTk2JTg3JUU4JUFBJUFEJUU2JTlCJUI4'); return false;">論文読書</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('VGlBbE4='); return false;">TiAlN</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/univ_lecs/卒業論文/論文読書/GPT-Ti-Al-N-Based Hard Coatings.html" class="no-external">
+<span class="math display">\[
+\require{physics}
+\require{mhchem}
+\]</span>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/univ_lecs/卒業論文/論文読書/GPT-Ti-Al-N-Based Hard Coatings.html" class="no-external">
+<div class="listing-date">
+May 18, 2026
+</div>
+<div class="listing-author">
+Serika Yuzuki
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1779030000000" data-listing-file-modified-sort="1779037594569" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="32" data-listing-word-count-sort="6377">
+<div class="thumbnail"><a href="./posts/univ_lecs/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/univ_lecs/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="no-external">Ti-Al-N系硬質コーティング：熱力学的背景・CVD成膜・特性レビュー</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="no-external">Uny et al.&nbsp;(2019) IntechOpen 第9章 詳解まとめ</a>
+</div>
+<div class="delink listing-description"><a href="./posts/univ_lecs/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="no-external">
+<strong>出典：</strong> Uny F. et al., “Ti-Al-N-Based Hard Coatings: Thermodynamical Background, CVD Deposition, and Properties. A Review,” in <em>Coatings and Thin-Film Technologies</em>, IntechOpen…
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/univ_lecs/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="no-external">
+<div class="listing-date">
+May 18, 2026
+</div>
+<div class="listing-author">
+まとめ：芹香 / 原著：Florent Uny, Elisabeth Blanquet, Frédéric Schuster, Frédéric Sanchette
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1778684400000" data-listing-file-modified-sort="1778664833786" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="12">
+<div class="thumbnail"><a href="./posts/univ_lecs/卒業論文/論文読書/概要.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/univ_lecs/卒業論文/論文読書/概要.html" class="no-external">概要</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/卒業論文/論文読書/概要.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('MjAyNg=='); return false;">2026</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/univ_lecs/卒業論文/論文読書/概要.html" class="no-external">
+<span class="math display">\[
+\require{physics}
+\require{mhchem}
+\]</span>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/univ_lecs/卒業論文/論文読書/概要.html" class="no-external">
+<div class="listing-date">
+May 14, 2026
+</div>
+<div class="listing-author">
+Serika Yuzuki
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1778684400000" data-listing-file-modified-sort="1779040215593" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1512">
+<div class="thumbnail"><a href="./posts/univ_lecs/卒業論文/レポート.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/univ_lecs/卒業論文/レポート.html" class="no-external">演習レポート</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/卒業論文/レポート.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('MjAyNg=='); return false;">2026</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/univ_lecs/卒業論文/レポート.html" class="no-external">
+<span class="math display">\[
+\require{physics}
+\require{mhchem}
+\]</span>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/univ_lecs/卒業論文/レポート.html" class="no-external">
+<div class="listing-date">
+May 14, 2026
+</div>
+<div class="listing-author">
+Serika Yuzuki
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="4" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1778079600000" data-listing-file-modified-sort="1778504254408" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="279">
 <div class="thumbnail"><a href="./posts/univ_lecs/卒業論文/過去論文.html" class="no-external">
 
 <img loading="lazy" src="./posts/univ_lecs/卒業論文/images/thumbnail.png" class="thumbnail-image">
@@ -999,6 +1180,9 @@ window.Quarto = {
 <h3 class="no-anchor listing-title">
 <a href="./posts/univ_lecs/卒業論文/過去論文.html" class="no-external">過去論文</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/卒業論文/過去論文.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
@@ -1021,7 +1205,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1776870000000" data-listing-file-modified-sort="1776988384087" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+<div class="quarto-post image-right" data-index="5" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1776870000000" data-listing-file-modified-sort="1778504254408" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
 <div class="thumbnail"><a href="./posts/univ_lecs/卒業論文/談話会.html" class="no-external">
 
 <img loading="lazy" src="./posts/univ_lecs/卒業論文/images/thumbnail.png" class="thumbnail-image">
@@ -1031,6 +1215,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/univ_lecs/卒業論文/談話会.html" class="no-external">談話会</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/卒業論文/談話会.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
@@ -1057,7 +1244,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1776610800000" data-listing-file-modified-sort="1776916936521" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="33">
+<div class="quarto-post image-right" data-index="6" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1776610800000" data-listing-file-modified-sort="1778504254408" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="33">
 <div class="thumbnail"><a href="./posts/univ_lecs/卒業論文/卒論輪講.html" class="no-external">
 
 <img loading="lazy" src="./posts/univ_lecs/卒業論文/images/thumbnail.png" class="thumbnail-image">
@@ -1067,6 +1254,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/univ_lecs/卒業論文/卒論輪講.html" class="no-external">卒論輪講</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/卒業論文/卒論輪講.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
@@ -1092,7 +1282,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1776610800000" data-listing-file-modified-sort="1776657520996" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="120">
+<div class="quarto-post image-right" data-index="7" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1776610800000" data-listing-file-modified-sort="1778504254408" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="120">
 <div class="thumbnail"><a href="./posts/univ_lecs/卒業論文/flux.html" class="no-external">
 
 <img loading="lazy" src="./posts/univ_lecs/卒業論文/images/thumbnail.png" class="thumbnail-image">
@@ -1102,6 +1292,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/univ_lecs/卒業論文/flux.html" class="no-external">fluxの式</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/卒業論文/flux.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
@@ -1126,7 +1319,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1775314800000" data-listing-file-modified-sort="1776990995079" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1205">
+<div class="quarto-post image-right" data-index="8" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1775314800000" data-listing-file-modified-sort="1778504254408" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1205">
 <div class="thumbnail"><a href="./posts/univ_lecs/4S/工学基礎演習.html" class="no-external">
 
 <img loading="lazy" src="./posts/univ_lecs/4S/images/thumbnail.png" class="thumbnail-image">
@@ -1136,6 +1329,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/univ_lecs/4S/工学基礎演習.html" class="no-external">工学基礎演習</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/4S/工学基礎演習.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
@@ -1160,7 +1356,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="cG9ncmFtbWluZyUyQzIwMjYlMkNBSQ==" data-listing-date-sort="1770303600000" data-listing-file-modified-sort="1770371586447" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="44">
+<div class="quarto-post image-right" data-index="9" data-categories="cG9ncmFtbWluZyUyQzIwMjYlMkNBSQ==" data-listing-date-sort="1770303600000" data-listing-file-modified-sort="1770371586447" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="44">
 <div class="thumbnail"><a href="./posts/tech/AI/AttentionIsAllYouNeed.html" class="no-external">
 
 <img loading="lazy" src="https://www.svgrepo.com/show/528057/book-2.svg" class="thumbnail-image">
@@ -1170,6 +1366,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/tech/AI/AttentionIsAllYouNeed.html" class="no-external">Attention Is All You Needを読む話</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/tech/AI/AttentionIsAllYouNeed.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('cG9ncmFtbWluZw=='); return false;">pogramming</div>
@@ -1194,7 +1393,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="cG9ncmFtbWluZyUyQzIwMjYlMkNBSQ==" data-listing-date-sort="1770303600000" data-listing-file-modified-sort="1770743624940" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1579">
+<div class="quarto-post image-right" data-index="10" data-categories="cG9ncmFtbWluZyUyQzIwMjYlMkNBSQ==" data-listing-date-sort="1770303600000" data-listing-file-modified-sort="1770743624940" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1579">
 <div class="thumbnail"><a href="./posts/tech/AI/BuildLLM.html" class="no-external">
 
 <img loading="lazy" src="https://www.svgrepo.com/show/528057/book-2.svg" class="thumbnail-image">
@@ -1204,6 +1403,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/tech/AI/BuildLLM.html" class="no-external">Build a Large Language Model from Scratchを読む話</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/tech/AI/BuildLLM.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('cG9ncmFtbWluZw=='); return false;">pogramming</div>
@@ -1228,7 +1430,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1767538800000" data-listing-file-modified-sort="1770311997010" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2128">
+<div class="quarto-post image-right" data-index="11" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1767538800000" data-listing-file-modified-sort="1770311997010" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2128">
 <div class="thumbnail"><a href="./posts/univ_lecs/3A/信頼性学.html" class="no-external">
 
 <img loading="lazy" src="./posts/univ_lecs/3A/images/thumbnail.png" class="thumbnail-image">
@@ -1238,6 +1440,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/univ_lecs/3A/信頼性学.html" class="no-external">信頼性学</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/3A/信頼性学.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
@@ -1262,7 +1467,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1767538800000" data-listing-file-modified-sort="1769604355557" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2612">
+<div class="quarto-post image-right" data-index="12" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1767538800000" data-listing-file-modified-sort="1769604355557" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2612">
 <div class="thumbnail"><a href="./posts/univ_lecs/3A/数学.html" class="no-external">
 
 <img loading="lazy" src="./posts/univ_lecs/3A/images/thumbnail.png" class="thumbnail-image">
@@ -1272,6 +1477,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/univ_lecs/3A/数学.html" class="no-external">数学</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/3A/数学.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
@@ -1296,7 +1504,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQlMkNub3ZlbA==" data-listing-date-sort="1759849200000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+<div class="quarto-post image-right" data-index="13" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQlMkNub3ZlbA==" data-listing-date-sort="1759849200000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
 <div class="thumbnail"><a href="./posts/tech/SwiftUI小説アプリ/EditorKitPlugin.html" class="no-external">
 
 <img loading="lazy" src="https://www.svgrepo.com/show/354421/swift.svg" class="thumbnail-image">
@@ -1306,6 +1514,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/tech/SwiftUI小説アプリ/EditorKitPlugin.html" class="no-external">EditorKitのいじり方をプラグイン形式にする話</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/tech/SwiftUI小説アプリ/EditorKitPlugin.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false;">programming</div>
@@ -1332,7 +1543,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="10" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQlMkNub3ZlbA==" data-listing-date-sort="1758380400000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="19">
+<div class="quarto-post image-right" data-index="14" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQlMkNub3ZlbA==" data-listing-date-sort="1758380400000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="19">
 <div class="thumbnail"><a href="./posts/tech/SwiftUI小説アプリ/SwiftUIAndAppKit.html" class="no-external">
 
 <img loading="lazy" src="https://www.svgrepo.com/show/354421/swift.svg" class="thumbnail-image">
@@ -1342,6 +1553,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/tech/SwiftUI小説アプリ/SwiftUIAndAppKit.html" class="no-external">SwiftUIとAppKitの連携</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/tech/SwiftUI小説アプリ/SwiftUIAndAppKit.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false;">programming</div>
@@ -1368,7 +1582,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="11" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQlMkNub3ZlbA==" data-listing-date-sort="1758207600000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="22">
+<div class="quarto-post image-right" data-index="15" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQlMkNub3ZlbA==" data-listing-date-sort="1758207600000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="22">
 <div class="thumbnail"><a href="./posts/tech/SwiftUI小説アプリ/POP.html" class="no-external">
 
 <img loading="lazy" src="https://www.svgrepo.com/show/354421/swift.svg" class="thumbnail-image">
@@ -1378,6 +1592,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/tech/SwiftUI小説アプリ/POP.html" class="no-external">Protocol Oriented Programming</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/tech/SwiftUI小説アプリ/POP.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false;">programming</div>
@@ -1404,7 +1621,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="12" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1" data-listing-date-sort="1757689200000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+<div class="quarto-post image-right" data-index="16" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1" data-listing-date-sort="1757689200000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
 <div class="thumbnail"><a href="./posts/tech/MisskeyDockerSetup.html" class="no-external">
 
 <img loading="lazy" src="https://www.svgrepo.com/show/517872/misskey.svg" class="thumbnail-image">
@@ -1414,6 +1631,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/tech/MisskeyDockerSetup.html" class="no-external">DockerでMisskeyを立てる</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/tech/MisskeyDockerSetup.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false;">programming</div>
@@ -1436,7 +1656,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="13" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1" data-listing-date-sort="1757516400000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="31">
+<div class="quarto-post image-right" data-index="17" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1" data-listing-date-sort="1757516400000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="31">
 <div class="thumbnail"><a href="./posts/tech/TailscaleAndNord.html" class="no-external">
 
 <img loading="lazy" src="https://www.svgrepo.com/show/528057/book-2.svg" class="thumbnail-image">
@@ -1446,6 +1666,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/tech/TailscaleAndNord.html" class="no-external">NordとTailscaleで自宅サーバーを安全に公開する</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/tech/TailscaleAndNord.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false;">programming</div>
@@ -1468,7 +1691,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="14" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQlMkNub3ZlbA==" data-listing-date-sort="1757430000000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="60">
+<div class="quarto-post image-right" data-index="18" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQlMkNub3ZlbA==" data-listing-date-sort="1757430000000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="60">
 <div class="thumbnail"><a href="./posts/tech/SwiftUI小説アプリ/General.html" class="no-external">
 
 <img loading="lazy" src="https://www.svgrepo.com/show/528057/book-2.svg" class="thumbnail-image">
@@ -1478,6 +1701,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/tech/SwiftUI小説アプリ/General.html" class="no-external">小説執筆アプリを作る</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/tech/SwiftUI小説アプリ/General.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false;">programming</div>
@@ -1504,7 +1730,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="15" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQlMkNub3ZlbA==" data-listing-date-sort="1757430000000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3">
+<div class="quarto-post image-right" data-index="19" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQlMkNub3ZlbA==" data-listing-date-sort="1757430000000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3">
 <div class="thumbnail"><a href="./posts/tech/SwiftUI小説アプリ/Gitflow.html" class="no-external">
 
 <img loading="lazy" src="https://www.svgrepo.com/show/528057/book-2.svg" class="thumbnail-image">
@@ -1514,6 +1740,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/tech/SwiftUI小説アプリ/Gitflow.html" class="no-external">Git FlowとGitHub Flow</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/tech/SwiftUI小説アプリ/Gitflow.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false;">programming</div>
@@ -1540,7 +1769,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="16" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQ=" data-listing-date-sort="1757430000000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+<div class="quarto-post image-right" data-index="20" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQ=" data-listing-date-sort="1757430000000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
 <div class="thumbnail"><a href="./posts/tech/ENovelEpubConverter.html" class="no-external">
 
 <img loading="lazy" src="https://www.svgrepo.com/show/528057/book-2.svg" class="thumbnail-image">
@@ -1550,6 +1779,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/tech/ENovelEpubConverter.html" class="no-external">小説をEPUBに変換するpythonパッケージを作った話</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/tech/ENovelEpubConverter.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false;">programming</div>
@@ -1574,7 +1806,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="17" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc2VydmVy" data-listing-date-sort="1757257200000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="17">
+<div class="quarto-post image-right" data-index="21" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc2VydmVy" data-listing-date-sort="1757257200000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="17">
 <div class="thumbnail"><a href="./posts/tech/SetUpNewDebianServer.html" class="no-external">
 
 <img loading="lazy" src="https://www.svgrepo.com/show/374112/swift.svg" class="thumbnail-image">
@@ -1584,6 +1816,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/tech/SetUpNewDebianServer.html" class="no-external">Debianサーバーを立てた話</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/tech/SetUpNewDebianServer.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false;">programming</div>
@@ -1608,7 +1843,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="18" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQ=" data-listing-date-sort="1757170800000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="14">
+<div class="quarto-post image-right" data-index="22" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQ=" data-listing-date-sort="1757170800000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="14">
 <div class="thumbnail"><a href="./posts/tech/UbuntuPartitionMissing.html" class="no-external">
 
 <img loading="lazy" src="https://www.svgrepo.com/show/422224/disk-drive-external-2.svg" class="thumbnail-image">
@@ -1618,6 +1853,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/tech/UbuntuPartitionMissing.html" class="no-external">ミスって/boot/efiを消した話</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/tech/UbuntuPartitionMissing.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false;">programming</div>
@@ -1642,7 +1880,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="19" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQ=" data-listing-date-sort="1757170800000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="487">
+<div class="quarto-post image-right" data-index="23" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQ=" data-listing-date-sort="1757170800000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="487">
 <div class="thumbnail"><a href="./posts/tech/TimeMachineServer.html" class="no-external">
 
 <img loading="lazy" src="https://www.svgrepo.com/show/87565/backup-thin-outline-symbol-in-a-circle.svg" class="thumbnail-image">
@@ -1652,6 +1890,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/tech/TimeMachineServer.html" class="no-external">Time Machine ServerをSambaで作った話</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/tech/TimeMachineServer.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false;">programming</div>
@@ -1676,7 +1917,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="20" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1" data-listing-date-sort="1756998000000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="4">
+<div class="quarto-post image-right" data-index="24" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1" data-listing-date-sort="1756998000000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="4">
 <div class="thumbnail"><a href="./posts/tech/QuartoRenderSingle.html" class="no-external">
 
 <img loading="lazy" src="https://quarto.org/quarto.png" class="thumbnail-image">
@@ -1686,6 +1927,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/tech/QuartoRenderSingle.html" class="no-external">Quartoで単一ファイルにレンダリングする方法</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/tech/QuartoRenderSingle.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false;">programming</div>
@@ -1708,16 +1952,19 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="21" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1" data-listing-date-sort="1756998000000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="5">
+<div class="quarto-post image-right" data-index="25" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1" data-listing-date-sort="1756998000000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="5">
 <div class="thumbnail"><a href="./posts/tech/StartUsingCodex.html" class="no-external">
 
-<img loading="lazy" src="https://www.svgrepo.com/show/306500/openai.svg" class="thumbnail-image">
+<img loading="lazy" data-src="https://www.svgrepo.com/show/306500/openai.svg" class="thumbnail-image">
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/tech/StartUsingCodex.html" class="no-external">Codexを使い始めた件</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/tech/StartUsingCodex.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false;">programming</div>
@@ -1740,16 +1987,19 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="22" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQ=" data-listing-date-sort="1756998000000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="21">
+<div class="quarto-post image-right" data-index="26" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQ=" data-listing-date-sort="1756998000000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="21">
 <div class="thumbnail"><a href="./posts/tech/SwiftPackageError.html" class="no-external">
 
-<img loading="lazy" src="https://www.svgrepo.com/show/374112/swift.svg" class="thumbnail-image">
+<img loading="lazy" data-src="https://www.svgrepo.com/show/374112/swift.svg" class="thumbnail-image">
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/tech/SwiftPackageError.html" class="no-external">Swift Packageの読み込みエラー</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/tech/SwiftPackageError.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false;">programming</div>
@@ -1774,16 +2024,19 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="23" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1" data-listing-date-sort="1749222000000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1561">
+<div class="quarto-post image-right" data-index="27" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1" data-listing-date-sort="1749222000000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1561">
 <div class="thumbnail"><a href="./posts/tech/NovelApp.html" class="no-external">
 
-<img loading="lazy" src="./posts/tech/images/swift-logo.png" class="thumbnail-image">
+<img loading="lazy" data-src="./posts/tech/images/swift-logo.png" class="thumbnail-image">
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/tech/NovelApp.html" class="no-external">SwiftUIで開発する小説執筆支援アプリ</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/tech/NovelApp.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false;">programming</div>
@@ -1806,16 +2059,19 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="24" data-categories="aG9tZXNlcnZlciUyQ3Byb2dyYW1taW5nJTJDMjAyNQ==" data-listing-date-sort="1747062000000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="11">
+<div class="quarto-post image-right" data-index="28" data-categories="aG9tZXNlcnZlciUyQ3Byb2dyYW1taW5nJTJDMjAyNQ==" data-listing-date-sort="1747062000000" data-listing-file-modified-sort="1768888046621" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="11">
 <div class="thumbnail"><a href="./posts/tech/linkwarden.html" class="no-external">
 
-<img loading="lazy" src="./posts/tech/images/logo.png" class="thumbnail-image">
+<img loading="lazy" data-src="./posts/tech/images/logo.png" class="thumbnail-image">
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/tech/linkwarden.html" class="no-external">Linkwardenにブックマーク管理を任せる</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/tech/linkwarden.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('aG9tZXNlcnZlcg=='); return false;">homeserver</div>
@@ -1840,7 +2096,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="25" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1734361200000" data-listing-file-modified-sort="1769694955313" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="514">
+<div class="quarto-post image-right" data-index="29" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1734361200000" data-listing-file-modified-sort="1769694955313" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="514">
 <div class="thumbnail"><a href="./posts/univ_lecs/3A/生産プロセス.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/univ_lecs/3A/images/thumbnail.png" class="thumbnail-image">
@@ -1850,6 +2106,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/univ_lecs/3A/生産プロセス.html" class="no-external">生産プロセス</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/3A/生産プロセス.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
@@ -1876,7 +2135,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="26" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1733065200000" data-listing-file-modified-sort="1769694945609" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1028">
+<div class="quarto-post image-right" data-index="30" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1733065200000" data-listing-file-modified-sort="1769694945609" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1028">
 <div class="thumbnail"><a href="./posts/univ_lecs/3A/デバイス材料工学.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/univ_lecs/3A/images/thumbnail.png" class="thumbnail-image">
@@ -1886,6 +2145,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/univ_lecs/3A/デバイス材料工学.html" class="no-external">デバイス材料工学</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/3A/デバイス材料工学.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
@@ -1910,7 +2172,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="27" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1732806000000" data-listing-file-modified-sort="1768888046649" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="225">
+<div class="quarto-post image-right" data-index="31" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1732806000000" data-listing-file-modified-sort="1768888046649" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="225">
 <div class="thumbnail"><a href="./posts/univ_lecs/2A/材料統計力学.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/univ_lecs/2A/images/thumbnail.png" class="thumbnail-image">
@@ -1920,6 +2182,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/univ_lecs/2A/材料統計力学.html" class="no-external">材料統計力学</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/2A/材料統計力学.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
@@ -1946,7 +2211,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="28" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1728486000000" data-listing-file-modified-sort="1768888046696" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1459">
+<div class="quarto-post image-right" data-index="32" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1728486000000" data-listing-file-modified-sort="1768888046696" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1459">
 <div class="thumbnail"><a href="./posts/univ_lecs/3A/高分子２.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/univ_lecs/3A/images/thumbnail.png" class="thumbnail-image">
@@ -1956,6 +2221,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/univ_lecs/3A/高分子２.html" class="no-external">高分子ノート</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/3A/高分子２.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
@@ -1982,7 +2250,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="29" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1728486000000" data-listing-file-modified-sort="1768888046696" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="539">
+<div class="quarto-post image-right" data-index="33" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1728486000000" data-listing-file-modified-sort="1768888046696" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="539">
 <div class="thumbnail"><a href="./posts/univ_lecs/3A/セラミック材料学.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/univ_lecs/3A/images/thumbnail.png" class="thumbnail-image">
@@ -1992,6 +2260,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/univ_lecs/3A/セラミック材料学.html" class="no-external">セラミックノート</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/3A/セラミック材料学.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
@@ -2018,7 +2289,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="30" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1712502000000" data-listing-file-modified-sort="1768888046721" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="27" data-listing-word-count-sort="5389">
+<div class="quarto-post image-right" data-index="34" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1712502000000" data-listing-file-modified-sort="1768888046721" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="27" data-listing-word-count-sort="5389">
 <div class="thumbnail"><a href="./posts/univ_lecs/3S/材料電気化学.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/univ_lecs/3S/images/thumbnail.png" class="thumbnail-image">
@@ -2028,6 +2299,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/univ_lecs/3S/材料電気化学.html" class="no-external">材料電気化学</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/3S/材料電気化学.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
@@ -2052,7 +2326,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="31" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1712502000000" data-listing-file-modified-sort="1768888046721" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="20" data-listing-word-count-sort="3831">
+<div class="quarto-post image-right" data-index="35" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1712502000000" data-listing-file-modified-sort="1768888046721" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="20" data-listing-word-count-sort="3831">
 <div class="thumbnail"><a href="./posts/univ_lecs/3S/組織生成論.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/univ_lecs/3S/images/thumbnail.png" class="thumbnail-image">
@@ -2062,6 +2336,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/univ_lecs/3S/組織生成論.html" class="no-external">組織生成論</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/3S/組織生成論.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
@@ -2086,7 +2363,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="32" data-categories="TWF0aA==" data-listing-date-sort="1712329200000" data-listing-file-modified-sort="1768888046722" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="36">
+<div class="quarto-post image-right" data-index="36" data-categories="TWF0aA==" data-listing-date-sort="1712329200000" data-listing-file-modified-sort="1768888046722" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="36">
 <div class="thumbnail"><a href="./posts/収容所配布用/数学/過去問演習.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/収容所配布用/数学/images/thumbnail.jpg" class="thumbnail-image">
@@ -2096,6 +2373,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/収容所配布用/数学/過去問演習.html" class="no-external">過去問演習</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/収容所配布用/数学/過去問演習.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('TWF0aA=='); return false;">Math</div>
@@ -2116,7 +2396,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="33" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1712242800000" data-listing-file-modified-sort="1768888046721" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="644">
+<div class="quarto-post image-right" data-index="37" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1712242800000" data-listing-file-modified-sort="1768888046721" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="644">
 <div class="thumbnail"><a href="./posts/univ_lecs/3S/材料強度学.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/univ_lecs/3S/images/thumbnail.png" class="thumbnail-image">
@@ -2126,6 +2406,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/univ_lecs/3S/材料強度学.html" class="no-external">材料強度学</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/3S/材料強度学.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
@@ -2150,7 +2433,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="34" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1712242800000" data-listing-file-modified-sort="1768888046720" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2403">
+<div class="quarto-post image-right" data-index="38" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1712242800000" data-listing-file-modified-sort="1768888046720" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2403">
 <div class="thumbnail"><a href="./posts/univ_lecs/3S/固体物性学.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/univ_lecs/3S/images/thumbnail.png" class="thumbnail-image">
@@ -2160,6 +2443,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/univ_lecs/3S/固体物性学.html" class="no-external">固体物性学</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/3S/固体物性学.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
@@ -2184,7 +2470,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="35" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1712242800000" data-listing-file-modified-sort="1768888046721" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3117">
+<div class="quarto-post image-right" data-index="39" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1712242800000" data-listing-file-modified-sort="1768888046721" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3117">
 <div class="thumbnail"><a href="./posts/univ_lecs/3S/材料反応工学.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/univ_lecs/3S/images/thumbnail.png" class="thumbnail-image">
@@ -2194,6 +2480,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/univ_lecs/3S/材料反応工学.html" class="no-external">材料反応工学</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/3S/材料反応工学.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
@@ -2218,7 +2507,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="36" data-categories="UHJvZ3JhbW1pbmclMkNXZWIlMkNQbGF5R3JvdW5k" data-listing-date-sort="1702998000000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="9">
+<div class="quarto-post image-right" data-index="40" data-categories="UHJvZ3JhbW1pbmclMkNXZWIlMkNQbGF5R3JvdW5k" data-listing-date-sort="1702998000000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="9">
 <div class="thumbnail"><a href="./posts/play_ground/template.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/play_ground/images/thumbnail.webp" class="thumbnail-image">
@@ -2228,6 +2517,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/play_ground/template.html" class="no-external">template</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/play_ground/template.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false;">Programming</div>
@@ -2254,7 +2546,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="37" data-categories="VUU1JTJDQXVyYSUyQ1VkZW15JTJDR2FtZSUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1702479600000" data-listing-file-modified-sort="1768888046629" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="24">
+<div class="quarto-post image-right" data-index="41" data-categories="VUU1JTJDQXVyYSUyQ1VkZW15JTJDR2FtZSUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1702479600000" data-listing-file-modified-sort="1768888046629" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="24">
 <div class="thumbnail"><a href="./posts/ue5_aura_courses/section_06.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/ue5_aura_courses/images/thumbnail.png" class="thumbnail-image">
@@ -2264,6 +2556,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/ue5_aura_courses/section_06.html" class="no-external">section_06</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/ue5_aura_courses/section_06.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VUU1'); return false;">UE5</div>
@@ -2292,7 +2587,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="38" data-categories="TWF0aA==" data-listing-date-sort="1702479600000" data-listing-file-modified-sort="1768888046722" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="599">
+<div class="quarto-post image-right" data-index="42" data-categories="TWF0aA==" data-listing-date-sort="1702479600000" data-listing-file-modified-sort="1768888046722" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="599">
 <div class="thumbnail"><a href="./posts/収容所配布用/数学/数学II.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/収容所配布用/数学/images/thumbnail.jpg" class="thumbnail-image">
@@ -2302,6 +2597,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/収容所配布用/数学/数学II.html" class="no-external">数学II</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/収容所配布用/数学/数学II.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('TWF0aA=='); return false;">Math</div>
@@ -2322,7 +2620,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="39" data-categories="TWF0aA==" data-listing-date-sort="1702479600000" data-listing-file-modified-sort="1768888046722" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="430">
+<div class="quarto-post image-right" data-index="43" data-categories="TWF0aA==" data-listing-date-sort="1702479600000" data-listing-file-modified-sort="1768888046722" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="430">
 <div class="thumbnail"><a href="./posts/収容所配布用/数学/数学III.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/収容所配布用/数学/images/thumbnail.jpg" class="thumbnail-image">
@@ -2332,6 +2630,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/収容所配布用/数学/数学III.html" class="no-external">数学III</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/収容所配布用/数学/数学III.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('TWF0aA=='); return false;">Math</div>
@@ -2352,7 +2653,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="40" data-categories="TWF0aA==" data-listing-date-sort="1702479600000" data-listing-file-modified-sort="1768888046722" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="382">
+<div class="quarto-post image-right" data-index="44" data-categories="TWF0aA==" data-listing-date-sort="1702479600000" data-listing-file-modified-sort="1768888046722" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="382">
 <div class="thumbnail"><a href="./posts/収容所配布用/数学/数学B.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/収容所配布用/数学/images/thumbnail.jpg" class="thumbnail-image">
@@ -2362,6 +2663,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/収容所配布用/数学/数学B.html" class="no-external">数学B</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/収容所配布用/数学/数学B.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('TWF0aA=='); return false;">Math</div>
@@ -2382,7 +2686,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="41" data-categories="TWF0aA==" data-listing-date-sort="1702479600000" data-listing-file-modified-sort="1770693168760" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="342">
+<div class="quarto-post image-right" data-index="45" data-categories="TWF0aA==" data-listing-date-sort="1702479600000" data-listing-file-modified-sort="1770693168760" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="342">
 <div class="thumbnail"><a href="./posts/収容所配布用/数学/数学A.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/収容所配布用/数学/images/thumbnail.jpg" class="thumbnail-image">
@@ -2392,6 +2696,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/収容所配布用/数学/数学A.html" class="no-external">数学A</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/収容所配布用/数学/数学A.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('TWF0aA=='); return false;">Math</div>
@@ -2412,7 +2719,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="42" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1701270000000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="162">
+<div class="quarto-post image-right" data-index="46" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1701270000000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="162">
 <div class="thumbnail"><a href="./posts/at_coder/typical90-11.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/at_coder/images/thumbnail.webp" class="thumbnail-image">
@@ -2422,6 +2729,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/at_coder/typical90-11.html" class="no-external">typical90-11</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/at_coder/typical90-11.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('QXRDb2Rlcg=='); return false;">AtCoder</div>
@@ -2444,7 +2754,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="43" data-categories="VUU1JTJDR2FtZSUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1701183600000" data-listing-file-modified-sort="1768888046629" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
+<div class="quarto-post image-right" data-index="47" data-categories="VUU1JTJDR2FtZSUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1701183600000" data-listing-file-modified-sort="1768888046629" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
 <div class="thumbnail"><a href="./posts/ue5_project/planning.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/ue5_project/images/thumbnail.png" class="thumbnail-image">
@@ -2454,6 +2764,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/ue5_project/planning.html" class="no-external">Planning</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/ue5_project/planning.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VUU1'); return false;">UE5</div>
@@ -2478,7 +2791,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="44" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1700838000000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="308">
+<div class="quarto-post image-right" data-index="48" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1700838000000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="308">
 <div class="thumbnail"><a href="./posts/at_coder/typical90-10.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/at_coder/images/thumbnail.webp" class="thumbnail-image">
@@ -2488,6 +2801,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/at_coder/typical90-10.html" class="no-external">typical90-10</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/at_coder/typical90-10.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('QXRDb2Rlcg=='); return false;">AtCoder</div>
@@ -2510,7 +2826,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="45" data-categories="VUU1JTJDQXVyYSUyQ1VkZW15JTJDR2FtZSUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1700838000000" data-listing-file-modified-sort="1768888046629" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="606">
+<div class="quarto-post image-right" data-index="49" data-categories="VUU1JTJDQXVyYSUyQ1VkZW15JTJDR2FtZSUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1700838000000" data-listing-file-modified-sort="1768888046629" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="606">
 <div class="thumbnail"><a href="./posts/ue5_aura_courses/section_05.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/ue5_aura_courses/images/thumbnail.png" class="thumbnail-image">
@@ -2520,6 +2836,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/ue5_aura_courses/section_05.html" class="no-external">section_05</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/ue5_aura_courses/section_05.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VUU1'); return false;">UE5</div>
@@ -2548,7 +2867,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="46" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1700751600000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="883">
+<div class="quarto-post image-right" data-index="50" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1700751600000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="883">
 <div class="thumbnail"><a href="./posts/at_coder/typical90-09.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/at_coder/images/thumbnail.webp" class="thumbnail-image">
@@ -2558,6 +2877,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/at_coder/typical90-09.html" class="no-external">typical90-09</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/at_coder/typical90-09.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('QXRDb2Rlcg=='); return false;">AtCoder</div>
@@ -2580,7 +2902,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="47" data-categories="VUU1JTJDQXVyYSUyQ1VkZW15JTJDR2FtZSUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1700406000000" data-listing-file-modified-sort="1768888046628" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="398">
+<div class="quarto-post image-right" data-index="51" data-categories="VUU1JTJDQXVyYSUyQ1VkZW15JTJDR2FtZSUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1700406000000" data-listing-file-modified-sort="1768888046628" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="398">
 <div class="thumbnail"><a href="./posts/ue5_aura_courses/section_04.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/ue5_aura_courses/images/thumbnail.png" class="thumbnail-image">
@@ -2590,6 +2912,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/ue5_aura_courses/section_04.html" class="no-external">section_04</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/ue5_aura_courses/section_04.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VUU1'); return false;">UE5</div>
@@ -2618,7 +2943,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="48" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1698246000000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="276">
+<div class="quarto-post image-right" data-index="52" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1698246000000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="276">
 <div class="thumbnail"><a href="./posts/at_coder/typical90-08.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/at_coder/images/thumbnail.webp" class="thumbnail-image">
@@ -2628,6 +2953,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/at_coder/typical90-08.html" class="no-external">typical90-08</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/at_coder/typical90-08.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('QXRDb2Rlcg=='); return false;">AtCoder</div>
@@ -2650,7 +2978,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="49" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1698159600000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="350">
+<div class="quarto-post image-right" data-index="53" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1698159600000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="350">
 <div class="thumbnail"><a href="./posts/at_coder/typical90-07.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/at_coder/images/thumbnail.webp" class="thumbnail-image">
@@ -2660,6 +2988,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/at_coder/typical90-07.html" class="no-external">typical90-07</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/at_coder/typical90-07.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('QXRDb2Rlcg=='); return false;">AtCoder</div>
@@ -2682,7 +3013,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="50" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1697986800000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="847">
+<div class="quarto-post image-right" data-index="54" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1697986800000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="847">
 <div class="thumbnail"><a href="./posts/at_coder/typical90-06.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/at_coder/images/thumbnail.webp" class="thumbnail-image">
@@ -2692,6 +3023,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/at_coder/typical90-06.html" class="no-external">typical90-06</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/at_coder/typical90-06.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('QXRDb2Rlcg=='); return false;">AtCoder</div>
@@ -2714,7 +3048,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="51" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1697468400000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2578">
+<div class="quarto-post image-right" data-index="55" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1697468400000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2578">
 <div class="thumbnail"><a href="./posts/at_coder/typical90-05.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/at_coder/images/thumbnail.webp" class="thumbnail-image">
@@ -2724,6 +3058,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/at_coder/typical90-05.html" class="no-external">typical90-05</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/at_coder/typical90-05.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('QXRDb2Rlcg=='); return false;">AtCoder</div>
@@ -2746,7 +3083,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="52" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1697382000000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="409">
+<div class="quarto-post image-right" data-index="56" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1697382000000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="409">
 <div class="thumbnail"><a href="./posts/at_coder/typical90-04.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/at_coder/images/thumbnail.webp" class="thumbnail-image">
@@ -2756,6 +3093,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/at_coder/typical90-04.html" class="no-external">typical90-04</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/at_coder/typical90-04.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('QXRDb2Rlcg=='); return false;">AtCoder</div>
@@ -2778,7 +3118,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="53" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1697295600000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="329">
+<div class="quarto-post image-right" data-index="57" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1697295600000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="329">
 <div class="thumbnail"><a href="./posts/at_coder/typical90-03.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/at_coder/images/thumbnail.webp" class="thumbnail-image">
@@ -2788,6 +3128,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/at_coder/typical90-03.html" class="no-external">typical90-03</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/at_coder/typical90-03.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('QXRDb2Rlcg=='); return false;">AtCoder</div>
@@ -2810,7 +3153,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="54" data-categories="VUU1JTJDQXVyYSUyQ1VkZW15JTJDR2FtZSUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1697295600000" data-listing-file-modified-sort="1768888046628" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="270">
+<div class="quarto-post image-right" data-index="58" data-categories="VUU1JTJDQXVyYSUyQ1VkZW15JTJDR2FtZSUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1697295600000" data-listing-file-modified-sort="1768888046628" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="270">
 <div class="thumbnail"><a href="./posts/ue5_aura_courses/section_03.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/ue5_aura_courses/images/thumbnail.png" class="thumbnail-image">
@@ -2820,6 +3163,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/ue5_aura_courses/section_03.html" class="no-external">section_03</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/ue5_aura_courses/section_03.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VUU1'); return false;">UE5</div>
@@ -2848,7 +3194,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="55" data-categories="TWF0aA==" data-listing-date-sort="1697209200000" data-listing-file-modified-sort="1768888046722" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1252">
+<div class="quarto-post image-right" data-index="59" data-categories="TWF0aA==" data-listing-date-sort="1697209200000" data-listing-file-modified-sort="1778660936760" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1581">
 <div class="thumbnail"><a href="./posts/収容所配布用/数学/数学I.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/収容所配布用/数学/images/thumbnail.jpg" class="thumbnail-image">
@@ -2858,6 +3204,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/収容所配布用/数学/数学I.html" class="no-external">数学I</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/収容所配布用/数学/数学I.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('TWF0aA=='); return false;">Math</div>
@@ -2878,7 +3227,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="56" data-categories="TWF0aA==" data-listing-date-sort="1697209200000" data-listing-file-modified-sort="1771071445667" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="377">
+<div class="quarto-post image-right" data-index="60" data-categories="TWF0aA==" data-listing-date-sort="1697209200000" data-listing-file-modified-sort="1778504254409" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="377">
 <div class="thumbnail"><a href="./posts/収容所配布用/物理/物理.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/収容所配布用/物理/images/thumbnail.jpg" class="thumbnail-image">
@@ -2888,6 +3237,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/収容所配布用/物理/物理.html" class="no-external">物理</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/収容所配布用/物理/物理.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('TWF0aA=='); return false;">Math</div>
@@ -2908,7 +3260,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="57" data-categories="VW5pdmVyc2l0eSUyQzIwMjM=" data-listing-date-sort="1696863600000" data-listing-file-modified-sort="1768888046649" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+<div class="quarto-post image-right" data-index="61" data-categories="VW5pdmVyc2l0eSUyQzIwMjM=" data-listing-date-sort="1696863600000" data-listing-file-modified-sort="1768888046649" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
 <div class="thumbnail"><a href="./posts/univ_lecs/2A/材料速度論.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/univ_lecs/2A/images/thumbnail.png" class="thumbnail-image">
@@ -2918,6 +3270,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/univ_lecs/2A/材料速度論.html" class="no-external">材料速度論</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/2A/材料速度論.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
@@ -2940,7 +3295,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="58" data-categories="VW5pdmVyc2l0eSUyQzIwMjM=" data-listing-date-sort="1696863600000" data-listing-file-modified-sort="1768888046649" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="4">
+<div class="quarto-post image-right" data-index="62" data-categories="VW5pdmVyc2l0eSUyQzIwMjM=" data-listing-date-sort="1696863600000" data-listing-file-modified-sort="1768888046649" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="4">
 <div class="thumbnail"><a href="./posts/univ_lecs/2A/材料量子力学.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/univ_lecs/2A/images/thumbnail.png" class="thumbnail-image">
@@ -2950,6 +3305,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/univ_lecs/2A/材料量子力学.html" class="no-external">材料量子力学</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/2A/材料量子力学.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
@@ -2972,7 +3330,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="59" data-categories="VW5pdmVyc2l0eSUyQzIwMjM=" data-listing-date-sort="1696863600000" data-listing-file-modified-sort="1768888046649" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+<div class="quarto-post image-right" data-index="63" data-categories="VW5pdmVyc2l0eSUyQzIwMjM=" data-listing-date-sort="1696863600000" data-listing-file-modified-sort="1768888046649" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
 <div class="thumbnail"><a href="./posts/univ_lecs/2A/材料相平衡論.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/univ_lecs/2A/images/thumbnail.png" class="thumbnail-image">
@@ -2982,6 +3340,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/univ_lecs/2A/材料相平衡論.html" class="no-external">材料相平衡論</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/2A/材料相平衡論.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
@@ -3004,7 +3365,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="60" data-categories="VW5pdmVyc2l0eSUyQzIwMjM=" data-listing-date-sort="1696863600000" data-listing-file-modified-sort="1768888046649" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="94">
+<div class="quarto-post image-right" data-index="64" data-categories="VW5pdmVyc2l0eSUyQzIwMjM=" data-listing-date-sort="1696863600000" data-listing-file-modified-sort="1768888046649" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="94">
 <div class="thumbnail"><a href="./posts/univ_lecs/2A/材料力学.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/univ_lecs/2A/images/thumbnail.png" class="thumbnail-image">
@@ -3014,6 +3375,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/univ_lecs/2A/材料力学.html" class="no-external">統計力学</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/univ_lecs/2A/材料力学.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false;">University</div>
@@ -3036,7 +3400,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="61" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1696777200000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="19">
+<div class="quarto-post image-right" data-index="65" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1696777200000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="19">
 <div class="thumbnail"><a href="./posts/at_coder/cargo_compete.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/at_coder/images/thumbnail.webp" class="thumbnail-image">
@@ -3046,6 +3410,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/at_coder/cargo_compete.html" class="no-external">Cargo Compete</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/at_coder/cargo_compete.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('QXRDb2Rlcg=='); return false;">AtCoder</div>
@@ -3084,7 +3451,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="62" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1696777200000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="9">
+<div class="quarto-post image-right" data-index="66" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1696777200000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="9">
 <div class="thumbnail"><a href="./posts/at_coder/template.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/at_coder/images/thumbnail.webp" class="thumbnail-image">
@@ -3094,6 +3461,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/at_coder/template.html" class="no-external">template</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/at_coder/template.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('QXRDb2Rlcg=='); return false;">AtCoder</div>
@@ -3118,7 +3488,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="63" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1696777200000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="511">
+<div class="quarto-post image-right" data-index="67" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1696777200000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="511">
 <div class="thumbnail"><a href="./posts/at_coder/typical90-02.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/at_coder/images/thumbnail.webp" class="thumbnail-image">
@@ -3128,6 +3498,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/at_coder/typical90-02.html" class="no-external">typical90-02</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/at_coder/typical90-02.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('QXRDb2Rlcg=='); return false;">AtCoder</div>
@@ -3150,7 +3523,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="64" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1696777200000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="21">
+<div class="quarto-post image-right" data-index="68" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1696777200000" data-listing-file-modified-sort="1768888046620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="21">
 <div class="thumbnail"><a href="./posts/at_coder/typical90-01.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/at_coder/images/thumbnail.webp" class="thumbnail-image">
@@ -3160,6 +3533,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/at_coder/typical90-01.html" class="no-external">typical90-01</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/at_coder/typical90-01.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('QXRDb2Rlcg=='); return false;">AtCoder</div>
@@ -3182,7 +3558,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="65" data-categories="VUU1JTJDQXVyYSUyQ1VkZW15JTJDR2FtZSUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1696777200000" data-listing-file-modified-sort="1768888046628" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="373">
+<div class="quarto-post image-right" data-index="69" data-categories="VUU1JTJDQXVyYSUyQ1VkZW15JTJDR2FtZSUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1696777200000" data-listing-file-modified-sort="1768888046628" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="373">
 <div class="thumbnail"><a href="./posts/ue5_aura_courses/section_02.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/ue5_aura_courses/images/thumbnail.png" class="thumbnail-image">
@@ -3192,6 +3568,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/ue5_aura_courses/section_02.html" class="no-external">Section 02</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/ue5_aura_courses/section_02.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VUU1'); return false;">UE5</div>
@@ -3220,7 +3599,7 @@ Serika Yuzuki
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="66" data-categories="VUU1JTJDQXVyYSUyQ1VkZW15JTJDR2FtZSUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1696777200000" data-listing-file-modified-sort="1768888046629" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="9">
+<div class="quarto-post image-right" data-index="70" data-categories="VUU1JTJDQXVyYSUyQ1VkZW15JTJDR2FtZSUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1696777200000" data-listing-file-modified-sort="1768888046629" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="9">
 <div class="thumbnail"><a href="./posts/ue5_aura_courses/template.html" class="no-external">
 
 <img loading="lazy" data-src="./posts/ue5_aura_courses/images/thumbnail.png" class="thumbnail-image">
@@ -3230,6 +3609,9 @@ Serika Yuzuki
 <h3 class="no-anchor listing-title">
 <a href="./posts/ue5_aura_courses/template.html" class="no-external">template</a>
 </h3>
+<div class="listing-subtitle">
+<a href="./posts/ue5_aura_courses/template.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VUU1'); return false;">UE5</div>
