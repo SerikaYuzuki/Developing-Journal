@@ -1,0 +1,68 @@
+<%
+function toStr(s) {
+  if (s == null) return '';
+  if (typeof s === 'object') return s.name || s.text || s.value || '';
+  return String(s);
+}
+function strHash(s) {
+  return toStr(s).split('').reduce(function(a,c){ return a + c.charCodeAt(0); }, 0);
+}
+function initials(name) {
+  return toStr(name).split(/\s+/).filter(Boolean)
+    .map(function(p){ return p[0] ? p[0].toUpperCase() : ''; })
+    .join('').substring(0, 2);
+}
+function fmtDate(d) {
+  if (!d) return '';
+  try { return new Date(d).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}); }
+  catch(e) { return toStr(d); }
+}
+function catColorIdx(cat) { return strHash(cat) % 5; }
+var AVATAR_GRADIENTS = [
+  'linear-gradient(135deg,#7c5cff,#2fb583)',
+  'linear-gradient(135deg,#3c8fcf,#7c5cff)',
+  'linear-gradient(135deg,#d65a76,#d99838)',
+  'linear-gradient(135deg,#2fb583,#3c8fcf)',
+  'linear-gradient(135deg,#e07be0,#7c5cff)'
+];
+%>
+<% for (const item of items) { %>
+<%
+var rawA = Array.isArray(item.author) ? item.author : (item.author ? [item.author] : []);
+var authors = rawA.map(toStr).filter(Boolean);
+var cats = (item.categories || []).map(toStr).filter(Boolean);
+var author0 = authors[0] || '';
+var avatarBg = AVATAR_GRADIENTS[strHash(author0) % AVATAR_GRADIENTS.length];
+var cat0 = cats[0] || '';
+var rt = toStr(item['reading-time'] || item.readingTime || '');
+var rtText = rt ? (/read/i.test(rt) ? rt.toUpperCase() : rt.toUpperCase() + ' READ') : '';
+var eyebrowParts = [];
+if (cat0) eyebrowParts.push(cat0.toUpperCase());
+if (rtText) eyebrowParts.push(rtText);
+var eyebrow = eyebrowParts.join(' · ');
+%>
+<div class="gl-card-wrap">
+<a href="<%- item.path %>" class="gl-card-link" data-index="<%- item.index %>">
+<article class="gl-card">
+<% if (eyebrow) { %>
+<div class="gl-eyebrow"><span class="gl-eyebrow-pill"><%- eyebrow %></span></div>
+<% } %>
+<h2 class="gl-title"><%- item.title %></h2>
+<% if (item.description && !toStr(item.description).startsWith('<!--')) { %>
+<p class="gl-desc"><%- item.description %></p>
+<% } %>
+<div class="gl-meta">
+<% if (author0) { %>
+<div class="gl-meta-col"><div class="gl-meta-lbl">AUTHOR</div><div class="gl-author-chip"><span class="gl-avatar" style="background:<%- avatarBg %>"><%- initials(author0) %></span><span class="gl-author-name"><%- author0 %></span></div></div>
+<% } %>
+<% if (item.date) { %>
+<div class="gl-meta-col"><div class="gl-meta-lbl">PUBLISHED</div><div class="gl-meta-val"><%- fmtDate(item.date) %></div></div>
+<% } %>
+<% if (cats.length > 0) { %>
+<div class="gl-meta-col"><div class="gl-meta-lbl">CATEGORIES</div><div class="gl-cats"><% cats.forEach(function(cat){ %><span class="gl-cat-pill" data-gl-cat="<%- catColorIdx(cat) %>"><%- cat %></span><% }); %></div></div>
+<% } %>
+</div>
+</article>
+</a>
+</div>
+<% } %>

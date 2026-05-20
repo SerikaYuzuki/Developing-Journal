@@ -1,0 +1,53 @@
+---
+title: "fluxの式"
+author: "Serika Yuzuki"
+date: "2026-4-20"
+categories: [University, 2026]
+image: "images/thumbnail.png"
+---
+
+$$
+\require{physics}
+$$
+
+いつかやった記憶はあるが，導出は忘れてしまった気体分子のfluxの式について．
+
+$$
+J = \frac{1}{4} n \bar{v}
+$$
+
+この式の導出について．まず，時間あたり，単位面積あたりのある壁に向かう分子の数を考える．
+
+$$
+\mathrm{d}^2 N = \int_{\mathrm{hemisphere}} v \cos \theta \frac{\dd \Omega}{4 \pi} C \dd A \dd t 
+$$
+
+ここで， $\Omega$ というのは立体角である．立体格ってのは，球の表面積を，球の中心からの距離の2乗で割ったものである．
+
+$$
+\begin{aligned}
+\Omega &= \frac{\dd S}{r^2} \\
+\dd S &= r^2 \sin \theta \dd \theta \dd \phi \\
+\dd \Omega &= \sin \theta \dd \theta \dd \phi \\
+\end{aligned}
+$$
+
+定義式から，
+
+$$
+J = \frac{\mathrm{d}^2 N}{\mathrm{d}t \mathrm{d}A} = \int v \cos \theta \frac{\dd \Omega}{4 \pi} C = \frac{1}{4} Cv
+$$
+
+ここで，マクスウェル分布
+
+$$
+\begin{aligned}
+f(v_x, v_y, v_z) &= \left(\frac{m}{2 \pi k_B T}\right)^{3/2} \exp\left(-\frac{m}{2 k_B T} (v_x^2 + v_y^2 + v_z^2)\right) \\
+F(v) \dd v &= 4 \pi v^2 \dd v f(v_x, v_y, v_z) \\
+\therefore \bar{v} &= \int_0^\infty v F(v) \dd v = \sqrt{\frac{8 k_B T}{\pi m}} \\
+C &= \frac{p}{k_\mathrm{B} T} \\
+\therefore J &= \frac{1}{4} C \sqrt{\frac{8 k_B T}{\pi m}} = \frac{p}{\sqrt{2 \pi m k_\mathrm{B} T}}
+\end{aligned}
+$$
+
+

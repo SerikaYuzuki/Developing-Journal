@@ -1,0 +1,435 @@
+/* css styles */
+
+:root {
+  --pj-floating-navbar-offset: 18px;
+  --pj-floating-navbar-clearance: 88px;
+}
+
+@media (min-width: 992px) {
+  body.nav-fixed .sidebar,
+  body.nav-fixed .headroom-target {
+    top: var(--pj-floating-navbar-clearance) !important;
+    max-height: calc(100vh - var(--pj-floating-navbar-clearance)) !important;
+  }
+
+  body.nav-fixed .sidebar.sidebar-unpinned,
+  body.nav-fixed .headroom-target.sidebar-unpinned {
+    top: var(--pj-floating-navbar-clearance) !important;
+    max-height: calc(100vh - var(--pj-floating-navbar-clearance)) !important;
+  }
+
+  body.nav-fixed #quarto-sidebar,
+  body.nav-fixed #quarto-margin-sidebar {
+    padding-top: max(0.25rem, var(--pj-floating-navbar-offset));
+    box-sizing: border-box;
+  }
+
+  body.nav-fixed #quarto-sidebar {
+    padding-top: 0;
+  }
+
+  body.nav-fixed main.content :is(h1, h2, h3, h4, h5, h6) {
+    scroll-margin-top: calc(var(--pj-floating-navbar-clearance) + 0.75rem);
+  }
+}
+
+.code-copy-outer-scaffold,
+div.sourceCode,
+div.sourceCode pre.sourceCode,
+pre.sourceCode code.sourceCode {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+div.sourceCode pre.sourceCode {
+  border: 0 !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* --- サイドバー表示/非表示のカスタムアニメーション --- */
+
+@media (min-width: 992px) {
+  
+  /* サイドバーが縮小する際に中のテキストが縦に潰れないように固定幅（min-width）を持たせる */
+  #quarto-sidebar {
+    transition: opacity 0.3s ease-out, transform 0.4s ease-out;
+    min-width: 250px;
+  }
+
+  body.custom-sidebar-hidden #quarto-sidebar {
+    opacity: 0;
+    transform: translateX(-250px);
+    pointer-events: none;
+  }
+
+  /*
+   * サイドバーを元に戻す（閉じる）ときのアニメーション用
+   */
+  body.custom-sidebar-showing #quarto-sidebar {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* 
+   * TOC（右サイドバー）は消さないため、右端のグリッド境界は body-content-end のままにし、
+   * 左側（screen-start-inset）だけ全画面まで広げます。
+   * そして左のパディングのみをアニメーションさせて滑らかに広げます。
+   */
+  
+  /* 開くとき（左側だけ広げる） */
+  body.custom-sidebar-hidden .page-columns .content {
+    grid-column: screen-start-inset / body-content-end !important;
+    max-width: 100% !important;
+    animation: expandContent 0.4s ease-out forwards;
+  }
+
+  /* 閉じるとき（元に戻す） */
+  body.custom-sidebar-showing .page-columns .content {
+    grid-column: screen-start-inset / body-content-end !important;
+    max-width: 100% !important;
+    animation: shrinkContent 0.4s ease-out forwards;
+  }
+
+  @keyframes expandContent {
+    0% {
+      padding-left: 250px;
+    }
+    100% {
+      padding-left: 0;
+    }
+  }
+
+  @keyframes shrinkContent {
+    0% {
+      padding-left: 0;
+    }
+    100% {
+      padding-left: 250px;
+    }
+  }
+}
+
+/* --- サイドバーの装飾リセット（縦線・下線の非表示） --- */
+
+/* サイドバー右側にある縦線を消す */
+#quarto-sidebar,
+.sidebar.docked {
+  border-right: none !important;
+}
+
+/* フォルダを開くときの「>」ボタンやアコーディオン自体の下線を消す */
+.sidebar-item-toggle,
+.sidebar-item-toggle:hover,
+.sidebar-item-toggle:focus,
+.sidebar-item-toggle:active {
+  text-decoration: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+#quarto-sidebar .accordion-item,
+#quarto-sidebar .sidebar-item-container,
+#quarto-sidebar .sidebar-item-section {
+  border: none !important;
+}
+
+/* --- 本文エリアをトップバーの幅と中央揃えに合わせる対称グリッド --- */
+@media (min-width: 1400px) {
+  #quarto-content.page-columns {
+    /* navbarの横幅とマージンに合わせる */
+    width: calc(100% - 48px) !important;
+    max-width: 1380px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    
+    /* 左右対称なグリッド構成を強制する */
+    grid-template-columns: 
+      [screen-start screen-start-inset] 0px
+      [page-start] 18px
+      [page-start-inset body-start-outset] 232px 
+      [body-start] 1.5rem 
+      [body-content-start] 1fr 
+      [body-content-end] 1.5rem 
+      [body-end body-end-outset] 232px 
+      [page-end-inset] 18px
+      [page-end screen-end-inset screen-end] 0px !important;
+  }
+}
+
+/* --- モバイル用セカンダリナビ（デフォルトのトップバー）の完全非表示 --- */
+.quarto-secondary-nav {
+  display: none !important;
+}
+
+/* Quarto本来のメインナビゲーション用トグルボタン（余分な≡）を非表示にする */
+.navbar-toggler {
+  display: none !important;
+}
+
+/* ============================================================
+   GL Listing Cards — glassmorphism custom listing template
+   ============================================================ */
+
+/* --- CSS variables: light mode --- */
+:root {
+  --gl-card-bg:         rgba(255, 255, 255, 0.52);
+  --gl-card-bg-strong:  rgba(255, 255, 255, 0.72);
+  --gl-card-bg-subtle:  rgba(255, 255, 255, 0.32);
+  --gl-card-border:     rgba(255, 255, 255, 0.65);
+  --gl-card-border-dim: rgba(255, 255, 255, 0.38);
+  --gl-card-blur:       22px;
+  --gl-card-sat:        180%;
+  --gl-card-shadow:     0 8px 32px rgba(31, 38, 135, 0.11);
+  --gl-card-shadow-lg:  0 20px 60px rgba(31, 38, 135, 0.18);
+  --gl-card-inset:      rgba(255, 255, 255, 0.62);
+  --gl-title-color:     #1f1c38;
+  --gl-text-color:      #2d2a44;
+  --gl-muted-color:     rgba(45, 42, 68, 0.68);
+  --gl-label-color:     rgba(45, 42, 68, 0.42);
+  --gl-cat0: #7c5cff;
+  --gl-cat1: #2fb583;
+  --gl-cat2: #3c8fcf;
+  --gl-cat3: #d99838;
+  --gl-cat4: #d65a76;
+  --gl-separator: rgba(45, 42, 68, 0.12);
+}
+
+/* --- CSS variables: dark mode --- */
+body.quarto-dark {
+  --gl-card-bg:         rgba(255, 255, 255, 0.07);
+  --gl-card-bg-strong:  rgba(255, 255, 255, 0.13);
+  --gl-card-bg-subtle:  rgba(255, 255, 255, 0.05);
+  --gl-card-border:     rgba(255, 255, 255, 0.16);
+  --gl-card-border-dim: rgba(255, 255, 255, 0.10);
+  --gl-card-sat:        160%;
+  --gl-card-shadow:     0 8px 32px rgba(0, 0, 0, 0.45);
+  --gl-card-shadow-lg:  0 24px 60px rgba(0, 0, 0, 0.55);
+  --gl-card-inset:      rgba(255, 255, 255, 0.07);
+  --gl-title-color:     #ffffff;
+  --gl-text-color:      #c8cbe0;
+  --gl-muted-color:     rgba(200, 203, 224, 0.78);
+  --gl-label-color:     rgba(200, 203, 224, 0.42);
+  --gl-cat0: #a18bff;
+  --gl-cat1: #5edcae;
+  --gl-cat2: #6fb8ff;
+  --gl-cat3: #ffc678;
+  --gl-cat4: #ff8aa3;
+  --gl-separator: rgba(255, 255, 255, 0.12);
+}
+
+/* --- Listing grid --- */
+.gl-listing {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 500px), 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+.gl-card-wrap {
+  height: 100%;
+}
+
+/* --- Card link wrapper --- */
+.gl-card-link {
+  display: block;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  color: inherit;
+  height: 100%;
+}
+.gl-card-link:hover { border-bottom: none !important; }
+
+/* --- Card --- */
+.gl-card {
+  background: var(--gl-card-bg);
+  -webkit-backdrop-filter: blur(var(--gl-card-blur)) saturate(var(--gl-card-sat));
+  backdrop-filter:         blur(var(--gl-card-blur)) saturate(var(--gl-card-sat));
+  border: 1px solid var(--gl-card-border);
+  box-shadow: var(--gl-card-shadow), inset 0 1px 0 var(--gl-card-inset);
+  border-radius: 20px;
+  padding: 2rem 2.25rem 1.75rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.gl-card-link:hover .gl-card {
+  transform: translateY(-4px);
+  box-shadow: var(--gl-card-shadow-lg), inset 0 1px 0 var(--gl-card-inset);
+}
+
+/* --- Eyebrow pill --- */
+.gl-eyebrow { margin-bottom: 1.1rem; }
+.gl-eyebrow-pill {
+  display: inline-block;
+  background: var(--gl-card-bg-subtle);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  backdrop-filter:         blur(12px) saturate(160%);
+  border: 1px solid var(--gl-card-border-dim);
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--gl-muted-color);
+}
+
+/* --- Title --- */
+.gl-title {
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  color: var(--gl-title-color);
+  margin: 0 0 0.8rem 0;
+  flex-shrink: 0;
+}
+
+/* --- Description --- */
+.gl-desc {
+  font-size: 0.975rem;
+  color: var(--gl-muted-color);
+  line-height: 1.65;
+  margin: 0 0 auto 0; /* pushes rule+meta to bottom */
+}
+
+/* --- Meta row --- */
+.gl-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.75rem;
+  align-items: flex-start;
+  flex-shrink: 0;
+  margin-top: 1.25rem;
+}
+.gl-meta-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+}
+.gl-meta-lbl {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--gl-label-color);
+}
+.gl-meta-val {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gl-text-color);
+  line-height: 1.3;
+}
+
+/* --- Author chip --- */
+.gl-author-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: var(--gl-card-bg-subtle);
+  border: 1px solid var(--gl-card-border-dim);
+  border-radius: 999px;
+  padding: 4px 14px 4px 4px;
+  max-width: 220px;
+}
+.gl-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
+  letter-spacing: 0;
+}
+.gl-author-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gl-text-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --- Category pills --- */
+.gl-cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.gl-cat-pill {
+  display: inline-block;
+  background: var(--gl-card-bg-subtle);
+  border: 1px solid var(--gl-card-border-dim);
+  border-radius: 999px;
+  padding: 3px 11px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border-bottom: none !important;
+}
+.gl-cat-pill[data-gl-cat="0"] { color: var(--gl-cat0); border-color: color-mix(in srgb, var(--gl-cat0) 28%, transparent); }
+.gl-cat-pill[data-gl-cat="1"] { color: var(--gl-cat1); border-color: color-mix(in srgb, var(--gl-cat1) 28%, transparent); }
+.gl-cat-pill[data-gl-cat="2"] { color: var(--gl-cat2); border-color: color-mix(in srgb, var(--gl-cat2) 28%, transparent); }
+.gl-cat-pill[data-gl-cat="3"] { color: var(--gl-cat3); border-color: color-mix(in srgb, var(--gl-cat3) 28%, transparent); }
+.gl-cat-pill[data-gl-cat="4"] { color: var(--gl-cat4); border-color: color-mix(in srgb, var(--gl-cat4) 28%, transparent); }
+
+/* ============================================================
+   Listing sort / filter toolbar
+   ============================================================ */
+
+/* Outer pill container — the glass effect lives here */
+.listing-actions-group .input-group {
+  background: var(--gl-card-bg);
+  -webkit-backdrop-filter: blur(var(--gl-card-blur)) saturate(var(--gl-card-sat));
+  backdrop-filter:         blur(var(--gl-card-blur)) saturate(var(--gl-card-sat));
+  border: 1px solid var(--gl-card-border-dim);
+  border-radius: 999px !important;
+  overflow: hidden;
+  box-shadow: var(--gl-card-shadow);
+}
+
+/* Icon prefix — transparent, no border */
+.listing-actions-group .input-group-text {
+  background-color: transparent !important;
+  border: none !important;
+  color: var(--gl-muted-color);
+  padding-left: 1rem;
+  padding-right: 0.5rem;
+}
+
+/* Select + input — transparent, no border, correct text color */
+.listing-actions-group .form-select,
+.listing-actions-group .form-control {
+  background-color: transparent !important;
+  border: none !important;
+  color: var(--gl-text-color) !important;
+  box-shadow: none !important;
+  padding: 0.45rem 1rem 0.45rem 0.4rem;
+}
+
+/* Keep Bootstrap's dropdown arrow visible in dark mode */
+.listing-actions-group .form-select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23a0a0b8' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
+}
+
+.listing-actions-group .form-select:focus,
+.listing-actions-group .form-control:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+/* Placeholder text color */
+.listing-actions-group .form-control::placeholder {
+  color: var(--gl-muted-color);
+  opacity: 1;
+}

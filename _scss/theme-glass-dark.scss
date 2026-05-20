@@ -1,0 +1,576 @@
+/*-- scss:defaults --*/
+// =============================================================================
+// Quarto Glassmorphism Theme — DARK
+// Frosted-glass surfaces over a deep, color-soaked gradient.
+// Pair with theme-glass-light.scss for automatic light/dark switching:
+//
+//   format:
+//     html:
+//       theme:
+//         light: theme-glass-light.scss
+//         dark:  theme-glass-dark.scss
+// =============================================================================
+
+// ---- Glass surface tokens ---------------------------------------------------
+$glass-bg:          rgba(255, 255, 255, 0.07) !default;
+$glass-bg-strong:   rgba(255, 255, 255, 0.13) !default;
+$glass-bg-subtle:   rgba(255, 255, 255, 0.04) !default;
+$glass-border:      rgba(255, 255, 255, 0.16) !default;
+$glass-border-dim:  rgba(255, 255, 255, 0.10) !default;
+$glass-blur:        22px !default;
+$glass-saturate:    160% !default;
+$glass-shadow:      0 8px 32px rgba(0, 0, 0, 0.45) !default;
+$glass-shadow-lg:   0 24px 60px rgba(0, 0, 0, 0.55) !default;
+$glass-radius:      18px !default;
+$glass-radius-sm:   10px !default;
+$glass-radius-lg:   28px !default;
+
+// ---- Page background (deep gradient stack) ---------------------------------
+$bg-base:           #0e1020 !default;
+$bg-blob-a:         #5b2d6e !default;   // purple
+$bg-blob-b:         #1f3d6e !default;   // deep blue
+$bg-blob-c:         #1f4d52 !default;   // teal
+$bg-blob-d:         #6e2d4d !default;   // wine
+
+// ---- Typography -------------------------------------------------------------
+$font-family-sans-serif:  "Inter", "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif !default;
+$font-family-monospace:   "JetBrains Mono", "SF Mono", Menlo, monospace !default;
+$headings-font-family:    $font-family-sans-serif !default;
+$headings-font-weight:    700 !default;
+$line-height-base:        1.7 !default;
+
+// ---- Bootstrap variable overrides ------------------------------------------
+$body-bg:        transparent !default;
+$body-color:     #c8cbe0 !default;
+$primary:        #a18bff !default;       // lifted violet for dark
+$secondary:      #5a5d7a !default;
+$success:        #5edcae !default;
+$info:           #6fb8ff !default;
+$warning:        #ffc678 !default;
+$danger:         #ff8aa3 !default;
+$light:          $glass-bg-strong !default;
+$dark:           #f0f1f7 !default;
+
+$link-color:                 $primary !default;
+$link-decoration:            none !default;
+$link-hover-color:           lighten($primary, 8%) !default;
+
+$border-radius:     $glass-radius !default;
+$border-radius-sm:  $glass-radius-sm !default;
+$border-radius-lg:  $glass-radius-lg !default;
+
+$code-color:        $primary !default;
+$code-bg:           transparent !default;
+$pre-bg:            transparent !default;
+
+// Sidebar / TOC: traditional plain look
+$navbar-bg:         transparent !default;
+$navbar-fg:         #f0f1f7 !default;
+$navbar-hl:         $primary !default;
+$sidebar-bg:        transparent !default;
+$sidebar-fg:        #a4a7c2 !default;
+$sidebar-hl:        $primary !default;
+$toc-color:         #a4a7c2 !default;
+$toc-active-border: $primary !default;
+
+// =============================================================================
+/*-- scss:mixins --*/
+
+@mixin glass($bg: $glass-bg, $border: $glass-border, $blur: $glass-blur) {
+  background: $bg;
+  -webkit-backdrop-filter: blur($blur) saturate($glass-saturate);
+  backdrop-filter: blur($blur) saturate($glass-saturate);
+  border: 1px solid $border;
+  box-shadow:
+    $glass-shadow,
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+@mixin glass-subtle() {
+  background: $glass-bg-subtle;
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid $glass-border-dim;
+}
+
+// =============================================================================
+/*-- scss:rules --*/
+
+// ---- Page background (gradient blobs over deep base) -----------------------
+html { background: $bg-base; }
+body {
+  position: relative;
+  min-height: 100vh;
+  color: $body-color;
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  background:
+    radial-gradient(ellipse 60% 50% at 12% 8%,  rgba(161, 79, 196, 0.55), transparent 60%),
+    radial-gradient(ellipse 55% 45% at 88% 18%, rgba(70, 116, 200, 0.55),  transparent 60%),
+    radial-gradient(ellipse 65% 50% at 50% 92%, rgba(56, 156, 168, 0.45),  transparent 60%),
+    radial-gradient(ellipse 40% 35% at 90% 75%, rgba(196, 79, 122, 0.45),  transparent 60%),
+    $bg-base;
+  background-attachment: fixed;
+}
+
+::selection { background: rgba($primary, .35); color: #ffffff; }
+
+// ---- Floating Navbar -------------------------------------------------------
+.navbar {
+  @include glass($glass-bg-strong);
+  position: fixed !important;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 48px);
+  max-width: 1380px;
+  border-radius: 999px;
+  padding: 10px 18px !important;
+  z-index: 1000;
+
+  .navbar-brand {
+    font-weight: 800;
+    color: #f0f1f7;
+    letter-spacing: -0.01em;
+  }
+
+  .nav-link {
+    color: $body-color;
+    border-radius: 999px;
+    padding: 7px 14px !important;
+    margin: 0 2px;
+    border: none;
+    border-bottom: none !important;
+    transition: all .2s;
+
+    &:hover { color: $primary; background: rgba(255,255,255,.08); }
+    &.active {
+      color: $primary;
+      background: rgba(255,255,255,.14);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.16);
+    }
+  }
+
+  a, .navbar-brand { border-bottom: none !important; }
+}
+
+.quarto-color-scheme-toggle { border-bottom: none !important; }
+
+main, .content, #quarto-content, body > .container,
+body > .container-fluid {
+  padding-top: 88px;
+}
+
+// ---- Sidebar (traditional plain) -------------------------------------------
+.sidebar, #quarto-sidebar {
+  background: transparent;
+  border: none;
+  padding: 1.25rem 0.5rem;
+
+  .sidebar-title {
+    font-weight: 700;
+    color: #f0f1f7;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    margin: 1.5rem 0 0.5rem;
+    padding-left: 14px;
+    opacity: .7;
+  }
+
+  .sidebar-item { margin: 1px 0; }
+
+  .sidebar-link, a.sidebar-link {
+    display: block;
+    padding: 6px 14px;
+    color: $sidebar-fg;
+    border: none;
+    border-left: 2px solid transparent;
+    background: transparent;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color .2s, border-color .2s;
+
+    &:hover { color: $primary; }
+    &.active {
+      color: $primary;
+      font-weight: 600;
+      border-left-color: $primary;
+    }
+  }
+}
+
+// ---- TOC (traditional plain) -----------------------------------------------
+#TOC, .sidebar-toc, #quarto-margin-sidebar {
+  .toc-title {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    color: #f0f1f7;
+    opacity: .7;
+    margin-bottom: .6rem;
+    padding-left: 14px;
+  }
+  ul { list-style: none; padding-left: 0; }
+  li { margin: 1px 0; }
+  a {
+    display: block;
+    padding: 4px 14px;
+    color: $toc-color;
+    border: none;
+    border-left: 2px solid transparent;
+    font-size: .86rem;
+    text-decoration: none;
+    transition: color .2s, border-color .2s;
+
+    &:hover { color: $primary; }
+    &.active {
+      color: $primary;
+      font-weight: 600;
+      border-left-color: $primary;
+    }
+  }
+}
+
+// ---- Headings --------------------------------------------------------------
+h1, h2, h3, h4, h5, h6 {
+  color: #f0f1f7;
+  letter-spacing: -0.015em;
+}
+
+// ---- Links -----------------------------------------------------------------
+a {
+  color: $primary;
+  text-decoration: none;
+  border-bottom: 1px dotted rgba($primary, .45);
+  transition: color .2s, border-color .2s;
+
+  &:hover { color: lighten($primary, 10%); border-bottom-color: $primary; }
+}
+
+// ---- Title block -----------------------------------------------------------
+.quarto-title-block {
+  @include glass;
+  border-radius: $glass-radius-lg;
+  padding: 2.5rem 2.75rem;
+  margin: 1rem 0 2.5rem;
+  box-shadow: $glass-shadow-lg;
+
+  .title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; color: #ffffff; }
+  .subtitle { color: lighten($body-color, 5%); font-weight: 400; }
+}
+
+// ---- Inline code -----------------------------------------------------------
+p code, li code, td code {
+  @include glass-subtle;
+  padding: 1px 8px;
+  border-radius: 6px;
+  color: $primary;
+  font-size: 0.88em;
+  font-family: $font-family-monospace;
+}
+
+// ---- Code block ------------------------------------------------------------
+div.sourceCode {
+  @include glass($glass-bg);
+  border-radius: $glass-radius;
+  padding: 1.25rem 1.5rem !important;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+
+  code {
+    background: transparent;
+    color: $body-color;
+    padding: 0;
+  }
+}
+
+pre.sourceCode {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.sourceCode {
+  .kw { color: #c7a8ff; font-weight: 600; }
+  .dt { color: #6fc8d6; }
+  .st { color: #5edcae; }
+  .co { color: rgba(200,203,224,.5); font-style: italic; }
+  .fu { color: $primary; }
+  .dv, .fl { color: #ff8aa3; }
+  .op { color: $body-color; }
+}
+
+// ---- Callouts --------------------------------------------------------------
+.callout {
+  @include glass;
+  border-radius: $glass-radius;
+  margin: 1.75rem 0;
+  overflow: hidden;
+  border-left: 4px solid rgba($primary, .8) !important;
+
+  .callout-header {
+    background: transparent !important;
+    border: none !important;
+    padding: 14px 18px 4px;
+    font-weight: 700;
+  }
+  .callout-body, .callout-body-container {
+    padding: 0 18px 16px 18px;
+  }
+  .callout-icon-container .callout-icon {
+    @include glass-subtle;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-right: 10px;
+  }
+}
+@each $type, $col in (
+  "note": $info,
+  "tip": $success,
+  "warning": $warning,
+  "caution": $warning,
+  "important": $danger
+) {
+  .callout-#{$type}                            { border-left-color: rgba($col, .85) !important; }
+  .callout-#{$type} .callout-icon-container .callout-icon { color: $col; }
+  .callout-#{$type} .callout-header            { color: lighten($col, 8%); }
+}
+
+// ---- Blockquote ------------------------------------------------------------
+blockquote, .blockquote {
+  @include glass-subtle;
+  border-left: 4px solid rgba($primary, .7) !important;
+  border-radius: $glass-radius-sm;
+  padding: 1.1rem 1.4rem !important;
+  margin: 1.5rem 0;
+  color: lighten($body-color, 5%);
+  font-style: italic;
+}
+
+// ---- Tables ----------------------------------------------------------------
+table, .table {
+  @include glass($glass-bg);
+  border-radius: $glass-radius;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  width: 100%;
+  margin: 1.5rem 0;
+
+  thead th {
+    background: rgba(255,255,255,.06);
+    border: none !important;
+    padding: 1rem 1.25rem;
+    font-weight: 700;
+    color: #f0f1f7;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+  }
+  tbody td {
+    border: none !important;
+    padding: 0.9rem 1.25rem;
+    border-top: 1px solid rgba(255,255,255,.07) !important;
+  }
+  tbody tr:hover { background: rgba(255,255,255,.04); }
+}
+
+// ---- Buttons ---------------------------------------------------------------
+.btn, button.btn {
+  @include glass($glass-bg-strong);
+  border-radius: 999px;
+  padding: 10px 22px;
+  font-weight: 600;
+  color: $body-color;
+  transition: all .25s;
+
+  &:hover { color: $primary; transform: translateY(-1px); box-shadow: $glass-shadow-lg; }
+  &.btn-primary {
+    background: rgba($primary, .85);
+    color: #14152a;
+    border-color: rgba(255,255,255,.18);
+    &:hover { background: lighten($primary, 5%); color: #14152a; }
+  }
+}
+
+// ---- Form controls ---------------------------------------------------------
+input, textarea, select, .form-control {
+  @include glass-subtle;
+  border-radius: 999px;
+  padding: 10px 16px;
+  color: $body-color;
+  outline: none;
+
+  &::placeholder { color: rgba(200,203,224,.4); }
+
+  &:focus {
+    border-color: rgba($primary, .6) !important;
+    box-shadow: 0 0 0 4px rgba($primary, .18);
+  }
+}
+
+// ---- Figures ---------------------------------------------------------------
+figure, .figure {
+  @include glass-subtle;
+  border-radius: $glass-radius;
+  padding: 1rem;
+  margin: 1.75rem 0;
+
+  img { border-radius: $glass-radius-sm; display: block; max-width: 100%; }
+  figcaption {
+    text-align: center;
+    margin-top: 0.75rem;
+    color: lighten($body-color, 5%);
+    font-size: 0.86rem;
+  }
+}
+
+// ---- Hr --------------------------------------------------------------------
+hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba($primary, .45), transparent);
+  margin: 2.5rem 0;
+  opacity: 1;
+}
+
+// ---- Tabs ------------------------------------------------------------------
+.panel-tabset .nav-tabs {
+  @include glass($glass-bg-strong);
+  border-radius: 999px;
+  padding: 4px;
+  gap: 4px;
+  display: inline-flex;
+  border-bottom: none;
+
+  .nav-link {
+    border: none !important;
+    border-radius: 999px;
+    padding: 7px 16px;
+    color: $body-color;
+
+    &.active {
+      background: rgba(255,255,255,.16);
+      color: $primary;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.14);
+    }
+  }
+}
+
+// ---- Footer ----------------------------------------------------------------
+.nav-footer, footer.footer {
+  @include glass($glass-bg);
+  border-radius: $glass-radius-lg;
+  padding: 1.5rem 2rem;
+  margin: 3rem 0;
+  color: lighten($body-color, 5%);
+}
+
+// ---- Listing cards (glass) -------------------------------------------------
+
+// Default layout: each entry is .quarto-post
+.quarto-listing-default .quarto-post {
+  @include glass($glass-bg);
+  border-radius: $glass-radius;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem 1.75rem;
+  overflow: hidden;
+  transition: transform .25s, box-shadow .25s;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $glass-shadow-lg, inset 0 1px 0 rgba(255,255,255,.08);
+  }
+
+  .thumbnail img {
+    border-radius: $glass-radius-sm;
+  }
+
+  .body {
+    .listing-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      a { border-bottom: none !important; }
+    }
+    .listing-subtitle {
+      color: lighten($body-color, 8%);
+      font-size: .9rem;
+      margin-bottom: .4rem;
+    }
+    .listing-description {
+      color: lighten($body-color, 5%);
+      font-size: .875rem;
+      line-height: 1.6;
+    }
+  }
+
+  .metadata {
+    margin-top: .875rem;
+    padding-top: .75rem;
+    border-top: 1px solid $glass-border-dim;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem .75rem;
+    align-items: center;
+    font-size: .8rem;
+    color: lighten($body-color, 12%);
+  }
+}
+
+// Grid layout: each entry is .card inside .quarto-listing-grid
+.quarto-listing-grid .card {
+  @include glass($glass-bg);
+  border-radius: $glass-radius;
+  overflow: hidden;
+  transition: transform .25s, box-shadow .25s;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $glass-shadow-lg, inset 0 1px 0 rgba(255,255,255,.08);
+  }
+
+  .card-body   { padding: 1.25rem 1.5rem; }
+
+  .card-title.listing-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    a { border-bottom: none !important; }
+  }
+
+  .card-text { font-size: .875rem; color: lighten($body-color, 5%); }
+
+  .card-footer {
+    background: transparent;
+    border-top: 1px solid $glass-border-dim;
+    padding: .75rem 1.5rem;
+    font-size: .8rem;
+    color: lighten($body-color, 12%);
+  }
+}
+
+// Category / tag pills
+.listing-category, .quarto-category {
+  @include glass-subtle;
+  display: inline-block;
+  padding: 3px 11px;
+  border-radius: 999px;
+  font-size: .73rem;
+  font-weight: 600;
+  color: $primary;
+  border-bottom: none !important;
+  transition: background .2s;
+
+  &:hover {
+    background: rgba(255,255,255,.10);
+    color: lighten($primary, 8%);
+    border-bottom: none !important;
+  }
+}
+
+// Filter / sort toolbar — styling delegated to styles.css .listing-actions-group rules

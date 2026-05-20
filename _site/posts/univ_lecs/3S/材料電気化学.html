@@ -9,7 +9,7 @@
 <meta name="author" content="Serika Yuzuki">
 <meta name="dcterms.date" content="2024-04-08">
 
-<title>材料電気化学 – 芹香のブログ：セリポンポン 気軽にコメント残してね！</title>
+<title>材料電気化学 – PersonalJournal</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -87,8 +87,6 @@ div.csl-indent {
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../posts/univ_lecs/3S/組織生成論.html" rel="next">
-<link href="../../../posts/univ_lecs/3S/材料強度学.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -96,12 +94,14 @@ div.csl-indent {
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-b6a57ffdd3e40de8f8cc01af7a9c4c7d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b6a57ffdd3e40de8f8cc01af7a9c4c7d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-57df612ce7d31eb042a4162ec1190c32.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-9ce02ba9bf05f77acce06f7d436c50a3.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-57df612ce7d31eb042a4162ec1190c32.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-5f2dbc65a0fd7a1177fde5d317e5c8be.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-f7a595915c072b1638a7530862449908.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-916846cf378bba94dc713469a25e76ba.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-790f4fe7678af6506e22a1618a1bc37d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-916846cf378bba94dc713469a25e76ba.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -129,7 +129,58 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
-<script defer="" src="https://analytics.serika.work/script.js" data-website-id="cmfi6s4p200011l07qudz1s5f"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // ナビゲーションバーのタイトル左にボタンを配置
+  const brandContainer = document.querySelector('.navbar-brand-container');
+  if (brandContainer) {
+    const toggleBtn = document.createElement('a');
+    toggleBtn.href = "#";
+    toggleBtn.innerHTML = `<i class="bi bi-list"></i>`; // Bootstrapのハンバーガーアイコン
+    toggleBtn.className = 'navbar-sidebar-toggle pe-2';
+    toggleBtn.style.color = 'inherit';
+    toggleBtn.style.textDecoration = 'none';
+    toggleBtn.style.fontSize = '1.5rem';
+    toggleBtn.style.display = 'flex';
+    toggleBtn.style.alignItems = 'center';
+    toggleBtn.title = "サイドバーを切り替え";
+    
+    // タイトルの直前に挿入
+    brandContainer.insertBefore(toggleBtn, brandContainer.firstChild);
+
+    // クリック時の動作
+    toggleBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // スマホサイズ等の場合はQuartoデフォルトのサイドバー開閉をトリガーする
+      if (window.innerWidth < 992) {
+        const quartoToggle = document.querySelector('.quarto-secondary-nav .quarto-btn-toggle');
+        if (quartoToggle) {
+          quartoToggle.click();
+        }
+        return;
+      }
+
+      const body = document.body;
+      if (body.classList.contains('custom-sidebar-hidden')) {
+        // 現在非表示（全画面）の場合 -> サイドバーを元に戻すアニメーション
+        body.classList.remove('custom-sidebar-hidden');
+        body.classList.add('custom-sidebar-showing');
+        
+        // アニメーション完了後にクラスを外す
+        setTimeout(() => {
+          body.classList.remove('custom-sidebar-showing');
+        }, 400);
+      } else {
+        // 現在表示されている場合 -> サイドバーを隠して全画面にする
+        body.classList.remove('custom-sidebar-showing');
+        body.classList.add('custom-sidebar-hidden');
+      }
+    });
+  }
+});
+</script>
+
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -161,9 +212,10 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -305,8 +357,10 @@ window.Quarto = {
         changeGiscusTheme();
       }
     };
-    const authorPrefersDark = true;
+    const authorPrefersDark = false;
     const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
     let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
     // Dark / light mode switch
     window.quartoToggleColorScheme = () => {
@@ -326,12 +380,12 @@ window.Quarto = {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../../index.html">
-    <span class="navbar-title">芹香のブログ：セリポンポン 気軽にコメント残してね！</span>
+    <span class="navbar-title">PersonalJournal</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -339,30 +393,14 @@ window.Quarto = {
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../../../about.html" aria-current="page"> 
-<span class="menu-text">Serika Yuzuki</span></a>
+    <a class="nav-link active" href="../../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://syosetu.org/novel/309340/"> <i class="bi bi-book" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/SerikaYuzuki"> <i class="bi bi-github" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/serika_yuzuki"> <i class="bi bi-twitter" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://discord.gg/zUUkFzYZvK"> <i class="bi bi-discord" role="img">
-</i> 
-<span class="menu-text"></span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -376,7 +414,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">大学関連</li><li class="breadcrumb-item">Univ Lecs</li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/固体物性学.html">3S</a></li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/材料電気化学.html">材料電気化学</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">Univ Lecs</li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/固体物性学.html">3S</a></li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/材料電気化学.html">材料電気化学</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -386,69 +424,46 @@ window.Quarto = {
   </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">大学関連</li><li class="breadcrumb-item">Univ Lecs</li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/固体物性学.html">3S</a></li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/材料電気化学.html">材料電気化学</a></li></ol></nav>
-      <h1 class="title">材料電気化学</h1>
-                                <div class="quarto-categories">
-                <div class="quarto-category">University</div>
-                <div class="quarto-category">2024</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Serika Yuzuki </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">April 8, 2024</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
         </div>
-        <div class="sidebar-tools-collapse tools-wide">
-    <a href="https://syosetu.org/novel/309340/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-book"></i></a>
-    <a href="https://github.com/SerikaYuzuki" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
-    <a href="https://twitter.com/serika_yuzuki" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
-    <a href="https://discord.gg/zUUkFzYZvK" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-discord"></i></a>
-</div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../about.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Serika Yuzuki</span></a>
+ <span class="menu-text">About</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">AtCoder</span></a>
+ <span class="menu-text">Posts</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">At Coder</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/at_coder/cargo_compete.html" class="sidebar-item-text sidebar-link">
@@ -529,320 +544,32 @@ window.Quarto = {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">大学関連</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Univ Lecs</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Play Ground</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/play_ground/template.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">template</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
- <span class="menu-text">2A</span></a>
+ <span class="menu-text">Tech</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth3 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/2A/材料力学.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">統計力学</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/2A/材料相平衡論.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">材料相平衡論</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/2A/材料統計力学.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">材料統計力学</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/2A/材料速度論.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">材料速度論</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/2A/材料量子力学.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">材料量子力学</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
- <span class="menu-text">3A</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/3A/セラミック材料学.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">セラミックノート</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/3A/デバイス材料工学.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">デバイス材料工学</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/3A/信頼性学.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">信頼性学</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/3A/数学.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">数学</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/3A/生産プロセス.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">生産プロセス</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/3A/高分子２.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">高分子ノート</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">3S</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth3 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/3S/固体物性学.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">固体物性学</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/3S/材料反応工学.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">材料反応工学</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/3S/材料強度学.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">材料強度学</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/3S/材料電気化学.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">材料電気化学</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/3S/組織生成論.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">組織生成論</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
- <span class="menu-text">4S</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/4S/工学基礎演習.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">工学基礎演習</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
- <span class="menu-text">卒業論文</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth3 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/卒業論文/flux.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">fluxの式</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/卒業論文/レポート.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">演習レポート</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/卒業論文/卒論輪講.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">卒論輪講</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/卒業論文/談話会.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">談話会</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/卒業論文/過去論文.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">過去論文</span></a>
-  </div>
-</li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
- <span class="menu-text">論文読書</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth4 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/卒業論文/論文読書/GPT-Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ti-Al-N-Based Hard Coatings: Thermodynamical Background, CVD Deposition, and Properties. A Review</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ti-Al-N系硬質コーティング：熱力学的背景・CVD成膜・特性レビュー</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/univ_lecs/卒業論文/論文読書/概要.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">概要</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
- <span class="menu-text">収容所配布用</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
- <span class="menu-text">数学</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/収容所配布用/数学/数学A.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">数学A</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/収容所配布用/数学/数学B.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">数学B</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/収容所配布用/数学/数学I.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">数学I</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/収容所配布用/数学/数学II.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">数学II</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/収容所配布用/数学/数学III.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">数学III</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/収容所配布用/数学/過去問演習.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">過去問演習</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
- <span class="menu-text">技術関連</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
- <span class="menu-text">Tech</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/tech/ENovelEpubConverter.html" class="sidebar-item-text sidebar-link">
@@ -911,13 +638,13 @@ window.Quarto = {
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">AI</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/tech/AI/AttentionIsAllYouNeed.html" class="sidebar-item-text sidebar-link">
@@ -934,13 +661,13 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
  <span class="menu-text">SwiftUI小説アプリ</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/tech/SwiftUI小説アプリ/EditorKitPlugin.html" class="sidebar-item-text sidebar-link">
@@ -975,6 +702,436 @@ window.Quarto = {
   </li>
       </ul>
   </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Ue5 Aura Courses</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/ue5_aura_courses/section_02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Section 02</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/ue5_aura_courses/section_03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">section_03</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/ue5_aura_courses/section_04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">section_04</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/ue5_aura_courses/section_05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">section_05</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/ue5_aura_courses/section_06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">section_06</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/ue5_aura_courses/template.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">template</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Ue5 Project</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/ue5_project/planning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Planning</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Univ Lecs</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false">
+ <span class="menu-text">2A</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料力学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">統計力学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料相平衡論.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料相平衡論</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料統計力学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料統計力学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料速度論.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料速度論</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料量子力学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料量子力学</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
+ <span class="menu-text">3A</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/セラミック材料学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">セラミックノート</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/デバイス材料工学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">デバイス材料工学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/信頼性学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">信頼性学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/数学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/生産プロセス.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">生産プロセス</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/高分子２.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">高分子ノート</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">3S</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth3 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/固体物性学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">固体物性学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/材料反応工学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料反応工学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/材料強度学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料強度学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/材料電気化学.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">材料電気化学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/組織生成論.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">組織生成論</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
+ <span class="menu-text">4S</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/4S/工学基礎演習.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">工学基礎演習</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false">
+ <span class="menu-text">卒業論文</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/flux.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">fluxの式</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/レポート.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">演習レポート</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/卒論輪講.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">卒論輪講</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/談話会.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">談話会</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/過去論文.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">過去論文</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false">
+ <span class="menu-text">論文読書</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/論文読書/GPT-Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ti-Al-N-Based Hard Coatings: Thermodynamical Background, CVD Deposition, and Properties. A Review</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ti-Al-N系硬質コーティング：熱力学的背景・CVD成膜・特性レビュー</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/論文読書/概要.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">概要</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false">
+ <span class="menu-text">卒業論文</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/flux.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">fluxの式</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/レポート.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">演習レポート</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/卒論輪講.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">卒論輪講</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/談話会.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">談話会</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/過去論文.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">過去論文</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" role="navigation" aria-expanded="false">
+ <span class="menu-text">論文読書</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ti-Al-N系硬質コーティング：熱力学的背景・CVD成膜・特性レビュー</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/論文読書/概要.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">概要</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" role="navigation" aria-expanded="false">
+ <span class="menu-text">収容所配布用</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-18" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" role="navigation" aria-expanded="false">
+ <span class="menu-text">数学</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-19" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学A</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学B</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学I.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学I</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学II.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学II</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学III.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学III</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/過去問演習.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">過去問演習</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-20" role="navigation" aria-expanded="false">
+ <span class="menu-text">物理</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-20" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-20" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/物理/物理.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">物理</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
       </ul>
   </li>
     </ul>
@@ -983,7 +1140,7 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="3">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -1031,6 +1188,7 @@ window.Quarto = {
   <li><a href="#section-16" id="toc-section-16" class="nav-link" data-scroll-target="#section-16">3-6.</a></li>
   <li><a href="#section-17" id="toc-section-17" class="nav-link" data-scroll-target="#section-17">4-1.</a></li>
   <li><a href="#section-18" id="toc-section-18" class="nav-link" data-scroll-target="#section-18">4-2.</a></li>
+  <li><a href="#section-19" id="toc-section-19" class="nav-link" data-scroll-target="#section-19">4-6.</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#過去問" id="toc-過去問" class="nav-link" data-scroll-target="#過去問">過去問</a>
@@ -1047,16 +1205,52 @@ window.Quarto = {
   <li><a href="#問3" id="toc-問3" class="nav-link" data-scroll-target="#問3">問3</a></li>
   <li><a href="#問4" id="toc-問4" class="nav-link" data-scroll-target="#問4">問4</a></li>
   </ul></li>
+  <li><a href="#年度前半-1" id="toc-年度前半-1" class="nav-link" data-scroll-target="#年度前半-1">2024年度(前半)</a>
+  <ul class="collapse">
+  <li><a href="#問1-2" id="toc-問1-2" class="nav-link" data-scroll-target="#問1-2">問1</a></li>
+  <li><a href="#問2-2" id="toc-問2-2" class="nav-link" data-scroll-target="#問2-2">問2</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">Univ Lecs</li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/固体物性学.html">3S</a></li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/材料電気化学.html">材料電気化学</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">材料電気化学</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">University</div>
+    <div class="quarto-category">2024</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Serika Yuzuki </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 8, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
 
 
 <p><span class="math display">\[\require{mhchem}
@@ -1359,7 +1553,7 @@ This is an example of a callout with a title.
 \mathrm{Cu^{2+} + 2e^- \rightarrow Cu}
 \]</span></p>
 <p>与えられたデータ： - 電流密度：50 mA/cm² - めっき時間：10 分 = 600 秒 - 電流効率：100% - Cuの原子量：63.55 - Cuの密度：8.94 g/cm³ - ファラデー定数：<span class="math inline">\(F = 96500 \ \mathrm{C/mol}\)</span></p>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -1383,7 +1577,7 @@ This is an example of a callout with a title.
 <p>温度 1 eV は 何 [K] に対応するか求めよ。</p>
 <p>（※ 厳密には正しくない換算かもしれないが、eVの感覚を得るために行う。）</p>
 <p>与えられた定数： - <span class="math inline">\(1\ \mathrm{eV} = 1.602 \times 10^{-19}\ \mathrm{J}\)</span> - ボルツマン定数：<span class="math inline">\(k_B = 1.381 \times 10^{-23}\ \mathrm{J/K}\)</span></p>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -1406,7 +1600,7 @@ This is an example of a callout with a title.
 <p>金属を100%の電流効率でアノード溶解したとき、単位時間当たり単位面積当たりの溶解量は、電流密度に比例する。<br>
 Fe, Zn, Alの3種の金属について、1 [A/m²] の電流密度に対応する溶解量 [g·m⁻²·h⁻¹] を求めよ。<br>
 なお、Fe, Znは2価、Alは3価で溶解するとし、それぞれの原子量は、Fe: 55.85, Zn: 65.38, Al: 26.98 とする。</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -1420,9 +1614,9 @@ Fe, Zn, Alの3種の金属について、1 [A/m²] の電流密度に対応す�
 <div class="callout-body-container callout-body">
 <p>これについては 2.1 と同じ計算を行うことになる。</p>
 <p><span class="math inline">\(1 \symup{A \cdot m^{-2}}\)</span> によって流れる電気量は <span class="math inline">\(1/96485 = 1.036 \times 10^{-5} \symup{mol \cdot m^{-2} \cdot s^{-1}}\)</span> である。これに <span class="math inline">\(\ce{Fe, Zn, Al}\)</span> のそれぞれの価数で割って、原子量で掛けることで、それぞれの生成質量の速度を求めることができる。</p>
-<div id="35828f5b" class="cell" data-execution_count="1">
+<div id="cd354957" class="cell" data-execution_count="1">
 <details class="code-fold">
-<summary>Show Code</summary>
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
@@ -1464,7 +1658,7 @@ Al: 9.321e-05 g/m^2/s</code></pre>
 <section id="section-3" class="level3">
 <h3 class="anchored" data-anchor-id="section-3">1-4.</h3>
 <p>アルカリ水溶液の電気分解によって水10 gを1時間で分解したい。何 A の定電流を流したらよいか求めよ。</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -1486,7 +1680,7 @@ Al: 9.321e-05 g/m^2/s</code></pre>
 <p>二酸化チタン（アナターゼ型）のバンドギャップは約 3.2 eV、シリコンのものは約 1.1 eV と報告されている。<br>
 バンドギャップに対応した、光の波長 [nm] を計算せよ。<br>
 λ [nm] = 1240 / hν [eV] の関係より（各自確認のこと）</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -1678,7 +1872,7 @@ Al: 9.321e-05 g/m^2/s</code></pre>
 <p>表「無限希釈におけるイオンのモル電気伝導率」を用いて、<span class="math inline">\(\ce{K^+, Ca^{2+}, Cl^-, SO4^{2-}}\)</span> の移動度を求めよ。<br>
 <span class="math display">\[\lambda^\infty = z_i F u_i \Rightarrow u_i = \lambda^\infty / |z_i| F\]</span><br>
 （表の値はすでに <span class="math inline">\(\lambda/z\)</span> の単位 [<span class="math inline">\(\symup{\Omega^{-1} m^2 mol^{-1}}\)</span>] で与えられている）</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -1691,9 +1885,9 @@ Al: 9.321e-05 g/m^2/s</code></pre>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>イオン移動度の式は (<a href="#eq-ion_mobility" class="quarto-xref">Equation&nbsp;2</a>) だから、</p>
-<div id="5154ef05" class="cell" data-execution_count="2">
+<div id="8d0021c4" class="cell" data-execution_count="2">
 <details class="code-fold">
-<summary>Show Code</summary>
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="dv">96485</span>  <span class="co"># C/mol</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1729,7 +1923,7 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 <h3 class="anchored" data-anchor-id="section-6">2-2.</h3>
 <p><span class="math inline">\(\ce{Li^+}\)</span> は <span class="math inline">\(\ce{Cs^+}\)</span> と比べ、「<span class="math inline">\(r_c\)</span> は小さいが、<span class="math inline">\(r_s\)</span> は大きい」<br>
 その理由を考察せよ。ただし、 <span class="math inline">\(r_c\)</span> はイオン半径、 <span class="math inline">\(r_s\)</span> はストークス半径である。</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -1754,7 +1948,7 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 - <span class="math inline">\(\ce{H^+}\)</span>：349.82<br>
 - <span class="math inline">\(\ce{CH3COO^-}\)</span>：40.9<br>
 - 合計：390.72 [<span class="math inline">\(\symup{S \cdot cm^2 \cdot mol^{-1}}\)</span>]</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -1776,7 +1970,7 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 <h3 class="anchored" data-anchor-id="section-8">2-4.</h3>
 <p>0.02 M（=0.02 mol/l）酢酸水溶液の導電率が <span class="math inline">\(2.31 \times 10^{-4} \symup{S \cdot cm^{-1}}\)</span> であった。<br>
 上記無限希釈モル伝導率を用い、酢酸の電離度と解離定数を求めよ。</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -1789,9 +1983,9 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>式 (<a href="#eq-dilution_law" class="quarto-xref">Equation&nbsp;4</a>) を用いる。</p>
-<div id="41d57182" class="cell" data-execution_count="3">
+<div id="8f98718b" class="cell" data-execution_count="3">
 <details class="code-fold">
-<summary>Show Code</summary>
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="fl">0.02</span>  <span class="co"># mol/L</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>lambda_infinity <span class="op">=</span> <span class="fl">390.7e-4</span>  <span class="co"># S m^2 mol^-1</span></span>
@@ -1816,7 +2010,7 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 <h3 class="anchored" data-anchor-id="section-9">2-5.</h3>
 <p>半径 1 cm の導体球に <span class="math inline">\(10^{-13} \symup{mol}\)</span> の電子を乗せ、真空中におくと、表面電位はいくらになるか求めよ。<br>
 （真空の誘電率 <span class="math inline">\(\epsilon_0 = 8.854 \times 10^{-12} \symup{C^2/N \cdot m^2}\)</span>）</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -1829,9 +2023,9 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[\phi = \frac{1}{4\pi\epsilon_0} \frac{Q}{r} = \frac{1}{4\pi\epsilon_0} \frac{10^{-13} \times F}{1 \times 10^{-2}} = 8.7 \times 10^{3} \symup{V}\]</span></p>
-<div id="e096c2b4" class="cell" data-execution_count="4">
+<div id="2ecc5576" class="cell" data-execution_count="4">
 <details class="code-fold">
-<summary>Show Code</summary>
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>epsilon_0 <span class="op">=</span> <span class="fl">8.854e-12</span>  <span class="co"># C^2/Jm</span></span>
@@ -1852,7 +2046,7 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 <h3 class="anchored" data-anchor-id="section-10">2-6.</h3>
 <p>酢酸を水酸化ナトリウム溶液で伝導度滴定した場合の滴定曲線は右図のようになる。<br>
 各イオンの電気伝導率に対する寄与を、前述のラム分図のように示せ。</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -1875,7 +2069,7 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 <section id="section-11" class="level3">
 <h3 class="anchored" data-anchor-id="section-11">3-1.</h3>
 <p><span class="math inline">\(\ce{NaCl}\)</span> を 0.1 M、<span class="math inline">\(\ce{Al2(SO4)3}\)</span> を 0.01 M 含む水溶液（どちらも <span class="math inline">\(\alpha = 1\)</span> とする）の<strong>イオン強度</strong>は何 M になるか。 また、そのうち <span class="math inline">\(\ce{NaCl}\)</span> の<strong>分担割合</strong>は何 % かもとめよ。</p>
-<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -1892,7 +2086,7 @@ SO42-: 8.291e-04 m^2/V/s</code></pre>
 </div>
 </div>
 </div>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -1916,9 +2110,9 @@ I_{\ce{NaCl}} + I_{\ce{Al2(SO4)3}} &amp;= 0.1 + 0.15 = \boxed{0.25 \ \text{M} } 
 \frac{I_{\ce{NaCl}}}{I_{\ce{NaCl}} + I_{\ce{Al2(SO4)3}}} &amp;= \frac{0.1}{0.25} \times 100 = \boxed{40 \ \%}
 \end{aligned}
 \]</span></p>
-<div id="2b9d4d35" class="cell" data-execution_count="5">
+<div id="c0216dbd" class="cell" data-execution_count="5">
 <details class="code-fold">
-<summary>Show Code</summary>
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>c_Na <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># mol/L</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>c_Cl <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># mol/L</span></span>
@@ -1947,7 +2141,7 @@ I_{\ce{NaCl}} + I_{\ce{Al2(SO4)3}} &amp;= 0.1 + 0.15 = \boxed{0.25 \ \text{M} } 
 <section id="section-12" class="level3">
 <h3 class="anchored" data-anchor-id="section-12">3-2.</h3>
 <p><span class="math inline">\(\ce{CaCl2}\)</span> 水溶液（強電解質溶液：<span class="math inline">\(25^{\circ}\symup{C}\)</span>）の、0.001 M および 0.01 M における <strong>イオン強度</strong>と<strong>デバイ半径</strong>を計算せよ。</p>
-<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -1988,7 +2182,7 @@ n_i^{'} = n_i \exp \left( -\frac{z_ie\phi(r)}{kT} \right)
 </div>
 </div>
 </div>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -2024,9 +2218,9 @@ I_{\ce{CaCl2}, \mathrm{0.01 \ M}} &amp;= \frac{1}{2} \left( c_{\ce{Ca2+}} z_{\ce
 &amp;= 1.76 \times 10^{-9} \ \text{m} \\
 \end{aligned}
 \]</span></p>
-<div id="b82c37c5" class="cell" data-execution_count="6">
+<div id="8d9d0eaf" class="cell" data-execution_count="6">
 <details class="code-fold">
-<summary>Show Code</summary>
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>epsilon_0 <span class="op">=</span> <span class="fl">8.854e-12</span>  <span class="co"># C^2/Jm</span></span>
@@ -2063,7 +2257,7 @@ I_{\ce{CaCl2}, \mathrm{0.01 \ M}} &amp;= \frac{1}{2} \left( c_{\ce{Ca2+}} z_{\ce
 <section id="section-13" class="level3">
 <h3 class="anchored" data-anchor-id="section-13">3-3.</h3>
 <p><span class="math inline">\(25^{\circ}\symup{C},\ 5.0 \times 10^{-3} \ \symup{M} \ \ce{KCl}\)</span> 水溶液の<strong>イオン強度</strong>および<strong>平均活量係数</strong>を、<strong>デバイ＝ヒュッケルの極限法則</strong>を用いて求めよ。</p>
-<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -2083,7 +2277,7 @@ A^\ast = \frac{1}{8\pi}\qty(\frac{N_A}{1000})^{1/2}\qty(\frac{e^2}{\epsilon_0\ep
 </div>
 </div>
 </div>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -2105,9 +2299,9 @@ I &amp;= \frac{1}{2} \left( c_{\ce{K+}} z_{\ce{K+}}^2 + c_{\ce{Cl-}} z_{\ce{Cl-}
 &amp;= 0.92
 \end{aligned}
 \]</span></p>
-<div id="2bef3a77" class="cell" data-execution_count="7">
+<div id="1ddd85a9" class="cell" data-execution_count="7">
 <details class="code-fold">
-<summary>Show Code</summary>
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>c_k <span class="op">=</span> <span class="fl">5.0e-3</span>  <span class="co"># mol/L</span></span>
@@ -2136,7 +2330,7 @@ I &amp;= \frac{1}{2} \left( c_{\ce{K+}} z_{\ce{K+}}^2 + c_{\ce{Cl-}} z_{\ce{Cl-}
 <h3 class="anchored" data-anchor-id="section-14">3-4.</h3>
 <p><span class="math inline">\(25^{\circ}\symup{C},\ 1.0 \times 10^{-3} \ \symup{M} \ \ce{CaCl2}\)</span> 水溶液の<br>
 <strong>イオン強度</strong>および<strong>平均活量係数</strong>を、<strong>デバイ＝ヒュッケルの極限法則</strong>を用いて求めよ。</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -2158,9 +2352,9 @@ I &amp;= \frac{1}{2} \left( c_{\ce{Ca2+}} z_{\ce{Ca2+}}^2 + c_{\ce{Cl-}} z_{\ce{
 &amp;= 0.88
 \end{aligned}
 \]</span></p>
-<div id="355b154e" class="cell" data-execution_count="8">
+<div id="92e88b5a" class="cell" data-execution_count="8">
 <details class="code-fold">
-<summary>Show Code</summary>
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>c_ca <span class="op">=</span> <span class="fl">1.0e-3</span>  <span class="co"># mol/L</span></span>
@@ -2198,7 +2392,7 @@ e &amp;= 1.6022 \times 10^{-19}\ [\mathrm{C}] \\
 \varepsilon_0 &amp;= 8.8542 \times 10^{-12}\ [\mathrm{F\ m^{-1}}]
 \end{aligned}
 \]</span></p>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -2227,7 +2421,7 @@ e &amp;= 1.6022 \times 10^{-19}\ [\mathrm{C}] \\
 <h3 class="anchored" data-anchor-id="section-16">3-6.</h3>
 <p>上記求めた式を用い、<span class="math inline">\(\ce{Cl-}\)</span> および <span class="math inline">\(\ce{I-}\)</span> における <span class="math inline">\(\Delta G_S^\circ\)</span> を計算してみよ。<br>
 <span class="math inline">\(\ce{Cl-}\)</span> および <span class="math inline">\(\ce{I-}\)</span> のイオン半径はそれぞれ 181 pm, 220 pm とする。</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -2247,9 +2441,9 @@ e &amp;= 1.6022 \times 10^{-19}\ [\mathrm{C}] \\
 &amp;= -312 \ \mathrm{kJ\ mol^{-1}}
 \end{aligned}
 \]</span></p>
-<div id="5d80e26e" class="cell" data-execution_count="9">
+<div id="bae37ca5" class="cell" data-execution_count="9">
 <details class="code-fold">
-<summary>Show Code</summary>
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>r_cl <span class="op">=</span> <span class="dv">181</span>  <span class="co"># pm</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>r_i <span class="op">=</span> <span class="dv">220</span>  <span class="co"># pm</span></span>
@@ -2271,7 +2465,7 @@ e &amp;= 1.6022 \times 10^{-19}\ [\mathrm{C}] \\
 <section id="section-17" class="level3">
 <h3 class="anchored" data-anchor-id="section-17">4-1.</h3>
 <p>ネルンストの式を導き出せ。</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -2317,7 +2511,8 @@ e &amp;= 1.6022 \times 10^{-19}\ [\mathrm{C}] \\
 \mathrm{Al}^{3+} + 3e^- \rightleftharpoons \mathrm{Al}
 \]</span></p></li>
 </ol>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<p>また、 <span class="math inline">\(\ce{Zn^{2+}}\)</span> の活量が 0.1 の時の電極電位を求めよ。</p>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -2329,10 +2524,75 @@ e &amp;= 1.6022 \times 10^{-19}\ [\mathrm{C}] \\
 </div>
 <div id="callout-22" class="callout-22-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>This is an example of a callout with a title.</p>
+<p><span class="math inline">\(\Delta G = 147.06 \ \mathrm{kJ\ mol^{-1}}\)</span> より、</p>
+<p><span class="math display">\[
+E^O_{\ce{Zn}} = \frac{\Delta G}{\Delta n F} = \frac{147.06 \times 10^3}{2 \times 96485} = 0.763 \ \mathrm{V}
+\]</span></p>
+<p>活量が 1 でない場合は、</p>
+<p><span class="math display">\[
+\begin{aligned}
+E &amp;= E^O + \frac{RT}{nF} \ln \frac{a_{\ce{Ox}}}{a_{\ce{Red}}} \\
+&amp;= 0.763 + \frac{8.31 \times 298}{2 \times 96485} \ln 0.1 \\
+&amp;= 0.733\ \mathrm{V}
+\end{aligned}
+\]</span></p>
+<div id="562f78de" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fl">8.31</span>  <span class="co"># J/mol/K</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">298.15</span>  <span class="co"># K</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="dv">96485</span>  <span class="co"># C/mol</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>delta_g <span class="op">=</span> <span class="fl">147.06e3</span>  <span class="co"># J/mol</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>a_ox <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>a_red <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 電極電位の計算 </span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>E_O <span class="op">=</span> delta_g <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> F)  <span class="co"># V</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> E_O <span class="op">+</span> R <span class="op">*</span> T <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> F) <span class="op">*</span> np.log(a_ox <span class="op">/</span> a_red)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"電極電位: </span><span class="sc">{</span>E<span class="sc">:.3f}</span><span class="ss"> V"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>電極電位: 0.733 V</code></pre>
+</div>
+</div>
+<p>同様に、</p>
+<p><span class="math display">\[
+E^O_{\ce{Al}} = \frac{\Delta G}{\Delta n F} = \frac{147.06 \times 10^3}{3 \times 96485} = -1.68 \ \mathrm{V}
+\]</span></p>
 </div>
 </div>
 </div>
+</section>
+<section id="section-19" class="level3">
+<h3 class="anchored" data-anchor-id="section-19">4-6.</h3>
+<p>下記式が、酸化還元体 OL/RL そのものの標準酸化還元電位となることを確認せよ。</p>
+<p><span class="math display">\[
+E^\circ_{\text{app}} = E^\circ + \frac{RT}{nF} \ln \frac{K_O}{K_R}
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\begin{aligned}
+\Delta_f G^O + \Delta_f G^L - \Delta_f G^{OL} &amp;= - RT \ln K_O \\
+\Delta_f G^R + \Delta_f G^L - \Delta_f G^{RL} &amp;= - RT \ln K_R \\
+E^O_{\mathrm{app}} &amp;= - \frac{\Delta_f G^{OL} - \Delta_f G^{RL}}{\Delta n F} \\
+&amp;= E^O_{\mathrm{O/R}} + \frac{RT}{nF} \ln \frac{K_O}{K_R}
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+</div>
+<p>以降は基本計算問題なので、省略。</p>
 </section>
 </section>
 </section>
@@ -2363,8 +2623,8 @@ This is an example of a callout with a title.
 </section>
 <section id="問2" class="level3">
 <h3 class="anchored" data-anchor-id="問2">問2</h3>
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2373,14 +2633,14 @@ This is an example of a callout with a title.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>フィックの法則の式が書ければ大体大丈夫。</p>
 </div>
 </div>
 </div>
-<div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2389,7 +2649,7 @@ This is an example of a callout with a title.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li>Fickの第一法則は次の式の通り</li>
@@ -2409,15 +2669,15 @@ J = -D \dv{c}{x}
 J = 0.72 \times 10^{-5} \ \symup{cm^2\ s^{-1}} \times 1.0 \times 10^{2} \ \symup{mol\ cm^{-4}} = 7.2 \times 10^{-4} \ \symup{mol\ cm^{-2} s^{-1}}
 \]</span></p>
 <p>電解電流密度なので、<span class="math inline">\(z=2\)</span> を考えて、</p>
-<div id="f5418a98" class="cell" data-execution_count="10">
+<div id="7d6e4a6d" class="cell" data-execution_count="11">
 <details class="code-fold">
-<summary>Show Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="dv">96485</span>  <span class="co"># C/mol</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>J <span class="op">=</span> <span class="fl">7.2e-4</span>  <span class="co"># mol/cm^2/s</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 電流密度の計算</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>current_density <span class="op">=</span> J <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> F  <span class="co"># A/cm^2</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"電流密度: </span><span class="sc">{</span>current_density<span class="sc">:.3e}</span><span class="ss"> A/cm^2"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="dv">96485</span>  <span class="co"># C/mol</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>J <span class="op">=</span> <span class="fl">7.2e-4</span>  <span class="co"># mol/cm^2/s</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 電流密度の計算</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>current_density <span class="op">=</span> J <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> F  <span class="co"># A/cm^2</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"電流密度: </span><span class="sc">{</span>current_density<span class="sc">:.3e}</span><span class="ss"> A/cm^2"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>電流密度: 1.389e+02 A/cm^2</code></pre>
@@ -2506,22 +2766,22 @@ J = 7.2 \times 10^{-4} \ \symup{mol\ cm^{-2} s^{-1}} \times 2 \times 96485 \ \sy
 <p>温度は <span class="math inline">\(25^{\circ}\symup{K}\)</span>（<span class="math inline">\(298.15 \symup{K}\)</span>）の標準温度とし、必要に応じてイオンの活量係数は 1 として良い。電位の基準は標準水素電極電位とする。ファラデー定数には <span class="math inline">\(F = 9.65 \times 10^4\;\mathrm{C \cdot mol^{-1}}\)</span> 気体定数には <span class="math inline">\(R = 8.31\;\mathrm{J \cdot K^{-1} \cdot mol^{-1}}\)</span> を用いよ。<strong>計算過程も明記すること。</strong><br>
 単位 [M] は <span class="math inline">\(\mathrm{mol/L}\)</span> である。必要に応じ、表1の値を用いよ。</p>
 <hr>
-<section id="section-19" class="level4">
-<h4 class="anchored" data-anchor-id="section-19">1-1</h4>
+<section id="section-20" class="level4">
+<h4 class="anchored" data-anchor-id="section-20">1-1</h4>
 <p><span class="math inline">\(\ce{HCl}\)</span>、<span class="math inline">\(\ce{NaCl}\)</span>、<span class="math inline">\(\ce{CH3COONa}\)</span> 水溶液の無限希釈モル導電率はそれぞれ<br>
 426.3、126.4、91.0 [<span class="math inline">\(\mathrm{S \cdot cm^2 \cdot mol^{-1}}\)</span>] である。<br>
 酢酸 <span class="math inline">\(\ce{CH3COOH}\)</span> の無限希釈モル導電率を求めよ。</p>
 </section>
-<section id="section-20" class="level4">
-<h4 class="anchored" data-anchor-id="section-20">1-2</h4>
+<section id="section-21" class="level4">
+<h4 class="anchored" data-anchor-id="section-21">1-2</h4>
 <p>0.02 M 酢酸水溶液の導電率は <span class="math inline">\(2.31 \times 10^{-4}\;\mathrm{S \cdot cm^{-1}}\)</span> だった。<br>
 (1-1) の結果を用い、0.02 M における酢酸の電離度 <span class="math inline">\(\alpha\)</span> と、酢酸の解離定数 <span class="math inline">\(K\)</span> を求めよ。</p>
 </section>
-<section id="section-21" class="level4">
-<h4 class="anchored" data-anchor-id="section-21">1-3</h4>
+<section id="section-22" class="level4">
+<h4 class="anchored" data-anchor-id="section-22">1-3</h4>
 <p><span class="math inline">\(\ce{CH3COO-}\)</span> の標準生成ギブスエネルギーを求めよ。</p>
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2530,15 +2790,15 @@ J = 7.2 \times 10^{-4} \ \symup{mol\ cm^{-2} s^{-1}} \times 2 \times 96485 \ \sy
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div id="callout-26" class="callout-26-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>1-1 では、 <a href="#eq-molar_conductivity" class="quarto-xref">Equation&nbsp;1</a> を用いる。</p>
 <p>1-2 では、 <a href="#eq-dilution_law_alpha" class="quarto-xref">Equation&nbsp;3</a> と <a href="#eq-dilution_law" class="quarto-xref">Equation&nbsp;4</a> を用いる。ただし、導電率とモル伝導率の単位と換算について注意すること。</p>
 </div>
 </div>
 </div>
-<div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2547,7 +2807,7 @@ J = 7.2 \times 10^{-4} \ \symup{mol\ cm^{-2} s^{-1}} \times 2 \times 96485 \ \sy
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-26" class="callout-26-contents callout-collapse collapse">
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>1-1</p>
 <p><span class="math inline">\(\ce{H+},\ \ce{Cl-},\ \ce{CH3COO-}\)</span> のモル電気伝導率をそれぞれ <span class="math inline">\(\lambda_{\ce{H+}},\ \lambda_{\ce{Cl-}},\ \lambda_{\ce{CH3COO-}}\)</span> とすると、</p>
@@ -2577,76 +2837,76 @@ J = 7.2 \times 10^{-4} \ \symup{mol\ cm^{-2} s^{-1}} \times 2 \times 96485 \ \sy
 </section>
 <section id="問2-1" class="level3">
 <h3 class="anchored" data-anchor-id="問2-1">問2</h3>
-<div id="f1bea79c" class="cell" data-execution_count="11">
+<div id="d2a950a3" class="cell" data-execution_count="12">
 <details class="code-fold">
-<summary>Show Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> patches</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 図の設定</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 領域の描画</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>ax.add_patch(patches.Polygon([[<span class="dv">0</span>, <span class="op">-</span><span class="fl">0.763</span>], [<span class="dv">7</span>, <span class="op">-</span><span class="fl">0.763</span>], [<span class="dv">7</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>]], closed<span class="op">=</span><span class="va">True</span>, facecolor<span class="op">=</span><span class="st">'lightblue'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>))</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>ax.add_patch(patches.Polygon([[<span class="dv">7</span>, <span class="op">-</span><span class="fl">0.763</span>], [<span class="dv">14</span>, <span class="op">-</span><span class="fl">1.25</span> <span class="op">+</span> <span class="fl">0.059</span> <span class="op">*</span> (<span class="dv">14</span> <span class="op">-</span> <span class="dv">14</span>)], [<span class="dv">14</span>, <span class="dv">1</span>], [<span class="dv">7</span>, <span class="dv">1</span>]], closed<span class="op">=</span><span class="va">True</span>, facecolor<span class="op">=</span><span class="st">'lightgreen'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>))</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>ax.add_patch(patches.Polygon([[<span class="dv">0</span>, <span class="op">-</span><span class="dv">2</span>], [<span class="dv">14</span>, <span class="op">-</span><span class="dv">2</span>], [<span class="dv">14</span>, <span class="op">-</span><span class="fl">1.25</span> <span class="op">+</span> <span class="fl">0.059</span> <span class="op">*</span> (<span class="dv">14</span> <span class="op">-</span> <span class="dv">14</span>)], [<span class="dv">7</span>, <span class="op">-</span><span class="fl">0.763</span>], [<span class="dv">0</span>, <span class="op">-</span><span class="fl">0.763</span>]], closed<span class="op">=</span><span class="va">True</span>, facecolor<span class="op">=</span><span class="st">'lightgray'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>))</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 境界線の描画</span></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="dv">0</span>, <span class="dv">7</span>], [<span class="op">-</span><span class="fl">0.763</span>, <span class="op">-</span><span class="fl">0.763</span>], <span class="st">'k'</span>, label<span class="op">=</span><span class="st">'①'</span>)</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="dv">7</span>, <span class="dv">14</span>], [<span class="op">-</span><span class="fl">0.763</span>, <span class="op">-</span><span class="fl">1.25</span> <span class="op">+</span> <span class="fl">0.059</span> <span class="op">*</span> (<span class="dv">14</span> <span class="op">-</span> <span class="dv">14</span>)], <span class="st">'k'</span>, label<span class="op">=</span><span class="st">'②'</span>)</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ラベルの追加</span></span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">2</span>, <span class="fl">0.2</span>, <span class="st">'(A)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">10</span>, <span class="fl">0.2</span>, <span class="st">'(B)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">6</span>, <span class="op">-</span><span class="fl">1.6</span>, <span class="st">'(C)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">3.5</span>, <span class="op">-</span><span class="fl">0.64</span>, <span class="st">'①'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">"circle"</span>, fc<span class="op">=</span><span class="st">"white"</span>, ec<span class="op">=</span><span class="st">"black"</span>))</span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">10.5</span>, <span class="op">-</span><span class="fl">0.9</span>, <span class="st">'②'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">"circle"</span>, fc<span class="op">=</span><span class="st">"white"</span>, ec<span class="op">=</span><span class="st">"black"</span>))</span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 軸ラベル</span></span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'pH'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'E [V vs. SHE]'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 軸の範囲</span></span>
-<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">14</span>)</span>
-<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a><span class="co"># グリッド</span></span>
-<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
-<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Zn'</span>)</span>
-<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> patches</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 図の設定</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 領域の描画</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>ax.add_patch(patches.Polygon([[<span class="dv">0</span>, <span class="op">-</span><span class="fl">0.763</span>], [<span class="dv">7</span>, <span class="op">-</span><span class="fl">0.763</span>], [<span class="dv">7</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>]], closed<span class="op">=</span><span class="va">True</span>, facecolor<span class="op">=</span><span class="st">'lightblue'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>))</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>ax.add_patch(patches.Polygon([[<span class="dv">7</span>, <span class="op">-</span><span class="fl">0.763</span>], [<span class="dv">14</span>, <span class="op">-</span><span class="fl">1.25</span> <span class="op">+</span> <span class="fl">0.059</span> <span class="op">*</span> (<span class="dv">14</span> <span class="op">-</span> <span class="dv">14</span>)], [<span class="dv">14</span>, <span class="dv">1</span>], [<span class="dv">7</span>, <span class="dv">1</span>]], closed<span class="op">=</span><span class="va">True</span>, facecolor<span class="op">=</span><span class="st">'lightgreen'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>))</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>ax.add_patch(patches.Polygon([[<span class="dv">0</span>, <span class="op">-</span><span class="dv">2</span>], [<span class="dv">14</span>, <span class="op">-</span><span class="dv">2</span>], [<span class="dv">14</span>, <span class="op">-</span><span class="fl">1.25</span> <span class="op">+</span> <span class="fl">0.059</span> <span class="op">*</span> (<span class="dv">14</span> <span class="op">-</span> <span class="dv">14</span>)], [<span class="dv">7</span>, <span class="op">-</span><span class="fl">0.763</span>], [<span class="dv">0</span>, <span class="op">-</span><span class="fl">0.763</span>]], closed<span class="op">=</span><span class="va">True</span>, facecolor<span class="op">=</span><span class="st">'lightgray'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>))</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 境界線の描画</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="dv">0</span>, <span class="dv">7</span>], [<span class="op">-</span><span class="fl">0.763</span>, <span class="op">-</span><span class="fl">0.763</span>], <span class="st">'k'</span>, label<span class="op">=</span><span class="st">'①'</span>)</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="dv">7</span>, <span class="dv">14</span>], [<span class="op">-</span><span class="fl">0.763</span>, <span class="op">-</span><span class="fl">1.25</span> <span class="op">+</span> <span class="fl">0.059</span> <span class="op">*</span> (<span class="dv">14</span> <span class="op">-</span> <span class="dv">14</span>)], <span class="st">'k'</span>, label<span class="op">=</span><span class="st">'②'</span>)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ラベルの追加</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">2</span>, <span class="fl">0.2</span>, <span class="st">'(A)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">10</span>, <span class="fl">0.2</span>, <span class="st">'(B)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="dv">6</span>, <span class="op">-</span><span class="fl">1.6</span>, <span class="st">'(C)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">3.5</span>, <span class="op">-</span><span class="fl">0.64</span>, <span class="st">'①'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">"circle"</span>, fc<span class="op">=</span><span class="st">"white"</span>, ec<span class="op">=</span><span class="st">"black"</span>))</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">10.5</span>, <span class="op">-</span><span class="fl">0.9</span>, <span class="st">'②'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">"circle"</span>, fc<span class="op">=</span><span class="st">"white"</span>, ec<span class="op">=</span><span class="st">"black"</span>))</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 軸ラベル</span></span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'pH'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'E [V vs. SHE]'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 軸の範囲</span></span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">14</span>)</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a><span class="co"># グリッド</span></span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Zn'</span>)</span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="材料電気化学_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="材料電気化学_files/figure-html/cell-13-output-1.png" width="537" height="526" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<section id="section-22" class="level4">
-<h4 class="anchored" data-anchor-id="section-22">2-1</h4>
+<section id="section-23" class="level4">
+<h4 class="anchored" data-anchor-id="section-23">2-1</h4>
 <p>図1は、<span class="math inline">\(\ce{Zn^{2+}}\)</span> の活量を1とした <span class="math inline">\(\ce{Zn}\)</span> のプールベイ図である。(A)、(B)、(C) には、<span class="math inline">\(\ce{Zn^{2+}}\)</span>、<span class="math inline">\(\ce{Zn}\)</span>、<span class="math inline">\(\ce{Zn(OH)2}\)</span> のいずれかが対応するか記述せよ。</p>
 </section>
-<section id="section-23" class="level4">
-<h4 class="anchored" data-anchor-id="section-23">2-2</h4>
+<section id="section-24" class="level4">
+<h4 class="anchored" data-anchor-id="section-24">2-2</h4>
 <p>(A)と(C)の境界①が位置する平衡電極電位 <span class="math inline">\(E\)</span> を求めよ。</p>
 </section>
-<section id="section-24" class="level4">
-<h4 class="anchored" data-anchor-id="section-24">2-3</h4>
+<section id="section-25" class="level4">
+<h4 class="anchored" data-anchor-id="section-25">2-3</h4>
 <p>(B)と(C)の境界②が示す平衡電極電位 <span class="math inline">\(E\)</span> を、<span class="math inline">\(x = \mathrm{pH}\)</span> として <span class="math inline">\(x\)</span> の関数として求めよ。①との交点（<span class="math inline">\(x\)</span> の範囲）まで求める必要はない。</p>
 </section>
-<section id="section-25" class="level4">
-<h4 class="anchored" data-anchor-id="section-25">2-4</h4>
+<section id="section-26" class="level4">
+<h4 class="anchored" data-anchor-id="section-26">2-4</h4>
 <p>アルカリマンガン電池は、電極材料として <span class="math inline">\(\ce{MnO2}\)</span> および <span class="math inline">\(\ce{Zn}\)</span>、電解質として <span class="math inline">\(\ce{KOH}\)</span> 水溶液を用いた電池である。放電後、正極および負極ともに水酸化物が生成された。</p>
 <p>正極反応、負極反応、および電池反応（全反応）を記述せよ。</p>
 </section>
-<section id="section-26" class="level4">
-<h4 class="anchored" data-anchor-id="section-26">2-5</h4>
+<section id="section-27" class="level4">
+<h4 class="anchored" data-anchor-id="section-27">2-5</h4>
 <p>上記アルカリマンガン電池の開放電圧 <span class="math inline">\([V]\)</span> を求めよ。必要に応じ、電解質の pH は 14 として良い。</p>
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2655,7 +2915,7 @@ J = 7.2 \times 10^{-4} \ \symup{mol\ cm^{-2} s^{-1}} \times 2 \times 96485 \ \sy
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-27" class="callout-27-contents callout-collapse collapse">
+<div id="callout-28" class="callout-28-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>これは、<a href="@sec-nerst_eq">ネルンストの式</a> を用いる問題。プールベイ図という年によっては講義資料に現れないグラフがあるが、要するにpH vs 電位のグラフである。</p>
 <p>次に、活量について混乱しかけたので、そのメモを置いておく。</p>
@@ -2676,8 +2936,8 @@ J = 7.2 \times 10^{-4} \ \symup{mol\ cm^{-2} s^{-1}} \times 2 \times 96485 \ \sy
 </div>
 </div>
 </div>
-<div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2686,7 +2946,7 @@ J = 7.2 \times 10^{-4} \ \symup{mol\ cm^{-2} s^{-1}} \times 2 \times 96485 \ \sy
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-28" class="callout-28-contents callout-collapse collapse">
+<div id="callout-29" class="callout-29-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>2-1</p>
 <ol type="A">
@@ -2720,17 +2980,17 @@ E = E^O + \frac{0.059}{2} \ln \frac{1}{a_{\ce{OH-}}^2}
 <p><span class="math display">\[
 E^O = - \frac{\Delta G^O}{nF} = - \frac{240.5 \times 10^3}{2 \times 96485} = -1.246 \ \mathrm{V}
 \]</span></p>
-<div id="827abd6b" class="cell" data-execution_count="12">
+<div id="5687a0d2" class="cell" data-execution_count="13">
 <details class="code-fold">
-<summary>Show Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="dv">96485</span>  <span class="co"># C/mol</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fl">8.31</span>  <span class="co"># J/K/mol</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">298.15</span>  <span class="co"># K</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 計算</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>E_O <span class="op">=</span> <span class="op">-</span><span class="fl">240.5e3</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> F)</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E^O: </span><span class="sc">{</span>E_O<span class="sc">:.3f}</span><span class="ss"> V"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定数</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="dv">96485</span>  <span class="co"># C/mol</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fl">8.31</span>  <span class="co"># J/K/mol</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">298.15</span>  <span class="co"># K</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 計算</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>E_O <span class="op">=</span> <span class="op">-</span><span class="fl">240.5e3</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> F)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E^O: </span><span class="sc">{</span>E_O<span class="sc">:.3f}</span><span class="ss"> V"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>E^O: -1.246 V</code></pre>
@@ -2757,11 +3017,11 @@ E = -1.25 + 0.059  (14 - x) = -0.336 - 0.059x
 <p><span class="math display">\[
 \Delta G^O = -555.07 - 618.58 + 2 * 237.13 + 465.14 = -234.25 \ \mathrm{kJ/mol}
 \]</span></p>
-<div id="9c9cf308" class="cell" data-execution_count="13">
+<div id="5c29faf4" class="cell" data-execution_count="14">
 <details class="code-fold">
-<summary>Show Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> <span class="op">-</span><span class="fl">555.07</span> <span class="op">-</span> <span class="fl">618.58</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> <span class="fl">237.13</span> <span class="op">+</span> <span class="fl">465.14</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"G: </span><span class="sc">{</span>G<span class="sc">:.3f}</span><span class="ss"> J/mol"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> <span class="op">-</span><span class="fl">555.07</span> <span class="op">-</span> <span class="fl">618.58</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> <span class="fl">237.13</span> <span class="op">+</span> <span class="fl">465.14</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"G: </span><span class="sc">{</span>G<span class="sc">:.3f}</span><span class="ss"> J/mol"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>G: -234.250 J/mol</code></pre>
@@ -2770,11 +3030,11 @@ E = -1.25 + 0.059  (14 - x) = -0.336 - 0.059x
 <p><span class="math display">\[
 E = - \frac{\Delta G^O}{nF} = 1.214 \ \mathrm{V}
 \]</span></p>
-<div id="1cc37eef" class="cell" data-execution_count="14">
+<div id="26978d37" class="cell" data-execution_count="15">
 <details class="code-fold">
-<summary>Show Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> <span class="op">-</span><span class="fl">234.25e3</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> F)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E: </span><span class="sc">{</span>E<span class="sc">:.3f}</span><span class="ss"> V"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> <span class="op">-</span><span class="fl">234.25e3</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> F)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E: </span><span class="sc">{</span>E<span class="sc">:.3f}</span><span class="ss"> V"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>E: -1.214 V</code></pre>
@@ -2789,8 +3049,8 @@ E = - \frac{\Delta G^O}{nF} = 1.214 \ \mathrm{V}
 </section>
 <section id="問3" class="level3">
 <h3 class="anchored" data-anchor-id="問3">問3</h3>
-<section id="section-27" class="level4">
-<h4 class="anchored" data-anchor-id="section-27">3-1</h4>
+<section id="section-28" class="level4">
+<h4 class="anchored" data-anchor-id="section-28">3-1</h4>
 <p>以下の反応における標準酸化還元電位をそれぞれ求めよ。</p>
 <ol type="a">
 <li><p><span class="math inline">\(\ce{Al^{3+} + 3e^- &lt;=&gt; Al}\)</span></p></li>
@@ -2800,12 +3060,12 @@ E = - \frac{\Delta G^O}{nF} = 1.214 \ \mathrm{V}
 <li><p><span class="math inline">\(\ce{Na &lt;=&gt; Na^+ + e^-}\)</span></p></li>
 </ol>
 </section>
-<section id="section-28" class="level4">
-<h4 class="anchored" data-anchor-id="section-28">3-2</h4>
+<section id="section-29" class="level4">
+<h4 class="anchored" data-anchor-id="section-29">3-2</h4>
 <p>ダニエル電池の電池反応を記述せよ。<br>
 また、液相間電位を <span class="math inline">\(0\ \mathrm{V}\)</span> とし、<span class="math inline">\(\ce{Zn^{2+}}\)</span> の活量を <span class="math inline">\(0.05\)</span>、<span class="math inline">\(\ce{Cu^{2+}}\)</span> の活量を <span class="math inline">\(0.002\)</span> とした際の起電力を求めよ。</p>
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2814,14 +3074,14 @@ E = - \frac{\Delta G^O}{nF} = 1.214 \ \mathrm{V}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-29" class="callout-29-contents callout-collapse collapse">
+<div id="callout-30" class="callout-30-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>3-1はただの計算問題。3-2はちょっと面倒な計算問題。</p>
 </div>
 </div>
 </div>
-<div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2830,7 +3090,7 @@ E = - \frac{\Delta G^O}{nF} = 1.214 \ \mathrm{V}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-30" class="callout-30-contents callout-collapse collapse">
+<div id="callout-31" class="callout-31-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>3-1</p>
 <ol type="a">
@@ -2919,13 +3179,13 @@ E_{\text{cell}} &amp;= -0.339 - 0.762 + \frac{0.059}{2} \log_{10} \left( \frac{0
 &amp;= \boxed{-1.142\ \mathrm{V}}
 \end{aligned}
 \]</span></p>
-<div id="39044bee" class="cell" data-execution_count="15">
+<div id="2fef5c9a" class="cell" data-execution_count="16">
 <details class="code-fold">
-<summary>Show Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>E_cell <span class="op">=</span> <span class="op">-</span><span class="fl">0.339</span> <span class="op">-</span> <span class="fl">0.762</span> <span class="op">+</span> <span class="fl">0.0295</span> <span class="op">*</span> np.log10(<span class="fl">0.002</span> <span class="op">/</span> <span class="fl">0.05</span>)</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E_cell: </span><span class="sc">{</span>E_cell<span class="sc">:.3f}</span><span class="ss"> V"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>E_cell <span class="op">=</span> <span class="op">-</span><span class="fl">0.339</span> <span class="op">-</span> <span class="fl">0.762</span> <span class="op">+</span> <span class="fl">0.0295</span> <span class="op">*</span> np.log10(<span class="fl">0.002</span> <span class="op">/</span> <span class="fl">0.05</span>)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E_cell: </span><span class="sc">{</span>E_cell<span class="sc">:.3f}</span><span class="ss"> V"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>E_cell: -1.142 V</code></pre>
@@ -2949,8 +3209,8 @@ F. ボルタ電位差<br>
 G. 水素過電圧</p>
 <p><strong>解答例</strong><br>
 X. 電池：化学エネルギーを電気エネルギーとして取り出す装置</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2959,7 +3219,7 @@ X. 電池：化学エネルギーを電気エネルギーとして取り出す�
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-31" class="callout-31-contents callout-collapse collapse">
+<div id="callout-32" class="callout-32-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <table class="caption-top table">
 <colgroup>
@@ -3006,14 +3266,88 @@ X. 電池：化学エネルギーを電気エネルギーとして取り出す�
 </div>
 </div>
 </div>
+</section>
+</section>
+<section id="年度前半-1" class="level2">
+<h2 class="anchored" data-anchor-id="年度前半-1">2024年度(前半)</h2>
+<section id="問1-2" class="level3">
+<h3 class="anchored" data-anchor-id="問1-2">問1</h3>
+<p>グルコース濃度を測定するため、グルコースオキシダーゼ（酸化還元酵素）と、酵素からの電子授受を行うフェリシアン化カリウム（電子メディエーター）を固定化した作用電極を作製した。グルコース濃度を測定するための電気化学セルの構成を考える。</p>
+<section id="section-30" class="level4">
+<h4 class="anchored" data-anchor-id="section-30">1-1.</h4>
+<p>酵素と電子メディエータを固定化させる電極として利用できる材料を2つあげ、その理由を「電位窓」を用いて説明せよ。</p>
+</section>
+<section id="section-31" class="level4">
+<h4 class="anchored" data-anchor-id="section-31">1-2.</h4>
+<p>本反応解析に用いる電気化学セルでは、対極、参照電極が必要となる。三電極式セルにする理由を述べよ。</p>
+</section>
+<section id="section-32" class="level4">
+<h4 class="anchored" data-anchor-id="section-32">1-3.</h4>
+<p>代表的な参照電極の種類と、なぜ参照電極として使えるのかを考察せよ。</p>
+</section>
+<section id="section-33" class="level4">
+<h4 class="anchored" data-anchor-id="section-33">1-4.</h4>
+<p>フェリシアン化物イオンの電気化学反応は可逆系である。サイクリックボルタンメトリー（CV）をもちいて、この反応を追跡すると、どのような波形が得られるか作図し、可逆系であることを示す根拠を説明せよ。またその際、電荷移動過程または物質移動過程の言葉を用いること。</p>
+<p>※ 参考： - <span class="math inline">\(\mathrm{Fe(CN)_6^{3-}/Fe(CN)_6^{4-}}\)</span> - 標準酸化還元電位：<span class="math inline">\(E^\circ = 0.356\ \mathrm{V\ vs\ SHE,\ 25^\circ C}\)</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-33" class="callout-33-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>1-1.</p>
+<p>炭素と金。双方とも広い電位窓を持ち、化学装飾が容易。</p>
+<p>1-2.</p>
+<p>参照電極を用いることで、作用電極の正確な電位制御が可能となる。</p>
+<p>1-3.</p>
+<p><span class="math inline">\(\ce{Ag/AgCl}\)</span> 電極。酸化還元反応により電位が決まっており、電流が流れない限り一定の電位を保持できるため</p>
+<p>1-4.</p>
+<p>1電子反応で電荷移動過程が早く、物質移動過程が律速となる。</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="問2-2" class="level3">
+<h3 class="anchored" data-anchor-id="問2-2">問2</h3>
+<section id="section-34" class="level4">
+<h4 class="anchored" data-anchor-id="section-34">2-2.</h4>
+<p>鉄の腐食は、アルカリ性溶液中より酸性溶液中で起こりやすい。この理由を説明せよ。</p>
+</section>
+<section id="section-35" class="level4">
+<h4 class="anchored" data-anchor-id="section-35">2-3.</h4>
+<p>電気化学的に腐食を防ぐ手法を2つあげ、それぞれの防食の原理を説明せよ。</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-34-contents" aria-controls="callout-34" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-34" class="callout-34-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>2-2.</p>
+</div>
+</div>
+</div>
 
 
 
 </section>
 </section>
 </section>
+</section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-電気化学ーそこを知りたい議論したい" class="csl-entry" role="listitem">
 測定法小委員会. 2002. <span>“電気化学ーそこを知りたい、議論したい.”</span> <em>Electrochemistry</em> 70: 821–30. <a href="https://www.jstage.jst.go.jp/article/electrochemistry/70/10/70_821/_pdf/-char/ja">https://www.jstage.jst.go.jp/article/electrochemistry/70/10/70_821/_pdf/-char/ja</a>.
 </div>
@@ -3431,64 +3765,7 @@ X. 電池：化学エネルギーを電気エネルギーとして取り出す�
     }
   });
   </script>
-<input type="hidden" id="giscus-base-theme" value="transparent_dark">
-<input type="hidden" id="giscus-alt-theme" value="transparent_dark">
-<script>
-  function loadGiscus() {
-    // Function to get the theme based on body class
-    const getTheme = () => {
-      let baseTheme = document.getElementById('giscus-base-theme').value;
-      let altTheme = document.getElementById('giscus-alt-theme').value;
-      if (authorPrefersDark) {
-          [baseTheme, altTheme] = [altTheme, baseTheme];
-      }
-      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
-    };
-    const script = document.createElement("script");
-    script.src = "https://giscus.app/client.js";
-    script.async = true;
-    script.dataset.repo = "SerikaYuzuki/Developing-Journal";
-    script.dataset.repoId = "R_kgDOKdxfxA";
-    script.dataset.category = "General";
-    script.dataset.categoryId = "DIC_kwDOKdxfxM4CZ-FP";
-    script.dataset.mapping = "title";
-    script.dataset.reactionsEnabled = "1";
-    script.dataset.emitMetadata = "0";
-    script.dataset.inputPosition = "top";
-    script.dataset.theme = getTheme();
-    script.dataset.lang = "en";
-    script.crossOrigin = "anonymous";
-    // Append the script to the desired div instead of at the end of the body
-    document.getElementById("quarto-content").appendChild(script);
-  }
-  loadGiscus();
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../../posts/univ_lecs/3S/材料強度学.html" class="pagination-link" aria-label="材料強度学">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">材料強度学</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../../posts/univ_lecs/3S/組織生成論.html" class="pagination-link" aria-label="組織生成論">
-        <span class="nav-page-text">組織生成論</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>My Journal</p>
-</div>   
-    <div class="nav-footer-center">
-      &nbsp;
-    </div>
-    <div class="nav-footer-right">
-<p>Built with Quarto</p>
-</div>
-  </div>
-</footer>
 
 
 

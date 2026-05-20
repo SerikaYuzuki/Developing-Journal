@@ -1,0 +1,248 @@
+---
+title: "演習レポート"
+author: "Serika Yuzuki"
+date: "2026-5-14"
+categories: [University, 2026]
+---
+
+$$
+\require{physics}
+\require{mhchem}
+$$
+
+金属加工において切削加工は軍事産業の発展をきっかけに技術開発が進められ、現在ではナノメートル程度の精度での加工も可能となった。模式図として、切削加工で最も基本的な旋削加工の模式図を書く。
+
+@yongtián2006 によれば、従来の切削加工では、約60%以上の人体に対して有害な塩素系鉱物油を切削油を使用しており、環境に対する影響が懸念され、ドライ加工に適した耐熱・耐酸化性の高い被膜開発がされた。そのうち、ミラクルコーティングと呼ばれるTiAlNも開発された[@kawana2017] によればTiAlNの開発当初ではビッカース硬さで4000HVに近い値を出した。
+
+本卒業研究では熱CVDによるTiAlNの薄膜生成のメカニズム、特に表面拡散や核生成の段階での配向の変化の圧力熱依存性の理論的説明に焦点を当てる。
+
+まず、 $\mathrm{TiAlN}$ の熱力学的な性質の理解のために [@uny2019] を参考にして、次のような知見を得た。
+
+### MAX Phase
+
+[@barsoum2019]によれば、MAX Phaseを持つ化合物には、金属とセラミックの双方の性質を持ち、高温に強く、熱伝導、電気伝導性が高く、さらに加工がしやすい。その中で広く使われているのが $\mathrm{TiAlN}$ である。
+
+### Spinodal Decomposition
+
+$\frac{\partial^2 G}{\partial c^2} < 0$ の状態では僅かな濃度変化によって、濃度の上り坂拡散(Uphill diffusion)が起きる。つまり、濃度差を広げる方向へ原子が移動する。これをスピノーダル分解と呼ぶ。
+
+上記の詳しい原理は、 $J = -M \pdv{x}\mu$ の式と、 $\mu = \pdv{G}{c}$ から、 $J = -M \pdv[2]{G}{c}\pdv{c}{x}$ であり、フィックの法則における拡散係数の符号が負になるため。 もっと具体的なシミュレーションは後に載せる。
+
+### Stable
+
+$\mathrm{TiN}$ と $\mathrm{AlN}$ の擬二元系状態図から読み取れることとして、 $1250^{\circ}\mathrm{C}$ を越えないとそもそもAlNとTiNは混ざらず、2相共存状態になる。
+
+### Metastable
+
+安定 $\ce{TiN}$ と準安定 $\ce{AlN}$ のfcc構造のB1構造と、準安定 $\ce{TiN}$ と 安定 $\ce{AlN}$ のhcp構造のB4構造がある。
+
+-   解析速度的に混合状態の離脱を防いで、固溶体の安定化をしている
+-   DFT的には $\Delta G_m$ 曲線的に明らかにdemixing方向に働く
+
+PVDプロセスでは $x \approx 0.7$、CVDプロセスでは $x \approx 0.9$ 程度が限界だと実験で示されてる。
+
+### Spinodal Decomposition
+
+$\ce{TiN-AlN}$ 混合物の自由エネルギー曲線が $4000^{\circ}\mathrm{C}$ までスピノーダル分解の存在が示されている。 - つまり、$4100^{\circ}\mathrm{C}$ 以上で初めて固溶体が安定して存在する。そんなのでは量産は不可能。[^1]
+
+[^1]: グラフで $2000^{\circ}\mathrm{C}$ での $\Delta G$ を見ているとき、スピノーダル分解はしないように見える。温度が高すぎて使い物にならないって解釈でOK? $x_2$ より右の部分にスピノーダル分解しない部分があるように見えるのだが……？ hcpになってしまうということ？　その判定はこのグラフから不可能？ (fcc-AlNとfcc-TiNのグラフじゃないん？)　だったらそもそもこのグラフの意味は？
+
+じゃあなんで $700^{\circ}\mathrm{C}$ 程度でも安定した固溶体を作れるのか？
+
+自由エネルギーが $$\Delta G = \frac{1}{2}\frac{d^2G}{dc^2}\Delta c^2 + \frac{K}{\lambda^2}\Delta c^2 + \boxed{\frac{E}{1-\nu}\eta^2 V_m \Delta c^2}$$ こんな感じになる。式の意味は次のように読むとわかりやすい。 - 第1項: 混ざった状態が分離したいという熱力学的駆動力 - 第2項: 組成揺らぎの空間的な細かさに関係するエネルギー - 第3項: 分解後の格子ミスマッチによる弾性ひずみエネルギー
+
+つまり、自由エネルギー曲線だけを見れば分離したい。しかし、分離してできた領域同士の界面やひずみが大きいと、分解が抑えられる場合がある。この競合が、$\ce{TiAlN}$ の熱安定性と時効硬化を決める。
+
+### 熱的安定性
+
+メタ安定相である $\ce{fcc-Ti_{1-x}Al_xN}$ は、温度上昇とともにスピノーダル分解、さらに温度が上がると $\ce{hcp-AlN}$ の生成が起きる。$700~900^{\circ}\mathrm{C}$ 以上で $\ce{fcc-TiN} + \ce{hcp-AlN}$ の安定二相構造になる。
+
+例外的に LPCVD で成膜されたコーティングは $1200^{\circ}\mathrm{C}$ まで $x\approx 0.8$ まで $\ce{fcc-TiAlN}$ が安定した。
+
+### PVD と CVD の違い
+
+$\ce{TiAlN}$ は PVD でも CVD でも作られる。PVD は比較的低温の基板上に蒸気を凝縮させるため、非平衡性が強く、準安定相を作りやすい。実際の膜では $\ce{fcc-TiAlN}$ と $\ce{hcp-AlN}$ が混ざった相になる。
+
+一方、CVD は気相反応・輸送・表面反応が絡むため、温度、圧力、前駆体分圧、流れ場が膜構造に大きな影響を与える。こちらの方では、 $\ce{fcc-TiN}$ と $\ce{hcp-AlN}$ 、さらに $\ce{fcc-AlN}$ が混ざった相になる。特にCPCVDプロセスでは $\ce{fcc-AlN}$ が多く生成する。
+
+### CPCVD
+
+熱 CVD では、Ti 源として $\ce{TiCl4}$、Al 源として $\ce{AlCl3}$、N 源として $\ce{NH3}$ がよく使われる。
+
+代表的な反応は次のように書ける。
+
+$$
+\ce{6TiCl4 + 8NH3 -> 6TiN + 24HCl + N2}
+$$
+
+$$
+\ce{AlCl3 + NH3 -> AlN + 3HCl}
+$$
+
+$\ce{NH3}$ は $\ce{N2}$ より分解・反応しやすいため、より低温で窒化物を形成しやすい。CVD では塩素系前駆体を使うため、膜中への $\ce{Cl}$ 混入も問題になる。高温では前駆体の分解が進み、$\ce{Cl}$ は減りやすい。一方、Al 前駆体流量を増やすと $\ce{Cl}$ 混入が増える場合がある。
+
+CVD 膜の組織は、温度、分圧、全圧で大きく変わる。
+
+-   高温: 表面拡散が進み、粒が粗大化しやすい
+-   低い分圧: 原子が表面を動きやすく、粗い結晶やエピタキシャル成長になりやすい
+-   低い全圧: 境界層中の拡散・物質輸送が進み、supersaturationが高まりやすい
+
+低い全圧で、低温高分圧だと、nanocrystallineで緻密な膜ができる。
+
+$\ce{TiAlN}$ の場合、Al 量が少ないと fcc 単相の柱状組織になりやすい。Al 量が増えると、ガラス状、粒状、あるいは fcc/hcp 混相になる。LPCVD では APCVD よりも微細な組織を作りやすく、高 Al の fcc 相も得やすい。
+
+## Cahn-Hilliard方程式によるスピノーダル分解シミュレーション
+
+Cahn-Hilliard方程式は、スピノーダル分解を記述する偏微分方程式である。
+
+$$
+\frac{\partial c}{\partial t} = M \nabla^2 \left( \frac{\partial f}{\partial c} - \kappa \nabla^2 c \right)
+$$
+
+ここで、$c$ は濃度場、$M$ は移動度、$f(c)$ は局所の自由エネルギー密度（例えば双井戸型ポテンシャル $f(c) = c^2(1-c)^2$）、$\kappa$ は界面エネルギー係数である。
+
+化学ポテンシャル $\mu$ を用いると、
+
+$$
+\mu = \frac{\partial f}{\partial c} - \kappa \nabla^2 c, \quad \frac{\partial c}{\partial t} = M \nabla^2 \mu
+$$
+
+と書ける。離散化はスペクトル法（フーリエ変換）を用いて行う。
+
+```{python}
+import numpy as np
+import plotly.graph_objects as go
+import plotly.io as pio
+
+pio.templates.default = "plotly_dark"
+
+# --- パラメータ ---
+N = 128          # グリッドサイズ
+dx = 1.0         # 空間刻み
+dt = 0.5         # 時間刻み
+M = 1.0          # 移動度
+kappa = 0.5      # 界面エネルギー係数
+c0 = 0.5         # 平均濃度
+noise = 0.02     # 初期濃度揺らぎの振幅
+n_steps = 5000   # 総ステップ数
+# t=0〜50(step 0〜100)  : Δt=5  (step毎10)
+# t=50〜500(step 100〜1000): Δt=50 (step毎100)
+# t=500〜2500(step 1000〜5000): Δt=250 (step毎500)
+finest_interval = 10
+fine_interval   = 100
+coarse_interval = 500
+finest_until = 100
+fine_until   = 1000
+
+# --- 初期条件 ---
+rng = np.random.default_rng(42)
+c = c0 + noise * (2 * rng.random((N, N)) - 1)
+
+# --- 波数ベクトルの設定 ---
+kx = np.fft.fftfreq(N, d=dx) * 2 * np.pi
+ky = np.fft.fftfreq(N, d=dx) * 2 * np.pi
+KX, KY = np.meshgrid(kx, ky)
+K2 = KX**2 + KY**2
+K4 = K2**2
+
+def dfdc(c):
+    return 2 * c * (1 - c) * (1 - 2 * c)
+
+snapshots = []
+times = []
+
+for step in range(n_steps + 1):
+    if step <= finest_until and step % finest_interval == 0:
+        snapshots.append(c.copy())
+        times.append(step * dt)
+    elif finest_until < step <= fine_until and step % fine_interval == 0:
+        snapshots.append(c.copy())
+        times.append(step * dt)
+    elif step > fine_until and step % coarse_interval == 0:
+        snapshots.append(c.copy())
+        times.append(step * dt)
+
+    df_hat = np.fft.fft2(dfdc(c))
+    c_hat = np.fft.fft2(c)
+    c_hat_new = (c_hat - dt * M * K2 * df_hat) / (1 + dt * M * kappa * K4)
+    c = np.real(np.fft.ifft2(c_hat_new))
+
+# --- Plotlyアニメーション ---
+frames = [
+    go.Frame(
+        data=go.Heatmap(
+            z=snap,
+            colorscale="RdBu_r",
+            zmin=0, zmax=1,
+            colorbar=dict(title="濃度 c"),
+            showscale=True,
+        ),
+        name=str(i),
+        layout=go.Layout(title_text=f"Cahn-Hilliard スピノーダル分解  t = {t:.0f}"),
+    )
+    for i, (snap, t) in enumerate(zip(snapshots, times))
+]
+
+fig = go.Figure(
+    data=go.Heatmap(
+        z=snapshots[0],
+        colorscale="RdBu_r",
+        zmin=0, zmax=1,
+        colorbar=dict(title="濃度 c"),
+    ),
+    frames=frames,
+    layout=go.Layout(
+        title=f"Cahn-Hilliard スピノーダル分解  t = {times[0]:.0f}",
+        width=520,
+        height=520,
+        xaxis=dict(showticklabels=False, showgrid=False),
+        yaxis=dict(showticklabels=False, showgrid=False, scaleanchor="x"),
+        updatemenus=[dict(
+            type="buttons",
+            showactive=False,
+            y=1.05, x=0.5, xanchor="center",
+            buttons=[
+                dict(
+                    label="▶ 再生",
+                    method="animate",
+                    args=[None, dict(
+                        frame=dict(duration=600, redraw=True),
+                        fromcurrent=True,
+                        transition=dict(duration=200),
+                    )],
+                ),
+                dict(
+                    label="⏸ 停止",
+                    method="animate",
+                    args=[[None], dict(
+                        frame=dict(duration=0, redraw=False),
+                        mode="immediate",
+                    )],
+                ),
+            ],
+        )],
+        sliders=[dict(
+            steps=[
+                dict(
+                    method="animate",
+                    args=[[str(i)], dict(
+                        frame=dict(duration=0, redraw=True),
+                        mode="immediate",
+                    )],
+                    label=f"t={t:.0f}",
+                )
+                for i, t in enumerate(times)
+            ],
+            active=0,
+            x=0.05, y=0,
+            len=0.9,
+            currentvalue=dict(prefix="時刻: ", visible=True, xanchor="center"),
+            transition=dict(duration=200),
+        )],
+    ),
+)
+
+fig.show()
+```
+
+初期の微小揺らぎから始まり、$\partial^2 f/\partial c^2 < 0$ の不安定領域において濃度場が自発的に分離していく様子（スピノーダル分解）が確認できる。界面エネルギー項 $\kappa|\nabla c|^2$ がドメインの粗大化速度を制御している。
