@@ -174,52 +174,8 @@ div.sourceCode pre.sourceCode {
    GL Listing Cards — glassmorphism custom listing template
    ============================================================ */
 
-/* --- CSS variables: light mode --- */
-:root {
-  --gl-card-bg:         rgba(255, 255, 255, 0.52);
-  --gl-card-bg-strong:  rgba(255, 255, 255, 0.72);
-  --gl-card-bg-subtle:  rgba(255, 255, 255, 0.32);
-  --gl-card-border:     rgba(255, 255, 255, 0.65);
-  --gl-card-border-dim: rgba(255, 255, 255, 0.38);
-  --gl-card-blur:       22px;
-  --gl-card-sat:        180%;
-  --gl-card-shadow:     0 8px 32px rgba(31, 38, 135, 0.11);
-  --gl-card-shadow-lg:  0 20px 60px rgba(31, 38, 135, 0.18);
-  --gl-card-inset:      rgba(255, 255, 255, 0.62);
-  --gl-title-color:     #1f1c38;
-  --gl-text-color:      #2d2a44;
-  --gl-muted-color:     rgba(45, 42, 68, 0.68);
-  --gl-label-color:     rgba(45, 42, 68, 0.42);
-  --gl-cat0: #7c5cff;
-  --gl-cat1: #2fb583;
-  --gl-cat2: #3c8fcf;
-  --gl-cat3: #d99838;
-  --gl-cat4: #d65a76;
-  --gl-separator: rgba(45, 42, 68, 0.12);
-}
-
-/* --- CSS variables: dark mode --- */
-body.quarto-dark {
-  --gl-card-bg:         rgba(255, 255, 255, 0.07);
-  --gl-card-bg-strong:  rgba(255, 255, 255, 0.13);
-  --gl-card-bg-subtle:  rgba(255, 255, 255, 0.05);
-  --gl-card-border:     rgba(255, 255, 255, 0.16);
-  --gl-card-border-dim: rgba(255, 255, 255, 0.10);
-  --gl-card-sat:        160%;
-  --gl-card-shadow:     0 8px 32px rgba(0, 0, 0, 0.45);
-  --gl-card-shadow-lg:  0 24px 60px rgba(0, 0, 0, 0.55);
-  --gl-card-inset:      rgba(255, 255, 255, 0.07);
-  --gl-title-color:     #ffffff;
-  --gl-text-color:      #c8cbe0;
-  --gl-muted-color:     rgba(200, 203, 224, 0.78);
-  --gl-label-color:     rgba(200, 203, 224, 0.42);
-  --gl-cat0: #a18bff;
-  --gl-cat1: #5edcae;
-  --gl-cat2: #6fb8ff;
-  --gl-cat3: #ffc678;
-  --gl-cat4: #ff8aa3;
-  --gl-separator: rgba(255, 255, 255, 0.12);
-}
+/* GL card CSS variables are defined in each SCSS theme file (:root blocks)
+   so they switch automatically when Quarto swaps stylesheets. */
 
 /* --- Listing grid --- */
 .gl-listing {
@@ -283,9 +239,14 @@ body.quarto-dark {
   font-weight: 800;
   letter-spacing: -0.025em;
   line-height: 1.2;
-  color: var(--gl-title-color);
+  color: var(--gl-title-color, #1f1c38) !important;
   margin: 0 0 0.8rem 0;
   flex-shrink: 0;
+}
+
+/* AnchorJS が gl-card 内の h2 に <a> を入れ子で挿入するのを無効化 */
+.gl-card .anchorjs-link {
+  display: none !important;
 }
 
 /* --- Description --- */
@@ -432,4 +393,66 @@ body.quarto-dark {
 .listing-actions-group .form-control::placeholder {
   color: var(--gl-muted-color);
   opacity: 1;
+}
+
+/* ============================================================
+   .quarto-category — article page category tags
+   Quarto's compiled CSS uses 3-class specificity (.quarto-title
+   .quarto-categories .quarto-category), so we need !important.
+   ============================================================ */
+.quarto-category {
+  display: inline-block !important;
+  background: var(--gl-card-bg-subtle) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  backdrop-filter:         blur(12px) saturate(160%);
+  border: 1px solid var(--gl-card-border-dim) !important;
+  border-radius: 999px !important;
+  opacity: 1 !important;
+  transition: background 0.2s;
+}
+.quarto-category a {
+  display: block;
+  padding: 4px 13px !important;
+  font-size: 0.75rem !important;
+  font-weight: 600;
+  color: var(--gl-cat0) !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  white-space: nowrap;
+}
+.quarto-category:hover {
+  background: var(--gl-card-bg) !important;
+}
+
+/* ============================================================
+   Tippy.js citation tooltip — glassmorphism override
+   Variables defined per-theme in SCSS :root blocks.
+   ============================================================ */
+.tippy-box {
+  background-color: var(--gl-tooltip-bg) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter:         blur(20px) saturate(160%);
+  border: 1px solid var(--gl-tooltip-border) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25) !important;
+  color: var(--gl-tooltip-color) !important;
+  font-size: 0.82rem !important;
+  line-height: 1.6 !important;
+  max-width: 360px !important;
+}
+
+.tippy-box .tippy-content {
+  padding: 0.75rem 1rem !important;
+}
+
+.tippy-box .tippy-arrow {
+  color: var(--gl-tooltip-arrow) !important;
+}
+
+.tippy-box a {
+  color: var(--gl-tooltip-link) !important;
+  border-bottom: 1px dotted color-mix(in srgb, var(--gl-tooltip-link) 45%, transparent) !important;
+}
+.tippy-box a:hover {
+  opacity: 0.8;
 }

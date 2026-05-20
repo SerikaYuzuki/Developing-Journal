@@ -89,6 +89,31 @@ $toc-active-border: $primary !default;
 // =============================================================================
 /*-- scss:rules --*/
 
+// ---- GL Card CSS custom properties (used by styles.css) --------------------
+// Defined here so Quarto's stylesheet swap auto-switches values.
+:root {
+  --gl-card-bg:         #{$glass-bg};
+  --gl-card-bg-strong:  #{$glass-bg-strong};
+  --gl-card-bg-subtle:  #{$glass-bg-subtle};
+  --gl-card-border:     #{$glass-border};
+  --gl-card-border-dim: #{$glass-border-dim};
+  --gl-card-blur:       #{$glass-blur};
+  --gl-card-sat:        #{$glass-saturate};
+  --gl-card-shadow:     #{$glass-shadow};
+  --gl-card-shadow-lg:  #{$glass-shadow-lg};
+  --gl-card-inset:      #{rgba(255, 255, 255, 0.62)};
+  --gl-title-color:     #1f1c38;
+  --gl-text-color:      #{$body-color};
+  --gl-muted-color:     #{rgba(45, 42, 68, 0.68)};
+  --gl-label-color:     #{rgba(45, 42, 68, 0.42)};
+  --gl-cat0:            #{$primary};
+  --gl-cat1:            #{$success};
+  --gl-cat2:            #{$info};
+  --gl-cat3:            #{$warning};
+  --gl-cat4:            #{$danger};
+  --gl-separator:       #{rgba(45, 42, 68, 0.12)};
+}
+
 // ---- Page background (gradient blobs) --------------------------------------
 html { background: $bg-base; }
 body {

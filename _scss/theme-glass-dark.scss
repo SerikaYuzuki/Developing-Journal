@@ -96,6 +96,31 @@ $toc-active-border: $primary !default;
 // =============================================================================
 /*-- scss:rules --*/
 
+// ---- GL Card CSS custom properties (used by styles.css) --------------------
+// Dark SCSS is loaded ON TOP of light SCSS, so these :root values win in dark mode.
+:root {
+  --gl-card-bg:         #{$glass-bg};
+  --gl-card-bg-strong:  #{$glass-bg-strong};
+  --gl-card-bg-subtle:  #{$glass-bg-subtle};
+  --gl-card-border:     #{$glass-border};
+  --gl-card-border-dim: #{$glass-border-dim};
+  --gl-card-blur:       #{$glass-blur};
+  --gl-card-sat:        #{$glass-saturate};
+  --gl-card-shadow:     #{$glass-shadow};
+  --gl-card-shadow-lg:  #{$glass-shadow-lg};
+  --gl-card-inset:      #{rgba(255, 255, 255, 0.07)};
+  --gl-title-color:     #ffffff;
+  --gl-text-color:      #{$body-color};
+  --gl-muted-color:     #{rgba(200, 203, 224, 0.78)};
+  --gl-label-color:     #{rgba(200, 203, 224, 0.42)};
+  --gl-cat0:            #{$primary};
+  --gl-cat1:            #{$success};
+  --gl-cat2:            #{$info};
+  --gl-cat3:            #{$warning};
+  --gl-cat4:            #{$danger};
+  --gl-separator:       #{rgba(255, 255, 255, 0.12)};
+}
+
 // ---- Page background (gradient blobs over deep base) -----------------------
 html { background: $bg-base; }
 body {
