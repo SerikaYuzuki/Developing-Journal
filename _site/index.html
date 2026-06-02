@@ -43,8 +43,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-9ce02ba9bf05f77acce06f7d436c50a3.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-96503ffdc137be7d3e144f97d44b33f2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-dark-627c88861fefb622955189a7b03619f4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-beec2bd44fa0481a82ba6ca6582b6aca.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-dark-df9c0e93955be51cb4eae8bff4b8bdf4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,56 +102,153 @@ ul.task-list li input[type="checkbox"] {
     }
   })
   </script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  // ナビゲーションバーのタイトル左にボタンを配置
-  const brandContainer = document.querySelector('.navbar-brand-container');
-  if (brandContainer) {
-    const toggleBtn = document.createElement('a');
+<script>(function () {
+  "use strict";
+
+  document.addEventListener("DOMContentLoaded", function () {
+
+    // ── 1. ≡ ボタンをナビバーに挿入 ────────────────────────────────────
+    var brandContainer = document.querySelector('.navbar-brand-container');
+    if (!brandContainer) return;
+
+    var toggleBtn = document.createElement('a');
     toggleBtn.href = "#";
-    toggleBtn.innerHTML = `<i class="bi bi-list"></i>`; // Bootstrapのハンバーガーアイコン
+    toggleBtn.innerHTML = '<i class="bi bi-list"></i>';
     toggleBtn.className = 'navbar-sidebar-toggle pe-2';
-    toggleBtn.style.color = 'inherit';
-    toggleBtn.style.textDecoration = 'none';
-    toggleBtn.style.fontSize = '1.5rem';
-    toggleBtn.style.display = 'flex';
-    toggleBtn.style.alignItems = 'center';
+    toggleBtn.style.cssText = 'color:inherit;text-decoration:none;font-size:1.5rem;display:flex;align-items:center;';
     toggleBtn.title = "サイドバーを切り替え";
-    
-    // タイトルの直前に挿入
     brandContainer.insertBefore(toggleBtn, brandContainer.firstChild);
 
-    // クリック時の動作
-    toggleBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      
-      // スマホサイズ等の場合はQuartoデフォルトのサイドバー開閉をトリガーする
-      if (window.innerWidth < 992) {
-        const quartoToggle = document.querySelector('.quarto-secondary-nav .quarto-btn-toggle');
-        if (quartoToggle) {
-          quartoToggle.click();
+    // ── 2. カスタムドロワーを構築 ───────────────────────────────────────
+    var siteName = (document.querySelector('.navbar-brand') || {}).textContent;
+    siteName = siteName ? siteName.trim() : 'Menu';
+
+    var drawer = document.createElement('div');
+    drawer.id = 'pj-drawer';
+    drawer.setAttribute('aria-hidden', 'true');
+    drawer.setAttribute('role', 'dialog');
+    drawer.setAttribute('aria-modal', 'true');
+    drawer.innerHTML = [
+      '<div id="pj-drawer-backdrop"></div>',
+      '<nav id="pj-drawer-panel" aria-label="ナビゲーション">',
+        '<div id="pj-drawer-header">',
+          '<span id="pj-drawer-site-name">' + siteName + '</span>',
+          '<button id="pj-drawer-close" aria-label="閉じる" type="button">',
+            '<i class="bi bi-x-lg"></i>',
+          '</button>',
+        '</div>',
+        '<div id="pj-drawer-body"></div>',
+      '</nav>'
+    ].join('');
+    document.body.appendChild(drawer);
+
+    // サイドバーのナビコンテンツをクローンして挿入（ID重複を回避）
+    var sidebarNav = document.querySelector('#quarto-sidebar .sidebar-menu-container');
+    if (sidebarNav) {
+      var clone = sidebarNav.cloneNode(true);
+
+      clone.querySelectorAll('[id]').forEach(function (el) {
+        el.id = 'pj-' + el.id;
+      });
+      clone.querySelectorAll('[data-bs-target]').forEach(function (el) {
+        var t = el.getAttribute('data-bs-target');
+        if (t && t.charAt(0) === '#') {
+          el.setAttribute('data-bs-target', '#pj-' + t.slice(1));
         }
+      });
+      clone.querySelectorAll('[aria-controls]').forEach(function (el) {
+        el.setAttribute('aria-controls', 'pj-' + el.getAttribute('aria-controls'));
+      });
+
+      document.getElementById('pj-drawer-body').appendChild(clone);
+    }
+
+    // ── 3. 開閉ロジック ─────────────────────────────────────────────────
+    var backdrop = document.getElementById('pj-drawer-backdrop');
+    var closeBtn = document.getElementById('pj-drawer-close');
+    var CLOSE_DURATION = 250;
+
+    function openDrawer() {
+      drawer.removeAttribute('aria-hidden');
+      drawer.classList.add('pj-open');
+      document.body.classList.add('pj-drawer-active');
+    }
+
+    function closeDrawer() {
+      drawer.classList.add('pj-closing');
+      setTimeout(function () {
+        drawer.classList.remove('pj-open', 'pj-closing');
+        drawer.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('pj-drawer-active');
+      }, CLOSE_DURATION);
+    }
+
+    backdrop.addEventListener('click', closeDrawer);
+    closeBtn.addEventListener('click', closeDrawer);
+
+    // ドロワー内のリンクをクリックしたら閉じる（アコーディオン以外）
+    document.getElementById('pj-drawer-body').addEventListener('click', function (e) {
+      var link = e.target.closest('a[href]');
+      if (link && !link.getAttribute('data-bs-toggle')) {
+        closeDrawer();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && drawer.classList.contains('pj-open')) closeDrawer();
+    });
+
+    // ── 4. スクロールで navbar を隠す/表示する ──────────────────────
+    var navbar = document.querySelector('.navbar');
+    if (navbar) {
+      var lastScrollY = window.scrollY;
+      var ticking = false;
+      var SCROLL_HIDE_THRESHOLD = 80;
+
+      function handleNavbarScroll() {
+        var current = window.scrollY;
+        if (current < SCROLL_HIDE_THRESHOLD) {
+          navbar.classList.remove('pj-navbar-hidden');
+        } else if (current > lastScrollY) {
+          navbar.classList.add('pj-navbar-hidden');
+        } else {
+          navbar.classList.remove('pj-navbar-hidden');
+        }
+        lastScrollY = current;
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          window.requestAnimationFrame(handleNavbarScroll);
+          ticking = true;
+        }
+      }, { passive: true });
+    }
+
+    // ── 5. ≡ ボタンのクリック処理 ─────────────────────────────────────
+    toggleBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      if (window.innerWidth < 992) {
+        // モバイル: カスタムドロワーを使用
+        drawer.classList.contains('pj-open') ? closeDrawer() : openDrawer();
         return;
       }
 
-      const body = document.body;
+      // デスクトップ: 既存のカスタムアニメーション
+      var body = document.body;
       if (body.classList.contains('custom-sidebar-hidden')) {
-        // 現在非表示（全画面）の場合 -> サイドバーを元に戻すアニメーション
         body.classList.remove('custom-sidebar-hidden');
         body.classList.add('custom-sidebar-showing');
-        
-        // アニメーション完了後にクラスを外す
-        setTimeout(() => {
-          body.classList.remove('custom-sidebar-showing');
-        }, 400);
+        setTimeout(function () { body.classList.remove('custom-sidebar-showing'); }, 400);
       } else {
-        // 現在表示されている場合 -> サイドバーを隠して全画面にする
         body.classList.remove('custom-sidebar-showing');
         body.classList.add('custom-sidebar-hidden');
       }
     });
-  }
-});
+  });
+})();
 </script>
 
 
@@ -1196,13 +1293,16 @@ window.Quarto = {
       <input type="text" class="search form-control" placeholder="Filter">
     </div>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/卒業論文/論文読書/GPT-Ti-Al-N-Based Hard Coatings.html" class="gl-card-link" data-index="">
+<div class="list gl-listing">
+<div class="gl-card-wrap" data-index="0" data-categories="VW5pdmVyc2l0eSUyQzIwMjYlMkMlRTglQUIlOTYlRTYlOTYlODclRTglQUElQUQlRTYlOUIlQjglMkNUaUFsTg==" data-listing-date-sort="1779030000000" data-listing-reading-time-sort="5">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/卒業論文/論文読書/GPT-Ti-Al-N-Based Hard Coatings.html" class="gl-card-link gl-card-cover" aria-label="Ti-Al-N-Based Hard Coatings: Thermodynamical Background, CVD Deposition, and Properties. A Review"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 5 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 Ti-Al-N-Based Hard Coatings: Thermodynamical Background, CVD Deposition, and Properties. A Review
 </h2>
 <div class="gl-meta">
@@ -1210,7 +1310,7 @@ Ti-Al-N-Based Hard Coatings: Thermodynamical Background, CVD Deposition, and Pro
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -1218,7 +1318,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 May 18, 2026
 </div>
 </div>
@@ -1226,21 +1326,28 @@ May 18, 2026
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="2">2026</span><span class="gl-cat-pill" data-gl-cat="4">論文読書</span><span class="gl-cat-pill" data-gl-cat="0">TiAlN</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=2026" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNg=='); return false; }">2026</a><a class="gl-cat-pill" data-gl-cat="4" href="#category=%E8%AB%96%E6%96%87%E8%AA%AD%E6%9B%B8" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('JUU4JUFCJTk2JUU2JTk2JTg3JUU4JUFBJUFEJUU2JTlCJUI4'); return false; }">論文読書</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=TiAlN" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VGlBbE4='); return false; }">TiAlN</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+5 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2026 論文読書 TiAlN
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/卒業論文/論文読書/GPT-Ti-Al-N-Based Hard Coatings.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="1" data-categories="" data-listing-date-sort="1779030000000" data-listing-reading-time-sort="32">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="gl-card-link gl-card-cover" aria-label="Ti-Al-N系硬質コーティング：熱力学的背景・CVD成膜・特性レビュー"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">32 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 Ti-Al-N系硬質コーティング：熱力学的背景・CVD成膜・特性レビュー
 </h2>
 <div class="gl-meta">
@@ -1248,7 +1355,7 @@ Ti-Al-N系硬質コーティング：熱力学的背景・CVD成膜・特性レ�
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#2fb583,#3c8fcf)">ま/</span><span class="gl-author-name">まとめ：芹香 / 原著：Florent Uny, Elisabeth Blanquet, Frédéric Schuster, Frédéric Sanchette</span>
 </div>
 </div>
@@ -1256,21 +1363,28 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 May 18, 2026
 </div>
 </div>
+<div class="listing-reading-time gl-hidden-listing-value">
+32 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+
+</div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="2" data-categories="" data-listing-date-sort="1779030000000" data-listing-reading-time-sort="32">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="gl-card-link gl-card-cover" aria-label="Ti-Al-N系硬質コーティング：熱力学的背景・CVD成膜・特性レビュー"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">32 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 Ti-Al-N系硬質コーティング：熱力学的背景・CVD成膜・特性レビュー
 </h2>
 <div class="gl-meta">
@@ -1278,7 +1392,7 @@ Ti-Al-N系硬質コーティング：熱力学的背景・CVD成膜・特性レ�
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#2fb583,#3c8fcf)">ま/</span><span class="gl-author-name">まとめ：芹香 / 原著：Florent Uny, Elisabeth Blanquet, Frédéric Schuster, Frédéric Sanchette</span>
 </div>
 </div>
@@ -1286,21 +1400,28 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 May 18, 2026
 </div>
 </div>
+<div class="listing-reading-time gl-hidden-listing-value">
+32 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+
+</div>
 </div>
 </article>
-</a><p><a href="./posts/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/卒業論文/論文読書/概要.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="3" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1778684400000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/卒業論文/論文読書/概要.html" class="gl-card-link gl-card-cover" aria-label="概要"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 概要
 </h2>
 <div class="gl-meta">
@@ -1308,7 +1429,7 @@ May 18, 2026
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -1316,7 +1437,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 May 14, 2026
 </div>
 </div>
@@ -1324,21 +1445,28 @@ May 14, 2026
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="2">2026</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=2026" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNg=='); return false; }">2026</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2026
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/卒業論文/論文読書/概要.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/卒業論文/レポート.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="4" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1778684400000" data-listing-reading-time-sort="8">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/卒業論文/レポート.html" class="gl-card-link gl-card-cover" aria-label="演習レポート"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 8 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 演習レポート
 </h2>
 <div class="gl-meta">
@@ -1346,7 +1474,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -1354,7 +1482,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 May 14, 2026
 </div>
 </div>
@@ -1362,21 +1490,28 @@ May 14, 2026
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="2">2026</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=2026" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNg=='); return false; }">2026</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+8 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2026
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/卒業論文/レポート.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/卒業論文/論文読書/概要.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="5" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1778684400000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/卒業論文/論文読書/概要.html" class="gl-card-link gl-card-cover" aria-label="概要"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 概要
 </h2>
 <div class="gl-meta">
@@ -1384,7 +1519,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -1392,7 +1527,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 May 14, 2026
 </div>
 </div>
@@ -1400,21 +1535,28 @@ May 14, 2026
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="2">2026</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=2026" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNg=='); return false; }">2026</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2026
 </div>
 </div>
 </article>
-</a><p><a href="./posts/卒業論文/論文読書/概要.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/卒業論文/レポート.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="6" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1778684400000" data-listing-reading-time-sort="8">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/卒業論文/レポート.html" class="gl-card-link gl-card-cover" aria-label="演習レポート"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 8 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 演習レポート
 </h2>
 <div class="gl-meta">
@@ -1422,7 +1564,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -1430,7 +1572,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 May 14, 2026
 </div>
 </div>
@@ -1438,21 +1580,28 @@ May 14, 2026
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="2">2026</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=2026" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNg=='); return false; }">2026</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+8 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2026
 </div>
 </div>
 </article>
-</a><p><a href="./posts/卒業論文/レポート.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/卒業論文/過去論文.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="7" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1778079600000" data-listing-reading-time-sort="2">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/卒業論文/過去論文.html" class="gl-card-link gl-card-cover" aria-label="過去論文"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 2 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 過去論文
 </h2>
 <div class="gl-meta">
@@ -1460,7 +1609,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -1468,7 +1617,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 May 7, 2026
 </div>
 </div>
@@ -1476,21 +1625,28 @@ May 7, 2026
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="2">2026</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=2026" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNg=='); return false; }">2026</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+2 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2026
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/卒業論文/過去論文.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/卒業論文/過去論文.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="8" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1778079600000" data-listing-reading-time-sort="2">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/卒業論文/過去論文.html" class="gl-card-link gl-card-cover" aria-label="過去論文"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 2 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 過去論文
 </h2>
 <div class="gl-meta">
@@ -1498,7 +1654,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -1506,7 +1662,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 May 7, 2026
 </div>
 </div>
@@ -1514,21 +1670,28 @@ May 7, 2026
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="2">2026</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=2026" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNg=='); return false; }">2026</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+2 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2026
 </div>
 </div>
 </article>
-</a><p><a href="./posts/卒業論文/過去論文.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/卒業論文/談話会.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="9" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1776870000000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/卒業論文/談話会.html" class="gl-card-link gl-card-cover" aria-label="談話会"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 談話会
 </h2>
 <div class="gl-meta">
@@ -1536,7 +1699,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -1544,7 +1707,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Apr 23, 2026
 </div>
 </div>
@@ -1552,21 +1715,28 @@ Apr 23, 2026
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="2">2026</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=2026" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNg=='); return false; }">2026</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2026
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/卒業論文/談話会.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/卒業論文/談話会.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="10" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1776870000000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/卒業論文/談話会.html" class="gl-card-link gl-card-cover" aria-label="談話会"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 談話会
 </h2>
 <div class="gl-meta">
@@ -1574,7 +1744,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -1582,7 +1752,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Apr 23, 2026
 </div>
 </div>
@@ -1590,21 +1760,28 @@ Apr 23, 2026
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="2">2026</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=2026" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNg=='); return false; }">2026</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2026
 </div>
 </div>
 </article>
-</a><p><a href="./posts/卒業論文/談話会.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/卒業論文/卒論輪講.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="11" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1776610800000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/卒業論文/卒論輪講.html" class="gl-card-link gl-card-cover" aria-label="卒論輪講"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 卒論輪講
 </h2>
 <div class="gl-meta">
@@ -1612,7 +1789,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -1620,7 +1797,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Apr 20, 2026
 </div>
 </div>
@@ -1628,21 +1805,28 @@ Apr 20, 2026
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="2">2026</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=2026" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNg=='); return false; }">2026</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2026
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/卒業論文/卒論輪講.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/卒業論文/flux.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="12" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1776610800000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/卒業論文/flux.html" class="gl-card-link gl-card-cover" aria-label="fluxの式"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 fluxの式
 </h2>
 <div class="gl-meta">
@@ -1650,7 +1834,7 @@ fluxの式
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -1658,7 +1842,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Apr 20, 2026
 </div>
 </div>
@@ -1666,21 +1850,28 @@ Apr 20, 2026
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="2">2026</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=2026" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNg=='); return false; }">2026</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2026
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/卒業論文/flux.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/卒業論文/卒論輪講.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="13" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1776610800000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/卒業論文/卒論輪講.html" class="gl-card-link gl-card-cover" aria-label="卒論輪講"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 卒論輪講
 </h2>
 <div class="gl-meta">
@@ -1688,7 +1879,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -1696,7 +1887,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Apr 20, 2026
 </div>
 </div>
@@ -1704,21 +1895,28 @@ Apr 20, 2026
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="2">2026</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=2026" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNg=='); return false; }">2026</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2026
 </div>
 </div>
 </article>
-</a><p><a href="./posts/卒業論文/卒論輪講.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/卒業論文/flux.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="14" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1776610800000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/卒業論文/flux.html" class="gl-card-link gl-card-cover" aria-label="fluxの式"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 fluxの式
 </h2>
 <div class="gl-meta">
@@ -1726,7 +1924,7 @@ fluxの式
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -1734,7 +1932,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Apr 20, 2026
 </div>
 </div>
@@ -1742,21 +1940,28 @@ Apr 20, 2026
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="2">2026</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=2026" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNg=='); return false; }">2026</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2026
 </div>
 </div>
 </article>
-</a><p><a href="./posts/卒業論文/flux.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/4S/工学基礎演習.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="15" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1775314800000" data-listing-reading-time-sort="7">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/4S/工学基礎演習.html" class="gl-card-link gl-card-cover" aria-label="工学基礎演習"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 7 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 工学基礎演習
 </h2>
 <div class="gl-meta">
@@ -1764,7 +1969,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -1772,7 +1977,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Apr 5, 2026
 </div>
 </div>
@@ -1780,21 +1985,28 @@ Apr 5, 2026
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="2">2026</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=2026" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNg=='); return false; }">2026</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+7 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2026
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/4S/工学基礎演習.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/tech/AI/AttentionIsAllYouNeed.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="16" data-categories="cG9ncmFtbWluZyUyQzIwMjYlMkNBSQ==" data-listing-date-sort="1770303600000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/tech/AI/AttentionIsAllYouNeed.html" class="gl-card-link gl-card-cover" aria-label="Attention Is All You Needを読む話"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">POGRAMMING · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 Attention Is All You Needを読む話
 </h2>
 <div class="gl-meta">
@@ -1802,7 +2014,7 @@ Attention Is All You Needを読む話
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -1810,7 +2022,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Feb 6, 2026
 </div>
 </div>
@@ -1818,21 +2030,28 @@ Feb 6, 2026
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="3">pogramming</span><span class="gl-cat-pill" data-gl-cat="2">2026</span><span class="gl-cat-pill" data-gl-cat="3">AI</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="3" href="#category=pogramming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('cG9ncmFtbWluZw=='); return false; }">pogramming</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=2026" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNg=='); return false; }">2026</a><a class="gl-cat-pill" data-gl-cat="3" href="#category=AI" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('QUk='); return false; }">AI</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+pogramming 2026 AI
 </div>
 </div>
 </article>
-</a><p><a href="./posts/tech/AI/AttentionIsAllYouNeed.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/tech/AI/BuildLLM.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="17" data-categories="cG9ncmFtbWluZyUyQzIwMjYlMkNBSQ==" data-listing-date-sort="1770303600000" data-listing-reading-time-sort="8">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/tech/AI/BuildLLM.html" class="gl-card-link gl-card-cover" aria-label="Build a Large Language Model from Scratchを読む話"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">POGRAMMING · 8 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 Build a Large Language Model from Scratchを読む話
 </h2>
 <div class="gl-meta">
@@ -1840,7 +2059,7 @@ Build a Large Language Model from Scratchを読む話
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -1848,7 +2067,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Feb 6, 2026
 </div>
 </div>
@@ -1856,21 +2075,28 @@ Feb 6, 2026
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="3">pogramming</span><span class="gl-cat-pill" data-gl-cat="2">2026</span><span class="gl-cat-pill" data-gl-cat="3">AI</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="3" href="#category=pogramming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('cG9ncmFtbWluZw=='); return false; }">pogramming</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=2026" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNg=='); return false; }">2026</a><a class="gl-cat-pill" data-gl-cat="3" href="#category=AI" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('QUk='); return false; }">AI</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+8 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+pogramming 2026 AI
 </div>
 </div>
 </article>
-</a><p><a href="./posts/tech/AI/BuildLLM.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/3A/信頼性学.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="18" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1767538800000" data-listing-reading-time-sort="11">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/3A/信頼性学.html" class="gl-card-link gl-card-cover" aria-label="信頼性学"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 11 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 信頼性学
 </h2>
 <div class="gl-meta">
@@ -1878,7 +2104,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -1886,7 +2112,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Jan 5, 2026
 </div>
 </div>
@@ -1894,21 +2120,28 @@ Jan 5, 2026
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="2">2026</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=2026" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNg=='); return false; }">2026</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+11 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2026
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/3A/信頼性学.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/3A/数学.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="19" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1767538800000" data-listing-reading-time-sort="14">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/3A/数学.html" class="gl-card-link gl-card-cover" aria-label="数学"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 14 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 数学
 </h2>
 <div class="gl-meta">
@@ -1916,7 +2149,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -1924,7 +2157,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Jan 5, 2026
 </div>
 </div>
@@ -1932,21 +2165,28 @@ Jan 5, 2026
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="2">2026</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=2026" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNg=='); return false; }">2026</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+14 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2026
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/3A/数学.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/tech/SwiftUI小説アプリ/EditorKitPlugin.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="20" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQlMkNub3ZlbA==" data-listing-date-sort="1759849200000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/tech/SwiftUI小説アプリ/EditorKitPlugin.html" class="gl-card-link gl-card-cover" aria-label="EditorKitのいじり方をプラグイン形式にする話"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">PROGRAMMING · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 EditorKitのいじり方をプラグイン形式にする話
 </h2>
 <div class="gl-meta">
@@ -1954,7 +2194,7 @@ EditorKitのいじり方をプラグイン形式にする話
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -1962,7 +2202,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Oct 8, 2025
 </div>
 </div>
@@ -1970,21 +2210,28 @@ Oct 8, 2025
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="2">programming</span><span class="gl-cat-pill" data-gl-cat="1">2025</span><span class="gl-cat-pill" data-gl-cat="2">swift</span><span class="gl-cat-pill" data-gl-cat="3">novel</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="2" href="#category=programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false; }">programming</a><a class="gl-cat-pill" data-gl-cat="1" href="#category=2025" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNQ=='); return false; }">2025</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=swift" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('c3dpZnQ='); return false; }">swift</a><a class="gl-cat-pill" data-gl-cat="3" href="#category=novel" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('bm92ZWw='); return false; }">novel</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+programming 2025 swift novel
 </div>
 </div>
 </article>
-</a><p><a href="./posts/tech/SwiftUI小説アプリ/EditorKitPlugin.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/tech/SwiftUI小説アプリ/SwiftUIAndAppKit.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="21" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQlMkNub3ZlbA==" data-listing-date-sort="1758380400000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/tech/SwiftUI小説アプリ/SwiftUIAndAppKit.html" class="gl-card-link gl-card-cover" aria-label="SwiftUIとAppKitの連携"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">PROGRAMMING · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 SwiftUIとAppKitの連携
 </h2>
 <div class="gl-meta">
@@ -1992,7 +2239,7 @@ SwiftUIとAppKitの連携
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2000,7 +2247,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Sep 21, 2025
 </div>
 </div>
@@ -2008,21 +2255,28 @@ Sep 21, 2025
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="2">programming</span><span class="gl-cat-pill" data-gl-cat="1">2025</span><span class="gl-cat-pill" data-gl-cat="2">swift</span><span class="gl-cat-pill" data-gl-cat="3">novel</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="2" href="#category=programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false; }">programming</a><a class="gl-cat-pill" data-gl-cat="1" href="#category=2025" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNQ=='); return false; }">2025</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=swift" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('c3dpZnQ='); return false; }">swift</a><a class="gl-cat-pill" data-gl-cat="3" href="#category=novel" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('bm92ZWw='); return false; }">novel</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+programming 2025 swift novel
 </div>
 </div>
 </article>
-</a><p><a href="./posts/tech/SwiftUI小説アプリ/SwiftUIAndAppKit.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/tech/SwiftUI小説アプリ/POP.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="22" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQlMkNub3ZlbA==" data-listing-date-sort="1758207600000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/tech/SwiftUI小説アプリ/POP.html" class="gl-card-link gl-card-cover" aria-label="Protocol Oriented Programming"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">PROGRAMMING · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 Protocol Oriented Programming
 </h2>
 <div class="gl-meta">
@@ -2030,7 +2284,7 @@ Protocol Oriented Programming
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2038,7 +2292,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Sep 19, 2025
 </div>
 </div>
@@ -2046,21 +2300,28 @@ Sep 19, 2025
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="2">programming</span><span class="gl-cat-pill" data-gl-cat="1">2025</span><span class="gl-cat-pill" data-gl-cat="2">swift</span><span class="gl-cat-pill" data-gl-cat="3">novel</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="2" href="#category=programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false; }">programming</a><a class="gl-cat-pill" data-gl-cat="1" href="#category=2025" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNQ=='); return false; }">2025</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=swift" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('c3dpZnQ='); return false; }">swift</a><a class="gl-cat-pill" data-gl-cat="3" href="#category=novel" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('bm92ZWw='); return false; }">novel</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+programming 2025 swift novel
 </div>
 </div>
 </article>
-</a><p><a href="./posts/tech/SwiftUI小説アプリ/POP.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/tech/MisskeyDockerSetup.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="23" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1" data-listing-date-sort="1757689200000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/tech/MisskeyDockerSetup.html" class="gl-card-link gl-card-cover" aria-label="DockerでMisskeyを立てる"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">PROGRAMMING · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 DockerでMisskeyを立てる
 </h2>
 <div class="gl-meta">
@@ -2068,7 +2329,7 @@ DockerでMisskeyを立てる
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2076,7 +2337,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Sep 13, 2025
 </div>
 </div>
@@ -2084,21 +2345,28 @@ Sep 13, 2025
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="2">programming</span><span class="gl-cat-pill" data-gl-cat="1">2025</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="2" href="#category=programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false; }">programming</a><a class="gl-cat-pill" data-gl-cat="1" href="#category=2025" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNQ=='); return false; }">2025</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+programming 2025
 </div>
 </div>
 </article>
-</a><p><a href="./posts/tech/MisskeyDockerSetup.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/tech/TailscaleAndNord.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="24" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1" data-listing-date-sort="1757516400000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/tech/TailscaleAndNord.html" class="gl-card-link gl-card-cover" aria-label="NordとTailscaleで自宅サーバーを安全に公開する"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">PROGRAMMING · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 NordとTailscaleで自宅サーバーを安全に公開する
 </h2>
 <div class="gl-meta">
@@ -2106,7 +2374,7 @@ NordとTailscaleで自宅サーバーを安全に公開する
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2114,7 +2382,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Sep 11, 2025
 </div>
 </div>
@@ -2122,21 +2390,28 @@ Sep 11, 2025
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="2">programming</span><span class="gl-cat-pill" data-gl-cat="1">2025</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="2" href="#category=programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false; }">programming</a><a class="gl-cat-pill" data-gl-cat="1" href="#category=2025" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNQ=='); return false; }">2025</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+programming 2025
 </div>
 </div>
 </article>
-</a><p><a href="./posts/tech/TailscaleAndNord.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/tech/SwiftUI小説アプリ/General.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="25" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQlMkNub3ZlbA==" data-listing-date-sort="1757430000000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/tech/SwiftUI小説アプリ/General.html" class="gl-card-link gl-card-cover" aria-label="小説執筆アプリを作る"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">PROGRAMMING · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 小説執筆アプリを作る
 </h2>
 <div class="gl-meta">
@@ -2144,7 +2419,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2152,7 +2427,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Sep 10, 2025
 </div>
 </div>
@@ -2160,21 +2435,28 @@ Sep 10, 2025
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="2">programming</span><span class="gl-cat-pill" data-gl-cat="1">2025</span><span class="gl-cat-pill" data-gl-cat="2">swift</span><span class="gl-cat-pill" data-gl-cat="3">novel</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="2" href="#category=programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false; }">programming</a><a class="gl-cat-pill" data-gl-cat="1" href="#category=2025" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNQ=='); return false; }">2025</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=swift" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('c3dpZnQ='); return false; }">swift</a><a class="gl-cat-pill" data-gl-cat="3" href="#category=novel" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('bm92ZWw='); return false; }">novel</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+programming 2025 swift novel
 </div>
 </div>
 </article>
-</a><p><a href="./posts/tech/SwiftUI小説アプリ/General.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/tech/SwiftUI小説アプリ/Gitflow.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="26" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQlMkNub3ZlbA==" data-listing-date-sort="1757430000000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/tech/SwiftUI小説アプリ/Gitflow.html" class="gl-card-link gl-card-cover" aria-label="Git FlowとGitHub Flow"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">PROGRAMMING · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 Git FlowとGitHub Flow
 </h2>
 <div class="gl-meta">
@@ -2182,7 +2464,7 @@ Git FlowとGitHub Flow
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2190,7 +2472,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Sep 10, 2025
 </div>
 </div>
@@ -2198,21 +2480,28 @@ Sep 10, 2025
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="2">programming</span><span class="gl-cat-pill" data-gl-cat="1">2025</span><span class="gl-cat-pill" data-gl-cat="2">swift</span><span class="gl-cat-pill" data-gl-cat="3">novel</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="2" href="#category=programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false; }">programming</a><a class="gl-cat-pill" data-gl-cat="1" href="#category=2025" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNQ=='); return false; }">2025</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=swift" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('c3dpZnQ='); return false; }">swift</a><a class="gl-cat-pill" data-gl-cat="3" href="#category=novel" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('bm92ZWw='); return false; }">novel</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+programming 2025 swift novel
 </div>
 </div>
 </article>
-</a><p><a href="./posts/tech/SwiftUI小説アプリ/Gitflow.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/tech/ENovelEpubConverter.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="27" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQ=" data-listing-date-sort="1757430000000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/tech/ENovelEpubConverter.html" class="gl-card-link gl-card-cover" aria-label="小説をEPUBに変換するpythonパッケージを作った話"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">PROGRAMMING · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 小説をEPUBに変換するpythonパッケージを作った話
 </h2>
 <div class="gl-meta">
@@ -2220,7 +2509,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2228,7 +2517,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Sep 10, 2025
 </div>
 </div>
@@ -2236,21 +2525,28 @@ Sep 10, 2025
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="2">programming</span><span class="gl-cat-pill" data-gl-cat="1">2025</span><span class="gl-cat-pill" data-gl-cat="2">swift</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="2" href="#category=programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false; }">programming</a><a class="gl-cat-pill" data-gl-cat="1" href="#category=2025" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNQ=='); return false; }">2025</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=swift" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('c3dpZnQ='); return false; }">swift</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+programming 2025 swift
 </div>
 </div>
 </article>
-</a><p><a href="./posts/tech/ENovelEpubConverter.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/tech/SetUpNewDebianServer.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="28" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc2VydmVy" data-listing-date-sort="1757257200000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/tech/SetUpNewDebianServer.html" class="gl-card-link gl-card-cover" aria-label="Debianサーバーを立てた話"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">PROGRAMMING · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 Debianサーバーを立てた話
 </h2>
 <div class="gl-meta">
@@ -2258,7 +2554,7 @@ Debianサーバーを立てた話
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2266,7 +2562,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Sep 8, 2025
 </div>
 </div>
@@ -2274,21 +2570,28 @@ Sep 8, 2025
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="2">programming</span><span class="gl-cat-pill" data-gl-cat="1">2025</span><span class="gl-cat-pill" data-gl-cat="3">server</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="2" href="#category=programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false; }">programming</a><a class="gl-cat-pill" data-gl-cat="1" href="#category=2025" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNQ=='); return false; }">2025</a><a class="gl-cat-pill" data-gl-cat="3" href="#category=server" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('c2VydmVy'); return false; }">server</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+programming 2025 server
 </div>
 </div>
 </article>
-</a><p><a href="./posts/tech/SetUpNewDebianServer.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/tech/UbuntuPartitionMissing.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="29" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQ=" data-listing-date-sort="1757170800000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/tech/UbuntuPartitionMissing.html" class="gl-card-link gl-card-cover" aria-label="ミスって/boot/efiを消した話"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">PROGRAMMING · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 ミスって/boot/efiを消した話
 </h2>
 <div class="gl-meta">
@@ -2296,7 +2599,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2304,7 +2607,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Sep 7, 2025
 </div>
 </div>
@@ -2312,21 +2615,28 @@ Sep 7, 2025
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="2">programming</span><span class="gl-cat-pill" data-gl-cat="1">2025</span><span class="gl-cat-pill" data-gl-cat="2">swift</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="2" href="#category=programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false; }">programming</a><a class="gl-cat-pill" data-gl-cat="1" href="#category=2025" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNQ=='); return false; }">2025</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=swift" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('c3dpZnQ='); return false; }">swift</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+programming 2025 swift
 </div>
 </div>
 </article>
-</a><p><a href="./posts/tech/UbuntuPartitionMissing.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/tech/TimeMachineServer.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="30" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQ=" data-listing-date-sort="1757170800000" data-listing-reading-time-sort="3">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/tech/TimeMachineServer.html" class="gl-card-link gl-card-cover" aria-label="Time Machine ServerをSambaで作った話"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">PROGRAMMING · 3 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 Time Machine ServerをSambaで作った話
 </h2>
 <div class="gl-meta">
@@ -2334,7 +2644,7 @@ Time Machine ServerをSambaで作った話
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2342,7 +2652,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Sep 7, 2025
 </div>
 </div>
@@ -2350,21 +2660,28 @@ Sep 7, 2025
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="2">programming</span><span class="gl-cat-pill" data-gl-cat="1">2025</span><span class="gl-cat-pill" data-gl-cat="2">swift</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="2" href="#category=programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false; }">programming</a><a class="gl-cat-pill" data-gl-cat="1" href="#category=2025" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNQ=='); return false; }">2025</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=swift" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('c3dpZnQ='); return false; }">swift</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+3 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+programming 2025 swift
 </div>
 </div>
 </article>
-</a><p><a href="./posts/tech/TimeMachineServer.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/tech/QuartoRenderSingle.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="31" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1" data-listing-date-sort="1756998000000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/tech/QuartoRenderSingle.html" class="gl-card-link gl-card-cover" aria-label="Quartoで単一ファイルにレンダリングする方法"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">PROGRAMMING · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 Quartoで単一ファイルにレンダリングする方法
 </h2>
 <div class="gl-meta">
@@ -2372,7 +2689,7 @@ Quartoで単一ファイルにレンダリングする方法
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2380,7 +2697,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Sep 5, 2025
 </div>
 </div>
@@ -2388,21 +2705,28 @@ Sep 5, 2025
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="2">programming</span><span class="gl-cat-pill" data-gl-cat="1">2025</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="2" href="#category=programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false; }">programming</a><a class="gl-cat-pill" data-gl-cat="1" href="#category=2025" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNQ=='); return false; }">2025</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+programming 2025
 </div>
 </div>
 </article>
-</a><p><a href="./posts/tech/QuartoRenderSingle.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/tech/StartUsingCodex.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="32" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1" data-listing-date-sort="1756998000000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/tech/StartUsingCodex.html" class="gl-card-link gl-card-cover" aria-label="Codexを使い始めた件"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">PROGRAMMING · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 Codexを使い始めた件
 </h2>
 <div class="gl-meta">
@@ -2410,7 +2734,7 @@ Codexを使い始めた件
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2418,7 +2742,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Sep 5, 2025
 </div>
 </div>
@@ -2426,21 +2750,28 @@ Sep 5, 2025
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="2">programming</span><span class="gl-cat-pill" data-gl-cat="1">2025</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="2" href="#category=programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false; }">programming</a><a class="gl-cat-pill" data-gl-cat="1" href="#category=2025" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNQ=='); return false; }">2025</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+programming 2025
 </div>
 </div>
 </article>
-</a><p><a href="./posts/tech/StartUsingCodex.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/tech/SwiftPackageError.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="33" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQ=" data-listing-date-sort="1756998000000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/tech/SwiftPackageError.html" class="gl-card-link gl-card-cover" aria-label="Swift Packageの読み込みエラー"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">PROGRAMMING · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 Swift Packageの読み込みエラー
 </h2>
 <div class="gl-meta">
@@ -2448,7 +2779,7 @@ Swift Packageの読み込みエラー
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2456,7 +2787,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Sep 5, 2025
 </div>
 </div>
@@ -2464,21 +2795,28 @@ Sep 5, 2025
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="2">programming</span><span class="gl-cat-pill" data-gl-cat="1">2025</span><span class="gl-cat-pill" data-gl-cat="2">swift</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="2" href="#category=programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false; }">programming</a><a class="gl-cat-pill" data-gl-cat="1" href="#category=2025" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNQ=='); return false; }">2025</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=swift" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('c3dpZnQ='); return false; }">swift</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+programming 2025 swift
 </div>
 </div>
 </article>
-</a><p><a href="./posts/tech/SwiftPackageError.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/tech/NovelApp.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="34" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1" data-listing-date-sort="1749222000000" data-listing-reading-time-sort="8">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/tech/NovelApp.html" class="gl-card-link gl-card-cover" aria-label="SwiftUIで開発する小説執筆支援アプリ"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">PROGRAMMING · 8 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 SwiftUIで開発する小説執筆支援アプリ
 </h2>
 <div class="gl-meta">
@@ -2486,7 +2824,7 @@ SwiftUIで開発する小説執筆支援アプリ
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2494,7 +2832,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Jun 7, 2025
 </div>
 </div>
@@ -2502,21 +2840,28 @@ Jun 7, 2025
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="2">programming</span><span class="gl-cat-pill" data-gl-cat="1">2025</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="2" href="#category=programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false; }">programming</a><a class="gl-cat-pill" data-gl-cat="1" href="#category=2025" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNQ=='); return false; }">2025</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+8 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+programming 2025
 </div>
 </div>
 </article>
-</a><p><a href="./posts/tech/NovelApp.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/tech/linkwarden.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="35" data-categories="aG9tZXNlcnZlciUyQ3Byb2dyYW1taW5nJTJDMjAyNQ==" data-listing-date-sort="1747062000000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/tech/linkwarden.html" class="gl-card-link gl-card-cover" aria-label="Linkwardenにブックマーク管理を任せる"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">HOMESERVER · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 Linkwardenにブックマーク管理を任せる
 </h2>
 <div class="gl-meta">
@@ -2524,7 +2869,7 @@ Linkwardenにブックマーク管理を任せる
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2532,7 +2877,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 May 13, 2025
 </div>
 </div>
@@ -2540,21 +2885,28 @@ May 13, 2025
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="3">homeserver</span><span class="gl-cat-pill" data-gl-cat="2">programming</span><span class="gl-cat-pill" data-gl-cat="1">2025</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="3" href="#category=homeserver" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('aG9tZXNlcnZlcg=='); return false; }">homeserver</a><a class="gl-cat-pill" data-gl-cat="2" href="#category=programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('cHJvZ3JhbW1pbmc='); return false; }">programming</a><a class="gl-cat-pill" data-gl-cat="1" href="#category=2025" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNQ=='); return false; }">2025</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+homeserver programming 2025
 </div>
 </div>
 </article>
-</a><p><a href="./posts/tech/linkwarden.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/3A/生産プロセス.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="36" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1734361200000" data-listing-reading-time-sort="3">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/3A/生産プロセス.html" class="gl-card-link gl-card-cover" aria-label="生産プロセス"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 3 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 生産プロセス
 </h2>
 <div class="gl-meta">
@@ -2562,7 +2914,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2570,7 +2922,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Dec 17, 2024
 </div>
 </div>
@@ -2578,21 +2930,28 @@ Dec 17, 2024
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="0">2024</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=2024" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNA=='); return false; }">2024</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+3 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2024
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/3A/生産プロセス.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/3A/デバイス材料工学.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="37" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1733065200000" data-listing-reading-time-sort="6">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/3A/デバイス材料工学.html" class="gl-card-link gl-card-cover" aria-label="デバイス材料工学"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 6 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 デバイス材料工学
 </h2>
 <div class="gl-meta">
@@ -2600,7 +2959,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2608,7 +2967,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Dec 2, 2024
 </div>
 </div>
@@ -2616,21 +2975,28 @@ Dec 2, 2024
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="0">2024</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=2024" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNA=='); return false; }">2024</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+6 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2024
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/3A/デバイス材料工学.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/2A/材料統計力学.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="38" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1732806000000" data-listing-reading-time-sort="2">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/2A/材料統計力学.html" class="gl-card-link gl-card-cover" aria-label="材料統計力学"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 2 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 材料統計力学
 </h2>
 <div class="gl-meta">
@@ -2638,7 +3004,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2646,7 +3012,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Nov 29, 2024
 </div>
 </div>
@@ -2654,21 +3020,28 @@ Nov 29, 2024
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="0">2024</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=2024" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNA=='); return false; }">2024</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+2 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2024
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/2A/材料統計力学.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/3A/高分子２.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="39" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1728486000000" data-listing-reading-time-sort="8">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/3A/高分子２.html" class="gl-card-link gl-card-cover" aria-label="高分子ノート"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 8 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 高分子ノート
 </h2>
 <div class="gl-meta">
@@ -2676,7 +3049,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2684,7 +3057,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Oct 10, 2024
 </div>
 </div>
@@ -2692,21 +3065,28 @@ Oct 10, 2024
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="0">2024</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=2024" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNA=='); return false; }">2024</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+8 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2024
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/3A/高分子２.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/3A/セラミック材料学.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="40" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1728486000000" data-listing-reading-time-sort="3">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/3A/セラミック材料学.html" class="gl-card-link gl-card-cover" aria-label="セラミックノート"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 3 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 セラミックノート
 </h2>
 <div class="gl-meta">
@@ -2714,7 +3094,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2722,7 +3102,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Oct 10, 2024
 </div>
 </div>
@@ -2730,21 +3110,28 @@ Oct 10, 2024
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="0">2024</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=2024" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNA=='); return false; }">2024</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+3 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2024
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/3A/セラミック材料学.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/3S/材料電気化学.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="41" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1712502000000" data-listing-reading-time-sort="27">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/3S/材料電気化学.html" class="gl-card-link gl-card-cover" aria-label="材料電気化学"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 27 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 材料電気化学
 </h2>
 <div class="gl-meta">
@@ -2752,7 +3139,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2760,7 +3147,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Apr 8, 2024
 </div>
 </div>
@@ -2768,21 +3155,28 @@ Apr 8, 2024
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="0">2024</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=2024" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNA=='); return false; }">2024</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+27 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2024
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/3S/材料電気化学.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/3S/組織生成論.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="42" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1712502000000" data-listing-reading-time-sort="20">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/3S/組織生成論.html" class="gl-card-link gl-card-cover" aria-label="組織生成論"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 20 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 組織生成論
 </h2>
 <div class="gl-meta">
@@ -2790,7 +3184,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2798,7 +3192,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Apr 8, 2024
 </div>
 </div>
@@ -2806,21 +3200,28 @@ Apr 8, 2024
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="0">2024</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=2024" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNA=='); return false; }">2024</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+20 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2024
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/3S/組織生成論.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/収容所配布用/数学/過去問演習.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="43" data-categories="TWF0aA==" data-listing-date-sort="1712329200000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/収容所配布用/数学/過去問演習.html" class="gl-card-link gl-card-cover" aria-label="過去問演習"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">MATH · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 過去問演習
 </h2>
 <div class="gl-meta">
@@ -2828,7 +3229,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2836,7 +3237,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Apr 6, 2024
 </div>
 </div>
@@ -2844,21 +3245,28 @@ Apr 6, 2024
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="4">Math</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="4" href="#category=Math" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('TWF0aA=='); return false; }">Math</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+Math
 </div>
 </div>
 </article>
-</a><p><a href="./posts/収容所配布用/数学/過去問演習.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/3S/材料強度学.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="44" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1712242800000" data-listing-reading-time-sort="4">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/3S/材料強度学.html" class="gl-card-link gl-card-cover" aria-label="材料強度学"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 4 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 材料強度学
 </h2>
 <div class="gl-meta">
@@ -2866,7 +3274,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2874,7 +3282,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Apr 5, 2024
 </div>
 </div>
@@ -2882,21 +3290,28 @@ Apr 5, 2024
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="0">2024</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=2024" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNA=='); return false; }">2024</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+4 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2024
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/3S/材料強度学.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/3S/固体物性学.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="45" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1712242800000" data-listing-reading-time-sort="13">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/3S/固体物性学.html" class="gl-card-link gl-card-cover" aria-label="固体物性学"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 13 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 固体物性学
 </h2>
 <div class="gl-meta">
@@ -2904,7 +3319,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2912,7 +3327,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Apr 5, 2024
 </div>
 </div>
@@ -2920,21 +3335,28 @@ Apr 5, 2024
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="0">2024</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=2024" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNA=='); return false; }">2024</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+13 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2024
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/3S/固体物性学.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/3S/材料反応工学.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="46" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1712242800000" data-listing-reading-time-sort="16">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/3S/材料反応工学.html" class="gl-card-link gl-card-cover" aria-label="材料反応工学"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 16 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 材料反応工学
 </h2>
 <div class="gl-meta">
@@ -2942,7 +3364,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2950,7 +3372,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Apr 5, 2024
 </div>
 </div>
@@ -2958,21 +3380,28 @@ Apr 5, 2024
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="0">2024</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=2024" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyNA=='); return false; }">2024</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+16 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2024
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/3S/材料反応工学.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/play_ground/template.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="47" data-categories="UHJvZ3JhbW1pbmclMkNXZWIlMkNQbGF5R3JvdW5k" data-listing-date-sort="1702998000000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/play_ground/template.html" class="gl-card-link gl-card-cover" aria-label="template"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">PROGRAMMING · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 template
 </h2>
 <div class="gl-meta">
@@ -2980,7 +3409,7 @@ template
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -2988,7 +3417,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Dec 20, 2023
 </div>
 </div>
@@ -2996,21 +3425,28 @@ Dec 20, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">Programming</span><span class="gl-cat-pill" data-gl-cat="1">Web</span><span class="gl-cat-pill" data-gl-cat="4">PlayGround</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=Programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false; }">Programming</a><a class="gl-cat-pill" data-gl-cat="1" href="#category=Web" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('V2Vi'); return false; }">Web</a><a class="gl-cat-pill" data-gl-cat="4" href="#category=PlayGround" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('UGxheUdyb3VuZA=='); return false; }">PlayGround</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+Programming Web PlayGround
 </div>
 </div>
 </article>
-</a><p><a href="./posts/play_ground/template.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/ue5_aura_courses/section_06.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="48" data-categories="VUU1JTJDQXVyYSUyQ1VkZW15JTJDR2FtZSUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1702479600000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/ue5_aura_courses/section_06.html" class="gl-card-link gl-card-cover" aria-label="section_06"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UE5 · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 section_06
 </h2>
 <div class="gl-meta">
@@ -3018,7 +3454,7 @@ section_06
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3026,7 +3462,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Dec 14, 2023
 </div>
 </div>
@@ -3034,21 +3470,28 @@ Dec 14, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="2">UE5</span><span class="gl-cat-pill" data-gl-cat="3">Aura</span><span class="gl-cat-pill" data-gl-cat="1">Udemy</span><span class="gl-cat-pill" data-gl-cat="3">Game</span><span class="gl-cat-pill" data-gl-cat="0">Programming</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="2" href="#category=UE5" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VUU1'); return false; }">UE5</a><a class="gl-cat-pill" data-gl-cat="3" href="#category=Aura" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('QXVyYQ=='); return false; }">Aura</a><a class="gl-cat-pill" data-gl-cat="1" href="#category=Udemy" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VWRlbXk='); return false; }">Udemy</a><a class="gl-cat-pill" data-gl-cat="3" href="#category=Game" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('R2FtZQ=='); return false; }">Game</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=Programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false; }">Programming</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+UE5 Aura Udemy Game Programming
 </div>
 </div>
 </article>
-</a><p><a href="./posts/ue5_aura_courses/section_06.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/収容所配布用/数学/数学II.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="49" data-categories="TWF0aA==" data-listing-date-sort="1702479600000" data-listing-reading-time-sort="3">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/収容所配布用/数学/数学II.html" class="gl-card-link gl-card-cover" aria-label="数学II"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">MATH · 3 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 数学II
 </h2>
 <div class="gl-meta">
@@ -3056,7 +3499,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3064,7 +3507,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Dec 14, 2023
 </div>
 </div>
@@ -3072,21 +3515,28 @@ Dec 14, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="4">Math</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="4" href="#category=Math" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('TWF0aA=='); return false; }">Math</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+3 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+Math
 </div>
 </div>
 </article>
-</a><p><a href="./posts/収容所配布用/数学/数学II.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/収容所配布用/数学/数学III.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="50" data-categories="TWF0aA==" data-listing-date-sort="1702479600000" data-listing-reading-time-sort="3">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/収容所配布用/数学/数学III.html" class="gl-card-link gl-card-cover" aria-label="数学III"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">MATH · 3 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 数学III
 </h2>
 <div class="gl-meta">
@@ -3094,7 +3544,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3102,7 +3552,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Dec 14, 2023
 </div>
 </div>
@@ -3110,21 +3560,28 @@ Dec 14, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="4">Math</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="4" href="#category=Math" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('TWF0aA=='); return false; }">Math</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+3 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+Math
 </div>
 </div>
 </article>
-</a><p><a href="./posts/収容所配布用/数学/数学III.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/収容所配布用/数学/数学B.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="51" data-categories="TWF0aA==" data-listing-date-sort="1702479600000" data-listing-reading-time-sort="2">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/収容所配布用/数学/数学B.html" class="gl-card-link gl-card-cover" aria-label="数学B"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">MATH · 2 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 数学B
 </h2>
 <div class="gl-meta">
@@ -3132,7 +3589,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3140,7 +3597,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Dec 14, 2023
 </div>
 </div>
@@ -3148,21 +3605,28 @@ Dec 14, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="4">Math</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="4" href="#category=Math" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('TWF0aA=='); return false; }">Math</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+2 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+Math
 </div>
 </div>
 </article>
-</a><p><a href="./posts/収容所配布用/数学/数学B.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/収容所配布用/数学/数学A.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="52" data-categories="TWF0aA==" data-listing-date-sort="1702479600000" data-listing-reading-time-sort="2">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/収容所配布用/数学/数学A.html" class="gl-card-link gl-card-cover" aria-label="数学A"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">MATH · 2 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 数学A
 </h2>
 <div class="gl-meta">
@@ -3170,7 +3634,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3178,7 +3642,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Dec 14, 2023
 </div>
 </div>
@@ -3186,21 +3650,28 @@ Dec 14, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="4">Math</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="4" href="#category=Math" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('TWF0aA=='); return false; }">Math</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+2 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+Math
 </div>
 </div>
 </article>
-</a><p><a href="./posts/収容所配布用/数学/数学A.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/at_coder/typical90-11.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="53" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1701270000000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/at_coder/typical90-11.html" class="gl-card-link gl-card-cover" aria-label="typical90-11"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">ATCODER · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 typical90-11
 </h2>
 <div class="gl-meta">
@@ -3208,7 +3679,7 @@ typical90-11
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3216,7 +3687,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Nov 30, 2023
 </div>
 </div>
@@ -3224,21 +3695,28 @@ Nov 30, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="4">AtCoder</span><span class="gl-cat-pill" data-gl-cat="0">Programming</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="4" href="#category=AtCoder" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('QXRDb2Rlcg=='); return false; }">AtCoder</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=Programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false; }">Programming</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+AtCoder Programming
 </div>
 </div>
 </article>
-</a><p><a href="./posts/at_coder/typical90-11.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/ue5_project/planning.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="54" data-categories="VUU1JTJDR2FtZSUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1701183600000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/ue5_project/planning.html" class="gl-card-link gl-card-cover" aria-label="Planning"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UE5 · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 Planning
 </h2>
 <div class="gl-meta">
@@ -3246,7 +3724,7 @@ Planning
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3254,7 +3732,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Nov 29, 2023
 </div>
 </div>
@@ -3262,21 +3740,28 @@ Nov 29, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="2">UE5</span><span class="gl-cat-pill" data-gl-cat="3">Game</span><span class="gl-cat-pill" data-gl-cat="0">Programming</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="2" href="#category=UE5" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VUU1'); return false; }">UE5</a><a class="gl-cat-pill" data-gl-cat="3" href="#category=Game" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('R2FtZQ=='); return false; }">Game</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=Programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false; }">Programming</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+UE5 Game Programming
 </div>
 </div>
 </article>
-</a><p><a href="./posts/ue5_project/planning.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/at_coder/typical90-10.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="55" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1700838000000" data-listing-reading-time-sort="2">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/at_coder/typical90-10.html" class="gl-card-link gl-card-cover" aria-label="typical90-10"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">ATCODER · 2 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 typical90-10
 </h2>
 <div class="gl-meta">
@@ -3284,7 +3769,7 @@ typical90-10
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3292,7 +3777,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Nov 25, 2023
 </div>
 </div>
@@ -3300,21 +3785,28 @@ Nov 25, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="4">AtCoder</span><span class="gl-cat-pill" data-gl-cat="0">Programming</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="4" href="#category=AtCoder" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('QXRDb2Rlcg=='); return false; }">AtCoder</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=Programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false; }">Programming</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+2 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+AtCoder Programming
 </div>
 </div>
 </article>
-</a><p><a href="./posts/at_coder/typical90-10.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/ue5_aura_courses/section_05.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="56" data-categories="VUU1JTJDQXVyYSUyQ1VkZW15JTJDR2FtZSUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1700838000000" data-listing-reading-time-sort="4">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/ue5_aura_courses/section_05.html" class="gl-card-link gl-card-cover" aria-label="section_05"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UE5 · 4 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 section_05
 </h2>
 <div class="gl-meta">
@@ -3322,7 +3814,7 @@ section_05
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3330,7 +3822,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Nov 25, 2023
 </div>
 </div>
@@ -3338,21 +3830,28 @@ Nov 25, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="2">UE5</span><span class="gl-cat-pill" data-gl-cat="3">Aura</span><span class="gl-cat-pill" data-gl-cat="1">Udemy</span><span class="gl-cat-pill" data-gl-cat="3">Game</span><span class="gl-cat-pill" data-gl-cat="0">Programming</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="2" href="#category=UE5" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VUU1'); return false; }">UE5</a><a class="gl-cat-pill" data-gl-cat="3" href="#category=Aura" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('QXVyYQ=='); return false; }">Aura</a><a class="gl-cat-pill" data-gl-cat="1" href="#category=Udemy" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VWRlbXk='); return false; }">Udemy</a><a class="gl-cat-pill" data-gl-cat="3" href="#category=Game" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('R2FtZQ=='); return false; }">Game</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=Programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false; }">Programming</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+4 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+UE5 Aura Udemy Game Programming
 </div>
 </div>
 </article>
-</a><p><a href="./posts/ue5_aura_courses/section_05.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/at_coder/typical90-09.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="57" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1700751600000" data-listing-reading-time-sort="5">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/at_coder/typical90-09.html" class="gl-card-link gl-card-cover" aria-label="typical90-09"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">ATCODER · 5 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 typical90-09
 </h2>
 <div class="gl-meta">
@@ -3360,7 +3859,7 @@ typical90-09
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3368,7 +3867,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Nov 24, 2023
 </div>
 </div>
@@ -3376,21 +3875,28 @@ Nov 24, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="4">AtCoder</span><span class="gl-cat-pill" data-gl-cat="0">Programming</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="4" href="#category=AtCoder" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('QXRDb2Rlcg=='); return false; }">AtCoder</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=Programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false; }">Programming</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+5 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+AtCoder Programming
 </div>
 </div>
 </article>
-</a><p><a href="./posts/at_coder/typical90-09.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/ue5_aura_courses/section_04.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="58" data-categories="VUU1JTJDQXVyYSUyQ1VkZW15JTJDR2FtZSUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1700406000000" data-listing-reading-time-sort="2">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/ue5_aura_courses/section_04.html" class="gl-card-link gl-card-cover" aria-label="section_04"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UE5 · 2 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 section_04
 </h2>
 <div class="gl-meta">
@@ -3398,7 +3904,7 @@ section_04
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3406,7 +3912,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Nov 20, 2023
 </div>
 </div>
@@ -3414,21 +3920,28 @@ Nov 20, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="2">UE5</span><span class="gl-cat-pill" data-gl-cat="3">Aura</span><span class="gl-cat-pill" data-gl-cat="1">Udemy</span><span class="gl-cat-pill" data-gl-cat="3">Game</span><span class="gl-cat-pill" data-gl-cat="0">Programming</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="2" href="#category=UE5" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VUU1'); return false; }">UE5</a><a class="gl-cat-pill" data-gl-cat="3" href="#category=Aura" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('QXVyYQ=='); return false; }">Aura</a><a class="gl-cat-pill" data-gl-cat="1" href="#category=Udemy" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VWRlbXk='); return false; }">Udemy</a><a class="gl-cat-pill" data-gl-cat="3" href="#category=Game" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('R2FtZQ=='); return false; }">Game</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=Programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false; }">Programming</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+2 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+UE5 Aura Udemy Game Programming
 </div>
 </div>
 </article>
-</a><p><a href="./posts/ue5_aura_courses/section_04.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/at_coder/typical90-08.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="59" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1698246000000" data-listing-reading-time-sort="2">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/at_coder/typical90-08.html" class="gl-card-link gl-card-cover" aria-label="typical90-08"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">ATCODER · 2 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 typical90-08
 </h2>
 <div class="gl-meta">
@@ -3436,7 +3949,7 @@ typical90-08
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3444,7 +3957,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Oct 26, 2023
 </div>
 </div>
@@ -3452,21 +3965,28 @@ Oct 26, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="4">AtCoder</span><span class="gl-cat-pill" data-gl-cat="0">Programming</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="4" href="#category=AtCoder" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('QXRDb2Rlcg=='); return false; }">AtCoder</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=Programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false; }">Programming</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+2 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+AtCoder Programming
 </div>
 </div>
 </article>
-</a><p><a href="./posts/at_coder/typical90-08.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/at_coder/typical90-07.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="60" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1698159600000" data-listing-reading-time-sort="2">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/at_coder/typical90-07.html" class="gl-card-link gl-card-cover" aria-label="typical90-07"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">ATCODER · 2 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 typical90-07
 </h2>
 <div class="gl-meta">
@@ -3474,7 +3994,7 @@ typical90-07
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3482,7 +4002,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Oct 25, 2023
 </div>
 </div>
@@ -3490,21 +4010,28 @@ Oct 25, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="4">AtCoder</span><span class="gl-cat-pill" data-gl-cat="0">Programming</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="4" href="#category=AtCoder" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('QXRDb2Rlcg=='); return false; }">AtCoder</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=Programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false; }">Programming</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+2 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+AtCoder Programming
 </div>
 </div>
 </article>
-</a><p><a href="./posts/at_coder/typical90-07.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/at_coder/typical90-06.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="61" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1697986800000" data-listing-reading-time-sort="5">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/at_coder/typical90-06.html" class="gl-card-link gl-card-cover" aria-label="typical90-06"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">ATCODER · 5 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 typical90-06
 </h2>
 <div class="gl-meta">
@@ -3512,7 +4039,7 @@ typical90-06
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3520,7 +4047,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Oct 23, 2023
 </div>
 </div>
@@ -3528,21 +4055,28 @@ Oct 23, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="4">AtCoder</span><span class="gl-cat-pill" data-gl-cat="0">Programming</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="4" href="#category=AtCoder" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('QXRDb2Rlcg=='); return false; }">AtCoder</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=Programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false; }">Programming</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+5 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+AtCoder Programming
 </div>
 </div>
 </article>
-</a><p><a href="./posts/at_coder/typical90-06.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/at_coder/typical90-05.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="62" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1697468400000" data-listing-reading-time-sort="13">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/at_coder/typical90-05.html" class="gl-card-link gl-card-cover" aria-label="typical90-05"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">ATCODER · 13 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 typical90-05
 </h2>
 <div class="gl-meta">
@@ -3550,7 +4084,7 @@ typical90-05
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3558,7 +4092,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Oct 17, 2023
 </div>
 </div>
@@ -3566,21 +4100,28 @@ Oct 17, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="4">AtCoder</span><span class="gl-cat-pill" data-gl-cat="0">Programming</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="4" href="#category=AtCoder" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('QXRDb2Rlcg=='); return false; }">AtCoder</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=Programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false; }">Programming</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+13 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+AtCoder Programming
 </div>
 </div>
 </article>
-</a><p><a href="./posts/at_coder/typical90-05.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/at_coder/typical90-04.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="63" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1697382000000" data-listing-reading-time-sort="3">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/at_coder/typical90-04.html" class="gl-card-link gl-card-cover" aria-label="typical90-04"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">ATCODER · 3 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 typical90-04
 </h2>
 <div class="gl-meta">
@@ -3588,7 +4129,7 @@ typical90-04
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3596,7 +4137,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Oct 16, 2023
 </div>
 </div>
@@ -3604,21 +4145,28 @@ Oct 16, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="4">AtCoder</span><span class="gl-cat-pill" data-gl-cat="0">Programming</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="4" href="#category=AtCoder" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('QXRDb2Rlcg=='); return false; }">AtCoder</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=Programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false; }">Programming</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+3 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+AtCoder Programming
 </div>
 </div>
 </article>
-</a><p><a href="./posts/at_coder/typical90-04.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/at_coder/typical90-03.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="64" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1697295600000" data-listing-reading-time-sort="2">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/at_coder/typical90-03.html" class="gl-card-link gl-card-cover" aria-label="typical90-03"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">ATCODER · 2 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 typical90-03
 </h2>
 <div class="gl-meta">
@@ -3626,7 +4174,7 @@ typical90-03
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3634,7 +4182,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Oct 15, 2023
 </div>
 </div>
@@ -3642,21 +4190,28 @@ Oct 15, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="4">AtCoder</span><span class="gl-cat-pill" data-gl-cat="0">Programming</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="4" href="#category=AtCoder" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('QXRDb2Rlcg=='); return false; }">AtCoder</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=Programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false; }">Programming</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+2 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+AtCoder Programming
 </div>
 </div>
 </article>
-</a><p><a href="./posts/at_coder/typical90-03.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/ue5_aura_courses/section_03.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="65" data-categories="VUU1JTJDQXVyYSUyQ1VkZW15JTJDR2FtZSUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1697295600000" data-listing-reading-time-sort="2">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/ue5_aura_courses/section_03.html" class="gl-card-link gl-card-cover" aria-label="section_03"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UE5 · 2 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 section_03
 </h2>
 <div class="gl-meta">
@@ -3664,7 +4219,7 @@ section_03
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3672,7 +4227,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Oct 15, 2023
 </div>
 </div>
@@ -3680,21 +4235,28 @@ Oct 15, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="2">UE5</span><span class="gl-cat-pill" data-gl-cat="3">Aura</span><span class="gl-cat-pill" data-gl-cat="1">Udemy</span><span class="gl-cat-pill" data-gl-cat="3">Game</span><span class="gl-cat-pill" data-gl-cat="0">Programming</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="2" href="#category=UE5" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VUU1'); return false; }">UE5</a><a class="gl-cat-pill" data-gl-cat="3" href="#category=Aura" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('QXVyYQ=='); return false; }">Aura</a><a class="gl-cat-pill" data-gl-cat="1" href="#category=Udemy" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VWRlbXk='); return false; }">Udemy</a><a class="gl-cat-pill" data-gl-cat="3" href="#category=Game" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('R2FtZQ=='); return false; }">Game</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=Programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false; }">Programming</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+2 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+UE5 Aura Udemy Game Programming
 </div>
 </div>
 </article>
-</a><p><a href="./posts/ue5_aura_courses/section_03.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/収容所配布用/数学/数学I.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="66" data-categories="TWF0aA==" data-listing-date-sort="1697209200000" data-listing-reading-time-sort="8">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/収容所配布用/数学/数学I.html" class="gl-card-link gl-card-cover" aria-label="数学I"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">MATH · 8 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 数学I
 </h2>
 <div class="gl-meta">
@@ -3702,7 +4264,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3710,7 +4272,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Oct 14, 2023
 </div>
 </div>
@@ -3718,21 +4280,28 @@ Oct 14, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="4">Math</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="4" href="#category=Math" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('TWF0aA=='); return false; }">Math</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+8 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+Math
 </div>
 </div>
 </article>
-</a><p><a href="./posts/収容所配布用/数学/数学I.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/収容所配布用/物理/物理.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="67" data-categories="TWF0aA==" data-listing-date-sort="1697209200000" data-listing-reading-time-sort="2">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/収容所配布用/物理/物理.html" class="gl-card-link gl-card-cover" aria-label="物理"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">MATH · 2 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 物理
 </h2>
 <div class="gl-meta">
@@ -3740,7 +4309,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3748,7 +4317,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Oct 14, 2023
 </div>
 </div>
@@ -3756,21 +4325,28 @@ Oct 14, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="4">Math</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="4" href="#category=Math" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('TWF0aA=='); return false; }">Math</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+2 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+Math
 </div>
 </div>
 </article>
-</a><p><a href="./posts/収容所配布用/物理/物理.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/2A/材料速度論.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="68" data-categories="VW5pdmVyc2l0eSUyQzIwMjM=" data-listing-date-sort="1696863600000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/2A/材料速度論.html" class="gl-card-link gl-card-cover" aria-label="材料速度論"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 材料速度論
 </h2>
 <div class="gl-meta">
@@ -3778,7 +4354,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3786,7 +4362,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Oct 10, 2023
 </div>
 </div>
@@ -3794,21 +4370,28 @@ Oct 10, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="4">2023</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="4" href="#category=2023" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyMw=='); return false; }">2023</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2023
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/2A/材料速度論.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/2A/材料量子力学.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="69" data-categories="VW5pdmVyc2l0eSUyQzIwMjM=" data-listing-date-sort="1696863600000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/2A/材料量子力学.html" class="gl-card-link gl-card-cover" aria-label="材料量子力学"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 材料量子力学
 </h2>
 <div class="gl-meta">
@@ -3816,7 +4399,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3824,7 +4407,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Oct 10, 2023
 </div>
 </div>
@@ -3832,21 +4415,28 @@ Oct 10, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="4">2023</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="4" href="#category=2023" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyMw=='); return false; }">2023</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2023
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/2A/材料量子力学.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/2A/材料相平衡論.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="70" data-categories="VW5pdmVyc2l0eSUyQzIwMjM=" data-listing-date-sort="1696863600000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/2A/材料相平衡論.html" class="gl-card-link gl-card-cover" aria-label="材料相平衡論"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 材料相平衡論
 </h2>
 <div class="gl-meta">
@@ -3854,7 +4444,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3862,7 +4452,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Oct 10, 2023
 </div>
 </div>
@@ -3870,21 +4460,28 @@ Oct 10, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="4">2023</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="4" href="#category=2023" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyMw=='); return false; }">2023</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2023
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/2A/材料相平衡論.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/univ_lecs/2A/材料力学.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="71" data-categories="VW5pdmVyc2l0eSUyQzIwMjM=" data-listing-date-sort="1696863600000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/univ_lecs/2A/材料力学.html" class="gl-card-link gl-card-cover" aria-label="統計力学"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UNIVERSITY · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 統計力学
 </h2>
 <div class="gl-meta">
@@ -3892,7 +4489,7 @@ CATEGORIES
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3900,7 +4497,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Oct 10, 2023
 </div>
 </div>
@@ -3908,21 +4505,28 @@ Oct 10, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="0">University</span><span class="gl-cat-pill" data-gl-cat="4">2023</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="0" href="#category=University" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VW5pdmVyc2l0eQ=='); return false; }">University</a><a class="gl-cat-pill" data-gl-cat="4" href="#category=2023" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('MjAyMw=='); return false; }">2023</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+University 2023
 </div>
 </div>
 </article>
-</a><p><a href="./posts/univ_lecs/2A/材料力学.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/at_coder/cargo_compete.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="72" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1696777200000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/at_coder/cargo_compete.html" class="gl-card-link gl-card-cover" aria-label="Cargo Compete"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">ATCODER · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 Cargo Compete
 </h2>
 <div class="gl-meta">
@@ -3930,7 +4534,7 @@ Cargo Compete
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3938,7 +4542,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Oct 9, 2023
 </div>
 </div>
@@ -3946,21 +4550,28 @@ Oct 9, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="4">AtCoder</span><span class="gl-cat-pill" data-gl-cat="0">Programming</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="4" href="#category=AtCoder" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('QXRDb2Rlcg=='); return false; }">AtCoder</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=Programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false; }">Programming</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+AtCoder Programming
 </div>
 </div>
 </article>
-</a><p><a href="./posts/at_coder/cargo_compete.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/at_coder/template.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="73" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1696777200000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/at_coder/template.html" class="gl-card-link gl-card-cover" aria-label="template"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">ATCODER · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 template
 </h2>
 <div class="gl-meta">
@@ -3968,7 +4579,7 @@ template
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -3976,7 +4587,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Oct 9, 2023
 </div>
 </div>
@@ -3984,21 +4595,28 @@ Oct 9, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="4">AtCoder</span><span class="gl-cat-pill" data-gl-cat="0">Programming</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="4" href="#category=AtCoder" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('QXRDb2Rlcg=='); return false; }">AtCoder</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=Programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false; }">Programming</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+AtCoder Programming
 </div>
 </div>
 </article>
-</a><p><a href="./posts/at_coder/template.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/at_coder/typical90-02.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="74" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1696777200000" data-listing-reading-time-sort="3">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/at_coder/typical90-02.html" class="gl-card-link gl-card-cover" aria-label="typical90-02"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">ATCODER · 3 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 typical90-02
 </h2>
 <div class="gl-meta">
@@ -4006,7 +4624,7 @@ typical90-02
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -4014,7 +4632,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Oct 9, 2023
 </div>
 </div>
@@ -4022,21 +4640,28 @@ Oct 9, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="4">AtCoder</span><span class="gl-cat-pill" data-gl-cat="0">Programming</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="4" href="#category=AtCoder" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('QXRDb2Rlcg=='); return false; }">AtCoder</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=Programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false; }">Programming</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+3 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+AtCoder Programming
 </div>
 </div>
 </article>
-</a><p><a href="./posts/at_coder/typical90-02.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/at_coder/typical90-01.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="75" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1696777200000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/at_coder/typical90-01.html" class="gl-card-link gl-card-cover" aria-label="typical90-01"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">ATCODER · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 typical90-01
 </h2>
 <div class="gl-meta">
@@ -4044,7 +4669,7 @@ typical90-01
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -4052,7 +4677,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Oct 9, 2023
 </div>
 </div>
@@ -4060,21 +4685,28 @@ Oct 9, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="4">AtCoder</span><span class="gl-cat-pill" data-gl-cat="0">Programming</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="4" href="#category=AtCoder" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('QXRDb2Rlcg=='); return false; }">AtCoder</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=Programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false; }">Programming</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+AtCoder Programming
 </div>
 </div>
 </article>
-</a><p><a href="./posts/at_coder/typical90-01.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/ue5_aura_courses/section_02.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="76" data-categories="VUU1JTJDQXVyYSUyQ1VkZW15JTJDR2FtZSUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1696777200000" data-listing-reading-time-sort="2">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/ue5_aura_courses/section_02.html" class="gl-card-link gl-card-cover" aria-label="Section 02"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UE5 · 2 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 Section 02
 </h2>
 <div class="gl-meta">
@@ -4082,7 +4714,7 @@ Section 02
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -4090,7 +4722,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Oct 9, 2023
 </div>
 </div>
@@ -4098,21 +4730,28 @@ Oct 9, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="2">UE5</span><span class="gl-cat-pill" data-gl-cat="3">Aura</span><span class="gl-cat-pill" data-gl-cat="1">Udemy</span><span class="gl-cat-pill" data-gl-cat="3">Game</span><span class="gl-cat-pill" data-gl-cat="0">Programming</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="2" href="#category=UE5" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VUU1'); return false; }">UE5</a><a class="gl-cat-pill" data-gl-cat="3" href="#category=Aura" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('QXVyYQ=='); return false; }">Aura</a><a class="gl-cat-pill" data-gl-cat="1" href="#category=Udemy" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VWRlbXk='); return false; }">Udemy</a><a class="gl-cat-pill" data-gl-cat="3" href="#category=Game" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('R2FtZQ=='); return false; }">Game</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=Programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false; }">Programming</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+2 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+UE5 Aura Udemy Game Programming
 </div>
 </div>
 </article>
-</a><p><a href="./posts/ue5_aura_courses/section_02.html" class="gl-card-link" data-index=""></a></p>
 </div>
-<div class="gl-card-wrap">
-<a href="./posts/ue5_aura_courses/template.html" class="gl-card-link" data-index="">
+<div class="gl-card-wrap" data-index="77" data-categories="VUU1JTJDQXVyYSUyQ1VkZW15JTJDR2FtZSUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1696777200000" data-listing-reading-time-sort="1">
 <article class="gl-card">
+<div class="gl-card-cover-wrap">
+<a href="./posts/ue5_aura_courses/template.html" class="gl-card-link gl-card-cover" aria-label="template"></a>
+</div>
 <div class="gl-eyebrow">
 <span class="gl-eyebrow-pill">UE5 · 1 MIN READ</span>
 </div>
-<h2 class="gl-title anchored">
+<h2 class="gl-title listing-title anchored">
 template
 </h2>
 <div class="gl-meta">
@@ -4120,7 +4759,7 @@ template
 <div class="gl-meta-lbl">
 AUTHOR
 </div>
-<div class="gl-author-chip">
+<div class="gl-author-chip listing-author">
 <span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
 </div>
 </div>
@@ -4128,7 +4767,7 @@ AUTHOR
 <div class="gl-meta-lbl">
 PUBLISHED
 </div>
-<div class="gl-meta-val">
+<div class="gl-meta-val listing-date">
 Oct 9, 2023
 </div>
 </div>
@@ -4136,13 +4775,19 @@ Oct 9, 2023
 <div class="gl-meta-lbl">
 CATEGORIES
 </div>
-<div class="gl-cats">
-<span class="gl-cat-pill" data-gl-cat="2">UE5</span><span class="gl-cat-pill" data-gl-cat="3">Aura</span><span class="gl-cat-pill" data-gl-cat="1">Udemy</span><span class="gl-cat-pill" data-gl-cat="3">Game</span><span class="gl-cat-pill" data-gl-cat="0">Programming</span>
+<div class="gl-cats listing-categories">
+<a class="gl-cat-pill" data-gl-cat="2" href="#category=UE5" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VUU1'); return false; }">UE5</a><a class="gl-cat-pill" data-gl-cat="3" href="#category=Aura" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('QXVyYQ=='); return false; }">Aura</a><a class="gl-cat-pill" data-gl-cat="1" href="#category=Udemy" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('VWRlbXk='); return false; }">Udemy</a><a class="gl-cat-pill" data-gl-cat="3" href="#category=Game" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('R2FtZQ=='); return false; }">Game</a><a class="gl-cat-pill" data-gl-cat="0" href="#category=Programming" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false; }">Programming</a>
 </div>
+</div>
+<div class="listing-reading-time gl-hidden-listing-value">
+1 MIN READ
+</div>
+<div class="gl-hidden-listing-value">
+UE5 Aura Udemy Game Programming
 </div>
 </div>
 </article>
-</a><p><a href="./posts/ue5_aura_courses/template.html" class="gl-card-link" data-index=""></a></p>
+</div>
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
 <nav id="listing-pagination" class="listing-pagination" aria-label="Page Navigation">

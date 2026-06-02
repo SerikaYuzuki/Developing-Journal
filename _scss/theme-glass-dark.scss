@@ -119,6 +119,18 @@ $toc-active-border: $primary !default;
   --gl-cat3:            #{$warning};
   --gl-cat4:            #{$danger};
   --gl-separator:       #{rgba(255, 255, 255, 0.12)};
+  --gl-tooltip-bg:      #{rgba(22, 20, 50, 0.96)};
+  --gl-tooltip-border:  #{rgba(255, 255, 255, 0.18)};
+  --gl-tooltip-color:   #e8eaf0;
+  --gl-tooltip-link:    #a18bff;
+  --gl-tooltip-arrow:   #{rgba(22, 20, 50, 0.96)};
+
+  /* Mobile sidebar glass panel */
+  --mobile-sidebar-bg:           rgba(14, 16, 32, 0.94);
+  --mobile-sidebar-border:       rgba(255, 255, 255, 0.16);
+  --mobile-sidebar-title-color:  #f0f1f7;
+  --mobile-sidebar-link-color:   #{rgba(164, 167, 194, 1)};
+  --mobile-sidebar-cat-color:    #{rgba(255, 255, 255, 0.08)};
 }
 
 // ---- Page background (gradient blobs over deep base) -----------------------
@@ -135,7 +147,51 @@ body {
     radial-gradient(ellipse 65% 50% at 50% 92%, rgba(56, 156, 168, 0.45),  transparent 60%),
     radial-gradient(ellipse 40% 35% at 90% 75%, rgba(196, 79, 122, 0.45),  transparent 60%),
     $bg-base;
+  background-size:
+    128% 128%,
+    124% 124%,
+    132% 132%,
+    118% 118%,
+    100% 100%;
+  background-position:
+    0% 0%,
+    100% 12%,
+    48% 100%,
+    100% 88%,
+    0% 0%;
   background-attachment: fixed;
+  animation: pj-bg-drift 44s ease-in-out infinite alternate;
+}
+
+@keyframes pj-bg-drift {
+  0% {
+    background-position:
+      0% 0%,
+      100% 12%,
+      48% 100%,
+      100% 88%,
+      0% 0%;
+  }
+  50% {
+    background-position:
+      10% 6%,
+      88% 4%,
+      56% 92%,
+      92% 78%,
+      0% 0%;
+  }
+  100% {
+    background-position:
+      4% 12%,
+      96% 20%,
+      42% 88%,
+      86% 96%,
+      0% 0%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body { animation: none; }
 }
 
 ::selection { background: rgba($primary, .35); color: #ffffff; }
@@ -272,6 +328,12 @@ a {
   transition: color .2s, border-color .2s;
 
   &:hover { color: lighten($primary, 10%); border-bottom-color: $primary; }
+}
+
+.quarto-category a,
+.listing-category a {
+  border-bottom: none !important;
+  text-decoration: none !important;
 }
 
 // ---- Title block -----------------------------------------------------------

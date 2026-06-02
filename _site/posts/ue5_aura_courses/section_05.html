@@ -78,8 +78,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-9ce02ba9bf05f77acce06f7d436c50a3.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-96503ffdc137be7d3e144f97d44b33f2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-dark-627c88861fefb622955189a7b03619f4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-beec2bd44fa0481a82ba6ca6582b6aca.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dark-df9c0e93955be51cb4eae8bff4b8bdf4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,56 +107,153 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  // ナビゲーションバーのタイトル左にボタンを配置
-  const brandContainer = document.querySelector('.navbar-brand-container');
-  if (brandContainer) {
-    const toggleBtn = document.createElement('a');
+<script>(function () {
+  "use strict";
+
+  document.addEventListener("DOMContentLoaded", function () {
+
+    // ── 1. ≡ ボタンをナビバーに挿入 ────────────────────────────────────
+    var brandContainer = document.querySelector('.navbar-brand-container');
+    if (!brandContainer) return;
+
+    var toggleBtn = document.createElement('a');
     toggleBtn.href = "#";
-    toggleBtn.innerHTML = `<i class="bi bi-list"></i>`; // Bootstrapのハンバーガーアイコン
+    toggleBtn.innerHTML = '<i class="bi bi-list"></i>';
     toggleBtn.className = 'navbar-sidebar-toggle pe-2';
-    toggleBtn.style.color = 'inherit';
-    toggleBtn.style.textDecoration = 'none';
-    toggleBtn.style.fontSize = '1.5rem';
-    toggleBtn.style.display = 'flex';
-    toggleBtn.style.alignItems = 'center';
+    toggleBtn.style.cssText = 'color:inherit;text-decoration:none;font-size:1.5rem;display:flex;align-items:center;';
     toggleBtn.title = "サイドバーを切り替え";
-    
-    // タイトルの直前に挿入
     brandContainer.insertBefore(toggleBtn, brandContainer.firstChild);
 
-    // クリック時の動作
-    toggleBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      
-      // スマホサイズ等の場合はQuartoデフォルトのサイドバー開閉をトリガーする
-      if (window.innerWidth < 992) {
-        const quartoToggle = document.querySelector('.quarto-secondary-nav .quarto-btn-toggle');
-        if (quartoToggle) {
-          quartoToggle.click();
+    // ── 2. カスタムドロワーを構築 ───────────────────────────────────────
+    var siteName = (document.querySelector('.navbar-brand') || {}).textContent;
+    siteName = siteName ? siteName.trim() : 'Menu';
+
+    var drawer = document.createElement('div');
+    drawer.id = 'pj-drawer';
+    drawer.setAttribute('aria-hidden', 'true');
+    drawer.setAttribute('role', 'dialog');
+    drawer.setAttribute('aria-modal', 'true');
+    drawer.innerHTML = [
+      '<div id="pj-drawer-backdrop"></div>',
+      '<nav id="pj-drawer-panel" aria-label="ナビゲーション">',
+        '<div id="pj-drawer-header">',
+          '<span id="pj-drawer-site-name">' + siteName + '</span>',
+          '<button id="pj-drawer-close" aria-label="閉じる" type="button">',
+            '<i class="bi bi-x-lg"></i>',
+          '</button>',
+        '</div>',
+        '<div id="pj-drawer-body"></div>',
+      '</nav>'
+    ].join('');
+    document.body.appendChild(drawer);
+
+    // サイドバーのナビコンテンツをクローンして挿入（ID重複を回避）
+    var sidebarNav = document.querySelector('#quarto-sidebar .sidebar-menu-container');
+    if (sidebarNav) {
+      var clone = sidebarNav.cloneNode(true);
+
+      clone.querySelectorAll('[id]').forEach(function (el) {
+        el.id = 'pj-' + el.id;
+      });
+      clone.querySelectorAll('[data-bs-target]').forEach(function (el) {
+        var t = el.getAttribute('data-bs-target');
+        if (t && t.charAt(0) === '#') {
+          el.setAttribute('data-bs-target', '#pj-' + t.slice(1));
         }
+      });
+      clone.querySelectorAll('[aria-controls]').forEach(function (el) {
+        el.setAttribute('aria-controls', 'pj-' + el.getAttribute('aria-controls'));
+      });
+
+      document.getElementById('pj-drawer-body').appendChild(clone);
+    }
+
+    // ── 3. 開閉ロジック ─────────────────────────────────────────────────
+    var backdrop = document.getElementById('pj-drawer-backdrop');
+    var closeBtn = document.getElementById('pj-drawer-close');
+    var CLOSE_DURATION = 250;
+
+    function openDrawer() {
+      drawer.removeAttribute('aria-hidden');
+      drawer.classList.add('pj-open');
+      document.body.classList.add('pj-drawer-active');
+    }
+
+    function closeDrawer() {
+      drawer.classList.add('pj-closing');
+      setTimeout(function () {
+        drawer.classList.remove('pj-open', 'pj-closing');
+        drawer.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('pj-drawer-active');
+      }, CLOSE_DURATION);
+    }
+
+    backdrop.addEventListener('click', closeDrawer);
+    closeBtn.addEventListener('click', closeDrawer);
+
+    // ドロワー内のリンクをクリックしたら閉じる（アコーディオン以外）
+    document.getElementById('pj-drawer-body').addEventListener('click', function (e) {
+      var link = e.target.closest('a[href]');
+      if (link && !link.getAttribute('data-bs-toggle')) {
+        closeDrawer();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && drawer.classList.contains('pj-open')) closeDrawer();
+    });
+
+    // ── 4. スクロールで navbar を隠す/表示する ──────────────────────
+    var navbar = document.querySelector('.navbar');
+    if (navbar) {
+      var lastScrollY = window.scrollY;
+      var ticking = false;
+      var SCROLL_HIDE_THRESHOLD = 80;
+
+      function handleNavbarScroll() {
+        var current = window.scrollY;
+        if (current < SCROLL_HIDE_THRESHOLD) {
+          navbar.classList.remove('pj-navbar-hidden');
+        } else if (current > lastScrollY) {
+          navbar.classList.add('pj-navbar-hidden');
+        } else {
+          navbar.classList.remove('pj-navbar-hidden');
+        }
+        lastScrollY = current;
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          window.requestAnimationFrame(handleNavbarScroll);
+          ticking = true;
+        }
+      }, { passive: true });
+    }
+
+    // ── 5. ≡ ボタンのクリック処理 ─────────────────────────────────────
+    toggleBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      if (window.innerWidth < 992) {
+        // モバイル: カスタムドロワーを使用
+        drawer.classList.contains('pj-open') ? closeDrawer() : openDrawer();
         return;
       }
 
-      const body = document.body;
+      // デスクトップ: 既存のカスタムアニメーション
+      var body = document.body;
       if (body.classList.contains('custom-sidebar-hidden')) {
-        // 現在非表示（全画面）の場合 -> サイドバーを元に戻すアニメーション
         body.classList.remove('custom-sidebar-hidden');
         body.classList.add('custom-sidebar-showing');
-        
-        // アニメーション完了後にクラスを外す
-        setTimeout(() => {
-          body.classList.remove('custom-sidebar-showing');
-        }, 400);
+        setTimeout(function () { body.classList.remove('custom-sidebar-showing'); }, 400);
       } else {
-        // 現在表示されている場合 -> サイドバーを隠して全画面にする
         body.classList.remove('custom-sidebar-showing');
         body.classList.add('custom-sidebar-hidden');
       }
     });
-  }
-});
+  });
+})();
 </script>
 
 <script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>

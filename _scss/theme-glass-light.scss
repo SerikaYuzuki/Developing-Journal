@@ -112,6 +112,18 @@ $toc-active-border: $primary !default;
   --gl-cat3:            #{$warning};
   --gl-cat4:            #{$danger};
   --gl-separator:       #{rgba(45, 42, 68, 0.12)};
+  --gl-tooltip-bg:      #{rgba(255, 255, 255, 0.96)};
+  --gl-tooltip-border:  #{rgba(124, 92, 255, 0.22)};
+  --gl-tooltip-color:   #1f1c38;
+  --gl-tooltip-link:    #7c5cff;
+  --gl-tooltip-arrow:   #{rgba(255, 255, 255, 0.96)};
+
+  /* Mobile sidebar glass panel */
+  --mobile-sidebar-bg:           rgba(246, 241, 251, 0.94);
+  --mobile-sidebar-border:       rgba(200, 200, 230, 0.55);
+  --mobile-sidebar-title-color:  #2d2a44;
+  --mobile-sidebar-link-color:   #4a4769;
+  --mobile-sidebar-cat-color:    rgba(124, 92, 255, 0.06);
 }
 
 // ---- Page background (gradient blobs) --------------------------------------
@@ -125,10 +137,54 @@ body {
     radial-gradient(ellipse 70% 55% at 50% 95%, rgba(214, 245, 232, 0.8),  transparent 60%),
     radial-gradient(ellipse 40% 35% at 85% 80%, rgba(255, 230, 200, 0.6),  transparent 60%),
     $bg-base;
+  background-size:
+    128% 128%,
+    124% 124%,
+    132% 132%,
+    118% 118%,
+    100% 100%;
+  background-position:
+    0% 0%,
+    100% 12%,
+    48% 100%,
+    100% 88%,
+    0% 0%;
   background-attachment: fixed;
+  animation: pj-bg-drift 44s ease-in-out infinite alternate;
   color: $body-color;
   font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
+}
+
+@keyframes pj-bg-drift {
+  0% {
+    background-position:
+      0% 0%,
+      100% 12%,
+      48% 100%,
+      100% 88%,
+      0% 0%;
+  }
+  50% {
+    background-position:
+      10% 6%,
+      88% 4%,
+      56% 92%,
+      92% 78%,
+      0% 0%;
+  }
+  100% {
+    background-position:
+      4% 12%,
+      96% 20%,
+      42% 88%,
+      86% 96%,
+      0% 0%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body { animation: none; }
 }
 
 ::selection { background: rgba($primary, .25); color: darken($primary, 25%); }
@@ -267,6 +323,12 @@ a {
   transition: color .2s, border-color .2s;
 
   &:hover { color: darken($primary, 12%); border-bottom-color: $primary; }
+}
+
+.quarto-category a,
+.listing-category a {
+  border-bottom: none !important;
+  text-decoration: none !important;
 }
 
 // ---- Title block (glass card) ----------------------------------------------
