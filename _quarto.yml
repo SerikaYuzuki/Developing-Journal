@@ -1,6 +1,8 @@
 project:
   type: website
 
+freeze: true
+
 bibliography: bibliography.bib
 resource-path: 
   - .
@@ -40,9 +42,8 @@ format:
     theme:
       dark: _scss/theme-glass-dark.scss
       light: _scss/theme-glass-light.scss
-
     css: styles.css
-    include-in-header: 
+    include-in-header:
       - _includes/sidebar-toggle.html
       - _includes/plotly-config.html
 
