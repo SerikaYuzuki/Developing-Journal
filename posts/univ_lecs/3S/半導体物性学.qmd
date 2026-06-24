@@ -1,0 +1,1009 @@
+---
+title: "半導体物性学"
+author: "Serika Yuzuki"
+date: "2026-06-08"
+categories: [University, 2026]
+image: "images/thumbnail.png"
+bibliography: ../../../bibliography.bib
+---
+
+$$ \require{physics}
+\require{mhchem}
+$$
+
+# はじめに：この講義の主題
+
+この講義の中心にある問いは、たった3つに集約できる。
+
+- **なぜ半導体は電気を流したり流さなかったりできるのか？**
+- **なぜ不純物をほんの少し入れるだけで性質が劇的に変わるのか？**
+- **なぜ pn 接合・LED・太陽電池・トランジスタが動くのか？**
+
+ざっくり言うと、金属は自由電子が多く、絶縁体は自由電子がほぼない。半導体はその「中間」というより、**電子の数を温度・光・不純物・電圧で操れる材料**だと捉えるのが本質に近い。ここが半導体の「魔法のツマミ」である 🧪
+
+このノートでは、各概念を数式で導出しつつ、できるだけ具体的な数値・グラフ・簡単な計算を添えて「読み返せるノート」として再構成する。
+
+::: {.callout-note}
+## このノートで使う物理定数
+| 記号 | 名前 | 値 |
+|---|---|---|
+| $k_B$ | ボルツマン定数 | $1.381\times10^{-23}\ \mathrm{J/K}=8.617\times10^{-5}\ \mathrm{eV/K}$ |
+| $h$ | プランク定数 | $6.626\times10^{-34}\ \mathrm{J\,s}$ |
+| $\hbar$ | 換算プランク定数 | $1.055\times10^{-34}\ \mathrm{J\,s}$ |
+| $e$ | 電気素量 | $1.602\times10^{-19}\ \mathrm{C}$ |
+| $m_0$ | 電子の静止質量 | $9.109\times10^{-31}\ \mathrm{kg}$ |
+| $\varepsilon_0$ | 真空の誘電率 | $8.854\times10^{-12}\ \mathrm{F/m}$ |
+
+室温 $T=300\ \mathrm{K}$ での熱エネルギー $k_BT \approx 0.0259\ \mathrm{eV} \approx 1/40\ \mathrm{eV}$ は頻出するので暗記推奨。
+:::
+
+# 電気伝導度の基本
+
+## 抵抗から伝導度へ
+
+最初の重要式は、おなじみの抵抗の式である。
+
+$$
+R = \rho\,\frac{l}{S}
+$$
+
+ここで $R$:抵抗 $[\Omega]$、$\rho$:抵抗率 $[\Omega\cdot\mathrm{m}]$、$l$:長さ $[\mathrm{m}]$、$S$:断面積 $[\mathrm{m^2}]$。
+
+抵抗率と電気伝導度 $\sigma\ [\mathrm{S/m}]$ は逆数の関係なので、
+
+$$
+\rho = \frac{1}{\sigma}
+\quad\Longrightarrow\quad
+R = \frac{1}{\sigma}\frac{l}{S}.
+$$
+
+## 伝導度の微視的な表式
+
+電気伝導度は、古典的（ドルーデモデル）には
+
+$$
+\sigma = N q \mu
+$$
+
+と書ける。$N$:キャリヤ密度 $[\mathrm{m^{-3}}]$、$q$:電荷、$\mu$:移動度 $[\mathrm{m^2/(V\,s)}]$。
+
+移動度は、平均散乱時間（緩和時間）$\tau$ を使って
+
+$$
+\mu = \frac{q\tau}{m}
+$$
+
+と書けるので、これを代入すると伝導度のもっとも基本的な形が得られる。
+
+$$
+\boxed{\;\sigma = \frac{N q^2 \tau}{m}\;}
+$$
+
+これは「電場 $E$ をかけたとき、電子が散乱されるまでの時間 $\tau$ だけ加速され、平均としてドリフト速度 $v_d = \mu E$ を持つ」という描像から出てくる。電流密度は $J = Nq v_d = Nq\mu E = \sigma E$（オームの法則の微視版）。
+
+つまり電気がよく流れるには、
+
+$$
+N\ \text{が大きい},\quad |q|\ \text{がある},\quad \tau\ \text{が長い},\quad m\ \text{が小さい}
+$$
+
+が効く。金属の伝導度が桁違いに大きい最大の理由は、**自由電子密度 $N$ が圧倒的に大きい**から（$N\sim10^{28}\ \mathrm{m^{-3}}$）である。半導体は $N$ を数桁の幅で動かせるのが特徴。
+
+::: {.callout-tip}
+## 具体例：銅のドリフト速度
+銅で $N \approx 8.5\times10^{28}\ \mathrm{m^{-3}}$、電流密度 $J = 1\times10^6\ \mathrm{A/m^2}$ のとき、ドリフト速度は
+$$
+v_d = \frac{J}{Nq} = \frac{10^6}{8.5\times10^{28}\times1.6\times10^{-19}} \approx 7\times10^{-5}\ \mathrm{m/s}.
+$$
+わずか **0.07 mm/s**。電子は意外なほどゆっくり流れている。それでも信号が速いのは、電場が光速近くで伝わるから。
+:::
+
+下のグラフは、金属・半導体・絶縁体の典型的な伝導度を対数軸で比較したもの。**20桁以上**にわたって広がっているのが半導体材料のレンジの広さを物語る。
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+materials = ["Copper\n(metal)", "Doped Si\n(semicond.)", "Intrinsic Si\n(semicond.)", "Glass\n(insulator)"]
+sigma = [6e7, 1e2, 4e-4, 1e-12]  # S/m (order of magnitude)
+colors = ["#d97706", "#2563eb", "#60a5fa", "#6b7280"]
+
+fig, ax = plt.subplots(figsize=(7, 4))
+ax.bar(materials, sigma, color=colors)
+ax.set_yscale("log")
+ax.set_ylabel("Conductivity  σ  [S/m]")
+ax.set_title("Conductivity spans >20 orders of magnitude")
+ax.grid(True, axis="y", which="both", ls=":", alpha=0.4)
+for i, s in enumerate(sigma):
+    ax.text(i, s*2, f"{s:.0e}", ha="center", fontsize=9)
+plt.tight_layout()
+plt.show()
+```
+
+# 金属・半導体・絶縁体の違い：エネルギーバンド
+
+分類の本質は抵抗率の値そのものではなく、**エネルギーバンド構造**にある。
+
+電子は固体中で好き勝手なエネルギーを取れるわけではなく、**許されるエネルギー帯（バンド）**と**許されない帯（禁制帯）**が交互に存在する。重要なのは次の3つ。
+
+$$
+E_c:\ \text{伝導帯下端},\qquad
+E_v:\ \text{価電子帯上端},\qquad
+E_g = E_c - E_v:\ \text{バンドギャップ}.
+$$
+
+| 分類 | バンドの占有 | $E_g$ | 振る舞い |
+|---|---|---|---|
+| 金属 | フェルミ準位付近に空き状態あり | （重なり） | 少し電場をかけるだけで電子が動く |
+| 半導体 | 価電子帯ほぼ満杯／伝導帯ほぼ空 | ほどほど（Si: 1.12 eV） | 熱・光・不純物で電子を伝導帯へ上げられる |
+| 絶縁体 | 価電子帯満杯／伝導帯空 | 非常に大きい（>5 eV） | 電子を伝導帯へ上げられず流れない |
+
+ポイントは、絶縁体と半導体の違いは**程度の差（$E_g$ の大小）でしかない**こと。ダイヤモンド（$E_g\approx5.5\ \mathrm{eV}$）は絶縁体だが、同じ構造の Si（$E_g\approx1.12\ \mathrm{eV}$）は半導体。ここが半導体の「調教可能性」を生む。
+
+```{python}
+import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle
+
+fig, axes = plt.subplots(1, 3, figsize=(9, 4.2), sharey=True)
+titles = ["Metal", "Semiconductor", "Insulator"]
+# (valence top, conduction bottom) on an energy axis
+configs = [
+    {"vb_top": 0.0, "cb_bot": -0.3, "gap_txt": "overlap"},  # metal: bands overlap
+    {"vb_top": 0.0, "cb_bot": 1.12, "gap_txt": "Eg ≈ 1.1 eV"},
+    {"vb_top": 0.0, "cb_bot": 5.5, "gap_txt": "Eg ≈ 5.5 eV"},
+]
+for ax, title, c in zip(axes, titles, configs):
+    # valence band (filled)
+    ax.add_patch(Rectangle((0, -2), 1, 2 + c["vb_top"], color="#2563eb", alpha=0.7))
+    # conduction band (empty)
+    ax.add_patch(Rectangle((0, c["cb_bot"]), 1, 7 - c["cb_bot"], fill=False,
+                           edgecolor="#d97706", hatch="//", linewidth=1.5))
+    ax.text(0.5, c["vb_top"] - 1.0, "Valence\n(full)", ha="center", color="white", fontsize=9)
+    ax.text(0.5, (c["cb_bot"] + 7) / 2, "Conduction\n(empty)", ha="center", color="#d97706", fontsize=9)
+    ax.set_title(f"{title}\n{c['gap_txt']}")
+    ax.set_xlim(0, 1); ax.set_ylim(-2, 7)
+    ax.set_xticks([])
+axes[0].set_ylabel("Energy [eV]")
+plt.tight_layout()
+plt.show()
+```
+
+# 半導体開発史
+
+資料前半は歴史。発展の流れは次の通り。
+
+$$
+\text{Ge 整流器}\ \rightarrow\ \text{Ge トランジスタ}\ \rightarrow\ \text{Si トランジスタ}\ \rightarrow\ \text{IC}\ \rightarrow\ \text{ULSI}\ \rightarrow\ \text{GSI}
+$$
+
+- **1947 年 トランジスタ**：ベル研究所で点接触型トランジスタが発明。真空管は「大きく・熱く・壊れやすい」、トランジスタは「小さく・低消費電力・高信頼」。真空管の置換 → 電話交換機 → 電子計算機 → ラジオ → IC へ。
+- **IC の登場**：1958 年キルビーによる初期 IC、1961 年プレーナー型 IC。ここから「個別部品を配線でつなぐ」世界から「1 枚の半導体上に全部作り込む」世界へ移行した。
+
+# MOSFET の基本
+
+MOSFET = **M**etal–**O**xide–**S**emiconductor Field-Effect Transistor、すなわち **金属／酸化膜／半導体** の三層構造。
+
+nMOS を考えると、p 型 Si 基板の中に n 型のソース・ドレインを作る。
+
+- ゲート電圧をかけないと、ソース–ドレイン間は pn 接合が背中合わせになっていて電子は流れにくい。
+- ゲートに正電圧をかけると、酸化膜直下の p 型表面に電子が集まり、**反転層（チャネル）**ができる。
+
+チャネルが形成される条件は
+
+$$
+V_G > V_T
+$$
+
+$V_G$:ゲート電圧、$V_T$:しきい値電圧。電流はソース→ドレインに流れるが、それをゲート電圧で ON/OFF する。つまり **MOSFET は電圧で開閉する電子の水門**である。
+
+# MOSFET の電流式
+
+## 線形領域
+
+チャネルを「ゲート電圧で誘起された電荷シート」と見なすと、単位面積あたりの反転電荷は $Q \approx C_{ox}(V_G - V_T)$。これをドリフトさせると、線形（オーミック）領域のドレイン電流は
+
+$$
+I_D = \mu C_{ox}\frac{W}{L}\left[(V_G - V_T)V_D - \frac{V_D^2}{2}\right]
+$$
+
+- $I_D$:ドレイン電流、$\mu$:移動度、$C_{ox}$:酸化膜の単位面積容量、$W$:チャネル幅、$L$:チャネル長、$V_D$:ドレイン電圧。
+
+## 飽和領域（ピンチオフ）
+
+$V_D = V_G - V_T$ 付近でドレイン端のチャネル電荷がゼロになる（**ピンチオフ**）。上の式に $V_D = V_G - V_T$ を代入すると、
+
+$$
+I_D = \mu C_{ox}\frac{W}{L}\left[(V_G-V_T)^2 - \frac{(V_G-V_T)^2}{2}\right]
+= \frac{1}{2}\mu C_{ox}\frac{W}{L}(V_G-V_T)^2.
+$$
+
+これ以降は $V_D$ を上げても電流がほぼ一定になり、**飽和領域**に入る。
+
+$$
+\boxed{\;I_{D,\mathrm{sat}} = \frac{1}{2}\mu C_{ox}\frac{W}{L}(V_G - V_T)^2\;}
+$$
+
+つまり MOSFET は、$V_G$ を変えることで $I_D$ を**二乗的に**制御できる。$V_T$ は「ゲートで電流の蛇口を開け始める電圧」と覚える。
+
+下のグラフは、上の 2 式から $I_D$–$V_D$ 特性（出力特性）を描いたもの。各曲線が立ち上がってから水平に飽和する様子と、ピンチオフの境界（点線）を確認してほしい。
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Device parameters (arbitrary but representative)
+mu_Cox_WL = 0.5e-3   # μ·Cox·(W/L)  [A/V^2]
+VT = 1.0             # threshold voltage [V]
+
+VD = np.linspace(0, 5, 400)
+fig, ax = plt.subplots(figsize=(7, 4.3))
+
+for VG in [1.5, 2.0, 2.5, 3.0, 3.5]:
+    Vov = VG - VT          # overdrive
+    ID = np.where(
+        VD < Vov,
+        mu_Cox_WL * (Vov * VD - 0.5 * VD**2),        # linear (triode)
+        0.5 * mu_Cox_WL * Vov**2 * np.ones_like(VD)  # saturation
+    )
+    ax.plot(VD, ID * 1e3, label=f"$V_G$ = {VG} V")
+
+# pinch-off locus: VD = VG - VT
+Vov_line = np.linspace(0, 2.5, 100)
+ID_locus = 0.5 * mu_Cox_WL * Vov_line**2
+ax.plot(Vov_line, ID_locus * 1e3, "k--", lw=1, label="pinch-off ($V_D=V_G-V_T$)")
+
+ax.set_xlabel("Drain voltage  $V_D$  [V]")
+ax.set_ylabel("Drain current  $I_D$  [mA]")
+ax.set_title("nMOS output characteristics ($V_T$ = 1 V)")
+ax.legend(fontsize=8)
+ax.grid(True, ls=":", alpha=0.5)
+plt.tight_layout()
+plt.show()
+```
+
+# CMOS 論理回路
+
+CMOS は **pMOS + nMOS** を相補的に組み合わせる。定常状態でどちらか片方が必ず OFF なので、貫通電流がほぼ流れず**低消費電力**になるのが最大の利点。
+
+## NOT（インバータ）
+
+| 入力 $A$ | pMOS | nMOS | 出力 $X$ |
+|:---:|:---:|:---:|:---:|
+| 0 | ON | OFF | 1 |
+| 1 | OFF | ON | 0 |
+
+$$
+\begin{array}{c|c}
+A & X\\
+\hline
+0 & 1\\
+1 & 0
+\end{array}
+$$
+
+## NAND
+
+$$
+X = \overline{AB}
+$$
+
+$$
+\begin{array}{cc|c}
+A & B & X\\
+\hline
+0 & 0 & 1\\
+0 & 1 & 1\\
+1 & 0 & 1\\
+1 & 1 & 0
+\end{array}
+$$
+
+CMOS では **pMOS を並列・nMOS を直列**にすると NAND になる（プルダウン網が直列なので、A も B も 1 のときだけ出力が 0 に引き落とされる）。双対的に、pMOS 直列・nMOS 並列にすると NOR。
+
+# ムーアの法則とスケーリング
+
+LSI の微細化は、おおむね 1 世代あたり
+
+$$
+0.7\times/\text{cycle}
+$$
+
+の割合で寸法を縮めてきた。長さを 0.7 倍にすると面積は
+
+$$
+0.7^2 = 0.49 \approx \frac{1}{2}
+$$
+
+になるので、**同じ面積に約 2 倍**のトランジスタを置ける。これが数世代積み重なると、集積度は指数関数的（雪だるま式）に増える。$n$ 世代後の集積度は $2^n$ 倍。
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+gen = np.arange(0, 11)              # generations
+feature = 1000 * 0.7**gen          # feature size [nm], start 1000 nm
+density = (1/0.7**2)**gen          # transistor density (relative)
+
+fig, ax1 = plt.subplots(figsize=(7, 4.3))
+ax1.plot(gen, feature, "o-", color="#2563eb", label="Feature size")
+ax1.set_xlabel("Generation")
+ax1.set_ylabel("Feature size [nm]", color="#2563eb")
+ax1.set_yscale("log")
+ax1.tick_params(axis="y", labelcolor="#2563eb")
+
+ax2 = ax1.twinx()
+ax2.plot(gen, density, "s--", color="#d97706", label="Relative density")
+ax2.set_ylabel("Relative transistor density  (×)", color="#d97706")
+ax2.set_yscale("log")
+ax2.tick_params(axis="y", labelcolor="#d97706")
+
+ax1.set_title("0.7×/cycle scaling → density doubles each generation")
+ax1.grid(True, which="both", ls=":", alpha=0.4)
+plt.tight_layout()
+plt.show()
+```
+
+ただし微細化すると、**リーク電流・発熱・量子トンネル・配線遅延・製造難度**が問題化する。そのため近年は単純な平面微細化だけでなく、
+
+$$
+\text{3D NAND},\quad \text{チップレット},\quad \text{3 次元実装}
+$$
+
+へと進んでいる。
+
+# 太陽電池
+
+太陽電池の基本は **pn 接合**。光が入ると、
+
+$$
+h\nu \ge E_g
+$$
+
+を満たす光子が電子を価電子帯から伝導帯へ励起し、**電子–正孔ペア**を作る。pn 接合内部の内蔵電場がこれを分離する。
+
+- 電子 → n 側へ
+- 正孔 → p 側へ
+
+この分離により外部回路に電流が流れる。
+
+バンドギャップ $E_g$ には最適値がある。
+
+- $E_g$ が**小さすぎる** → 発生電圧が小さい（多くの光は吸収できるが、1 光子あたり取り出せるエネルギーが小さい）。
+- $E_g$ が**大きすぎる** → $h\nu < E_g$ の光（赤・赤外）を吸収できず、利用できる太陽光が減る。
+
+このトレードオフから、単接合セルの理論効率（Shockley–Queisser 限界）は $E_g \approx 1.1$–$1.4\ \mathrm{eV}$ 付近で最大となる。Si（1.12 eV）や GaAs（1.42 eV）が使われるのはこのため。
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Qualitative sketch of single-junction efficiency vs bandgap
+Eg = np.linspace(0.4, 3.0, 300)
+# toy model: rises (more voltage per photon) then falls (fewer absorbed photons)
+eff = 33 * np.exp(-((Eg - 1.34) / 0.55)**2)  # Gaussian-ish around SQ optimum
+
+fig, ax = plt.subplots(figsize=(7, 4))
+ax.plot(Eg, eff, color="#16a34a", lw=2)
+for name, e in [("Si", 1.12), ("GaAs", 1.42), ("CdTe", 1.45)]:
+    ax.axvline(e, color="gray", ls=":", alpha=0.6)
+    ax.text(e, 2, name, rotation=90, va="bottom", ha="right", fontsize=8)
+ax.set_xlabel("Bandgap  $E_g$  [eV]")
+ax.set_ylabel("Theoretical efficiency  [%]  (sketch)")
+ax.set_title("Single-junction efficiency peaks near $E_g \\approx$ 1.3 eV")
+ax.grid(True, ls=":", alpha=0.5)
+plt.tight_layout()
+plt.show()
+```
+
+# LED
+
+LED も pn 接合。順方向バイアスをかけると、n 側から電子・p 側から正孔が注入され、それらが**再結合**して光になる。
+
+$$
+\ce{e^- + h^+ -> photon}
+$$
+
+光のエネルギーはおおよそ $h\nu \approx E_g$ なので、波長は
+
+$$
+\lambda = \frac{hc}{E_g}.
+$$
+
+実用的には、$hc = 1240\ \mathrm{eV\cdot nm}$ を使って
+
+$$
+\boxed{\;\lambda[\mathrm{nm}] \approx \frac{1240}{E_g[\mathrm{eV}]}\;}
+$$
+
+::: {.callout-tip}
+## 具体計算：青色 LED
+$E_g \approx 2.7\ \mathrm{eV}$ なら
+$$
+\lambda \approx \frac{1240}{2.7} \approx 459\ \mathrm{nm}
+$$
+まさに青色。色は材料のバンドギャップで決まる。半導体は**光の絵の具**でもある 🎨
+:::
+
+下のグラフは $\lambda = 1240/E_g$ を可視光域に重ねたもの。代表的な LED 材料がどの色になるかを確認できる。
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+Eg = np.linspace(1.6, 3.4, 400)
+lam = 1240 / Eg
+
+fig, ax = plt.subplots(figsize=(7, 4.2))
+ax.plot(Eg, lam, "k-", lw=1.5)
+
+# visible band shading (approx)
+bands = [(620, 750, "#e11d48", "red"), (590, 620, "#f97316", "orange"),
+         (570, 590, "#eab308", "yellow"), (495, 570, "#22c55e", "green"),
+         (450, 495, "#3b82f6", "blue"), (380, 450, "#8b5cf6", "violet")]
+for lo, hi, col, _ in bands:
+    ax.axhspan(lo, hi, color=col, alpha=0.18)
+
+# representative materials
+for name, eg in [("AlGaAs (red)", 1.9), ("GaP (green)", 2.26), ("InGaN (blue)", 2.7)]:
+    ax.plot(eg, 1240/eg, "ko")
+    ax.annotate(name, (eg, 1240/eg), textcoords="offset points",
+                xytext=(6, 6), fontsize=8)
+
+ax.set_xlabel("Bandgap  $E_g$  [eV]")
+ax.set_ylabel("Emission wavelength  $\\lambda$  [nm]")
+ax.set_title("$\\lambda \\approx 1240 / E_g$  across the visible spectrum")
+ax.grid(True, ls=":", alpha=0.4)
+plt.tight_layout()
+plt.show()
+```
+
+# 量子論の必要性
+
+古典論では、電子は原子核の周りを回る荷電粒子。しかし荷電粒子が加速度運動すると電磁波を放射してエネルギーを失うはずで、計算すると電子は約 $10^{-11}\ \mathrm{s}$ で原子核へ落ち込んでしまう。だが実際の原子は安定。この矛盾を解くために**量子論**が必要になる。
+
+# ボーアモデル
+
+## 半径の量子化
+
+ボーアは電子の角運動量が量子化されると仮定した。
+
+$$
+m v r = n\hbar \qquad (n = 1, 2, 3, \dots)
+$$
+
+クーロン力が向心力になるので、
+
+$$
+\frac{m v^2}{r} = \frac{1}{4\pi\varepsilon_0}\frac{e^2}{r^2}
+\quad\Longrightarrow\quad
+m v^2 = \frac{e^2}{4\pi\varepsilon_0 r}. \tag{1}
+$$
+
+角運動量条件から $v = \dfrac{n\hbar}{mr}$ を (1) に代入すると、
+
+$$
+m\left(\frac{n\hbar}{mr}\right)^2 = \frac{e^2}{4\pi\varepsilon_0 r}
+\;\Longrightarrow\;
+\frac{n^2\hbar^2}{m r^2} = \frac{e^2}{4\pi\varepsilon_0 r}.
+$$
+
+両辺に $r^2$ をかけて整理すると、半径が量子化される。
+
+$$
+\boxed{\;r_n = \frac{4\pi\varepsilon_0\hbar^2}{m e^2}\,n^2\;}
+$$
+
+$n=1$ の半径がボーア半径 $a_0 = \dfrac{4\pi\varepsilon_0\hbar^2}{m e^2} \approx 0.529\ \text{Å} = 5.29\times10^{-11}\ \mathrm{m}$。
+
+## エネルギー準位
+
+全エネルギーは $E = K + U$。運動エネルギー $K = \frac12 m v^2$、ポテンシャル $U = -\dfrac{e^2}{4\pi\varepsilon_0 r}$。(1) より $m v^2 = \dfrac{e^2}{4\pi\varepsilon_0 r}$ なので $K = \dfrac{1}{2}\dfrac{e^2}{4\pi\varepsilon_0 r}$。よって
+
+$$
+E = \frac{1}{2}\frac{e^2}{4\pi\varepsilon_0 r} - \frac{e^2}{4\pi\varepsilon_0 r}
+= -\frac{1}{2}\frac{e^2}{4\pi\varepsilon_0 r}.
+$$
+
+ここに $r_n$ を代入すると、有名な水素のエネルギー準位が得られる。
+
+$$
+\boxed{\;E_n = -\frac{13.6}{n^2}\ \mathrm{eV}\;}
+$$
+
+水素スペクトルが飛び飛びになる理由は、電子が離散準位間を遷移し、そのエネルギー差が光子になるから。
+
+$$
+\Delta E = E_{n_2} - E_{n_1} = h\nu.
+$$
+
+::: {.callout-tip}
+## 具体計算：バルマー系列の赤線（$n=3\to2$）
+$$
+\Delta E = 13.6\left(\frac{1}{2^2}-\frac{1}{3^2}\right) = 13.6\times\left(\frac14-\frac19\right)
+= 13.6\times0.1389 \approx 1.89\ \mathrm{eV}
+$$
+波長に直すと $\lambda = 1240/1.89 \approx 656\ \mathrm{nm}$。**水素の赤い輝線（H$\alpha$）**そのもの。
+:::
+
+```{python}
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(figsize=(6, 4.3))
+for n in range(1, 6):
+    E = -13.6 / n**2
+    ax.hlines(E, 0, 1, color="#2563eb")
+    ax.text(1.02, E, f"n={n},  {E:.2f} eV", va="center", fontsize=9)
+
+# Balmer Hα transition 3 -> 2
+ax.annotate("", xy=(0.5, -13.6/2**2), xytext=(0.5, -13.6/3**2),
+            arrowprops=dict(arrowstyle="->", color="#e11d48", lw=1.5))
+ax.text(0.55, (-13.6/4 - 13.6/9)/2, "Hα (656 nm)", color="#e11d48", fontsize=8)
+
+ax.set_xlim(0, 1.8); ax.set_ylim(-14.5, 0.5)
+ax.set_ylabel("Energy [eV]")
+ax.set_xticks([])
+ax.set_title("Hydrogen energy levels  $E_n=-13.6/n^2$ eV")
+plt.tight_layout()
+plt.show()
+```
+
+# 結合とエネルギーバンドの形成
+
+原子が 1 個なら電子準位は離散的。原子が 2 個近づくと、同じエネルギー準位が相互作用して**結合性軌道**と**反結合性軌道**に分裂する。原子が $N$ 個集まると、1 本の準位が $N$ 本に分裂する。
+
+固体では $N \sim 10^{23}$ 級なので、準位はほぼ連続的な**バンド**になる。Si では下から **価電子帯 → 禁制帯 → 伝導帯** が形成される。
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(figsize=(7, 4))
+N_atoms = [1, 2, 3, 6, 30]
+E0 = 0.0
+spread = 2.0  # how far the level splits as atoms increase
+
+for i, N in enumerate(N_atoms):
+    if N == 1:
+        levels = [E0]
+    else:
+        levels = np.linspace(E0 - spread, E0 + spread, N)
+    x = i
+    for lv in levels:
+        ax.hlines(lv, x - 0.35, x + 0.35, color="#2563eb",
+                  alpha=0.8 if N < 30 else 0.35)
+
+ax.set_xticks(range(len(N_atoms)))
+ax.set_xticklabels([f"N={n}" for n in N_atoms])
+ax.set_ylabel("Energy")
+ax.set_yticks([])
+ax.set_title("Discrete level → band as N atoms come together")
+plt.tight_layout()
+plt.show()
+```
+
+# 状態密度の導出
+
+電子を「箱の中の自由粒子」として考える。周期境界条件のもとで、3 次元 $k$ 空間の状態は
+
+$$
+\frac{2}{(2\pi)^3}\quad(\text{単位体積あたり})
+$$
+
+の密度で存在する（係数 2 はスピン上下）。半径 $k$ までの状態数は、$k$ 空間の球の体積 $\frac{4}{3}\pi k^3$ をかけて
+
+$$
+N(k) = 2\cdot\frac{1}{(2\pi)^3}\cdot\frac{4}{3}\pi k^3 = \frac{k^3}{3\pi^2}.
+$$
+
+伝導帯の電子は、有効質量近似で放物線バンド
+
+$$
+E - E_c = \frac{\hbar^2 k^2}{2 m_e^*}
+\quad\Longrightarrow\quad
+k = \sqrt{\frac{2 m_e^*(E - E_c)}{\hbar^2}}
+$$
+
+に従う。これを $N(k)$ に代入すると、エネルギー以下の状態数は
+
+$$
+N(E) = \frac{1}{3\pi^2}\left(\frac{2 m_e^*(E - E_c)}{\hbar^2}\right)^{3/2}.
+$$
+
+状態密度 $D_c(E) = \dfrac{dN}{dE}$ を計算すると（$E^{3/2}$ の微分は $\frac32 E^{1/2}$）、
+
+$$
+\boxed{\;D_c(E) = \frac{1}{2\pi^2}\left(\frac{2 m_e^*}{\hbar^2}\right)^{3/2}\sqrt{E - E_c}\;}
+$$
+
+つまり伝導帯下端から上に行くほど、状態密度は $\sqrt{E - E_c}$ で増える。価電子帯側も同様に $\sqrt{E_v - E}$ で下に増える。
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+Ec, Ev = 1.12, 0.0        # band edges [eV] (Si-like)
+E = np.linspace(-1, 2.2, 500)
+
+Dc = np.where(E > Ec, np.sqrt(np.clip(E - Ec, 0, None)), 0)
+Dv = np.where(E < Ev, np.sqrt(np.clip(Ev - E, 0, None)), 0)
+
+fig, ax = plt.subplots(figsize=(5.5, 5))
+ax.fill_betweenx(E, 0, Dc, color="#d97706", alpha=0.6, label="Conduction $D_c(E)$")
+ax.fill_betweenx(E, 0, -Dv, color="#2563eb", alpha=0.6, label="Valence $D_v(E)$")
+ax.axhline(Ec, color="gray", ls=":"); ax.axhline(Ev, color="gray", ls=":")
+ax.text(0.05, Ec + 0.05, "$E_c$", fontsize=10)
+ax.text(0.05, Ev - 0.12, "$E_v$", fontsize=10)
+ax.set_xlabel("Density of states  $D(E)$")
+ax.set_ylabel("Energy  $E$  [eV]")
+ax.set_title("DOS $\\propto \\sqrt{|E-E_{c,v}|}$  (gap = 1.12 eV)")
+ax.legend(fontsize=8, loc="center right")
+plt.tight_layout()
+plt.show()
+```
+
+# フェルミ分布
+
+電子がエネルギー $E$ の状態を占有する確率は、フェルミ–ディラック分布で与えられる。
+
+$$
+\boxed{\;f(E) = \frac{1}{1 + \exp\!\left(\dfrac{E - E_f}{k_B T}\right)}\;}
+$$
+
+$E_f$:フェルミ準位。重要な性質として、$E = E_f$ のとき
+
+$$
+f(E_f) = \frac{1}{1 + e^0} = \frac{1}{2}.
+$$
+
+つまり**フェルミ準位は占有確率が 1/2 になるエネルギー**。温度 $T$ を上げると、$E_f$ 近傍での分布の「なまり」が広がる（幅 $\sim k_B T$）。$T\to0$ では階段関数になり、$E_f$ 以下が完全占有・以上が完全空になる。
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+kB = 8.617e-5  # eV/K
+Ef = 0.0
+E = np.linspace(-0.4, 0.4, 500)
+
+fig, ax = plt.subplots(figsize=(7, 4.2))
+for T in [10, 100, 300, 600, 1000]:
+    f = 1 / (1 + np.exp((E - Ef) / (kB * T)))
+    ax.plot(E, f, label=f"T = {T} K")
+ax.axvline(Ef, color="gray", ls=":")
+ax.axhline(0.5, color="gray", ls=":")
+ax.text(Ef + 0.005, 0.52, "$f(E_f)=1/2$", fontsize=9)
+ax.set_xlabel("$E - E_f$  [eV]")
+ax.set_ylabel("Occupation probability  $f(E)$")
+ax.set_title("Fermi–Dirac distribution broadens with temperature")
+ax.legend(fontsize=8)
+ax.grid(True, ls=":", alpha=0.4)
+plt.tight_layout()
+plt.show()
+```
+
+# 真性半導体の電子・正孔密度
+
+## 伝導帯の電子密度
+
+伝導帯の電子密度は、状態密度 × 占有確率を積分して
+
+$$
+n = \int_{E_c}^{\infty} D_c(E)\, f(E)\, dE.
+$$
+
+非縮退近似（$E - E_f \gg k_B T$）では、フェルミ分布の分母の 1 が無視できて**ボルツマン近似**になる。
+
+$$
+f(E) \approx \exp\!\left(-\frac{E - E_f}{k_B T}\right).
+$$
+
+これを代入してガウス積分（$\int_0^\infty\sqrt{x}\,e^{-x/k_BT}dx$ 型）を実行すると、きれいにまとまる。
+
+$$
+\boxed{\;n = N_c\,\exp\!\left(-\frac{E_c - E_f}{k_B T}\right)\;},\qquad
+\boxed{\;N_c = 2\left(\frac{2\pi m_e^* k_B T}{h^2}\right)^{3/2}\;}
+$$
+
+$N_c$ は**有効状態密度**で、「伝導帯下端に集約した等価な状態数」と解釈できる。同様に正孔密度は、
+
+$$
+\boxed{\;p = N_v\,\exp\!\left(-\frac{E_f - E_v}{k_B T}\right)\;},\qquad
+\boxed{\;N_v = 2\left(\frac{2\pi m_h^* k_B T}{h^2}\right)^{3/2}\;}
+$$
+
+# 真性キャリヤ密度
+
+真性（intrinsic）半導体では $n = p = n_i$。$n$ と $p$ の積を取ると、フェルミ準位 $E_f$ が消える点が重要。
+
+$$
+np = N_c N_v\,\exp\!\left(-\frac{E_c - E_v}{k_B T}\right)
+= N_c N_v\,\exp\!\left(-\frac{E_g}{k_B T}\right).
+$$
+
+これは**質量作用の法則**で、ドープしていても（非縮退なら）成り立つ。真性では $np = n_i^2$ なので、
+
+$$
+\boxed{\;n_i = \sqrt{N_c N_v}\,\exp\!\left(-\frac{E_g}{2 k_B T}\right)\;}
+$$
+
+これが超重要式。半導体のキャリヤ密度は指数因子 $\exp(-E_g/2k_BT)$ に支配される。**だからバンドギャップが少し違うだけで、伝導度が桁で変わる。**
+
+::: {.callout-tip}
+## 桁の感覚：Si と Ge
+室温で $\exp(-E_g/2k_BT)$ を比べる（$k_BT=0.0259$ eV）。
+
+- Si ($E_g=1.12$ eV)：$\exp(-1.12/0.0518) = \exp(-21.6) \approx 4\times10^{-10}$
+- Ge ($E_g=0.66$ eV)：$\exp(-0.66/0.0518) = \exp(-12.7) \approx 3\times10^{-6}$
+
+指数の中身が約 9 違うだけで、キャリヤ密度に **約 4 桁**の差。実測でも $n_i^{\mathrm{Si}}\approx10^{10}$、$n_i^{\mathrm{Ge}}\approx2\times10^{13}\ \mathrm{cm^{-3}}$。
+:::
+
+下は $n_i(T)$ を 3 材料で描いたアレニウスプロット（縦軸対数、横軸 $1000/T$）。直線の傾きが $E_g/2k_B$ に比例し、ギャップが大きいほど急。
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+kB = 8.617e-5  # eV/K
+T = np.linspace(250, 500, 300)
+
+# (name, Eg [eV], prefactor sqrt(Nc Nv) at 300K [cm^-3], color)
+mats = [("Ge", 0.66, 2.5e19, "#16a34a"),
+        ("Si", 1.12, 2.5e19, "#2563eb"),
+        ("GaAs", 1.42, 4.4e17, "#d97706")]
+
+fig, ax = plt.subplots(figsize=(7, 4.3))
+for name, Eg, pref, col in mats:
+    ni = pref * (T/300)**1.5 * np.exp(-Eg / (2 * kB * T))
+    ax.semilogy(1000 / T, ni, color=col, label=f"{name} ($E_g$={Eg} eV)")
+ax.set_xlabel("1000 / T  [1/K]")
+ax.set_ylabel("Intrinsic carrier density  $n_i$  [cm$^{-3}$]")
+ax.set_title("$n_i \\propto \\exp(-E_g/2k_BT)$  (Arrhenius plot)")
+ax.legend(fontsize=8)
+ax.grid(True, which="both", ls=":", alpha=0.4)
+plt.tight_layout()
+plt.show()
+```
+
+# 真性半導体のフェルミ準位
+
+真性では $n = p$ なので、
+
+$$
+N_c\,\exp\!\left(-\frac{E_c - E_f}{k_B T}\right)
+= N_v\,\exp\!\left(-\frac{E_f - E_v}{k_B T}\right).
+$$
+
+両辺の対数を取って $E_f$ について解くと、
+
+$$
+\ln N_c - \frac{E_c - E_f}{k_B T} = \ln N_v - \frac{E_f - E_v}{k_B T}
+$$
+
+$$
+\boxed{\;E_i = \frac{E_c + E_v}{2} + \frac{k_B T}{2}\ln\!\left(\frac{N_v}{N_c}\right)\;}
+$$
+
+もし $N_c = N_v$ なら第 2 項が消えて $E_i = \dfrac{E_c + E_v}{2}$、つまり**禁制帯のちょうど中央**。実際には電子と正孔の有効質量が違う（$m_e^* \neq m_h^*$）ので、$N_c \neq N_v$ となり中央から少しずれる。Si では $m_h^* > m_e^*$ なので $N_v > N_c$、$E_i$ は中央よりわずかに伝導帯寄り。
+
+# 不純物半導体
+
+## n 型（ドナー）
+
+Si に V 族元素（例：P）を入れると、P は価電子を 5 個持つので、Si との共有結合に 4 個使った後、電子が 1 個余る。この余剰電子はわずかな熱で伝導帯に上がれる。
+
+$$
+\ce{P -> P^+ + e^-}
+$$
+
+これが **n 型半導体**。
+
+## p 型（アクセプタ）
+
+III 族元素（例：B）を入れると、価電子が 3 個しかないので電子が 1 個不足し、**正孔**を作る。
+
+$$
+\ce{B -> B^- + h^+}
+$$
+
+これが **p 型半導体**。
+
+# 不純物準位のボーアモデル
+
+ドナー電子は、正に帯電したドナーイオンにゆるく束縛されている。これは「半導体という媒質の中の水素原子」と見なせる。水素の束縛エネルギーは 13.6 eV だったが、半導体中では 2 つの補正が入る。
+
+- 電子質量 $m_0$ が**有効質量** $m^*$ になる（$m^* < m_0$）。
+- クーロン力が**比誘電率** $\varepsilon_r$ で弱まる（$1/\varepsilon_r^2$）。
+
+ボーアの $E_n = -13.6\,(m/m_0)/(4\pi\varepsilon_0\varepsilon_r)^2$ 構造から、ドナー束縛エネルギーは
+
+$$
+\boxed{\;E_D = 13.6\,\frac{m^*}{m_0}\frac{1}{\varepsilon_r^2}\ \mathrm{eV}\;}
+$$
+
+::: {.callout-tip}
+## 具体計算：Si のドナー準位
+Si は $\varepsilon_r \approx 11.7$、$m^*/m_0 \approx 0.26$（伝導帯の状態密度有効質量）とすると、
+$$
+E_D \approx 13.6\times0.26\times\frac{1}{11.7^2}
+= 13.6\times0.26\times\frac{1}{137} \approx 0.026\ \mathrm{eV}.
+$$
+オーダーとして数十 meV（実測は P で約 45 meV）。これは室温の熱エネルギー $k_BT \approx 0.026\ \mathrm{eV}$ と同程度。
+:::
+
+だから室温でも不純物電子は容易に電離する。これが「**少し不純物を入れるだけで伝導度が激変する**」理由。ついでに、ボーア半径も $a_0^* = a_0\,\varepsilon_r\,(m_0/m^*) \approx 0.53\times11.7/0.26 \approx 24\ \text{Å}$ と大きく広がり、隣の原子まで届くほど。これが束縛が弱い直感的理由。
+
+# n 型半導体のフェルミ準位
+
+n 型では電子密度が増えるので、$E_f$ は伝導帯側に近づく。非縮退近似で
+
+$$
+n = N_c\,\exp\!\left(-\frac{E_c - E_f}{k_B T}\right),
+$$
+
+ドナーが完全電離していれば $n \approx N_D$ なので、
+
+$$
+N_D = N_c\,\exp\!\left(-\frac{E_c - E_f}{k_B T}\right).
+$$
+
+対数を取って整理すると、
+
+$$
+\boxed{\;E_f = E_c - k_B T\ln\!\left(\frac{N_c}{N_D}\right)\;}
+$$
+
+$N_D$ が大きいほど $\ln(N_c/N_D)$ が小さくなり、$E_f$ は $E_c$ に近づく。
+
+::: {.callout-tip}
+## 具体計算
+Si で $N_c = 2.8\times10^{19}\ \mathrm{cm^{-3}}$、$N_D = 1\times10^{17}\ \mathrm{cm^{-3}}$ なら、
+$$
+E_c - E_f = k_B T\ln\frac{N_c}{N_D} = 0.0259\times\ln(280) \approx 0.0259\times5.63 \approx 0.146\ \mathrm{eV}.
+$$
+$E_f$ は伝導帯下端の **0.15 eV 下**まで上がる（真性なら中央付近 ≈ 0.56 eV 下だったので、大きく伝導帯寄りになった）。
+:::
+
+# p 型半導体のフェルミ準位
+
+p 型では $p \approx N_A$、かつ
+
+$$
+p = N_v\,\exp\!\left(-\frac{E_f - E_v}{k_B T}\right)
+$$
+
+なので、同様に解いて
+
+$$
+\boxed{\;E_f = E_v + k_B T\ln\!\left(\frac{N_v}{N_A}\right)\;}
+$$
+
+p 型では $E_f$ が価電子帯側に近づく。下のグラフは、ドーピング濃度を上げていくとフェルミ準位が真性レベルからどちらの帯に寄っていくかを示す。
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+kB, T = 8.617e-5, 300
+Eg = 1.12
+Ec, Ev = Eg, 0.0
+Nc, Nv = 2.8e19, 1.04e19  # cm^-3 (Si)
+
+Nd = np.logspace(14, 19, 100)   # donor concentration
+Na = np.logspace(14, 19, 100)   # acceptor concentration
+
+Ef_n = Ec - kB * T * np.log(Nc / Nd)        # measured from Ev=0
+Ef_p = Ev + kB * T * np.log(Nv / Na)
+Ei = (Ec + Ev) / 2 + 0.5 * kB * T * np.log(Nv / Nc)
+
+fig, ax = plt.subplots(figsize=(7, 4.3))
+ax.axhspan(Ec, Ec + 0.2, color="#d97706", alpha=0.25)
+ax.axhspan(Ev - 0.2, Ev, color="#2563eb", alpha=0.25)
+ax.axhline(Ec, color="#d97706"); ax.axhline(Ev, color="#2563eb")
+ax.axhline(Ei, color="gray", ls=":", label="$E_i$ (intrinsic)")
+ax.semilogx(Nd, Ef_n, color="#dc2626", label="$E_f$ (n-type, vs $N_D$)")
+ax.semilogx(Na, Ef_p, color="#7c3aed", label="$E_f$ (p-type, vs $N_A$)")
+ax.text(2e14, Ec + 0.04, "$E_c$ (conduction)", fontsize=8)
+ax.text(2e14, Ev - 0.12, "$E_v$ (valence)", fontsize=8)
+ax.set_xlabel("Doping concentration  [cm$^{-3}$]")
+ax.set_ylabel("Energy  [eV]   ($E_v = 0$)")
+ax.set_title("Fermi level moves toward the band you dope")
+ax.set_ylim(-0.25, 1.4)
+ax.legend(fontsize=8, loc="center left")
+plt.tight_layout()
+plt.show()
+```
+
+# pn 接合の導入
+
+資料の最後は pn 接合形成プロセス。p 型と n 型を接合すると、最初は濃度差により拡散が起こる。
+
+- n 側の電子が p 側へ拡散
+- p 側の正孔が n 側へ拡散
+
+すると接合付近には、動けるキャリヤが消え、固定された不純物イオンだけが残る。
+
+- n 側：正のドナーイオン $\ce{P^+}$
+- p 側：負のアクセプタイオン $\ce{B^-}$
+
+この領域は自由キャリヤが少ないので**空乏層（depletion layer）**と呼ばれる。空乏層には固定電荷による**内蔵電場**ができ、さらなる拡散を押し戻す。最終的に
+
+$$
+\text{拡散電流} + \text{ドリフト電流} = 0
+$$
+
+となる熱平衡に達する。このとき**フェルミ準位は接合全体で一定（フラット）**になる。これが pn 接合エネルギーダイヤグラムの出発点であり、整流性・太陽電池・LED すべての土台になる。
+
+内蔵電位（ビルトインポテンシャル）は、両側のフェルミ準位を揃えるのに必要なバンドの曲がりとして
+
+$$
+V_{bi} = \frac{k_B T}{e}\ln\!\left(\frac{N_A N_D}{n_i^2}\right)
+$$
+
+と書ける。Si で $N_A = N_D = 10^{17}$、$n_i = 10^{10}\ \mathrm{cm^{-3}}$ なら
+$V_{bi} = 0.0259\times\ln(10^{34}/10^{20}) = 0.0259\times\ln(10^{14}) \approx 0.0259\times32.2 \approx 0.83\ \mathrm{V}$。Si ダイオードの順方向電圧が ~0.7 V 前後なのと整合する。
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-1, 1, 500)   # position (a.u.), junction at x=0
+Vbi = 0.83                    # built-in potential [eV]
+
+# smooth band bending across the depletion region
+bend = Vbi / (1 + np.exp(x / 0.12))   # high on p-side (left), low on n-side (right)
+Ec = 1.12 + bend
+Ev = 0.0 + bend
+Ef = np.full_like(x, 0.0 + Vbi/2)     # flat Fermi level in equilibrium
+
+fig, ax = plt.subplots(figsize=(7, 4.3))
+ax.plot(x, Ec, color="#d97706", label="$E_c$")
+ax.plot(x, Ev, color="#2563eb", label="$E_v$")
+ax.plot(x, Ef, "k--", label="$E_f$ (flat)")
+ax.axvspan(-0.3, 0.3, color="gray", alpha=0.15)
+ax.text(0, 1.55, "depletion\nlayer", ha="center", fontsize=8)
+ax.text(-0.8, 1.7, "p-side", fontsize=10)
+ax.text(0.7, 1.7, "n-side", fontsize=10)
+ax.annotate(f"$eV_{{bi}}$ ≈ {Vbi} eV", xy=(0, 1.12 + Vbi/2),
+            xytext=(0.35, 1.4), fontsize=9,
+            arrowprops=dict(arrowstyle="->"))
+ax.set_xlabel("Position  $x$")
+ax.set_ylabel("Energy  [eV]")
+ax.set_title("pn junction band diagram at equilibrium")
+ax.legend(fontsize=8, loc="center right")
+plt.tight_layout()
+plt.show()
+```
+
+# 最重要式まとめ
+
+| 項目 | 式 |
+|---|---|
+| 抵抗 | $R = \rho\,l/S$ |
+| 抵抗率と伝導度 | $\rho = 1/\sigma$ |
+| 伝導度（古典） | $\sigma = N q \mu,\quad \mu = q\tau/m$ |
+| 伝導度（基本形） | $\sigma = N q^2 \tau / m$ |
+| バンドギャップ | $E_g = E_c - E_v$ |
+| 状態密度 | $D_c(E) \propto \sqrt{E - E_c}$ |
+| フェルミ分布 | $f(E) = \dfrac{1}{1 + \exp[(E-E_f)/k_BT]}$ |
+| 電子密度 | $n = N_c\exp[-(E_c - E_f)/k_BT]$ |
+| 正孔密度 | $p = N_v\exp[-(E_f - E_v)/k_BT]$ |
+| 質量作用 | $np = n_i^2$ |
+| 真性キャリヤ | $n_i = \sqrt{N_c N_v}\,\exp[-E_g/2k_BT]$ |
+| 真性フェルミ準位 | $E_i = \dfrac{E_c+E_v}{2} + \dfrac{k_BT}{2}\ln(N_v/N_c)$ |
+| n 型フェルミ準位 | $E_f = E_c - k_BT\ln(N_c/N_D)$ |
+| p 型フェルミ準位 | $E_f = E_v + k_BT\ln(N_v/N_A)$ |
+| ドナー束縛エネルギー | $E_D = 13.6\,(m^*/m_0)/\varepsilon_r^2$ eV |
+| LED 波長 | $\lambda[\mathrm{nm}] \approx 1240 / E_g[\mathrm{eV}]$ |
+| MOSFET 飽和電流 | $I_{D,\mathrm{sat}} = \frac12\mu C_{ox}\frac{W}{L}(V_G-V_T)^2$ |
+| 内蔵電位 | $V_{bi} = \dfrac{k_BT}{e}\ln(N_A N_D / n_i^2)$ |
+
+# 一言でいうと
+
+この講義は、半導体を
+
+> **「電子の数」**（キャリヤ密度 $n,p$）と
+> **「電子の行ける場所」**（バンド構造 $E_c, E_v, E_g$）と
+> **「電子がどれくらい動きやすいか」**（移動度 $\mu$）
+
+の 3 つの軸で理解するためのもの。そしてその 3 軸すべてを、温度・光・不純物・電圧で**人間が操れる**——それが半導体という材料の本質であり、現代エレクトロニクスのすべての出発点になっている。
