@@ -5,6 +5,17 @@
   --pj-floating-navbar-clearance: 88px;
 }
 
+/* ── スクロール連動 navbar ── */
+.navbar {
+  will-change: transform;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease !important;
+}
+.navbar.pj-navbar-hidden {
+  transform: translateX(-50%) translateY(calc(-100% - 28px)) !important;
+  opacity: 0;
+  pointer-events: none;
+}
+
 @media (min-width: 992px) {
   body.nav-fixed .sidebar,
   body.nav-fixed .headroom-target {
@@ -171,6 +182,246 @@ div.sourceCode pre.sourceCode {
 }
 
 /* ============================================================
+   Custom mobile drawer  (#pj-drawer)
+   Bootstrap collapse を使わず、完全独自のスライドパネル。
+   CSS 変数は各 SCSS テーマファイルの :root で定義。
+   ============================================================ */
+
+/* スクロール禁止（ドロワー表示中） */
+body.pj-drawer-active { overflow: hidden; }
+
+/* ── ルートコンテナ ── */
+#pj-drawer {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+}
+#pj-drawer.pj-open,
+#pj-drawer.pj-closing {
+  display: flex;
+}
+
+/* ── 背景オーバーレイ ── */
+#pj-drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.48);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter:         blur(6px);
+  animation: pj-fade-in 0.25s ease forwards;
+}
+#pj-drawer.pj-closing #pj-drawer-backdrop {
+  animation: pj-fade-out 0.25s ease forwards;
+}
+
+/* ── パネル本体 ── */
+#pj-drawer-panel {
+  position: relative;
+  z-index: 1;
+  width: min(300px, 82vw);
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--mobile-sidebar-bg);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  backdrop-filter:         blur(30px) saturate(180%);
+  border-right: 1px solid var(--mobile-sidebar-border);
+  box-shadow: 8px 0 48px rgba(0, 0, 0, 0.35);
+  animation: pj-slide-in 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+#pj-drawer.pj-closing #pj-drawer-panel {
+  animation: pj-slide-out 0.25s cubic-bezier(0.55, 0.06, 0.68, 0.19) forwards;
+}
+
+/* アニメーション定義 */
+@keyframes pj-fade-in  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pj-fade-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes pj-slide-in {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+@keyframes pj-slide-out {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+/* ── パネルヘッダー ── */
+#pj-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 1.25rem 1rem;
+  border-bottom: 1px solid var(--mobile-sidebar-border);
+  flex-shrink: 0;
+}
+#pj-drawer-site-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--mobile-sidebar-title-color);
+  opacity: 0.6;
+}
+#pj-drawer-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--mobile-sidebar-link-color);
+  font-size: 1rem;
+  padding: 5px 7px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+  line-height: 1;
+}
+#pj-drawer-close:hover {
+  background: var(--mobile-sidebar-cat-color);
+  color: var(--gl-cat0);
+}
+
+/* ── パネルボディ（ナビ一覧） ── */
+#pj-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.75rem 0.75rem 2.5rem;
+}
+
+/* リストのリセット */
+#pj-drawer-body .list-unstyled {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+/* ── ナビ行の基本スタイル ──
+   .sidebar-item-container を行全体のホバーターゲットにする。
+   .sidebar-item-toggle（> ボタン）は視覚的な矢印のみで
+   独自のホバーは持たせない。
+   ─────────────────────────────────────────────── */
+
+/* 行コンテナ — これがホバー・アクティブの唯一の単位 */
+#pj-drawer-body .sidebar-item-container {
+  display: flex;
+  align-items: stretch;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: background 0.15s;
+}
+#pj-drawer-body .sidebar-item-container:hover {
+  background: var(--mobile-sidebar-cat-color);
+}
+
+/* テキストリンク — コンテナが色を管理するので独自ホバー不要 */
+#pj-drawer-body .sidebar-item-container .sidebar-link,
+#pj-drawer-body .sidebar-item-container a.sidebar-link {
+  flex: 1;
+  min-width: 0;
+  display: block;
+  color: var(--mobile-sidebar-link-color) !important;
+  text-decoration: none !important;
+  border-left: none !important;
+  border-bottom: none !important;
+  border-radius: 0 !important;
+  padding: 9px 13px !important;
+  font-size: 0.9rem;
+  background: transparent !important;
+  transition: color 0.15s;
+}
+#pj-drawer-body .sidebar-item-container:hover .sidebar-link,
+#pj-drawer-body .sidebar-item-container:hover a.sidebar-link {
+  color: var(--gl-cat0) !important;
+  background: transparent !important;
+}
+#pj-drawer-body .sidebar-item-container .sidebar-link.active,
+#pj-drawer-body .sidebar-item-container a.sidebar-link.active {
+  color: var(--gl-cat0) !important;
+  font-weight: 600;
+  background: transparent !important;
+}
+
+/* コンテナ外の単独リンク（あれば）はそのままホバー */
+#pj-drawer-body > .sidebar-menu-container .sidebar-link:not(.sidebar-item-container *),
+#pj-drawer-body > .sidebar-menu-container a.sidebar-link:not(.sidebar-item-container *) {
+  border-radius: 10px;
+  padding: 9px 13px !important;
+  transition: background 0.15s, color 0.15s;
+}
+#pj-drawer-body > .sidebar-menu-container .sidebar-link:not(.sidebar-item-container *):hover {
+  background: var(--mobile-sidebar-cat-color) !important;
+  color: var(--gl-cat0) !important;
+}
+
+/* アクティブ状態（コンテナごと薄くハイライト） */
+#pj-drawer-body .sidebar-item-container:has(.sidebar-link.active) {
+  background: var(--mobile-sidebar-cat-color);
+}
+
+/* > ボタン — ホバー・フォーカス系を完全にリセットして矢印のみ */
+#pj-drawer-body .sidebar-item-container .sidebar-item-toggle {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 9px 12px 9px 4px !important;
+  color: var(--mobile-sidebar-link-color) !important;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+#pj-drawer-body .sidebar-item-container .sidebar-item-toggle:hover,
+#pj-drawer-body .sidebar-item-container .sidebar-item-toggle:focus,
+#pj-drawer-body .sidebar-item-container .sidebar-item-toggle:active,
+#pj-drawer-body .sidebar-item-container .sidebar-item-toggle:focus-visible {
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+#pj-drawer-body .sidebar-item-container:hover .sidebar-item-toggle {
+  color: var(--gl-cat0) !important;
+}
+
+/* chevron アイコン — 展開状態で90度回転 */
+#pj-drawer-body .sidebar-item-container .sidebar-item-toggle .bi-chevron-right {
+  display: inline-block;
+  font-size: 0.72rem;
+  opacity: 0.65;
+  transition: transform 0.22s ease, opacity 0.15s;
+}
+#pj-drawer-body .sidebar-item-container .sidebar-item-toggle[aria-expanded="true"] .bi-chevron-right {
+  transform: rotate(90deg);
+  opacity: 1;
+}
+#pj-drawer-body .sidebar-item-container:hover .sidebar-item-toggle .bi-chevron-right {
+  opacity: 1;
+}
+
+/* セクション — 横線なし、間隔はマージンのみ */
+#pj-drawer-body .sidebar-section {
+  border-top: none !important;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* 入れ子リンクのインデント */
+#pj-drawer-body .sidebar-section.depth2 .sidebar-link,
+#pj-drawer-body .sidebar-section.depth2 a.sidebar-link {
+  padding-left: 1.6rem !important;
+  font-size: 0.86rem;
+}
+#pj-drawer-body .sidebar-section.depth3 .sidebar-link,
+#pj-drawer-body .sidebar-section.depth3 a.sidebar-link {
+  padding-left: 2.4rem !important;
+  font-size: 0.83rem;
+}
+
+/* ============================================================
    GL Listing Cards — glassmorphism custom listing template
    ============================================================ */
 
@@ -188,18 +439,28 @@ div.sourceCode pre.sourceCode {
   height: 100%;
 }
 
-/* --- Card link wrapper --- */
+/* --- Card link overlay --- */
 .gl-card-link {
-  display: block;
   text-decoration: none !important;
   border-bottom: none !important;
   color: inherit;
-  height: 100%;
 }
 .gl-card-link:hover { border-bottom: none !important; }
+.gl-card-cover {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.gl-card-cover-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
 
 /* --- Card --- */
 .gl-card {
+  position: relative;
   background: var(--gl-card-bg);
   -webkit-backdrop-filter: blur(var(--gl-card-blur)) saturate(var(--gl-card-sat));
   backdrop-filter:         blur(var(--gl-card-blur)) saturate(var(--gl-card-sat));
@@ -212,7 +473,12 @@ div.sourceCode pre.sourceCode {
   display: flex;
   flex-direction: column;
 }
-.gl-card-link:hover .gl-card {
+.gl-card > :not(.gl-card-cover-wrap) {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+.gl-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--gl-card-shadow-lg), inset 0 1px 0 var(--gl-card-inset);
 }
@@ -242,16 +508,6 @@ div.sourceCode pre.sourceCode {
   color: var(--gl-title-color, #1f1c38) !important;
   margin: 0 0 0.8rem 0;
   flex-shrink: 0;
-}
-.gl-title-link {
-  color: inherit !important;
-  text-decoration: none !important;
-  border-bottom: none !important;
-}
-.gl-title-link:hover {
-  color: inherit !important;
-  text-decoration: none !important;
-  border-bottom: none !important;
 }
 
 /* AnchorJS が gl-card 内の h2 に <a> を入れ子で挿入するのを無効化 */
@@ -346,12 +602,24 @@ div.sourceCode pre.sourceCode {
   font-size: 0.72rem;
   font-weight: 600;
   border-bottom: none !important;
+  text-decoration: none !important;
+  position: relative;
+  z-index: 3;
+  pointer-events: auto;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.gl-cat-pill:hover {
+  background: var(--gl-card-bg);
+  transform: translateY(-1px);
 }
 .gl-cat-pill[data-gl-cat="0"] { color: var(--gl-cat0); border-color: color-mix(in srgb, var(--gl-cat0) 28%, transparent); }
 .gl-cat-pill[data-gl-cat="1"] { color: var(--gl-cat1); border-color: color-mix(in srgb, var(--gl-cat1) 28%, transparent); }
 .gl-cat-pill[data-gl-cat="2"] { color: var(--gl-cat2); border-color: color-mix(in srgb, var(--gl-cat2) 28%, transparent); }
 .gl-cat-pill[data-gl-cat="3"] { color: var(--gl-cat3); border-color: color-mix(in srgb, var(--gl-cat3) 28%, transparent); }
 .gl-cat-pill[data-gl-cat="4"] { color: var(--gl-cat4); border-color: color-mix(in srgb, var(--gl-cat4) 28%, transparent); }
+.gl-hidden-listing-value {
+  display: none;
+}
 
 /* ============================================================
    Listing sort / filter toolbar

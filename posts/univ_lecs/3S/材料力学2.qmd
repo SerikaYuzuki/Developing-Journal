@@ -36,8 +36,11 @@ bibliography: ../../../bibliography.bib
 3. 単純せん断試験（せん断応力：$\tau$）
 4. 張力圧延（圧延方向の引張応力：$\sigma_t$、板厚方向の圧縮応力：$\sigma_r$）
 
+<<<<<<< HEAD
 ![](images/%E6%9D%90%E6%96%99%E5%8A%9B%E5%AD%A62/image0.png)
 
+=======
+>>>>>>> 2e19c90 (feat: implement custom mobile drawer with animations and styles)
 ::: {.callout-note collapse="true"}
 ##### 理論
 ある面（断面積 $A$）に働く力 $F$ は、面に垂直な成分 $F_n$ と平行な成分 $F_s$ に分解できる。
@@ -102,6 +105,7 @@ $$\therefore\ T = \sigma \cdot n$$
 
 ---
 
+<<<<<<< HEAD
 ### 練習問題 1-3（コーシーの関係式の数値計算）
 
 ある物体に一様な応力 $\sigma$ が作用している。
@@ -177,6 +181,8 @@ $$\det\begin{pmatrix}-\lambda&\tau\\\tau&-\lambda\end{pmatrix} = \lambda^2-\tau^
 
 ---
 
+=======
+>>>>>>> 2e19c90 (feat: implement custom mobile drawer with animations and styles)
 ### 練習問題 1-5（モールの応力円の方程式の導出）
 
 2次元応力状態における任意の傾いた面上の垂直応力 $\sigma'_{11}$ とせん断応力 $\sigma'_{12}$ が、モールの応力円の方程式を満たすことを示し、その中心と半径を求めよ。
@@ -272,6 +278,7 @@ $$\epsilon = \tfrac{1}{2}(H+H^T) = \begin{bmatrix} 0 & \tfrac{s}{2l} & 0 \\ \tfr
 $$\epsilon' = \begin{bmatrix} 0.0012 & 0.0006 \\ 0.0006 & 0.0018 \end{bmatrix}$$
 ゲージの傾き角度は $30^\circ$ であった。本来の座標系 $(x_1, x_2)$ におけるひずみテンソルを求めよ。
 
+<<<<<<< HEAD
 ```{python}
 #| fig-cap: "二軸負荷（赤）を受ける試験片。本来の座標軸 (x₁, x₂) に対し、ひずみゲージの軸 (x′₁, x′₂) が 30° 傾いている。"
 
@@ -326,6 +333,9 @@ fig.update_layout(height=460, **TRANSP, margin=dict(l=10, r=10, t=10, b=10),
                   legend=dict(orientation='h', y=-0.02, x=0.5, xanchor='center'))
 fig.show()
 ```
+=======
+*TODO: ひずみゲージの傾きと試験機のイメージ図*
+>>>>>>> 2e19c90 (feat: implement custom mobile drawer with animations and styles)
 
 ::: {.callout-note collapse="true"}
 ##### 理論
@@ -353,12 +363,25 @@ $$\epsilon = \begin{bmatrix} 0 & \epsilon_0 & \epsilon_0 \\ \epsilon_0 & 0 & \ep
 
 ::: {.callout-note collapse="true"}
 ##### 理論
+<<<<<<< HEAD
 **主ひずみ**とは、せん断ひずみが 0 となる方向（主軸）における垂直ひずみである。求め方は主応力（練習問題 1-4）とまったく同じで、ひずみテンソルの**固有値が主ひずみ、固有ベクトルが主軸**になる。
 $$\det(\epsilon - \lambda I) = 0\ \Longrightarrow\ \lambda^3 - I_1\lambda^2 + I_2\lambda - I_3 = 0$$
 の3つの実根 $\lambda_1\ge\lambda_2\ge\lambda_3$ が主ひずみで、係数 $I_1,I_2,I_3$ は座標系によらない**ひずみ不変量**である（$\sigma$ を $\epsilon$ に置き換えるだけ）。
 $$I_1 = \epsilon_{11}+\epsilon_{22}+\epsilon_{33},\quad
 I_2 = \epsilon_{11}\epsilon_{22}+\epsilon_{22}\epsilon_{33}+\epsilon_{33}\epsilon_{11}-\epsilon_{12}^2-\epsilon_{23}^2-\epsilon_{31}^2,\quad
 I_3 = \det(\epsilon_{ij})$$
+=======
+**主ひずみ**とは、せん断ひずみが 0 となる方向（主軸）における垂直ひずみである。主ひずみ・主軸は、ひずみテンソルの**固有値・固有ベクトル**として求まる。主軸では $T=\lambda n$ となり、$\epsilon n = \lambda n$、すなわち
+$$\det(\epsilon - \lambda I) = 0$$
+が非自明解を持つ条件となる。これを展開すると特性方程式
+$$\lambda^3 - I_1\lambda^2 + I_2\lambda - I_3 = 0$$
+が得られ、3つの実根 $\lambda_1\ge\lambda_2\ge\lambda_3$ が主ひずみである。係数 $I_1,I_2,I_3$ は座標系によらない**不変量**で、
+$$I_1 = \epsilon_{11}+\epsilon_{22}+\epsilon_{33},\quad
+I_2 = \epsilon_{11}\epsilon_{22}+\epsilon_{22}\epsilon_{33}+\epsilon_{33}\epsilon_{11}-\epsilon_{12}^2-\epsilon_{23}^2-\epsilon_{31}^2,\quad
+I_3 = \det(\epsilon_{ij})$$
+
+まったく同じ手続きが応力テンソルにも適用でき、その固有値が**主応力**、係数が**応力不変量**となる（練習問題 1-5 の主応力はその2次元版）。
+>>>>>>> 2e19c90 (feat: implement custom mobile drawer with animations and styles)
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -686,6 +709,7 @@ $E',\nu'$ を使うと平面応力と同じ形式で書ける。
 1. ひずみ $\epsilon_{11},\epsilon_{22}$ を求めよ。
 2. $x_1$ 方向に何 mm 伸びるか。
 
+<<<<<<< HEAD
 ```{python}
 #| fig-cap: "薄板（100 × 20 × 厚さ1 mm）への二軸荷重。x₁ 方向に 4000 N、x₂ 方向に 10000 N。"
 
@@ -727,6 +751,9 @@ fig.update_yaxes(range=[-20, 40], scaleanchor='x', scaleratio=1, **AX)
 fig.update_layout(height=240, **TRANSP, margin=dict(l=10, r=10, t=10, b=10))
 fig.show()
 ```
+=======
+*TODO: 薄板の荷重負荷図（$x_1$ 方向 4000 N、$x_2$ 方向 10000 N）*
+>>>>>>> 2e19c90 (feat: implement custom mobile drawer with animations and styles)
 
 ::: {.callout-note collapse="true"}
 ##### 理論
