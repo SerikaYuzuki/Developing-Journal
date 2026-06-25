@@ -7,6 +7,892 @@ image: "images/thumbnail.png"
 bibliography: ../../../bibliography.bib
 ---
 
+このノートは、連続体の弾性力学を **「問題を解くために必要な理論」** という観点で再構成したものである。各練習問題には、その問題を解くのに必要な理論を `理論` に、具体的な解き方を `解答` にまとめてある。問題文と理論を読めば解き方の方針が立ち、解答を読めば手順が追える構成を目指している。
 
+## 0. 緒言
 
+* **目標**: 連続体力学（弾性力学・弾塑性力学・構造力学・転位論）の基礎を習得し、応力・ひずみ・弾性解析を理解する。
+* **材料科学における力学の位置づけ**: 材料は Process（プロセス）・Structure（構造）・Property（特性）・Performance（性能）の連関で理解される。力学は「構造 − 特性 − 性能」をつなぐ解析の道具となる。
 
+物体に外力を加えたときの変形は次の2つに大別される。
+
+1. **弾性変形**: 外力を除くと元に戻る可逆変形。線形弾性ではフックの法則 $\sigma = E\epsilon$ が成り立つ領域を扱う。
+2. **塑性変形**: 外力を除いても残る不可逆変形。金属では格子欠陥（転位）の運動に起因する。
+
+本ノートが扱うのは弾性変形である。
+
+---
+
+## 1. 応力
+
+物体内のある面に働く力を、その面の単位面積あたりで表したものが**応力**である。応力は面の向きごとに変わる量であり、3次元では応力テンソルで記述する。
+
+### 練習問題 1-1（代表的な力学状態の応力テンソル）
+
+次の力学試験・加工プロセスにおける応力テンソル $\sigma$ を記述せよ。
+
+1. 一軸引張試験（引張方向：$x_1$ 軸、応力：$\sigma_0$）
+2. 一軸圧縮試験（圧縮方向：$x_1$ 軸、応力：$\sigma_0$）
+3. 単純せん断試験（せん断応力：$\tau$）
+4. 張力圧延（圧延方向の引張応力：$\sigma_t$、板厚方向の圧縮応力：$\sigma_r$）
+
+![](images/%E6%9D%90%E6%96%99%E5%8A%9B%E5%AD%A62/image0.png)
+
+::: {.callout-note collapse="true"}
+##### 理論
+ある面（断面積 $A$）に働く力 $F$ は、面に垂直な成分 $F_n$ と平行な成分 $F_s$ に分解できる。
+
+* **垂直応力** $\sigma_n = F_n/A$：面を引き離す／押し込む応力（へき開破壊に関係）。
+* **せん断応力** $\sigma_s = F_s/A$：面に沿ってずらす応力（すべり・転位運動に関係）。
+
+3次元の応力状態は**応力テンソル** $\sigma_{ij}$ で表す。
+
+$$\sigma = \begin{pmatrix} \sigma_{11} & \sigma_{12} & \sigma_{13} \\ \sigma_{21} & \sigma_{22} & \sigma_{23} \\ \sigma_{31} & \sigma_{32} & \sigma_{33} \end{pmatrix}$$
+
+$\sigma_{ij}$ は「$i$ 軸に垂直な面に働く $j$ 方向の応力」を表す。
+
+* 対角成分 $\sigma_{11},\sigma_{22},\sigma_{33}$ は**垂直応力**（引張は正、圧縮は負）。
+* 非対角成分 $\sigma_{ij}\,(i\neq j)$ は**せん断応力**。
+
+微小要素のモーメントのつり合いから $\sigma_{ij}=\sigma_{ji}$（対称行列）となり、独立な成分は **6個** である。
+
+各試験では、働いている力の向きに対応する成分だけに値を入れ、残りを 0 とすればよい。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+**(1) 引張試験**
+$$\sigma = \begin{pmatrix} \sigma_0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}$$
+**(2) 圧縮試験**（引張を負にするだけ）
+$$\sigma = \begin{pmatrix} -\sigma_0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}$$
+**(3) せん断試験**（$\sigma_{12}=\sigma_{21}=\tau$）
+$$\sigma = \begin{pmatrix} 0 & \tau & 0 \\ \tau & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}$$
+**(4) 張力圧延**（$x_1$ に引張、$x_2$ に圧縮）
+$$\sigma = \begin{pmatrix} \sigma_t & 0 & 0 \\ 0 & -\sigma_r & 0 \\ 0 & 0 & 0 \end{pmatrix}$$
+:::
+
+---
+
+### 練習問題 1-2（コーシーの関係式）
+
+2次元問題において、応力テンソル $\sigma$ と任意の傾いた面の単位法線ベクトル $n$ から、その面に作用する応力ベクトル $T$ が $T = \sigma \cdot n$ と表せること（コーシーの関係式）を、力のつり合いから証明せよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+物体内の微小面（単位法線ベクトル $n$、面積 $dA$）に作用する力 $dF$ に対し、**応力ベクトル**を
+$$T = \frac{dF}{dA}$$
+で定義する。$T$ は垂直成分 $\sigma_n$ とせん断成分 $\sigma_s$ に分解できる（$T=\sigma_n+\sigma_s$）。
+
+任意の面に働く応力ベクトルは、その点の応力テンソルから一意に決まり、
+$$T = \sigma \cdot n \qquad (\text{コーシーの関係})$$
+が成り立つ。これは、面を含む微小三角形（2次元）または微小四面体（3次元）における各座標軸方向の力のつり合いから直接導かれる。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+応力テンソルと面 AB の単位法線ベクトルを次のように置く。
+$$\sigma = \begin{pmatrix} \sigma_{11} & \sigma_{12} & 0 \\ \sigma_{12} & \sigma_{22} & 0 \\ 0 & 0 & 0 \end{pmatrix}, \quad n = \begin{pmatrix} \cos \theta \\ \sin \theta \\ 0 \end{pmatrix}$$
+三角形要素の $x_1,x_2$ 方向の力のつり合いから、
+$$T_1 dA = \sigma_{11}dA \cos \theta + \sigma_{12}dA \sin \theta$$
+$$T_2 dA = \sigma_{12}dA \cos \theta + \sigma_{22}dA \sin \theta$$
+行列形式にまとめると、
+$$\begin{pmatrix} T_1 \\ T_2 \end{pmatrix} = \begin{pmatrix} \sigma_{11} & \sigma_{12} \\ \sigma_{12} & \sigma_{22} \end{pmatrix}\begin{pmatrix} \cos \theta \\ \sin \theta \end{pmatrix}$$
+$$\therefore\ T = \sigma \cdot n$$
+:::
+
+---
+
+### 練習問題 1-3（コーシーの関係式の数値計算）
+
+ある物体に一様な応力 $\sigma$ が作用している。
+$$\sigma = \begin{pmatrix} 0 & 1 & 2 \\ 1 & 2 & 0 \\ 2 & 0 & 1 \end{pmatrix}\ \text{MPa}$$
+$x_1 + 3x_2 + x_3 = 1$ で定義される面の応力ベクトル $T$ を求めよ。また、この面の垂直応力の大きさ $\sigma_n$ とせん断応力の大きさ $\sigma_s$ を求めよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+コーシーの関係 $T = \sigma\cdot n$ を具体的な数値に適用する問題（練習問題 1-2 参照）。手順は次の通り。
+
+1. **単位法線ベクトル** $n$ を求める。平面 $a_1x_1+a_2x_2+a_3x_3 = \text{const}$ の法線方向は係数ベクトル $(a_1,a_2,a_3)$ なので、これを正規化する。
+2. **応力ベクトル** を $T = \sigma\cdot n$ で計算する。
+3. **垂直応力**は $T$ を法線方向へ射影した成分の大きさ：$\sigma_n = T\cdot n\,(= n\cdot\sigma\cdot n)$。
+4. **せん断応力**は $T$ の面内成分の大きさで、$|T|^2 = \sigma_n^2 + \sigma_s^2$ より $\sigma_s = \sqrt{|T|^2 - \sigma_n^2}$。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+**1. 単位法線ベクトル**
+平面の係数より法線方向は $(1,3,1)$。大きさは $\sqrt{1^2+3^2+1^2}=\sqrt{11}$ なので、
+$$n = \frac{1}{\sqrt{11}}\begin{pmatrix} 1 \\ 3 \\ 1 \end{pmatrix}$$
+
+**2. 応力ベクトル** $T = \sigma\cdot n$
+$$\sigma\begin{pmatrix} 1 \\ 3 \\ 1 \end{pmatrix} = \begin{pmatrix} 0\cdot1+1\cdot3+2\cdot1 \\ 1\cdot1+2\cdot3+0\cdot1 \\ 2\cdot1+0\cdot3+1\cdot1 \end{pmatrix} = \begin{pmatrix} 5 \\ 7 \\ 3 \end{pmatrix}
+\ \Longrightarrow\ T = \frac{1}{\sqrt{11}}\begin{pmatrix} 5 \\ 7 \\ 3 \end{pmatrix}\ \text{MPa}$$
+
+**3. 垂直応力** $\sigma_n = T\cdot n$
+$$\sigma_n = \frac{1}{\sqrt{11}}(5,7,3)\cdot\frac{1}{\sqrt{11}}(1,3,1) = \frac{5+21+3}{11} = \frac{29}{11} \approx 2.64\ \text{MPa}$$
+
+**4. せん断応力** $\sigma_s$
+$$|T|^2 = \frac{5^2+7^2+3^2}{11} = \frac{83}{11},\qquad
+\sigma_s = \sqrt{|T|^2-\sigma_n^2} = \sqrt{\frac{83}{11}-\left(\frac{29}{11}\right)^2} = \frac{\sqrt{72}}{11} = \frac{6\sqrt{2}}{11} \approx 0.77\ \text{MPa}$$
+:::
+
+---
+
+### 練習問題 1-4（主応力と主軸）
+
+以下の応力状態について、それぞれ主応力と主軸の向きを求めよ。ただし $\sigma_0, \tau, \sigma_t, \sigma_r$ は正の実数とする。
+
+1. 引張試験：$\sigma = \mathrm{diag}(\sigma_0,\,0,\,0)$
+2. 圧縮試験：$\sigma = \mathrm{diag}(-\sigma_0,\,0,\,0)$
+3. せん断試験：$\sigma_{12}=\sigma_{21}=\tau$、他は 0
+4. 張力圧延：$\sigma = \mathrm{diag}(\sigma_t,\,-\sigma_r,\,0)$
+
+::: {.callout-note collapse="true"}
+##### 理論
+**主応力**はせん断応力が 0 となる面（主平面）に働く垂直応力で、その面の法線方向が**主軸**である。主平面では応力ベクトルが法線と平行（$T=\lambda n$）になるので、コーシーの式 $T=\sigma n$ と合わせると固有値問題
+$$\sigma n = \lambda n \quad\Longleftrightarrow\quad (\sigma - \lambda I)n = 0$$
+になる。非自明解を持つ条件が特性方程式
+$$\det(\sigma - \lambda I) = 0\ \Longrightarrow\ \lambda^3 - I_1\lambda^2 + I_2\lambda - I_3 = 0$$
+で、解（固有値）$\lambda$ が主応力、対応する固有ベクトルが主軸の向きとなる。係数 $I_1,I_2,I_3$ は座標系によらない**応力不変量**である。
+$$I_1 = \sigma_{11}+\sigma_{22}+\sigma_{33},\quad
+I_2 = \sigma_{11}\sigma_{22}+\sigma_{22}\sigma_{33}+\sigma_{33}\sigma_{11}-\sigma_{12}^2-\sigma_{23}^2-\sigma_{31}^2,\quad
+I_3 = \det(\sigma_{ij})$$
+
+**ポイント**：応力テンソルがすでに対角行列なら、対角成分がそのまま主応力、座標軸がそのまま主軸である。非対角成分があるブロックだけ固有値を解けばよい。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+**(1) 引張試験**：すでに対角なので、主応力は $\sigma_0,\,0,\,0$。主軸は座標軸 $x_1,x_2,x_3$。
+
+**(2) 圧縮試験**：同様に主応力 $-\sigma_0,\,0,\,0$、主軸は座標軸 $x_1,x_2,x_3$。
+
+**(3) せん断試験**：$x_3$ 方向は $\lambda=0$。残る $x_1$–$x_2$ ブロック $\begin{pmatrix}0&\tau\\\tau&0\end{pmatrix}$ の固有値は
+$$\det\begin{pmatrix}-\lambda&\tau\\\tau&-\lambda\end{pmatrix} = \lambda^2-\tau^2 = 0\ \Longrightarrow\ \lambda = \pm\tau$$
+よって主応力は $\tau,\,-\tau,\,0$。主軸は、$\tau$ が $x_1$–$x_2$ 面内で $45^\circ$ 方向 $\frac{1}{\sqrt2}(1,1,0)$、$-\tau$ が $-45^\circ$ 方向 $\frac{1}{\sqrt2}(1,-1,0)$、$0$ が $x_3$ 軸。
+（純せん断は座標を $45^\circ$ 回すと引張・圧縮の二軸状態になる、という練習問題 1-15 の事実と対応する。）
+
+**(4) 張力圧延**：すでに対角なので、主応力は $\sigma_t,\,-\sigma_r,\,0$、主軸は座標軸 $x_1,x_2,x_3$。
+:::
+
+---
+
+### 練習問題 1-5（モールの応力円の方程式の導出）
+
+2次元応力状態における任意の傾いた面上の垂直応力 $\sigma'_{11}$ とせん断応力 $\sigma'_{12}$ が、モールの応力円の方程式を満たすことを示し、その中心と半径を求めよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+**応力テンソルの座標変換**：座標系を回転行列 $R$ で回すと、ベクトルは $A'=RA$、応力テンソルは
+$$\sigma' = R\,\sigma\,R^T$$
+で変換される。$x_3$ 軸まわりに角度 $\theta$ 回転した2次元の場合、成分は以下になる（上式を展開して得られる）。
+$$\sigma'_{11} = \frac{\sigma_{11}+\sigma_{22}}{2} + \frac{\sigma_{11}-\sigma_{22}}{2}\cos 2\theta + \sigma_{12}\sin 2\theta$$
+$$\sigma'_{12} = \frac{\sigma_{22}-\sigma_{11}}{2}\sin 2\theta + \sigma_{12}\cos 2\theta$$
+
+**主応力**は、せん断応力が 0 となる面（主平面）に働く垂直応力である。**モールの応力円**は、上の変換式から $\theta$ を消去して得られる円であり、横軸を垂直応力・縦軸をせん断応力とした平面上で応力状態を幾何的に表す。円が横軸（せん断 0）と交わる点が主応力に対応する。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+変換式の $\sigma'_{11}$ から平均応力を移項し、$\sigma'_{12}$ とともに二乗して加えると $\theta$ が消える。
+$$\left(\sigma'_{11} - \frac{\sigma_{11} + \sigma_{22}}{2}\right)^2 + {\sigma'_{12}}^2 = \frac{(\sigma_{11} - \sigma_{22})^2}{4} + \sigma_{12}^2$$
+これは $(\sigma'_{11},\,\sigma'_{12})$ 平面上で次の円を表す。
+
+* 中心：$\left(\dfrac{\sigma_{11} + \sigma_{22}}{2},\ 0\right)$
+* 半径：$\sqrt{\dfrac{(\sigma_{11} - \sigma_{22})^2}{4} + \sigma_{12}^2}$
+
+円が横軸と交わる2点（中心 ± 半径）が主応力である。
+:::
+
+---
+
+## 2. 変位とひずみ
+
+物体内の各点の移動量を**変位** $u(x_1,x_2,x_3)$ という。変位そのものには剛体移動も含まれるため、変形（伸縮・せん断）だけを取り出すには変位の**空間勾配**を考える必要がある。
+
+### 練習問題 1-6（変位場・変位勾配・ひずみ・剛体回転）
+
+物体が以下のように変形した。それぞれについて (A) 変位場、(B) 変位勾配テンソル、(C) 微小ひずみテンソル、(D) 剛体回転テンソルを求めよ。
+
+1. 一軸引張
+2. 純粋せん断
+3. 単純せん断
+
+*TODO: (1)一軸引張 / (2)純粋せん断 / (3)単純せん断 の変形図*
+
+::: {.callout-note collapse="true"}
+##### 理論
+**変位場**：変位 $u$ は位置の関数であり、その成分 $u_1,u_2,u_3$ がそれぞれ位置の関数である。
+
+**変位勾配テンソル**：点 $A$ から微小距離 $dx$ だけ離れた点 $B$ の変位は、テーラー展開の1次近似より
+$$u_i^B \approx u_i^A + \frac{\partial u_i}{\partial x_j}dx_j$$
+と書ける。ここに現れる
+$$H_{ij} = \frac{\partial u_i}{\partial x_j}$$
+が**変位勾配テンソル**で、ある点まわりの変位の変化（伸び・縮み・傾き）をすべて含む。電位（スカラー場）の勾配が電場（ベクトル場）になるのと同様、変位（ベクトル場）の勾配がテンソル場 $H=\nabla u$ になる、と捉えるとよい。
+
+**対称部分と反対称部分への分解**：任意の正方行列は、対称行列と交代行列の和に一意分解できる。
+$$H_{ij} = \underbrace{\frac{1}{2}\left(\frac{\partial u_i}{\partial x_j}+\frac{\partial u_j}{\partial x_i}\right)}_{\epsilon_{ij}\,(\text{対称})} + \underbrace{\frac{1}{2}\left(\frac{\partial u_i}{\partial x_j}-\frac{\partial u_j}{\partial x_i}\right)}_{\omega_{ij}\,(\text{反対称})}$$
+
+* **微小ひずみテンソル** $\epsilon_{ij}=\frac{1}{2}(H_{ij}+H_{ji})$、すなわち $\epsilon=\frac{1}{2}(H+H^T)$。物体の純粋な変形を表す。
+    * 対角成分 = **垂直ひずみ**（$x_i$ 方向線分の単位長さあたりの伸び）：$\epsilon_{11}=\partial u_1/\partial x_1$ など。
+    * 非対角成分 = せん断ひずみ。直角だった2辺のなす角の変化量を**工学せん断ひずみ** $\gamma_{ij}=\dfrac{\partial u_i}{\partial x_j}+\dfrac{\partial u_j}{\partial x_i}$ と呼び、テンソル成分はその半分 $\epsilon_{ij}=\frac{1}{2}\gamma_{ij}$ で定義する。
+* **剛体回転テンソル** $\omega_{ij}=\frac{1}{2}(H_{ij}-H_{ji})$、すなわち $\omega=\frac{1}{2}(H-H^T)$。微小要素の平均的な回転を表す。
+
+この分解により、**単純せん断**（せん断変形＋回転を伴う）と**純粋せん断**（回転を伴わないせん断変形）の違いを定量的に区別できる。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+**(1) 一軸引張**（$x_1$ 方向にひずみ $\Delta l/l$）
+$$u = \begin{bmatrix} \tfrac{\Delta l}{l}x_1 \\ 0 \\ 0 \end{bmatrix},\quad
+H = \begin{bmatrix} \tfrac{\Delta l}{l} & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}$$
+$$\epsilon = \tfrac{1}{2}(H+H^T) = \begin{bmatrix} \tfrac{\Delta l}{l} & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix},\quad
+\omega = \tfrac{1}{2}(H-H^T) = 0\ (\text{回転なし})$$
+
+**(2) 純粋せん断**
+$$u = \begin{bmatrix} \tfrac{s}{l}x_2 \\ \tfrac{s}{l}x_1 \\ 0 \end{bmatrix},\quad
+H = \begin{bmatrix} 0 & \tfrac{s}{l} & 0 \\ \tfrac{s}{l} & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}$$
+$$\epsilon = \begin{bmatrix} 0 & \tfrac{s}{l} & 0 \\ \tfrac{s}{l} & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix},\quad
+\omega = 0\ (\text{回転なし})$$
+
+**(3) 単純せん断**
+$$u = \begin{bmatrix} \tfrac{s}{l}x_2 \\ 0 \\ 0 \end{bmatrix},\quad
+H = \begin{bmatrix} 0 & \tfrac{s}{l} & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}$$
+$$\epsilon = \tfrac{1}{2}(H+H^T) = \begin{bmatrix} 0 & \tfrac{s}{2l} & 0 \\ \tfrac{s}{2l} & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix},\quad
+\omega = \tfrac{1}{2}(H-H^T) = \begin{bmatrix} 0 & \tfrac{s}{2l} & 0 \\ -\tfrac{s}{2l} & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}\ (\text{回転あり})$$
+
+同じ「せん断」でも、純粋せん断は回転を伴わず、単純せん断は同じ大きさの回転を伴うことが $\omega$ の有無からわかる。
+:::
+
+---
+
+### 練習問題 1-7（ひずみテンソルの座標変換）
+
+二軸負荷の力学試験を行ったが、試験後にひずみゲージが傾いて貼られていたことに気づいた。貴重なサンプルのため再実験はできない。傾いた座標系 $(x'_1, x'_2)$ で測定されたひずみテンソルは次の通りである。
+$$\epsilon' = \begin{bmatrix} 0.0012 & 0.0006 \\ 0.0006 & 0.0018 \end{bmatrix}$$
+ゲージの傾き角度は $30^\circ$ であった。本来の座標系 $(x_1, x_2)$ におけるひずみテンソルを求めよ。
+
+```{python}
+#| fig-cap: "二軸負荷（赤）を受ける試験片。本来の座標軸 (x₁, x₂) に対し、ひずみゲージの軸 (x′₁, x′₂) が 30° 傾いている。"
+
+import numpy as np
+import plotly.graph_objects as go
+
+AX = dict(visible=False, showgrid=False, zeroline=False)
+TRANSP = dict(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
+
+def closed(pts):
+    xs = [p[0] for p in pts] + [pts[0][0]]
+    ys = [p[1] for p in pts] + [pts[0][1]]
+    return xs, ys
+
+fig = go.Figure()
+
+# 試験片
+sx, sy = closed([(-1.4, -1.4), (1.4, -1.4), (1.4, 1.4), (-1.4, 1.4)])
+fig.add_trace(go.Scatter(x=sx, y=sy, mode='lines', fill='toself', line=dict(color='gray', width=2),
+                         fillcolor='rgba(128,128,128,0.10)', showlegend=False))
+
+# 30° 傾いたひずみゲージ
+th = np.radians(30)
+def rect(w, h, rot):
+    p = [(-w / 2, -h / 2), (w / 2, -h / 2), (w / 2, h / 2), (-w / 2, h / 2)]
+    R = [(x * np.cos(rot) - y * np.sin(rot), x * np.sin(rot) + y * np.cos(rot)) for x, y in p]
+    return closed(R)
+gx, gy = rect(1.1, 0.55, th)
+fig.add_trace(go.Scatter(x=gx, y=gy, mode='lines', fill='toself', line=dict(color='teal', width=2),
+                         fillcolor='rgba(0,128,128,0.25)', name='ひずみゲージ (30° 傾斜)'))
+
+def axis_arrow(dx, dy, color, name):
+    fig.add_annotation(x=dx, y=dy, ax=0, ay=0, xref='x', yref='y', axref='x', ayref='y',
+                       showarrow=True, arrowhead=3, arrowwidth=2, arrowcolor=color)
+    fig.add_annotation(x=dx, y=dy, text=name, showarrow=False, font=dict(color=color, size=14),
+                       xshift=12 * np.sign(dx), yshift=12 * np.sign(dy))
+c, s = np.cos(th), np.sin(th)
+axis_arrow(1.9, 0, '#1f77b4', 'x₁'); axis_arrow(0, 1.9, '#1f77b4', 'x₂')
+axis_arrow(1.9 * c, 1.9 * s, 'teal', "x′₁"); axis_arrow(-1.9 * s, 1.9 * c, 'teal', "x′₂")
+
+# 二軸負荷の矢印
+for x in (2.0, -2.0):
+    fig.add_annotation(x=x * 1.15, y=0, ax=x, ay=0, xref='x', yref='y', axref='x', ayref='y',
+                       showarrow=True, arrowhead=2, arrowwidth=2, arrowcolor='crimson')
+for y in (2.0, -2.0):
+    fig.add_annotation(x=0, y=y * 1.15, ax=0, ay=y, xref='x', yref='y', axref='x', ayref='y',
+                       showarrow=True, arrowhead=2, arrowwidth=2, arrowcolor='crimson')
+
+fig.update_xaxes(range=[-2.6, 2.6], **AX)
+fig.update_yaxes(range=[-2.6, 2.6], scaleanchor='x', scaleratio=1, **AX)
+fig.update_layout(height=460, **TRANSP, margin=dict(l=10, r=10, t=10, b=10),
+                  legend=dict(orientation='h', y=-0.02, x=0.5, xanchor='center'))
+fig.show()
+```
+
+::: {.callout-note collapse="true"}
+##### 理論
+ひずみテンソルも応力テンソルと同じ2階テンソルなので、回転行列 $R$ により $\epsilon' = R\,\epsilon\,R^T$ で変換される。2次元（$x_3$ 軸まわり、反時計回りに $\theta$）の回転行列は
+$$R = \begin{bmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{bmatrix}$$
+
+本来の座標系 $(x_1,x_2)$ から $\theta$ 回転した座標系での測定値が $\epsilon'$ なので、本来のひずみ $\epsilon$ を得るには**逆回転**（$-\theta$）を施せばよい。
+$$\epsilon = R(-\theta)\,\epsilon'\,R(-\theta)^T$$
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+$$\epsilon = R(-\theta)\,\epsilon'\,R(-\theta)^T,\qquad \theta = 30^\circ$$
+$$= \begin{bmatrix} \cos(-30^\circ) & \sin(-30^\circ) \\ -\sin(-30^\circ) & \cos(-30^\circ) \end{bmatrix} \begin{bmatrix} 0.0012 & 0.0006 \\ 0.0006 & 0.0018 \end{bmatrix} \begin{bmatrix} \cos(-30^\circ) & -\sin(-30^\circ) \\ \sin(-30^\circ) & \cos(-30^\circ) \end{bmatrix}$$
+$$= \begin{bmatrix} \tfrac{\sqrt{3}}{2} & -\tfrac{1}{2} \\ \tfrac{1}{2} & \tfrac{\sqrt{3}}{2} \end{bmatrix} \begin{bmatrix} 0.0012 & 0.0006 \\ 0.0006 & 0.0018 \end{bmatrix} \begin{bmatrix} \tfrac{\sqrt{3}}{2} & \tfrac{1}{2} \\ -\tfrac{1}{2} & \tfrac{\sqrt{3}}{2} \end{bmatrix}
+= \begin{bmatrix} 0.00083 & 0.00004 \\ 0.00004 & 0.00217 \end{bmatrix}$$
+:::
+
+---
+
+### 練習問題 1-8（主ひずみと不変量）
+
+ひずみテンソルが次で与えられる。主ひずみを求めよ。
+$$\epsilon = \begin{bmatrix} 0 & \epsilon_0 & \epsilon_0 \\ \epsilon_0 & 0 & \epsilon_0 \\ \epsilon_0 & \epsilon_0 & 0 \end{bmatrix}$$
+
+::: {.callout-note collapse="true"}
+##### 理論
+**主ひずみ**とは、せん断ひずみが 0 となる方向（主軸）における垂直ひずみである。求め方は主応力（練習問題 1-4）とまったく同じで、ひずみテンソルの**固有値が主ひずみ、固有ベクトルが主軸**になる。
+$$\det(\epsilon - \lambda I) = 0\ \Longrightarrow\ \lambda^3 - I_1\lambda^2 + I_2\lambda - I_3 = 0$$
+の3つの実根 $\lambda_1\ge\lambda_2\ge\lambda_3$ が主ひずみで、係数 $I_1,I_2,I_3$ は座標系によらない**ひずみ不変量**である（$\sigma$ を $\epsilon$ に置き換えるだけ）。
+$$I_1 = \epsilon_{11}+\epsilon_{22}+\epsilon_{33},\quad
+I_2 = \epsilon_{11}\epsilon_{22}+\epsilon_{22}\epsilon_{33}+\epsilon_{33}\epsilon_{11}-\epsilon_{12}^2-\epsilon_{23}^2-\epsilon_{31}^2,\quad
+I_3 = \det(\epsilon_{ij})$$
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+$$\det \begin{bmatrix} -\lambda & \epsilon_0 & \epsilon_0 \\ \epsilon_0 & -\lambda & \epsilon_0 \\ \epsilon_0 & \epsilon_0 & -\lambda \end{bmatrix} = 0
+\ \Longrightarrow\ -\lambda^3 + 3\epsilon_0^2\lambda + 2\epsilon_0^3 = 0$$
+$$(\lambda - 2\epsilon_0)(\lambda + \epsilon_0)^2 = 0$$
+よって主ひずみは $\lambda = 2\epsilon_0$（1重）と $\lambda = -\epsilon_0$（2重）。
+:::
+
+---
+
+## 3. 総和規約とテンソル記法（補足）
+
+弾性力学では添え字を用いた記法が多用される。要点は次の2つである。
+
+* **アインシュタインの総和規約**：1つの項に同じ添え字が2度現れたら、その添え字について和をとる（$\sum$ を省略）。例：$T_i=\sigma_{ij}n_j$。
+* **クロネッカーのデルタ**：$\delta_{ij}=1\,(i=j),\ 0\,(i\neq j)$。単位行列の成分に相当する。
+
+### 総和規約の練習問題 1
+
+添え字は 1,2,3 をとり総和規約に従うものとする。次の各式について、1. 擬標（dummy index）と自由標（free index）を示せ、2. 表す量の種類（スカラー・ベクトル・2階テンソル）を答えよ、3. 総和を陽に書き下せ（自由標が残る場合は代表成分1つと独立成分数）。
+(a) $a_i b_i$　(b) $\sigma_{ij} n_j$　(c) $\sigma_{ii}$　(d) $\sigma_{ij} \sigma_{ji}$　(e) $a_i b_j$
+
+::: {.callout-note collapse="true"}
+##### 理論
+* **擬標 (dummy index)**：1つの項に**2回**現れる添え字。その添え字について和をとる（$a_i b_i = \sum_{i=1}^3 a_i b_i$）。
+* **自由標 (free index)**：1つの項に**1回だけ**現れる添え字。和をとらず、個々の成分を指す。自由標の数が式の表すテンソルの階数を決める。
+    * 自由標 0 個：スカラー（0階）
+    * 自由標 1 個：ベクトル（1階）
+    * 自由標 2 個：2階テンソル
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+**(a) $a_i b_i$**：$i$ が擬標、自由標なし → **スカラー**。
+$$a_i b_i = a_1 b_1 + a_2 b_2 + a_3 b_3$$
+
+**(b) $\sigma_{ij} n_j$**：$j$ が擬標、$i$ が自由標 → **ベクトル**。
+$$\sigma_{ij} n_j = \sum_{j=1}^3 \sigma_{ij} n_j,\qquad (i=1):\ \sigma_{11} n_1 + \sigma_{12} n_2 + \sigma_{13} n_3$$
+自由標 $i$ は3通りなので独立成分は3個。
+
+**(c) $\sigma_{ii}$**：$i$ が擬標、自由標なし → **スカラー**。
+$$\sigma_{ii} = \sigma_{11} + \sigma_{22} + \sigma_{33}$$
+
+**(d) $\sigma_{ij} \sigma_{ji}$**：$i,j$ ともに擬標、自由標なし → **スカラー**。
+$$\sigma_{ij}\sigma_{ji} = \sum_{i}\sum_{j}\sigma_{ij}\sigma_{ji}$$
+特に $\sigma_{ij}=\sigma_{ji}$ のとき
+$$\sigma_{ij}\sigma_{ji} = \sigma_{11}^2 + \sigma_{22}^2 + \sigma_{33}^2 + 2\sigma_{12}^2 + 2\sigma_{23}^2 + 2\sigma_{31}^2$$
+
+**(e) $a_i b_j$**：$i,j$ ともに自由標 → **2階テンソル**、独立成分 $3\times3=9$ 個。
+$$a_i b_j = \begin{bmatrix} a_1 b_1 & a_1 b_2 & a_1 b_3 \\ a_2 b_1 & a_2 b_2 & a_2 b_3 \\ a_3 b_1 & a_3 b_2 & a_3 b_3 \end{bmatrix}$$
+:::
+
+### 総和規約の練習問題 2
+
+クロネッカーのデルタ $\delta_{ij}$ を用いて次を示せ。
+(a) $\delta_{ii} = 3$　(b) $\delta_{ij} a_j = a_i$　(c) $\delta_{ij} \sigma_{ij} = \sigma_{ii}$
+(d) 直交座標系の微小線分長さが $ds^2 = \delta_{ij} dx_i dx_j$ と書けることを確認し、三平方の定理に対応することを説明せよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+* **基本性質**：$\delta_{ij}$ は $i=j$ で 1、それ以外で 0（単位行列の成分）。
+* **添え字の置き換え作用**：総和規約のもとで $\delta_{ij} a_j = a_i$。和の中で $\delta$ が $j=i$ の項だけを残すため、添え字を入れ替える働きをする。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+**(a)** $\delta_{ii} = \delta_{11}+\delta_{22}+\delta_{33} = 1+1+1 = 3$
+
+**(b)** $\delta_{ij} a_j = \sum_j \delta_{ij}a_j$。$i=1$ では $\delta_{11}a_1+\delta_{12}a_2+\delta_{13}a_3 = a_1$。同様に $\delta_{ij}a_j = a_i$。
+
+**(c)** $\delta_{ij}\sigma_{ij} = \sum_i\sum_j \delta_{ij}\sigma_{ij} = \sigma_{11}+\sigma_{22}+\sigma_{33} = \sigma_{ii}$
+
+**(d)** $i=j$ の項だけ残るので
+$$ds^2 = \delta_{ij}dx_i dx_j = dx_1^2 + dx_2^2 + dx_3^2$$
+これは微小線分の長さの2乗が各方向成分の2乗和になることを表し、三平方の定理に対応する。
+:::
+
+---
+
+## 4. 弾性解析の枠組み
+
+弾性体に外力や変位を与えたときに生じる応力・ひずみ・変位の分布を求めることを**弾性解析（弾性問題）**という。3次元では未知量と支配方程式がそれぞれ 15 個あり、連立して解く。
+
+**未知量（合計 15 個）**
+
+* 変位 3 個：$u_1, u_2, u_3$
+* ひずみ 6 個：$\epsilon_{11}, \epsilon_{22}, \epsilon_{33}, \epsilon_{12}, \epsilon_{23}, \epsilon_{31}$
+* 応力 6 個：$\sigma_{11}, \sigma_{22}, \sigma_{33}, \sigma_{12}, \sigma_{23}, \sigma_{31}$
+
+**支配方程式（合計 15 個）**
+
+1. 応力の平衡方程式（3 個）
+2. 変位–ひずみ関係式（6 個）
+3. 構成方程式（応力–ひずみ関係式、6 個）
+
+---
+
+## 5. 支配方程式
+
+### 5.1 応力の平衡方程式
+
+物体中の微小要素（$dx_1\times dx_2\times dx_3$）について力のつり合いを考える。$x_1$ 方向では、各面の応力差と物体力 $F_1$ がつり合う。
+
+$$\left(\sigma_{11}+\tfrac{\partial\sigma_{11}}{\partial x_1}dx_1\right)dx_2dx_3 - \sigma_{11}dx_2dx_3 + \cdots + F_1 dx_1dx_2dx_3 = 0$$
+
+両辺を微小体積で割ると平衡方程式が得られ、$x_2,x_3$ 方向も同様にして、
+$$\frac{\partial\sigma_{11}}{\partial x_1} + \frac{\partial\sigma_{21}}{\partial x_2} + \frac{\partial\sigma_{31}}{\partial x_3} + F_1 = 0$$
+$$\frac{\partial\sigma_{12}}{\partial x_1} + \frac{\partial\sigma_{22}}{\partial x_2} + \frac{\partial\sigma_{32}}{\partial x_3} + F_2 = 0$$
+$$\frac{\partial\sigma_{13}}{\partial x_1} + \frac{\partial\sigma_{23}}{\partial x_2} + \frac{\partial\sigma_{33}}{\partial x_3} + F_3 = 0$$
+ここで $\mathbf{F}=(F_1,F_2,F_3)$ は**単位体積あたりの物体力**（重力・遠心力・電磁気力など）である。
+
+### 5.2 変位–ひずみ関係式
+
+第2章のとおり、ひずみは変位勾配の対称部分として定義される（6 個）。
+$$\epsilon_{ij} = \frac{1}{2}\left(\frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i}\right)$$
+
+### 5.3 適合条件式（補足）
+
+3 個の変位から 6 個のひずみが定義されるため、ひずみ成分は独立ではない。変形後も連続体が連続性を保ち、変位の唯一解が存在するための条件が**適合条件式**である。
+$$\frac{\partial^2 \epsilon_{11}}{\partial x_2^2} + \frac{\partial^2 \epsilon_{22}}{\partial x_1^2} = 2\frac{\partial^2 \epsilon_{12}}{\partial x_1 \partial x_2}\quad(\text{ほか巡回・混合形で計 6 式})$$
+
+導出は変位–ひずみ関係式を代入するだけでよい。例えば右辺は
+$$\frac{\partial^2 \epsilon_{12}}{\partial x_1 \partial x_2} = \frac{\partial^2}{\partial x_1 \partial x_2}\left\{\frac{1}{2}\left(\frac{\partial u_1}{\partial x_2}+\frac{\partial u_2}{\partial x_1}\right)\right\} = \frac{1}{2}\left(\frac{\partial^2 \epsilon_{11}}{\partial x_2^2} + \frac{\partial^2 \epsilon_{22}}{\partial x_1^2}\right)$$
+となり、左辺と一致する。
+
+---
+
+## 6. 構成方程式（フックの法則）
+
+平衡方程式 3 個と変位–ひずみ関係式 6 個だけでは未知数 15 個に対し式が足りない。応力とひずみを結ぶ**構成方程式**が残りの 6 個を与える。
+
+### 6.1 一般化フックの法則と対称性
+
+線形弾性体では応力テンソルとひずみテンソルが線形関係にある。
+$$\sigma_{ij} = C_{ijkl}\,\epsilon_{kl}$$
+$C_{ijkl}$ は4階の**弾性定数テンソル（剛性テンソル）**で、成分数は $3^4 = 81$ 個。ただし対称性により削減される。
+
+1. 応力の対称性 $\sigma_{ij}=\sigma_{ji}$ より $C_{ijkl}=C_{jikl}$
+2. ひずみの対称性 $\epsilon_{ij}=\epsilon_{ji}$ より $C_{ijkl}=C_{ijlk}$
+3. 弾性ひずみエネルギー密度 $U=\frac{1}{2}C_{ijkl}\epsilon_{ij}\epsilon_{kl}$ が経路によらないことから $\dfrac{\partial^2 U}{\partial\epsilon_{ij}\partial\epsilon_{kl}}=\dfrac{\partial^2 U}{\partial\epsilon_{kl}\partial\epsilon_{ij}}$、すなわち $C_{ijkl}=C_{klij}$
+
+これにより独立成分は最終的に **21 個**（最も対称性の低い三斜晶系）まで減る。材料の対称性が高いほど独立定数は減り、立方晶系で 3 個、**等方性で 2 個**（ラメの定数 $\lambda,\mu$）となる。
+
+### 6.2 Voigt 表記
+
+上記の対称性により、フックの法則は $6\times6$ 行列と $6\times1$ ベクトルの積として書ける。
+$$
+\begin{bmatrix}\sigma_{11}\\\sigma_{22}\\\sigma_{33}\\\sigma_{23}\\\sigma_{31}\\\sigma_{12}\end{bmatrix}
+=
+\begin{bmatrix}
+C_{1111}&C_{1122}&C_{1133}&C_{1123}&C_{1131}&C_{1112}\\
+C_{2211}&C_{2222}&C_{2233}&C_{2223}&C_{2231}&C_{2212}\\
+C_{3311}&C_{3322}&C_{3333}&C_{3323}&C_{3331}&C_{3312}\\
+C_{2311}&C_{2322}&C_{2333}&C_{2323}&C_{2331}&C_{2312}\\
+C_{3111}&C_{3122}&C_{3133}&C_{3123}&C_{3131}&C_{3112}\\
+C_{1211}&C_{1222}&C_{1233}&C_{1223}&C_{1231}&C_{1212}
+\end{bmatrix}
+\begin{bmatrix}\epsilon_{11}\\\epsilon_{22}\\\epsilon_{33}\\2\epsilon_{23}\\2\epsilon_{31}\\2\epsilon_{12}\end{bmatrix}
+$$
+
+> **なぜひずみベクトルのせん断成分に「2」が付くのか**
+> テンソル形式のエネルギー密度は $U=\frac{1}{2}\sigma_{ij}\epsilon_{ij}$ で、せん断項が2倍になる。
+> $$U = \tfrac{1}{2}(\sigma_{11}\epsilon_{11}+\sigma_{22}\epsilon_{22}+\sigma_{33}\epsilon_{33}+2\sigma_{12}\epsilon_{12}+2\sigma_{23}\epsilon_{23}+2\sigma_{31}\epsilon_{31})$$
+> これを Voigt ベクトルの単純な内積 $U=\frac{1}{2}\sigma^T\epsilon$ で表すには、ひずみ側のせん断成分をテンソル成分の2倍、すなわち**工学せん断ひずみ** $\gamma_{ij}=2\epsilon_{ij}$ にとる必要がある。
+
+### 6.3 等方弾性体の構成則
+
+多くの多結晶材料は、全体として方向によらない**等方弾性体**とみなせる。等方体の剛性行列はラメの定数 $\lambda,\mu$ だけで決まる。
+$$
+\begin{bmatrix}\sigma_{11}\\\sigma_{22}\\\sigma_{33}\\\sigma_{12}\\\sigma_{23}\\\sigma_{31}\end{bmatrix}
+=
+\begin{bmatrix}
+2\mu+\lambda&\lambda&\lambda&0&0&0\\
+\lambda&2\mu+\lambda&\lambda&0&0&0\\
+\lambda&\lambda&2\mu+\lambda&0&0&0\\
+0&0&0&\mu&0&0\\
+0&0&0&0&\mu&0\\
+0&0&0&0&0&\mu
+\end{bmatrix}
+\begin{bmatrix}\epsilon_{11}\\\epsilon_{22}\\\epsilon_{33}\\2\epsilon_{12}\\2\epsilon_{23}\\2\epsilon_{31}\end{bmatrix}
+$$
+ラメの定数はヤング率 $E$、ポアソン比 $\nu$ と
+$$\lambda = \frac{E\nu}{(1+\nu)(1-2\nu)},\qquad \mu = \frac{E}{2(1+\nu)} = G\ (\text{剛性率})$$
+で結ばれる。これを逆に解いた**応力 → ひずみ**の形が実用上よく使われる（各軸の垂直応力とポアソン効果による横ひずみの重ね合わせ）。
+$$\epsilon_{11} = \frac{1}{E}\{\sigma_{11} - \nu(\sigma_{22}+\sigma_{33})\}\quad(\text{巡回的に }\epsilon_{22},\epsilon_{33})$$
+$$\gamma_{12} = \frac{\sigma_{12}}{G},\quad \text{すなわち}\quad \epsilon_{12} = \frac{\sigma_{12}}{2G}\quad(\text{巡回的に }\epsilon_{23},\epsilon_{31})$$
+総和規約を使うと等方体の構成則は1式にまとまる。
+$$\epsilon_{ij} = \frac{1+\nu}{E}\sigma_{ij} - \frac{\nu}{E}\sigma_{kk}\delta_{ij}$$
+ここで $\sigma_{kk}=\sigma_{11}+\sigma_{22}+\sigma_{33}$ は応力のトレースである。
+
+*TODO: 材料の対称性と弾性定数テンソルの構造を示す図*
+
+---
+
+### 練習問題 1-9（ラメの定数と E, ν の相互変換）
+
+等方性弾性体について、$\sigma_{ij}=(2\mu+\lambda)\epsilon_{ij}+\cdots$ の形（ひずみ→応力）と $\epsilon_{ij}=\frac{1}{E}\{\sigma_{ij}-\nu(\cdots)\}$ の形（応力→ひずみ）が等価であることを利用して、次に答えよ。
+
+1. ラメの定数 $\lambda,\mu$ を $E,\nu$ で表せ。
+2. $E,\nu$ を $\lambda,\mu$ で表せ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+等方弾性体の構成則は独立な2定数で決まり、その表し方には2つの組がある。
+
+* **工学的弾性定数** $E$（ヤング率）と $\nu$（ポアソン比）：実験で測りやすく直感的。
+* **ラメの定数** $\lambda$ と $\mu\,(=G)$：弾性方程式の記述が簡潔になる。
+
+両者の相互変換は、「ひずみ→応力」と「応力→ひずみ」の式の係数を比較すれば得られる。具体的には、**せん断成分**の比較で $\mu$ が、**垂直成分の和（トレース）**の比較で $\lambda$ が定まる。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+**1. $\lambda,\mu$ を $E,\nu$ で表す**
+せん断成分 $\sigma_{12}=2\mu\epsilon_{12}$ と $\epsilon_{12}=\frac{1+\nu}{E}\sigma_{12}$ を比べると、
+$$\mu = \frac{E}{2(1+\nu)}$$
+次に垂直成分の和をとる。応力→ひずみより
+$$\epsilon_{11}+\epsilon_{22}+\epsilon_{33} = \frac{1-2\nu}{E}(\sigma_{11}+\sigma_{22}+\sigma_{33})$$
+ひずみ→応力より
+$$\sigma_{11}+\sigma_{22}+\sigma_{33} = (3\lambda+2\mu)(\epsilon_{11}+\epsilon_{22}+\epsilon_{33})$$
+両者から $3\lambda+2\mu = \dfrac{E}{1-2\nu}$。これに $\mu$ を代入して整理すると
+$$\lambda = \frac{E\nu}{(1+\nu)(1-2\nu)}$$
+
+**2. $E,\nu$ を $\lambda,\mu$ で表す**
+$\lambda/\mu = \dfrac{2\nu}{1-2\nu}$ を $\nu$ について解くと
+$$\nu = \frac{\lambda}{2(\lambda+\mu)}$$
+$\mu = \dfrac{E}{2(1+\nu)}$ を $E$ について解いて $\nu$ を代入すると
+$$E = 2\mu(1+\nu) = \frac{\mu(3\lambda+2\mu)}{\lambda+\mu}$$
+:::
+
+---
+
+### 練習問題 1-10（静水圧と体積弾性率）
+
+一辺 $L$ の立方体（ヤング率 $E$、ポアソン比 $\nu$ の等方弾性体）が圧力 $p$ の液体中に置かれている。静水圧状態 $\sigma_{11}=\sigma_{22}=\sigma_{33}=-p$、せん断応力 0 とする。
+
+1. 垂直ひずみ $\epsilon_{11},\epsilon_{22},\epsilon_{33}$ を求めよ。
+2. 体積ひずみ $\epsilon_V = \epsilon_{11}+\epsilon_{22}+\epsilon_{33}$ を求めよ。
+3. $p = -K\epsilon_V$ となる体積弾性率 $K$ を求めよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+* **静水圧状態**：あらゆる方向から等しい圧力 $p$ が作用する状態。応力テンソルは対角のみで $\sigma_{11}=\sigma_{22}=\sigma_{33}=-p$。
+* **体積ひずみ** $\epsilon_V$：微小変形における体積変化率で、垂直ひずみの総和 $\epsilon_V=\epsilon_{11}+\epsilon_{22}+\epsilon_{33}$。
+* **体積弾性率** $K$：静水圧に対する体積の縮みにくさ。$p=-K\epsilon_V$ で定義される。
+
+等方体の構成則 $\epsilon_{11}=\frac{1}{E}\{\sigma_{11}-\nu(\sigma_{22}+\sigma_{33})\}$ に静水圧条件を代入すれば一気に求まる。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+**1.** 構成則に $\sigma_{11}=\sigma_{22}=\sigma_{33}=-p$ を代入。
+$$\epsilon_{11} = \frac{1}{E}(-p+2\nu p) = -\frac{p(1-2\nu)}{E}$$
+対称性から $\epsilon_{11}=\epsilon_{22}=\epsilon_{33}=-\dfrac{p(1-2\nu)}{E}$。
+
+**2.** $\epsilon_V = -\dfrac{3p(1-2\nu)}{E}$
+
+**3.** $K = -\dfrac{p}{\epsilon_V} = \dfrac{E}{3(1-2\nu)}$
+:::
+
+---
+
+## 7. 平面応力・平面ひずみ
+
+3次元問題は、薄板や長尺構造では2次元問題に簡略化できる。代表的な近似が**平面応力状態**（面外応力が 0）と**平面ひずみ状態**（面外ひずみが 0）である。両者は構成方程式の形が異なるため、混同しないことが重要である。
+
+### 練習問題 1-11（平面応力の構成方程式の導出）
+
+平面応力状態にある等方弾性体の構成方程式を導出せよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+**平面応力状態**は、厚み方向（例：$x_3$）の寸法が小さく、その面に垂直な外力が働かない薄板のモデルである。
+$$\sigma_{33} = \sigma_{13} = \sigma_{23} = 0$$
+（例：薄板、バルク材の表面近く。行列形式では $\sigma$ の3行3列がすべて 0。）
+
+3次元の等方体構成則にこの条件を代入し、面内成分 $\sigma_{11},\sigma_{22},\sigma_{12}$ とひずみ $\epsilon_{11},\epsilon_{22},\epsilon_{12}$ の関係を導く。**板厚方向ひずみ** $\epsilon_{33}=-\frac{\nu}{E}(\sigma_{11}+\sigma_{22})$ は 0 にならない点に注意。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+応力→ひずみの構成則に $\sigma_{33}=\sigma_{13}=\sigma_{23}=0$ を代入すると、
+$$\epsilon_{11} = \frac{1}{E}(\sigma_{11}-\nu\sigma_{22}),\quad \epsilon_{22} = \frac{1}{E}(\sigma_{22}-\nu\sigma_{11})$$
+$$\epsilon_{12} = \frac{1+\nu}{E}\sigma_{12},\quad \epsilon_{33} = -\frac{\nu}{E}(\sigma_{11}+\sigma_{22}),\quad \epsilon_{23}=\epsilon_{31}=0$$
+逆に解いた**ひずみ→応力**の形は、
+$$\sigma_{11} = \frac{E}{1-\nu^2}(\epsilon_{11}+\nu\epsilon_{22}),\quad \sigma_{22} = \frac{E}{1-\nu^2}(\epsilon_{22}+\nu\epsilon_{11})$$
+$$\sigma_{12} = \frac{E}{1+\nu}\epsilon_{12},\quad \sigma_{33}=\sigma_{23}=\sigma_{31}=0$$
+:::
+
+---
+
+### 練習問題 1-12（平面ひずみの構成方程式の導出）
+
+平面ひずみ状態にある等方弾性体の構成方程式を導出せよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+**平面ひずみ状態**は、ある方向（例：$x_3$）が非常に長く、その方向の変位が拘束された構造（ダム、トンネル、長尺配管など）のモデルである。
+$$\epsilon_{33} = \epsilon_{23} = \epsilon_{31} = 0,\qquad u_1=u_1(x_1,x_2),\ u_2=u_2(x_1,x_2),\ u_3=0$$
+（例：厚板、バルク材の内部。）
+
+3次元の構成則にこの条件を代入する。$x_3$ 方向の変形が拘束されるため、面外に応力 $\sigma_{33}=\nu(\sigma_{11}+\sigma_{22})$ が発生するのが特徴である。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+ひずみ→応力の構成則に $\epsilon_{33}=\epsilon_{23}=\epsilon_{31}=0$ を代入すると、
+$$\sigma_{11} = \frac{E}{1+\nu}\left\{\epsilon_{11} + \frac{\nu}{1-2\nu}(\epsilon_{11}+\epsilon_{22})\right\},\quad
+\sigma_{22} = \frac{E}{1+\nu}\left\{\epsilon_{22} + \frac{\nu}{1-2\nu}(\epsilon_{11}+\epsilon_{22})\right\}$$
+$$\sigma_{33} = \nu(\sigma_{11}+\sigma_{22}),\quad \sigma_{12} = \frac{E}{1+\nu}\epsilon_{12},\quad \sigma_{23}=\sigma_{31}=0$$
+逆に応力→ひずみへ直すと、
+$$\epsilon_{11} = \frac{1}{E}(\sigma_{11}-\nu\sigma_{22}-\nu\sigma_{33}) = \frac{1}{E'}(\sigma_{11}-\nu'\sigma_{22}),\quad \epsilon_{22} = \frac{1}{E'}(\sigma_{22}-\nu'\sigma_{11})$$
+$$\epsilon_{12} = \frac{1+\nu'}{E'}\sigma_{12},\qquad E' = \frac{E}{1-\nu^2},\quad \nu' = \frac{\nu}{1-\nu}$$
+$E',\nu'$ を使うと平面応力と同じ形式で書ける。
+:::
+
+---
+
+### 練習問題 1-13（薄板の二軸引張）
+
+長さ 100 mm、幅 20 mm、板厚 1 mm、$E=100$ GPa、$\nu=0.3$ の薄板に図のように荷重を加えた。平面応力状態とみなせる。
+
+1. ひずみ $\epsilon_{11},\epsilon_{22}$ を求めよ。
+2. $x_1$ 方向に何 mm 伸びるか。
+
+```{python}
+#| fig-cap: "薄板（100 × 20 × 厚さ1 mm）への二軸荷重。x₁ 方向に 4000 N、x₂ 方向に 10000 N。"
+
+import plotly.graph_objects as go
+
+AX = dict(visible=False, showgrid=False, zeroline=False)
+TRANSP = dict(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
+
+def closed(pts):
+    xs = [p[0] for p in pts] + [pts[0][0]]
+    ys = [p[1] for p in pts] + [pts[0][1]]
+    return xs, ys
+
+W, H = 100, 20
+fig = go.Figure()
+px, py = closed([(0, 0), (W, 0), (W, H), (0, H)])
+fig.add_trace(go.Scatter(x=px, y=py, mode='lines', fill='toself', line=dict(color='gray', width=2),
+                         fillcolor='rgba(128,128,128,0.12)', showlegend=False))
+
+# x1 方向荷重（左右の短辺）4000 N
+for x0, d in [(W, 1), (0, -1)]:
+    fig.add_annotation(x=x0 + d * 22, y=H / 2, ax=x0, ay=H / 2, xref='x', yref='y', axref='x', ayref='y',
+                       showarrow=True, arrowhead=2, arrowwidth=2.5, arrowcolor='crimson')
+fig.add_annotation(x=W + 24, y=H / 2, text='4000 N (x₁)', showarrow=False, xanchor='left',
+                   font=dict(color='crimson', size=13))
+
+# x2 方向荷重（上下の長辺）10000 N
+for y0, d in [(H, 1), (0, -1)]:
+    fig.add_annotation(x=W / 2, y=y0 + d * 12, ax=W / 2, ay=y0, xref='x', yref='y', axref='x', ayref='y',
+                       showarrow=True, arrowhead=2, arrowwidth=2.5, arrowcolor='#1f77b4')
+fig.add_annotation(x=W / 2, y=H + 15, text='10000 N (x₂)', showarrow=False, font=dict(color='#1f77b4', size=13))
+
+# 寸法
+fig.add_annotation(x=W / 2, y=-7, text='長さ 100 mm', showarrow=False, font=dict(size=12, color='gray'))
+fig.add_annotation(x=-6, y=H / 2, text='幅<br>20 mm', showarrow=False, xanchor='right', font=dict(size=12, color='gray'))
+
+fig.update_xaxes(range=[-40, 150], **AX)
+fig.update_yaxes(range=[-20, 40], scaleanchor='x', scaleratio=1, **AX)
+fig.update_layout(height=240, **TRANSP, margin=dict(l=10, r=10, t=10, b=10))
+fig.show()
+```
+
+::: {.callout-note collapse="true"}
+##### 理論
+薄板の二軸引張を平面応力状態で扱う応用問題。**力 → 応力 → ひずみ → 変位**の順に計算する。
+
+* 各方向の引張応力は、荷重 $P$ を作用断面積 $A=w\cdot t$（幅 × 厚さ）で割って求める。
+* 平面応力の構成則 $\epsilon_{11}=\frac{1}{E}(\sigma_{11}-\nu\sigma_{22})$、$\epsilon_{22}=\frac{1}{E}(\sigma_{22}-\nu\sigma_{11})$ でひずみを求める。
+* 一様な伸びは $\Delta L = \epsilon_{11}L_0$。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+**1.** 各方向の応力は
+$$\sigma_{11} = \frac{4000\,\text{N}}{20\,\text{mm}\times1\,\text{mm}} = 200\,\text{MPa},\quad
+\sigma_{22} = \frac{10000\,\text{N}}{100\,\text{mm}\times1\,\text{mm}} = 100\,\text{MPa}$$
+$$\epsilon_{11} = \frac{1}{E}(\sigma_{11}-\nu\sigma_{22}) = 1.7\times10^{-3},\quad
+\epsilon_{22} = \frac{1}{E}(\sigma_{22}-\nu\sigma_{11}) = 4.0\times10^{-4}$$
+
+**2.** $\Delta L = \epsilon_{11}\,l = 1.7\times10^{-3}\times100\,\text{mm} = 0.17\,\text{mm}$
+:::
+
+---
+
+### 練習問題 1-14（熱応力）
+
+$E,\nu$、線膨張係数 $\alpha$ の等方弾性体に一様な温度上昇 $\Delta T$ を与えるとき、次の拘束条件で応力を求めよ。
+
+1. 自由膨張：完全に自由なときのひずみと応力。
+2. 1軸拘束：$\epsilon_{11}=0,\ \sigma_{22}=\sigma_{33}=0$ のとき $\sigma_{11}$。
+3. 2軸拘束：$\epsilon_{11}=\epsilon_{22}=0,\ \sigma_{33}=0$ のときの面内応力。
+4. 3軸拘束：$\epsilon_{11}=\epsilon_{22}=\epsilon_{33}=0$ のときの応力。
+
+::: {.callout-note collapse="true"}
+##### 理論
+温度変化を含む構成則は**デュアメル・ノイマンの式**と呼ばれ、フックの法則に熱ひずみ $\epsilon^T_{ij}=\alpha\Delta T\,\delta_{ij}$ を加えた形になる。
+$$\epsilon_{ij} = \frac{1+\nu}{E}\sigma_{ij} - \frac{\nu}{E}\sigma_{kk}\delta_{ij} + \alpha\Delta T\,\delta_{ij}$$
+物体が境界に拘束されて自由膨張できないと、内部に**熱応力**が生じる。拘束の次元が増えるほど、ポアソン効果で横方向の膨張も抑えられ、発生する応力の絶対値が大きくなる。各拘束条件を上式に代入して解けばよい。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+1. **自由膨張**：$\sigma_{ij}=0$、$\epsilon_{11}=\epsilon_{22}=\epsilon_{33}=\alpha\Delta T$
+2. **1軸拘束**：$\epsilon_{11}=\dfrac{\sigma_{11}}{E}+\alpha\Delta T=0$ より $\sigma_{11}=-E\alpha\Delta T$
+3. **2軸拘束**：対称性から $\sigma_{11}=\sigma_{22}=\sigma$。$\dfrac{\sigma(1-\nu)}{E}+\alpha\Delta T=0$ より $\sigma=-\dfrac{E\alpha\Delta T}{1-\nu}$
+4. **3軸拘束**：$\sigma_{11}=\sigma_{22}=\sigma_{33}=\sigma$。$\dfrac{\sigma(1-2\nu)}{E}+\alpha\Delta T=0$ より $\sigma=-\dfrac{E\alpha\Delta T}{1-2\nu}=-3K\alpha\Delta T$
+
+拘束が増えるほど横ひずみ分まで打ち消すため、より大きな応力が生じる。
+:::
+
+---
+
+### 練習問題 1-15（平面応力の数値計算）
+
+$E=206$ GPa、$\nu=0.30$ の鋼材（等方体）とする。
+
+1. 厚さ $t$ の薄板に $\sigma_{11}=150$ MPa、$\sigma_{22}=60$ MPa、$\sigma_{12}=0$ が作用。① $\epsilon_{11},\epsilon_{22},\epsilon_{33}$、② 板厚変化率 $\Delta t/t$ を求めよ。
+2. 同じ薄板に純せん断 $\sigma_{12}=\tau=80$ MPa のみ作用（$\sigma_{11}=\sigma_{22}=0$）。① $\gamma_{12}$、② 主応力・主ひずみを求め、$\gamma_{12}=\epsilon_1-\epsilon_2$ を確認せよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+* **板厚変化**：平面応力では $\sigma_{33}=0$ だが、ポアソン効果で $\epsilon_{33}=-\frac{\nu}{E}(\sigma_{11}+\sigma_{22})$ が生じ、これが板厚変化率 $\Delta t/t$ に等しい。
+* **純せん断と主応力**：せん断のみの状態は、座標を $45^\circ$ 回すと直交2軸の引張・圧縮 $\sigma_{1,2}=\pm\tau$ と等価になる。対応する主ひずみの差 $\epsilon_1-\epsilon_2$ は、元の座標系の工学せん断ひずみ $\gamma_{12}=2\epsilon_{12}$ に一致する。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+**1. ①** 平面応力（$\sigma_{33}=0$）より
+$$\epsilon_{11} = \frac{150-0.3\times60}{206000} = 6.41\times10^{-4},\quad
+\epsilon_{22} = \frac{60-0.3\times150}{206000} = 7.28\times10^{-5}$$
+$$\epsilon_{33} = -\frac{\nu}{E}(\sigma_{11}+\sigma_{22}) = -\frac{0.3\times210}{206000} = -3.06\times10^{-4}$$
+**1. ②** $\dfrac{\Delta t}{t} = \epsilon_{33} = -3.06\times10^{-4}$
+
+**2. ①** $G=\dfrac{206000}{2\times1.3}=7.92\times10^4$ MPa より $\gamma_{12}=\dfrac{\tau}{G}=\dfrac{80}{79231}=1.01\times10^{-3}$
+**2. ②** 主応力 $\sigma_1=+\tau=80$ MPa、$\sigma_2=-\tau=-80$ MPa。主ひずみは
+$$\epsilon_1 = \frac{1}{E}(\sigma_1-\nu\sigma_2) = \frac{\tau(1+\nu)}{E} = 5.05\times10^{-4},\quad \epsilon_2 = -5.05\times10^{-4}$$
+よって $\epsilon_1-\epsilon_2 = 1.01\times10^{-3} = \gamma_{12}$ が成り立つ。
+:::
+
+---
+
+### 練習問題 1-16（平面ひずみの数値計算）
+
+$E=206$ GPa、$\nu=0.30$ の鋼材。厚肉部材の内部で $\sigma_{11}=150$ MPa、$\sigma_{22}=60$ MPa が生じ、$x_3$ 方向は完全拘束（$\epsilon_{33}=0$）とする。
+
+1. 面外応力 $\sigma_{33}$ を求めよ。
+2. $\epsilon_{11},\epsilon_{22}$ を求め、練習問題 1-15（平面応力）の $\epsilon_{11}$ と比較せよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+平面応力と平面ひずみの「見かけの剛性」の違いを比較する問題。平面ひずみ（$\epsilon_{33}=0$）では面外変形を抑える拘束応力 $\sigma_{33}=\nu(\sigma_{11}+\sigma_{22})$ が発生する。この拘束応力のため、同じ面内応力でも面内ひずみ $\epsilon_{11}$ は平面応力より小さくなる ＝ 多軸拘束で見かけのヤング率（剛性）が上がる。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+**1.** $\epsilon_{33}=0$ より
+$$\sigma_{33} = \nu(\sigma_{11}+\sigma_{22}) = 0.3\times210 = 63\,\text{MPa}$$
+**2.**
+$$\epsilon_{11} = \frac{1}{E}[\sigma_{11}-\nu(\sigma_{22}+\sigma_{33})] = \frac{150-0.3(60+63)}{206000} = 5.49\times10^{-4}$$
+$$\epsilon_{22} = \frac{1}{E}[\sigma_{22}-\nu(\sigma_{11}+\sigma_{33})] = \frac{60-0.3(150+63)}{206000} = -1.89\times10^{-5}$$
+平面応力の $\epsilon_{11}=6.41\times10^{-4}$ より小さく、拘束により見かけ上硬くなっていることがわかる。
+:::
+
+---
+
+## 8. 2次元極座標系（補足）
+
+円筒や円孔を含む2次元問題では、直交座標 $(x_1,x_2)$ より極座標 $(r,\theta)$ のほうが扱いやすい。
+
+### 練習問題 1-17（極座標の応力変換と軸対称変形）
+
+1. 平面状態で $\sigma_{11}=\sigma_0,\ \sigma_{22}=\sigma_{12}=0$（単軸引張）のとき、極座標の応力成分を $\theta$ の関数で表し、$\sigma_{\theta\theta}$ が最大・最小となる $\theta$ を求めよ。
+2. 軸対称変位 $u_r=u_r(r),\ u_\theta=0$ について、① $u_r=Cr$（一様膨張）、② $u_r=A/r$（空洞まわり型）の各ひずみ成分と和 $\epsilon_{rr}+\epsilon_{\theta\theta}$ を求め、変形の特徴を述べよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+直交座標と極座標は $x_1=r\cos\theta,\ x_2=r\sin\theta$ で結ばれる。
+
+**応力の極座標変換**（角度 $\theta$ の回転座標変換と同じ）：
+$$\sigma_{rr} = \sigma_{11}\cos^2\theta + \sigma_{22}\sin^2\theta + 2\sigma_{12}\sin\theta\cos\theta$$
+$$\sigma_{\theta\theta} = \sigma_{11}\sin^2\theta + \sigma_{22}\cos^2\theta - 2\sigma_{12}\sin\theta\cos\theta$$
+$$\sigma_{r\theta} = (\sigma_{22}-\sigma_{11})\sin\theta\cos\theta + \sigma_{12}(\cos^2\theta-\sin^2\theta)$$
+
+**軸対称のひずみ–変位関係**（$\theta$ 方向に変位せず $u_r$ が $r$ のみの関数のとき）：
+$$\epsilon_{rr} = \frac{\partial u_r}{\partial r},\quad \epsilon_{\theta\theta} = \frac{u_r}{r},\quad \epsilon_{r\theta} = 0$$
+和 $\epsilon_{rr}+\epsilon_{\theta\theta}$ は面内の面積変化率を表し、0 のときは面積変化を伴わないせん断的変形に対応する。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+**1.** 単軸引張 $\sigma_{11}=\sigma_0$ を代入すると
+$$\sigma_{rr} = \sigma_0\cos^2\theta,\quad \sigma_{\theta\theta} = \sigma_0\sin^2\theta,\quad \sigma_{r\theta} = -\sigma_0\sin\theta\cos\theta$$
+$\sigma_{\theta\theta}$ は $\theta=90^\circ$ で最大 $\sigma_0$、$\theta=0^\circ$ で最小 0（円孔まわりの応力集中に関連）。
+
+**2. ①** $u_r=Cr$：$\epsilon_{rr}=C,\ \epsilon_{\theta\theta}=C,\ \epsilon_{r\theta}=0$。
+$\epsilon_{rr}+\epsilon_{\theta\theta}=2C$（一様な等二軸ひずみ＝面積膨張）。
+**②** $u_r=A/r$：$\epsilon_{rr}=-A/r^2,\ \epsilon_{\theta\theta}=A/r^2,\ \epsilon_{r\theta}=0$。
+$\epsilon_{rr}+\epsilon_{\theta\theta}=0$（面積変化を伴わないせん断的変形）。
+:::
+
+---
+
+## 9. 応力関数（補足）
+
+弾性問題は多変数の偏微分方程式になる。これを解きやすくする数学的工夫が**応力関数**である。
+
+### 練習問題 1-18（エアリーの応力関数）
+
+1. 物体力がないとき、2次元の平衡方程式が、応力を1つの関数 $f$ の微分で表すと $f$ の形によらず自動的に満たされることを示せ。
+2. 次の応力関数について各応力を求め、応力状態を述べよ。① $f=\frac{1}{2}ax_2^2$、② $f=\frac{1}{2}bx_1^2$、③ $f=cx_1x_2$、④ ①〜③の和。
+
+::: {.callout-note collapse="true"}
+##### 理論
+2次元で物体力が無視できるとき、応力をスカラー関数 $f(x_1,x_2)$（**エアリーの応力関数**）の2階偏微分で定義する。
+$$\sigma_{11} = \frac{\partial^2 f}{\partial x_2^2},\quad \sigma_{22} = \frac{\partial^2 f}{\partial x_1^2},\quad \sigma_{12} = -\frac{\partial^2 f}{\partial x_1 \partial x_2}$$
+こう定義すると、偏微分の順序交換可能性により平衡方程式が自動的に満たされる。よって応力3成分を1つの関数に帰着でき、軸対称問題などが解きやすくなる。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+**1.** 平衡方程式の第1式に代入すると、
+$$\frac{\partial}{\partial x_1}\left(\frac{\partial^2 f}{\partial x_2^2}\right) + \frac{\partial}{\partial x_2}\left(-\frac{\partial^2 f}{\partial x_1 \partial x_2}\right) = \frac{\partial^3 f}{\partial x_1 \partial x_2^2} - \frac{\partial^3 f}{\partial x_1 \partial x_2^2} = 0$$
+もう一方の式も微分の順序を入れ替えると打ち消し合い、常に 0 を満たす。
+
+**2.**
+① $\sigma_{11}=a,\ \sigma_{22}=0,\ \sigma_{12}=0$ → $x_1$ 方向の一様単軸応力
+② $\sigma_{11}=0,\ \sigma_{22}=b,\ \sigma_{12}=0$ → $x_2$ 方向の一様単軸応力
+③ $\sigma_{11}=0,\ \sigma_{22}=0,\ \sigma_{12}=-c$ → 一様な純せん断
+④ ①〜③の和：$\sigma_{11}=a,\ \sigma_{22}=b,\ \sigma_{12}=-c$ → 重ね合わせによる一様な一般応力状態
+:::
