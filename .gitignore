@@ -1,6 +1,47 @@
-/.quarto/
-
+# macOS / editor noise
 **/.DS_Store
+.vscode/
+.idea/
+
+# Python / uv environments and caches
+.venv/
+venv/
+env/
+.env/
+__pycache__/
+*.py[cod]
+*$py.class
+.python-version.tmp
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# uv cache metadata should live outside this iCloud-synced project.
+.uv-cache/
+
+# Jupyter
+.jupyter/
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
 **/*.quarto_ipynb
 
-/env/
+# Quarto generated state and render output
+.quarto/
+_cache/
+_freeze/
+_site/
+*_cache/
+*_files/
+
+# Rendered artifacts. Keep intentional source/reference files explicitly below.
+*.html
+*.pdf
+*.docx
+*.odt
+*.rtf
+*.tex
+
+!_includes/**/*.html
+!_reference-docs/**/*.docx

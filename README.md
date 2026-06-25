@@ -2,25 +2,48 @@
 
 Quarto-based personal journal site with a `uv`-managed Python environment.
 
-## Setup
+## Development
 
-1. Install `uv` and `direnv`.
+Install `uv`, `direnv`, and Quarto on each machine. This project keeps the `uv`
+virtual environment outside the iCloud-synced checkout via `.envrc`.
 
-```bash
-uv python install 3.12
-```
-
-2. Allow the project environment once:
+### First setup
 
 ```bash
+uv python install
 direnv allow
+uv sync
+python -m ipykernel install --user --name quarto-notes --display-name "Python (quarto-notes)"
 ```
 
-After that, entering this directory will automatically:
+The virtual environment is stored at:
 
-- create `.venv` with the Python version from `.python-version`
-- run `uv sync` when dependencies change
-- activate the virtual environment
+```bash
+$HOME/.local/uv-venvs/quarto-notes
+```
+
+Do not commit `.venv`, `_site`, `_freeze`, `.quarto`, Jupyter checkpoints, or
+rendered HTML/PDF/DOCX outputs. If a PDF/DOCX/HTML file is an intentional source
+asset, add it deliberately with an exception or `git add -f`.
+
+### Local preview
+
+```bash
+uv run quarto preview
+```
+
+### Local render
+
+```bash
+uv run quarto render
+```
+
+The published site is rendered by GitHub Actions and deployed to GitHub Pages
+from the `_site` artifact. Generated site files should not be committed.
+
+If GitHub Pages is currently configured to publish from `docs/` or a `gh-pages`
+branch, switch the repository Pages source to GitHub Actions after this workflow
+is merged.
 
 ## Main Python Packages
 
