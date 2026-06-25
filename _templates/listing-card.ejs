@@ -76,7 +76,7 @@ var categoriesEncoded = categoryData(cats);
 <% if (eyebrow) { %>
 <div class="gl-eyebrow"><span class="gl-eyebrow-pill"><%- eyebrow %></span></div>
 <% } %>
-<h2 class="gl-title listing-title"><%- item.title %></h2>
+<h2 class="gl-title listing-title"><a href="<%- item.path %>" class="gl-title-link"><%- item.title %></a></h2>
 <% if (item.description && !toStr(item.description).startsWith('<!--')) { %>
 <p class="gl-desc listing-description"><%- item.description %></p>
 <% } %>

@@ -3,5 +3,6 @@ set -euo pipefail
 
 export UV_PROJECT_ENVIRONMENT="${UV_PROJECT_ENVIRONMENT:-$HOME/.local/uv-venvs/quarto-notes}"
 export UV_CACHE_DIR="${UV_CACHE_DIR:-$HOME/.cache/uv}"
+export QUARTO_PYTHON="$UV_PROJECT_ENVIRONMENT/bin/python"
 
 exec uv run quarto "$@"

@@ -34,6 +34,7 @@ uv run quarto preview
 
 VS Code's Quarto extension uses the project wrapper at `scripts/quarto`, so the
 toolbar Preview button also runs through `uv`.
+The wrapper also sets `QUARTO_PYTHON` to the uv-managed Python interpreter.
 Run "Developer: Reload Window" in VS Code after pulling this setting.
 
 ### Local render
