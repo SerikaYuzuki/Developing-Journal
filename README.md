@@ -32,6 +32,10 @@ asset, add it deliberately with an exception or `git add -f`.
 uv run quarto preview
 ```
 
+VS Code's Quarto extension uses the project wrapper at `scripts/quarto`, so the
+toolbar Preview button also runs through `uv`.
+Run "Developer: Reload Window" in VS Code after pulling this setting.
+
 ### Local render
 
 ```bash
