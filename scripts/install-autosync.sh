@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #
-# install-autosync.sh — Developing-Journal 用の launchd エージェントをインストールする
+# install-autosync.sh — リポジトリ用の launchd autosync エージェントをインストールする
+# (ラベルとログ名はリポジトリのディレクトリ名から自動導出される)
 #
 # 使い方:
 #   scripts/install-autosync.sh [REPO_DIR]
@@ -15,12 +16,6 @@
 
 set -u
 
-LABEL="com.serikayuzuki.developing-journal-autosync"
-PLIST_DIR="$HOME/Library/LaunchAgents"
-PLIST_PATH="$PLIST_DIR/${LABEL}.plist"
-LOG_DIR="$HOME/Library/Logs"
-LOG_PATH="$LOG_DIR/developing-journal-autosync.log"
-
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 AUTOSYNC_SCRIPT="$SCRIPT_DIR/autosync.sh"
 
@@ -29,6 +24,13 @@ if [ "${1:-}" != "" ]; then
 else
   REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 fi
+
+REPO_NAME_LOWER="$(basename "$REPO_DIR" | tr '[:upper:]' '[:lower:]')"
+LABEL="com.serikayuzuki.${REPO_NAME_LOWER}-autosync"
+PLIST_DIR="$HOME/Library/LaunchAgents"
+PLIST_PATH="$PLIST_DIR/${LABEL}.plist"
+LOG_DIR="$HOME/Library/Logs"
+LOG_PATH="$LOG_DIR/${REPO_NAME_LOWER}-autosync.log"
 
 if [ ! -x "$AUTOSYNC_SCRIPT" ]; then
   echo "ERROR: $AUTOSYNC_SCRIPT が存在しないか実行権限がありません。" >&2

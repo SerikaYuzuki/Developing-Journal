@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# autosync.sh — Developing-Journal リポジトリの自動commit/push/pull
+# autosync.sh — gitリポジトリの自動commit/push/pull
 #
 # 使い方:
 #   scripts/autosync.sh [REPO_DIR]
@@ -45,7 +45,7 @@ notify_once() {
     log "already notified for reason '$reason_key'. skip notification."
     return 0
   fi
-  notify "Developing-Journal autosync" "$message"
+  notify "${REPO_NAME} autosync" "$message"
   printf '%s' "$reason_key" > "$NOTIFIED_FLAG"
 }
 
@@ -61,6 +61,7 @@ if [ ! -d "$REPO_DIR/.git" ]; then
   exit 1
 fi
 
+REPO_NAME="$(basename "$REPO_DIR")"
 HOSTNAME_SHORT="$(hostname -s)"
 NOTIFIED_FLAG="$REPO_DIR/.git/autosync-notified"
 LOCK_DIR="$REPO_DIR/.git/autosync.lock"
