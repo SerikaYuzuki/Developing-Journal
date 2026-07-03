@@ -31,15 +31,15 @@ htmlcov/
 **/.ipynb_checkpoints/
 **/*.quarto_ipynb
 
-# Quarto generated state and render output
+# Quarto generated state and caches.
+# `_site/` is intentionally committed in this repository.
 .quarto/
 _cache/
 _freeze/
-_site/
 *_cache/
 *_files/
 
-# Rendered artifacts. Keep intentional source/reference files explicitly below.
+# Rendered artifacts outside `_site/`. Keep intentional source/reference files explicitly below.
 *.html
 *.pdf
 *.docx
@@ -47,6 +47,7 @@ _site/
 *.rtf
 *.tex
 
+!_site/**
 !_includes/**/*.html
 !_reference-docs/**/*.docx
 

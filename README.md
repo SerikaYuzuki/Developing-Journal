@@ -22,9 +22,9 @@ The virtual environment is stored at:
 $HOME/.local/uv-venvs/quarto-notes
 ```
 
-Do not commit `.venv`, `_site`, `_freeze`, `.quarto`, Jupyter checkpoints, or
-rendered HTML/PDF/DOCX outputs. If a PDF/DOCX/HTML file is an intentional source
-asset, add it deliberately with an exception or `git add -f`.
+Do not commit `.venv`, `_freeze`, `.quarto`, Jupyter checkpoints, or local
+runtime/cache files. This repository does commit `_site`, so local renders update
+the static site output that should be committed together with source changes.
 
 ### Local preview
 
@@ -43,12 +43,8 @@ Run "Developer: Reload Window" in VS Code after pulling this setting.
 uv run quarto render
 ```
 
-The published site is rendered by GitHub Actions and deployed to GitHub Pages
-from the `_site` artifact. Generated site files should not be committed.
-
-If GitHub Pages is currently configured to publish from `docs/` or a `gh-pages`
-branch, switch the repository Pages source to GitHub Actions after this workflow
-is merged.
+Because this repository does not use GitHub Pages deployment, commit the updated
+`_site` files when you want to publish or preserve rendered output.
 
 ## Main Python Packages
 
