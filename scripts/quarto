@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-export UV_PROJECT_ENVIRONMENT="${UV_PROJECT_ENVIRONMENT:-$HOME/.local/uv-venvs/quarto-notes}"
-export UV_CACHE_DIR="${UV_CACHE_DIR:-$HOME/.cache/uv}"
-export QUARTO_PYTHON="$UV_PROJECT_ENVIRONMENT/bin/python"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/.." && pwd)"
 
+unset UV_PROJECT_ENVIRONMENT
+export UV_CACHE_DIR="${UV_CACHE_DIR:-$HOME/.cache/uv}"
+export QUARTO_PYTHON="$PROJECT_ROOT/.venv/bin/python"
+
+cd "$PROJECT_ROOT"
 exec uv run quarto "$@"

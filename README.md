@@ -5,7 +5,8 @@ Quarto-based personal journal site with a `uv`-managed Python environment.
 ## Development
 
 Install `uv`, `direnv`, and Quarto on each machine. This project keeps the `uv`
-virtual environment outside the iCloud-synced checkout via `.envrc`.
+virtual environment in the project-local `.venv/` directory, which is ignored by
+Git.
 
 ### First setup
 
@@ -19,7 +20,7 @@ python -m ipykernel install --user --name quarto-notes --display-name "Python (q
 The virtual environment is stored at:
 
 ```bash
-$HOME/.local/uv-venvs/quarto-notes
+.venv/
 ```
 
 Do not commit `.venv`, `_freeze`, `.quarto`, Jupyter checkpoints, or local
