@@ -13,6 +13,8 @@
 - **GitHub Actions のデプロイは削除済み**（コミット `4e38a50`）。CI での自動レンダー/デプロイは行わない。
 - **配信は独自ドメイン**（`CNAME`）。`.nojekyll` を置いて Jekyll 処理を無効化。
 - **Python 環境はプロジェクトローカルの `.venv/`**（コミット `92c7e32` で共有 venv から移行）。`uv` + `direnv` 前提。
+- (2026-07-07) **共有テーマ・フィルタは quarto-serika に集約**。旧 `_scss/` `_includes/` `_filters/` `_csl/` `_reference-docs/` `styles.css` は削除し、`_extensions/serika/` に vendoring（源: https://github.com/SerikaYuzuki/quarto-serika 、ローカル `/Users/recky/GitHub/quarto-serika`）。修正は quarto-serika 側で行い、`/Users/recky/GitHub/quarto-serika/scripts/install.sh /Users/recky/GitHub/Developing-Journal` で取り込む。`quarto add <ローカルパス>` は `serika/` の org 階層をフラット化し、GitHub 経由の `quarto add SerikaYuzuki/quarto-serika` も `_extensions/SerikaYuzuki/` になるため使わない。html テーマはカスタム format ではなく `_quarto.yml` からのパス参照方式（navbar/sidebar 互換のため）。
+- (2026-07-07) `posts/report/_metadata.yml` の `format.pdf` は quarto-serika の `report-pdf` format に**置き換えていない**（こちらは geometry・二段組・CSL 指定なしの簡易設定で、置き換えると出力レイアウトが変わるため）。統一するかはユーザー判断待ち。
 
 ## 注意点
 

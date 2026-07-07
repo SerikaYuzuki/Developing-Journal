@@ -14,10 +14,8 @@
 | パス | 役割 |
 | --- | --- |
 | `posts/` | 記事本体（`.qmd`）。カテゴリごとにサブディレクトリ。執筆規約は [`posts/AGENTS.md`](posts/AGENTS.md) を参照 |
-| `_scss/`, `styles.css` | テーマ（glass dark/light）とスタイル |
-| `_includes/` | HTML ヘッダ差し込み（plotly 設定・サイドバートグル） |
-| `_filters/` | Pandoc Lua フィルタ（日本語の et al. 表記など） |
-| `_csl/`, `bibliography.bib` | 引用スタイルと文献データベース |
+| `_extensions/serika/` | 共有テーマ・フィルタ・テンプレート（glass テーマ、styles.css、ヘッダ差し込み、Lua フィルタ、CSL など）の vendoring 先。**源は [quarto-serika](https://github.com/SerikaYuzuki/quarto-serika)**（ローカル: `/Users/recky/GitHub/quarto-serika`）。直接編集せず、修正は quarto-serika 側で行い `scripts/install.sh <このプロジェクトのパス>` で取り込む |
+| `bibliography.bib` | 文献データベース |
 | `_templates/` | リスティングカードのテンプレート（EJS） |
 | `_site/` | レンダー出力。**このリポジトリではコミット対象**（下記参照） |
 | `_freeze/`, `.quarto/` | Quarto のキャッシュ。**コミットしない** |
