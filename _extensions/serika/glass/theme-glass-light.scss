@@ -354,17 +354,21 @@ p code, li code, td code {
 }
 
 // ---- Code block (glass card) -----------------------------------------------
-div.sourceCode {
+div.sourceCode,
+pre.text,
+pre:not([class]) {
   @include glass($glass-bg);
   border-radius: $glass-radius;
   padding: 1.25rem 1.5rem !important;
   margin: 1.5rem 0;
   overflow-x: auto;
+  color: $body-color;
 
   code {
     background: transparent;
-    color: $body-color;
+    color: inherit;
     padding: 0;
+    font-family: $font-family-monospace;
   }
 }
 
