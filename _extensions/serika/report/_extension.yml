@@ -1,0 +1,77 @@
+title: Report
+author: Serika Yuzuki
+version: 1.0.0
+quarto-required: ">=1.4.0"
+contributes:
+  formats:
+    pdf:
+      documentclass: ltjsarticle
+      pdf-engine: lualatex
+      papersize: a4
+      fontsize: 10.5pt
+      geometry:
+        - top=20mm
+        - bottom=20mm
+        - left=20mm
+        - right=20mm
+      link-citations: true
+      citecolor: blue
+      csl: apa-compact.csl
+      notes-after-punctuation: true
+      include-in-header:
+        text: |
+          \usepackage{physics}
+          \usepackage[version=4]{mhchem}
+          \providecommand{\require}[1]{}
+          % 二段組の縦均等割り付け(\flushbottom)を止める。これがないと
+          % plus付きのアキが列を埋めるため引き伸ばされ、数式上や図下が
+          % 1行分開いてしまう。
+          \raggedbottom
+          \AtBeginDocument{%
+            \fontsize{10.5pt}{16pt}\selectfont
+            \setlength{\parskip}{0pt}%
+            \setlength{\parindent}{1\zw}%
+            % アキはすべて剛体値(plus/minus無し)にする。glueを付けると
+            % 二段組の縦調整で引き伸ばされ、1行分開いてしまうため。
+            % ディスプレイ数式の上下アキ（行送り16ptの約0.2行≒3pt）
+            \setlength{\abovedisplayskip}{3pt}%
+            \setlength{\belowdisplayskip}{3pt}%
+            \setlength{\abovedisplayshortskip}{3pt}%
+            \setlength{\belowdisplayshortskip}{3pt}%
+            % 図フロートと本文の間のアキ（ほぼゼロにして「図下の空行」を消す）
+            \setlength{\textfloatsep}{0pt}%
+            \setlength{\floatsep}{0pt}%
+            \setlength{\intextsep}{0pt}%
+            \setlength{\abovecaptionskip}{2pt}%
+            \setlength{\belowcaptionskip}{0pt}%
+          }
+          \makeatletter
+          \renewcommand{\maketitle}{%
+            \twocolumn[{%
+              \begin{@twocolumnfalse}
+                \begin{center}
+                  {\fontsize{12pt}{16pt}\selectfont\bfseries\@title\par}
+                  {\fontsize{10.5pt}{16pt}\selectfont\@author\par}
+                \end{center}
+              \end{@twocolumnfalse}
+            }]%
+          }
+          \makeatother
+          \makeatletter
+          \@ifundefined{CSLReferences}{}{%
+            \let\oldCSLReferences\CSLReferences
+            \let\endoldCSLReferences\endCSLReferences
+            \renewenvironment{CSLReferences}[2]{%
+              \begingroup
+              \fontsize{9pt}{12pt}\selectfont
+              \oldCSLReferences{#1}{#2}%
+            }{%
+              \endoldCSLReferences
+              \endgroup
+            }%
+          }
+          \makeatother
+    docx:
+      reference-doc: report.docx
+      filters:
+        - docx-two-column-after-title.lua
