@@ -1162,6 +1162,12 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-18" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/論文読書/GPT-Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ti-Al-N-Based Hard Coatings: Thermodynamical Background, CVD Deposition, and Properties. A Review</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../posts/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ti-Al-N系硬質コーティング：熱力学的背景・CVD成膜・特性レビュー</span></a>
   </div>
@@ -1548,7 +1554,7 @@ v_d = \frac{J}{Nq} = \frac{10^6}{8.5\times10^{28}\times1.6\times10^{-19}} \appro
 </div>
 </div>
 <p>下のグラフは、金属・半導体・絶縁体の典型的な伝導度を対数軸で比較したもの。<strong>20桁以上</strong>にわたって広がっているのが半導体材料のレンジの広さを物語る。</p>
-<div id="6ee76cf7" class="cell" data-execution_count="1">
+<div id="91705925" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>コードはこちら</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1625,7 +1631,7 @@ E_g = E_c - E_v:\ \text{バンドギャップ}.
 </tbody>
 </table>
 <p>ポイントは、絶縁体と半導体の違いは<strong>程度の差（<span class="math inline">\(E_g\)</span> の大小）でしかない</strong>こと。ダイヤモンド（<span class="math inline">\(E_g\approx5.5\ \mathrm{eV}\)</span>）は絶縁体だが、同じ構造の Si（<span class="math inline">\(E_g\approx1.12\ \mathrm{eV}\)</span>）は半導体。ここが半導体の「調教可能性」を生む。</p>
-<div id="05daa0d8" class="cell" data-execution_count="2">
+<div id="b0d60515" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>コードはこちら</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1713,7 +1719,7 @@ I_D = \mu C_{ox}\frac{W}{L}\left[(V_G-V_T)^2 - \frac{(V_G-V_T)^2}{2}\right]
 \]</span></p>
 <p>つまり MOSFET は、<span class="math inline">\(V_G\)</span> を変えることで <span class="math inline">\(I_D\)</span> を<strong>二乗的に</strong>制御できる。<span class="math inline">\(V_T\)</span> は「ゲートで電流の蛇口を開け始める電圧」と覚える。</p>
 <p>下のグラフは、上の 2 式から <span class="math inline">\(I_D\)</span>–<span class="math inline">\(V_D\)</span> 特性（出力特性）を描いたもの。各曲線が立ち上がってから水平に飽和する様子と、ピンチオフの境界（点線）を確認してほしい。</p>
-<div id="10b15a8b" class="cell" data-execution_count="3">
+<div id="6774eb9e" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>コードはこちら</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1825,7 +1831,7 @@ A &amp; B &amp; X\\
 0.7^2 = 0.49 \approx \frac{1}{2}
 \]</span></p>
 <p>になるので、<strong>同じ面積に約 2 倍</strong>のトランジスタを置ける。これが数世代積み重なると、集積度は指数関数的（雪だるま式）に増える。<span class="math inline">\(n\)</span> 世代後の集積度は <span class="math inline">\(2^n\)</span> 倍。</p>
-<div id="8ab14005" class="cell" data-execution_count="4">
+<div id="e5b2951b" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>コードはこちら</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1885,7 +1891,7 @@ h\nu \ge E_g
 <li><span class="math inline">\(E_g\)</span> が<strong>大きすぎる</strong> → <span class="math inline">\(h\nu &lt; E_g\)</span> の光（赤・赤外）を吸収できず、利用できる太陽光が減る。</li>
 </ul>
 <p>このトレードオフから、単接合セルの理論効率（Shockley–Queisser 限界）は <span class="math inline">\(E_g \approx 1.1\)</span>–<span class="math inline">\(1.4\ \mathrm{eV}\)</span> 付近で最大となる。Si（1.12 eV）や GaAs（1.42 eV）が使われるのはこのため。</p>
-<div id="b39948b2" class="cell" data-execution_count="5">
+<div id="3acd9b99" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>コードはこちら</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1947,7 +1953,7 @@ h\nu \ge E_g
 </div>
 </div>
 <p>下のグラフは <span class="math inline">\(\lambda = 1240/E_g\)</span> を可視光域に重ねたもの。代表的な LED 材料がどの色になるかを確認できる。</p>
-<div id="f5855c6f" class="cell" data-execution_count="6">
+<div id="4a2e0ad3" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>コードはこちら</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -2049,7 +2055,7 @@ E = \frac{1}{2}\frac{e^2}{4\pi\varepsilon_0 r} - \frac{e^2}{4\pi\varepsilon_0 r}
 \]</span> 波長に直すと <span class="math inline">\(\lambda = 1240/1.89 \approx 656\ \mathrm{nm}\)</span>。<strong>水素の赤い輝線（H<span class="math inline">\(\alpha\)</span>）</strong>そのもの。</p>
 </div>
 </div>
-<div id="d3015df9" class="cell" data-execution_count="7">
+<div id="cf6623d2" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>コードはこちら</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -2086,7 +2092,7 @@ E = \frac{1}{2}\frac{e^2}{4\pi\varepsilon_0 r} - \frac{e^2}{4\pi\varepsilon_0 r}
 <h1>結合とエネルギーバンドの形成</h1>
 <p>原子が 1 個なら電子準位は離散的。原子が 2 個近づくと、同じエネルギー準位が相互作用して<strong>結合性軌道</strong>と<strong>反結合性軌道</strong>に分裂する。原子が <span class="math inline">\(N\)</span> 個集まると、1 本の準位が <span class="math inline">\(N\)</span> 本に分裂する。</p>
 <p>固体では <span class="math inline">\(N \sim 10^{23}\)</span> 級なので、準位はほぼ連続的な<strong>バンド</strong>になる。Si では下から <strong>価電子帯 → 禁制帯 → 伝導帯</strong> が形成される。</p>
-<div id="71d26367" class="cell" data-execution_count="8">
+<div id="7409d062" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>コードはこちら</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -2149,7 +2155,7 @@ N(E) = \frac{1}{3\pi^2}\left(\frac{2 m_e^*(E - E_c)}{\hbar^2}\right)^{3/2}.
 \boxed{\;D_c(E) = \frac{1}{2\pi^2}\left(\frac{2 m_e^*}{\hbar^2}\right)^{3/2}\sqrt{E - E_c}\;}
 \]</span></p>
 <p>つまり伝導帯下端から上に行くほど、状態密度は <span class="math inline">\(\sqrt{E - E_c}\)</span> で増える。価電子帯側も同様に <span class="math inline">\(\sqrt{E_v - E}\)</span> で下に増える。</p>
-<div id="d9745078" class="cell" data-execution_count="9">
+<div id="4f930c26" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>コードはこちら</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -2194,7 +2200,7 @@ N(E) = \frac{1}{3\pi^2}\left(\frac{2 m_e^*(E - E_c)}{\hbar^2}\right)^{3/2}.
 f(E_f) = \frac{1}{1 + e^0} = \frac{1}{2}.
 \]</span></p>
 <p>つまり<strong>フェルミ準位は占有確率が 1/2 になるエネルギー</strong>。温度 <span class="math inline">\(T\)</span> を上げると、<span class="math inline">\(E_f\)</span> 近傍での分布の「なまり」が広がる（幅 <span class="math inline">\(\sim k_B T\)</span>）。<span class="math inline">\(T\to0\)</span> では階段関数になり、<span class="math inline">\(E_f\)</span> 以下が完全占有・以上が完全空になる。</p>
-<div id="49874933" class="cell" data-execution_count="10">
+<div id="20123d64" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>コードはこちら</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -2283,7 +2289,7 @@ np = N_c N_v\,\exp\!\left(-\frac{E_c - E_v}{k_B T}\right)
 </div>
 </div>
 <p>下は <span class="math inline">\(n_i(T)\)</span> を 3 材料で描いたアレニウスプロット（縦軸対数、横軸 <span class="math inline">\(1000/T\)</span>）。直線の傾きが <span class="math inline">\(E_g/2k_B\)</span> に比例し、ギャップが大きいほど急。</p>
-<div id="8397834c" class="cell" data-execution_count="11">
+<div id="883e83e6" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>コードはこちら</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -2424,7 +2430,7 @@ p = N_v\,\exp\!\left(-\frac{E_f - E_v}{k_B T}\right)
 \boxed{\;E_f = E_v + k_B T\ln\!\left(\frac{N_v}{N_A}\right)\;}
 \]</span></p>
 <p>p 型では <span class="math inline">\(E_f\)</span> が価電子帯側に近づく。下のグラフは、ドーピング濃度を上げていくとフェルミ準位が真性レベルからどちらの帯に寄っていくかを示す。</p>
-<div id="981b091a" class="cell" data-execution_count="12">
+<div id="b2026151" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>コードはこちら</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -2490,7 +2496,7 @@ p = N_v\,\exp\!\left(-\frac{E_f - E_v}{k_B T}\right)
 V_{bi} = \frac{k_B T}{e}\ln\!\left(\frac{N_A N_D}{n_i^2}\right)
 \]</span></p>
 <p>と書ける。Si で <span class="math inline">\(N_A = N_D = 10^{17}\)</span>、<span class="math inline">\(n_i = 10^{10}\ \mathrm{cm^{-3}}\)</span> なら <span class="math inline">\(V_{bi} = 0.0259\times\ln(10^{34}/10^{20}) = 0.0259\times\ln(10^{14}) \approx 0.0259\times32.2 \approx 0.83\ \mathrm{V}\)</span>。Si ダイオードの順方向電圧が ~0.7 V 前後なのと整合する。</p>
-<div id="bd5b42a4" class="cell" data-execution_count="13">
+<div id="faeba3af" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>コードはこちら</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
