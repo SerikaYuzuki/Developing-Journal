@@ -21,6 +21,7 @@
 - **autosync が 5 分ごとに `main` を自動 commit / push する**（launchd）。中途半端な状態での長時間放置や、ユーザー指示のない force push / 履歴改変は避ける。詳細と復旧手順は [`scripts/AUTOSYNC.md`](scripts/AUTOSYNC.md)。
 - **記事・コミット・コメントは日本語**が基本。トーンはカジュアルな一人称。
 - `report/` 配下は PDF 出力あり（`_metadata.yml` で lualatex + `physics` / `mhchem`）。数式・化学式記事はここに置くと組版設定が効く。
+- (2026-07-14) **VS Code の Quarto Visual Editor で `physics` / `mhchem` を使うにはローカルパッチが必要**。Quarto 拡張 1.135.0 では Visual Editor が MathJax の `extensions: []` を固定指定しており、`quarto.mathjax.extensions` は反映されない。拡張更新後に `scripts/patch-quarto-visual-editor-mathjax.sh` を再実行し、VS Code が起動中なら一度だけ `Developer: Reload Window` を実行する。
 
 ## 未整理・TODO
 
