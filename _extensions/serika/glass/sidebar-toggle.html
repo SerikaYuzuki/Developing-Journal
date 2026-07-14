@@ -3,7 +3,116 @@
 
   document.addEventListener("DOMContentLoaded", function () {
 
-    // ── 1. ≡ ボタンをナビバーに挿入 ────────────────────────────────────
+    // ── 1. 現在地に一致する navbar リンクだけを active にする ────────
+    function normalizedPath(url) {
+      var path = url.pathname.replace(/\/index\.html$/i, '/');
+      path = path.replace(/\.html$/i, '');
+      path = path.replace(/\/{2,}/g, '/').replace(/\/+$/, '');
+      return path || '/';
+    }
+
+    function updateNavbarActiveLink() {
+      var current = new URL(window.location.href);
+      var currentPath = normalizedPath(current);
+
+      document.querySelectorAll('.navbar .navbar-nav a.nav-link[href]').forEach(function (link) {
+        var href = link.getAttribute('href');
+        if (!href || link.hasAttribute('data-bs-toggle')) return;
+
+        var target;
+        try {
+          target = new URL(href, current);
+        } catch (_) {
+          return;
+        }
+
+        // 外部リンク（mailto: 等を含む）の状態は Quarto/利用側に委ねる。
+        if (target.origin !== current.origin) return;
+
+        var isCurrent = normalizedPath(target) === currentPath;
+        link.classList.toggle('active', isCurrent);
+        if (isCurrent) {
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      });
+    }
+
+    updateNavbarActiveLink();
+
+    // bfcache から復帰した場合も URL と active 状態を同期する。
+    window.addEventListener('pageshow', updateNavbarActiveLink);
+
+    // ── 2. デスクトップ用 TOC トグル ─────────────────────────────────
+    var marginSidebar = document.getElementById('quarto-margin-sidebar');
+    var toc = marginSidebar && marginSidebar.querySelector('#TOC, .sidebar-toc');
+    var navbarTools = document.querySelector('.quarto-navbar-tools');
+    var TOC_STORAGE_KEY = 'serika-glass-toc-visible';
+    var TOC_DURATION = 400;
+
+    if (toc && navbarTools) {
+      var tocToggleBtn = document.createElement('button');
+      tocToggleBtn.type = 'button';
+      tocToggleBtn.className = 'pj-toc-toggle quarto-navigation-tool';
+      tocToggleBtn.innerHTML = '<i class="bi bi-layout-text-sidebar-reverse" aria-hidden="true"></i>';
+      tocToggleBtn.setAttribute('aria-controls', 'quarto-margin-sidebar');
+      navbarTools.insertBefore(tocToggleBtn, navbarTools.firstChild);
+
+      var tocVisible = true;
+      try {
+        tocVisible = window.sessionStorage.getItem(TOC_STORAGE_KEY) !== 'false';
+      } catch (_) {
+        // Storage を利用できない環境ではページごとの既定表示にフォールバック。
+      }
+
+      function updateTocButton(visible) {
+        var label = visible ? '目次を非表示' : '目次を表示';
+        tocToggleBtn.setAttribute('aria-expanded', String(visible));
+        tocToggleBtn.setAttribute('aria-label', label);
+        tocToggleBtn.title = label;
+      }
+
+      function setTocVisible(visible, animate) {
+        window.clearTimeout(tocToggleBtn._pjTocTimer);
+        document.body.classList.remove('pj-toc-showing');
+
+        if (visible) {
+          if (animate && document.body.classList.contains('pj-toc-hidden')) {
+            document.body.classList.add('pj-toc-showing');
+          }
+          document.body.classList.remove('pj-toc-hidden');
+          marginSidebar.setAttribute('aria-hidden', 'false');
+
+          if (animate) {
+            tocToggleBtn._pjTocTimer = window.setTimeout(function () {
+              document.body.classList.remove('pj-toc-showing');
+            }, TOC_DURATION);
+          }
+        } else {
+          document.body.classList.add('pj-toc-hidden');
+          marginSidebar.setAttribute('aria-hidden', 'true');
+        }
+
+        updateTocButton(visible);
+      }
+
+      setTocVisible(tocVisible, false);
+
+      tocToggleBtn.addEventListener('click', function () {
+        tocVisible = document.body.classList.contains('pj-toc-hidden');
+        var reduceMotion = window.matchMedia &&
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        setTocVisible(tocVisible, !reduceMotion);
+        try {
+          window.sessionStorage.setItem(TOC_STORAGE_KEY, String(tocVisible));
+        } catch (_) {
+          // UI は storage の可否に関係なく動作させる。
+        }
+      });
+    }
+
+    // ── 3. ≡ ボタンをナビバーに挿入 ────────────────────────────────────
     var brandContainer = document.querySelector('.navbar-brand-container');
     if (!brandContainer) return;
 
@@ -15,7 +124,7 @@
     toggleBtn.title = "サイドバーを切り替え";
     brandContainer.insertBefore(toggleBtn, brandContainer.firstChild);
 
-    // ── 2. カスタムドロワーを構築 ───────────────────────────────────────
+    // ── 4. カスタムドロワーを構築 ───────────────────────────────────────
     var siteName = (document.querySelector('.navbar-brand') || {}).textContent;
     siteName = siteName ? siteName.trim() : 'Menu';
 
@@ -59,7 +168,7 @@
       document.getElementById('pj-drawer-body').appendChild(clone);
     }
 
-    // ── 3. 開閉ロジック ─────────────────────────────────────────────────
+    // ── 5. 開閉ロジック ─────────────────────────────────────────────────
     var backdrop = document.getElementById('pj-drawer-backdrop');
     var closeBtn = document.getElementById('pj-drawer-close');
     var CLOSE_DURATION = 250;
@@ -94,7 +203,7 @@
       if (e.key === 'Escape' && drawer.classList.contains('pj-open')) closeDrawer();
     });
 
-    // ── 4. スクロールで navbar を隠す/表示する ──────────────────────
+    // ── 6. スクロールで navbar を隠す/表示する ──────────────────────
     var navbar = document.querySelector('.navbar');
     if (navbar) {
       var lastScrollY = window.scrollY;
@@ -122,7 +231,7 @@
       }, { passive: true });
     }
 
-    // ── 5. ≡ ボタンのクリック処理 ─────────────────────────────────────
+    // ── 7. ≡ ボタンのクリック処理 ─────────────────────────────────────
     toggleBtn.addEventListener('click', function (e) {
       e.preventDefault();
 
