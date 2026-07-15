@@ -1,14 +1,12 @@
-# PersonalJournal
+# Developing-Journal
 
-Quarto-based personal journal site with a `uv`-managed Python environment.
+[Quarto](https://quarto.org) 製の個人ブログ／開発ジャーナル。Python 環境は `uv` で管理する。
 
-## Development
+## 開発環境
 
-Install `uv`, `direnv`, and Quarto on each machine. This project keeps the `uv`
-virtual environment in the project-local `.venv/` directory, which is ignored by
-Git.
+各マシンに `uv`、`direnv`、Quarto をインストールする。Python の仮想環境はプロジェクト直下の `.venv/` に作成され、Git の管理対象外となる。
 
-### First setup
+### 初回セットアップ
 
 ```bash
 uv python install
@@ -18,43 +16,33 @@ python -m ipykernel install --user --name quarto-notes --display-name "Python (q
 ./scripts/patch-quarto-visual-editor-mathjax.sh
 ```
 
-Install the Quarto VS Code extension before running the final command. It enables
-the `physics` and `mhchem` MathJax extensions in the Visual Editor. Run it again
-after a Quarto extension update if the Visual Editor math preview stops working.
-If VS Code is already open when applying the patch, run "Developer: Reload
-Window" once.
+最後のコマンドを実行する前に、VS Code の Quarto 拡張をインストールしておく。このパッチにより、Visual Editor で MathJax の `physics` / `mhchem` 拡張が使えるようになる。Quarto 拡張の更新後に数式プレビューが動かなくなった場合も同じコマンドを再実行する。パッチ適用時に VS Code が起動中なら、「Developer: Reload Window」を一度実行する。
 
-The virtual environment is stored at:
+仮想環境の保存先:
 
 ```bash
 .venv/
 ```
 
-Do not commit `.venv`, `_freeze`, `.quarto`, Jupyter checkpoints, or local
-runtime/cache files. This repository does commit `_site`, so local renders update
-the static site output that should be committed together with source changes.
+`.venv/`、`_freeze/`、`.quarto/`、Jupyter のチェックポイント、各種ランタイム／キャッシュファイルはコミットしない。一方、このリポジトリでは `_site/` をコミット対象としているため、ローカルレンダーで更新された静的サイトはソース変更と一緒にコミットする。
 
-### Local preview
+### ローカルプレビュー
 
 ```bash
 uv run quarto preview
 ```
 
-VS Code's Quarto extension uses the project wrapper at `scripts/quarto`, so the
-toolbar Preview button also runs through `uv`.
-The wrapper also sets `QUARTO_PYTHON` to the uv-managed Python interpreter.
-Run "Developer: Reload Window" in VS Code after pulling this setting.
+VS Code の Quarto 拡張は `scripts/quarto` のラッパーを使うため、ツールバーの Preview ボタンも `uv` 経由で実行される。このラッパーは `QUARTO_PYTHON` に `uv` 管理の Python インタープリタを設定する。初めてこの設定を取り込んだときは、VS Code で「Developer: Reload Window」を実行する。
 
-### Local render
+### ローカルレンダー
 
 ```bash
 uv run quarto render
 ```
 
-Because this repository does not use GitHub Pages deployment, commit the updated
-`_site` files when you want to publish or preserve rendered output.
+GitHub Pages のデプロイワークフローは使用していない。公開またはレンダー結果を保存するときは、更新された `_site/` もコミットする。
 
-## Main Python Packages
+## 主な Python パッケージ
 
 - `numpy`
 - `pandas`
