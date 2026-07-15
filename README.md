@@ -15,7 +15,14 @@ uv python install
 direnv allow
 uv sync
 python -m ipykernel install --user --name quarto-notes --display-name "Python (quarto-notes)"
+./scripts/patch-quarto-visual-editor-mathjax.sh
 ```
+
+Install the Quarto VS Code extension before running the final command. It enables
+the `physics` and `mhchem` MathJax extensions in the Visual Editor. Run it again
+after a Quarto extension update if the Visual Editor math preview stops working.
+If VS Code is already open when applying the patch, run "Developer: Reload
+Window" once.
 
 The virtual environment is stored at:
 

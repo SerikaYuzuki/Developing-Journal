@@ -32,7 +32,10 @@ uv python install
 direnv allow
 uv sync
 python -m ipykernel install --user --name quarto-notes --display-name "Python (quarto-notes)"
+./scripts/patch-quarto-visual-editor-mathjax.sh
 ```
+
+最後のコマンドは、VS Code の Quarto Visual Editor で MathJax の `physics` / `mhchem` を使えるようにするローカルパッチ。Quarto 拡張を先にインストールしてから実行する。拡張更新後に数式プレビューが壊れた場合も同じコマンドを再実行し、VS Code が起動中なら「Developer: Reload Window」を一度実行する。
 
 ## よく使うコマンド
 
