@@ -1686,7 +1686,7 @@ window.Quarto = {
 <thead>
 <tr class="header">
 <th>材料</th>
-<th>$ E_g $ [eV]</th>
+<th><span class="math inline">\(E_g\)</span> [eV]</th>
 <th>バンド型</th>
 <th>電子移動度 [<span class="math inline">\(\mathrm{cm}^2/\mathrm{Vs}\)</span>]</th>
 <th>熱酸化膜</th>
@@ -1716,17 +1716,17 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<p>半導体材料を比較するときの軸は，① バンドギャップ $ E_g = E_c - E_v $，② 直接遷移か間接遷移か，③ 移動度，④ 酸化膜や加工性。金属はフェルミ準位付近に空き状態があるため電場ですぐ電子が動くが，半導体は価電子帯と伝導帯の間に $ E_g $ があり，熱・光・不純物でキャリヤを作る。</p>
+<p>半導体材料を比較するときの軸は，① バンドギャップ <span class="math inline">\(E_g=E_c-E_v\)</span>，② 直接遷移か間接遷移か，③ 移動度，④ 酸化膜や加工性。金属はフェルミ準位付近に空き状態があるため電場ですぐ電子が動くが，半導体は価電子帯と伝導帯の間に <span class="math inline">\(E_g\)</span> があり，熱・光・不純物でキャリヤを作る。</p>
 <ul>
 <li><strong>直接遷移型</strong>：電子と正孔が運動量変化なしに再結合できる → 発光（LED・レーザ）に適する</li>
-<li><strong>間接遷移型</strong>（<span class="math inline">\(\ce{Si}\)</span>，<span class="math inline">\(\ce{Ge}\)</span>）：再結合にフォノンが必要 → 発光効率が低く光電子デバイスには不向き</li>
+<li><strong>間接遷移型</strong>（<span class="math inline">\(\ce{Si}\)</span>，<span class="math inline">\(\ce{Ge}\)</span>）：再結合にフォノンが必要 → 発光効率が低く，効率的な発光素子には不利</li>
 <li><span class="math inline">\(\ce{Si}\)</span> の強みは熱酸化による高品質 <span class="math inline">\(\ce{SiO2}\)</span> 絶縁膜，資源の豊富さ，加工性の高さ</li>
 <li>Ge は移動度が高いが，MOS 型 FET への応用は長らく困難だった（ALD 技術で改善中）</li>
 <li><span class="math inline">\(\ce{GaAs}\)</span> は電子移動度が大きく直接遷移型 → HEMT・高周波デバイス・LED・レーザに利用</li>
 </ul>
 <p>LED や半導体レーザでは，発光波長はおおよそ <span class="math display">\[
 \lambda[\mathrm{nm}] \approx \frac{1240}{E_g[\mathrm{eV}]}
-\]</span> で決まる。したがって，目的波長に合った $ E_g $ を持つ直接遷移型材料を選ぶのが基本。</p>
+\]</span> で決まる。したがって，目的波長に合った <span class="math inline">\(E_g\)</span> を持つ直接遷移型材料を選ぶのが基本。</p>
 </div>
 </div>
 </div>
@@ -1743,9 +1743,9 @@ window.Quarto = {
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>半導体材料として広く用いられる <span class="math inline">\(\ce{Si}\)</span>（シリコン），<span class="math inline">\(\ce{Ge}\)</span>（ゲルマニウム），<span class="math inline">\(\ce{GaAs}\)</span>（ガリウム砒素）は，それぞれ異なる物性を有しており，用途もそれに応じて最適化されている。</p>
-<p>$ $ と $ $ はともに IV 族元素であり，単体で半導体として利用可能である。<span class="math inline">\(\ce{Ge}\)</span> は <span class="math inline">\(\ce{Si}\)</span> に比べて電子・正孔の移動度がいずれも高く，高速動作が期待されるデバイス材料として有望である。一方で，<span class="math inline">\(\ce{Ge}\)</span> は高品質な酸化膜の形成が困難であり，MOS 型 FET への応用は長らく制限されていた。しかし，近年では原子層堆積法（ALD）によって高誘電率材料の絶縁膜を形成する技術が確立されつつあり，<span class="math inline">\(\ce{Ge}\)</span> の応用が再び注目されている。</p>
+<p><span class="math inline">\(\ce{Si}\)</span> と <span class="math inline">\(\ce{Ge}\)</span> はともに IV 族元素であり，単体で半導体として利用可能である。<span class="math inline">\(\ce{Ge}\)</span> は <span class="math inline">\(\ce{Si}\)</span> に比べて電子・正孔の移動度がいずれも高く，高速動作が期待されるデバイス材料として有望である。一方で，<span class="math inline">\(\ce{Ge}\)</span> は高品質な酸化膜の形成が困難であり，MOS 型 FET への応用は長らく制限されていた。しかし，近年では原子層堆積法（ALD）によって高誘電率材料の絶縁膜を形成する技術が確立されつつあり，<span class="math inline">\(\ce{Ge}\)</span> の応用が再び注目されている。</p>
 <p><span class="math inline">\(\ce{Si}\)</span> は熱酸化により高品質な <span class="math inline">\(\ce{SiO2}\)</span> 絶縁膜を形成できることが大きな利点であり，MOS 電界効果型トランジスタに活用される。さらに，資源的に豊富で加工性にも優れ，主にロジックデバイスやメモリ，太陽電池などに広く用いられている。</p>
-<p><span class="math inline">\(\ce{GaAs}\)</span> は III-V 族の化合物半導体であり，電子の移動度が非常に高いことに加え，直接遷移型のバンド構造を持つ。これにより高電子移動度トランジスタ（HEMT）や高周波デバイスへの応用に適しており，携帯電話の送受信回路や基地局，高速通信用デバイス，さらには発光ダイオード（LED）やレーザなどの光電子デバイスにも広く利用されている。なお，<span class="math inline">\(\ce{Si}\)</span> および <span class="math inline">\(\ce{Ge}\)</span> はいずれも間接遷移型半導体であるため，光電子デバイスへの応用には不向きである。</p>
+<p><span class="math inline">\(\ce{GaAs}\)</span> は III-V 族の化合物半導体であり，電子の移動度が非常に高いことに加え，直接遷移型のバンド構造を持つ。これにより高電子移動度トランジスタ（HEMT）や高周波デバイスへの応用に適しており，携帯電話の送受信回路や基地局，高速通信用デバイス，さらには発光ダイオード（LED）やレーザなどの光電子デバイスにも広く利用されている。なお，<span class="math inline">\(\ce{Si}\)</span> および <span class="math inline">\(\ce{Ge}\)</span> は間接遷移型なので効率的な発光素子には不利だが，Si フォトダイオードや Ge 受光器のような受光用途には利用される。</p>
 </div>
 </div>
 </div>
@@ -2636,6 +2636,7 @@ N_e = \int_{E_c}^{\infty} d_e(E) f(E)\,dE
 <li><span class="math inline">\(E_i\)</span> は禁制帯中央から少しずれる。このずれ幅を 300 K の Si について求めよ。</li>
 <li>n 型半導体における電子密度の温度依存性を，低温・室温付近・高温の 3 領域に分けて説明せよ。</li>
 </ol>
+<p>設問 5 では，<span class="math inline">\(N_c=2.86\times10^{19}\ \mathrm{cm^{-3}}\)</span>，<span class="math inline">\(N_v=2.66\times10^{19}\ \mathrm{cm^{-3}}\)</span>，<span class="math inline">\(kT=0.025875\ \mathrm{eV}\)</span> を用いる。</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-38-contents" aria-controls="callout-38" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -2746,7 +2747,7 @@ E_i=\frac{E_c+E_v}{2}+\frac{kT}{2}\ln\!\left(\frac{N_v}{N_c}\right)
 <td>低温：凍結領域</td>
 <td>ドナー準位からの熱励起</td>
 <td>ドナーが中性のままなので <span class="math inline">\(N_e&lt;N_D\)</span>。温度上昇で活性化型に急増</td>
-<td>ドナー準位付近</td>
+<td><span class="math inline">\(E_D\)</span> と <span class="math inline">\(E_c\)</span> の間（単純模型の低温極限ではほぼ中間）</td>
 </tr>
 <tr class="even">
 <td>中温：外因性領域</td>
@@ -2802,7 +2803,7 @@ N_i=\sqrt{N_cN_v}\exp\left(-\frac{E_g}{2kT}\right)
 \]</span> となる。また， <span class="math display">\[
 E_i=\frac{E_c+E_v}{2}+\frac{kT}{2}\ln\left(\frac{N_v}{N_c}\right)
 =\frac{E_c+E_v}{2}+\frac{3}{4}kT\ln\left(\frac{m_h^*}{m_e^*}\right)
-\]</span> である。したがって試験紙の値 <span class="math inline">\(N_c=2.86\times10^{19}\ \mathrm{cm^{-3}}\)</span>，<span class="math inline">\(N_v=2.66\times10^{19}\ \mathrm{cm^{-3}}\)</span> を用いると，300 K で <span class="math display">\[
+\]</span> である。したがって上記の値 <span class="math inline">\(N_c=2.86\times10^{19}\ \mathrm{cm^{-3}}\)</span>，<span class="math inline">\(N_v=2.66\times10^{19}\ \mathrm{cm^{-3}}\)</span> を用いると，300 K で <span class="math display">\[
 \frac{kT}{2}\ln\left(\frac{N_v}{N_c}\right)
 =\frac{0.025875}{2}\ln\left(\frac{2.66}{2.86}\right)
 =-9.38\times10^{-4}\ \mathrm{eV}
@@ -2826,6 +2827,7 @@ E_i=\frac{E_c+E_v}{2}+\frac{kT}{2}\ln\left(\frac{N_v}{N_c}\right)
 <li>300 K におけるキャリア密度とフェルミ準位を求め，エネルギーダイヤグラムに示せ。</li>
 <li>n 型 Si と金属を接合したとき，どのような場合にオーミック接合となるか，エネルギーバンド図を用いて説明せよ。</li>
 </ol>
+<p>設問 3 では，n 型の <span class="math inline">\(N_D=10^{16},10^{17},10^{18}\ \mathrm{cm^{-3}}\)</span> と，p 型の <span class="math inline">\(N_A=10^{17},10^{18}\ \mathrm{cm^{-3}}\)</span> を計算する。300 K の <span class="math inline">\(N_c,N_v,N_i,E_g\)</span> は <a href="#quiz-6-doped-si">小テスト #6</a> に示した値を用いる。</p>
 <p>図示では，ドナー準位を <span class="math inline">\(E_c\)</span> のすぐ下（約 0.025 eV 下）に描き，n 型では <span class="math inline">\(E_f\)</span> が真性準位より <span class="math inline">\(E_c\)</span> 側へ上がることを示す。金属接触では，電子に対する障壁がない場合，または高濃度ドープで障壁幅が薄くトンネルできる場合をオーミック接合として描く。</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-40-contents" aria-controls="callout-40" aria-expanded="false" aria-label="Toggle callout">
@@ -2883,11 +2885,11 @@ E_f-E_v=kT\ln\!\left(\frac{N_v}{N_h}\right)
 <p>へ代入して決める。n 型では電子を増やすほど <span class="math inline">\(E_f\)</span> が <span class="math inline">\(E_c\)</span> へ近づき，p 型では正孔を増やすほど <span class="math inline">\(E_f\)</span> が <span class="math inline">\(E_v\)</span> へ近づく。これは「フェルミ準位がキャリヤを生む」というより，必要な占有確率を実現する位置へ <span class="math inline">\(E_f\)</span> が移ると考えると分かりやすい。</p>
 <p>エネルギーダイヤグラムは，① <span class="math inline">\(E_v\)</span> と <span class="math inline">\(E_c=E_v+E_g\)</span> を平行に引く → ② n 型なら <span class="math inline">\(E_D=E_c-E_B\)</span> を <span class="math inline">\(E_c\)</span> の直下に置く → ③ <span class="math inline">\(E_i\)</span> をほぼ中央に置く → ④ 計算した <span class="math inline">\(E_c-E_f\)</span> で <span class="math inline">\(E_f\)</span> を置く，の順なら迷わない。具体的な 300 K Si の数値代入は <a href="#quiz-6-doped-si">小テスト #6</a> と同じ手順である。</p>
 <p><strong>4. 金属接触は，障壁の「高さ」と「幅」を分けて考える</strong></p>
-<p>金属と n 型 Si を接触させると，接触前に異なっていたフェルミ準位が，電子の移動によって一つの水平な <span class="math inline">\(E_f\)</span> にそろう。その代わり，Si 表面のバンドが曲がる。理想界面の Schottky–Mott 模型では，電子障壁の高さは</p>
+<p>金属と n 型 Si を接触させると，接触前に異なっていたフェルミ準位が，電子の移動によって一つの水平な <span class="math inline">\(E_f\)</span> にそろう。その代わり，Si 表面のバンドが曲がる。理想界面の Schottky–Mott 模型では，電子障壁のエネルギーは</p>
 <p><span class="math display">\[
-q\phi_{Bn}=q(\phi_M-\chi)
+\Phi_{Bn}=\Phi_M-\chi
 \]</span></p>
-<p>で表される。<span class="math inline">\(\phi_M\)</span> は金属仕事関数，<span class="math inline">\(\chi\)</span> は半導体の電子親和力である。金属仕事関数が n 型半導体の仕事関数 <span class="math inline">\(\phi_S\)</span> より小さく，表面が電子の<strong>蓄積</strong>側に曲がり，電子に対する障壁も十分小さければ，電子は両方向へ容易に移動できる。</p>
+<p>で表される。<span class="math inline">\(\Phi_M\)</span> は金属仕事関数，<span class="math inline">\(\chi\)</span> は半導体の電子親和力で，ここではいずれもエネルギー（eV）として表す。金属仕事関数が n 型半導体の仕事関数 <span class="math inline">\(\Phi_S\)</span> より小さく，表面が電子の<strong>蓄積</strong>側に曲がり，電子に対する障壁も十分小さければ，電子は両方向へ容易に移動できる。</p>
 <p>一方，障壁が残っても接触直下を n<span class="math inline">\(^+\)</span> に高濃度ドープすれば，概略</p>
 <p><span class="math display">\[
 W_B\sim\sqrt{\frac{2\varepsilon_sV_{bi}}{qN_D}}
@@ -2973,6 +2975,13 @@ E_f=E_v+kT\ln\left(\frac{N_v}{N_A}\right)
 =E_i-kT\ln\left(\frac{N_A}{N_i}\right)
 \]</span> である。</p>
 <p>n 型 Si と金属の接触では，電子に対する障壁が十分小さい場合，または界面を高濃度にドープして障壁幅を薄くしトンネル電流を流せる場合にオーミック接合となる。仕事関数で言えば，n 型では金属の仕事関数が小さく，電子が金属と半導体の間を容易に行き来できる接触がオーミック接合である。電流電圧特性は整流性を示さず，ほぼ線形になる。</p>
+<p>答案のバンド図では，接触後の <span class="math inline">\(E_f\)</span> を金属から Si まで水平に引く。低障壁・蓄積型では <span class="math inline">\(E_c\)</span> が界面へ向かって下がるかほぼ平坦であること，n<span class="math inline">\(^+\)</span> トンネル接触では障壁が残っても幅 <span class="math inline">\(W_B\)</span> が非常に薄いことを示す。</p>
+<pre class="text"><code>低障壁・蓄積型                    n⁺ トンネル型
+エネルギー ↑                     エネルギー ↑
+E_f  ─────────────────           E_f  ─────────────────
+          │___／￣￣ E_c                  │￣\____ E_c
+     金属 │ n-Si → バルク             金属 │↔│ n⁺-Si → バルク
+                                              └─ 薄い W_B</code></pre>
 </div>
 </div>
 </div>
@@ -3108,7 +3117,7 @@ N_{\mathrm{eff}}
 <div class="callout-body-container callout-body">
 <p>熱平衡では電子電流と正孔電流がそれぞれ 0 である。電子電流について <span class="math display">\[
 J_e=q\mu_e N_eE+qD_e\frac{dN_e}{dx}=0
-\]</span> が成り立ち，アインシュタインの関係式 <span class="math inline">\(D_e/\mu_e=kT/q\)</span> と <span class="math inline">\(N_e=N_c\exp[-(E_c-E_f)/kT]\)</span> を用いると， <span class="math display">\[
+\]</span> が成り立ち，アインシュタインの関係式 <span class="math inline">\(D_e/\mu_e=kT/q\)</span>，<span class="math inline">\(N_e=N_c\exp[-(E_c-E_f)/kT]\)</span>，および <span class="math inline">\(E_c=-q\psi+\mathrm{const.}\)</span> から得られる <span class="math inline">\(dE_c/dx=qE\)</span> を用いると， <span class="math display">\[
 \frac{dE_f}{dx}=0
 \]</span> が得られる。正孔についても同様であり，熱平衡状態の pn 接合では接合全体でフェルミ準位が一定になる。</p>
 <p>拡散電位は，p 側と n 側のフェルミ準位を一致させるために必要な電位差であり， <span class="math display">\[
@@ -3151,7 +3160,7 @@ C=\frac{\varepsilon_s A}{W}
 i=i_s\left(e^{qV/kT}-1\right),
 \qquad
 i_s=\frac{qD_hN_{h(n)}^0}{L_h}+\frac{qD_eN_{e(p)}^0}{L_e}
-\]</span> で与えられる。</p>
+\]</span> で与えられる。ここでは <span class="math inline">\(i\)</span> と <span class="math inline">\(i_s\)</span> を電流密度とする。接合面積を <span class="math inline">\(A\)</span> とすれば，全電流は <span class="math inline">\(I=Ai\)</span> である。</p>
 <ol type="1">
 <li>この理想 I-V 特性を導出する際の仮定を説明せよ。</li>
 <li>順バイアス <span class="math inline">\(V\)</span> を印加したとき，空乏層端の少数キャリア濃度，連続の式，境界条件，濃度分布，拡散電流を順に求め，理想 I-V 特性を導け。</li>
@@ -3218,7 +3227,7 @@ V_T\equiv\frac{kT}{q}
 </tr>
 </tbody>
 </table>
-<p>このうち一つでも破れると，理想係数や直列抵抗などの補正が必要になる。仮定は飾りではなく，「どの項を捨ててこの式になったか」の一覧である。</p>
+<p>このうち一つでも破れると，理想式の係数または電圧依存に補正が必要になる。理想係数や直列抵抗はその代表例である。仮定は飾りではなく，「どの項を捨ててこの式になったか」の一覧である。</p>
 <p><strong>2. 端の濃度を決め，連続の式を解き，傾きを電流に変える</strong></p>
 <p>n 型中性領域の平衡正孔密度と p 型中性領域の平衡電子密度は</p>
 <p><span class="math display">\[
@@ -3360,13 +3369,13 @@ N_{h(n)}(x)=N_{h(n)}^0
 i_h=\frac{qD_hN_{h(n)}^0}{L_h}\left(e^{qV/kT}-1\right)
 \]</span> である。p 型領域へ注入された電子についても同様に <span class="math display">\[
 i_e=\frac{qD_eN_{e(p)}^0}{L_e}\left(e^{qV/kT}-1\right)
-\]</span> を得る。全電流は <span class="math inline">\(i=i_h+i_e\)</span> なので， <span class="math display">\[
+\]</span> を得る。全電流密度は <span class="math inline">\(i=i_h+i_e\)</span> なので， <span class="math display">\[
 i=\left(\frac{qD_hN_{h(n)}^0}{L_h}
 +\frac{qD_eN_{e(p)}^0}{L_e}\right)
 \left(e^{qV/kT}-1\right)
 =i_s\left(e^{qV/kT}-1\right)
 \]</span> である。</p>
-<p>実際のダイオードでは，低い順方向電圧では空乏層内の再結合電流が効きやすく，<span class="math inline">\(\eta\simeq2\)</span> に近づく。中程度の順方向電圧では中性領域への少数キャリア拡散電流が支配的になり，理想拡散電流に近い <span class="math inline">\(\eta\simeq1\)</span> となる。さらに高い電圧では高注入効果や直列抵抗の電圧降下が無視できなくなり，単純な指数特性からずれて，見かけの <span class="math inline">\(\eta\)</span> は 1 より大きくなる。</p>
+<p>実際のダイオードでは，低い順方向電圧では空乏層内の再結合電流が効きやすく，<span class="math inline">\(\eta\simeq2\)</span> に近づく。中程度の順方向電圧では中性領域への少数キャリア拡散電流が支配的になり，理想拡散電流に近い <span class="math inline">\(\eta\simeq1\)</span> となる。高注入の理想的な極限では電子・正孔濃度がともに増えるため <span class="math inline">\(\eta\simeq2\)</span> へ近づくことがある。さらに大電流になると直列抵抗の電圧降下が支配し，指数則そのものが崩れるため，局所的に求めた見かけの <span class="math inline">\(\eta\)</span> は増大し，電圧依存になる。</p>
 </div>
 </div>
 </div>
