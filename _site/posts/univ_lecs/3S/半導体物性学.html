@@ -1826,7 +1826,7 @@ window.Quarto = {
 <p>① クーロン力 = 向心力：<span class="math inline">\(\dfrac{mv^2}{r} = \dfrac{q^2}{4\pi\varepsilon_0 r^2}\)</span></p>
 <p>② 角運動量条件から <span class="math inline">\(v = n\hbar/(mr)\)</span> を代入 → 軌道半径が量子化：<span class="math inline">\(r_n = n^2 r_B\)</span>（<span class="math inline">\(r_B\)</span>：ボーア半径）</p>
 <p>③ 全エネルギー <span class="math inline">\(E = K + U\)</span>。ビリアル定理より <span class="math inline">\(K = -E\)</span>，<span class="math inline">\(U = 2E\)</span> なので <span class="math inline">\(E = -K = -mv^2/2\)</span>。 または直接計算：<span class="math inline">\(K = q^2/(8\pi\varepsilon_0 r)\)</span>，<span class="math inline">\(U = -q^2/(4\pi\varepsilon_0 r)\)</span> から <span class="math inline">\(E = -K\)</span></p>
-<p>④ <span class="math inline">\(r_n\)</span> を代入 → <span class="math inline">\(E_n = -13.6/n^2\)</span> [eV]</p>
+<p>④ <span class="math inline">\(r_n\)</span> を代入 → <span class="math inline">\(E_n=-13.6/n^2\ \mathrm{eV}\)</span></p>
 <p>例えば <span class="math inline">\(n=3\to2\)</span> の遷移では <span class="math display">\[
 \Delta E=13.6\left(\frac{1}{2^2}-\frac{1}{3^2}\right)\approx1.89\ \mathrm{eV}
 \]</span> となり，<span class="math inline">\(\lambda \approx 1240/1.89 \approx 656\ \mathrm{nm}\)</span> の赤い輝線（H<span class="math inline">\(\alpha\)</span>）に対応する。</p>
@@ -1980,7 +1980,7 @@ R=\rho\frac{l}{S},\qquad \rho=\frac{1}{\sigma}
 <p>金属と半導体の電気伝導度の違いは，主に自由電子の数と電子のエネルギー状態の違いによって生じる。</p>
 <p>金属では，最外殻電子が価電子帯と伝導帯の間にエネルギーギャップ（バンドギャップ）を持たないか，もしくは価電子帯と伝導帯が重なっているため，常に多くの自由電子（伝導電子）が存在する。このため，外部から電場が加わると，自由電子がすぐに移動でき，電気伝導度が非常に高くなる（=比抵抗が小さい）。</p>
 <p>一方，真性半導体では，明確なエネルギーギャップ（バンドギャップ）が存在し，常温ではごく一部の電子しか価電子帯から熱励起によって伝導帯に移動できない。そのため，自由電子（および正孔）の数が金属に比べて圧倒的に少なく，結果として電気伝導度が低くなる。</p>
-<p>さらに，エネルギーギャップが大きい半導体ほど，熱励起によって伝導帯に移動できる電子が少なくなるため，真性半導体の電気伝導度はエネルギーギャップの増大に伴い指数関数的に低下する。たとえば，<span class="math inline">\(\ce{Si}\)</span>（$ 1.12&nbsp; $）よりも <span class="math inline">\(\ce{Ge}\)</span>（$ 0.65&nbsp; $）の方が伝導度は高く，逆に <span class="math inline">\(\ce{GaAs}\)</span>（$ 1.42&nbsp; $）などの半導体は伝導度が低い。</p>
+<p>さらに，エネルギーギャップが大きい半導体ほど，熱励起によって伝導帯に移動できる電子が少なくなるため，真性半導体の電気伝導度はエネルギーギャップの増大に伴い指数関数的に低下する。たとえば，<span class="math inline">\(\ce{Si}\)</span>（<span class="math inline">\(1.12\ \mathrm{eV}\)</span>）よりも <span class="math inline">\(\ce{Ge}\)</span>（<span class="math inline">\(0.65\ \mathrm{eV}\)</span>）の方が伝導度は高く，逆に <span class="math inline">\(\ce{GaAs}\)</span>（<span class="math inline">\(1.42\ \mathrm{eV}\)</span>）などの半導体は伝導度が低い。</p>
 </div>
 </div>
 </div>
@@ -2436,7 +2436,7 @@ E_v  ─────────────────</code></pre>
 </tr>
 </tbody>
 </table>
-<p>Shockley–Queisser 限界から，単接合太陽電池の変換効率は <span class="math inline">\(E_g \approx 1.1\)</span>–<span class="math inline">\(1.4\ \text{eV}\)</span> 付近で最大。Si（<span class="math inline">\(E_g = 1.12\ \text{eV}\)</span>）はここに位置する。</p>
+<p>詳細釣り合い限界の最適 <span class="math inline">\(E_g\)</span> は仮定する太陽スペクトルで変わる。原論文の 6000 K 黒体近似では約 <span class="math inline">\(1.1\ \mathrm{eV}\)</span>，標準的な AM1.5G スペクトルを用いる計算ではおよそ <span class="math inline">\(1.3\)</span>–<span class="math inline">\(1.4\ \mathrm{eV}\)</span> に最大があり，その周辺は比較的広い。Si（<span class="math inline">\(E_g=1.12\ \mathrm{eV}\)</span>）は AM1.5G での最適値より小さいが，電流と電圧の釣り合いがよい領域にあり，結晶・界面・製造技術の長所も加わって実用的な高効率を得られる。</p>
 <p><strong>タンデム型（多接合型）の指針</strong>：</p>
 <ul>
 <li>光の入射側から <span class="math inline">\(E_g\)</span> 大→中→小の順に積層</li>
@@ -2444,7 +2444,11 @@ E_v  ─────────────────</code></pre>
 <li>格子整合が重要：界面の欠陥（転位）を防いで変換効率を維持</li>
 <li>代表例：<span class="math inline">\(\ce{InGaP}\)</span>（大 <span class="math inline">\(E_g\)</span>）/<span class="math inline">\(\ce{GaAs}\)</span>/<span class="math inline">\(\ce{Ge}\)</span>（小 <span class="math inline">\(E_g\)</span>）の 3 接合</li>
 </ul>
-<p><strong>近年注目の材料</strong>： - <strong>ペロブスカイト型</strong>（<span class="math inline">\(\ce{NH3CH3PbI3}\)</span> など）：塗布プロセスで低コスト形成，フレキシブル，Si タンデムで変換効率記録を更新中</p>
+<p><strong>近年注目の材料</strong>：</p>
+<ul>
+<li><strong>ペロブスカイト型</strong>（<span class="math inline">\(\ce{CH3NH3PbI3}\)</span> など）：塗布プロセスで低コスト形成でき，フレキシブル基板にも対応しやすい</li>
+<li><strong>ペロブスカイト／Si タンデム</strong>：Si が使いにくい高エネルギー側の光を上層で受け，Si 単接合の理論限界を超える高効率化を狙う</li>
+</ul>
 </div>
 </div>
 </div>
@@ -2481,7 +2485,7 @@ E_v  ─────────────────</code></pre>
 </ol>
 <p>図示するなら，光入射側から「高 <span class="math inline">\(E_g\)</span> 層 → 中 <span class="math inline">\(E_g\)</span> 層 → 低 <span class="math inline">\(E_g\)</span> 層」の順に積み，上層が短波長光を吸収し，下層ほど透過した長波長光を吸収するように描けばよい。</p>
 <ol start="4" type="1">
-<li>近年では、塗布プロセスで低コストに製造可能でありながら結晶シリコンに匹敵する高い変換効率（26%超）を達成している<strong>ペロブスカイト型化合物材料</strong>（<span class="math inline">\(\ce{NH3CH3PbI3}\)</span> など）が注目されている。さらに、既存のシリコン太陽電池の上にペロブスカイトを積層した「ペロブスカイト／シリコン タンデム型太陽電池」の開発により、理論限界を超える超高効率化への研究が進んでいる。</li>
+<li>近年では、塗布プロセスで低コストに製造可能でありながら結晶シリコンに匹敵する高い変換効率を持つ<strong>ペロブスカイト型化合物材料</strong>（<span class="math inline">\(\ce{CH3NH3PbI3}\)</span> など）が注目されている。さらに、既存のシリコン太陽電池の上にペロブスカイトを積層した「ペロブスカイト／シリコン タンデム型太陽電池」により、<strong>Si 単接合の</strong>理論限界を超える高効率化が研究されている。</li>
 </ol>
 </div>
 </div>
@@ -2529,7 +2533,7 @@ h_{FE}=\beta_F=\frac{\alpha_F}{1-\alpha_F}
 </ul>
 <p><strong>HEMT の高速化の仕組み</strong>：</p>
 <ul>
-<li><span class="math inline">\(\ce{AlGaAs}\)</span>（n 型ドープ，大 $ E_g <span class="math inline">\(）から電子が供給され，\)</span>$ 側界面（未ドープ，小 $ E_g $）に蓄積 → <strong>2DEG（二次元電子ガス）</strong>形成</li>
+<li><span class="math inline">\(\ce{AlGaAs}\)</span>（n 型ドープ，大 <span class="math inline">\(E_g\)</span>）から電子が供給され，<span class="math inline">\(\ce{GaAs}\)</span> 側界面（未ドープ，小 <span class="math inline">\(E_g\)</span>）に蓄積 → <strong>2DEG（二次元電子ガス）</strong>形成</li>
 <li>2DEG チャネルとドナー層が空間的に分離 → <strong>イオン化不純物散乱が大幅に減る</strong> → 高移動度</li>
 <li>ゲート電圧で 2DEG 密度を制御（FET 動作）</li>
 </ul>
@@ -2560,7 +2564,7 @@ h_{FE}=\beta_F=\frac{\alpha_F}{1-\alpha_F}
 </ol>
 <ul>
 <li><strong>構造と動作原理</strong>：バンドギャップの大きい <span class="math inline">\(\ce{AlGaAs}\)</span> から電子が <span class="math inline">\(\ce{GaAs}\)</span> 側に流れ込み、接合界面の <span class="math inline">\(\ce{GaAs}\)</span> 側にエネルギーの低い凹み（量子井戸）が形成される。電子はこの極めて薄い界面領域に閉じ込められ、<strong>二次元電子ガス（2DEG）</strong>のチャネルを形成する。ゲート電圧によりこの電子濃度を制御して ON/OFF 動作を行う。</li>
-<li><strong>高速動作が可能な理由</strong>：通常の FET では、ドナーなどの不純物がチャネルと同じ領域に存在するため、電子が移動する際にイオン化不純物による静電散乱を受けて移動度が低下する。しかし HEMT では、電子を供給するドナーは <span class="math inline">\(\ce{AlGaAs}\)</span> 側にのみ存在し、電子が走るチャネルは不純物が含まれない<strong>高純度（未ドープ）の</strong> <span class="math inline">\(\ce{GaAs}\)</span> 層内にある。そのため、イオン化不純物散乱をほぼ受けず、極めて高い移動度（高速性）が実現できる。</li>
+<li><strong>高速動作が可能な理由</strong>：通常の FET では、ドナーなどの不純物がチャネルと同じ領域に存在するため、電子が移動する際にイオン化不純物による静電散乱を受けて移動度が低下する。しかし HEMT では、電子を供給するドナー層と電子が走る高純度 <span class="math inline">\(\ce{GaAs}\)</span> チャネルを空間的に分離するため，イオン化不純物散乱が大幅に減り，高い移動度（高速性）が得られる。</li>
 </ul>
 </div>
 </div>
@@ -3443,12 +3447,8 @@ i=\left(\frac{qD_hN_{h(n)}^0}{L_h}
 </table>
 <p>格子定数は結晶タイルの一辺の長さに似ている。間隔の違うタイルを無理に貼れば，どこかにずれが集中する。それがミスフィット転位であり，電子と正孔を光らせずに消す再結合中心や，移動する電子の散乱源になる。したがって格子定数–<span class="math inline">\(E_g\)</span> 図では，まず<strong>格子定数が近く，目的に合う <span class="math inline">\(E_g\)</span> の差を持つ材料</strong>を探す。臨界膜厚以下の歪み層やメタモルフィック成長もあるので格子整合は絶対条件ではないが，高品質な厚い積層を作る基本指針である。</p>
 <p><strong>1. 太陽電池：光子をエネルギーごとに仕分ける</strong></p>
-<p>光子 1 個のエネルギー <span class="math inline">\(h\nu\)</span> と <span class="math inline">\(E_g\)</span> を比べると，単接合太陽電池の二つの避けられない損失が見える。</p>
-<ul>
-<li><span class="math inline">\(h\nu&lt;E_g\)</span> の光は電子を伝導帯へ上げられず，透過損失になる。</li>
-<li><span class="math inline">\(h\nu&gt;E_g\)</span> の光は吸収できるが，おおむね <span class="math inline">\(E_g\)</span> を超える余剰分はキャリヤの熱化によって失われる。</li>
-</ul>
-<p>したがって小さい <span class="math inline">\(E_g\)</span> は「長波長まで拾えて電流は大きいが，1 個当たりの電圧が低い」，大きい <span class="math inline">\(E_g\)</span> は「高い電圧を得やすいが，拾える光子が少なく電流が小さい」という交換条件になる。出力は電流と電圧の積なので，片方だけを最大にしても効率は最大にならない。理想単接合の詳細釣り合い限界には，仮定する太陽スペクトルなどによっておよそ <span class="math inline">\(1.1\)</span>–<span class="math inline">\(1.4\ \mathrm{eV}\)</span> に広い最適域があり，Si の <span class="math inline">\(E_g=1.12\ \mathrm{eV}\)</span> はこの有利な領域にある。</p>
+<p><span class="math inline">\(h\nu&lt;E_g\)</span> の透過損失，<span class="math inline">\(h\nu&gt;E_g\)</span> の熱化損失，そして「小さい <span class="math inline">\(E_g\)</span> は大電流・低電圧，大きい <span class="math inline">\(E_g\)</span> は小電流・高電圧」という交換条件は <a href="#quiz-11-solar-design">小テスト #11</a> で説明した。この過去問では，その交換条件を格子定数–<span class="math inline">\(E_g\)</span> 図の材料選択へ接続する。</p>
+<p>詳細釣り合い限界の最大位置は太陽スペクトルの仮定で変わり，原論文の黒体近似では約 <span class="math inline">\(1.1\ \mathrm{eV}\)</span>，AM1.5G ではおよそ <span class="math inline">\(1.3\)</span>–<span class="math inline">\(1.4\ \mathrm{eV}\)</span> となる。Si の <span class="math inline">\(E_g=1.12\ \mathrm{eV}\)</span> は後者の最適値より小さいが，広い波長域を電流へ変えながら実用的な電圧も得られる範囲にある。</p>
 <p>Si は間接遷移型なので薄い層では光を吸収しにくい，という弱点もある。それでも，</p>
 <ul>
 <li>高純度で大面積の結晶を作りやすい</li>
@@ -3475,15 +3475,8 @@ i=\left(\frac{qD_hN_{h(n)}^0}{L_h}
 <p>広い運動場に人を散らしたまま会わせるより，同じ部屋へ集めた方が出会いやすい，という幾何学である。材料例は <span class="math inline">\(\ce{AlGaAs}/\ce{GaAs}\)</span> 系，通信用の <span class="math inline">\(\ce{InGaAsP}/\ce{InP}\)</span> 系。格子不整合による転位は非発光再結合を増やし，しきい値と劣化を悪化させるため，目的波長と格子整合を同時に考える。</p>
 <p><strong>3. HEMT：電子の供給所と高速道路を分ける</strong></p>
 <p>通常のドープ半導体では，ドナーは電子を供給する一方，正に帯電したイオンとして電子をクーロン散乱する。つまり燃料をくれる設備が道路上の障害物にもなっている。HEMT は供給所と走路を空間的に分けて，この矛盾を小さくする。</p>
-<p><span class="math inline">\(\ce{AlGaAs}/\ce{GaAs}\)</span> HEMT では，</p>
-<ol type="1">
-<li>大 <span class="math inline">\(E_g\)</span> の n 型 <span class="math inline">\(\ce{AlGaAs}\)</span> 側にドナーを置いて電子を供給する。</li>
-<li>伝導帯オフセットにより，電子はエネルギーの低い未ドープ <span class="math inline">\(\ce{GaAs}\)</span> 側へ移る。</li>
-<li>界面の三角形状量子井戸に電子が閉じ込められ，二次元電子ガス（2DEG）を作る。</li>
-<li>ドナー層とチャネルの間に未ドープのスペーサ層を置き，イオン化不純物散乱をさらに減らす。</li>
-<li>ゲート電圧で 2DEG 密度を変え，ソース–ドレイン電流を制御する。</li>
-</ol>
-<p>この<strong>変調ドーピング</strong>は不純物散乱を完全に消すわけではないが，大幅に抑えて高移動度・高周波・低雑音動作を可能にする。<span class="math inline">\(\ce{AlGaN}/\ce{GaN}\)</span> HEMT では，2DEG の主な起源は変調ドーピングではなく自発分極・圧電分極による界面電荷である。GaN の大きな <span class="math inline">\(E_g\)</span> と高い絶縁破壊電界も生かせるため，高耐圧・高出力用途に適する。</p>
+<p><span class="math inline">\(\ce{AlGaAs}/\ce{GaAs}\)</span> 界面で 2DEG が生まれ，ゲートがその密度を制御する基本動作は <a href="#quiz-2-tandem-hemt">小テスト #2【2】</a> と <a href="#quiz-12-bjt-hemt">小テスト #12</a> に譲る。格子定数–<span class="math inline">\(E_g\)</span> 図から読むべき新しい点は，大 <span class="math inline">\(E_g\)</span> のドープ <span class="math inline">\(\ce{AlGaAs}\)</span> を電子の供給層，小 <span class="math inline">\(E_g\)</span> の未ドープ <span class="math inline">\(\ce{GaAs}\)</span> を低い伝導帯を持つ走路として選べることである。両者の間に未ドープのスペーサ層を置く<strong>変調ドーピング</strong>により，イオン化不純物散乱を完全に消すのではなく，大幅に減らす。</p>
+<p><span class="math inline">\(\ce{AlGaN}/\ce{GaN}\)</span> HEMT では，2DEG の主な起源は変調ドーピングではなく自発分極・圧電分極による界面電荷である。GaN の大きな <span class="math inline">\(E_g\)</span> と高い絶縁破壊電界も生かせるため，高耐圧・高出力用途に適する。</p>
 <p><strong>答案を組み立てる共通手順</strong>：各デバイスについて，① 材料をどの順に置くかという<strong>構造</strong> → ② 光子・電子・正孔がどこで生まれ，どこへ動くかという<strong>動作</strong> → ③ どの損失・漏れ・散乱を減らすかという<strong>高性能化の理由</strong> → ④ <span class="math inline">\(E_g\)</span>，直接遷移，格子整合を満たす<strong>材料例</strong>，の四段で書く。三つを一言で区別すれば，太陽電池は光子を<strong>仕分け</strong>し，レーザは電子・正孔・光を<strong>閉じ込め</strong>，HEMT は電子と不純物を<strong>引き離す</strong>デバイスである。</p>
 </div>
 </div>
@@ -3500,7 +3493,7 @@ i=\left(\frac{qD_hN_{h(n)}^0}{L_h}
 </div>
 <div id="callout-47" class="callout-47-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>太陽電池</strong>では，<span class="math inline">\(E_g\)</span> が小さい材料は長波長光まで吸収できるため電流を大きくできるが，開放電圧は小さくなる。逆に <span class="math inline">\(E_g\)</span> が大きい材料は高い電圧を得やすいが，低エネルギーの光を吸収できず電流が小さくなる。Si の <span class="math inline">\(E_g=1.12\ \mathrm{eV}\)</span> は太陽光スペクトルに対して単接合太陽電池の最適値に近く，さらに高純度結晶，大面積化，長い拡散長，安定な酸化膜などの利点があるため，高効率材料として実用化されている。</p>
+<p><strong>太陽電池</strong>では，<span class="math inline">\(E_g\)</span> が小さい材料は長波長光まで吸収できるため電流を大きくできるが，開放電圧は小さくなる。逆に <span class="math inline">\(E_g\)</span> が大きい材料は高い電圧を得やすいが，低エネルギーの光を吸収できず電流が小さくなる。Si の <span class="math inline">\(E_g=1.12\ \mathrm{eV}\)</span> は AM1.5G での理想単接合の最適値より小さいが，電流と電圧の釣り合いがよい範囲にある。さらに高純度結晶，大面積化，長い拡散長，安定な酸化膜などの利点があるため，高効率材料として実用化されている。</p>
 <p>より高効率化するには，異なる <span class="math inline">\(E_g\)</span> の材料を積層するタンデム型にする。入射側から大きい <span class="math inline">\(E_g\)</span>，中程度の <span class="math inline">\(E_g\)</span>，小さい <span class="math inline">\(E_g\)</span> の順に配置すれば，短波長光を上層で，長波長側を下層で吸収でき，熱化損失と透過損失を減らせる。代表例は <span class="math inline">\(\ce{InGaP}\)</span> / <span class="math inline">\(\ce{GaAs}\)</span> / <span class="math inline">\(\ce{Ge}\)</span> などの格子整合した多接合太陽電池である。</p>
 <p><strong>半導体レーザ</strong>では，発光層に直接遷移型で目的波長に対応する <span class="math inline">\(E_g\)</span> を持つ半導体を用い，その両側をより大きな <span class="math inline">\(E_g\)</span> のクラッド層で挟むダブルヘテロ構造にする。これにより，電子・正孔と光を活性層に閉じ込め，反転分布を作りやすくし，しきい値電流を下げられる。材料例として <span class="math inline">\(\ce{GaAs}\)</span> 活性層を <span class="math inline">\(\ce{AlGaAs}\)</span> で挟む <span class="math inline">\(\ce{AlGaAs}/\ce{GaAs}\)</span> 系，または <span class="math inline">\(\ce{InGaAsP}/\ce{InP}\)</span> 系がある。格子定数が近い組み合わせを選ぶとミスフィット転位が少なく，高品質な発光層を作れる。</p>
 <p><strong>HEMT</strong>では，バンドギャップの大きいドープ <span class="math inline">\(\ce{AlGaAs}\)</span> と，未ドープで高純度な <span class="math inline">\(\ce{GaAs}\)</span> などを接合する。<span class="math inline">\(\ce{AlGaAs}\)</span> 側から供給された電子は，エネルギーの低い <span class="math inline">\(\ce{GaAs}\)</span> 側界面に移動し，量子井戸中に二次元電子ガス（2DEG）を形成する。電子が走るチャネルとドナー不純物の位置が空間的に分離されるため，イオン化不純物散乱が減り，高移動度・高速動作が可能となる。<span class="math inline">\(\ce{GaN}\)</span> 系では <span class="math inline">\(\ce{AlGaN}/\ce{GaN}\)</span> HEMT が高耐圧・高周波用途で用いられる。</p>
@@ -3548,11 +3541,8 @@ i=\left(\frac{qD_hN_{h(n)}^0}{L_h}
 \]</span></p>
 <p>と整理できる。<span class="math inline">\(\gamma_E\)</span> はエミッタ注入効率，<span class="math inline">\(\alpha_T\)</span> はベース輸送係数である。例えば <span class="math inline">\(\alpha_F=0.99\)</span> なら <span class="math inline">\(\beta_F=99\)</span>，<span class="math inline">\(\alpha_F=0.999\)</span> なら <span class="math inline">\(999\)</span>。一見小さな 1 % の損失を 0.1 % に減らすだけで増幅率が 10 倍になるので，トランジスタ設計では「ほぼ 1」の最後の桁が主役になる。</p>
 <p><strong>2. 増幅率を上げるには，二種類の損失を別々に減らす</strong></p>
-<ol type="1">
-<li><strong>エミッタ注入効率 <span class="math inline">\(\gamma_E\)</span> を 1 に近づける</strong>：エミッタをベースより高濃度にドープし，ベースからエミッタへの正孔逆注入を抑える。または，エミッタをベースより大きい <span class="math inline">\(E_g\)</span> の材料にした HBT を使い，正孔に高い障壁を作る。<span class="math inline">\(\ce{AlGaAs}/\ce{GaAs}\)</span> HBT や Si/SiGe HBT が例である。</li>
-<li><strong>ベース輸送係数 <span class="math inline">\(\alpha_T\)</span> を 1 に近づける</strong>：<span class="math inline">\(W_B\ll L_n\)</span> となるようベースを薄くし，再結合する前に電子を通過させる。SiGe ベースを組成傾斜させ，内部電界で電子をコレクタ側へ加速する方法もある。</li>
-</ol>
-<p>ただし「薄く，高濃度にすれば無限によい」わけではない。薄すぎるベースはパンチスルーや耐圧低下，高濃度化は移動度低下や再結合，接合容量との交換条件を生む。HBT の強みは，大きい <span class="math inline">\(E_g\)</span> のエミッタで注入効率を保ちつつ，ベースを比較的高濃度にして抵抗を下げられる点にある。</p>
+<p>エミッタ高濃度化または大 <span class="math inline">\(E_g\)</span> エミッタで <span class="math inline">\(\gamma_E\)</span> を上げ，<span class="math inline">\(W_B\ll L_n\)</span> となるベース薄化で <span class="math inline">\(\alpha_T\)</span> を上げる具体策は <a href="#quiz-12-bjt-hemt">小テスト #12</a> を正本とする。ここで新しく押さえるべきなのは，<span class="math inline">\(\alpha_F\)</span> が 1 に近いほど小さな損失差が <span class="math inline">\(\beta_F\)</span> の大差へ拡大されることと，改善には交換条件があることだ。</p>
+<p>薄すぎるベースはパンチスルーや耐圧低下を招き，高濃度化は移動度・再結合・接合容量へ影響する。HBT は，大 <span class="math inline">\(E_g\)</span> エミッタで正孔の逆注入を抑えるため，注入効率を保ったままベースを比較的高濃度にして抵抗を下げられる。Si エミッタ／SiGe ベースや <span class="math inline">\(\ce{AlGaAs}\)</span> エミッタ／<span class="math inline">\(\ce{GaAs}\)</span> ベースが代表例であり，SiGe 組成を傾斜させたベースでは内部電界で電子輸送も速められる。</p>
 <p><strong>3. MOSFET：ゲートは電子を押すのではなく，道路を出現させる</strong></p>
 <p>nMOS は，p 型基板中の n<span class="math inline">\(^+\)</span> ソースと n<span class="math inline">\(^+\)</span> ドレイン，その間の表面を覆うゲート絶縁膜，ゲート電極からなる。ゲートと半導体は一つのコンデンサであり，理想的には絶縁膜を横切る直流電流を流さず，電界だけを表面へ伝える。</p>
 <p>正のゲート電圧 <span class="math inline">\(V_{GS}\)</span> を上げると，次の順に表面が変わる。</p>
@@ -3633,7 +3623,7 @@ P_{\mathrm{dyn}}\simeq\alpha CV^2f
 </tr>
 </tbody>
 </table>
-<p>High-<span class="math inline">\(k\)</span> の要点は，<span class="math inline">\(C_{\mathrm{ox}}=\varepsilon_{\mathrm{ox}}/t_{\mathrm{ox}}\)</span> である。同じ大きな容量を得るのに，誘電率 <span class="math inline">\(\varepsilon_{\mathrm{ox}}\)</span> を大きくすれば，物理膜厚 <span class="math inline">\(t_{\mathrm{ox}}\)</span> も大きくでき，トンネルを抑えられる。ALD は自己停止する表面反応を一周期ずつ進めるため，原子層単位で膜厚を制御し，FinFET や GAA の複雑な表面も均一に覆える。金属ゲートはポリ Si ゲートの空乏化を避け，仕事関数によるしきい値調整を可能にする。</p>
+<p>High-<span class="math inline">\(k\)</span> の要点は，単位面積当たりの酸化膜容量 <span class="math inline">\(C_{\mathrm{ox}}=\varepsilon_{\mathrm{ox}}/t_{\mathrm{ox}}\)</span> である。同じ大きな容量を得るのに，誘電率 <span class="math inline">\(\varepsilon_{\mathrm{ox}}\)</span> を大きくすれば，物理膜厚 <span class="math inline">\(t_{\mathrm{ox}}\)</span> も大きくでき，トンネルを抑えられる。ALD は自己停止する表面反応を一周期ずつ進めるため，原子層単位で膜厚を制御し，FinFET や GAA の複雑な表面も均一に覆える。金属ゲートはポリ Si ゲートの空乏化を避け，仕事関数によるしきい値調整を可能にする。</p>
 <p>FinFET と GAA は「ゲートを短くする技術」というより，短くしてもドレインに制御権を奪われないよう，ゲートがチャネルをより多くの面からつかむ技術である。この一文を書けば，構造名と短チャネル効果の因果がつながる。</p>
 <p>配線の RC 遅延，エレクトロマイグレーション，3D 集積，チップレットは <a href="#quiz-13-ulsi">小テスト #13</a> に詳しい。トランジスタ自身を速くしても配線が遅ければ回路は速くならないので，現代の ULSI は素子・配線・電力・熱・歩留まりを同時に設計する必要がある。</p>
 <p><strong>答案の設計図</strong>：BJT は「三層構造 → 二接合のバイアス → 電子の注入と通過 → 小さい <span class="math inline">\(I_B\)</span> で大きい <span class="math inline">\(I_C\)</span> → <span class="math inline">\(\gamma_E\)</span> と <span class="math inline">\(\alpha_T\)</span> の改善」，MOSFET は「MOS コンデンサ → 空乏化・反転 → チャネル形成 → OFF・線形・飽和」，新技術は「何が壊れたか → なぜ起きるか → 何を導入するか → なぜ改善するか」の順に書く。図には BJT の電子流と二つの接合のバイアス，MOSFET のゲート電界と反転チャネルを矢印で入れる。</p>
@@ -3653,10 +3643,10 @@ P_{\mathrm{dyn}}\simeq\alpha CV^2f
 <div id="callout-49" class="callout-49-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>バイポーラトランジスタ</strong>は，npn 型なら n 型エミッタ，p 型ベース，n 型コレクタからなる。エミッタ・ベース接合を順バイアス，ベース・コレクタ接合を逆バイアスにすると，エミッタからベースへ電子が注入される。ベースを非常に薄くしておけば，電子の大部分はベース中で再結合せずコレクタへ到達する。小さなベース電流で大きなコレクタ電流を制御できるため，電流増幅が生じる。</p>
-<p>増幅率を高めるには，エミッタ注入効率とベース輸送効率を高くする。具体的には，エミッタを高濃度にドープしてベースからエミッタへの逆注入を抑え，ベースを薄くして再結合を減らす。また，エミッタにベースより大きな <span class="math inline">\(E_g\)</span> の材料を用いるヘテロ接合バイポーラトランジスタ（HBT）にすると，ベースからエミッタへの少数キャリア注入をさらに抑えられる。材料例として AlGaAs/GaAs HBT や SiGe/Si HBT がある。</p>
+<p>増幅率を高めるには，エミッタ注入効率とベース輸送効率を高くする。具体的には，エミッタを高濃度にドープしてベースからエミッタへの逆注入を抑え，ベースを薄くして再結合を減らす。また，エミッタにベースより大きな <span class="math inline">\(E_g\)</span> の材料を用いるヘテロ接合バイポーラトランジスタ（HBT）にすると，ベースからエミッタへの少数キャリア注入をさらに抑えられる。材料例として <span class="math inline">\(\ce{AlGaAs}\)</span> エミッタ／<span class="math inline">\(\ce{GaAs}\)</span> ベースや，Si エミッタ／SiGe ベースがある。</p>
 <p><strong>MOSFET</strong>は，半導体基板上にソース・ドレインを形成し，その間の表面をゲート絶縁膜とゲート電極で制御する構造である。nMOS では，ゲートに正電圧を加えると p 型基板表面に電子の反転層が形成され，ソース・ドレイン間にチャネルができて ON になる。ゲート電圧がしきい値未満では反転層が形成されず OFF になる。ゲートは絶縁膜で隔てられているため入力電流が小さく，集積回路に適している。</p>
 <p>微細化が進むと，従来の <span class="math inline">\(\mathrm{SiO_2}\)</span> ゲート絶縁膜は薄くなりすぎ，トンネルリークが増える。そのため，HfO<span class="math inline">\(_2\)</span> などの High-k 絶縁膜を用いて，電気的な等価酸化膜厚を小さく保ちながら物理膜厚を厚くする。High-k 膜は ALD により原子層レベルで均一に形成する。ポリ Si ゲートの空乏化やしきい値制御の問題を避けるため，金属ゲートも組み合わせる。</p>
-<p>さらに，チャネル移動度を上げるための歪み Si / SiGe 技術，短チャネル効果を抑える FinFET や GAA（Gate-All-Around）構造，露光の高精細化のための EUV リソグラフィが用いられる。配線では RC 遅延と信頼性が課題になるため，Cu 配線，低誘電率（low-k）層間絶縁膜，Ru・Co・Mo などの新配線材料，バリア/ライナー層，メタルキャップ層が導入される。</p>
+<p>さらに，チャネル移動度を上げるための歪み Si / SiGe 技術，短チャネル効果を抑える FinFET や GAA（Gate-All-Around）構造，露光の高精細化のための EUV リソグラフィが用いられる。配線では RC 遅延と信頼性が課題になるため，Cu 配線，低誘電率（low-k）層間絶縁膜，バリア/ライナー層，メタルキャップ層が用いられ，Ru・Co・Mo などは超微細配線・コンタクト材料として適用・検討される。</p>
 </div>
 </div>
 </div>
