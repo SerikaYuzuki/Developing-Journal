@@ -1770,14 +1770,14 @@ window.Quarto = {
 <li><span class="math inline">\(E_g\)</span> 大→中→小の順に積層。各層が対応する波長帯の光を吸収</li>
 <li>上層（大 <span class="math inline">\(E_g\)</span>）：高エネルギーの短波長光を高い電圧で変換</li>
 <li>下層（小 <span class="math inline">\(E_g\)</span>）：透過した低エネルギーの長波長光を吸収</li>
-<li><strong>格子整合</strong>（lattice matching）が必須：積層材料の格子定数が揃っていないと界面欠陥（転位）が増加して変換効率が低下する</li>
-<li>代表例：<span class="math inline">\(\ce{InGaP}\)</span>（上層，$ E_g $ 大）/<span class="math inline">\(\ce{InGaAs}\)</span>（中層）/<span class="math inline">\(\ce{Ge}\)</span>（下層，$ E_g $ 小）</li>
+<li><strong>格子整合</strong>（lattice matching）が重要：積層材料の格子定数が揃っていないと界面欠陥（転位）が増加して変換効率が低下する</li>
+<li>代表例：<span class="math inline">\(\ce{InGaP}\)</span>（上層，<span class="math inline">\(E_g\)</span> 大）/<span class="math inline">\(\ce{GaAs}\)</span>（中層）/<span class="math inline">\(\ce{Ge}\)</span>（下層，<span class="math inline">\(E_g\)</span> 小）</li>
 </ul>
 <p><strong>HEMT（高電子移動度トランジスタ）の動作原理</strong>：</p>
 <ul>
-<li>構造：<span class="math inline">\(\ce{AlGaAs}\)</span>（大 $ E_g <span class="math inline">\(，n 型ドープ）/\)</span>$（小 $ E_g $，<strong>未ドープ</strong>）のヘテロ接合</li>
+<li>構造：<span class="math inline">\(\ce{AlGaAs}\)</span>（大 <span class="math inline">\(E_g\)</span>，n 型ドープ）/<span class="math inline">\(\ce{GaAs}\)</span>（小 <span class="math inline">\(E_g\)</span>，<strong>未ドープ</strong>）のヘテロ接合</li>
 <li>バンドの不連続により，<span class="math inline">\(\ce{GaAs}\)</span> 側界面にエネルギーの谷（量子井戸）が形成 → <strong>二次元電子ガス（2DEG）</strong>が蓄積</li>
-<li>高速化の本質：電子チャネル（<span class="math inline">\(\ce{GaAs}\)</span> 層）と不純物（<span class="math inline">\(\ce{AlGaAs}\)</span> 層）が空間的に分離されているため，<strong>イオン化不純物散乱が発生しない</strong> → 高移動度・高速・低ノイズ動作</li>
+<li>高速化の本質：電子チャネル（<span class="math inline">\(\ce{GaAs}\)</span> 層）と不純物（<span class="math inline">\(\ce{AlGaAs}\)</span> 層）が空間的に分離されているため，<strong>イオン化不純物散乱が大幅に減る</strong> → 高移動度・高速・低ノイズ動作</li>
 </ul>
 </div>
 </div>
@@ -1794,7 +1794,7 @@ window.Quarto = {
 </div>
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>タンデム型太陽電池は，異なるバンドギャップ（$ E_g $）を持つ半導体材料を積層することで，太陽光スペクトルの各波長帯を効率的に利用する構造である。太陽電池は，材料の $ E_g $ 以上のエネルギーを持つ光を吸収して電力に変換する。単一半導体材料では広い波長領域をカバーできないが，$ E_g $ の大きな材料（短波長を吸収）を上層に，$ E_g $ の小さな材料（長波長を吸収）を下層に配置することで，より多くの光エネルギーを変換できるようになる。これにより変換効率が大幅に向上する。典型的な構成としては，<span class="math inline">\(\ce{InGaP}\)</span>（高 $ E_g <span class="math inline">\(）/\)</span><span class="math inline">\(/\)</span>$（低 $ E_g $）の 3 接合太陽電池があり，これらの材料は格子定数が近いため，高品質な積層が可能である。</p>
+<p>タンデム型太陽電池は，異なるバンドギャップ（<span class="math inline">\(E_g\)</span>）を持つ半導体材料を積層することで，太陽光スペクトルの各波長帯を効率的に利用する構造である。太陽電池は，材料の <span class="math inline">\(E_g\)</span> 以上のエネルギーを持つ光を吸収して電力に変換する。単一半導体材料では広い波長領域をカバーできないが，<span class="math inline">\(E_g\)</span> の大きな材料（短波長を吸収）を上層に，<span class="math inline">\(E_g\)</span> の小さな材料（長波長を吸収）を下層に配置することで，より多くの光エネルギーを変換できるようになる。これにより変換効率が大幅に向上する。典型的な構成としては，<span class="math inline">\(\ce{InGaP}\)</span>（高 <span class="math inline">\(E_g\)</span>）/<span class="math inline">\(\ce{GaAs}\)</span>/<span class="math inline">\(\ce{Ge}\)</span>（低 <span class="math inline">\(E_g\)</span>）の 3 接合太陽電池があり，これらの材料は格子整合を取りやすいため，高品質な積層が可能である。</p>
 <p>HEMT は，高移動度のチャネル電子を利用することで，高速・高周波動作が可能なトランジスタである。一般に <span class="math inline">\(\ce{AlGaAs}/\ce{GaAs}\)</span> ヘテロ構造が用いられ，バンドギャップの異なる材料を組み合わせることで，界面に電子が蓄積される。この電子層は不純物を導入しない <span class="math inline">\(\ce{GaAs}\)</span> 層内に形成されるため，散乱が少なく，極めて高い移動度が得られる。このような構造により，HEMT は低ノイズ・高周波特性を必要とする携帯電話の基地局や衛星通信などに広く利用されている。</p>
 <p>このように，異なる材料を適切に組み合わせることで，各材料単体では実現困難な高性能動作を可能とするのが，これらのデバイスの大きな特徴である。</p>
 </div>
@@ -1907,7 +1907,7 @@ window.Quarto = {
 <p>ボーアモデルが成功したのは<strong>水素原子（1 電子系）のエネルギー準位</strong>の説明のみ。以下の現象は説明できない：</p>
 <ul>
 <li><strong>多電子原子のスペクトル</strong>：電子間相互作用が無視できず，単純なボーアの式は成立しない</li>
-<li><strong>スペクトルの微細構造・ゼーマン効果</strong>：磁場中でのスペクトル分裂には<strong>方位量子数 <span class="math inline">\(l\)</span>，磁気量子数 <span class="math inline">\(m_l\)</span>，スピン量子数 <span class="math inline">\(m_s\)</span></strong> が必要</li>
+<li><strong>スペクトルの微細構造・ゼーマン効果</strong>：磁場中でのスペクトル分裂には<strong>方位量子数</strong> <span class="math inline">\(l\)</span>，磁気量子数 <span class="math inline">\(m_l\)</span>，スピン量子数 <span class="math inline">\(m_s\)</span> が必要</li>
 <li><strong>化学結合の方向性</strong>：<span class="math inline">\(\ce{H2O}\)</span> の折れ線形（104.5°）など，空間的な方向性のある結合は軌道の形（波動関数）から理解する必要がある</li>
 </ul>
 <p>→ シュレーディンガー方程式に基づく<strong>完全な量子力学</strong>が必要</p>
@@ -1955,12 +1955,12 @@ R=\rho\frac{l}{S},\qquad \rho=\frac{1}{\sigma}
 \]</span> である。微視的には電流密度 <span class="math inline">\(J=Nqv_d\)</span>，ドリフト速度 <span class="math inline">\(v_d=\mu E\)</span> なので，電気伝導度は <span class="math display">\[
 \sigma=Nq\mu,\qquad \mu=\frac{q\tau}{m^*},\qquad \sigma=\frac{Nq^2\tau}{m^*}
 \]</span> と書ける。したがって伝導度を大きくする要因は，キャリヤ密度 <span class="math inline">\(N\)</span> が大きいこと，散乱時間 <span class="math inline">\(\tau\)</span> が長いこと，有効質量 <span class="math inline">\(m^*\)</span> が小さいこと。</p>
-<p><strong>金属と半導体の違いの本質はキャリヤ密度 <span class="math inline">\(N\)</span></strong>：</p>
+<p><strong>金属と半導体の違いの本質はキャリヤ密度</strong> <span class="math inline">\(N\)</span>：</p>
 <ul>
 <li>金属：フェルミ準位が伝導帯内にあり，<span class="math inline">\(N \sim 10^{28}\ \text{m}^{-3}\)</span> の自由電子が常に存在 → <span class="math inline">\(\sigma\)</span> が非常に大きい</li>
 <li>半導体：バンドギャップ <span class="math inline">\(E_g\)</span> があり，キャリヤは熱励起によってのみ生成される： <span class="math display">\[n_i = \sqrt{N_cN_v}\,\exp\!\left(-\frac{E_g}{2k_BT}\right)\]</span></li>
 </ul>
-<p><strong><span class="math inline">\(E_g\)</span> の大小と伝導度の関係</strong>：指数因子 <span class="math inline">\(\exp(-E_g/2k_BT)\)</span> が支配的。室温（<span class="math inline">\(k_BT \approx 0.026\ \text{eV}\)</span>）では <span class="math inline">\(E_g\)</span> が少し大きくなるだけで <span class="math inline">\(n_i\)</span> が指数関数的に減少する。</p>
+<p><span class="math inline">\(E_g\)</span> の大小と伝導度の関係：指数因子 <span class="math inline">\(\exp(-E_g/2k_BT)\)</span> が支配的。室温（<span class="math inline">\(k_BT \approx 0.026\ \text{eV}\)</span>）では <span class="math inline">\(E_g\)</span> が少し大きくなるだけで <span class="math inline">\(n_i\)</span> が指数関数的に減少する。</p>
 <p>例：Si（<span class="math inline">\(E_g = 1.12\ \text{eV}\)</span>）と Ge（<span class="math inline">\(E_g = 0.66\ \text{eV}\)</span>）では <span class="math inline">\(n_i^{\text{Si}} \approx 10^{10}\ \text{cm}^{-3}\)</span>，<span class="math inline">\(n_i^{\text{Ge}} \approx 2\times10^{13}\ \text{cm}^{-3}\)</span> と約 <span class="math inline">\(10^3\)</span> 倍の差がある。</p>
 </div>
 </div>
@@ -2069,7 +2069,7 @@ R=\rho\frac{l}{S},\qquad \rho=\frac{1}{\sigma}
 <p><strong>Step 1：完全電離の仮定</strong>（300 K では As がすべてイオン化） <span class="math display">\[N_e = N_D = 1.0\times10^{16}\ \text{cm}^{-3}\]</span></p>
 <p><strong>Step 2：正孔密度</strong>（質量作用の法則） <span class="math display">\[N_h = \frac{N_i^2}{N_e} = \frac{N_i^2}{N_D}\]</span></p>
 <p><strong>Step 3：n 型フェルミ準位</strong> <span class="math display">\[E_c - E_f = kT\ln\!\left(\frac{N_c}{N_D}\right)\]</span> 計算は <span class="math inline">\(kT = 1.38\times10^{-23}\times300\ \text{J}\)</span> で求め，最後に <span class="math inline">\(q\)</span> で割って eV に換算。 対数の加法分解：<span class="math inline">\(\ln(N_c/N_D) = \ln N_c - \ln N_D = (\ln 2.86 + 19\ln 10) - 16\ln 10\)</span></p>
-<p><strong>Step 4：真性フェルミ準位 <span class="math inline">\(E_i\)</span> のズレ</strong>（禁制帯中央からのズレ） <span class="math display">\[E_i - \frac{E_c+E_v}{2} = \frac{kT}{2}\ln\!\left(\frac{N_v}{N_c}\right)\]</span> Si では <span class="math inline">\(N_v &lt; N_c\)</span> なので <span class="math inline">\(E_i\)</span> は禁制帯中央より価電子帯側にわずかにずれる。</p>
+<p><strong>Step 4：真性フェルミ準位</strong> <span class="math inline">\(E_i\)</span> のズレ（禁制帯中央からのズレ） <span class="math display">\[E_i - \frac{E_c+E_v}{2} = \frac{kT}{2}\ln\!\left(\frac{N_v}{N_c}\right)\]</span> Si では <span class="math inline">\(N_v &lt; N_c\)</span> なので <span class="math inline">\(E_i\)</span> は禁制帯中央より価電子帯側にわずかにずれる。</p>
 <p>エネルギーダイヤグラムには <span class="math inline">\(E_c\)</span>，<span class="math inline">\(E_f\)</span>，<span class="math inline">\(E_i\)</span>，<span class="math inline">\(E_v\)</span> を上から順に描き，<span class="math inline">\(E_c - E_f\)</span> と <span class="math inline">\(E_c - E_i\)</span> を数値で明記する。</p>
 </div>
 </div>
@@ -2404,9 +2404,15 @@ E_v  ─────────────────</code></pre>
 <div id="callout-32" class="callout-32-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>関連：太陽電池の材料選択は <a href="#quiz-2-materials">小テスト #2【1】</a> の <span class="math inline">\(E_g\)</span> と直接/間接遷移の話が土台。タンデム型と HEMT のヘテロ構造は <a href="#quiz-2-tandem-hemt">小テスト #2【2】</a> と <a href="#past-5-material-devices">過去問５</a> でも同じ考え方を使う。</p>
-<p><strong>単一材料太陽電池における <span class="math inline">\(E_g\)</span> のトレードオフ</strong>：</p>
+<p><strong>単一材料太陽電池における</strong> <span class="math inline">\(E_g\)</span> のトレードオフ：</p>
 <p>太陽電池は基本的には pn 接合であり，<span class="math inline">\(h\nu \ge E_g\)</span> の光子が電子・正孔対を生成し，空乏層の内蔵電場がそれらを分離することで外部回路に電流を取り出す。<span class="math inline">\(E_g\)</span> より小さいエネルギーの光は吸収されず，<span class="math inline">\(E_g\)</span> より大きすぎる余剰エネルギーは主に熱として失われる。</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 38%">
+<col style="width: 24%">
+<col style="width: 28%">
+</colgroup>
 <thead>
 <tr class="header">
 <th><span class="math inline">\(E_g\)</span></th>
@@ -2431,7 +2437,13 @@ E_v  ─────────────────</code></pre>
 </tbody>
 </table>
 <p>Shockley–Queisser 限界から，単接合太陽電池の変換効率は <span class="math inline">\(E_g \approx 1.1\)</span>–<span class="math inline">\(1.4\ \text{eV}\)</span> 付近で最大。Si（<span class="math inline">\(E_g = 1.12\ \text{eV}\)</span>）はここに位置する。</p>
-<p><strong>タンデム型（多接合型）の指針</strong>： - 光の入射側から <span class="math inline">\(E_g\)</span> 大→中→小の順に積層 - 各層が対応する波長帯を変換 → 熱化損失・透過損失を同時に削減 - <strong>格子整合</strong>が必須：界面の欠陥（転位）を防いで変換効率を維持 - 代表例：<span class="math inline">\(\ce{InGaP}\)</span>（大 $ E_g <span class="math inline">\(）/\)</span><span class="math inline">\(/\)</span>$（小 $ E_g $）の 3 接合</p>
+<p><strong>タンデム型（多接合型）の指針</strong>：</p>
+<ul>
+<li>光の入射側から <span class="math inline">\(E_g\)</span> 大→中→小の順に積層</li>
+<li>各層が対応する波長帯を変換し，熱化損失・透過損失を同時に削減</li>
+<li>格子整合が重要：界面の欠陥（転位）を防いで変換効率を維持</li>
+<li>代表例：<span class="math inline">\(\ce{InGaP}\)</span>（大 <span class="math inline">\(E_g\)</span>）/<span class="math inline">\(\ce{GaAs}\)</span>/<span class="math inline">\(\ce{Ge}\)</span>（小 <span class="math inline">\(E_g\)</span>）の 3 接合</li>
+</ul>
 <p><strong>近年注目の材料</strong>： - <strong>ペロブスカイト型</strong>（<span class="math inline">\(\ce{NH3CH3PbI3}\)</span> など）：塗布プロセスで低コスト形成，フレキシブル，Si タンデムで変換効率記録を更新中</p>
 </div>
 </div>
@@ -2452,12 +2464,12 @@ E_v  ─────────────────</code></pre>
 <li>エネルギーギャップ（<span class="math inline">\(E_g\)</span>）の大小による長所短所は以下の通り。</li>
 </ol>
 <ul>
-<li><strong><span class="math inline">\(E_g\)</span> が小さい場合</strong>：
+<li><span class="math inline">\(E_g\)</span> が小さい場合：
 <ul>
 <li><strong>長所</strong>：エネルギーの低い長波長の光まで幅広く吸収できるため、発生する電流（短絡電流）を多く取り出すことができる。</li>
 <li><strong>短所</strong>：発生する電圧（開放電圧）が <span class="math inline">\(E_g\)</span> に制限されて低くなり、また <span class="math inline">\(E_g\)</span> 以上の余剰エネルギーが熱として失われる（熱化損失）。</li>
 </ul></li>
-<li><strong><span class="math inline">\(E_g\)</span> が大きい場合</strong>：
+<li><span class="math inline">\(E_g\)</span> が大きい場合：
 <ul>
 <li><strong>長所</strong>：発生する電圧を高く取り出すことができる。</li>
 <li><strong>短所</strong>：<span class="math inline">\(E_g\)</span> よりエネルギーの低い光を透過してしまい吸収できないため、電流量が著しく少なくなる。</li>
@@ -2465,7 +2477,7 @@ E_v  ─────────────────</code></pre>
 </ul>
 <ol start="2" type="1">
 <li><p>異なる <span class="math inline">\(E_g\)</span> を持つ複数の材料を積層する（<strong>タンデム型太陽電池</strong>）。光の入射側から順に <span class="math inline">\(E_g\)</span> の大きな材料、中間の材料、小さな材料を配置する。これにより、高エネルギーの短波長光は上層の大きな <span class="math inline">\(E_g\)</span> を持つ材料で高い電圧として回収し、透過した低エネルギーの長波長光は下層の小さな <span class="math inline">\(E_g\)</span> の材料で吸収・発電させることで、太陽光スペクトル全体を極めて効率的に利用できる。</p></li>
-<li><p>格子定数がほぼ等しく（格子整合）、異なる <span class="math inline">\(E_g\)</span> を持つ <strong>InGaP（上層・高 <span class="math inline">\(E_g\)</span>）/ InGaAs（中層・中 <span class="math inline">\(E_g\)</span>）/ Ge（下層・低 <span class="math inline">\(E_g\)</span>）</strong> の 3 接合の組み合わせが代表的である。</p></li>
+<li><p>格子定数がほぼ等しく（格子整合）、異なる <span class="math inline">\(E_g\)</span> を持つ <strong>InGaP（上層・高 <span class="math inline">\(E_g\)</span>）/ GaAs（中層・中 <span class="math inline">\(E_g\)</span>）/ Ge（下層・低 <span class="math inline">\(E_g\)</span>）</strong> の 3 接合の組み合わせが代表的である。</p></li>
 </ol>
 <p>図示するなら，光入射側から「高 <span class="math inline">\(E_g\)</span> 層 → 中 <span class="math inline">\(E_g\)</span> 層 → 低 <span class="math inline">\(E_g\)</span> 層」の順に積み，上層が短波長光を吸収し，下層ほど透過した長波長光を吸収するように描けばよい。</p>
 <ol start="4" type="1">
@@ -2498,14 +2510,19 @@ E_v  ─────────────────</code></pre>
 </div>
 <div id="callout-34" class="callout-34-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>バイポーラトランジスタ（npn 型）の電流増幅率</strong>： <span class="math display">\[h_{fe} \approx \gamma \cdot \beta_T\]</span></p>
+<p><strong>バイポーラトランジスタ（npn 型）の電流増幅率</strong>：</p>
+<p><span class="math display">\[
+\alpha_F\simeq\gamma_E\alpha_T,
+\qquad
+h_{FE}=\beta_F=\frac{\alpha_F}{1-\alpha_F}
+\]</span></p>
 <ul>
-<li><strong>エミッタ注入効率 <span class="math inline">\(\gamma\)</span></strong>：エミッタから注入した電子 / 全エミッタ電流（逆注入を抑えるほど 1 に近い）
+<li><strong>エミッタ注入効率</strong> <span class="math inline">\(\gamma_E\)</span>：エミッタから注入した電子 / 全エミッタ電流（逆注入を抑えるほど 1 に近い）
 <ul>
 <li>方法①：エミッタを<strong>高濃度ドープ</strong> → ベースからエミッタへの正孔逆注入を抑制</li>
-<li>方法②：エミッタに<strong>大きな <span class="math inline">\(E_g\)</span> の材料</strong>（HBT）→ ベースからの逆注入に大きなエネルギー障壁</li>
+<li>方法②：エミッタに<strong>大きな</strong> <span class="math inline">\(E_g\)</span> の材料（HBT）→ ベースからの逆注入に大きなエネルギー障壁</li>
 </ul></li>
-<li><strong>ベース輸送効率 <span class="math inline">\(\beta_T\)</span></strong>：コレクタに到達した電子 / 注入した電子（再結合を減らすほど 1 に近い）
+<li><strong>ベース輸送係数</strong> <span class="math inline">\(\alpha_T\)</span>：コレクタに到達した電子 / 注入した電子（再結合を減らすほど 1 に近い）
 <ul>
 <li>方法：ベースを<strong>拡散長より十分薄く</strong>する</li>
 </ul></li>
@@ -2513,7 +2530,7 @@ E_v  ─────────────────</code></pre>
 <p><strong>HEMT の高速化の仕組み</strong>：</p>
 <ul>
 <li><span class="math inline">\(\ce{AlGaAs}\)</span>（n 型ドープ，大 $ E_g <span class="math inline">\(）から電子が供給され，\)</span>$ 側界面（未ドープ，小 $ E_g $）に蓄積 → <strong>2DEG（二次元電子ガス）</strong>形成</li>
-<li>2DEG チャネルには不純物がない → <strong>イオン化不純物散乱が発生しない</strong> → 高移動度</li>
+<li>2DEG チャネルとドナー層が空間的に分離 → <strong>イオン化不純物散乱が大幅に減る</strong> → 高移動度</li>
 <li>ゲート電圧で 2DEG 密度を制御（FET 動作）</li>
 </ul>
 </div>
@@ -2532,18 +2549,18 @@ E_v  ─────────────────</code></pre>
 <div id="callout-35" class="callout-35-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>バイポーラトランジスタの性能を高めるには、電流増幅率 <span class="math inline">\(h_{fe}\)</span> を大きくする必要があり、そのためにはエミッタ注入効率 <span class="math inline">\(\gamma\)</span> とベース輸送効率 <span class="math inline">\(\beta\)</span> をともに 1 に近づける設計を行う。</li>
+<li>バイポーラトランジスタの性能を高めるには、共通ベース電流利得 <span class="math inline">\(\alpha_F\simeq\gamma_E\alpha_T\)</span> を 1 に近づける必要がある。これにより，共通エミッタ電流増幅率 <span class="math inline">\(h_{FE}=\beta_F=\alpha_F/(1-\alpha_F)\)</span> が大きくなる。</li>
 </ol>
 <ul>
-<li><strong>エミッタ注入効率 <span class="math inline">\(\gamma\)</span> を 1 に近づける</strong>：ベースからエミッタへの少数キャリア逆注入を抑えるため、エミッタの不純物濃度をベースより極めて高くする。または、エミッタにベースよりバンドギャップ <span class="math inline">\(E_g\)</span> の大きい材料を用いたヘテロ結合構造（<strong>ヘテロ接合バイポーラトランジスタ：HBT</strong>）を採用し、ベースからの逆注入に対するエネルギー障壁を高くする。</li>
-<li><strong>ベース輸送効率 <span class="math inline">\(\beta\)</span> を 1 に近づける</strong>：ベース領域におけるキャリアの再結合損失を減らすため、ベースの幅（厚み）を極限まで薄くし、不純物量を最適化する。</li>
+<li><strong>エミッタ注入効率</strong> <span class="math inline">\(\gamma_E\)</span> を 1 に近づける：ベースからエミッタへの少数キャリア逆注入を抑えるため、エミッタの不純物濃度をベースより極めて高くする。または、エミッタにベースよりバンドギャップ <span class="math inline">\(E_g\)</span> の大きい材料を用いたヘテロ結合構造（<strong>ヘテロ接合バイポーラトランジスタ：HBT</strong>）を採用し、ベースからの逆注入に対するエネルギー障壁を高くする。</li>
+<li><strong>ベース輸送係数</strong> <span class="math inline">\(\alpha_T\)</span> を 1 に近づける：ベース領域におけるキャリアの再結合損失を減らすため、ベースの幅（厚み）を極限まで薄くし、不純物量を最適化する。</li>
 </ul>
 <ol start="2" type="1">
 <li><strong>HEMT（High Electron Mobility Transistor）</strong>は、バンドギャップの異なる 2 つの半導体（例：n 型 AlGaAs と高純度未ドープ GaAs）のヘテロ接合を利用した電界効果型トランジスタである。</li>
 </ol>
 <ul>
 <li><strong>構造と動作原理</strong>：バンドギャップの大きい <span class="math inline">\(\ce{AlGaAs}\)</span> から電子が <span class="math inline">\(\ce{GaAs}\)</span> 側に流れ込み、接合界面の <span class="math inline">\(\ce{GaAs}\)</span> 側にエネルギーの低い凹み（量子井戸）が形成される。電子はこの極めて薄い界面領域に閉じ込められ、<strong>二次元電子ガス（2DEG）</strong>のチャネルを形成する。ゲート電圧によりこの電子濃度を制御して ON/OFF 動作を行う。</li>
-<li><strong>高速動作が可能な理由</strong>：通常の FET では、ドナーなどの不純物がチャネルと同じ領域に存在するため、電子が移動する際にイオン化不純物による静電散乱を受けて移動度が低下する。しかし HEMT では、電子を供給するドナーは <span class="math inline">\(\ce{AlGaAs}\)</span> 側にのみ存在し、電子が走るチャネルは不純物が含まれない<strong>高純度（未ドープ）の <span class="math inline">\(\ce{GaAs}\)</span> 層</strong>内にある。そのため、イオン化不純物散乱をほぼ受けず、極めて高い移動度（高速性）が実現できる。</li>
+<li><strong>高速動作が可能な理由</strong>：通常の FET では、ドナーなどの不純物がチャネルと同じ領域に存在するため、電子が移動する際にイオン化不純物による静電散乱を受けて移動度が低下する。しかし HEMT では、電子を供給するドナーは <span class="math inline">\(\ce{AlGaAs}\)</span> 側にのみ存在し、電子が走るチャネルは不純物が含まれない<strong>高純度（未ドープ）の</strong> <span class="math inline">\(\ce{GaAs}\)</span> 層内にある。そのため、イオン化不純物散乱をほぼ受けず、極めて高い移動度（高速性）が実現できる。</li>
 </ul>
 </div>
 </div>
@@ -2605,6 +2622,7 @@ E_v  ─────────────────</code></pre>
 </section>
 <section id="final-exams" class="level1">
 <h1>期末試験 過去問</h1>
+<p>ここからは，公式を暗記するよりも「何が動き，何がそれを妨げ，どの量をつり合わせるか」を順番に追うのが近道になる。各「理論」は，前半で扱った内容を短いリンクで呼び出し，この過去問で新しく必要になる考え方と答案の組み立て方に集中している。初めて読むときはリンク先を先に確認し，2 周目からは各節末の「答案の設計図」だけを見て自力で導出するとよい。</p>
 <section id="past-1-intrinsic" class="level2">
 <h2 class="anchored" data-anchor-id="past-1-intrinsic">【過去問１】真性半導体のキャリア密度とフェルミ準位</h2>
 <p>真性半導体の電子密度 <span class="math inline">\(N_e\)</span> は，状態密度 <span class="math inline">\(d_e(E)\)</span> とフェルミ分布関数 <span class="math inline">\(f(E)\)</span> を用いて <span class="math display">\[
@@ -2630,15 +2648,123 @@ N_e = \int_{E_c}^{\infty} d_e(E) f(E)\,dE
 </div>
 <div id="callout-38" class="callout-38-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>各設問に対応する式と考え方：</p>
-<p>固体では原子準位が多数に分裂してバンドを作る。伝導帯下端付近を放物線バンド <span class="math display">\[
+<p><strong>先に結論を置くと</strong>，キャリヤ密度は「そのエネルギーに椅子が何脚あるか」と「各椅子に電子が座る確率」の積で決まる。状態密度 <span class="math inline">\(d_e(E)\)</span> が椅子の数，フェルミ分布 <span class="math inline">\(f(E)\)</span> が着席確率であり，</p>
+<p><span class="math display">\[
+N_e=\int_{E_c}^{\infty}\underbrace{d_e(E)}_{\text{椅子の数}}\,
+\underbrace{f(E)}_{\text{着席確率}}\,dE
+\]</span></p>
+<p>は，その掛け算を全エネルギーについて数え上げる式である。状態密度と真性キャリヤ密度の基本形は <a href="#quiz-5-dos-carrier">小テスト #5</a>，数値代入とフェルミ準位の描き方は <a href="#quiz-6-doped-si">小テスト #6</a> が正本なので，ここでは「なぜその式になり，6 つの設問をどう一本につなぐか」に集中する。</p>
+<p><strong>1. 状態密度は，なぜ平方根になるのか</strong></p>
+<p>伝導帯下端付近を</p>
+<p><span class="math display">\[
 E-E_c=\frac{\hbar^2k^2}{2m_e^*}
-\]</span> で近似すると，半径 <span class="math inline">\(k\)</span> までの状態数が <span class="math inline">\(k^3\)</span> に比例するため，微分した状態密度は <span class="math inline">\(\sqrt{E-E_c}\)</span> に比例する。フェルミ準位 <span class="math inline">\(E_f\)</span> は，フェルミ分布 <span class="math inline">\(f(E)\)</span> が <span class="math inline">\(1/2\)</span> になるエネルギーである。</p>
-<p><strong>1. 状態密度とフェルミ分布</strong>： <span class="math display">\[d_e(E) = \frac{4\pi(2m_e^*)^{3/2}}{h^3}\sqrt{E-E_c},\quad f(E)=\frac{1}{1+e^{(E-E_f)/kT}}\]</span></p>
-<p><strong>2. ボルツマン近似</strong>：<span class="math inline">\(E - E_f \gg kT\)</span> のとき <span class="math inline">\(f(E) \approx e^{-(E-E_f)/kT}\)</span>。<span class="math inline">\(\sqrt{E-E_c}\cdot e^{-(E-E_c)/kT}\)</span> の積分はガウス積分の変形で実行。結果： <span class="math display">\[N_e = N_c\exp\!\left(-\frac{E_c-E_f}{kT}\right),\quad N_c = 2\left(\frac{2\pi m_e^*kT}{h^2}\right)^{3/2}\]</span></p>
-<p><strong>4. 真性キャリヤ密度・真性フェルミ準位</strong>： - <span class="math inline">\(N_eN_h = N_cN_ve^{-E_g/kT} = N_i^2\)</span> から <span class="math inline">\(N_i = \sqrt{N_cN_v}\,e^{-E_g/2kT}\)</span> - <span class="math inline">\(N_e = N_h\)</span> を直接解くと：<span class="math inline">\(E_i = \dfrac{E_c+E_v}{2} + \dfrac{kT}{2}\ln\dfrac{N_v}{N_c}\)</span></p>
-<p><strong>5. <span class="math inline">\(E_i\)</span> のズレ計算</strong>：<span class="math inline">\(N_c,\,N_v\)</span> の数値を代入して <span class="math inline">\(\dfrac{kT}{2}\ln(N_v/N_c)\)</span> を計算（eV 単位で小さな負の値）。</p>
-<p><strong>6. n 型電子密度の温度依存性（3 領域）</strong>： - <strong>低温（凍結領域）</strong>：ドナーが電離しきれず <span class="math inline">\(N_e &lt; N_D\)</span>，温度↑で急増 - <strong>中温（外因性領域）</strong>：ドナー完全電離，<span class="math inline">\(N_e \approx N_D\)</span>（ほぼ一定） - <strong>高温（真性領域）</strong>：価電子帯からの熱励起が支配的，<span class="math inline">\(N_e \approx n_i(T) \propto e^{-E_g/2kT}\)</span>（急増）</p>
+\]</span></p>
+<p>という放物線で近似する。<span class="math inline">\(k\)</span> 空間で半径 <span class="math inline">\(k\)</span> の球内にある状態数は <span class="math inline">\(k^3\)</span> に比例し，<span class="math inline">\(E-E_c\propto k^2\)</span> だから，エネルギー <span class="math inline">\(E\)</span> までの累積状態数は <span class="math inline">\((E-E_c)^{3/2}\)</span> に比例する。これを <span class="math inline">\(E\)</span> で微分すると，</p>
+<p><span class="math display">\[
+d_e(E)=\frac{4\pi(2m_e^*)^{3/2}}{h^3}\sqrt{E-E_c}
+\]</span></p>
+<p>となる。つまり伝導帯の底には椅子がほとんどなく，そこから上へ行くほど椅子が <span class="math inline">\(\sqrt{E-E_c}\)</span> で増える。一方，その椅子に電子が座る確率は</p>
+<p><span class="math display">\[
+f(E)=\frac{1}{1+\exp\!\left(\dfrac{E-E_f}{kT}\right)}
+\]</span></p>
+<p>である。<span class="math inline">\(E=E_f\)</span> なら <span class="math inline">\(f=1/2\)</span> なので，<span class="math inline">\(E_f\)</span> は「電子が詰まっている側」と「空いている側」の境目を示す目印だと考えるとよい。</p>
+<p><strong>2. ボルツマン近似は，分母の 1 を捨てる操作</strong></p>
+<p>伝導帯で <span class="math inline">\(E-E_f\gg kT\)</span>，実用的には非縮退半導体で <span class="math inline">\(E_c-E_f\gtrsim3kT\)</span> なら，<span class="math inline">\(\exp[(E-E_f)/kT]\gg1\)</span> なので</p>
+<p><span class="math display">\[
+f(E)\simeq\exp\!\left(-\frac{E-E_f}{kT}\right)
+\]</span></p>
+<p>と近似できる。<span class="math inline">\(\epsilon=E-E_c\)</span> と置けば，フェルミ準位に関する因子だけを積分の外へ出せる：</p>
+<p><span class="math display">\[
+N_e=Ae^{-(E_c-E_f)/kT}
+\int_0^\infty \epsilon^{1/2}e^{-\epsilon/kT}\,d\epsilon,
+\qquad
+A=\frac{4\pi(2m_e^*)^{3/2}}{h^3}.
+\]</span></p>
+<p>残った積分は</p>
+<p><span class="math display">\[
+\int_0^\infty \epsilon^{1/2}e^{-\epsilon/kT}\,d\epsilon
+=\frac{\sqrt\pi}{2}(kT)^{3/2}
+\]</span></p>
+<p>なので，</p>
+<p><span class="math display">\[
+N_e=N_c\exp\!\left(-\frac{E_c-E_f}{kT}\right),
+\qquad
+N_c=2\left(\frac{2\pi m_e^*kT}{h^2}\right)^{3/2}
+\]</span></p>
+<p>を得る。長い積分の本質は，「状態数から <span class="math inline">\(T^{3/2}\)</span>，バンド端とフェルミ準位の距離から指数関数」が出る，という二点だけである。</p>
+<p><strong>3. 正孔は「価電子帯の空席」を数える</strong></p>
+<p>正孔は粒子を新しく足すのではなく，価電子帯で電子が抜けた空席を数えたものだから，占有確率には <span class="math inline">\(1-f(E)\)</span> を使う。価電子帯上端付近で同じ計算をすると，</p>
+<p><span class="math display">\[
+N_h=\int_{-\infty}^{E_v}d_h(E)\{1-f(E)\}\,dE
+=N_v\exp\!\left(-\frac{E_f-E_v}{kT}\right),
+\]</span></p>
+<p><span class="math display">\[
+N_v=2\left(\frac{2\pi m_h^*kT}{h^2}\right)^{3/2}
+\]</span></p>
+<p>となる。電子では <span class="math inline">\(E_c-E_f\)</span>，正孔では <span class="math inline">\(E_f-E_v\)</span> が指数の中に入る。フェルミ準位を伝導帯へ近づけると電子が増え，価電子帯から遠ざかるので正孔が減る，という同じ図を式にしただけである。</p>
+<p><strong>4. 真性半導体では，電子と正孔が必ず一組ずつ生まれる</strong></p>
+<p>不純物のない半導体では，価電子帯から電子が 1 個抜けるたび，伝導帯に電子 1 個，価電子帯に正孔 1 個が生じる。したがって <span class="math inline">\(N_e=N_h=N_i\)</span> である。まず両者を掛けると <span class="math inline">\(E_f\)</span> が消え，</p>
+<p><span class="math display">\[
+N_eN_h=N_cN_v\exp\!\left(-\frac{E_g}{kT}\right)=N_i^2,
+\]</span></p>
+<p><span class="math display">\[
+N_i=\sqrt{N_cN_v}\exp\!\left(-\frac{E_g}{2kT}\right)
+\]</span></p>
+<p>を得る。<span class="math inline">\(E_g\)</span> を渡るには大きな熱揺らぎが必要なので，<span class="math inline">\(E_g\)</span> が少し大きくなるだけでキャリヤが指数関数的に減る。これは <a href="#quiz-4-conductivity">小テスト #4</a> の「半導体は金属より電気を流しにくい」という話を定量化した式である。</p>
+<p>次に <span class="math inline">\(N_e=N_h\)</span> を代入して <span class="math inline">\(E_f\)</span> について解くと，真性フェルミ準位は</p>
+<p><span class="math display">\[
+E_i=\frac{E_c+E_v}{2}+\frac{kT}{2}\ln\!\left(\frac{N_v}{N_c}\right)
+\]</span></p>
+<p>となる。禁制帯の中央からずれるのは，伝導帯と価電子帯で椅子の密度が同じとは限らないからである。椅子が多い側から少し離れることで，電子数と正孔数が等しくなる。</p>
+<p><strong>5. Si でのずれは，符号まで物理として読む</strong></p>
+<p>300 K では <span class="math inline">\(kT=0.025875\ \mathrm{eV}\)</span> であり，設問の <span class="math inline">\(N_c=2.86\times10^{19}\)</span>，<span class="math inline">\(N_v=2.66\times10^{19}\ \mathrm{cm^{-3}}\)</span> を使うと，</p>
+<p><span class="math display">\[
+\Delta E_i
+=E_i-\frac{E_c+E_v}{2}
+=\frac{0.025875}{2}\ln\!\left(\frac{2.66}{2.86}\right)
+=-9.38\times10^{-4}\ \mathrm{eV}.
+\]</span></p>
+<p>負号は <span class="math inline">\(E_i\)</span> が禁制帯中央より価電子帯側にあることを表す。値が約 <span class="math inline">\(1\ \mathrm{meV}\)</span> と小さいので「真性フェルミ準位はほぼ中央」はよい近似だが，この設問ではその小さな非対称性を計算している。</p>
+<p><strong>6. n 型半導体の温度変化は，電子の供給源が交代する物語</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>温度領域</th>
+<th>電子の主な供給源</th>
+<th>電子密度 <span class="math inline">\(N_e\)</span> の振る舞い</th>
+<th>フェルミ準位の見方</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>低温：凍結領域</td>
+<td>ドナー準位からの熱励起</td>
+<td>ドナーが中性のままなので <span class="math inline">\(N_e&lt;N_D\)</span>。温度上昇で活性化型に急増</td>
+<td>ドナー準位付近</td>
+</tr>
+<tr class="even">
+<td>中温：外因性領域</td>
+<td>ほぼ完全電離したドナー</td>
+<td>無補償なら <span class="math inline">\(N_e\simeq N_D\)</span> でほぼ一定</td>
+<td>温度上昇とともに禁制帯中央へ近づく</td>
+</tr>
+<tr class="odd">
+<td>高温：真性領域</td>
+<td>価電子帯から伝導帯への励起</td>
+<td>不純物の寄与を追い越し，<span class="math inline">\(N_e\simeq N_h\simeq N_i(T)\)</span> と急増</td>
+<td>真性準位 <span class="math inline">\(E_i\)</span> へ近づく</td>
+</tr>
+</tbody>
+</table>
+<p>補償された n 型なら外因性領域の台地は <span class="math inline">\(N_e\simeq N_D-N_A\)</span> であり，高温側では <span class="math inline">\(N_i\propto T^{3/2}\exp[-E_g/(2kT)]\)</span> となる。したがって電子密度のグラフは「低温で上昇 → 正味の不純物濃度付近で台地 → 高温で再上昇」と読む。各領域の境界温度は材料と不純物濃度で変わるので，「室温」が普遍的な境界というわけではない。</p>
+<p>中温域で電子密度が一定でも，<span class="math inline">\(N_c\propto T^{3/2}\)</span> は変化するため，<span class="math inline">\(E_f\)</span> まで固定されるわけではない。この区別が温度依存のグラフを読む鍵になる。</p>
+<p><strong>答案の設計図</strong>：① <span class="math inline">\(d_e\)</span> と <span class="math inline">\(f\)</span> を書く → ② 近似条件を述べて <span class="math inline">\(\epsilon=E-E_c\)</span> と変数変換 → ③ 正孔は <span class="math inline">\(1-f\)</span> で同様に計算 → ④ 積と等式 <span class="math inline">\(N_e=N_h\)</span> から <span class="math inline">\(N_i,E_i\)</span> を導く → ⑤ 中央からのずれを符号付きで計算 → ⑥ 「ドナー未電離 → 完全電離 → 真性励起」の順で温度領域を説明，と並べれば，設問順の答案になる。</p>
 </div>
 </div>
 </div>
@@ -2713,17 +2839,62 @@ E_i=\frac{E_c+E_v}{2}+\frac{kT}{2}\ln\left(\frac{N_v}{N_c}\right)
 </div>
 <div id="callout-40" class="callout-40-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>1. As のドナー準位</strong>：As は V 族元素。Si との共有結合に 4 個の価電子を使い，余剰電子 1 個が<strong>ドナー準位</strong>（伝導帯下端 <span class="math inline">\(E_c\)</span> のわずかに下）を形成する。</p>
-<p><strong>2. ドナー束縛エネルギーの概算（ボーアモデル）</strong>：</p>
-<p>水素の束縛エネルギー 13.6 eV に 2 つの補正：</p>
+<p>この問題は，前半で別々に出てきた三つの考え方を接続する問題である。水素原子の量子化は <a href="#quiz-3-bohr">小テスト #3【1】</a>，キャリヤ密度とフェルミ準位の数値計算は <a href="#quiz-6-doped-si">小テスト #6</a>，真性半導体との違いは <a href="#past-1-intrinsic">過去問１</a> を参照する。ここでは「不純物がなぜ浅い準位を作り，その電子が伝導帯へ移るとバンド図と金属接触がどう変わるか」を一本の物語として組み立てる。</p>
+<p><strong>1. As は，5 本目の電子を持ってきた Si の代役</strong></p>
+<p>Si 原子は 4 個の価電子を使い，周囲の Si と 4 本の共有結合を作る。Si の一部を V 族の As に置き換えると，As の価電子 5 個のうち 4 個は同じ結合に使われ，1 個だけ余る。この電子は結晶中を動ける電子として提供されるので As を<strong>ドナー</strong>と呼び，電子を放した後の As は正に帯電した固定イオン <span class="math inline">\(\mathrm{As}^+\)</span> になる。</p>
+<p>ただし 0 K では，余った電子はすぐ伝導帯を自由に走るわけではない。正に帯電したドナーへ弱く束縛され，伝導帯下端 <span class="math inline">\(E_c\)</span> の少し下に<strong>ドナー準位 <span class="math inline">\(E_D\)</span></strong> を作る。B は価電子が 3 個なので逆に電子を一つ受け入れる<strong>アクセプタ準位</strong>を <span class="math inline">\(E_v\)</span> の少し上に作り，p 型 Si になる。</p>
+<p><strong>2. ドナー電子は「巨大で弱い水素原子」として概算できる</strong></p>
+<p>ドナーイオンと電子の組は水素原子に似ているが，半導体中では二つの物性が変わる。</p>
 <ul>
-<li>電子質量 <span class="math inline">\(m_0 \to m_e^*\)</span>（有効質量）</li>
-<li>クーロン力が比誘電率 <span class="math inline">\(\varepsilon_r^2\)</span> 分の 1 に弱まる</li>
+<li>電子は真空中の質量 <span class="math inline">\(m_0\)</span> ではなく，結晶中の有効質量 <span class="math inline">\(m_e^*\)</span> で応答する。</li>
+<li>ドナーの電場は結晶の誘電分極に遮蔽され，クーロン力が弱くなる。</li>
 </ul>
-<p><span class="math display">\[E_D = 13.6\,\frac{m_e^*}{m_0}\,\frac{1}{\varepsilon_r^2}\ \text{[eV]}\]</span></p>
-<p>Si の値（<span class="math inline">\(m_e^*/m_0 \approx 0.26\)</span>，<span class="math inline">\(\varepsilon_r \approx 11.9\)</span>）を代入 → <span class="math inline">\(E_D \approx 0.025\ \text{eV}\)</span>（室温 <span class="math inline">\(kT \approx 0.026\ \text{eV}\)</span> と同程度 → 室温でほぼ完全電離）</p>
-<p><strong>3. キャリヤ密度とフェルミ準位の計算</strong>： - 完全電離仮定：<span class="math inline">\(N_e \approx N_D\)</span>，<span class="math inline">\(N_h = N_i^2/N_D\)</span> - フェルミ準位：<span class="math inline">\(E_c - E_f = kT\ln(N_c/N_D)\)</span></p>
-<p><strong>4. オーミック接合の条件</strong>： - 金属の仕事関数が小さく，n 型 Si のフェルミ準位に揃えたときに電子に対する障壁が生じない場合 - または接触部を高濃度ドープして空乏層を非常に薄くし，電子がトンネル透過できる場合 - I-V 特性が整流性を示さず，ほぼ線形（オーミック）になる</p>
+<p><a href="#quiz-3-bohr">小テスト #3【1】</a> の水素原子の結果で <span class="math inline">\(m_0\to m_e^*\)</span>，<span class="math inline">\(\varepsilon_0\to\varepsilon_0\varepsilon_r\)</span> と置き換えると，束縛エネルギー <span class="math inline">\(E_B\equiv E_c-E_D\)</span> と有効ボーア半径 <span class="math inline">\(a_D^*\)</span> は</p>
+<p><span class="math display">\[
+E_B=13.6\frac{m_e^*}{m_0}\frac{1}{\varepsilon_r^2}\ \mathrm{eV},
+\qquad
+a_D^*=\frac{\varepsilon_r}{m_e^*/m_0}a_0
+\]</span></p>
+<p>となる。Si の <span class="math inline">\(m_e^*/m_0=0.26\)</span>，<span class="math inline">\(\varepsilon_r=11.9\)</span> を使えば，</p>
+<p><span class="math display">\[
+E_B=13.6\frac{0.26}{11.9^2}=0.0250\ \mathrm{eV},
+\qquad
+a_D^*\simeq2.4\ \mathrm{nm}.
+\]</span></p>
+<p>原子の大きさ <span class="math inline">\(a_0\simeq0.053\ \mathrm{nm}\)</span> よりはるかに広がった電子なので，特定の結合に強く固定された深い準位ではなく，少しの熱で電離できる<strong>浅い準位</strong>になる。300 K の熱エネルギー <span class="math inline">\(kT\simeq0.0259\ \mathrm{eV}\)</span> と同程度なのも，室温でほぼ完全電離できる理由である。なお <span class="math inline">\(0.0250\ \mathrm{eV}\)</span> は問題で指定された有効質量を使う水素様モデルの概算値であり，実在の不純物では結晶の異方性や不純物核近傍の補正によりずれ得る。</p>
+<p><strong>3. キャリヤ密度は，電荷中性と電子・正孔の積で決める</strong></p>
+<p>計算を始める前に，次の二つを書く。</p>
+<p><span class="math display">\[
+N_e+N_A^-=N_h+N_D^+,
+\qquad
+N_eN_h=N_i^2.
+\]</span></p>
+<p>第一式は「試料全体は電気的に中性」，第二式は <a href="#past-1-intrinsic">過去問１</a> で得た質量作用の法則である。300 K，完全電離，補償不純物なし，かつ <span class="math inline">\(N_D\gg N_i\)</span> の n 型なら，</p>
+<p><span class="math display">\[
+N_D^+\simeq N_D,\qquad N_e\simeq N_D,\qquad
+N_h=\frac{N_i^2}{N_e}.
+\]</span></p>
+<p>p 型なら役割を入れ替えて <span class="math inline">\(N_h\simeq N_A\)</span>，<span class="math inline">\(N_e=N_i^2/N_h\)</span> となる。フェルミ準位は，求めた多数キャリヤ密度を</p>
+<p><span class="math display">\[
+E_c-E_f=kT\ln\!\left(\frac{N_c}{N_e}\right),
+\qquad
+E_f-E_v=kT\ln\!\left(\frac{N_v}{N_h}\right)
+\]</span></p>
+<p>へ代入して決める。n 型では電子を増やすほど <span class="math inline">\(E_f\)</span> が <span class="math inline">\(E_c\)</span> へ近づき，p 型では正孔を増やすほど <span class="math inline">\(E_f\)</span> が <span class="math inline">\(E_v\)</span> へ近づく。これは「フェルミ準位がキャリヤを生む」というより，必要な占有確率を実現する位置へ <span class="math inline">\(E_f\)</span> が移ると考えると分かりやすい。</p>
+<p>エネルギーダイヤグラムは，① <span class="math inline">\(E_v\)</span> と <span class="math inline">\(E_c=E_v+E_g\)</span> を平行に引く → ② n 型なら <span class="math inline">\(E_D=E_c-E_B\)</span> を <span class="math inline">\(E_c\)</span> の直下に置く → ③ <span class="math inline">\(E_i\)</span> をほぼ中央に置く → ④ 計算した <span class="math inline">\(E_c-E_f\)</span> で <span class="math inline">\(E_f\)</span> を置く，の順なら迷わない。具体的な 300 K Si の数値代入は <a href="#quiz-6-doped-si">小テスト #6</a> と同じ手順である。</p>
+<p><strong>4. 金属接触は，障壁の「高さ」と「幅」を分けて考える</strong></p>
+<p>金属と n 型 Si を接触させると，接触前に異なっていたフェルミ準位が，電子の移動によって一つの水平な <span class="math inline">\(E_f\)</span> にそろう。その代わり，Si 表面のバンドが曲がる。理想界面の Schottky–Mott 模型では，電子障壁の高さは</p>
+<p><span class="math display">\[
+q\phi_{Bn}=q(\phi_M-\chi)
+\]</span></p>
+<p>で表される。<span class="math inline">\(\phi_M\)</span> は金属仕事関数，<span class="math inline">\(\chi\)</span> は半導体の電子親和力である。金属仕事関数が n 型半導体の仕事関数 <span class="math inline">\(\phi_S\)</span> より小さく，表面が電子の<strong>蓄積</strong>側に曲がり，電子に対する障壁も十分小さければ，電子は両方向へ容易に移動できる。</p>
+<p>一方，障壁が残っても接触直下を n<span class="math inline">\(^+\)</span> に高濃度ドープすれば，概略</p>
+<p><span class="math display">\[
+W_B\sim\sqrt{\frac{2\varepsilon_sV_{bi}}{qN_D}}
+\]</span></p>
+<p>に従って障壁幅 <span class="math inline">\(W_B\)</span> が薄くなる。すると電子は障壁を乗り越えなくてもトンネル透過でき，低抵抗のオーミック接触になる。高濃度ドープが主に小さくするのは障壁の<strong>高さではなく幅</strong>，という区別が重要である。実界面では界面準位によるフェルミ準位のピンニングもあるため，このトンネル接触が実用上よく使われる。</p>
+<p>オーミック接触でも熱平衡の正味電流は 0 である。「電流が常に流れる接触」ではなく，微小な正負どちらの電圧にも低抵抗で応答し，I–V 特性が原点を通るほぼ直線になる接触，と定義するとよい。</p>
+<p><strong>答案の設計図</strong>：① As の 4 本の結合と余剰電子からドナー準位を説明 → ② 水素モデルで <span class="math inline">\(E_B\)</span> と，できれば <span class="math inline">\(a_D^*\)</span> を計算 → ③ 電荷中性と <span class="math inline">\(N_eN_h=N_i^2\)</span> からキャリヤ密度，続いて <span class="math inline">\(E_f\)</span> を求めて図示 → ④ 金属接触では「小さい障壁」または「高濃度ドープで薄い障壁」を描き，線形 I–V まで述べる，という順で書けばよい。</p>
 </div>
 </div>
 </div>
@@ -2739,18 +2910,19 @@ E_i=\frac{E_c+E_v}{2}+\frac{kT}{2}\ln\left(\frac{N_v}{N_c}\right)
 </div>
 <div id="callout-41" class="callout-41-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>As は V 族元素なので，Si に添加すると余剰電子を供給する<strong>ドナー準位</strong>を形成する。ボーアモデルでは，ドナー電子を「半導体中の水素原子」と見なして， <span class="math display">\[
-E_D = 13.6\,\frac{m_e^*}{m_0}\frac{1}{\varepsilon_{\mathrm{Si}}^2}\ \mathrm{eV}
+<p>As は V 族元素なので，Si に添加すると余剰電子を供給する<strong>ドナー準位</strong>を形成する。ボーアモデルでは，ドナー電子を「半導体中の水素原子」と見なして，束縛エネルギーを <span class="math display">\[
+E_B\equiv E_c-E_D
+=13.6\,\frac{m_e^*}{m_0}\frac{1}{\varepsilon_{\mathrm{Si}}^2}\ \mathrm{eV}
 \]</span> と概算できる。試験紙の値 <span class="math inline">\(m_e^*/m_0=0.26,\ \varepsilon_{\mathrm{Si}}=11.9\)</span> を用いると， <span class="math display">\[
-E_D=13.6\times\frac{0.26}{11.9^2}=2.50\times10^{-2}\ \mathrm{eV}
+E_B=13.6\times\frac{0.26}{11.9^2}=2.50\times10^{-2}\ \mathrm{eV}
 \]</span> であり，ドナー準位は <span class="math inline">\(E_c\)</span> の約 <span class="math inline">\(0.0250\ \mathrm{eV}\)</span> 下に位置する。</p>
 <p>300 K で不純物が完全電離しているとみなすと，n 型では <span class="math inline">\(N_e\simeq N_D\)</span>，p 型では <span class="math inline">\(N_h\simeq N_A\)</span> である。少数キャリアは質量作用の法則 <span class="math inline">\(N_eN_h=N_i^2\)</span> から求まる。</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 21%">
-<col style="width: 28%">
-<col style="width: 28%">
-<col style="width: 21%">
+<col style="width: 23%">
+<col style="width: 26%">
+<col style="width: 26%">
+<col style="width: 23%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -2827,13 +2999,98 @@ E_f=E_v+kT\ln\left(\frac{N_v}{N_A}\right)
 </div>
 <div id="callout-42" class="callout-42-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>1. フェルミ準位一致の証明</strong>：電子電流 <span class="math inline">\(J_e = 0\)</span> を条件に，アインシュタイン関係 <span class="math inline">\(D_e/\mu_e = kT/q\)</span> と <span class="math inline">\(N_e = N_c e^{-(E_c-E_f)/kT}\)</span> を微分して代入すると <span class="math inline">\(dE_f/dx = 0\)</span> が得られる。</p>
-<p><strong>2. 拡散電位</strong>：<span class="math inline">\(V_D = \dfrac{kT}{q}\ln\!\dfrac{N_AN_D}{N_i^2}\)</span></p>
-<p><strong>3. 空乏層の計算手順</strong>：</p>
-<p>① ポアソン方程式：<span class="math inline">\(d\mathcal{E}/dx = \rho/\varepsilon_s\)</span>（p 側：<span class="math inline">\(\rho = -qN_A\)</span>，n 側：<span class="math inline">\(\rho = +qN_D\)</span>）</p>
-<p>② 境界条件：<span class="math inline">\(\mathcal{E}(-x_p) = \mathcal{E}(x_n) = 0\)</span>，接合面での電界連続 → <strong>電荷中性条件</strong>：<span class="math inline">\(N_Ax_p = N_Dx_n\)</span></p>
-<p>③ 電位（電界の積分）の合計 = 拡散電位 → <span class="math inline">\(x_p, x_n\)</span> が決まる： <span class="math display">\[W = x_p + x_n = \sqrt{\frac{2\varepsilon_s}{q}\left(\frac{1}{N_A}+\frac{1}{N_D}\right)(V_D-V)}\]</span></p>
-<p><strong>4. C-V 特性と物性の抽出</strong>：<span class="math inline">\(C = \varepsilon_sA/W\)</span> から <span class="math display">\[\frac{1}{C^2} = \frac{2(V_D-V)}{q\varepsilon_sA^2}\left(\frac{1}{N_A}+\frac{1}{N_D}\right)\]</span> <span class="math inline">\(1/C^2\)</span> vs <span class="math inline">\(V\)</span> が直線 → 電圧軸切片 <span class="math inline">\(= V_D\)</span>，傾きから不純物濃度が求まる</p>
+<p>設問 1・2 の完全な導出は <a href="#quiz-9-pn-equilibrium">小テスト #9</a>，そこで使うアインシュタイン関係は <a href="#quiz-8-einstein">小テスト #8【1】</a> が正本である。ここでは同じ証明を繰り返さず，その結果から空乏層の形と C–V 特性を自力で再構成できるところまで進む。障壁を越えて電流が流れる話は <a href="#past-4-pn-iv">過去問４</a> へつながる。</p>
+<p><strong>最初の一枚絵：空乏層は「電荷が空」なのではない</strong></p>
+<p>p 型と n 型を接触させると，濃度差のため電子は n 側から p 側へ，正孔は p 側から n 側へ拡散し，接合付近で再結合する。動けるキャリヤが去ったあとには，</p>
+<ul>
+<li>p 側に負のアクセプタイオン <span class="math inline">\(-qN_A\)</span></li>
+<li>n 側に正のドナーイオン <span class="math inline">\(+qN_D\)</span></li>
+</ul>
+<p>が固定電荷として残る。この固定電荷が n 側から p 側へ向く電界を作り，後から来るキャリヤを押し戻す。「混ざろうとする拡散」と「それを止める電界」がちょうどつり合った状態が熱平衡である。</p>
+<p>フェルミ準位 <span class="math inline">\(E_f\)</span> は電子の電気化学ポテンシャルなので，熱平衡で位置によって <span class="math inline">\(E_f\)</span> が違えば，その差を下げる向きに電子が流れてしまう。<a href="#quiz-9-pn-equilibrium">小テスト #9</a> のように，電子または正孔についてドリフト電流と拡散電流を足して 0 と置けば <span class="math inline">\(dE_f/dx=0\)</span> が得られる。したがって接合後のバンド図では，曲がる <span class="math inline">\(E_c,E_v\)</span> に対して <span class="math inline">\(E_f\)</span> を水平に描く。</p>
+<p>p 側と n 側に接触前からあったフェルミ準位差を電位へ換算すれば，</p>
+<p><span class="math display">\[
+V_D=\frac{kT}{q}\ln\!\left(\frac{N_AN_D}{N_i^2}\right)
+\]</span></p>
+<p>となる。この <span class="math inline">\(V_D\)</span> は拡散を止める内蔵の「坂の高さ」である。</p>
+<p><strong>空乏層を解くための約束</strong></p>
+<p>1 次元の急峻接合，完全電離，一様な <span class="math inline">\(N_A,N_D\)</span>，一定の誘電率 <span class="math inline">\(\varepsilon_s\)</span> を仮定する。接合面を <span class="math inline">\(x=0\)</span>，p 側を <span class="math inline">\(x&lt;0\)</span>，n 側を <span class="math inline">\(x&gt;0\)</span> とし，空乏層端を <span class="math inline">\(-x_p,x_n\)</span> とする。順方向電圧を <span class="math inline">\(V&gt;0\)</span> と定義すれば，空乏層が支える正味の電位差は</p>
+<p><span class="math display">\[
+U=V_D-V
+\]</span></p>
+<p>である。逆バイアスの大きさを <span class="math inline">\(V_R=-V&gt;0\)</span> と書くなら <span class="math inline">\(U=V_D+V_R\)</span> になる。</p>
+<p><strong>1. 固定電荷を置き，ポアソン方程式を区間ごとに積分する</strong></p>
+<p>空乏層近似で電荷密度は</p>
+<p><span class="math display">\[
+\rho(x)=
+\begin{cases}
+-qN_A &amp; (-x_p\le x\le0),\\
++qN_D &amp; (0\le x\le x_n),\\
+0 &amp; (x&lt;-x_p,\ x&gt;x_n)
+\end{cases}
+\]</span></p>
+<p>となる。ポアソン方程式と電位の関係は</p>
+<p><span class="math display">\[
+\frac{d\mathcal E}{dx}=\frac{\rho}{\varepsilon_s},
+\qquad
+\mathcal E=-\frac{d\psi}{dx}.
+\]</span></p>
+<p>中性領域では電界が 0 なので，境界条件 <span class="math inline">\(\mathcal E(-x_p)=\mathcal E(x_n)=0\)</span> を使って積分すると，</p>
+<p><span class="math display">\[
+\mathcal E(x)=
+\begin{cases}
+-\dfrac{qN_A}{\varepsilon_s}(x+x_p) &amp; (-x_p\le x\le0),\\[6pt]
+-\dfrac{qN_D}{\varepsilon_s}(x_n-x) &amp; (0\le x\le x_n)
+\end{cases}
+\]</span></p>
+<p>を得る。接合面で電界が連続する条件から，</p>
+<p><span class="math display">\[
+N_Ax_p=N_Dx_n
+\]</span></p>
+<p>となる。これは左右に露出した固定電荷の大きさが等しい，という電荷中性条件でもある。低濃度側では単位長さ当たりのイオンが少ないので，同じ電荷量を集めるために空乏層が遠くまで伸びる。</p>
+<p><strong>2. 電位差は，三角形の電界分布の面積である</strong></p>
+<p>電位差は <span class="math inline">\(-\mathcal E\)</span> の積分，つまり電界グラフの面積なので，</p>
+<p><span class="math display">\[
+U=-\int_{-x_p}^{x_n}\mathcal E(x)\,dx
+=\frac{q}{2\varepsilon_s}\left(N_Ax_p^2+N_Dx_n^2\right)
+=\frac{|\mathcal E_{\max}|W}{2}
+\]</span></p>
+<p>である。ここで <span class="math inline">\(W=x_p+x_n\)</span>。この式と <span class="math inline">\(N_Ax_p=N_Dx_n\)</span> を連立すると，</p>
+<p><span class="math display">\[
+W=\sqrt{\frac{2\varepsilon_s}{q}
+\left(\frac{1}{N_A}+\frac{1}{N_D}\right)(V_D-V)},
+\]</span></p>
+<p><span class="math display">\[
+x_p=\frac{N_D}{N_A+N_D}W,
+\qquad
+x_n=\frac{N_A}{N_A+N_D}W
+\]</span></p>
+<p>を得る。例えば <span class="math inline">\(N_D=10N_A\)</span> なら <span class="math inline">\(x_p=10x_n\)</span> であり，低濃度の p 側へ広く伸びる。公式を忘れても「左右の電荷が等しい」「電界三角形の面積が <span class="math inline">\(V_D-V\)</span>」の二つから再導出できる。</p>
+<p><strong>3. C–V 特性は，空乏層が呼吸する様子を測る</strong></p>
+<p>逆バイアスを強くすると固定イオンが露出する範囲 <span class="math inline">\(W\)</span> が広がり，順バイアスを強くすると狭まる。左右の固定電荷をコンデンサの極板，空乏層幅を極板間隔とみなすと，小信号の空乏層容量は</p>
+<p><span class="math display">\[
+C_j=\left|\frac{dQ}{dV}\right|=\frac{\varepsilon_sA}{W}.
+\]</span></p>
+<p>したがって，</p>
+<p><span class="math display">\[
+\frac{1}{C_j^2}
+=\frac{2}{q\varepsilon_sA^2}
+\left(\frac{1}{N_A}+\frac{1}{N_D}\right)(V_D-V)
+\]</span></p>
+<p>となる。ここは電圧軸の定義を必ず答案に書く。</p>
+<ul>
+<li><strong>順方向を正とする <span class="math inline">\(V\)</span> 軸</strong>：傾きは負，<span class="math inline">\(1/C_j^2=0\)</span> への外挿切片は <span class="math inline">\(V=V_D\)</span>。</li>
+<li><strong>逆バイアスの大きさ <span class="math inline">\(V_R&gt;0\)</span> を横軸</strong>：<span class="math inline">\(V_D-V=V_D+V_R\)</span> なので傾きは正，電圧軸への外挿切片は <span class="math inline">\(V_R=-V_D\)</span>。</li>
+</ul>
+<p>傾きから直接求まるのは，</p>
+<p><span class="math display">\[
+N_{\mathrm{eff}}
+=\left(\frac{1}{N_A}+\frac{1}{N_D}\right)^{-1}
+=\frac{N_AN_D}{N_A+N_D}
+\]</span></p>
+<p>であり，<span class="math inline">\(N_A\)</span> と <span class="math inline">\(N_D\)</span> を傾き一つから別々に決められるわけではない。一方が既知なら他方を解ける。<span class="math inline">\(N_A\gg N_D\)</span> の一方的接合なら <span class="math inline">\(N_{\mathrm{eff}}\simeq N_D\)</span> となり，低濃度側をほぼ直接読める。なお強い順方向では注入キャリヤによる拡散容量が支配するため，この空乏層容量の式は使わない。</p>
+<p><strong>自己点検</strong>：順方向電圧 <span class="math inline">\(V\)</span> を増やすと，障壁 <span class="math inline">\(U\)</span> は低下し，<span class="math inline">\(W\)</span> は狭くなり，<span class="math inline">\(C_j\)</span> は増える。逆バイアスならすべて逆になる。この直感と式が一致していれば，符号は正しい。</p>
+<p><strong>答案の設計図</strong>：① <a href="#quiz-9-pn-equilibrium">小テスト #9</a> の <span class="math inline">\(dE_f/dx=0\)</span> と <span class="math inline">\(V_D\)</span> を書く → ② <span class="math inline">\(\rho(x)\)</span> を描く → ③ ポアソン方程式を左右で積分 → ④ 電界の連続から <span class="math inline">\(N_Ax_p=N_Dx_n\)</span> → ⑤ 電界三角形の面積を <span class="math inline">\(V_D-V\)</span> に等置 → ⑥ <span class="math inline">\(W,x_p,x_n\)</span> を解く → ⑦ <span class="math inline">\(C_j=\varepsilon_sA/W\)</span> を <span class="math inline">\(1/C_j^2\)</span> に直し，軸の符号を宣言して切片と傾きを読む，の順である。</p>
 </div>
 </div>
 </div>
@@ -2849,7 +3106,7 @@ E_f=E_v+kT\ln\left(\frac{N_v}{N_A}\right)
 </div>
 <div id="callout-43" class="callout-43-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>熱平衡では全電流が 0 である。電子電流について <span class="math display">\[
+<p>熱平衡では電子電流と正孔電流がそれぞれ 0 である。電子電流について <span class="math display">\[
 J_e=q\mu_e N_eE+qD_e\frac{dN_e}{dx}=0
 \]</span> が成り立ち，アインシュタインの関係式 <span class="math inline">\(D_e/\mu_e=kT/q\)</span> と <span class="math inline">\(N_e=N_c\exp[-(E_c-E_f)/kT]\)</span> を用いると， <span class="math display">\[
 \frac{dE_f}{dx}=0
@@ -2883,7 +3140,7 @@ C=\frac{\varepsilon_s A}{W}
 \]</span> なので， <span class="math display">\[
 \frac{1}{C^2}
 =\frac{2}{q\varepsilon_sA^2}\left(\frac{1}{N_A}+\frac{1}{N_D}\right)(V_D-V)
-\]</span> を得る。<span class="math inline">\(1/C^2\)</span> を <span class="math inline">\(V\)</span> に対してプロットすると直線になり，電圧軸との切片から <span class="math inline">\(V_D\)</span>，傾きから不純物濃度を推定できる。</p>
+\]</span> を得る。<span class="math inline">\(1/C^2\)</span> を <span class="math inline">\(V\)</span> に対してプロットすると直線になり，電圧軸との切片から <span class="math inline">\(V_D\)</span> を推定できる。傾きから直接得られるのは <span class="math inline">\(N_{\mathrm{eff}}=(1/N_A+1/N_D)^{-1}\)</span> であり，一方の濃度が既知なら他方を求められる。一方が十分高濃度なら，<span class="math inline">\(N_{\mathrm{eff}}\)</span> は低濃度側の不純物濃度にほぼ等しい。</p>
 </div>
 </div>
 </div>
@@ -2914,12 +3171,155 @@ i\simeq i_s\exp\left(\frac{qV}{\eta kT}\right)
 </div>
 <div id="callout-44" class="callout-44-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>1. 3 つの仮定</strong>：① 急峻接合近似，② 低注入近似，③ 空乏層内での生成・再結合なし</p>
-<p><strong>2. 導出の手順</strong>：</p>
-<p>① <strong>空乏層端の境界条件</strong>（バイアス <span class="math inline">\(V\)</span> 印加時）： <span class="math display">\[N_{h(n)}(x_n) = N_{h(n)}^0\,e^{qV/kT},\quad N_{e(p)}(-x_p) = N_{e(p)}^0\,e^{qV/kT}\]</span></p>
-<p>② <strong>中性 n 領域の連続の式</strong>（定常，<span class="math inline">\(G = 0\)</span>，電場無視）： <span class="math display">\[D_h\frac{d^2\Delta N_h}{dx^2} - \frac{\Delta N_h}{\tau_h} = 0\]</span> 境界条件：上式 + <span class="math inline">\(x\to\infty\)</span> で <span class="math inline">\(\Delta N_h \to 0\)</span> → <span class="math inline">\(\Delta N_h \propto e^{-(x-x_n)/L_h}\)</span></p>
-<p>③ <strong>拡散電流</strong>：<span class="math inline">\(i_h = \dfrac{qD_hN_{h(n)}^0}{L_h}(e^{qV/kT}-1)\)</span>，同様に <span class="math inline">\(i_e\)</span> を求めて <span class="math inline">\(i = i_h + i_e\)</span></p>
-<p><strong>3. 理想係数 <span class="math inline">\(\eta\)</span> の電圧依存性</strong>： - <strong>低電圧</strong>：空乏層内の再結合電流が相対的に大きい → <span class="math inline">\(\eta \approx 2\)</span> - <strong>中電圧</strong>：中性領域への拡散電流が支配的 → <span class="math inline">\(\eta \approx 1\)</span>（理想ダイオードの挙動） - <strong>高電圧</strong>：高注入・直列抵抗の影響 → 見かけの <span class="math inline">\(\eta &gt; 1\)</span> にずれる</p>
+<p>空乏層と障壁の形は <a href="#past-3-pn-cv">過去問３</a>，平衡少数キャリヤを決める <span class="math inline">\(N_eN_h=N_i^2\)</span> は <a href="#quiz-5-dos-carrier">小テスト #5</a>，連続の式が指数減衰を生む仕組みは <a href="#quiz-8-hole-diffusion">小テスト #8【2】</a> を参照する。理想 I–V の代数を一通り確認したいときは <a href="#quiz-10-pn-iv">小テスト #10</a> が正本である。ここでは，それらを「障壁を下げる → 少数キャリヤが増える → 拡散して再結合する → 濃度勾配が電流になる」という一続きの像にする。</p>
+<p><strong>なぜダイオード電流は指数関数なのか</strong></p>
+<p>順バイアスは，電子を外からホースで押し込むものではない。<a href="#past-3-pn-cv">過去問３</a> の内蔵障壁をエネルギーで <span class="math inline">\(qV\)</span> だけ低くする操作である。熱運動するキャリヤのうち障壁を越えられる割合はボルツマン因子で決まるため，障壁が <span class="math inline">\(qV\)</span> 下がると越える粒子数が <span class="math inline">\(e^{qV/kT}\)</span> 倍になる。指数関数は数学上の偶然ではなく，<strong>熱分布に対して障壁の高さを電圧で操作した指紋</strong>である。</p>
+<p>熱電圧</p>
+<p><span class="math display">\[
+V_T\equiv\frac{kT}{q}
+\]</span></p>
+<p>を使うと，300 K で <span class="math inline">\(V_T\simeq25.9\ \mathrm{mV}\)</span>。わずか数十 mV の変化が電流を大きく変えるのは，印加電圧をこの小さな熱電圧と比較するからである。</p>
+<p><strong>1. 理想式を導くための仮定と，その役割</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>仮定</th>
+<th>何を簡単にできるか</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>急峻接合・空乏層近似</td>
+<td>空乏層外を中性領域として分けて扱える</td>
+</tr>
+<tr class="even">
+<td>低注入</td>
+<td>注入少数キャリヤが多数キャリヤ濃度や電界をほぼ変えない</td>
+</tr>
+<tr class="odd">
+<td>空乏層内の生成・再結合なし</td>
+<td>p 側と n 側から来る少数キャリヤ電流をそのまま足せる</td>
+</tr>
+<tr class="even">
+<td>中性領域の電界を無視</td>
+<td>中性領域の少数キャリヤ電流を拡散だけで書ける</td>
+</tr>
+<tr class="odd">
+<td>定常・1 次元・非縮退，<span class="math inline">\(D,\tau\)</span> 一定</td>
+<td>連続の式を定数係数の常微分方程式にできる</td>
+</tr>
+<tr class="even">
+<td>中性領域が拡散長より十分長い</td>
+<td>遠方で少数キャリヤ濃度が平衡値へ戻る境界条件を使える</td>
+</tr>
+</tbody>
+</table>
+<p>このうち一つでも破れると，理想係数や直列抵抗などの補正が必要になる。仮定は飾りではなく，「どの項を捨ててこの式になったか」の一覧である。</p>
+<p><strong>2. 端の濃度を決め，連続の式を解き，傾きを電流に変える</strong></p>
+<p>n 型中性領域の平衡正孔密度と p 型中性領域の平衡電子密度は</p>
+<p><span class="math display">\[
+N_{h(n)}^0=\frac{N_i^2}{N_D},
+\qquad
+N_{e(p)}^0=\frac{N_i^2}{N_A}.
+\]</span></p>
+<p>順バイアス <span class="math inline">\(V\)</span> によって障壁が下がると，空乏層端の濃度は</p>
+<p><span class="math display">\[
+N_{h(n)}(x_n)=N_{h(n)}^0e^{V/V_T},
+\qquad
+N_{e(p)}(-x_p)=N_{e(p)}^0e^{V/V_T}
+\]</span></p>
+<p>となる。平衡値からの増分に直せば，</p>
+<p><span class="math display">\[
+\Delta N_{h(n)}(x_n)=N_{h(n)}^0\left(e^{V/V_T}-1\right).
+\]</span></p>
+<p>n 型領域へ注入された正孔は，奥へ拡散する一方，寿命 <span class="math inline">\(\tau_h\)</span> で再結合する。定常連続の式は</p>
+<p><span class="math display">\[
+D_h\frac{d^2\Delta N_{h(n)}}{dx^2}
+-\frac{\Delta N_{h(n)}}{\tau_h}=0.
+\]</span></p>
+<p><span class="math inline">\(x\to\infty\)</span> で <span class="math inline">\(\Delta N_{h(n)}\to0\)</span> とし，<span class="math inline">\(L_h=\sqrt{D_h\tau_h}\)</span> と置けば，</p>
+<p><span class="math display">\[
+\Delta N_{h(n)}(x)
+=N_{h(n)}^0\left(e^{V/V_T}-1\right)
+e^{-(x-x_n)/L_h}
+\]</span></p>
+<p>を得る。拡散長 <span class="math inline">\(L_h\)</span> は，「再結合で消えるまでに少数キャリヤが進める代表距離」である。</p>
+<p>電流を決めるのは濃度そのものではなく，接合端での<strong>濃度の傾き</strong>である：</p>
+<p><span class="math display">\[
+J_h=-qD_h\left.\frac{d\Delta N_{h(n)}}{dx}\right|_{x=x_n}
+=\frac{qD_hN_{h(n)}^0}{L_h}
+\left(e^{V/V_T}-1\right).
+\]</span></p>
+<p>p 側へ注入された電子も同様に計算し，空乏層内で再結合しないので足し合わせると，</p>
+<p><span class="math display">\[
+J=J_s\left(e^{V/V_T}-1\right),
+\]</span></p>
+<p><span class="math display">\[
+J_s=q\left(
+\frac{D_hN_{h(n)}^0}{L_h}
++\frac{D_eN_{e(p)}^0}{L_e}
+\right)
+\]</span></p>
+<p>となる。問題文の <span class="math inline">\(i_s\)</span> に接合面積 <span class="math inline">\(A\)</span> が含まれていないなら，次元は電流密度であり，全電流は <span class="math inline">\(I=AJ\)</span> である。最後に <span class="math inline">\(V=0\)</span> なら <span class="math inline">\(J=0\)</span>，十分な逆バイアスなら <span class="math inline">\(J\simeq-J_s\)</span> と確かめると，式の符号を点検できる。</p>
+<p><strong>3. 理想係数 <span class="math inline">\(\eta\)</span> は，どの過程が電流を律速しているかを示す</strong></p>
+<p>実測電流を局所的に</p>
+<p><span class="math display">\[
+I\propto\exp\!\left(\frac{V}{\eta V_T}\right)
+\]</span></p>
+<p>とみると，</p>
+<p><span class="math display">\[
+\eta(V)=\frac{1}{V_T}\frac{dV}{d\ln I}.
+\]</span></p>
+<p>300 K の片対数グラフでは，電流 1 桁当たりの電圧変化が約 <span class="math inline">\(59.6\eta\ \mathrm{mV/dec}\)</span> になる。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>順方向電圧の領域</th>
+<th>支配的な機構</th>
+<th>電圧依存</th>
+<th>理想係数の目安</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>低い順方向電圧</td>
+<td>空乏層内の Shockley–Read–Hall 再結合</td>
+<td><span class="math inline">\(I_\mathrm{rec}\propto e^{V/(2V_T)}\)</span></td>
+<td><span class="math inline">\(\eta\simeq2\)</span>。拡散電流と混ざれば <span class="math inline">\(1&lt;\eta&lt;2\)</span></td>
+</tr>
+<tr class="even">
+<td>中程度</td>
+<td>中性領域への少数キャリヤ拡散</td>
+<td><span class="math inline">\(I_\mathrm{diff}\propto e^{V/V_T}\)</span></td>
+<td><span class="math inline">\(\eta\simeq1\)</span></td>
+</tr>
+<tr class="odd">
+<td>高注入</td>
+<td>注入キャリヤがドーピング濃度に匹敵</td>
+<td>理想的な高注入極限では <span class="math inline">\(I\propto e^{V/(2V_T)}\)</span></td>
+<td><span class="math inline">\(\eta\simeq2\)</span> へ近づくことがある</td>
+</tr>
+<tr class="even">
+<td>さらに大電流</td>
+<td>バルク・接触の直列抵抗 <span class="math inline">\(R_s\)</span></td>
+<td>端子電圧 <span class="math inline">\(V=V_j+IR_s\)</span></td>
+<td>単純な指数則が崩れ，見かけの <span class="math inline">\(\eta\)</span> は増大し電圧依存になる</td>
+</tr>
+</tbody>
+</table>
+<p>したがって「低電圧は 2，中電圧は 1，高電圧は常に 2」と丸暗記するのは危険である。極低電流でリークが支配する場合や，大電流で直列抵抗が支配する場合は，一つの固定した <span class="math inline">\(\eta\)</span> で物理を表せない。</p>
+<p><strong>二つの過去問のつながり</strong>：C–V は障壁の<strong>形が電圧でどう呼吸するか</strong>をポアソン方程式で調べ，I–V は障壁を越えた粒子が<strong>どのように拡散し再結合するか</strong>を連続の式で調べる。同じ pn 接合を，静電気と輸送の二方向から見ている。</p>
+<p><strong>答案の設計図</strong>：① 仮定と，その仮定で捨てる項を書く → ② 順バイアスが障壁を <span class="math inline">\(qV\)</span> 下げるので端濃度が <span class="math inline">\(e^{V/V_T}\)</span> 倍と述べる → ③ <span class="math inline">\(\Delta N\)</span> の連続の式と二つの境界条件を書く → ④ 指数減衰解を微分して拡散電流へ変換 → ⑤ 電子・正孔を足して <span class="math inline">\(J_s(e^{V/V_T}-1)\)</span> → ⑥ 理想係数を「再結合・拡散・高注入・直列抵抗」の順に説明，とすればよい。</p>
 </div>
 </div>
 </div>
@@ -2993,10 +3393,89 @@ i=\left(\frac{qD_hN_{h(n)}^0}{L_h}
 </div>
 <div id="callout-46" class="callout-46-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>太陽電池</strong>： - Shockley–Queisser 限界から，単接合の効率最大は $ E_g <span class="math inline">\(–\)</span> 1.4&nbsp; $ 付近。<span class="math inline">\(\ce{Si}\)</span>（$ 1.12&nbsp; <span class="math inline">\(）はここに位置する
-- タンデム型：\)</span> E_g $ 大→中→小の順に積層，格子整合が必須，代表例：<span class="math inline">\(\ce{InGaP}\)</span> / <span class="math inline">\(\ce{GaAs}\)</span>（<span class="math inline">\(\ce{InGaAs}\)</span>）/ <span class="math inline">\(\ce{Ge}\)</span></p>
-<p><strong>半導体レーザ（ダブルヘテロ構造）</strong>： - 要件：<strong>直接遷移型</strong>材料（フォノン不要で高効率発光），目的波長に対応する <span class="math inline">\(E_g\)</span> - 構造：活性層（小 <span class="math inline">\(E_g\)</span>）を両側の大 <span class="math inline">\(E_g\)</span> クラッド層で挟む - <strong>キャリヤ閉じ込め</strong>：高い障壁で電子・正孔を活性層に封じ込め → 反転分布が容易 - <strong>光閉じ込め</strong>：屈折率差による全反射で光を活性層に集中 → しきい値電流が低下 - 材料例：<span class="math inline">\(\ce{AlGaAs}/\ce{GaAs}\)</span>，<span class="math inline">\(\ce{InGaAsP}/\ce{InP}\)</span>（格子整合条件を満たす組み合わせを選ぶ）</p>
-<p><strong>HEMT</strong>： - <span class="math inline">\(\ce{AlGaAs}\)</span>（n 型ドープ，大 $ E_g <span class="math inline">\(）/\)</span>$（未ドープ，小 $ E_g $）ヘテロ接合 - 2DEG 形成：電子が不純物のない <span class="math inline">\(\ce{GaAs}\)</span> 側界面に蓄積 → <strong>イオン化不純物散乱なし</strong> → 高移動度 - <span class="math inline">\(\ce{GaN}\)</span> 系（<span class="math inline">\(\ce{AlGaN}/\ce{GaN}\)</span>）：高耐圧・高周波（基地局，レーダ）に利用</p>
+<p>材料ごとの <span class="math inline">\(E_g\)</span>，直接遷移・間接遷移，移動度は <a href="#quiz-2-materials">小テスト #2【1】</a>，太陽電池の基本動作と <span class="math inline">\(E_g\)</span> のトレードオフは <a href="#quiz-11-solar-design">小テスト #11</a>，タンデム太陽電池と HEMT の基本構造は <a href="#quiz-2-tandem-hemt">小テスト #2【2】</a> を先に読むとよい。ここでは同じ説明を繰り返さず，格子定数–<span class="math inline">\(E_g\)</span> 図から三つのデバイスの材料を選ぶ共通原理へまとめる。</p>
+<p><strong>三つのデバイスを貫く考え方：電子にとっての地形を設計する</strong></p>
+<p>異なる半導体を接合することは，電子と正孔にとっての坂・谷・壁を人工的に作ることだと考えるとよい。材料を選ぶときは，少なくとも次の四つを見る。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>物性</th>
+<th>デバイスで決めるもの</th>
+<th>選択を誤ると起こること</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>バンドギャップ <span class="math inline">\(E_g\)</span></td>
+<td>吸収・発光波長，キャリヤを閉じ込める障壁</td>
+<td>欲しい光を利用できない，キャリヤが漏れる</td>
+</tr>
+<tr class="even">
+<td>直接・間接遷移</td>
+<td>光吸収と発光の効率</td>
+<td>レーザでは再結合しても光になりにくい</td>
+</tr>
+<tr class="odd">
+<td>格子定数 <span class="math inline">\(a\)</span></td>
+<td>異種材料を欠陥少なく積層できるか</td>
+<td>ミスフィット転位が再結合中心・散乱源になる</td>
+</tr>
+<tr class="even">
+<td>バンドオフセットと屈折率</td>
+<td>電子・正孔・光を集める場所</td>
+<td>活性領域から粒子や光が逃げる</td>
+</tr>
+</tbody>
+</table>
+<p>格子定数は結晶タイルの一辺の長さに似ている。間隔の違うタイルを無理に貼れば，どこかにずれが集中する。それがミスフィット転位であり，電子と正孔を光らせずに消す再結合中心や，移動する電子の散乱源になる。したがって格子定数–<span class="math inline">\(E_g\)</span> 図では，まず<strong>格子定数が近く，目的に合う <span class="math inline">\(E_g\)</span> の差を持つ材料</strong>を探す。臨界膜厚以下の歪み層やメタモルフィック成長もあるので格子整合は絶対条件ではないが，高品質な厚い積層を作る基本指針である。</p>
+<p><strong>1. 太陽電池：光子をエネルギーごとに仕分ける</strong></p>
+<p>光子 1 個のエネルギー <span class="math inline">\(h\nu\)</span> と <span class="math inline">\(E_g\)</span> を比べると，単接合太陽電池の二つの避けられない損失が見える。</p>
+<ul>
+<li><span class="math inline">\(h\nu&lt;E_g\)</span> の光は電子を伝導帯へ上げられず，透過損失になる。</li>
+<li><span class="math inline">\(h\nu&gt;E_g\)</span> の光は吸収できるが，おおむね <span class="math inline">\(E_g\)</span> を超える余剰分はキャリヤの熱化によって失われる。</li>
+</ul>
+<p>したがって小さい <span class="math inline">\(E_g\)</span> は「長波長まで拾えて電流は大きいが，1 個当たりの電圧が低い」，大きい <span class="math inline">\(E_g\)</span> は「高い電圧を得やすいが，拾える光子が少なく電流が小さい」という交換条件になる。出力は電流と電圧の積なので，片方だけを最大にしても効率は最大にならない。理想単接合の詳細釣り合い限界には，仮定する太陽スペクトルなどによっておよそ <span class="math inline">\(1.1\)</span>–<span class="math inline">\(1.4\ \mathrm{eV}\)</span> に広い最適域があり，Si の <span class="math inline">\(E_g=1.12\ \mathrm{eV}\)</span> はこの有利な領域にある。</p>
+<p>Si は間接遷移型なので薄い層では光を吸収しにくい，という弱点もある。それでも，</p>
+<ul>
+<li>高純度で大面積の結晶を作りやすい</li>
+<li>キャリヤ寿命と拡散長を長くできる</li>
+<li>高品質な <span class="math inline">\(\ce{SiO2}\)</span> で表面再結合を抑えやすい</li>
+<li>資源が豊富で製造技術が成熟している</li>
+</ul>
+<p>という長所が弱点を補う。したがって「<span class="math inline">\(E_g\)</span> がよいから」だけでなく，<strong>適切な <span class="math inline">\(E_g\)</span> と結晶・界面・プロセス品質が同時にそろうから</strong> Si 太陽電池は高効率かつ実用的なのである。</p>
+<p>タンデム型では，入射側から <span class="math inline">\(E_g\)</span> の大きい層，中間の層，小さい層の順に積む。上層は高エネルギー光を高い電圧として回収し，通過した低エネルギー光を下層へ渡す。これは一つの材料へ全波長を任せず，各層へ得意な光子だけを渡す「光子の仕分け機」である。</p>
+<p>代表例は，格子整合を取りやすい <span class="math inline">\(\ce{InGaP}/\ce{GaAs}/\ce{Ge}\)</span> 多接合太陽電池である。サブセルを直列接続する場合は，最も電流の小さいセルが全体の電流を制限するので，組成・膜厚・吸収量を調整する<strong>電流整合</strong>も必要になる。</p>
+<p><strong>2. 半導体レーザ：電子・正孔・光を同じ狭い部屋に集める</strong></p>
+<p>レーザでは，伝導帯側の電子と価電子帯側の正孔を高密度にためて<strong>反転分布</strong>を作る。そこへ光子が来ると，同じエネルギー，位相，進行方向を持つ光子を放つ<strong>誘導放出</strong>が起こる。両端の反射面で光を往復・増幅させ，利得が損失を上回るとレーザ発振する。</p>
+<p>発光再結合が効率よく起こるよう，活性層には直接遷移型半導体を使う。発光波長はおおよそ</p>
+<p><span class="math display">\[
+\lambda\,[\mathrm{nm}]\simeq\frac{1240}{E_g\,[\mathrm{eV}]}
+\]</span></p>
+<p>なので，まず欲しい波長から活性層の <span class="math inline">\(E_g\)</span> と組成を選ぶ。</p>
+<p>高性能化には，小さい <span class="math inline">\(E_g\)</span> の活性層を大きい <span class="math inline">\(E_g\)</span> のクラッド層で挟む<strong>ダブルヘテロ構造</strong>を使う。</p>
+<ul>
+<li>伝導帯・価電子帯の障壁が電子と正孔を活性層へ閉じ込める。</li>
+<li>屈折率差が導波路を作り，光も活性層付近へ閉じ込める。</li>
+<li>電子・正孔・光を同じ場所へ集めるので誘導放出が増え，しきい値電流が下がる。</li>
+</ul>
+<p>広い運動場に人を散らしたまま会わせるより，同じ部屋へ集めた方が出会いやすい，という幾何学である。材料例は <span class="math inline">\(\ce{AlGaAs}/\ce{GaAs}\)</span> 系，通信用の <span class="math inline">\(\ce{InGaAsP}/\ce{InP}\)</span> 系。格子不整合による転位は非発光再結合を増やし，しきい値と劣化を悪化させるため，目的波長と格子整合を同時に考える。</p>
+<p><strong>3. HEMT：電子の供給所と高速道路を分ける</strong></p>
+<p>通常のドープ半導体では，ドナーは電子を供給する一方，正に帯電したイオンとして電子をクーロン散乱する。つまり燃料をくれる設備が道路上の障害物にもなっている。HEMT は供給所と走路を空間的に分けて，この矛盾を小さくする。</p>
+<p><span class="math inline">\(\ce{AlGaAs}/\ce{GaAs}\)</span> HEMT では，</p>
+<ol type="1">
+<li>大 <span class="math inline">\(E_g\)</span> の n 型 <span class="math inline">\(\ce{AlGaAs}\)</span> 側にドナーを置いて電子を供給する。</li>
+<li>伝導帯オフセットにより，電子はエネルギーの低い未ドープ <span class="math inline">\(\ce{GaAs}\)</span> 側へ移る。</li>
+<li>界面の三角形状量子井戸に電子が閉じ込められ，二次元電子ガス（2DEG）を作る。</li>
+<li>ドナー層とチャネルの間に未ドープのスペーサ層を置き，イオン化不純物散乱をさらに減らす。</li>
+<li>ゲート電圧で 2DEG 密度を変え，ソース–ドレイン電流を制御する。</li>
+</ol>
+<p>この<strong>変調ドーピング</strong>は不純物散乱を完全に消すわけではないが，大幅に抑えて高移動度・高周波・低雑音動作を可能にする。<span class="math inline">\(\ce{AlGaN}/\ce{GaN}\)</span> HEMT では，2DEG の主な起源は変調ドーピングではなく自発分極・圧電分極による界面電荷である。GaN の大きな <span class="math inline">\(E_g\)</span> と高い絶縁破壊電界も生かせるため，高耐圧・高出力用途に適する。</p>
+<p><strong>答案を組み立てる共通手順</strong>：各デバイスについて，① 材料をどの順に置くかという<strong>構造</strong> → ② 光子・電子・正孔がどこで生まれ，どこへ動くかという<strong>動作</strong> → ③ どの損失・漏れ・散乱を減らすかという<strong>高性能化の理由</strong> → ④ <span class="math inline">\(E_g\)</span>，直接遷移，格子整合を満たす<strong>材料例</strong>，の四段で書く。三つを一言で区別すれば，太陽電池は光子を<strong>仕分け</strong>し，レーザは電子・正孔・光を<strong>閉じ込め</strong>，HEMT は電子と不純物を<strong>引き離す</strong>デバイスである。</p>
 </div>
 </div>
 </div>
@@ -3013,8 +3492,8 @@ i=\left(\frac{qD_hN_{h(n)}^0}{L_h}
 <div id="callout-47" class="callout-47-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>太陽電池</strong>では，<span class="math inline">\(E_g\)</span> が小さい材料は長波長光まで吸収できるため電流を大きくできるが，開放電圧は小さくなる。逆に <span class="math inline">\(E_g\)</span> が大きい材料は高い電圧を得やすいが，低エネルギーの光を吸収できず電流が小さくなる。Si の <span class="math inline">\(E_g=1.12\ \mathrm{eV}\)</span> は太陽光スペクトルに対して単接合太陽電池の最適値に近く，さらに高純度結晶，大面積化，長い拡散長，安定な酸化膜などの利点があるため，高効率材料として実用化されている。</p>
-<p>より高効率化するには，異なる $ E_g $ の材料を積層するタンデム型にする。入射側から大きい $ E_g $，中程度の $ E_g $，小さい $ E_g $ の順に配置すれば，短波長光を上層で，長波長側を下層で吸収でき，熱化損失と透過損失を減らせる。代表例は <span class="math inline">\(\ce{InGaP}\)</span> / <span class="math inline">\(\ce{GaAs}\)</span> / <span class="math inline">\(\ce{Ge}\)</span> などの格子整合した多接合太陽電池である。</p>
-<p><strong>半導体レーザ</strong>では，発光層に直接遷移型で目的波長に対応する $ E_g $ を持つ半導体を用い，その両側をより大きな $ E_g $ のクラッド層で挟むダブルヘテロ構造にする。これにより，電子・正孔と光を活性層に閉じ込め，反転分布を作りやすくし，しきい値電流を下げられる。材料例として <span class="math inline">\(\ce{GaAs}\)</span> 活性層を <span class="math inline">\(\ce{AlGaAs}\)</span> で挟む <span class="math inline">\(\ce{AlGaAs}/\ce{GaAs}\)</span> 系，または <span class="math inline">\(\ce{InGaAsP}/\ce{InP}\)</span> 系がある。格子定数が近い組み合わせを選ぶとミスフィット転位が少なく，高品質な発光層を作れる。</p>
+<p>より高効率化するには，異なる <span class="math inline">\(E_g\)</span> の材料を積層するタンデム型にする。入射側から大きい <span class="math inline">\(E_g\)</span>，中程度の <span class="math inline">\(E_g\)</span>，小さい <span class="math inline">\(E_g\)</span> の順に配置すれば，短波長光を上層で，長波長側を下層で吸収でき，熱化損失と透過損失を減らせる。代表例は <span class="math inline">\(\ce{InGaP}\)</span> / <span class="math inline">\(\ce{GaAs}\)</span> / <span class="math inline">\(\ce{Ge}\)</span> などの格子整合した多接合太陽電池である。</p>
+<p><strong>半導体レーザ</strong>では，発光層に直接遷移型で目的波長に対応する <span class="math inline">\(E_g\)</span> を持つ半導体を用い，その両側をより大きな <span class="math inline">\(E_g\)</span> のクラッド層で挟むダブルヘテロ構造にする。これにより，電子・正孔と光を活性層に閉じ込め，反転分布を作りやすくし，しきい値電流を下げられる。材料例として <span class="math inline">\(\ce{GaAs}\)</span> 活性層を <span class="math inline">\(\ce{AlGaAs}\)</span> で挟む <span class="math inline">\(\ce{AlGaAs}/\ce{GaAs}\)</span> 系，または <span class="math inline">\(\ce{InGaAsP}/\ce{InP}\)</span> 系がある。格子定数が近い組み合わせを選ぶとミスフィット転位が少なく，高品質な発光層を作れる。</p>
 <p><strong>HEMT</strong>では，バンドギャップの大きいドープ <span class="math inline">\(\ce{AlGaAs}\)</span> と，未ドープで高純度な <span class="math inline">\(\ce{GaAs}\)</span> などを接合する。<span class="math inline">\(\ce{AlGaAs}\)</span> 側から供給された電子は，エネルギーの低い <span class="math inline">\(\ce{GaAs}\)</span> 側界面に移動し，量子井戸中に二次元電子ガス（2DEG）を形成する。電子が走るチャネルとドナー不純物の位置が空間的に分離されるため，イオン化不純物散乱が減り，高移動度・高速動作が可能となる。<span class="math inline">\(\ce{GaN}\)</span> 系では <span class="math inline">\(\ce{AlGaN}/\ce{GaN}\)</span> HEMT が高耐圧・高周波用途で用いられる。</p>
 </div>
 </div>
@@ -3042,12 +3521,113 @@ i=\left(\frac{qD_hN_{h(n)}^0}{L_h}
 </div>
 <div id="callout-48" class="callout-48-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>バイポーラトランジスタ（npn）の増幅原理</strong>： - EB 接合順バイアス → エミッタから電子をベースへ注入 - BC 接合逆バイアス → ベース電子をコレクタへ引き出す - ベースが薄いほど再結合前にコレクタに到達する電子が多い → 小さなベース電流で大きなコレクタ電流を制御</p>
-<p><strong>増幅率向上の方法</strong>： - エミッタ注入効率↑：高濃度ドープまたは HBT（エミッタに大 <span class="math inline">\(E_g\)</span> 材料） - ベース輸送効率↑：ベース薄化（再結合↓）</p>
-<p><strong>MOSFET の動作</strong>： - <span class="math inline">\(V_G &gt; V_T\)</span>：ゲート直下に<strong>反転層（チャネル）</strong>形成 → ON - 飽和電流：<span class="math inline">\(I_D = \frac{1}{2}\mu C_{ox}\frac{W}{L}(V_G-V_T)^2\)</span> - 線形領域では <span class="math display">\[
-  I_D=\mu C_{ox}\frac{W}{L}\left[(V_G-V_T)V_D-\frac{V_D^2}{2}\right]
-  \]</span> で，<span class="math inline">\(V_D=V_G-V_T\)</span> 付近でドレイン端がピンチオフし，飽和領域へ入る - CMOS では pMOS と nMOS を相補的に使う。インバータは入力 0 で pMOS ON/nMOS OFF となり出力 1，入力 1 で pMOS OFF/nMOS ON となり出力 0。定常時に片側が OFF なので低消費電力になる</p>
-<p><strong>微細化対応の新技術</strong>： - <strong>ゲート絶縁膜</strong>：<span class="math inline">\(\ce{SiO2}\)</span> → High-k（<span class="math inline">\(\ce{HfO2}\)</span> 等）+ ALD 成膜 + 金属ゲート（トンネルリーク抑制） - <strong>チャネル</strong>：歪み <span class="math inline">\(\ce{Si}/\ce{SiGe}\)</span>（移動度↑），FinFET → GAA 構造（短チャネル効果抑制） - <strong>配線</strong>：<span class="math inline">\(\ce{Cu}\)</span> → <span class="math inline">\(\ce{Ru}/\ce{Mo}/\ce{Co}\)</span>（超微細領域），低誘電率絶縁膜（RC 遅延↓），メタルキャップ層（EM 耐性↑） - <strong>リソグラフィ</strong>：EUV 露光による超微細パターン</p>
+<p>pn 接合の障壁とバイアスは <a href="#quiz-9-pn-equilibrium">小テスト #9</a>・<a href="#quiz-10-pn-iv">小テスト #10</a>，BJT の高性能化の要点は <a href="#quiz-12-bjt-hemt">小テスト #12</a>，微細化とテクノロジーノードは <a href="#quiz-1-gate">小テスト #1【1】</a>，High-<span class="math inline">\(k\)</span>・配線・3D 集積の詳細は <a href="#quiz-13-ulsi">小テスト #13</a> につながる。この節では，BJT と MOSFET をともに「小さな入力で大きな電流を制御する弁」と見ながら，BJT は<strong>注入量</strong>を，MOSFET は<strong>通り道の有無</strong>を制御する，という違いから組み立てる。</p>
+<p><strong>1. バイポーラトランジスタ：薄いベースを電子が駆け抜ける</strong></p>
+<p>npn トランジスタは n 型エミッタ，薄い p 型ベース，n 型コレクタを並べた構造であり，二つの pn 接合を持つ。増幅に使う能動領域では，</p>
+<ul>
+<li>エミッタ–ベース接合を<strong>順バイアス</strong>して，電子をエミッタからベースへ注入する。</li>
+<li>ベース–コレクタ接合を<strong>逆バイアス</strong>して，ベースを通過した電子をコレクタへ掃き取る。</li>
+</ul>
+<p>ベースへ入った電子は p 型ベースでは少数キャリヤである。ベース幅 <span class="math inline">\(W_B\)</span> が電子拡散長 <span class="math inline">\(L_n\)</span> より十分短ければ，大部分は正孔と再結合する前にベースを横切り，コレクタ接合の電界に捕まる。</p>
+<p>ベース電流 <span class="math inline">\(I_B\)</span> は主に，ベースで再結合した電子の補充と，ベースからエミッタへ逆注入される正孔をまかなう。一方，再結合せず通り抜けた多数の電子がコレクタ電流 <span class="math inline">\(I_C\)</span> になる。小さな「損失分の補充」で大きな「通過分」を制御できるので電流増幅が生じる。</p>
+<p>この関係は</p>
+<p><span class="math display">\[
+\alpha_F\simeq\gamma_E\alpha_T,
+\qquad
+\beta_F\equiv\frac{I_C}{I_B}
+=\frac{\alpha_F}{1-\alpha_F}
+\]</span></p>
+<p>と整理できる。<span class="math inline">\(\gamma_E\)</span> はエミッタ注入効率，<span class="math inline">\(\alpha_T\)</span> はベース輸送係数である。例えば <span class="math inline">\(\alpha_F=0.99\)</span> なら <span class="math inline">\(\beta_F=99\)</span>，<span class="math inline">\(\alpha_F=0.999\)</span> なら <span class="math inline">\(999\)</span>。一見小さな 1 % の損失を 0.1 % に減らすだけで増幅率が 10 倍になるので，トランジスタ設計では「ほぼ 1」の最後の桁が主役になる。</p>
+<p><strong>2. 増幅率を上げるには，二種類の損失を別々に減らす</strong></p>
+<ol type="1">
+<li><strong>エミッタ注入効率 <span class="math inline">\(\gamma_E\)</span> を 1 に近づける</strong>：エミッタをベースより高濃度にドープし，ベースからエミッタへの正孔逆注入を抑える。または，エミッタをベースより大きい <span class="math inline">\(E_g\)</span> の材料にした HBT を使い，正孔に高い障壁を作る。<span class="math inline">\(\ce{AlGaAs}/\ce{GaAs}\)</span> HBT や Si/SiGe HBT が例である。</li>
+<li><strong>ベース輸送係数 <span class="math inline">\(\alpha_T\)</span> を 1 に近づける</strong>：<span class="math inline">\(W_B\ll L_n\)</span> となるようベースを薄くし，再結合する前に電子を通過させる。SiGe ベースを組成傾斜させ，内部電界で電子をコレクタ側へ加速する方法もある。</li>
+</ol>
+<p>ただし「薄く，高濃度にすれば無限によい」わけではない。薄すぎるベースはパンチスルーや耐圧低下，高濃度化は移動度低下や再結合，接合容量との交換条件を生む。HBT の強みは，大きい <span class="math inline">\(E_g\)</span> のエミッタで注入効率を保ちつつ，ベースを比較的高濃度にして抵抗を下げられる点にある。</p>
+<p><strong>3. MOSFET：ゲートは電子を押すのではなく，道路を出現させる</strong></p>
+<p>nMOS は，p 型基板中の n<span class="math inline">\(^+\)</span> ソースと n<span class="math inline">\(^+\)</span> ドレイン，その間の表面を覆うゲート絶縁膜，ゲート電極からなる。ゲートと半導体は一つのコンデンサであり，理想的には絶縁膜を横切る直流電流を流さず，電界だけを表面へ伝える。</p>
+<p>正のゲート電圧 <span class="math inline">\(V_{GS}\)</span> を上げると，次の順に表面が変わる。</p>
+<ol type="1">
+<li>多数キャリヤの正孔が表面から追い払われ，空乏層ができる。</li>
+<li>さらに電圧を上げると，少数キャリヤの電子が表面へ引き寄せられる。</li>
+<li>表面が p 型から n 型へ<strong>反転</strong>し，ソースとドレインを結ぶ電子チャネルができる。</li>
+</ol>
+<p>したがってゲートは電子をソースからドレインへ直接押しているのではない。ゲートは道路を作る・消す弁であり，道路ができた後に電子を走らせるのは <span class="math inline">\(V_{DS}\)</span> である。</p>
+<ul>
+<li><span class="math inline">\(V_{GS}&lt;V_T\)</span>：連続した反転チャネルがなく，理想的には OFF。</li>
+<li><span class="math inline">\(V_{GS}&gt;V_T\)</span>：チャネルが生じて ON。</li>
+</ul>
+<p>長チャネル近似で <span class="math inline">\(V_{\mathrm{ov}}=V_{GS}-V_T\)</span> と置くと，線形領域では</p>
+<p><span class="math display">\[
+I_D=\mu C_{\mathrm{ox}}\frac{W}{L}
+\left(V_{\mathrm{ov}}V_{DS}-\frac{V_{DS}^2}{2}\right)
+\qquad (0&lt;V_{DS}&lt;V_{\mathrm{ov}}).
+\]</span></p>
+<p><span class="math inline">\(V_{DS}\)</span> を上げるほどドレイン端のチャネルが細くなり，<span class="math inline">\(V_{DS}\simeq V_{\mathrm{ov}}\)</span> でピンチオフする。ピンチオフは電流が止まることではない。電子はピンチオフ領域の強い電界でドレインへ運ばれるので，理想的な飽和電流は</p>
+<p><span class="math display">\[
+I_{D,\mathrm{sat}}
+=\frac{1}{2}\mu C_{\mathrm{ox}}\frac{W}{L}(V_{GS}-V_T)^2
+\]</span></p>
+<p>となる。現代の短チャネル素子では速度飽和，チャネル長変調，漏れ電流などが加わるので，この二乗則は基本像である。</p>
+<p>CMOS は nMOS と pMOS を相補的に使い，定常時に一方を OFF にすることで直流電力を小さくする。ただし現実の消費電力には，スイッチング時に容量を充放電する</p>
+<p><span class="math display">\[
+P_{\mathrm{dyn}}\simeq\alpha CV^2f
+\]</span></p>
+<p>と，微細化で増える漏れ電力がある。「ゲート電流が小さい」だけで消費電力が 0 になるわけではない。</p>
+<p><strong>4. なぜ微細化には新材料と新プロセスが要るのか</strong></p>
+<p>微細化は単なる縮小ではない。小さくした結果，それまで無視できた量子トンネルやドレイン電界，表面散乱，配線抵抗が主役になる。答案では材料名を並べるより，<strong>問題 → 原因 → 技術 → 効果</strong>を一組にする。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>微細化で起こる問題</th>
+<th>物理的原因</th>
+<th>新材料・プロセス</th>
+<th>効く理由</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ゲートリーク</td>
+<td><span class="math inline">\(\ce{SiO2}\)</span> が薄すぎると電子がトンネルする</td>
+<td><span class="math inline">\(\ce{HfO2}\)</span> などの High-<span class="math inline">\(k\)</span>，ALD，金属ゲート</td>
+<td>同じゲート容量を保ちながら物理膜厚を厚くできる</td>
+</tr>
+<tr class="even">
+<td>短チャネル効果・DIBL</td>
+<td>ドレイン電界がソース側障壁まで支配する</td>
+<td>FinFET，GAA，ナノシート</td>
+<td>ゲートが複数方向からチャネルを囲み，静電制御を取り戻す</td>
+</tr>
+<tr class="odd">
+<td>チャネルの輸送限界</td>
+<td>寸法短縮だけでは移動度・注入速度は上がらない</td>
+<td>歪み Si，SiGe，選択エピタキシャル成長</td>
+<td>バンド構造と散乱を変えて輸送を改善する</td>
+</tr>
+<tr class="even">
+<td>接触・アクセス抵抗</td>
+<td>素子が小さいほど寄生抵抗の比率が増える</td>
+<td>低抵抗シリサイド，raised source/drain，接触材料最適化</td>
+<td>チャネル外で失う電圧を減らす</td>
+</tr>
+<tr class="odd">
+<td>微細パターン形成</td>
+<td>光の回折と工程ばらつきが寸法を制限する</td>
+<td>EUV リソグラフィ，異方性エッチング</td>
+<td>短波長で描き，立体構造を精密に加工する</td>
+</tr>
+</tbody>
+</table>
+<p>High-<span class="math inline">\(k\)</span> の要点は，<span class="math inline">\(C_{\mathrm{ox}}=\varepsilon_{\mathrm{ox}}/t_{\mathrm{ox}}\)</span> である。同じ大きな容量を得るのに，誘電率 <span class="math inline">\(\varepsilon_{\mathrm{ox}}\)</span> を大きくすれば，物理膜厚 <span class="math inline">\(t_{\mathrm{ox}}\)</span> も大きくでき，トンネルを抑えられる。ALD は自己停止する表面反応を一周期ずつ進めるため，原子層単位で膜厚を制御し，FinFET や GAA の複雑な表面も均一に覆える。金属ゲートはポリ Si ゲートの空乏化を避け，仕事関数によるしきい値調整を可能にする。</p>
+<p>FinFET と GAA は「ゲートを短くする技術」というより，短くしてもドレインに制御権を奪われないよう，ゲートがチャネルをより多くの面からつかむ技術である。この一文を書けば，構造名と短チャネル効果の因果がつながる。</p>
+<p>配線の RC 遅延，エレクトロマイグレーション，3D 集積，チップレットは <a href="#quiz-13-ulsi">小テスト #13</a> に詳しい。トランジスタ自身を速くしても配線が遅ければ回路は速くならないので，現代の ULSI は素子・配線・電力・熱・歩留まりを同時に設計する必要がある。</p>
+<p><strong>答案の設計図</strong>：BJT は「三層構造 → 二接合のバイアス → 電子の注入と通過 → 小さい <span class="math inline">\(I_B\)</span> で大きい <span class="math inline">\(I_C\)</span> → <span class="math inline">\(\gamma_E\)</span> と <span class="math inline">\(\alpha_T\)</span> の改善」，MOSFET は「MOS コンデンサ → 空乏化・反転 → チャネル形成 → OFF・線形・飽和」，新技術は「何が壊れたか → なぜ起きるか → 何を導入するか → なぜ改善するか」の順に書く。図には BJT の電子流と二つの接合のバイアス，MOSFET のゲート電界と反転チャネルを矢印で入れる。</p>
 </div>
 </div>
 </div>
