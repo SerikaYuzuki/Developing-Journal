@@ -7,19 +7,67 @@ image: "images/thumbnail.png"
 bibliography: ../../../bibliography.bib
 ---
 
-## 2023年度 第1問
+## このノートの読み方 {#math2f-reading-guide}
 
-### 【１】関数の例 {#math2f-laurent-theory}
+本文は年度順ではなく、**初めて学ぶ人が道具を一つずつ増やせる順**に並べている。第1部で複素数・正則関数・Cauchy の積分公式・留数を学び、第2部で複素積分を Gauss 和へ応用する。第3部ではフーリエ級数、第4部ではラプラス変換を扱う。同じ主題の2023年度・2025年度の問題は近くに置き、二度目以降の重複する説明は最初の理論へリンクした。
+
+実数の微分・積分と三角関数を知っていれば読み始められるようにしている。初読では証明の細部を全て暗記する必要はなく、各理論欄の「何を計算する道具か」「なぜその式になるか」「この問題ではどこに使うか」を順に追えばよい。
+
+## 第1部 複素数・正則関数・基本的な積分と変換
+
+### 2023年度 第1問【１】関数の例 {#math2f-laurent-theory}
 
 複素平面上の正則関数、多値関数、有理型関数、真性特異点を持つ関数の例を、それぞれ一つずつ挙げよ。
 
 ::: {.callout-note collapse="true"}
 ##### 理論
 
--   **正則関数**は、ある領域の全ての点で複素微分できる一価関数である。
--   **多値関数**は、一つの $z$ に対して複数の値を持つ。例えば平方根や対数は、枝を選ばない限り多価になる。
--   **有理型関数**は、正則関数のほかに孤立した極だけを持つ。
--   **真性特異点**では、Laurent 展開の主要部に負べきの項が無限個現れる。
+**複素数を平面上の点として見る。** 虚数単位 $i$ は $i^2=-1$ を満たす数であり、複素数は
+
+$$
+z=x+iy\qquad(x,y\in\mathbb R)
+$$
+
+と書く。$x=\operatorname{Re}z$ を実部、$y=\operatorname{Im}z$ を虚部と呼ぶ。$z$ を平面上の点 $(x,y)$、または原点からその点へ向かうベクトルと考えるとよい。
+
+共役複素数と絶対値は
+
+$$
+\bar z=x-iy,\qquad |z|=\sqrt{x^2+y^2},\qquad z\bar z=|z|^2
+$$
+
+である。$z\ne0$ は、長さ $r=|z|$ と偏角 $\theta$ を使って
+
+$$
+z=r(\cos\theta+i\sin\theta)=re^{i\theta}
+$$
+
+と書ける。最後の等式は Euler の公式 $e^{i\theta}=\cos\theta+i\sin\theta$ である。複素数の掛け算は「絶対値を掛け、偏角を足す」操作なので、後で積分路を回転させるときにもこの表示を使う。
+
+**複素関数とは何か。** 複素関数は、複素数 $z$ を別の複素数 $f(z)$ へ写す規則である。$z=x+iy$ とすれば
+
+$$
+f(z)=u(x,y)+iv(x,y)
+$$
+
+と、二つの実関数 $u,v$ で表せる。
+
+点 $z_0$ における複素微分は
+
+$$
+f'(z_0)=\lim_{h\to0}\frac{f(z_0+h)-f(z_0)}{h}
+$$
+
+で定義する。実数と違い、$h$ は平面上のあらゆる方向から $0$ へ近づける。どの方向から近づいても同じ極限になることが必要なので、複素微分可能性は実微分可能性より強い条件である。ある点の周りの開いた領域で複素微分できる関数を**正則関数**、複素平面全体で正則な関数を**整関数**と呼ぶ。方向によらないための具体的な条件は、後の [Cauchy--Riemann の理論](#math2f-cr-theory)で導く。
+
+**問題に出る四種類を区別する。**
+
+- **正則関数：** 例えば $z^2$ や $e^z$。通常の多項式は複素平面全体で正則である。
+- **多値関数：** 一つの $z$ に複数の候補値が対応する関数。例えば $w^2=z$ の解は通常 $w=\pm\sqrt z$ の二つであり、$\log z=\log|z|+i(\arg z+2\pi n)$ も無数の値を持つ。一価関数として扱うには、偏角の範囲を決める**枝**を選ぶ。
+- **有理型関数：** 正則関数のほかに孤立した極だけを持つ関数。例えば $1/z$ は $z=0$ で無限大へ発散するが、それ以外では正則である。
+- **真性特異点を持つ関数：** 例えば $e^{1/z}$。$z=0$ の近くで極よりも複雑に振る舞う。
+
+正則でなくなる点を**特異点**と呼ぶ。その点だけを避けた小円内で正則なら孤立特異点である。
 
 **ローラン展開から特異点を分類する。** 円環領域で正則な関数は
 
@@ -27,7 +75,7 @@ $$
 f(z)=\sum_{n=-\infty}^{\infty}c_n(z-z_0)^n
 $$
 
-と展開できる。証明では、$z_0$ を中心とする内外二つの円周をブリッジで結び、Cauchy の積分公式を適用する。外側の円では
+と展開できる。これは Taylor 級数に負の冪も許したものである。証明では、$z_0$ を中心とする内外二つの円周をブリッジで結び、後で導入する [Cauchy の積分公式](#math2f-liouville-theory)を適用する。外側の円では
 
 $$
 \frac{1}{w-z}
@@ -36,7 +84,13 @@ $$
 
 を正の冪の等比級数に、内側の円では負の冪の級数に展開し、項別積分すればよい。
 
-この負べき部分（主要部）がなければ可除特異点、有限個なら極、無限個なら真性特異点である。したがって $1/z$ は極を、$e^{1/z}=\sum_{n=0}^{\infty}(n!z^n)^{-1}$ は真性特異点を持つ。
+負べき部分を**主要部**と呼ぶ。主要部がなければ可除特異点、有限個なら極、無限個なら真性特異点である。したがって $1/z$ は極を、
+
+$$
+e^{1/z}=1+\frac1z+\frac{1}{2!z^2}+\frac{1}{3!z^3}+\cdots
+$$
+
+は真性特異点を持つ。最初は「Laurent 展開の負べきの個数で、孤立特異点を分類できる」と理解すれば十分である。
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -51,16 +105,176 @@ $$
 $e^{1/z}$ は $z=0$ に真性特異点を持つ。
 :::
 
-### 【２】Liouville の定理 {#math2f-liouville-theory}
+### 2025年度 第1問【１】関数の例
+
+複素平面上の (i) 正則関数、(ii) 正則ではない有理型関数、(iii) 集積特異点を持つ関数の例を、それぞれ一つずつ挙げよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+有理型関数は孤立した極を許すため、極を持つ例を選べば「正則ではない有理型関数」になる。
+
+集積特異点は、特異点の列が有限点へ集まる非孤立特異点である。例えば $\sin(1/z)=0$ となる点は $z=1/(n\pi)$ であり、$n\to\infty$ で $0$ に集積する。
+
+[ローラン展開による分類](#math2f-laurent-theory)は、中心の周りに特異点を含まない円環を取れる**孤立特異点**に対する議論である。集積特異点の周りにはそのような円環が存在しないため、可除特異点・極・真性特異点という三分類の外にある。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+例えば
+
+$$
+\text{(i) }z^2,\qquad
+\text{(ii) }\frac{1}{z},\qquad
+\text{(iii) }\frac{1}{\sin(1/z)}
+$$
+
+と選べる。(iii) は $z=1/(n\pi)$（$n\in\mathbb Z\setminus\{0\}$）に極を持ち、それらが $z=0$ に集積する。
+:::
+
+### 2025年度 第1問【２】Cauchy--Riemann の関係式 {#math2f-cr-theory}
+
+Cauchy--Riemann の関係式を記せ。また、
+
+$$
+f(z)=x^2+y^2+2ix
+\qquad(z=x+iy,\ x,y\in\mathbb R)
+$$
+
+が正則であるかどうかを判別せよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+$f=u+iv$ と書くと、偏導関数が連続な場合の Cauchy--Riemann の関係式は
+
+$$
+u_x=v_y,\qquad u_y=-v_x
+$$
+
+である。
+
+この式は、複素微分を二方向から計算すると自然に現れる。まず $h=\Delta x$ として実軸方向から近づくと
+
+$$
+f'(z)=u_x+iv_x.
+$$
+
+次に $h=i\Delta y$ として虚軸方向から近づくと
+
+$$
+f'(z)=\frac{u_y+iv_y}{i}=v_y-iu_y.
+$$
+
+複素微分では、近づく方向によらず同じ値にならなければならない。二式の実部と虚部を比べると $u_x=v_y$、$v_x=-u_y$、すなわち上の関係式を得る。**計算問題では、まず $u,v$ を分け、四つの偏導関数を作って二式を照合する**のが基本手順である。
+
+一点だけで関係式が成立しても、その点を含む開領域で成立しなければ「正則」とはいえない。
+
+さらに、$u,v$ が点 $(x_0,y_0)$ で全微分可能なら、Cauchy--Riemann 条件は $f$ が $z_0=x_0+iy_0$ で複素微分可能であるための必要十分条件になる。
+
+**必要性の証明。** $f'(z_0)=\alpha+i\beta$ とすると、$\Delta z=\Delta x+i\Delta y$ に対して
+
+$$
+f(z_0+\Delta z)
+=f(z_0)+(\alpha+i\beta)(\Delta x+i\Delta y)+o(|\Delta z|).
+$$
+
+実部と虚部を比較すると
+
+$$
+\begin{aligned}
+u(x_0+\Delta x,y_0+\Delta y)
+&=u(x_0,y_0)+\alpha\Delta x-\beta\Delta y+o(|\Delta z|),\\
+v(x_0+\Delta x,y_0+\Delta y)
+&=v(x_0,y_0)+\beta\Delta x+\alpha\Delta y+o(|\Delta z|).
+\end{aligned}
+$$
+
+したがって
+
+$$
+u_x=\alpha=v_y,\qquad u_y=-\beta=-v_x.
+$$
+
+**十分性の証明。** 逆に $u,v$ が全微分可能で上の関係を満たすなら、二つの全微分を再び複素数として組み合わせて
+
+$$
+f(z_0+\Delta z)-f(z_0)
+=(u_x+iv_x)\Delta z+o(|\Delta z|)
+$$
+
+と書ける。両辺を $\Delta z$ で割って極限を取れば $f'(z_0)=u_x+iv_x$ が存在する。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+ここでは
+
+$$
+u=x^2+y^2,\qquad v=2x
+$$
+
+なので
+
+$$
+2x=0,\qquad 2y=-2.
+$$
+
+関係式が成立するのは $(x,y)=(0,-1)$ の一点だけであり、どの開領域でも成立しない。したがって $f$ は正則ではない。
+:::
+
+### 2023年度 第1問【２】Liouville の定理 {#math2f-liouville-theory}
 
 Liouville の定理について説明せよ。また、$f(z)=\sin |z|$ が複素平面上で正則であるかどうかを、Liouville の定理に基づいて判別せよ。
 
 ::: {.callout-note collapse="true"}
 ##### 理論
 
-Liouville の定理は「複素平面全体で正則な関数（整関数）が有界なら、その関数は定数である」という定理である。これは次の三段階で証明できる。
+Liouville の定理は「複素平面全体で正則な関数（整関数）が有界なら、その関数は定数である」という定理である。その証明に必要な複素積分から順に準備する。
 
-**1. Cauchy の積分公式。** $f$ が単純閉曲線 $C$ の内側と境界上で正則なら
+**1. 複素積分。** 複素平面上の曲線 $C$ を
+
+$$
+z=\gamma(t)\qquad(a\le t\le b)
+$$
+
+と媒介変数表示する。曲線に沿う積分は
+
+$$
+\int_C f(z)\,dz
+=\int_a^b f(\gamma(t))\gamma'(t)\,dt
+$$
+
+で定義する。つまり、実数の定積分へ直して計算する。始点と終点が一致する曲線を閉曲線といい、閉曲線上の積分を $\oint_C$ と書く。曲線の向きを逆にすると積分の符号が反転する。
+
+**2. Cauchy の積分定理。** 穴のない領域で $f$ が正則なら、その領域内の閉曲線 $C$ に対して
+
+$$
+\oint_C f(z)\,dz=0
+$$
+
+となる。直感的には、正則関数には局所的な「複素数版の原始関数」があり、閉路では始点と終点が同じなので積分が相殺する、という定理である。
+
+証明の核は Goursat の補題である。長方形を四分割し、境界積分の大きさが最大の小長方形を選ぶ操作を繰り返すと、一点 $z_*$ へ縮む長方形列ができる。正則性から
+
+$$
+f(z)=f(z_*)+f'(z_*)(z-z_*)+(z-z_*)\eta(z-z_*),
+\qquad \eta(\zeta)\to0
+$$
+
+と書ける。定数項と一次項の閉路積分は $0$ で、残りも長方形が縮むと $0$ になる。三角形や一般の閉曲線を分割して同じ議論を適用すれば積分定理を得る。
+
+別の見方として、基準点 $z_0$ から $z$ までの積分を
+
+$$
+F(z)=\int_{z_0}^{z}f(w)\,dw
+$$
+
+と定める。積分定理により値は経路によらず、短い線分上の積分を調べると $F'(z)=f(z)$ となる。したがって閉曲線では $F$ の始点と終点の差が $0$ になる。
+
+**3. Cauchy の積分公式。** $f$ が単純閉曲線 $C$ の内側と境界上で正則なら
 
 $$
 f(z)=\frac{1}{2\pi i}\oint_C\frac{f(w)}{w-z}\,dw.
@@ -68,7 +282,7 @@ $$
 
 $z$ の周りの小円へ積分路を変形し、$f(w)=f(z)+\{f(w)-f(z)\}$ と分ける。定数部分の積分は $2\pi i f(z)$ となり、差の部分は $f$ の連続性により小円の半径を $0$ にすると消える。
 
-**2. 微分公式と Cauchy の評価式。** 積分公式を $z$ で微分すると
+**4. 微分公式と Cauchy の評価式。** 積分公式を $z$ で微分すると
 
 $$
 f^{(n)}(z)=\frac{n!}{2\pi i}\oint_C
@@ -83,7 +297,7 @@ $$
 
 を得る。
 
-**3. Liouville の定理。** 整関数 $f$ が複素平面全体で $|f(z)|\le M$ を満たすとする。上の評価式で $n=1$ とすれば、任意の $R>0$ に対して
+**5. Liouville の定理。** 整関数 $f$ が複素平面全体で $|f(z)|\le M$ を満たすとする。上の評価式で $n=1$ とすれば、任意の $R>0$ に対して
 
 $$
 |f'(z)|\le \frac{M}{R}.
@@ -106,7 +320,7 @@ $$
 は複素平面上で正則ではない。
 :::
 
-### 【３】三角関数を含む定積分 {#math2f-residue-theory}
+### 2023年度 第1問【３】三角関数を含む定積分 {#math2f-residue-theory}
 
 $a>1$ とする。複素積分を用いて
 
@@ -119,61 +333,86 @@ $$
 ::: {.callout-note collapse="true"}
 ##### 理論
 
-三角関数を含む $[-\pi,\pi]$ の積分では $z=e^{ix}$ と置く。すると
+**実積分を単位円上の複素積分へ移す。** Euler の公式より
 
 $$
-dx=\frac{dz}{iz},\qquad \cos x=\frac{1}{2}\left(z+\frac{1}{z}\right)
+z=e^{ix}=\cos x+i\sin x
 $$
 
-となり、積分区間は単位円 $|z|=1$ を反時計回りに一周する経路へ変わる。分母の零点は
+は常に $|z|=1$ を満たす。$x$ が $-\pi$ から $\pi$ まで増えると、$z$ は単位円を反時計回りに一周する。また
+
+$$
+dz=ie^{ix}dx=iz\,dx,\qquad
+dx=\frac{dz}{iz},\qquad
+\cos x=\frac12\left(z+\frac1z\right)
+$$
+
+なので
+
+$$
+\int_{-\pi}^{\pi}\frac{dx}{a+\cos x}
+=\frac{2}{i}\oint_{|z|=1}\frac{dz}{z^2+2az+1}
+$$
+
+と、有理関数の閉路積分へ変わる。
+
+**特異点と留数を調べる。** 分母の零点は
 
 $$
 z_{\pm}=-a\pm\sqrt{a^2-1}
 $$
 
-であり、$a>1$ のとき単位円内にあるのは $z_+=-a+\sqrt{a^2-1}$ だけである。
+である。$a>1$ のとき
 
-**留数定理までの証明の流れ**も押さえておく。
+$$
+|z_+|=a-\sqrt{a^2-1}
+=\frac{1}{a+\sqrt{a^2-1}}<1
+$$
 
-1. **Goursat の補題：** 正則関数 $h$ を長方形の境界で積分すると $0$ になる。長方形を四分割し、積分の大きさが最大となる小長方形を選ぶ操作を繰り返すと、一点 $z_*$ へ縮む列を得る。そこで
+であり、$z_-=-a-\sqrt{a^2-1}$ は単位円外にある。したがって円内で考える極は $z_+$ の一つだけである。
 
-   $$
-   h(z)=h(z_*)+h'(z_*)(z-z_*)+(z-z_*)\eta(z-z_*)
-   $$
+**Cauchy の積分定理から留数定理へ進む。** [前節](#math2f-liouville-theory)では、特異点のない領域なら閉路積分が $0$ になることを示した。特異点 $z_j$ がある場合は、それぞれを小円 $C_j$ でくり抜き、外周 $C$ と小円を細いブリッジで結ぶ。ブリッジの往復は打ち消し合うため
 
-   と書く。定数項と一次項の閉路積分は $0$ であり、剰余項は $\eta\to0$ により消える。
+$$
+\oint_C h(z)\,dz=\sum_j\oint_{C_j}h(z)\,dz
+$$
 
-2. **原始関数と Cauchy の積分定理：** 単連結領域で
+となる。各特異点の周りで [Laurent 展開](#math2f-laurent-theory)
 
-   $$
-   H(z)=\int_{z_0}^{z}h(w)\,dw
-   $$
+$$
+h(z)=\sum_{n=-\infty}^{\infty}c_n(z-z_j)^n
+$$
 
-   と置く。二つの経路の差は閉路になり、Goursat の補題を使って積分が経路によらないことを示せる。また
+を行うと、小円積分で残るのは $c_{-1}(z-z_j)^{-1}$ だけである。この係数 $c_{-1}$ を $\operatorname{Res}(h,z_j)$ と書き、**留数**と呼ぶ。実際、
 
-   $$
-   \frac{H(z+\Delta z)-H(z)}{\Delta z}-h(z)
-   =\frac{1}{\Delta z}\int_z^{z+\Delta z}\{h(w)-h(z)\}\,dw
-   $$
+$$
+\oint_{|z-z_j|=\varepsilon}\frac{dz}{z-z_j}=2\pi i
+$$
 
-   は連続性により $0$ へ収束するので $H'=h$ である。したがって閉曲線 $C$ では $\oint_C h(z)\,dz=0$ となる。
+だから
 
-3. **穴のある領域：** 外周 $C$ と各特異点を囲む小円 $C_j$ を細いブリッジでつなぐ。ブリッジ上の往復積分は打ち消し合うため
+$$
+\boxed{\displaystyle
+\oint_C h(z)\,dz=2\pi i\sum_j\operatorname{Res}(h,z_j)}
+$$
 
-   $$
-   \oint_C h(z)\,dz=\sum_j\oint_{C_j}h(z)\,dz
-   $$
+を得る。
 
-   となる。
+**単純極の留数公式。** $h(z)=P(z)/Q(z)$ で $Q(z_0)=0$、$Q'(z_0)\ne0$ なら、$Q(z)=Q'(z_0)(z-z_0)+\cdots$ だから
 
-4. **留数定理：** 各特異点の周りで [ローラン展開](#math2f-laurent-theory) を行うと、小円積分で残るのは $(z-z_j)^{-1}$ の係数だけである。この係数を留数と呼び、
+$$
+\operatorname{Res}(h,z_0)=\frac{P(z_0)}{Q'(z_0)}
+$$
 
-   $$
-   \boxed{\displaystyle
-   \oint_C h(z)\,dz=2\pi i\sum_j\operatorname{Res}(h,z_j)}
-   $$
+とすぐ計算できる。本問では $Q(z)=z^2+2az+1$ なので
 
-   を得る。本問では単位円内の極 $z_+$ の留数だけを計算すればよい。
+$$
+\operatorname{Res}\left(\frac1Q,z_+\right)
+=\frac{1}{2z_++2a}
+=\frac{1}{2\sqrt{a^2-1}}.
+$$
+
+したがって答案は、**単位円へ変換する → 円内の極を選ぶ → 留数を求める → $2\pi i$ を掛ける**の順に組み立てればよい。
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -188,7 +427,61 @@ $$
 $$
 :::
 
-### 【４】フーリエ変換 {#math2f-fourier-decay}
+### 2025年度 第1問【３】実軸上の有理関数の積分
+
+$-1<a<1$ とする。複素積分を用いて
+
+$$
+\int_{-\infty}^{\infty}\frac{dx}{x^2+2ax+1}
+$$
+
+を求めよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+[留数定理の導出](#math2f-residue-theory)を上半平面の半円経路へ適用する。
+
+$b=\sqrt{1-a^2}>0$ と置くと、分母は
+
+$$
+(z+a)^2+b^2=(z+a-ib)(z+a+ib)
+$$
+
+と因数分解できる。上半平面の半円で閉じれば、内部の極は $z=-a+ib$ の一つだけである。被積分関数は $O(|z|^{-2})$ なので半円弧の寄与は消える。
+
+実際、半径 $R$ の円弧上では被積分関数の絶対値が $C/R^2$ 以下、円弧の長さが $\pi R$ なので、積分の絶対値は
+
+$$
+\left|\int_{\text{半円弧}}\frac{dz}{z^2+2az+1}\right|
+\le \pi R\frac{C}{R^2}
+=\frac{\pi C}{R}\longrightarrow0
+$$
+
+と評価できる。これは「積分の大きさ $\le$ 経路の長さ $\times$ 経路上の最大値」という $ML$ 評価である。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+上半平面内の留数は
+
+$$
+\underset{z=-a+ib}{\operatorname{Res}}
+\frac{1}{(z+a)^2+b^2}=\frac{1}{2ib}
+$$
+
+である。よって
+
+$$
+\boxed{
+\int_{-\infty}^{\infty}\frac{dx}{x^2+2ax+1}
+=\frac{\pi}{\sqrt{1-a^2}}
+}.
+$$
+:::
+
+### 2023年度 第1問【４】フーリエ変換 {#math2f-fourier-decay}
 
 $a>0$ とする。実関数 $f(x)=xe^{-a|x|}$ のフーリエ変換
 
@@ -201,24 +494,48 @@ $$
 ::: {.callout-note collapse="true"}
 ##### 理論
 
-まず基本積分
+**フーリエ変換の意味。** $e^{ikx}$ は波数 $k$ の複素正弦波であり、フーリエ変換は関数を「どの波数の波がどれだけ含まれるか」という表示へ移す操作である。本問の規約では
 
 $$
-J(k)=\int_{-\infty}^{\infty}e^{-a|x|}e^{-ikx}\,dx
-=\frac{2a}{a^2+k^2}
+F(k)=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(x)e^{-ikx}\,dx.
 $$
 
-を求める。$k$ で微分すると
+Euler の公式から $e^{-ikx}=\cos(kx)-i\sin(kx)$ である。実数値の偶関数の変換は実数値、実数値の奇関数の変換は純虚数になる。本問の $xe^{-a|x|}$ は奇関数なので、答えが純虚数になることは検算にも使える。
+
+**まず $x$ のない基本積分を計算する。** $x=0$ で二つに分け、負の側では $x\mapsto-x$ と変数変換すると
+
+$$
+\begin{aligned}
+J(k)
+&=\int_{-\infty}^{\infty}e^{-a|x|}e^{-ikx}\,dx\\
+&=\int_0^\infty e^{-(a+ik)x}\,dx
++\int_0^\infty e^{-(a-ik)x}\,dx\\
+&=\frac{1}{a+ik}+\frac{1}{a-ik}\\
+&=\frac{2a}{a^2+k^2}
+\end{aligned}
+$$
+
+を得る。$a>0$ なので指数関数が無限遠で減衰し、二つの積分は収束する。
+
+**$x$ は $k$ 微分で作る。** 指数関数を $k$ で微分すると
+
+$$
+\frac{\partial}{\partial k}e^{-ikx}=-ixe^{-ikx}
+$$
+
+だから
 
 $$
 J'(k)=-i\int_{-\infty}^{\infty}xe^{-a|x|}e^{-ikx}\,dx
 $$
 
-となるため、求める積分は $iJ'(k)$ で得られる。
+となり、求める積分は $iJ'(k)$ で得られる。
 
 この微分を積分の内側へ入れられるのは、$e^{-a|x|}$ と $|x|e^{-a|x|}$ がともに可積分で、差分商を $k$ によらない可積分関数で抑えられるためである。
 
 より一般に、全ての $m,n$ について $x^m f^{(n)}(x)$ が有界な急減少関数では、部分積分を繰り返すことでフーリエ変換も任意の冪より速く減衰する。本問では $x=0$ で積分を二つに分ければ、同じ「指数減衰が境界項と交換操作を正当化する」という考え方を使える。
+
+答案は、**基本積分 $J$ を求める → $k$ で微分して $x$ を作る → 規格化係数 $1/(2\pi)$ を掛ける**という三段階でよい。
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -233,7 +550,73 @@ F(k)
 $$
 :::
 
-## 2023年度 第2問
+### 2025年度 第1問【４】双曲線関数を含むフーリエ変換
+
+$a>b>0$ とする。実関数
+
+$$
+f(x)=e^{-a|x|}\cosh(bx)
+$$
+
+のフーリエ変換
+
+$$
+F(k)=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(x)e^{-ikx}\,dx
+$$
+
+を求めよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+双曲線余弦は
+
+$$
+\cosh y=\frac{e^y+e^{-y}}{2}
+$$
+
+で定義され、偶関数である。この定義と $|x|$ を使うと
+
+$$
+e^{-a|x|}\cosh(bx)
+=\frac{1}{2}\left(e^{-(a-b)|x|}+e^{-(a+b)|x|}\right).
+$$
+
+となる。あとは [前問で導いた基本公式](#math2f-fourier-decay)
+
+$$
+\int_{-\infty}^{\infty}e^{-c|x|}e^{-ikx}\,dx
+=\frac{2c}{c^2+k^2}
+$$
+
+を $c=a-b$ と $c=a+b$ に適用する。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+$$
+\boxed{
+F(k)=\frac{1}{2\pi}
+\left[
+\frac{a-b}{(a-b)^2+k^2}
++\frac{a+b}{(a+b)^2+k^2}
+\right]
+}.
+$$
+
+一つの分数にまとめると
+
+$$
+F(k)=
+\frac{a(a^2-b^2+k^2)}
+{\pi\{(a-b)^2+k^2\}\{(a+b)^2+k^2\}}.
+$$
+:::
+
+## 第2部 複素積分と Gauss 和
+
+### 2023年度 第2問
 
 正の整数 $p$ に対して、複素関数
 
@@ -243,7 +626,7 @@ $$
 
 を考える。
 
-### 【１】差分の計算
+#### 【１】差分の計算 {#math2f-gauss-difference}
 
 $$
 g(z)=\frac{f(z)}{e^{2\pi iz}-1},\qquad
@@ -255,14 +638,38 @@ $$
 ::: {.callout-note collapse="true"}
 ##### 理論
 
-$f(z+1)$ の和で添字を一つずらすと、最初の項が消え、$n=2p$ に対応する項が加わる。この端の項について
+**有限和では端の項を追う。** $f(z+1)$ の和で $m=n+1$ と置くと
+
+$$
+f(z+1)=\sum_{m=1}^{2p}
+\exp\left[\frac{\pi i}{2p}(z+m)^2\right].
+$$
+
+元の $f(z)$ は $m=0,\ldots,2p-1$ の和なので、差を取れば途中の項は全て消え、「新しく入る $m=2p$」から「消える $m=0$」を引くだけになる。
+
+端の項では
+
+$$
+(z+2p)^2=z^2+4pz+4p^2
+$$
+
+であり、$p$ が整数だから $e^{2\pi ip}=1$ となる。したがって
 
 $$
 \exp\left[\frac{\pi i}{2p}(z+2p)^2\right]
 =e^{2\pi iz}\exp\left(\frac{\pi i}{2p}z^2\right)
 $$
 
-が成り立つ。したがって $f(z+1)-f(z)$ から分母 $e^{2\pi iz}-1$ が現れる。
+が成り立つ。
+
+また $e^{2\pi i(z+1)}=e^{2\pi iz}$ なので、$g(z+1)$ と $g(z)$ の分母は同じである。よって
+
+$$
+\phi(z)
+=\frac{f(z+1)-f(z)}{e^{2\pi iz}-1}
+$$
+
+とまとめられ、分子にも同じ因子が現れて消える。分母が $0$ になる点でも、約分後の正則関数をその値として定め直せる。このような直せる特異点を**可除特異点**という。
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -280,7 +687,7 @@ $$
 $$
 :::
 
-### 【２】斜め経路上の Gauss 積分
+#### 【２】斜め経路上の Gauss 積分 {#math2f-gauss-integral}
 
 $R>0$ とし、$\ell_R$ を $-Re^{\pi i/4}$ から $Re^{\pi i/4}$ までの直線経路とする。次の極限を求めよ。
 
@@ -291,13 +698,30 @@ $$
 ::: {.callout-note collapse="true"}
 ##### 理論
 
-経路を $z=re^{\pi i/4}$（$-R\le r\le R$）と置くと
+複素積分は [曲線の媒介変数表示](#math2f-liouville-theory)で実積分へ戻せる。経路を $z=re^{\pi i/4}$（$-R\le r\le R$）と置くと
 
 $$
 z^2=ir^2,\qquad dz=e^{\pi i/4}dr.
 $$
 
 複素指数関数が実 Gauss 関数 $e^{-\pi r^2/(2p)}$ に変わるのが、この角度を選ぶ理由である。
+
+ここで使う Gauss 積分は、$\alpha>0$ に対して
+
+$$
+\int_{-\infty}^{\infty}e^{-\alpha r^2}\,dr
+=\sqrt{\frac{\pi}{\alpha}}
+$$
+
+である。左辺を $I$ として $I^2$ を平面上の二重積分にし、極座標へ変換すると
+
+$$
+I^2
+=\int_0^{2\pi}\int_0^\infty e^{-\alpha\rho^2}\rho\,d\rho\,d\theta
+=\frac{\pi}{\alpha}
+$$
+
+となるので得られる。本問では $\alpha=\pi/(2p)$ である。
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -312,7 +736,7 @@ $$
 $$
 :::
 
-### 【３】Gauss 和
+#### 【３】Gauss 和 {#math2f-gauss-sum}
 
 留数定理と【２】の結果を用いて
 
@@ -327,19 +751,21 @@ $$
 
 [留数定理とその証明](#math2f-residue-theory)を、この問題では平行四辺形の積分路に適用する。
 
-$g(z)$ の分母 $e^{2\pi iz}-1$ は整数点で単純零点を持つ。幅 $1$ の平行四辺形を取り、向かい合う斜辺の積分の差を
+$g(z)$ の分母 $e^{2\pi iz}-1$ は整数点で単純零点を持つ。$Q(z)=e^{2\pi iz}-1$ とすれば $Q'(0)=2\pi i$ なので、[単純極の留数公式](#math2f-residue-theory)から
+
+$$
+\operatorname{Res}(g,0)=\frac{f(0)}{2\pi i}
+$$
+
+となる。
+
+幅 $1$ の平行四辺形を取り、向かい合う斜辺の積分を同じ向きにそろえて差を取ると
 
 $$
 g(z+1)-g(z)=\phi(z)
 $$
 
-でまとめる。端の辺の寄与は極限で消え、内部の一つの極の留数は
-
-$$
-\underset{z=0}{\operatorname{Res}}\,g(z)=\frac{f(0)}{2\pi i}
-$$
-
-となる。このため留数定理は $f(0)$ を【２】の斜め積分に結び付ける。
+でまとめられる。残る二辺では指数減衰により積分が $R\to\infty$ で消える。したがって「平行四辺形の閉路積分 = 【2】の斜め積分」となり、一方で留数定理から閉路積分は $2\pi i\operatorname{Res}(g,0)=f(0)$ になる。これが有限和を Gauss 積分で求められる仕組みである。
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -354,7 +780,127 @@ f(0)=\sqrt{2p}\,e^{\pi i/4}=(1+i)\sqrt{p}
 $$
 :::
 
-## 2023年度 第3問
+### 2025年度 第2問
+
+正の奇数 $p$ に対して、複素関数
+
+$$
+f(z)=\sum_{n=0}^{p-1}\exp\left[\frac{i\pi}{p}(z+n)^2\right]
+$$
+
+を考える。
+
+#### 【１】差分の計算
+
+$$
+g(z)=\frac{f(z)}{e^{2\pi iz}+1},\qquad
+\phi(z)=g(z+1)-g(z)
+$$
+
+と定義する。可除特異点を全て除去し、$\phi(z)$ を正則関数として表せ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+[2023年度第2問【1】](#math2f-gauss-difference)と同じく、有限和の添字を一つずらして端の二項だけを比較する。ここでは $p$ が奇数なので、端の項は
+
+$$
+\exp\left[\frac{i\pi}{p}(z+p)^2\right]
+=-e^{2\pi iz}\exp\left(\frac{i\pi}{p}z^2\right)
+$$
+
+となる。これと消える最初の項を合わせると、$g$ の分母 $e^{2\pi iz}+1$ が因数として現れる。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+$$
+f(z+1)-f(z)
+=-(e^{2\pi iz}+1)\exp\left(\frac{i\pi}{p}z^2\right)
+$$
+
+より
+
+$$
+\boxed{
+\phi(z)=-\exp\left(\frac{i\pi}{p}z^2\right)
+}.
+$$
+:::
+
+#### 【２】斜め経路上の Gauss 積分
+
+$\ell_R$ を $-Re^{i\pi/4}$ から $Re^{i\pi/4}$ までの直線経路とする。次の極限を求めよ。
+
+$$
+\lim_{R\to\infty}\int_{\ell_R}\phi(z)\,dz
+$$
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+[2023年度第2問【2】で導いた斜め経路と Gauss 積分](#math2f-gauss-integral)を使う。$z=re^{i\pi/4}$ と置けば $z^2=ir^2$ となり、
+
+$$
+\phi(z)=-e^{-\pi r^2/p},\qquad dz=e^{i\pi/4}dr
+$$
+
+へ変わる。残るのは実 Gauss 積分である。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+$$
+\begin{aligned}
+\lim_{R\to\infty}\int_{\ell_R}\phi(z)\,dz
+&=-e^{i\pi/4}\int_{-\infty}^{\infty}e^{-\pi r^2/p}\,dr\\
+&=\boxed{-\sqrt{p}\,e^{i\pi/4}}.
+\end{aligned}
+$$
+:::
+
+#### 【３】半整数ずれの Gauss 和
+
+留数定理と【２】の結果を用いて
+
+$$
+f\left(\frac12\right)
+=\sum_{n=0}^{p-1}\exp\left[\frac{i\pi}{p}\left(n+\frac12\right)^2\right]
+$$
+
+を求めよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+[2023年度第2問【3】と同じ平行四辺形の方法](#math2f-gauss-sum)を使う。違いは、分母 $e^{2\pi iz}+1$ の零点が整数ではなく半整数にあることである。
+
+$e^{2\pi iz}+1$ の零点は半整数である。幅 $1$ の平行四辺形を選ぶと、その内部には $z=1/2$ の極が一つ入る。分母の微分を使えば
+
+$$
+\underset{z=1/2}{\operatorname{Res}}\,g(z)
+=-\frac{f(1/2)}{2\pi i}.
+$$
+
+向かい合う辺の差は $g(z+1)-g(z)=\phi(z)$ であり、残りの辺の積分は極限で消える。したがって $f(1/2)$ は【２】で得た積分の符号を反転した値になる。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+$$
+\boxed{
+f\left(\frac12\right)=\sqrt{p}\,e^{i\pi/4}
+=\sqrt{\frac{p}{2}}(1+i)
+}.
+$$
+:::
+
+## 第3部 フーリエ級数と留数
+
+### 2023年度 第3問
 
 十分速く減衰する偶関数 $f(x)$ から、周期 $2\pi$ の関数
 
@@ -364,7 +910,7 @@ $$
 
 を作る。
 
-### 【１】周期化とフーリエ係数 {#math2f-fourier-series-theory}
+#### 【１】周期化とフーリエ係数 {#math2f-fourier-series-theory}
 
 $g(x)$ も偶関数であることを示せ。また、
 
@@ -376,6 +922,35 @@ $$
 
 ::: {.callout-note collapse="true"}
 ##### 理論
+
+**周期関数を正弦波へ分解する。** 周期 $2\pi$ の関数 $g$ は、条件がよければ
+
+$$
+g(x)=\frac{a_0}{2}
++\sum_{n=1}^{\infty}\{a_n\cos(nx)+b_n\sin(nx)\}
+$$
+
+と表せる。三角関数の直交関係
+
+$$
+\int_{-\pi}^{\pi}\cos(nx)\cos(mx)\,dx
+=
+\begin{cases}
+\pi &(n=m\ge1),\\
+0 &(n\ne m)
+\end{cases}
+$$
+
+を使い、級数の両辺へ $\cos(nx)$ を掛けて一周期積分すると、目的の項以外が消える。したがって
+
+$$
+a_n=\frac1\pi\int_{-\pi}^{\pi}g(x)\cos(nx)\,dx
+\qquad(n=0,1,2,\ldots)
+$$
+
+となる。同様に $b_n=\pi^{-1}\int_{-\pi}^{\pi}g(x)\sin(nx)\,dx$ である。$g$ が偶関数なら $g(x)\sin(nx)$ は奇関数なので $b_n=0$ となり、余弦だけが残る。
+
+**周期化とは、平行移動した山を並べる操作である。** $f(x+2m\pi)$ は $f$ を $2m\pi$ だけずらした関数であり、その全てを足すと周期 $2\pi$ の関数になる。
 
 $g(-x)$ では $f$ の偶性を使い、和の添字を $m\mapsto -m$ と替えると $g(x)$ に戻る。
 
@@ -433,6 +1008,8 @@ D_N(x)=\sum_{n=-N}^{N}e^{inx}
 $$
 
 との畳み込みで表される。十分滑らかな周期関数では、この表示と Riemann--Lebesgue の補題から連続点で関数値へ、不連続点で左右極限の平均へ収束する。本問ではまず係数公式を導けばよく、上の収束論がその級数表示を支えている。
+
+答案では、**偶性を添字変換で示す → 係数公式へ周期化の和を代入する → 各区間を平行移動して実軸全体につなぐ**、の順に書けばよい。
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -452,7 +1029,7 @@ a_n=\frac{1}{\pi}\int_{-\infty}^{\infty}f(x)\cos(nx)\,dx
 $$
 :::
 
-### 【２.１】極と留数
+#### 【２.１】極と留数 {#math2f-hyperbolic-poles}
 
 $\mu>\lambda>0$ とし、
 
@@ -466,6 +1043,21 @@ $$
 ::: {.callout-note collapse="true"}
 ##### 理論
 
+$\cosh$ と $\sinh$ は複素数に対しても
+
+$$
+\cosh w=\frac{e^w+e^{-w}}2,\qquad
+\sinh w=\frac{e^w-e^{-w}}2
+$$
+
+で定義する。Euler の公式を代入すれば
+
+$$
+\cosh(iy)=\cos y,\qquad \sinh(iy)=i\sin y
+$$
+
+となる。また指数関数に $2\pi i$ を足しても値が変わらないので、$\cosh(w+2\pi i)=\cosh w$ である。この虚方向の周期性により極が縦に繰り返し並ぶ。
+
 $\theta=\pi\lambda/\mu$ と置く。極は
 
 $$
@@ -478,7 +1070,16 @@ $$
 \frac{\pi z}{\mu}=i\{(2m+1)\pi\pm\theta\}
 $$
 
-と書ける。分母を $D(z)$ とすれば、単純極の留数は「分子を $D'(z_0)$ で割る」だけでよい。
+と書ける。これらの点では分母の微分は $0$ にならないので全て単純極である。[単純極の留数公式](#math2f-residue-theory)により、分母を $D(z)$ とすれば留数は「分子を $D'(z_0)$ で割る」だけでよい。
+
+具体的には
+
+$$
+D'(z)=\frac{2\pi\lambda}{\mu}
+\sinh\left(\frac{\pi z}{\mu}\right).
+$$
+
+$\sinh(iy)=i\sin y$ を使うと、$+\lambda$ の極では $D'(z_0)=-2\pi i\lambda\sin\theta/\mu$、$-\lambda$ の極では $D'(z_0)=2\pi i\lambda\sin\theta/\mu$ となる。これで解答の二種類の留数が得られる。
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -495,7 +1096,7 @@ z=i\{(2m+1)\mu-\lambda\} & \displaystyle -\frac{i\mu}{2\pi\lambda}
 $$
 :::
 
-### 【２.２】フーリエ係数
+#### 【２.２】フーリエ係数 {#math2f-rectangle-fourier}
 
 留数定理を用いて【１】の積分を実行し、$a_n$（$n=0,1,2,\ldots$）を求めよ。
 
@@ -504,7 +1105,9 @@ $$
 
 [留数定理](#math2f-residue-theory)を、実軸と平行な長方形経路に適用する。
 
-$n>0$ では $f(z)e^{inz}$ を上半平面の長方形経路で積分する。上辺を $2i\mu$ だけずらすと、$\cosh$ の周期性と $e^{inz}$ から係数 $e^{-2n\mu}$ が現れる。帯の中の二つの極の留数を足すと
+$\cos(nx)$ を直接扱う代わりに $e^{inx}$ を使うのは、最後に実部を取れば $\cos(nx)$ が得られ、上下の辺を移したときの倍率も簡単に計算できるからである。$n>0$ では $|e^{inz}|=e^{-n\operatorname{Im}z}$ なので、上半平面側で減衰する。
+
+$f(z)e^{inz}$ を上半平面の長方形経路で積分する。上辺を $2i\mu$ だけずらすと、$\cosh$ の周期性と $e^{inz}$ から係数 $e^{-2n\mu}$ が現れる。左右の縦辺は、実部を $\pm R$ として $R\to\infty$ にすると $f$ の指数減衰により消える。帯の中の二つの極の留数を足すと
 
 $$
 \int_{-\infty}^{\infty}f(x)\cos(nx)\,dx
@@ -526,7 +1129,91 @@ a_n=\frac{\mu}{\pi\lambda}
 $$
 :::
 
-## 2023年度 第4問
+### 2025年度 第3問
+
+十分速く減衰する偶関数の周期化と一般のフーリエ係数を求める【１】は、2023年度第3問【１】と同一内容のため省略する。
+
+PDF の式 (8) には分母に余分な $z$ が印字されているが、それでは実関数 $f(x)$ が偶関数にも急減少関数にもならない。ここでは問題の前提と後続設問から、意図された式を
+
+$$
+f(x)=\frac{\pi}{2\lambda\cosh\!\left(\dfrac{\pi x}{2\lambda}\right)}
+\qquad(\lambda>0)
+$$
+
+と解釈する。
+
+#### 【２.１】極と留数
+
+$f(x)$ を複素関数とみなし、全ての極と各極における留数を求めよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+[双曲線関数の定義と虚方向の周期性](#math2f-hyperbolic-poles)を使う。$\cosh w$ の零点は
+
+$$
+w=i\pi\left(m+\frac12\right)\qquad(m\in\mathbb Z)
+$$
+
+である。$w=\pi z/(2\lambda)$ と対応させれば極が分かる。全て単純極なので、留数は分母を微分して求める。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+$m\in\mathbb Z$ に対して
+
+$$
+\boxed{
+z_m=i(2m+1)\lambda,\qquad
+\underset{z=z_m}{\operatorname{Res}}\,f(z)
+=(-1)^{m+1}i
+}.
+$$
+:::
+
+#### 【２.２】フーリエ係数
+
+留数定理を用いて、2023年度第3問【１】で得た積分を実行し、$a_n$（$n=0,1,2,\ldots$）を求めよ。
+
+::: {.callout-note collapse="true"}
+##### 理論
+
+[周期化とフーリエ係数の収束論](#math2f-fourier-series-theory)および[留数定理](#math2f-residue-theory)を使う。
+
+必要な積分は
+
+$$
+a_n=\frac{1}{\pi}\int_{-\infty}^{\infty}f(x)\cos(nx)\,dx.
+$$
+
+[2023年度の長方形経路の考え方](#math2f-rectangle-fourier)と同様に、$f(z)e^{inz}$ を高さ $2\lambda$ の長方形で積分する。$\cosh(w+i\pi)=-\cosh w$ と上辺の指数因子から実軸積分を解ける。標準的な結果は
+
+$$
+\int_{-\infty}^{\infty}
+\frac{e^{inx}}{\cosh(\pi x/(2\lambda))}\,dx
+=\frac{2\lambda}{\cosh(n\lambda)}
+$$
+
+である。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答
+
+$$
+\boxed{
+a_n=\frac{1}{\cosh(n\lambda)}
+\qquad(n=0,1,2,\ldots)
+}.
+$$
+
+特に $a_0=1$ である。
+:::
+
+## 第4部 ラプラス変換
+
+### 2023年度 第4問
 
 $\gamma,\omega,g>0$ とし、$t\ge 0$ で
 
@@ -536,12 +1223,21 @@ $$
 
 を考える。$F(s)=\int_0^\infty f(t)e^{-st}\,dt$ とする。
 
-### 【１】ラプラス変換 {#math2f-laplace-rule}
+#### 【１】ラプラス変換 {#math2f-laplace-rule}
 
 $\gamma,\omega,g,f(0)$ を用いて $F(s)$ を表せ。
 
 ::: {.callout-note collapse="true"}
 ##### 理論
+
+**ラプラス変換は微分方程式を代数方程式へ変える。** 時間関数 $f(t)$ に対して
+
+$$
+F(s)=\mathcal L[f](s)
+=\int_0^\infty f(t)e^{-st}\,dt
+$$
+
+と定める。$\operatorname{Re}s$ が十分大きければ $e^{-st}$ が大きな $t$ を抑えるため積分が収束する。微分や時間積分が、$s$ の掛け算や割り算へ変わることが最大の利点である。本問では、積分微分方程式を $F(s)$ についての一次方程式へ変える。
 
 ラプラス変換の基本公式
 
@@ -566,6 +1262,8 @@ $$
 $$
 
 また、$I(t)=\int_0^t f(\tau)\,d\tau$ と置けば $I'(t)=f(t)$、$I(0)=0$ なので、同じ公式から $s\mathcal L[I]=F$、すなわち $\mathcal L[I]=F/s$ を得る。
+
+答案では、**各項を変換する → 初期値を残す → $F(s)$ の項を集める → 分母を払う**、の順に整理する。
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -585,7 +1283,7 @@ F(s)=\frac{sf(0)+g}{s^2+2\gamma s+\omega^2}
 $$
 :::
 
-### 【２】逆ラプラス変換
+#### 【２】逆ラプラス変換 {#math2f-laplace-inverse}
 
 $f(0)=0$ とする。逆ラプラス変換により、(i) $\gamma>\omega$、(ii) $\gamma=\omega$、(iii) $\gamma<\omega$ の各場合について $f(t)$ を求めよ。
 
@@ -598,7 +1296,28 @@ $$
 s^2+2\gamma s+\omega^2=(s+\gamma)^2+(\omega^2-\gamma^2)
 $$
 
-となる。$\omega^2-\gamma^2$ の符号により、逆変換が $\sin$、$t$、$\sinh$ の三種類に分かれる。$s\mapsto s+\gamma$ のずれは時間側の因子 $e^{-\gamma t}$ に対応する。
+となる。$f(0)=0$ のとき
+
+$$
+F(s)=\frac{g}{(s+\gamma)^2+(\omega^2-\gamma^2)}
+$$
+
+である。逆変換には次の三つの基本対を使う。
+
+$$
+\begin{aligned}
+\mathcal L[e^{-\gamma t}\sin(\Omega t)]
+&=\frac{\Omega}{(s+\gamma)^2+\Omega^2},\\
+\mathcal L[te^{-\gamma t}]
+&=\frac{1}{(s+\gamma)^2},\\
+\mathcal L[e^{-\gamma t}\sinh(\beta t)]
+&=\frac{\beta}{(s+\gamma)^2-\beta^2}.
+\end{aligned}
+$$
+
+これらは $\sin,\sinh$ を指数関数で表して直接積分すれば確かめられる。$\omega^2-\gamma^2$ が正・零・負のどれかにより、分母が上から順に $\sin$、$t$、$\sinh$ の形へ分かれる。また $s\mapsto s+\gamma$ のずれは、時間側で $e^{-\gamma t}$ を掛けることに対応する。
+
+したがって、**平方完成する → 符号で場合分けする → 基本対の分子を合わせる**のが答案の設計図である。
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -621,415 +1340,7 @@ g t e^{-\gamma t},
 $$
 :::
 
-## 2025年度 第1問
-
-### 【１】関数の例
-
-複素平面上の (i) 正則関数、(ii) 正則ではない有理型関数、(iii) 集積特異点を持つ関数の例を、それぞれ一つずつ挙げよ。
-
-::: {.callout-note collapse="true"}
-##### 理論
-
-有理型関数は孤立した極を許すため、極を持つ例を選べば「正則ではない有理型関数」になる。
-
-集積特異点は、特異点の列が有限点へ集まる非孤立特異点である。例えば $\sin(1/z)=0$ となる点は $z=1/(n\pi)$ であり、$n\to\infty$ で $0$ に集積する。
-
-[ローラン展開による分類](#math2f-laurent-theory)は、中心の周りに特異点を含まない円環を取れる**孤立特異点**に対する議論である。集積特異点の周りにはそのような円環が存在しないため、可除特異点・極・真性特異点という三分類の外にある。
-:::
-
-::: {.callout-tip collapse="true"}
-##### 解答
-
-例えば
-
-$$
-\text{(i) }z^2,\qquad
-\text{(ii) }\frac{1}{z},\qquad
-\text{(iii) }\frac{1}{\sin(1/z)}
-$$
-
-と選べる。(iii) は $z=1/(n\pi)$（$n\in\mathbb Z\setminus\{0\}$）に極を持ち、それらが $z=0$ に集積する。
-:::
-
-### 【２】Cauchy--Riemann の関係式 {#math2f-cr-theory}
-
-Cauchy--Riemann の関係式を記せ。また、
-
-$$
-f(z)=x^2+y^2+2ix
-\qquad(z=x+iy,\ x,y\in\mathbb R)
-$$
-
-が正則であるかどうかを判別せよ。
-
-::: {.callout-note collapse="true"}
-##### 理論
-
-$f=u+iv$ と書くと、偏導関数が連続な場合の Cauchy--Riemann の関係式は
-
-$$
-u_x=v_y,\qquad u_y=-v_x
-$$
-
-である。一点だけで関係式が成立しても、その点を含む開領域で成立しなければ「正則」とはいえない。
-
-さらに、$u,v$ が点 $(x_0,y_0)$ で全微分可能なら、Cauchy--Riemann 条件は $f$ が $z_0=x_0+iy_0$ で複素微分可能であるための必要十分条件になる。
-
-**必要性の証明。** $f'(z_0)=\alpha+i\beta$ とすると、$\Delta z=\Delta x+i\Delta y$ に対して
-
-$$
-f(z_0+\Delta z)
-=f(z_0)+(\alpha+i\beta)(\Delta x+i\Delta y)+o(|\Delta z|).
-$$
-
-実部と虚部を比較すると
-
-$$
-\begin{aligned}
-u(x_0+\Delta x,y_0+\Delta y)
-&=u(x_0,y_0)+\alpha\Delta x-\beta\Delta y+o(|\Delta z|),\\
-v(x_0+\Delta x,y_0+\Delta y)
-&=v(x_0,y_0)+\beta\Delta x+\alpha\Delta y+o(|\Delta z|).
-\end{aligned}
-$$
-
-したがって
-
-$$
-u_x=\alpha=v_y,\qquad u_y=-\beta=-v_x.
-$$
-
-**十分性の証明。** 逆に $u,v$ が全微分可能で上の関係を満たすなら、二つの全微分を再び複素数として組み合わせて
-
-$$
-f(z_0+\Delta z)-f(z_0)
-=(u_x+iv_x)\Delta z+o(|\Delta z|)
-$$
-
-と書ける。両辺を $\Delta z$ で割って極限を取れば $f'(z_0)=u_x+iv_x$ が存在する。
-:::
-
-::: {.callout-tip collapse="true"}
-##### 解答
-
-ここでは
-
-$$
-u=x^2+y^2,\qquad v=2x
-$$
-
-なので
-
-$$
-2x=0,\qquad 2y=-2.
-$$
-
-関係式が成立するのは $(x,y)=(0,-1)$ の一点だけであり、どの開領域でも成立しない。したがって $f$ は正則ではない。
-:::
-
-### 【３】実軸上の有理関数の積分
-
-$-1<a<1$ とする。複素積分を用いて
-
-$$
-\int_{-\infty}^{\infty}\frac{dx}{x^2+2ax+1}
-$$
-
-を求めよ。
-
-::: {.callout-note collapse="true"}
-##### 理論
-
-[留数定理の導出](#math2f-residue-theory)を上半平面の半円経路へ適用する。
-
-$b=\sqrt{1-a^2}>0$ と置くと、分母は
-
-$$
-(z+a)^2+b^2=(z+a-ib)(z+a+ib)
-$$
-
-と因数分解できる。上半平面の半円で閉じれば、内部の極は $z=-a+ib$ の一つだけである。被積分関数は $O(|z|^{-2})$ なので半円弧の寄与は消える。
-:::
-
-::: {.callout-tip collapse="true"}
-##### 解答
-
-上半平面内の留数は
-
-$$
-\underset{z=-a+ib}{\operatorname{Res}}
-\frac{1}{(z+a)^2+b^2}=\frac{1}{2ib}
-$$
-
-である。よって
-
-$$
-\boxed{
-\int_{-\infty}^{\infty}\frac{dx}{x^2+2ax+1}
-=\frac{\pi}{\sqrt{1-a^2}}
-}.
-$$
-:::
-
-### 【４】双曲線関数を含むフーリエ変換
-
-$a>b>0$ とする。実関数
-
-$$
-f(x)=e^{-a|x|}\cosh(bx)
-$$
-
-のフーリエ変換
-
-$$
-F(k)=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(x)e^{-ikx}\,dx
-$$
-
-を求めよ。
-
-::: {.callout-note collapse="true"}
-##### 理論
-
-$\cosh$ は偶関数なので
-
-$$
-e^{-a|x|}\cosh(bx)
-=\frac{1}{2}\left(e^{-(a-b)|x|}+e^{-(a+b)|x|}\right).
-$$
-
-あとは $c>0$ に対する基本公式
-
-$$
-\int_{-\infty}^{\infty}e^{-c|x|}e^{-ikx}\,dx
-=\frac{2c}{c^2+k^2}
-$$
-
-を $c=a-b$ と $c=a+b$ に適用する。
-:::
-
-::: {.callout-tip collapse="true"}
-##### 解答
-
-$$
-\boxed{
-F(k)=\frac{1}{2\pi}
-\left[
-\frac{a-b}{(a-b)^2+k^2}
-+\frac{a+b}{(a+b)^2+k^2}
-\right]
-}.
-$$
-
-一つの分数にまとめると
-
-$$
-F(k)=
-\frac{a(a^2-b^2+k^2)}
-{\pi\{(a-b)^2+k^2\}\{(a+b)^2+k^2\}}.
-$$
-:::
-
-## 2025年度 第2問
-
-正の奇数 $p$ に対して、複素関数
-
-$$
-f(z)=\sum_{n=0}^{p-1}\exp\left[\frac{i\pi}{p}(z+n)^2\right]
-$$
-
-を考える。
-
-### 【１】差分の計算
-
-$$
-g(z)=\frac{f(z)}{e^{2\pi iz}+1},\qquad
-\phi(z)=g(z+1)-g(z)
-$$
-
-と定義する。可除特異点を全て除去し、$\phi(z)$ を正則関数として表せ。
-
-::: {.callout-note collapse="true"}
-##### 理論
-
-$f(z+1)$ で添字を一つずらす。$p$ が奇数なので、端の項は
-
-$$
-\exp\left[\frac{i\pi}{p}(z+p)^2\right]
-=-e^{2\pi iz}\exp\left(\frac{i\pi}{p}z^2\right)
-$$
-
-となる。これと消える最初の項を合わせると、$g$ の分母 $e^{2\pi iz}+1$ が因数として現れる。
-:::
-
-::: {.callout-tip collapse="true"}
-##### 解答
-
-$$
-f(z+1)-f(z)
-=-(e^{2\pi iz}+1)\exp\left(\frac{i\pi}{p}z^2\right)
-$$
-
-より
-
-$$
-\boxed{
-\phi(z)=-\exp\left(\frac{i\pi}{p}z^2\right)
-}.
-$$
-:::
-
-### 【２】斜め経路上の Gauss 積分
-
-$\ell_R$ を $-Re^{i\pi/4}$ から $Re^{i\pi/4}$ までの直線経路とする。次の極限を求めよ。
-
-$$
-\lim_{R\to\infty}\int_{\ell_R}\phi(z)\,dz
-$$
-
-::: {.callout-note collapse="true"}
-##### 理論
-
-$z=re^{i\pi/4}$ と置けば $z^2=ir^2$ となり、
-
-$$
-\phi(z)=-e^{-\pi r^2/p},\qquad dz=e^{i\pi/4}dr
-$$
-
-へ変わる。残るのは実 Gauss 積分である。
-:::
-
-::: {.callout-tip collapse="true"}
-##### 解答
-
-$$
-\begin{aligned}
-\lim_{R\to\infty}\int_{\ell_R}\phi(z)\,dz
-&=-e^{i\pi/4}\int_{-\infty}^{\infty}e^{-\pi r^2/p}\,dr\\
-&=\boxed{-\sqrt{p}\,e^{i\pi/4}}.
-\end{aligned}
-$$
-:::
-
-### 【３】半整数ずれの Gauss 和
-
-留数定理と【２】の結果を用いて
-
-$$
-f\left(\frac12\right)
-=\sum_{n=0}^{p-1}\exp\left[\frac{i\pi}{p}\left(n+\frac12\right)^2\right]
-$$
-
-を求めよ。
-
-::: {.callout-note collapse="true"}
-##### 理論
-
-[留数定理](#math2f-residue-theory)を幅 $1$ の平行四辺形へ適用する。
-
-$e^{2\pi iz}+1$ の零点は半整数である。幅 $1$ の平行四辺形を選ぶと、その内部には $z=1/2$ の極が一つ入る。分母の微分を使えば
-
-$$
-\underset{z=1/2}{\operatorname{Res}}\,g(z)
-=-\frac{f(1/2)}{2\pi i}.
-$$
-
-向かい合う辺の差は $g(z+1)-g(z)=\phi(z)$ であり、残りの辺の積分は極限で消える。したがって $f(1/2)$ は【２】で得た積分の符号を反転した値になる。
-:::
-
-::: {.callout-tip collapse="true"}
-##### 解答
-
-$$
-\boxed{
-f\left(\frac12\right)=\sqrt{p}\,e^{i\pi/4}
-=\sqrt{\frac{p}{2}}(1+i)
-}.
-$$
-:::
-
-## 2025年度 第3問
-
-十分速く減衰する偶関数の周期化と一般のフーリエ係数を求める【１】は、2023年度第3問【１】と同一内容のため省略する。
-
-PDF の式 (8) には分母に余分な $z$ が印字されているが、それでは実関数 $f(x)$ が偶関数にも急減少関数にもならない。ここでは問題の前提と後続設問から、意図された式を
-
-$$
-f(x)=\frac{\pi}{2\lambda\cosh\!\left(\dfrac{\pi x}{2\lambda}\right)}
-\qquad(\lambda>0)
-$$
-
-と解釈する。
-
-### 【２.１】極と留数
-
-$f(x)$ を複素関数とみなし、全ての極と各極における留数を求めよ。
-
-::: {.callout-note collapse="true"}
-##### 理論
-
-$\cosh w$ の零点は
-
-$$
-w=i\pi\left(m+\frac12\right)\qquad(m\in\mathbb Z)
-$$
-
-である。$w=\pi z/(2\lambda)$ と対応させれば極が分かる。全て単純極なので、留数は分母を微分して求める。
-:::
-
-::: {.callout-tip collapse="true"}
-##### 解答
-
-$m\in\mathbb Z$ に対して
-
-$$
-\boxed{
-z_m=i(2m+1)\lambda,\qquad
-\underset{z=z_m}{\operatorname{Res}}\,f(z)
-=(-1)^{m+1}i
-}.
-$$
-:::
-
-### 【２.２】フーリエ係数
-
-留数定理を用いて、2023年度第3問【１】で得た積分を実行し、$a_n$（$n=0,1,2,\ldots$）を求めよ。
-
-::: {.callout-note collapse="true"}
-##### 理論
-
-[周期化とフーリエ係数の収束論](#math2f-fourier-series-theory)および[留数定理](#math2f-residue-theory)を使う。
-
-必要な積分は
-
-$$
-a_n=\frac{1}{\pi}\int_{-\infty}^{\infty}f(x)\cos(nx)\,dx.
-$$
-
-$f(z)e^{inz}$ を高さ $2\lambda$ の長方形で積分すると、$\cosh(w+i\pi)=-\cosh w$ と上辺の指数因子から実軸積分を解ける。標準的な結果は
-
-$$
-\int_{-\infty}^{\infty}
-\frac{e^{inx}}{\cosh(\pi x/(2\lambda))}\,dx
-=\frac{2\lambda}{\cosh(n\lambda)}
-$$
-
-である。
-:::
-
-::: {.callout-tip collapse="true"}
-##### 解答
-
-$$
-\boxed{
-a_n=\frac{1}{\cosh(n\lambda)}
-\qquad(n=0,1,2,\ldots)
-}.
-$$
-
-特に $a_0=1$ である。
-:::
-
-## 2025年度 第4問
+### 2025年度 第4問
 
 $\gamma,\omega,g>0$ とし、$t\ge 0$ で
 
@@ -1042,7 +1353,7 @@ $$
 
 を考える。また、$F(s)=\int_0^\infty f(t)e^{-st}\,dt$ とする。
 
-### 【１】ラプラス変換
+#### 【１】ラプラス変換
 
 $\gamma,\omega,g,f(0),f'(0)$ を用いて、微分方程式を満たす $F(s)$ を表せ。
 
@@ -1060,6 +1371,15 @@ $$
 $$
 
 である。全ての $F(s)$ の項を左辺へ集めればよい。
+
+右辺の公式は
+
+$$
+\mathcal L[e^{-\gamma t}h(t)](s)
+=\mathcal L[h](s+\gamma)
+$$
+
+という移動則を $h(t)=\sin(\omega t)$ に使ったものである。
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -1075,7 +1395,7 @@ F(s)=
 $$
 :::
 
-### 【２】逆ラプラス変換
+#### 【２】逆ラプラス変換
 
 $f(0)=f'(0)=0$ とする。逆ラプラス変換により、(i) $\gamma>\omega$、(ii) $\gamma=\omega$、(iii) $\gamma<\omega$ の各場合について $f(t)$ を求めよ。
 
@@ -1089,7 +1409,22 @@ y''+(\omega^2-\gamma^2)y=g\sin(\omega t),\qquad
 y(0)=y'(0)=0
 $$
 
-となる。$\omega^2-\gamma^2$ の符号に応じて、同次解が $\sin$、一次関数、$\sinh$ に分かれる。最後に $e^{-\gamma t}$ を戻す。
+となる。これは、ラプラス変換の $s\mapsto s+\gamma$ に対応する置換を時間側で先に行ったものでもある。[前問の三つの基本対](#math2f-laplace-inverse)と同じく、$\omega^2-\gamma^2$ の符号に応じて同次解が $\sin$、一次関数、$\sinh$ に分かれる。
+
+まず特殊解を $y_p=A\sin(\omega t)$ と仮定する。代入すると
+
+$$
+\{-\omega^2+(\omega^2-\gamma^2)\}A\sin(\omega t)
+=g\sin(\omega t)
+$$
+
+なので $A=-g/\gamma^2$ である。あとは $y=y_h+y_p$ とし、$y(0)=y'(0)=0$ を使って同次解の係数を決める。
+
+- $\gamma<\omega$ では $\alpha=\sqrt{\omega^2-\gamma^2}$ として $y_h=C\sin(\alpha t)$。
+- $\gamma=\omega$ では $y_h=Ct$。
+- $\gamma>\omega$ では $\beta=\sqrt{\gamma^2-\omega^2}$ として $y_h=C\sinh(\beta t)$。
+
+いずれも $y'(0)=0$ から $C$ が決まり、最後に $f=e^{-\gamma t}y$ を戻せばよい。
 :::
 
 ::: {.callout-tip collapse="true"}
