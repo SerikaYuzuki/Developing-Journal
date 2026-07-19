@@ -1,0 +1,3369 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Serika Yuzuki">
+<meta name="dcterms.date" content="2026-06-08">
+
+<title>数学2F – 芹香のブログ 気軽にコメント残してね！</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-57df612ce7d31eb042a4162ec1190c32.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-9ce02ba9bf05f77acce06f7d436c50a3.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-0c6e397e4b841f4e11debe22e153e804.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-e3fd57220414d64ff0363a55b3b9b7d9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>(function () {
+  "use strict";
+
+  document.addEventListener("DOMContentLoaded", function () {
+
+    // ── 1. 現在地に一致する navbar リンクだけを active にする ────────
+    function normalizedPath(url) {
+      var path = url.pathname.replace(/\/index\.html$/i, '/');
+      path = path.replace(/\.html$/i, '');
+      path = path.replace(/\/{2,}/g, '/').replace(/\/+$/, '');
+      return path || '/';
+    }
+
+    function updateNavbarActiveLink() {
+      var current = new URL(window.location.href);
+      var currentPath = normalizedPath(current);
+
+      document.querySelectorAll('.navbar .navbar-nav a.nav-link[href]').forEach(function (link) {
+        var href = link.getAttribute('href');
+        if (!href || link.hasAttribute('data-bs-toggle')) return;
+
+        var target;
+        try {
+          target = new URL(href, current);
+        } catch (_) {
+          return;
+        }
+
+        // 外部リンク（mailto: 等を含む）の状態は Quarto/利用側に委ねる。
+        if (target.origin !== current.origin) return;
+
+        var isCurrent = normalizedPath(target) === currentPath;
+        link.classList.toggle('active', isCurrent);
+        if (isCurrent) {
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      });
+    }
+
+    updateNavbarActiveLink();
+
+    // bfcache から復帰した場合も URL と active 状態を同期する。
+    window.addEventListener('pageshow', updateNavbarActiveLink);
+
+    // ── 2. デスクトップ用 TOC トグル ─────────────────────────────────
+    var marginSidebar = document.getElementById('quarto-margin-sidebar');
+    var toc = marginSidebar && marginSidebar.querySelector('#TOC, .sidebar-toc');
+    var navbarTools = document.querySelector('.quarto-navbar-tools');
+    var TOC_STORAGE_KEY = 'serika-glass-toc-visible';
+    var TOC_DURATION = 400;
+
+    if (toc && navbarTools) {
+      var tocToggleBtn = document.createElement('button');
+      tocToggleBtn.type = 'button';
+      tocToggleBtn.className = 'pj-toc-toggle quarto-navigation-tool';
+      tocToggleBtn.innerHTML = '<i class="bi bi-layout-text-sidebar-reverse" aria-hidden="true"></i>';
+      tocToggleBtn.setAttribute('aria-controls', 'quarto-margin-sidebar');
+      navbarTools.insertBefore(tocToggleBtn, navbarTools.firstChild);
+
+      var tocVisible = true;
+      try {
+        tocVisible = window.sessionStorage.getItem(TOC_STORAGE_KEY) !== 'false';
+      } catch (_) {
+        // Storage を利用できない環境ではページごとの既定表示にフォールバック。
+      }
+
+      function updateTocButton(visible) {
+        var label = visible ? '目次を非表示' : '目次を表示';
+        tocToggleBtn.setAttribute('aria-expanded', String(visible));
+        tocToggleBtn.setAttribute('aria-label', label);
+        tocToggleBtn.title = label;
+      }
+
+      function setTocVisible(visible, animate) {
+        window.clearTimeout(tocToggleBtn._pjTocTimer);
+        document.body.classList.remove('pj-toc-showing');
+
+        if (visible) {
+          if (animate && document.body.classList.contains('pj-toc-hidden')) {
+            document.body.classList.add('pj-toc-showing');
+          }
+          document.body.classList.remove('pj-toc-hidden');
+          marginSidebar.setAttribute('aria-hidden', 'false');
+
+          if (animate) {
+            tocToggleBtn._pjTocTimer = window.setTimeout(function () {
+              document.body.classList.remove('pj-toc-showing');
+            }, TOC_DURATION);
+          }
+        } else {
+          document.body.classList.add('pj-toc-hidden');
+          marginSidebar.setAttribute('aria-hidden', 'true');
+        }
+
+        updateTocButton(visible);
+      }
+
+      setTocVisible(tocVisible, false);
+
+      tocToggleBtn.addEventListener('click', function () {
+        tocVisible = document.body.classList.contains('pj-toc-hidden');
+        var reduceMotion = window.matchMedia &&
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        setTocVisible(tocVisible, !reduceMotion);
+        try {
+          window.sessionStorage.setItem(TOC_STORAGE_KEY, String(tocVisible));
+        } catch (_) {
+          // UI は storage の可否に関係なく動作させる。
+        }
+      });
+    }
+
+    // ── 3. ≡ ボタンをナビバーに挿入 ────────────────────────────────────
+    var brandContainer = document.querySelector('.navbar-brand-container');
+    if (!brandContainer) return;
+
+    var toggleBtn = document.createElement('a');
+    toggleBtn.href = "#";
+    toggleBtn.innerHTML = '<i class="bi bi-list"></i>';
+    toggleBtn.className = 'navbar-sidebar-toggle pe-2';
+    toggleBtn.style.cssText = 'color:inherit;text-decoration:none;font-size:1.5rem;display:flex;align-items:center;';
+    toggleBtn.title = "サイドバーを切り替え";
+    brandContainer.insertBefore(toggleBtn, brandContainer.firstChild);
+
+    // ── 4. カスタムドロワーを構築 ───────────────────────────────────────
+    var siteName = (document.querySelector('.navbar-brand') || {}).textContent;
+    siteName = siteName ? siteName.trim() : 'Menu';
+
+    var drawer = document.createElement('div');
+    drawer.id = 'pj-drawer';
+    drawer.setAttribute('aria-hidden', 'true');
+    drawer.setAttribute('role', 'dialog');
+    drawer.setAttribute('aria-modal', 'true');
+    drawer.innerHTML = [
+      '<div id="pj-drawer-backdrop"></div>',
+      '<nav id="pj-drawer-panel" aria-label="ナビゲーション">',
+        '<div id="pj-drawer-header">',
+          '<span id="pj-drawer-site-name">' + siteName + '</span>',
+          '<button id="pj-drawer-close" aria-label="閉じる" type="button">',
+            '<i class="bi bi-x-lg"></i>',
+          '</button>',
+        '</div>',
+        '<div id="pj-drawer-body"></div>',
+      '</nav>'
+    ].join('');
+    document.body.appendChild(drawer);
+
+    // サイドバーのナビコンテンツをクローンして挿入（ID重複を回避）
+    var sidebarNav = document.querySelector('#quarto-sidebar .sidebar-menu-container');
+    if (sidebarNav) {
+      var clone = sidebarNav.cloneNode(true);
+
+      clone.querySelectorAll('[id]').forEach(function (el) {
+        el.id = 'pj-' + el.id;
+      });
+      clone.querySelectorAll('[data-bs-target]').forEach(function (el) {
+        var t = el.getAttribute('data-bs-target');
+        if (t && t.charAt(0) === '#') {
+          el.setAttribute('data-bs-target', '#pj-' + t.slice(1));
+        }
+      });
+      clone.querySelectorAll('[aria-controls]').forEach(function (el) {
+        el.setAttribute('aria-controls', 'pj-' + el.getAttribute('aria-controls'));
+      });
+
+      document.getElementById('pj-drawer-body').appendChild(clone);
+    }
+
+    // ── 5. 開閉ロジック ─────────────────────────────────────────────────
+    var backdrop = document.getElementById('pj-drawer-backdrop');
+    var closeBtn = document.getElementById('pj-drawer-close');
+    var CLOSE_DURATION = 250;
+
+    function openDrawer() {
+      drawer.removeAttribute('aria-hidden');
+      drawer.classList.add('pj-open');
+      document.body.classList.add('pj-drawer-active');
+    }
+
+    function closeDrawer() {
+      drawer.classList.add('pj-closing');
+      setTimeout(function () {
+        drawer.classList.remove('pj-open', 'pj-closing');
+        drawer.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('pj-drawer-active');
+      }, CLOSE_DURATION);
+    }
+
+    backdrop.addEventListener('click', closeDrawer);
+    closeBtn.addEventListener('click', closeDrawer);
+
+    // ドロワー内のリンクをクリックしたら閉じる（アコーディオン以外）
+    document.getElementById('pj-drawer-body').addEventListener('click', function (e) {
+      var link = e.target.closest('a[href]');
+      if (link && !link.getAttribute('data-bs-toggle')) {
+        closeDrawer();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && drawer.classList.contains('pj-open')) closeDrawer();
+    });
+
+    // ── 6. スクロールで navbar を隠す/表示する ──────────────────────
+    var navbar = document.querySelector('.navbar');
+    if (navbar) {
+      var lastScrollY = window.scrollY;
+      var ticking = false;
+      var SCROLL_HIDE_THRESHOLD = 80;
+
+      function handleNavbarScroll() {
+        var current = window.scrollY;
+        if (current < SCROLL_HIDE_THRESHOLD) {
+          navbar.classList.remove('pj-navbar-hidden');
+        } else if (current > lastScrollY) {
+          navbar.classList.add('pj-navbar-hidden');
+        } else {
+          navbar.classList.remove('pj-navbar-hidden');
+        }
+        lastScrollY = current;
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          window.requestAnimationFrame(handleNavbarScroll);
+          ticking = true;
+        }
+      }, { passive: true });
+    }
+
+    // ── 7. ≡ ボタンのクリック処理 ─────────────────────────────────────
+    toggleBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      if (window.innerWidth < 992) {
+        // モバイル: カスタムドロワーを使用
+        drawer.classList.contains('pj-open') ? closeDrawer() : openDrawer();
+        return;
+      }
+
+      // デスクトップ: 既存のカスタムアニメーション
+      var body = document.body;
+      if (body.classList.contains('custom-sidebar-hidden')) {
+        body.classList.remove('custom-sidebar-hidden');
+        body.classList.add('custom-sidebar-showing');
+        setTimeout(function () { body.classList.remove('custom-sidebar-showing'); }, 400);
+      } else {
+        body.classList.remove('custom-sidebar-showing');
+        body.classList.add('custom-sidebar-hidden');
+      }
+    });
+  });
+})();
+</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../site_libs/quarto-contrib/quarto-project/serika/glass/styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const darkModeDefault = authorPrefersDark;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">芹香のブログ 気軽にコメント残してね！</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://syosetu.org/novel/309340/"> <i class="bi bi-book" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/SerikaYuzuki"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/serika_yuzuki"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">Univ Lecs</li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/半導体物性学.html">3S</a></li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/数学2F.html">数学2F</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Posts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">At Coder</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/cargo_compete.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cargo Compete</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/template.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">template</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-01</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-02</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-03</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-04</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-05</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-06</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-07</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-08</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-09</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-10</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-11</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Play Ground</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/play_ground/template.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">template</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Tech</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/ENovelEpubConverter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">小説をEPUBに変換するpythonパッケージを作った話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/linkwarden.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linkwardenにブックマーク管理を任せる</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/MisskeyDockerSetup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DockerでMisskeyを立てる</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/NovelApp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SwiftUIで開発する小説執筆支援アプリ</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/QuartoRenderSingle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quartoで単一ファイルにレンダリングする方法</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SetUpNewDebianServer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Debianサーバーを立てた話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/StartUsingCodex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Codexを使い始めた件</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftPackageError.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Swift Packageの読み込みエラー</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/TailscaleAndNord.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NordとTailscaleで自宅サーバーを安全に公開する</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/TimeMachineServer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time Machine ServerをSambaで作った話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/UbuntuPartitionMissing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ミスって/boot/efiを消した話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">AI</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/AI/AttentionIsAllYouNeed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Attention Is All You Needを読む話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/AI/BuildLLM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Build a Large Language Model from Scratchを読む話</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">SwiftUI小説アプリ</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftUI小説アプリ/EditorKitPlugin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EditorKitのいじり方をプラグイン形式にする話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftUI小説アプリ/General.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">小説執筆アプリを作る</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftUI小説アプリ/Gitflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git FlowとGitHub Flow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftUI小説アプリ/POP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Protocol Oriented Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftUI小説アプリ/SwiftUIAndAppKit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SwiftUIとAppKitの連携</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Ue5 Aura Courses</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/ue5_aura_courses/section_02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Section 02</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/ue5_aura_courses/section_03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">section_03</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/ue5_aura_courses/section_04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">section_04</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/ue5_aura_courses/section_05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">section_05</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/ue5_aura_courses/section_06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">section_06</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/ue5_aura_courses/template.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">template</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Ue5 Project</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/ue5_project/planning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Planning</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Univ Lecs</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false">
+ <span class="menu-text">2A</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料力学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">統計力学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料相平衡論.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料相平衡論</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料統計力学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料統計力学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料速度論.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料速度論</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料量子力学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料量子力学</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
+ <span class="menu-text">3A</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/セラミック材料学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">セラミックノート</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/デバイス材料工学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">デバイス材料工学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/信頼性学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">信頼性学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/数学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/生産プロセス.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">生産プロセス</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/高分子２.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">高分子ノート</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">3S</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth3 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/半導体物性学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">半導体物性学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/固体物性学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">固体物性学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/数学2F.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">数学2F</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/材料力学2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料力学2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/材料反応工学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料反応工学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/材料強度学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料強度学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/材料電気化学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料電気化学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/組織生成論.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">組織生成論</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
+ <span class="menu-text">4S</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/4S/工学基礎演習.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">工学基礎演習</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false">
+ <span class="menu-text">卒業論文</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/flux.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">fluxの式</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/レポート.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">演習レポート</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/卒論輪講.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">卒論輪講</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/談話会.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">談話会</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/過去論文.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">過去論文</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false">
+ <span class="menu-text">論文読書</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/論文読書/GPT-Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ti-Al-N-Based Hard Coatings: Thermodynamical Background, CVD Deposition, and Properties. A Review</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ti-Al-N系硬質コーティング：熱力学的背景・CVD成膜・特性レビュー</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/論文読書/概要.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">概要</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false">
+ <span class="menu-text">卒業論文</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/flux.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">fluxの式</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/レポート.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">演習レポート</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/卒論輪講.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">卒論輪講</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/談話会.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">談話会</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/過去論文.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">過去論文</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" role="navigation" aria-expanded="false">
+ <span class="menu-text">論文読書</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/論文読書/GPT-Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ti-Al-N-Based Hard Coatings: Thermodynamical Background, CVD Deposition, and Properties. A Review</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ti-Al-N系硬質コーティング：熱力学的背景・CVD成膜・特性レビュー</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/論文読書/概要.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">概要</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" role="navigation" aria-expanded="false">
+ <span class="menu-text">収容所配布用</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-18" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" role="navigation" aria-expanded="false">
+ <span class="menu-text">数学</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-19" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学A</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学B</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学I.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学I</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学II.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学II</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学III.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学III</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/過去問演習.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">過去問演習</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-20" role="navigation" aria-expanded="false">
+ <span class="menu-text">物理</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-20" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-20" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/物理/物理.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">物理</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#年度-第1問" id="toc-年度-第1問" class="nav-link active" data-scroll-target="#年度-第1問">2023年度 第1問</a>
+  <ul class="collapse">
+  <li><a href="#math2f-laurent-theory" id="toc-math2f-laurent-theory" class="nav-link" data-scroll-target="#math2f-laurent-theory">【１】関数の例</a></li>
+  <li><a href="#math2f-liouville-theory" id="toc-math2f-liouville-theory" class="nav-link" data-scroll-target="#math2f-liouville-theory">【２】Liouville の定理</a></li>
+  <li><a href="#math2f-residue-theory" id="toc-math2f-residue-theory" class="nav-link" data-scroll-target="#math2f-residue-theory">【３】三角関数を含む定積分</a></li>
+  <li><a href="#math2f-fourier-decay" id="toc-math2f-fourier-decay" class="nav-link" data-scroll-target="#math2f-fourier-decay">【４】フーリエ変換</a></li>
+  </ul></li>
+  <li><a href="#年度-第2問" id="toc-年度-第2問" class="nav-link" data-scroll-target="#年度-第2問">2023年度 第2問</a>
+  <ul class="collapse">
+  <li><a href="#差分の計算" id="toc-差分の計算" class="nav-link" data-scroll-target="#差分の計算">【１】差分の計算</a></li>
+  <li><a href="#斜め経路上の-gauss-積分" id="toc-斜め経路上の-gauss-積分" class="nav-link" data-scroll-target="#斜め経路上の-gauss-積分">【２】斜め経路上の Gauss 積分</a></li>
+  <li><a href="#gauss-和" id="toc-gauss-和" class="nav-link" data-scroll-target="#gauss-和">【３】Gauss 和</a></li>
+  </ul></li>
+  <li><a href="#年度-第3問" id="toc-年度-第3問" class="nav-link" data-scroll-target="#年度-第3問">2023年度 第3問</a>
+  <ul class="collapse">
+  <li><a href="#math2f-fourier-series-theory" id="toc-math2f-fourier-series-theory" class="nav-link" data-scroll-target="#math2f-fourier-series-theory">【１】周期化とフーリエ係数</a></li>
+  <li><a href="#極と留数" id="toc-極と留数" class="nav-link" data-scroll-target="#極と留数">【２.１】極と留数</a></li>
+  <li><a href="#フーリエ係数" id="toc-フーリエ係数" class="nav-link" data-scroll-target="#フーリエ係数">【２.２】フーリエ係数</a></li>
+  </ul></li>
+  <li><a href="#年度-第4問" id="toc-年度-第4問" class="nav-link" data-scroll-target="#年度-第4問">2023年度 第4問</a>
+  <ul class="collapse">
+  <li><a href="#math2f-laplace-rule" id="toc-math2f-laplace-rule" class="nav-link" data-scroll-target="#math2f-laplace-rule">【１】ラプラス変換</a></li>
+  <li><a href="#逆ラプラス変換" id="toc-逆ラプラス変換" class="nav-link" data-scroll-target="#逆ラプラス変換">【２】逆ラプラス変換</a></li>
+  </ul></li>
+  <li><a href="#年度-第1問-1" id="toc-年度-第1問-1" class="nav-link" data-scroll-target="#年度-第1問-1">2025年度 第1問</a>
+  <ul class="collapse">
+  <li><a href="#関数の例" id="toc-関数の例" class="nav-link" data-scroll-target="#関数の例">【１】関数の例</a></li>
+  <li><a href="#math2f-cr-theory" id="toc-math2f-cr-theory" class="nav-link" data-scroll-target="#math2f-cr-theory">【２】Cauchy–Riemann の関係式</a></li>
+  <li><a href="#実軸上の有理関数の積分" id="toc-実軸上の有理関数の積分" class="nav-link" data-scroll-target="#実軸上の有理関数の積分">【３】実軸上の有理関数の積分</a></li>
+  <li><a href="#双曲線関数を含むフーリエ変換" id="toc-双曲線関数を含むフーリエ変換" class="nav-link" data-scroll-target="#双曲線関数を含むフーリエ変換">【４】双曲線関数を含むフーリエ変換</a></li>
+  </ul></li>
+  <li><a href="#年度-第2問-1" id="toc-年度-第2問-1" class="nav-link" data-scroll-target="#年度-第2問-1">2025年度 第2問</a>
+  <ul class="collapse">
+  <li><a href="#差分の計算-1" id="toc-差分の計算-1" class="nav-link" data-scroll-target="#差分の計算-1">【１】差分の計算</a></li>
+  <li><a href="#斜め経路上の-gauss-積分-1" id="toc-斜め経路上の-gauss-積分-1" class="nav-link" data-scroll-target="#斜め経路上の-gauss-積分-1">【２】斜め経路上の Gauss 積分</a></li>
+  <li><a href="#半整数ずれの-gauss-和" id="toc-半整数ずれの-gauss-和" class="nav-link" data-scroll-target="#半整数ずれの-gauss-和">【３】半整数ずれの Gauss 和</a></li>
+  </ul></li>
+  <li><a href="#年度-第3問-1" id="toc-年度-第3問-1" class="nav-link" data-scroll-target="#年度-第3問-1">2025年度 第3問</a>
+  <ul class="collapse">
+  <li><a href="#極と留数-1" id="toc-極と留数-1" class="nav-link" data-scroll-target="#極と留数-1">【２.１】極と留数</a></li>
+  <li><a href="#フーリエ係数-1" id="toc-フーリエ係数-1" class="nav-link" data-scroll-target="#フーリエ係数-1">【２.２】フーリエ係数</a></li>
+  </ul></li>
+  <li><a href="#年度-第4問-1" id="toc-年度-第4問-1" class="nav-link" data-scroll-target="#年度-第4問-1">2025年度 第4問</a>
+  <ul class="collapse">
+  <li><a href="#ラプラス変換" id="toc-ラプラス変換" class="nav-link" data-scroll-target="#ラプラス変換">【１】ラプラス変換</a></li>
+  <li><a href="#逆ラプラス変換-1" id="toc-逆ラプラス変換-1" class="nav-link" data-scroll-target="#逆ラプラス変換-1">【２】逆ラプラス変換</a></li>
+  </ul></li>
+  <li><a href="#付録本編で使わなかった定理証明まとめ" id="toc-付録本編で使わなかった定理証明まとめ" class="nav-link" data-scroll-target="#付録本編で使わなかった定理証明まとめ">付録：本編で使わなかった定理・証明まとめ</a>
+  <ul class="collapse">
+  <li><a href="#第2回講義-冪級数" id="toc-第2回講義-冪級数" class="nav-link" data-scroll-target="#第2回講義-冪級数">第2回講義 冪級数</a></li>
+  <li><a href="#第3回講義-複素関数の積分" id="toc-第3回講義-複素関数の積分" class="nav-link" data-scroll-target="#第3回講義-複素関数の積分">第3回講義 複素関数の積分</a></li>
+  <li><a href="#第4回講義-テイラー展開とローラン展開" id="toc-第4回講義-テイラー展開とローラン展開" class="nav-link" data-scroll-target="#第4回講義-テイラー展開とローラン展開">第4回講義 テイラー展開とローラン展開</a></li>
+  <li><a href="#第5回講義-実積分や級数への応用" id="toc-第5回講義-実積分や級数への応用" class="nav-link" data-scroll-target="#第5回講義-実積分や級数への応用">第5回講義 実積分や級数への応用</a></li>
+  <li><a href="#第6回講義-解析接続" id="toc-第6回講義-解析接続" class="nav-link" data-scroll-target="#第6回講義-解析接続">第6回講義 解析接続</a></li>
+  <li><a href="#第7回講義-フーリエラプラス変換" id="toc-第7回講義-フーリエラプラス変換" class="nav-link" data-scroll-target="#第7回講義-フーリエラプラス変換">第7回講義 フーリエ・ラプラス変換</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">Univ Lecs</li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/半導体物性学.html">3S</a></li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/3S/数学2F.html">数学2F</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">数学2F</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">University</div>
+    <div class="quarto-category">2026</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Serika Yuzuki </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 8, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="年度-第1問" class="level2">
+<h2 class="anchored" data-anchor-id="年度-第1問">2023年度 第1問</h2>
+<section id="math2f-laurent-theory" class="level3">
+<h3 class="anchored" data-anchor-id="math2f-laurent-theory">【１】関数の例</h3>
+<p>複素平面上の正則関数、多値関数、有理型関数、真性特異点を持つ関数の例を、それぞれ一つずつ挙げよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>正則関数</strong>は、ある領域の全ての点で複素微分できる一価関数である。</li>
+<li><strong>多値関数</strong>は、一つの <span class="math inline">\(z\)</span> に対して複数の値を持つ。例えば平方根や対数は、枝を選ばない限り多価になる。</li>
+<li><strong>有理型関数</strong>は、正則関数のほかに孤立した極だけを持つ。</li>
+<li><strong>真性特異点</strong>では、Laurent 展開の主要部に負べきの項が無限個現れる。</li>
+</ul>
+<p><strong>ローラン展開から特異点を分類する。</strong> 円環領域で正則な関数は</p>
+<p><span class="math display">\[
+f(z)=\sum_{n=-\infty}^{\infty}c_n(z-z_0)^n
+\]</span></p>
+<p>と展開できる。証明では、<span class="math inline">\(z_0\)</span> を中心とする内外二つの円周をブリッジで結び、Cauchy の積分公式を適用する。外側の円では</p>
+<p><span class="math display">\[
+\frac{1}{w-z}
+=\frac{1}{w-z_0}\frac{1}{1-\dfrac{z-z_0}{w-z_0}}
+\]</span></p>
+<p>を正の冪の等比級数に、内側の円では負の冪の級数に展開し、項別積分すればよい。</p>
+<p>この負べき部分（主要部）がなければ可除特異点、有限個なら極、無限個なら真性特異点である。したがって <span class="math inline">\(1/z\)</span> は極を、<span class="math inline">\(e^{1/z}=\sum_{n=0}^{\infty}(n!z^n)^{-1}\)</span> は真性特異点を持つ。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>それぞれ、例えば次のように選べる。</p>
+<p><span class="math display">\[
+z^2,\qquad \sqrt{z},\qquad \frac{1}{z},\qquad e^{1/z}.
+\]</span></p>
+<p><span class="math inline">\(e^{1/z}\)</span> は <span class="math inline">\(z=0\)</span> に真性特異点を持つ。</p>
+</div>
+</div>
+</div>
+</section>
+<section id="math2f-liouville-theory" class="level3">
+<h3 class="anchored" data-anchor-id="math2f-liouville-theory">【２】Liouville の定理</h3>
+<p>Liouville の定理について説明せよ。また、<span class="math inline">\(f(z)=\sin |z|\)</span> が複素平面上で正則であるかどうかを、Liouville の定理に基づいて判別せよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Liouville の定理は「複素平面全体で正則な関数（整関数）が有界なら、その関数は定数である」という定理である。これは次の三段階で証明できる。</p>
+<p><strong>1. Cauchy の積分公式。</strong> <span class="math inline">\(f\)</span> が単純閉曲線 <span class="math inline">\(C\)</span> の内側と境界上で正則なら</p>
+<p><span class="math display">\[
+f(z)=\frac{1}{2\pi i}\oint_C\frac{f(w)}{w-z}\,dw.
+\]</span></p>
+<p><span class="math inline">\(z\)</span> の周りの小円へ積分路を変形し、<span class="math inline">\(f(w)=f(z)+\{f(w)-f(z)\}\)</span> と分ける。定数部分の積分は <span class="math inline">\(2\pi i f(z)\)</span> となり、差の部分は <span class="math inline">\(f\)</span> の連続性により小円の半径を <span class="math inline">\(0\)</span> にすると消える。</p>
+<p><strong>2. 微分公式と Cauchy の評価式。</strong> 積分公式を <span class="math inline">\(z\)</span> で微分すると</p>
+<p><span class="math display">\[
+f^{(n)}(z)=\frac{n!}{2\pi i}\oint_C
+\frac{f(w)}{(w-z)^{n+1}}\,dw.
+\]</span></p>
+<p>中心 <span class="math inline">\(z\)</span>、半径 <span class="math inline">\(R\)</span> の円周上で <span class="math inline">\(|f(w)|\le M\)</span> なら、円周の長さが <span class="math inline">\(2\pi R\)</span> であることから</p>
+<p><span class="math display">\[
+|f^{(n)}(z)|\le \frac{Mn!}{R^n}
+\]</span></p>
+<p>を得る。</p>
+<p><strong>3. Liouville の定理。</strong> 整関数 <span class="math inline">\(f\)</span> が複素平面全体で <span class="math inline">\(|f(z)|\le M\)</span> を満たすとする。上の評価式で <span class="math inline">\(n=1\)</span> とすれば、任意の <span class="math inline">\(R&gt;0\)</span> に対して</p>
+<p><span class="math display">\[
+|f'(z)|\le \frac{M}{R}.
+\]</span></p>
+<p><span class="math inline">\(R\to\infty\)</span> とすると <span class="math inline">\(f'(z)=0\)</span> なので、<span class="math inline">\(f\)</span> は定数である。</p>
+<p>本問の <span class="math inline">\(|z|\)</span> は常に実数なので、<span class="math inline">\(\sin |z|\)</span> は <span class="math inline">\(-1\)</span> 以上 <span class="math inline">\(1\)</span> 以下で有界である。したがって、もし整関数なら Liouville の定理によって定数でなければならない。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(f(0)=0\)</span> である一方、<span class="math inline">\(f(\pi/2)=1\)</span> なので <span class="math inline">\(f\)</span> は定数ではない。それにもかかわらず <span class="math inline">\(|f(z)|\le 1\)</span> であるから、Liouville の定理の対偶より</p>
+<p><span class="math display">\[
+f(z)=\sin |z|
+\]</span></p>
+<p>は複素平面上で正則ではない。</p>
+</div>
+</div>
+</div>
+</section>
+<section id="math2f-residue-theory" class="level3">
+<h3 class="anchored" data-anchor-id="math2f-residue-theory">【３】三角関数を含む定積分</h3>
+<p><span class="math inline">\(a&gt;1\)</span> とする。複素積分を用いて</p>
+<p><span class="math display">\[
+\int_{-\pi}^{\pi}\frac{dx}{a+\cos x}
+\]</span></p>
+<p>を求めよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>三角関数を含む <span class="math inline">\([-\pi,\pi]\)</span> の積分では <span class="math inline">\(z=e^{ix}\)</span> と置く。すると</p>
+<p><span class="math display">\[
+dx=\frac{dz}{iz},\qquad \cos x=\frac{1}{2}\left(z+\frac{1}{z}\right)
+\]</span></p>
+<p>となり、積分区間は単位円 <span class="math inline">\(|z|=1\)</span> を反時計回りに一周する経路へ変わる。分母の零点は</p>
+<p><span class="math display">\[
+z_{\pm}=-a\pm\sqrt{a^2-1}
+\]</span></p>
+<p>であり、<span class="math inline">\(a&gt;1\)</span> のとき単位円内にあるのは <span class="math inline">\(z_+=-a+\sqrt{a^2-1}\)</span> だけである。</p>
+<p><strong>留数定理までの証明の流れ</strong>も押さえておく。</p>
+<ol type="1">
+<li><p><strong>Goursat の補題：</strong> 正則関数 <span class="math inline">\(h\)</span> を長方形の境界で積分すると <span class="math inline">\(0\)</span> になる。長方形を四分割し、積分の大きさが最大となる小長方形を選ぶ操作を繰り返すと、一点 <span class="math inline">\(z_*\)</span> へ縮む列を得る。そこで</p>
+<p><span class="math display">\[
+h(z)=h(z_*)+h'(z_*)(z-z_*)+(z-z_*)\eta(z-z_*)
+\]</span></p>
+<p>と書く。定数項と一次項の閉路積分は <span class="math inline">\(0\)</span> であり、剰余項は <span class="math inline">\(\eta\to0\)</span> により消える。</p></li>
+<li><p><strong>原始関数と Cauchy の積分定理：</strong> 単連結領域で</p>
+<p><span class="math display">\[
+H(z)=\int_{z_0}^{z}h(w)\,dw
+\]</span></p>
+<p>と置く。二つの経路の差は閉路になり、Goursat の補題を使って積分が経路によらないことを示せる。また</p>
+<p><span class="math display">\[
+\frac{H(z+\Delta z)-H(z)}{\Delta z}-h(z)
+=\frac{1}{\Delta z}\int_z^{z+\Delta z}\{h(w)-h(z)\}\,dw
+\]</span></p>
+<p>は連続性により <span class="math inline">\(0\)</span> へ収束するので <span class="math inline">\(H'=h\)</span> である。したがって閉曲線 <span class="math inline">\(C\)</span> では <span class="math inline">\(\oint_C h(z)\,dz=0\)</span> となる。</p></li>
+<li><p><strong>穴のある領域：</strong> 外周 <span class="math inline">\(C\)</span> と各特異点を囲む小円 <span class="math inline">\(C_j\)</span> を細いブリッジでつなぐ。ブリッジ上の往復積分は打ち消し合うため</p>
+<p><span class="math display">\[
+\oint_C h(z)\,dz=\sum_j\oint_{C_j}h(z)\,dz
+\]</span></p>
+<p>となる。</p></li>
+<li><p><strong>留数定理：</strong> 各特異点の周りで <a href="#math2f-laurent-theory">ローラン展開</a> を行うと、小円積分で残るのは <span class="math inline">\((z-z_j)^{-1}\)</span> の係数だけである。この係数を留数と呼び、</p>
+<p><span class="math display">\[
+\boxed{\displaystyle
+\oint_C h(z)\,dz=2\pi i\sum_j\operatorname{Res}(h,z_j)}
+\]</span></p>
+<p>を得る。本問では単位円内の極 <span class="math inline">\(z_+\)</span> の留数だけを計算すればよい。</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\begin{aligned}
+\int_{-\pi}^{\pi}\frac{dx}{a+\cos x}
+&amp;=\frac{2}{i}\oint_{|z|=1}\frac{dz}{z^2+2az+1}\\
+&amp;=\frac{2\pi}{\sqrt{a^2-1}}.
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="math2f-fourier-decay" class="level3">
+<h3 class="anchored" data-anchor-id="math2f-fourier-decay">【４】フーリエ変換</h3>
+<p><span class="math inline">\(a&gt;0\)</span> とする。実関数 <span class="math inline">\(f(x)=xe^{-a|x|}\)</span> のフーリエ変換</p>
+<p><span class="math display">\[
+F(k)=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(x)e^{-ikx}\,dx
+\]</span></p>
+<p>を求めよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>まず基本積分</p>
+<p><span class="math display">\[
+J(k)=\int_{-\infty}^{\infty}e^{-a|x|}e^{-ikx}\,dx
+=\frac{2a}{a^2+k^2}
+\]</span></p>
+<p>を求める。<span class="math inline">\(k\)</span> で微分すると</p>
+<p><span class="math display">\[
+J'(k)=-i\int_{-\infty}^{\infty}xe^{-a|x|}e^{-ikx}\,dx
+\]</span></p>
+<p>となるため、求める積分は <span class="math inline">\(iJ'(k)\)</span> で得られる。</p>
+<p>この微分を積分の内側へ入れられるのは、<span class="math inline">\(e^{-a|x|}\)</span> と <span class="math inline">\(|x|e^{-a|x|}\)</span> がともに可積分で、差分商を <span class="math inline">\(k\)</span> によらない可積分関数で抑えられるためである。</p>
+<p>より一般に、全ての <span class="math inline">\(m,n\)</span> について <span class="math inline">\(x^m f^{(n)}(x)\)</span> が有界な急減少関数では、部分積分を繰り返すことでフーリエ変換も任意の冪より速く減衰する。本問では <span class="math inline">\(x=0\)</span> で積分を二つに分ければ、同じ「指数減衰が境界項と交換操作を正当化する」という考え方を使える。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\begin{aligned}
+F(k)
+&amp;=\frac{i}{2\pi}J'(k)\\
+&amp;=-\frac{2iak}{\pi(a^2+k^2)^2}.
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="年度-第2問" class="level2">
+<h2 class="anchored" data-anchor-id="年度-第2問">2023年度 第2問</h2>
+<p>正の整数 <span class="math inline">\(p\)</span> に対して、複素関数</p>
+<p><span class="math display">\[
+f(z)=\sum_{n=0}^{2p-1}\exp\left[\frac{\pi i}{2p}(z+n)^2\right]
+\]</span></p>
+<p>を考える。</p>
+<section id="差分の計算" class="level3">
+<h3 class="anchored" data-anchor-id="差分の計算">【１】差分の計算</h3>
+<p><span class="math display">\[
+g(z)=\frac{f(z)}{e^{2\pi iz}-1},\qquad
+\phi(z)=g(z+1)-g(z)
+\]</span></p>
+<p>と定義する。<span class="math inline">\(\phi(z)\)</span> の具体的な表式を求めよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(f(z+1)\)</span> の和で添字を一つずらすと、最初の項が消え、<span class="math inline">\(n=2p\)</span> に対応する項が加わる。この端の項について</p>
+<p><span class="math display">\[
+\exp\left[\frac{\pi i}{2p}(z+2p)^2\right]
+=e^{2\pi iz}\exp\left(\frac{\pi i}{2p}z^2\right)
+\]</span></p>
+<p>が成り立つ。したがって <span class="math inline">\(f(z+1)-f(z)\)</span> から分母 <span class="math inline">\(e^{2\pi iz}-1\)</span> が現れる。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+f(z+1)-f(z)
+=(e^{2\pi iz}-1)\exp\left(\frac{\pi i}{2p}z^2\right)
+\]</span></p>
+<p>より、可除特異点を除けば</p>
+<p><span class="math display">\[
+\boxed{\phi(z)=\exp\left(\frac{\pi i}{2p}z^2\right)}.
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="斜め経路上の-gauss-積分" class="level3">
+<h3 class="anchored" data-anchor-id="斜め経路上の-gauss-積分">【２】斜め経路上の Gauss 積分</h3>
+<p><span class="math inline">\(R&gt;0\)</span> とし、<span class="math inline">\(\ell_R\)</span> を <span class="math inline">\(-Re^{\pi i/4}\)</span> から <span class="math inline">\(Re^{\pi i/4}\)</span> までの直線経路とする。次の極限を求めよ。</p>
+<p><span class="math display">\[
+\lim_{R\to\infty}\int_{\ell_R}\phi(z)\,dz
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>経路を <span class="math inline">\(z=re^{\pi i/4}\)</span>（<span class="math inline">\(-R\le r\le R\)</span>）と置くと</p>
+<p><span class="math display">\[
+z^2=ir^2,\qquad dz=e^{\pi i/4}dr.
+\]</span></p>
+<p>複素指数関数が実 Gauss 関数 <span class="math inline">\(e^{-\pi r^2/(2p)}\)</span> に変わるのが、この角度を選ぶ理由である。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\begin{aligned}
+\lim_{R\to\infty}\int_{\ell_R}\phi(z)\,dz
+&amp;=e^{\pi i/4}\int_{-\infty}^{\infty}e^{-\pi r^2/(2p)}\,dr\\
+&amp;=\boxed{\sqrt{2p}\,e^{\pi i/4}}.
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="gauss-和" class="level3">
+<h3 class="anchored" data-anchor-id="gauss-和">【３】Gauss 和</h3>
+<p>留数定理と【２】の結果を用いて</p>
+<p><span class="math display">\[
+f(0)=\sum_{n=0}^{2p-1}e^{\pi in^2/(2p)}
+\]</span></p>
+<p>を求めよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><a href="#math2f-residue-theory">留数定理とその証明</a>を、この問題では平行四辺形の積分路に適用する。</p>
+<p><span class="math inline">\(g(z)\)</span> の分母 <span class="math inline">\(e^{2\pi iz}-1\)</span> は整数点で単純零点を持つ。幅 <span class="math inline">\(1\)</span> の平行四辺形を取り、向かい合う斜辺の積分の差を</p>
+<p><span class="math display">\[
+g(z+1)-g(z)=\phi(z)
+\]</span></p>
+<p>でまとめる。端の辺の寄与は極限で消え、内部の一つの極の留数は</p>
+<p><span class="math display">\[
+\underset{z=0}{\operatorname{Res}}\,g(z)=\frac{f(0)}{2\pi i}
+\]</span></p>
+<p>となる。このため留数定理は <span class="math inline">\(f(0)\)</span> を【２】の斜め積分に結び付ける。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>留数定理と【２】より</p>
+<p><span class="math display">\[
+\boxed{
+f(0)=\sqrt{2p}\,e^{\pi i/4}=(1+i)\sqrt{p}
+}.
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="年度-第3問" class="level2">
+<h2 class="anchored" data-anchor-id="年度-第3問">2023年度 第3問</h2>
+<p>十分速く減衰する偶関数 <span class="math inline">\(f(x)\)</span> から、周期 <span class="math inline">\(2\pi\)</span> の関数</p>
+<p><span class="math display">\[
+g(x)=\sum_{m=-\infty}^{\infty}f(x+2m\pi)
+\]</span></p>
+<p>を作る。</p>
+<section id="math2f-fourier-series-theory" class="level3">
+<h3 class="anchored" data-anchor-id="math2f-fourier-series-theory">【１】周期化とフーリエ係数</h3>
+<p><span class="math inline">\(g(x)\)</span> も偶関数であることを示せ。また、</p>
+<p><span class="math display">\[
+g(x)=\frac{a_0}{2}+\sum_{n=1}^{\infty}a_n\cos(nx)
+\]</span></p>
+<p>の係数 <span class="math inline">\(a_n\)</span> を <span class="math inline">\(f(x)\)</span> に関する積分で表せ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(g(-x)\)</span> では <span class="math inline">\(f\)</span> の偶性を使い、和の添字を <span class="math inline">\(m\mapsto -m\)</span> と替えると <span class="math inline">\(g(x)\)</span> に戻る。</p>
+<p>フーリエ係数では、各項の積分区間を <span class="math inline">\(u=x+2m\pi\)</span> で平行移動する。<span class="math inline">\(\cos(nu)\)</span> の周期が <span class="math inline">\(2\pi\)</span> なので、区間を全てつなぐと実数全体の積分になる。</p>
+<p>ここで、無限和の並べ替えや項別積分を正当化するために、絶対収束と一様収束を確認する。</p>
+<p><strong>評価の基本となる三角不等式。</strong> 複素数について</p>
+<p><span class="math display">\[
+|z_1+z_2|\le |z_1|+|z_2|,\qquad
+\bigl||z_1|-|z_2|\bigr|\le |z_1-z_2|
+\]</span></p>
+<p>が成り立つ。二つ目は、一つ目に <span class="math inline">\(z_1=z-w,z_2=w\)</span> を代入して <span class="math inline">\(|z|\le|z-w|+|w|\)</span>、さらに <span class="math inline">\(z,w\)</span> を入れ替えた不等式を組み合わせれば得られる。以下の剰余項評価は、全てこの不等式を繰り返し使っている。</p>
+<p><strong>絶対収束級数の並べ替え。</strong> <span class="math inline">\(\sum z_m\)</span> が絶対収束するなら、項をどのように並べ替えても和は変わらない。元の和を <span class="math inline">\(S\)</span>、部分和を <span class="math inline">\(S_N\)</span>、並べ替えた部分和を <span class="math inline">\(S_M(\sigma)\)</span> とする。<span class="math inline">\(N\)</span> を十分大きくして</p>
+<p><span class="math display">\[
+\sum_{m=N+1}^{\infty}|z_m|&lt;\frac{\varepsilon}{2}
+\]</span></p>
+<p>とし、<span class="math inline">\(S_M(\sigma)\)</span> が <span class="math inline">\(z_0,\ldots,z_N\)</span> を全て含むように <span class="math inline">\(M\)</span> を選べば</p>
+<p><span class="math display">\[
+|S_M(\sigma)-S_N|
+\le\sum_{m=N+1}^{\infty}|z_m|&lt;\frac{\varepsilon}{2}.
+\]</span></p>
+<p>さらに <span class="math inline">\(|S-S_N|&lt;\varepsilon/2\)</span> なので、三角不等式より <span class="math inline">\(|S_M(\sigma)-S|&lt;\varepsilon\)</span> となる。</p>
+<p><strong>Weierstrass の M テスト。</strong> <span class="math inline">\(|h_m(x)|\le M_m\)</span> かつ <span class="math inline">\(\sum M_m&lt;\infty\)</span> なら、<span class="math inline">\(\sum h_m(x)\)</span> は絶対かつ一様収束する。実際、剰余項は</p>
+<p><span class="math display">\[
+\left|\sum_{m=N+1}^{\infty}h_m(x)\right|
+\le\sum_{m=N+1}^{\infty}M_m
+\]</span></p>
+<p>で、右辺は <span class="math inline">\(x\)</span> に依存せず <span class="math inline">\(0\)</span> へ収束する。本問の指数減衰の仮定から、<span class="math inline">\(x\in[-\pi,\pi]\)</span> では <span class="math inline">\(|f(x+2m\pi)|\)</span> を収束する等比級数で一様に抑えられるため、このテストを使える。</p>
+<p><strong>積分と極限の交換。</strong> <span class="math inline">\(h_N\to h\)</span> が経路 <span class="math inline">\(C\)</span> 上で一様なら</p>
+<p><span class="math display">\[
+\left|\int_C h_N(z)\,dz-\int_C h(z)\,dz\right|
+\le \ell(C)\max_C|h_N-h|\longrightarrow0.
+\]</span></p>
+<p>したがって <span class="math inline">\(\int\sum_m f(x+2m\pi)\cos(nx)\,dx\)</span> を <span class="math inline">\(\sum_m\int\)</span> に分けられる。</p>
+<p>最後に、フーリエ部分和は Dirichlet 核</p>
+<p><span class="math display">\[
+D_N(x)=\sum_{n=-N}^{N}e^{inx}
+=\frac{\sin\{(N+1/2)x\}}{\sin(x/2)}
+\]</span></p>
+<p>との畳み込みで表される。十分滑らかな周期関数では、この表示と Riemann–Lebesgue の補題から連続点で関数値へ、不連続点で左右極限の平均へ収束する。本問ではまず係数公式を導けばよく、上の収束論がその級数表示を支えている。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+g(-x)=\sum_{m=-\infty}^{\infty}f(-x+2m\pi)
+=\sum_{m=-\infty}^{\infty}f(x+2m\pi)=g(x).
+\]</span></p>
+<p>また、<span class="math inline">\(n=0,1,2,\ldots\)</span> に対して</p>
+<p><span class="math display">\[
+\boxed{
+a_n=\frac{1}{\pi}\int_{-\infty}^{\infty}f(x)\cos(nx)\,dx
+}.
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="極と留数" class="level3">
+<h3 class="anchored" data-anchor-id="極と留数">【２.１】極と留数</h3>
+<p><span class="math inline">\(\mu&gt;\lambda&gt;0\)</span> とし、</p>
+<p><span class="math display">\[
+f(x)=\frac{\sin(\pi\lambda/\mu)}
+{2\lambda\left[\cosh(\pi x/\mu)+\cos(\pi\lambda/\mu)\right]}
+\]</span></p>
+<p>を複素関数とみなす。全ての極と各極における留数を求めよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\theta=\pi\lambda/\mu\)</span> と置く。極は</p>
+<p><span class="math display">\[
+\cosh\left(\frac{\pi z}{\mu}\right)=-\cos\theta
+\]</span></p>
+<p>の解である。<span class="math inline">\(\cosh(iy)=\cos y\)</span> を使うと、零点は</p>
+<p><span class="math display">\[
+\frac{\pi z}{\mu}=i\{(2m+1)\pi\pm\theta\}
+\]</span></p>
+<p>と書ける。分母を <span class="math inline">\(D(z)\)</span> とすれば、単純極の留数は「分子を <span class="math inline">\(D'(z_0)\)</span> で割る」だけでよい。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(m\in\mathbb Z\)</span> に対して全て単純極であり、</p>
+<p><span class="math display">\[
+\begin{array}{c|c}
+\text{極} &amp; \text{留数}\\ \hline
+z=i\{(2m+1)\mu+\lambda\} &amp; \displaystyle \frac{i\mu}{2\pi\lambda}\\[6pt]
+z=i\{(2m+1)\mu-\lambda\} &amp; \displaystyle -\frac{i\mu}{2\pi\lambda}
+\end{array}
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="フーリエ係数" class="level3">
+<h3 class="anchored" data-anchor-id="フーリエ係数">【２.２】フーリエ係数</h3>
+<p>留数定理を用いて【１】の積分を実行し、<span class="math inline">\(a_n\)</span>（<span class="math inline">\(n=0,1,2,\ldots\)</span>）を求めよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><a href="#math2f-residue-theory">留数定理</a>を、実軸と平行な長方形経路に適用する。</p>
+<p><span class="math inline">\(n&gt;0\)</span> では <span class="math inline">\(f(z)e^{inz}\)</span> を上半平面の長方形経路で積分する。上辺を <span class="math inline">\(2i\mu\)</span> だけずらすと、<span class="math inline">\(\cosh\)</span> の周期性と <span class="math inline">\(e^{inz}\)</span> から係数 <span class="math inline">\(e^{-2n\mu}\)</span> が現れる。帯の中の二つの極の留数を足すと</p>
+<p><span class="math display">\[
+\int_{-\infty}^{\infty}f(x)\cos(nx)\,dx
+=\frac{\mu}{\lambda}\frac{\sinh(n\lambda)}{\sinh(n\mu)}
+\]</span></p>
+<p>を得る。<span class="math inline">\(n=0\)</span> はこの式の極限として扱える。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\boxed{
+a_0=\frac{1}{\pi},\qquad
+a_n=\frac{\mu}{\pi\lambda}
+\frac{\sinh(n\lambda)}{\sinh(n\mu)}\quad(n\ge 1)
+}.
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="年度-第4問" class="level2">
+<h2 class="anchored" data-anchor-id="年度-第4問">2023年度 第4問</h2>
+<p><span class="math inline">\(\gamma,\omega,g&gt;0\)</span> とし、<span class="math inline">\(t\ge 0\)</span> で</p>
+<p><span class="math display">\[
+\frac{df(t)}{dt}+2\gamma f(t)+\omega^2\int_0^t f(\tau)\,d\tau=g
+\]</span></p>
+<p>を考える。<span class="math inline">\(F(s)=\int_0^\infty f(t)e^{-st}\,dt\)</span> とする。</p>
+<section id="math2f-laplace-rule" class="level3">
+<h3 class="anchored" data-anchor-id="math2f-laplace-rule">【１】ラプラス変換</h3>
+<p><span class="math inline">\(\gamma,\omega,g,f(0)\)</span> を用いて <span class="math inline">\(F(s)\)</span> を表せ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>ラプラス変換の基本公式</p>
+<p><span class="math display">\[
+\mathcal L[f']=sF(s)-f(0),\qquad
+\mathcal L\left[\int_0^t f(\tau)\,d\tau\right]=\frac{F(s)}{s},\qquad
+\mathcal L[g]=\frac{g}{s}
+\]</span></p>
+<p>を各項に適用し、最後に分母を払う。</p>
+<p>特に微分の公式は、部分積分から直接導ける。<span class="math inline">\(e^{-st}f(t)\to0\)</span>（<span class="math inline">\(t\to\infty\)</span>）を仮定すると</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathcal L[f'](s)
+&amp;=\int_0^{\infty}f'(t)e^{-st}\,dt\\
+&amp;=\left[f(t)e^{-st}\right]_0^{\infty}
++s\int_0^{\infty}f(t)e^{-st}\,dt\\
+&amp;=sF(s)-f(0).
+\end{aligned}
+\]</span></p>
+<p>また、<span class="math inline">\(I(t)=\int_0^t f(\tau)\,d\tau\)</span> と置けば <span class="math inline">\(I'(t)=f(t)\)</span>、<span class="math inline">\(I(0)=0\)</span> なので、同じ公式から <span class="math inline">\(s\mathcal L[I]=F\)</span>、すなわち <span class="math inline">\(\mathcal L[I]=F/s\)</span> を得る。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\left(s+2\gamma+\frac{\omega^2}{s}\right)F(s)
+=f(0)+\frac{g}{s}
+\]</span></p>
+<p>より</p>
+<p><span class="math display">\[
+\boxed{
+F(s)=\frac{sf(0)+g}{s^2+2\gamma s+\omega^2}
+}.
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="逆ラプラス変換" class="level3">
+<h3 class="anchored" data-anchor-id="逆ラプラス変換">【２】逆ラプラス変換</h3>
+<p><span class="math inline">\(f(0)=0\)</span> とする。逆ラプラス変換により、(i) <span class="math inline">\(\gamma&gt;\omega\)</span>、(ii) <span class="math inline">\(\gamma=\omega\)</span>、(iii) <span class="math inline">\(\gamma&lt;\omega\)</span> の各場合について <span class="math inline">\(f(t)\)</span> を求めよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>分母を平方完成すると</p>
+<p><span class="math display">\[
+s^2+2\gamma s+\omega^2=(s+\gamma)^2+(\omega^2-\gamma^2)
+\]</span></p>
+<p>となる。<span class="math inline">\(\omega^2-\gamma^2\)</span> の符号により、逆変換が <span class="math inline">\(\sin\)</span>、<span class="math inline">\(t\)</span>、<span class="math inline">\(\sinh\)</span> の三種類に分かれる。<span class="math inline">\(s\mapsto s+\gamma\)</span> のずれは時間側の因子 <span class="math inline">\(e^{-\gamma t}\)</span> に対応する。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+f(t)=
+\begin{cases}
+\displaystyle
+\frac{g}{\sqrt{\gamma^2-\omega^2}}e^{-\gamma t}
+\sinh\!\left(\sqrt{\gamma^2-\omega^2}\,t\right),
+&amp; \gamma&gt;\omega,\\[10pt]
+g t e^{-\gamma t},
+&amp; \gamma=\omega,\\[8pt]
+\displaystyle
+\frac{g}{\sqrt{\omega^2-\gamma^2}}e^{-\gamma t}
+\sin\!\left(\sqrt{\omega^2-\gamma^2}\,t\right),
+&amp; \gamma&lt;\omega.
+\end{cases}
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="年度-第1問-1" class="level2">
+<h2 class="anchored" data-anchor-id="年度-第1問-1">2025年度 第1問</h2>
+<section id="関数の例" class="level3">
+<h3 class="anchored" data-anchor-id="関数の例">【１】関数の例</h3>
+<p>複素平面上の (i) 正則関数、(ii) 正則ではない有理型関数、(iii) 集積特異点を持つ関数の例を、それぞれ一つずつ挙げよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>有理型関数は孤立した極を許すため、極を持つ例を選べば「正則ではない有理型関数」になる。</p>
+<p>集積特異点は、特異点の列が有限点へ集まる非孤立特異点である。例えば <span class="math inline">\(\sin(1/z)=0\)</span> となる点は <span class="math inline">\(z=1/(n\pi)\)</span> であり、<span class="math inline">\(n\to\infty\)</span> で <span class="math inline">\(0\)</span> に集積する。</p>
+<p><a href="#math2f-laurent-theory">ローラン展開による分類</a>は、中心の周りに特異点を含まない円環を取れる<strong>孤立特異点</strong>に対する議論である。集積特異点の周りにはそのような円環が存在しないため、可除特異点・極・真性特異点という三分類の外にある。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-26" class="callout-26-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>例えば</p>
+<p><span class="math display">\[
+\text{(i) }z^2,\qquad
+\text{(ii) }\frac{1}{z},\qquad
+\text{(iii) }\frac{1}{\sin(1/z)}
+\]</span></p>
+<p>と選べる。(iii) は <span class="math inline">\(z=1/(n\pi)\)</span>（<span class="math inline">\(n\in\mathbb Z\setminus\{0\}\)</span>）に極を持ち、それらが <span class="math inline">\(z=0\)</span> に集積する。</p>
+</div>
+</div>
+</div>
+</section>
+<section id="math2f-cr-theory" class="level3">
+<h3 class="anchored" data-anchor-id="math2f-cr-theory">【２】Cauchy–Riemann の関係式</h3>
+<p>Cauchy–Riemann の関係式を記せ。また、</p>
+<p><span class="math display">\[
+f(z)=x^2+y^2+2ix
+\qquad(z=x+iy,\ x,y\in\mathbb R)
+\]</span></p>
+<p>が正則であるかどうかを判別せよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(f=u+iv\)</span> と書くと、偏導関数が連続な場合の Cauchy–Riemann の関係式は</p>
+<p><span class="math display">\[
+u_x=v_y,\qquad u_y=-v_x
+\]</span></p>
+<p>である。一点だけで関係式が成立しても、その点を含む開領域で成立しなければ「正則」とはいえない。</p>
+<p>さらに、<span class="math inline">\(u,v\)</span> が点 <span class="math inline">\((x_0,y_0)\)</span> で全微分可能なら、Cauchy–Riemann 条件は <span class="math inline">\(f\)</span> が <span class="math inline">\(z_0=x_0+iy_0\)</span> で複素微分可能であるための必要十分条件になる。</p>
+<p><strong>必要性の証明。</strong> <span class="math inline">\(f'(z_0)=\alpha+i\beta\)</span> とすると、<span class="math inline">\(\Delta z=\Delta x+i\Delta y\)</span> に対して</p>
+<p><span class="math display">\[
+f(z_0+\Delta z)
+=f(z_0)+(\alpha+i\beta)(\Delta x+i\Delta y)+o(|\Delta z|).
+\]</span></p>
+<p>実部と虚部を比較すると</p>
+<p><span class="math display">\[
+\begin{aligned}
+u(x_0+\Delta x,y_0+\Delta y)
+&amp;=u(x_0,y_0)+\alpha\Delta x-\beta\Delta y+o(|\Delta z|),\\
+v(x_0+\Delta x,y_0+\Delta y)
+&amp;=v(x_0,y_0)+\beta\Delta x+\alpha\Delta y+o(|\Delta z|).
+\end{aligned}
+\]</span></p>
+<p>したがって</p>
+<p><span class="math display">\[
+u_x=\alpha=v_y,\qquad u_y=-\beta=-v_x.
+\]</span></p>
+<p><strong>十分性の証明。</strong> 逆に <span class="math inline">\(u,v\)</span> が全微分可能で上の関係を満たすなら、二つの全微分を再び複素数として組み合わせて</p>
+<p><span class="math display">\[
+f(z_0+\Delta z)-f(z_0)
+=(u_x+iv_x)\Delta z+o(|\Delta z|)
+\]</span></p>
+<p>と書ける。両辺を <span class="math inline">\(\Delta z\)</span> で割って極限を取れば <span class="math inline">\(f'(z_0)=u_x+iv_x\)</span> が存在する。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-28" class="callout-28-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>ここでは</p>
+<p><span class="math display">\[
+u=x^2+y^2,\qquad v=2x
+\]</span></p>
+<p>なので</p>
+<p><span class="math display">\[
+2x=0,\qquad 2y=-2.
+\]</span></p>
+<p>関係式が成立するのは <span class="math inline">\((x,y)=(0,-1)\)</span> の一点だけであり、どの開領域でも成立しない。したがって <span class="math inline">\(f\)</span> は正則ではない。</p>
+</div>
+</div>
+</div>
+</section>
+<section id="実軸上の有理関数の積分" class="level3">
+<h3 class="anchored" data-anchor-id="実軸上の有理関数の積分">【３】実軸上の有理関数の積分</h3>
+<p><span class="math inline">\(-1&lt;a&lt;1\)</span> とする。複素積分を用いて</p>
+<p><span class="math display">\[
+\int_{-\infty}^{\infty}\frac{dx}{x^2+2ax+1}
+\]</span></p>
+<p>を求めよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-29" class="callout-29-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><a href="#math2f-residue-theory">留数定理の導出</a>を上半平面の半円経路へ適用する。</p>
+<p><span class="math inline">\(b=\sqrt{1-a^2}&gt;0\)</span> と置くと、分母は</p>
+<p><span class="math display">\[
+(z+a)^2+b^2=(z+a-ib)(z+a+ib)
+\]</span></p>
+<p>と因数分解できる。上半平面の半円で閉じれば、内部の極は <span class="math inline">\(z=-a+ib\)</span> の一つだけである。被積分関数は <span class="math inline">\(O(|z|^{-2})\)</span> なので半円弧の寄与は消える。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-30" class="callout-30-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>上半平面内の留数は</p>
+<p><span class="math display">\[
+\underset{z=-a+ib}{\operatorname{Res}}
+\frac{1}{(z+a)^2+b^2}=\frac{1}{2ib}
+\]</span></p>
+<p>である。よって</p>
+<p><span class="math display">\[
+\boxed{
+\int_{-\infty}^{\infty}\frac{dx}{x^2+2ax+1}
+=\frac{\pi}{\sqrt{1-a^2}}
+}.
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="双曲線関数を含むフーリエ変換" class="level3">
+<h3 class="anchored" data-anchor-id="双曲線関数を含むフーリエ変換">【４】双曲線関数を含むフーリエ変換</h3>
+<p><span class="math inline">\(a&gt;b&gt;0\)</span> とする。実関数</p>
+<p><span class="math display">\[
+f(x)=e^{-a|x|}\cosh(bx)
+\]</span></p>
+<p>のフーリエ変換</p>
+<p><span class="math display">\[
+F(k)=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(x)e^{-ikx}\,dx
+\]</span></p>
+<p>を求めよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-31" class="callout-31-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\cosh\)</span> は偶関数なので</p>
+<p><span class="math display">\[
+e^{-a|x|}\cosh(bx)
+=\frac{1}{2}\left(e^{-(a-b)|x|}+e^{-(a+b)|x|}\right).
+\]</span></p>
+<p>あとは <span class="math inline">\(c&gt;0\)</span> に対する基本公式</p>
+<p><span class="math display">\[
+\int_{-\infty}^{\infty}e^{-c|x|}e^{-ikx}\,dx
+=\frac{2c}{c^2+k^2}
+\]</span></p>
+<p>を <span class="math inline">\(c=a-b\)</span> と <span class="math inline">\(c=a+b\)</span> に適用する。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-32" class="callout-32-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\boxed{
+F(k)=\frac{1}{2\pi}
+\left[
+\frac{a-b}{(a-b)^2+k^2}
++\frac{a+b}{(a+b)^2+k^2}
+\right]
+}.
+\]</span></p>
+<p>一つの分数にまとめると</p>
+<p><span class="math display">\[
+F(k)=
+\frac{a(a^2-b^2+k^2)}
+{\pi\{(a-b)^2+k^2\}\{(a+b)^2+k^2\}}.
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="年度-第2問-1" class="level2">
+<h2 class="anchored" data-anchor-id="年度-第2問-1">2025年度 第2問</h2>
+<p>正の奇数 <span class="math inline">\(p\)</span> に対して、複素関数</p>
+<p><span class="math display">\[
+f(z)=\sum_{n=0}^{p-1}\exp\left[\frac{i\pi}{p}(z+n)^2\right]
+\]</span></p>
+<p>を考える。</p>
+<section id="差分の計算-1" class="level3">
+<h3 class="anchored" data-anchor-id="差分の計算-1">【１】差分の計算</h3>
+<p><span class="math display">\[
+g(z)=\frac{f(z)}{e^{2\pi iz}+1},\qquad
+\phi(z)=g(z+1)-g(z)
+\]</span></p>
+<p>と定義する。可除特異点を全て除去し、<span class="math inline">\(\phi(z)\)</span> を正則関数として表せ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-33" class="callout-33-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(f(z+1)\)</span> で添字を一つずらす。<span class="math inline">\(p\)</span> が奇数なので、端の項は</p>
+<p><span class="math display">\[
+\exp\left[\frac{i\pi}{p}(z+p)^2\right]
+=-e^{2\pi iz}\exp\left(\frac{i\pi}{p}z^2\right)
+\]</span></p>
+<p>となる。これと消える最初の項を合わせると、<span class="math inline">\(g\)</span> の分母 <span class="math inline">\(e^{2\pi iz}+1\)</span> が因数として現れる。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-34-contents" aria-controls="callout-34" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-34" class="callout-34-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+f(z+1)-f(z)
+=-(e^{2\pi iz}+1)\exp\left(\frac{i\pi}{p}z^2\right)
+\]</span></p>
+<p>より</p>
+<p><span class="math display">\[
+\boxed{
+\phi(z)=-\exp\left(\frac{i\pi}{p}z^2\right)
+}.
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="斜め経路上の-gauss-積分-1" class="level3">
+<h3 class="anchored" data-anchor-id="斜め経路上の-gauss-積分-1">【２】斜め経路上の Gauss 積分</h3>
+<p><span class="math inline">\(\ell_R\)</span> を <span class="math inline">\(-Re^{i\pi/4}\)</span> から <span class="math inline">\(Re^{i\pi/4}\)</span> までの直線経路とする。次の極限を求めよ。</p>
+<p><span class="math display">\[
+\lim_{R\to\infty}\int_{\ell_R}\phi(z)\,dz
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-35-contents" aria-controls="callout-35" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-35" class="callout-35-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(z=re^{i\pi/4}\)</span> と置けば <span class="math inline">\(z^2=ir^2\)</span> となり、</p>
+<p><span class="math display">\[
+\phi(z)=-e^{-\pi r^2/p},\qquad dz=e^{i\pi/4}dr
+\]</span></p>
+<p>へ変わる。残るのは実 Gauss 積分である。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-36" class="callout-36-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\begin{aligned}
+\lim_{R\to\infty}\int_{\ell_R}\phi(z)\,dz
+&amp;=-e^{i\pi/4}\int_{-\infty}^{\infty}e^{-\pi r^2/p}\,dr\\
+&amp;=\boxed{-\sqrt{p}\,e^{i\pi/4}}.
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="半整数ずれの-gauss-和" class="level3">
+<h3 class="anchored" data-anchor-id="半整数ずれの-gauss-和">【３】半整数ずれの Gauss 和</h3>
+<p>留数定理と【２】の結果を用いて</p>
+<p><span class="math display">\[
+f\left(\frac12\right)
+=\sum_{n=0}^{p-1}\exp\left[\frac{i\pi}{p}\left(n+\frac12\right)^2\right]
+\]</span></p>
+<p>を求めよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-37-contents" aria-controls="callout-37" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-37" class="callout-37-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><a href="#math2f-residue-theory">留数定理</a>を幅 <span class="math inline">\(1\)</span> の平行四辺形へ適用する。</p>
+<p><span class="math inline">\(e^{2\pi iz}+1\)</span> の零点は半整数である。幅 <span class="math inline">\(1\)</span> の平行四辺形を選ぶと、その内部には <span class="math inline">\(z=1/2\)</span> の極が一つ入る。分母の微分を使えば</p>
+<p><span class="math display">\[
+\underset{z=1/2}{\operatorname{Res}}\,g(z)
+=-\frac{f(1/2)}{2\pi i}.
+\]</span></p>
+<p>向かい合う辺の差は <span class="math inline">\(g(z+1)-g(z)=\phi(z)\)</span> であり、残りの辺の積分は極限で消える。したがって <span class="math inline">\(f(1/2)\)</span> は【２】で得た積分の符号を反転した値になる。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-38-contents" aria-controls="callout-38" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-38" class="callout-38-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\boxed{
+f\left(\frac12\right)=\sqrt{p}\,e^{i\pi/4}
+=\sqrt{\frac{p}{2}}(1+i)
+}.
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="年度-第3問-1" class="level2">
+<h2 class="anchored" data-anchor-id="年度-第3問-1">2025年度 第3問</h2>
+<p>十分速く減衰する偶関数の周期化と一般のフーリエ係数を求める【１】は、2023年度第3問【１】と同一内容のため省略する。</p>
+<p>PDF の式 (8) には分母に余分な <span class="math inline">\(z\)</span> が印字されているが、それでは実関数 <span class="math inline">\(f(x)\)</span> が偶関数にも急減少関数にもならない。ここでは問題の前提と後続設問から、意図された式を</p>
+<p><span class="math display">\[
+f(x)=\frac{\pi}{2\lambda\cosh\!\left(\dfrac{\pi x}{2\lambda}\right)}
+\qquad(\lambda&gt;0)
+\]</span></p>
+<p>と解釈する。</p>
+<section id="極と留数-1" class="level3">
+<h3 class="anchored" data-anchor-id="極と留数-1">【２.１】極と留数</h3>
+<p><span class="math inline">\(f(x)\)</span> を複素関数とみなし、全ての極と各極における留数を求めよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-39-contents" aria-controls="callout-39" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-39" class="callout-39-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\cosh w\)</span> の零点は</p>
+<p><span class="math display">\[
+w=i\pi\left(m+\frac12\right)\qquad(m\in\mathbb Z)
+\]</span></p>
+<p>である。<span class="math inline">\(w=\pi z/(2\lambda)\)</span> と対応させれば極が分かる。全て単純極なので、留数は分母を微分して求める。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-40-contents" aria-controls="callout-40" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-40" class="callout-40-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(m\in\mathbb Z\)</span> に対して</p>
+<p><span class="math display">\[
+\boxed{
+z_m=i(2m+1)\lambda,\qquad
+\underset{z=z_m}{\operatorname{Res}}\,f(z)
+=(-1)^{m+1}i
+}.
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="フーリエ係数-1" class="level3">
+<h3 class="anchored" data-anchor-id="フーリエ係数-1">【２.２】フーリエ係数</h3>
+<p>留数定理を用いて、2023年度第3問【１】で得た積分を実行し、<span class="math inline">\(a_n\)</span>（<span class="math inline">\(n=0,1,2,\ldots\)</span>）を求めよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-41-contents" aria-controls="callout-41" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-41" class="callout-41-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><a href="#math2f-fourier-series-theory">周期化とフーリエ係数の収束論</a>および<a href="#math2f-residue-theory">留数定理</a>を使う。</p>
+<p>必要な積分は</p>
+<p><span class="math display">\[
+a_n=\frac{1}{\pi}\int_{-\infty}^{\infty}f(x)\cos(nx)\,dx.
+\]</span></p>
+<p><span class="math inline">\(f(z)e^{inz}\)</span> を高さ <span class="math inline">\(2\lambda\)</span> の長方形で積分すると、<span class="math inline">\(\cosh(w+i\pi)=-\cosh w\)</span> と上辺の指数因子から実軸積分を解ける。標準的な結果は</p>
+<p><span class="math display">\[
+\int_{-\infty}^{\infty}
+\frac{e^{inx}}{\cosh(\pi x/(2\lambda))}\,dx
+=\frac{2\lambda}{\cosh(n\lambda)}
+\]</span></p>
+<p>である。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-42-contents" aria-controls="callout-42" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-42" class="callout-42-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\boxed{
+a_n=\frac{1}{\cosh(n\lambda)}
+\qquad(n=0,1,2,\ldots)
+}.
+\]</span></p>
+<p>特に <span class="math inline">\(a_0=1\)</span> である。</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="年度-第4問-1" class="level2">
+<h2 class="anchored" data-anchor-id="年度-第4問-1">2025年度 第4問</h2>
+<p><span class="math inline">\(\gamma,\omega,g&gt;0\)</span> とし、<span class="math inline">\(t\ge 0\)</span> で</p>
+<p><span class="math display">\[
+\frac{d^2f(t)}{dt^2}
++2\gamma\frac{df(t)}{dt}
++\omega^2f(t)
+=ge^{-\gamma t}\sin(\omega t)
+\]</span></p>
+<p>を考える。また、<span class="math inline">\(F(s)=\int_0^\infty f(t)e^{-st}\,dt\)</span> とする。</p>
+<section id="ラプラス変換" class="level3">
+<h3 class="anchored" data-anchor-id="ラプラス変換">【１】ラプラス変換</h3>
+<p><span class="math inline">\(\gamma,\omega,g,f(0),f'(0)\)</span> を用いて、微分方程式を満たす <span class="math inline">\(F(s)\)</span> を表せ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-43-contents" aria-controls="callout-43" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-43" class="callout-43-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><a href="#math2f-laplace-rule">一階微分のラプラス変換の証明</a>を二階微分にも繰り返して使う。</p>
+<p>初期値を <span class="math inline">\(f(0)=f_0\)</span>、<span class="math inline">\(f'(0)=f_1\)</span> と置く。二階微分と右辺の変換は</p>
+<p><span class="math display">\[
+\mathcal L[f'']=s^2F-sf_0-f_1,\qquad
+\mathcal L[e^{-\gamma t}\sin(\omega t)]
+=\frac{\omega}{(s+\gamma)^2+\omega^2}
+\]</span></p>
+<p>である。全ての <span class="math inline">\(F(s)\)</span> の項を左辺へ集めればよい。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-44-contents" aria-controls="callout-44" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-44" class="callout-44-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\boxed{
+F(s)=
+\frac{(s+2\gamma)f(0)+f'(0)}{s^2+2\gamma s+\omega^2}
++\frac{g\omega}
+{\{s^2+2\gamma s+\omega^2\}\{(s+\gamma)^2+\omega^2\}}
+}.
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="逆ラプラス変換-1" class="level3">
+<h3 class="anchored" data-anchor-id="逆ラプラス変換-1">【２】逆ラプラス変換</h3>
+<p><span class="math inline">\(f(0)=f'(0)=0\)</span> とする。逆ラプラス変換により、(i) <span class="math inline">\(\gamma&gt;\omega\)</span>、(ii) <span class="math inline">\(\gamma=\omega\)</span>、(iii) <span class="math inline">\(\gamma&lt;\omega\)</span> の各場合について <span class="math inline">\(f(t)\)</span> を求めよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-45-contents" aria-controls="callout-45" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-45" class="callout-45-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(f(t)=e^{-\gamma t}y(t)\)</span> と置くと減衰の一階微分項が消え、</p>
+<p><span class="math display">\[
+y''+(\omega^2-\gamma^2)y=g\sin(\omega t),\qquad
+y(0)=y'(0)=0
+\]</span></p>
+<p>となる。<span class="math inline">\(\omega^2-\gamma^2\)</span> の符号に応じて、同次解が <span class="math inline">\(\sin\)</span>、一次関数、<span class="math inline">\(\sinh\)</span> に分かれる。最後に <span class="math inline">\(e^{-\gamma t}\)</span> を戻す。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-46-contents" aria-controls="callout-46" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-46" class="callout-46-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+f(t)=\frac{g}{\gamma^2}e^{-\gamma t}
+\begin{cases}
+\displaystyle
+\frac{\omega}{\sqrt{\gamma^2-\omega^2}}
+\sinh\!\left(\sqrt{\gamma^2-\omega^2}\,t\right)-\sin(\omega t),
+&amp; \gamma&gt;\omega,\\[12pt]
+\omega t-\sin(\omega t),
+&amp; \gamma=\omega,\\[8pt]
+\displaystyle
+\frac{\omega}{\sqrt{\omega^2-\gamma^2}}
+\sin\!\left(\sqrt{\omega^2-\gamma^2}\,t\right)-\sin(\omega t),
+&amp; \gamma&lt;\omega.
+\end{cases}
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="付録本編で使わなかった定理証明まとめ" class="level2">
+<h2 class="anchored" data-anchor-id="付録本編で使わなかった定理証明まとめ">付録：本編で使わなかった定理・証明まとめ</h2>
+<p>以下は、今回収録した過去問の理論・解答では直接使わなかった定理と証明です。</p>
+<section id="第2回講義-冪級数" class="level3">
+<h3 class="anchored" data-anchor-id="第2回講義-冪級数">第2回講義 冪級数</h3>
+<section id="絶対収束級数の性質2-和の絶対収束" class="level4">
+<h4 class="anchored" data-anchor-id="絶対収束級数の性質2-和の絶対収束">絶対収束級数の性質2 (和の絶対収束)</h4>
+<p><strong>定理</strong> <span class="math inline">\(\sum z_n, \sum w_n\)</span> がともに絶対収束するとき、<span class="math inline">\(\sum (z_n + w_n)\)</span> も絶対収束し、和はそれぞれの級数の和に等しい。</p>
+<p><strong>証明</strong> 三角不等式 <span class="math inline">\(\sum |z_n + w_n| \le \sum |z_n| + \sum |w_n|\)</span> より絶対収束する。部分和の恒等式 <span class="math inline">\(\sum_{n=0}^N (z_n + w_n) = \sum_{n=0}^N z_n + \sum_{n=0}^N w_n\)</span> で <span class="math inline">\(N \to \infty\)</span> の極限をとることで成立する。</p>
+</section>
+<section id="絶対収束級数の性質3-積の絶対収束" class="level4">
+<h4 class="anchored" data-anchor-id="絶対収束級数の性質3-積の絶対収束">絶対収束級数の性質3 (積の絶対収束)</h4>
+<p><strong>定理</strong> <span class="math inline">\(\sum_{n=0}^\infty z_n, \sum_{m=0}^\infty w_m\)</span> がともに絶対収束するとき、二重級数 <span class="math inline">\(\sum_{n,m} z_n w_m\)</span> は絶対収束し、 <span class="math display">\[(\sum_{n=0}^\infty z_n)(\sum_{m=0}^\infty w_m) = \sum_{l=0}^\infty (\sum_{n=0}^l z_n w_{l-n})\]</span> が成り立つ。</p>
+<p><strong>証明</strong> <span class="math inline">\(\sum |z_n||w_m| = (\sum |z_n|)(\sum |w_m|) &lt; \infty\)</span> により二重級数は絶対収束する。よって和の順序を自由に変えられ、<span class="math inline">\(l = n+m\)</span> に沿って並べ替えることで右辺を得る。部分和の極限をとることで左辺との一致が示される。</p>
+</section>
+<section id="コーシーの判定法-冪根判定法" class="level4">
+<h4 class="anchored" data-anchor-id="コーシーの判定法-冪根判定法">コーシーの判定法 (冪根判定法)</h4>
+<p><strong>定理</strong> <span class="math inline">\(\lambda = \limsup_{n\to\infty} |z_n|^{1/n}\)</span> とおく。<span class="math inline">\(\lambda &lt; 1\)</span> なら絶対収束、<span class="math inline">\(\lambda &gt; 1\)</span> なら発散。</p>
+<p><strong>証明</strong> <span class="math inline">\(\lambda &lt; 1\)</span> の場合、<span class="math inline">\(\lambda &lt; r &lt; 1\)</span> を満たす <span class="math inline">\(r\)</span> をとる。十分大きな <span class="math inline">\(N\)</span> に対して <span class="math inline">\(|z_n|^{1/n} &lt; r\)</span> すなわち <span class="math inline">\(|z_n| &lt; r^n\)</span> となり、等比級数 <span class="math inline">\(\sum r^n\)</span> が収束するため絶対収束する。 <span class="math inline">\(\lambda &gt; 1\)</span> の場合、<span class="math inline">\(|z_n|^{1/n} &gt; 1\)</span> を満たす <span class="math inline">\(n\)</span> が無数に存在し、<span class="math inline">\(z_n \not\to 0\)</span> となるため発散する。</p>
+</section>
+<section id="ダランベールの判定法-比判定法" class="level4">
+<h4 class="anchored" data-anchor-id="ダランベールの判定法-比判定法">ダランベールの判定法 (比判定法)</h4>
+<p><strong>定理</strong> <span class="math inline">\(\lambda = \lim_{n\to\infty} |\frac{z_{n+1}}{z_n}|\)</span> が存在するとき、<span class="math inline">\(\lambda &lt; 1\)</span> なら絶対収束、<span class="math inline">\(\lambda &gt; 1\)</span> なら発散。</p>
+<p><strong>証明</strong> <span class="math inline">\(\lambda &lt; 1\)</span> の場合、<span class="math inline">\(\lambda &lt; r &lt; 1\)</span> なる <span class="math inline">\(r\)</span> をとると、十分大きな <span class="math inline">\(N\)</span> 以降で <span class="math inline">\(|z_{n+1}/z_n| &lt; r\)</span>。よって <span class="math inline">\(|z_n| \le |z_N| r^{n-N}\)</span> となり等比級数で抑えられ絶対収束。<span class="math inline">\(\lambda &gt; 1\)</span> なら <span class="math inline">\(|z_{n+1}| &gt; |z_n|\)</span> となり <span class="math inline">\(z_n \not\to 0\)</span> のため発散。</p>
+</section>
+<section id="収束半径" class="level4">
+<h4 class="anchored" data-anchor-id="収束半径">収束半径</h4>
+<p><strong>定理</strong> 冪級数 <span class="math inline">\(\sum c_n z^n\)</span> に対してある <span class="math inline">\(R\)</span> が存在し、<span class="math inline">\(|z| &lt; R\)</span> で絶対収束、<span class="math inline">\(|z| &gt; R\)</span> で発散する。</p>
+<p><strong>証明</strong> ある <span class="math inline">\(z_0\)</span> で収束すると仮定すると、コーシーの判定法より <span class="math inline">\(\limsup |c_n z_0^n|^{1/n} \le 1\)</span>。<span class="math inline">\(|z| &lt; |z_0|\)</span> なら <span class="math inline">\(\limsup |c_n z^n|^{1/n} = |z/z_0| \limsup |c_n z_0^n|^{1/n} \le |z/z_0| &lt; 1\)</span> となり絶対収束。逆に発散する場合は同様に <span class="math inline">\(|z| &gt; |z_0|\)</span> で発散する。この境界となる上限が収束半径 <span class="math inline">\(R\)</span> である。</p>
+</section>
+<section id="冪級数の項別微分" class="level4">
+<h4 class="anchored" data-anchor-id="冪級数の項別微分">冪級数の項別微分</h4>
+<p><strong>定理</strong> 冪級数 <span class="math inline">\(f(z) = \sum_{n=0}^\infty c_n z^n\)</span> は収束円内で正則であり、項別微分 <span class="math inline">\(f'(z) = \sum_{n=1}^\infty n c_n z^{n-1}\)</span> が成り立つ。導関数の収束半径も <span class="math inline">\(R\)</span> である。</p>
+<p><strong>証明</strong> <span class="math inline">\(g(z) = \sum_{n=1}^\infty n c_n z^{n-1}\)</span> とおく。<span class="math inline">\(\limsup |n c_n|^{1/n} = \limsup |c_n|^{1/n}\)</span> により <span class="math inline">\(g\)</span> の収束半径も <span class="math inline">\(R\)</span> である。 <span class="math inline">\(\frac{f(z+\Delta z)-f(z)}{\Delta z} - g(z)\)</span> を展開し、二項定理を用いて評価すると、各項が <span class="math inline">\(|\Delta z| \sum_{n=2}^\infty \frac{1}{2}n(n-1)|c_n| r^{n-2}\)</span> で抑えられる。この級数は絶対収束するため、<span class="math inline">\(\Delta z \to 0\)</span> のとき誤差は0に収束し、<span class="math inline">\(f'(z) = g(z)\)</span> が示される。</p>
+</section>
+</section>
+<section id="第3回講義-複素関数の積分" class="level3">
+<h3 class="anchored" data-anchor-id="第3回講義-複素関数の積分">第3回講義 複素関数の積分</h3>
+<section id="平均値の原理と最大値の原理" class="level4">
+<h4 class="anchored" data-anchor-id="平均値の原理と最大値の原理">平均値の原理と最大値の原理</h4>
+<p><strong>証明</strong> コーシーの積分公式を中心 <span class="math inline">\(z\)</span>、半径 <span class="math inline">\(r\)</span> の円周に適用し、<span class="math inline">\(w = z + re^{i\theta}\)</span> と置換すると <span class="math inline">\(f(z) = \frac{1}{2\pi} \int_0^{2\pi} f(z+re^{i\theta})d\theta\)</span>（平均値の原理）。 最大値の原理の証明：<span class="math inline">\(|f(z_0)|\)</span> が極大値をとると仮定すると、開近傍で <span class="math inline">\(|f(z_0)| &gt; |f(z)|\)</span>。これを平均値の原理の積分に代入すると <span class="math inline">\(|f(z_0)| \le \frac{1}{2\pi} \int |f(z_0+re^{i\theta})|d\theta &lt; |f(z_0)|\)</span> となり矛盾。</p>
+<hr>
+</section>
+</section>
+<section id="第4回講義-テイラー展開とローラン展開" class="level3">
+<h3 class="anchored" data-anchor-id="第4回講義-テイラー展開とローラン展開">第4回講義 テイラー展開とローラン展開</h3>
+<section id="テイラー展開" class="level4">
+<h4 class="anchored" data-anchor-id="テイラー展開">テイラー展開</h4>
+<p><strong>定理</strong> 正則関数 <span class="math inline">\(f\)</span> は <span class="math inline">\(f(z) = \sum_{n=0}^\infty c_n (z-z_0)^n\)</span> と展開できる。</p>
+<p><strong>証明</strong> コーシーの積分公式より <span class="math inline">\(f(z) = \frac{1}{2\pi i} \oint_{C} \frac{f(w)}{w-z}dw\)</span>。 分母を <span class="math inline">\(\frac{1}{w-z} = \frac{1}{w-z_0} \frac{1}{1 - \frac{z-z_0}{w-z_0}} = \sum \frac{(z-z_0)^n}{(w-z_0)^{n+1}}\)</span> と等比級数展開する。一様収束性から積分と和の順序を交換することで、テイラー展開の係数 <span class="math inline">\(c_n = \frac{1}{2\pi i} \oint \frac{f(w)}{(w-z_0)^{n+1}}dw\)</span> を得る。</p>
+</section>
+<section id="モレラの定理" class="level4">
+<h4 class="anchored" data-anchor-id="モレラの定理">モレラの定理</h4>
+<p><strong>定理</strong> 連続関数 <span class="math inline">\(f\)</span> について任意の閉曲線で <span class="math inline">\(\oint_C f(z)dz = 0\)</span> なら、<span class="math inline">\(f\)</span> は正則。</p>
+<p><strong>証明</strong> 折れ線経路による原始関数 <span class="math inline">\(F(z) = \int_{z_0}^z f(w)dw\)</span> を構成できる。微分の定義より <span class="math inline">\(F'(z) = f(z)\)</span> となり、<span class="math inline">\(F\)</span> が正則。正則関数の導関数 <span class="math inline">\(f\)</span> も正則である。</p>
+</section>
+<section id="零点の孤立性と代数学の基本定理" class="level4">
+<h4 class="anchored" data-anchor-id="零点の孤立性と代数学の基本定理">零点の孤立性と代数学の基本定理</h4>
+<p><strong>証明</strong> 零点の孤立性：<span class="math inline">\(p\)</span> 位の零点 <span class="math inline">\(z_0\)</span> の周りで <span class="math inline">\(f(z) = (z-z_0)^p g(z)\)</span> と書け、<span class="math inline">\(g(z_0) \neq 0\)</span> なので連続性より近傍で <span class="math inline">\(f(z) \neq 0\)</span>。 代数学の基本定理：多項式 <span class="math inline">\(P(z)\)</span> が零点をもたないと仮定すると、<span class="math inline">\(1/P(z)\)</span> は有界な整関数となりリューヴィルの定理より定数となるが、これは矛盾。よって少なくとも1つの零点をもつ。</p>
+</section>
+</section>
+<section id="第5回講義-実積分や級数への応用" class="level3">
+<h3 class="anchored" data-anchor-id="第5回講義-実積分や級数への応用">第5回講義 実積分や級数への応用</h3>
+<section id="ジョルダンの補題" class="level4">
+<h4 class="anchored" data-anchor-id="ジョルダンの補題">ジョルダンの補題</h4>
+<p><strong>定理</strong> 上半円弧 <span class="math inline">\(C_{0,R}^+\)</span> 上で最大値 <span class="math inline">\(M_R \to 0\)</span> <span class="math inline">\((R\to\infty)\)</span> なら、<span class="math inline">\(\int_{C_{0,R}^+} f(z)e^{i\eta z}dz \to 0\)</span>。</p>
+<p><strong>証明</strong> <span class="math inline">\(z = Re^{i\theta}\)</span> と置換し、<span class="math inline">\(|e^{i\eta z}| = e^{-\eta R\sin\theta}\)</span>。<span class="math inline">\(0 \le \theta \le \pi/2\)</span> で <span class="math inline">\(\sin\theta \ge \frac{2}{\pi}\theta\)</span> を用いて積分を上から評価すると、<span class="math inline">\(\frac{\pi}{\eta R}(1 - e^{-\eta R}) \to 0\)</span> となり示される。</p>
+</section>
+<section id="偏角の原理とルーシェの定理" class="level4">
+<h4 class="anchored" data-anchor-id="偏角の原理とルーシェの定理">偏角の原理とルーシェの定理</h4>
+<p><strong>証明</strong> 偏角の原理：<span class="math inline">\(\frac{1}{2\pi i} \oint_C \frac{f'(z)}{f(z)}dz = \sum p_i - \sum q_j\)</span>。<span class="math inline">\(p_i\)</span> 位の零点の近傍で <span class="math inline">\(f(z) = (z-a_i)^{p_i} g(z)\)</span> とおくと <span class="math inline">\(f'/f = p_i/(z-a_i) + g'/g\)</span> となり留数が <span class="math inline">\(p_i\)</span> となる。極についても留数が <span class="math inline">\(-q_j\)</span> となるため。 ルーシェの定理：<span class="math inline">\(|g(z) - f(z)| &lt; |f(z)|\)</span> ならば零点の個数が同じ。<span class="math inline">\(h(z) = g(z)/f(z)\)</span> とおくと境界上で <span class="math inline">\(|1-h| &lt; 1\)</span>。偏角の原理の積分が <span class="math inline">\(0\)</span> になることを用いて示される。</p>
+</section>
+<section id="コーシーの主値積分" class="level4">
+<h4 class="anchored" data-anchor-id="コーシーの主値積分">コーシーの主値積分</h4>
+<p><strong>定理</strong> 実軸上の孤立特異点 <span class="math inline">\(x_0\)</span> を避ける主値積分において、<span class="math inline">\(f(x) = g(x)/(x-x_0)\)</span> のとき <span class="math inline">\(\mathrm{p.v.} \int_{-\infty}^\infty f(x)dx = i\pi g(x_0)\)</span> などの関係が成り立つ。</p>
+<p><strong>証明</strong> <span class="math inline">\(x_0\)</span> を半径 <span class="math inline">\(\epsilon\)</span> の半円で迂回する積分路を考える。半円上の積分は <span class="math inline">\(\epsilon \to 0\)</span> で <span class="math inline">\(-i\pi g(x_0)\)</span> に収束する（コーシーの積分定理を用いた計算）。これを全体の周回積分 <span class="math inline">\(0\)</span>（特異点を含まない場合）から引くことで得られる。</p>
+<hr>
+</section>
+</section>
+<section id="第6回講義-解析接続" class="level3">
+<h3 class="anchored" data-anchor-id="第6回講義-解析接続">第6回講義 解析接続</h3>
+<section id="一致の定理" class="level4">
+<h4 class="anchored" data-anchor-id="一致の定理">一致の定理</h4>
+<p><strong>定理</strong> 連結な領域で正則な <span class="math inline">\(f, g\)</span> が、集積点をもつ点列上で一致するなら、領域全体で <span class="math inline">\(f=g\)</span>。</p>
+<p><strong>証明</strong> <span class="math inline">\(h(z) = f(z) - g(z)\)</span> とする。<span class="math inline">\(h(z_n) = 0\)</span> かつ <span class="math inline">\(z_n \to z_0\)</span>。<span class="math inline">\(z_0\)</span> が孤立零点でないため、局所的なテイラー展開の係数がすべて0となり、開近傍で <span class="math inline">\(h=0\)</span>。連結性から領域全体で <span class="math inline">\(h=0\)</span> が伝播する。</p>
+</section>
+<section id="ガンマ関数ベータ関数ゼータ関数の性質" class="level4">
+<h4 class="anchored" data-anchor-id="ガンマ関数ベータ関数ゼータ関数の性質">ガンマ関数・ベータ関数・ゼータ関数の性質</h4>
+<p><strong>証明の概要</strong> - <strong>ガンマ関数の正則性:</strong> <span class="math inline">\(\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\)</span> について、積分区間を分割し、指数関数の減衰によって一様収束性（モレラの定理）を用いて正則性を示す。 - <strong>ベータとガンマの関係:</strong> <span class="math inline">\(B(p,q) = \frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)}\)</span> は、積分変数を極座標に変換するフビニの定理の応用によって導かれる。 - <strong>相反公式・倍角公式:</strong> ベータ関数の積分表示と実関数の積分の結果（主値積分等の応用）を比較することで証明される。 - <strong>ゼータのオイラー積:</strong> 素因数分解の一意性と絶対収束性に基づく和と積の順序交換によって証明される。</p>
+<hr>
+</section>
+</section>
+<section id="第7回講義-フーリエラプラス変換" class="level3">
+<h3 class="anchored" data-anchor-id="第7回講義-フーリエラプラス変換">第7回講義 フーリエ・ラプラス変換</h3>
+<section id="一様収束平均収束" class="level4">
+<h4 class="anchored" data-anchor-id="一様収束平均収束">一様収束・平均収束</h4>
+<p><strong>証明</strong> 関数が滑らかであるとき、フーリエ係数 <span class="math inline">\(|c_n|\)</span> が <span class="math inline">\(1/n^2\)</span> より速く減衰することを示し、ワイエルシュトラスのMテストにより絶対かつ一様収束が示される。平均収束はパーセバルの等式と関連して証明される。</p>
+
+
+</section>
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<input type="hidden" id="giscus-base-theme" value="transparent_dark">
+<input type="hidden" id="giscus-alt-theme" value="transparent_dark">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "SerikaYuzuki/Developing-Journal";
+    script.dataset.repoId = "R_kgDOKdxfxA";
+    script.dataset.category = "General";
+    script.dataset.categoryId = "DIC_kwDOKdxfxM4CZ-FP";
+    script.dataset.mapping = "title";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
