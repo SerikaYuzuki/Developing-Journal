@@ -26,11 +26,11 @@ $bg-blob-b:         #cdd8ff !default;   // blue
 $bg-blob-c:         #d6f5e8 !default;   // mint
 
 // ---- Typography -------------------------------------------------------------
-$font-family-sans-serif:  "Inter", "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif !default;
+$font-family-sans-serif:  "Iowan Old Style", "Palatino Linotype", "Book Antiqua", "Hiragino Mincho ProN", "Yu Mincho", YuMincho, "Noto Serif JP", Georgia, serif !default;
 $font-family-monospace:   "JetBrains Mono", "SF Mono", Menlo, monospace !default;
 $headings-font-family:    $font-family-sans-serif !default;
 $headings-font-weight:    700 !default;
-$line-height-base:        1.7 !default;
+$line-height-base:        1.65 !default;
 
 // ---- Bootstrap variable overrides ------------------------------------------
 $body-bg:        transparent !default;
@@ -150,8 +150,11 @@ body {
     100% 88%,
     0% 0%;
   background-attachment: fixed;
-  animation: pj-bg-drift 44s ease-in-out infinite alternate;
+  will-change: background-position;
+  animation: pj-bg-drift 24s ease-in-out infinite alternate;
   color: $body-color;
+  font-size: 1rem;
+  line-height: $line-height-base;
   font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
 }
@@ -167,18 +170,18 @@ body {
   }
   50% {
     background-position:
-      14% 8%,
-      84% 2%,
-      60% 88%,
-      88% 74%,
+      24% 14%,
+      76% 0%,
+      68% 78%,
+      76% 66%,
       0% 0%;
   }
   100% {
     background-position:
-      6% 16%,
-      92% 24%,
-      38% 84%,
-      82% 98%,
+      10% 28%,
+      86% 34%,
+      30% 74%,
+      70% 100%,
       0% 0%;
   }
 }
@@ -289,6 +292,7 @@ body > .container-fluid {
     padding-left: 14px;
   }
   ul { list-style: none; padding-left: 0; }
+  ul ul { padding-left: .72rem; }
   li { margin: 1px 0; }
   a {
     display: block;
@@ -304,7 +308,7 @@ body > .container-fluid {
     &.active {
       color: $primary;
       font-weight: 600;
-      border-left-color: $primary;
+      border-left-color: transparent;
     }
   }
 }
@@ -335,11 +339,11 @@ a {
 .quarto-title-block {
   @include glass;
   border-radius: $glass-radius-lg;
-  padding: 2.5rem 2.75rem;
-  margin: 1rem 0 2.5rem;
+  padding: clamp(1.35rem, 2.8vw, 2rem) clamp(1.25rem, 3.2vw, 2.5rem);
+  margin: .75rem 0 1.75rem;
   box-shadow: $glass-shadow-lg;
 
-  .title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; }
+  .title { font-size: clamp(2rem, 3.4vw, 2.45rem); line-height: 1.15; font-weight: 800; letter-spacing: -0.025em; }
   .subtitle { color: lighten($body-color, 18%); font-weight: 400; }
 }
 
@@ -390,29 +394,71 @@ pre.sourceCode {
   .op { color: $body-color; }
 }
 
-// ---- Callouts (glass with colored accent) ----------------------------------
+// ---- Callouts (glass frame, paper body) -------------------------------------
 .callout {
-  @include glass;
+  @include glass-subtle;
+  border: 1px solid $glass-border-dim !important;
   border-radius: $glass-radius;
-  margin: 1.75rem 0;
+  margin: 1.1rem 0;
   overflow: hidden;
-  border-left: 4px solid rgba($primary, .8) !important;
+  box-shadow:
+    0 10px 28px rgba(31, 38, 135, .08),
+    inset 0 1px 0 rgba(255, 255, 255, .52);
+  transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease;
 
   .callout-header {
     background: transparent !important;
     border: none !important;
-    padding: 14px 18px 4px;
+    min-height: 48px;
+    display: grid !important;
+    grid-template-columns: 42px minmax(0, 1fr) 40px;
+    align-items: center;
+    padding: 4px 7px 4px 4px !important;
     font-weight: 700;
   }
   .callout-body, .callout-body-container {
-    padding: 0 18px 16px 18px;
+    padding: 0 48px 16px 48px;
+    border-top: 1px solid $glass-border-dim;
+  }
+  .callout-icon-container {
+    width: 40px; height: 40px;
+    display: inline-flex; align-items: center; justify-content: center;
   }
   .callout-icon-container .callout-icon {
-    @include glass-subtle;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
     width: 30px; height: 30px;
     border-radius: 50%;
     display: inline-flex; align-items: center; justify-content: center;
-    margin-right: 10px;
+    margin: 0;
+  }
+  .callout-title-container {
+    min-width: 0;
+    line-height: 1.35;
+  }
+  .callout-btn-toggle {
+    width: 40px;
+    height: 40px;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 0 !important;
+    margin: 0 !important;
+    float: none !important;
+  }
+  .callout-toggle {
+    display: block !important;
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+  .callout-toggle::before {
+    display: block !important;
+    width: 1rem !important;
+    height: 1rem !important;
+    margin: 0 !important;
+    background-position: center !important;
+    background-size: .9rem .9rem !important;
   }
 }
 @each $type, $col in (
@@ -422,7 +468,7 @@ pre.sourceCode {
   "caution": $warning,
   "important": $danger
 ) {
-  .callout-#{$type}                            { border-left-color: rgba($col, .8) !important; }
+  .callout-#{$type}                            { --callout-accent: #{$col}; border-left-color: rgba($col, .7) !important; }
   .callout-#{$type} .callout-icon-container .callout-icon { color: $col; }
   .callout-#{$type} .callout-header            { color: darken($col, 15%); }
 }
@@ -438,33 +484,40 @@ blockquote, .blockquote {
   font-style: italic;
 }
 
-// ---- Tables (glass) --------------------------------------------------------
+// ---- Tables (paper-like) ---------------------------------------------------
 table, .table {
-  @include glass($glass-bg);
-  border-radius: $glass-radius;
-  border-collapse: separate;
-  border-spacing: 0;
-  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border-collapse: collapse;
   width: 100%;
-  margin: 0.9rem 0;
-  line-height: 1.42;
+  margin: 1.15rem 0;
+  line-height: 1.45;
 
   thead th {
-    background: rgba(255,255,255,.35);
-    border: none !important;
-    padding: 0.62rem 0.85rem;
+    background: transparent;
+    border-top: 1px solid $glass-border !important;
+    border-bottom: 1.5px solid $glass-border !important;
+    padding: 0.58rem 0.75rem;
     font-weight: 700;
     color: #1f1c38;
-    text-transform: uppercase;
-    font-size: 0.72rem;
-    letter-spacing: 0.09em;
+    text-transform: none;
+    font-size: .9rem;
+    letter-spacing: 0;
+    text-align: left;
   }
-  tbody td {
-    border: none !important;
-    padding: 0.52rem 0.85rem;
-    border-top: 1px solid rgba(255,255,255,.4) !important;
+  tbody td, tbody th {
+    border: 0 !important;
+    padding: 0.52rem 0.75rem;
+    border-bottom: 1px solid $glass-border-dim !important;
+    vertical-align: top;
   }
-  tbody tr:hover { background: rgba(255,255,255,.25); }
+  tbody tr { transition: background-color .16s ease; }
+  tbody tr:hover { background: rgba(124,92,255,.045); }
+  caption { caption-side: top; text-align: left; color: $body-color; font-weight: 650; margin-bottom: .45rem; }
 }
 
 // ---- Buttons ---------------------------------------------------------------
@@ -525,25 +578,51 @@ hr {
 }
 
 // ---- Tabs (panel-tabset) ---------------------------------------------------
-.panel-tabset .nav-tabs {
-  @include glass($glass-bg-strong);
-  border-radius: 999px;
-  padding: 4px;
-  gap: 4px;
-  display: inline-flex;
-  border-bottom: none;
+.panel-tabset {
+  @include glass($glass-bg);
+  border-radius: $glass-radius;
+  margin: 1.5rem 0;
+  overflow: hidden;
 
-  .nav-link {
-    border: none !important;
-    border-radius: 999px;
-    padding: 7px 16px;
-    color: $body-color;
+  .nav-tabs {
+    display: flex;
+    width: 100%;
+    gap: 3px;
+    margin: 0;
+    padding: 6px 7px;
+    background: rgba(255, 255, 255, .18);
+    border: 0;
+    border-bottom: 1px solid rgba(45, 42, 68, .10);
+    border-radius: 0;
+    box-shadow: none;
 
-    &.active {
-      background: rgba(255,255,255,.85);
-      color: $primary;
-      box-shadow: 0 2px 6px rgba(31,38,135,.08);
+    .nav-link {
+      border: 1px solid transparent !important;
+      border-radius: $glass-radius-sm;
+      padding: 7px 13px;
+      color: rgba($body-color, .76);
+      transition: color .2s, background-color .2s, border-color .2s, box-shadow .2s;
+
+      &:hover {
+        color: $body-color;
+        background: rgba(255, 255, 255, .24);
+      }
+
+      &.active {
+        background: rgba(255, 255, 255, .58);
+        color: $primary;
+        border-color: rgba(255, 255, 255, .68) !important;
+        box-shadow: 0 3px 10px rgba(31, 38, 135, .08), inset 0 1px 0 rgba(255, 255, 255, .72);
+      }
     }
+  }
+
+  .tab-content {
+    padding: 1rem 1.15rem 1.1rem;
+    background: rgba(255, 255, 255, .10);
+    border: 0 !important;
+
+    .tab-pane > :last-child { margin-bottom: 0; }
   }
 }
 

@@ -16,18 +16,20 @@
   pointer-events: none;
 }
 
-/* TOC toggle is a separate navbar control from the left-sidebar menu. */
-.pj-toc-toggle {
+/* Left rail and TOC use the same desktop control language. */
+.pj-rail-toggle {
   appearance: none;
-  display: inline-flex;
+  display: inline-flex !important;
   align-items: center;
   justify-content: center;
   align-self: center;
-  width: 2rem;
-  height: 2rem;
-  padding: 0;
+  flex: 0 0 2.125rem;
+  width: 2.125rem;
+  height: 2.125rem;
+  margin: 0 !important;
+  padding: 0 !important;
   color: inherit;
-  font-size: 1rem;
+  font-size: 1.05rem;
   line-height: 1;
   background: transparent;
   border: 0;
@@ -35,18 +37,30 @@
   transition: color 0.2s ease, background-color 0.2s ease;
 }
 
-.pj-toc-toggle:hover {
+.navbar-sidebar-toggle.pj-rail-toggle {
+  margin-inline-end: .35rem !important;
+}
+
+.pj-rail-toggle:hover {
   color: var(--gl-cat0);
   background: var(--mobile-sidebar-cat-color);
 }
 
-.pj-toc-toggle:focus-visible {
+.pj-rail-toggle:focus-visible {
   outline: 2px solid var(--gl-cat0);
   outline-offset: 2px;
 }
 
+.pj-rail-toggle[aria-expanded="false"] {
+  color: color-mix(in srgb, currentColor 72%, transparent);
+}
+
+.pj-left-mobile-icon { display: none; }
+
 @media (max-width: 991.98px) {
-  .pj-toc-toggle { display: none; }
+  .pj-toc-toggle { display: none !important; }
+  .pj-left-desktop-icon { display: none; }
+  .pj-left-mobile-icon { display: inline-block; }
 }
 
 @media (min-width: 992px) {
@@ -93,128 +107,263 @@ div.sourceCode pre.sourceCode {
   border-radius: 0 !important;
 }
 
-/* --- サイドバー表示/非表示のカスタムアニメーション --- */
+/* ── 紙面に近い本文リズムと P2 フィードバック ----------------------------- */
+main.content,
+.page-columns .content {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+.page-columns .content > :is(p, ul, ol, blockquote, .callout, table, .table, .table-responsive) {
+  max-width: 76ch;
+}
+.page-columns .content > p { margin-block: .8rem 1rem; }
+.page-columns .content :is(h1, h2, h3, h4, h5, h6) {
+  line-height: 1.2;
+  scroll-margin-top: calc(var(--pj-floating-navbar-clearance) + 1rem);
+}
+.page-columns .content :is(h2, h3, h4) { margin-top: 1.8em; }
+.quarto-title-block .title { font-size: clamp(2rem, 3.4vw, 2.45rem) !important; line-height: 1.15; }
 
-@media (min-width: 992px) {
-  
-  /* サイドバーが縮小する際に中のテキストが縦に潰れないように固定幅（min-width）を持たせる */
-  #quarto-sidebar {
-    transition: opacity 0.3s ease-out, transform 0.4s ease-out;
-    min-width: 250px;
-  }
+.callout { position: relative; }
+.callout.pj-callout-pulse {
+  animation: pj-callout-pulse 420ms var(--pj-layout-ease, ease-out);
+}
+@keyframes pj-callout-pulse {
+  0%, 100% { box-shadow: none; }
+  45% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--callout-accent, var(--gl-cat0)) 18%, transparent); }
+}
 
-  body.custom-sidebar-hidden #quarto-sidebar {
-    opacity: 0;
-    transform: translateX(-250px);
-    pointer-events: none;
-  }
+.code-copy-button {
+  position: absolute;
+  inset: .45rem .45rem auto auto;
+  z-index: 3;
+  transition: color .18s ease, background-color .18s ease, transform .18s ease;
+}
+.code-copy-button.pj-copy-success {
+  color: var(--gl-cat1) !important;
+  transform: scale(1.04);
+}
+.code-copy-button[data-pj-copy-state="copied"]::after {
+  content: "コピー済み";
+  position: absolute;
+  right: calc(100% + .45rem);
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-size: .72rem;
+  color: var(--gl-cat1);
+  pointer-events: none;
+}
 
-  /*
-   * サイドバーを元に戻す（閉じる）ときのアニメーション用
-   */
-  body.custom-sidebar-showing #quarto-sidebar {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.pj-anchor-target {
+  animation: pj-anchor-target 900ms ease-out;
+}
+@keyframes pj-anchor-target {
+  0% { background-color: color-mix(in srgb, var(--gl-cat0) 15%, transparent); border-radius: 6px; }
+  100% { background-color: transparent; }
+}
 
-  /* TOC fades independently while the content consumes/releases its column. */
-  #quarto-margin-sidebar {
-    transition:
-      opacity 0.3s ease-out,
-      transform 0.4s ease-out,
-      visibility 0s linear 0s;
-    transform-origin: right center;
-  }
+.pj-toc-marker {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 1.2rem;
+  border-radius: 999px;
+  background: var(--gl-cat0);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0);
+  transition: left 180ms var(--pj-layout-ease, ease-out), transform 220ms var(--pj-layout-ease, ease-out), height 180ms ease, opacity 180ms ease;
+}
 
-  body.pj-toc-hidden #quarto-margin-sidebar {
-    opacity: 0;
-    transform: translateX(32px);
-    visibility: hidden;
-    pointer-events: none;
-    transition:
-      opacity 0.3s ease-out,
-      transform 0.4s ease-out,
-      visibility 0s linear 0.4s;
-  }
+body,
+.quarto-title-block,
+.callout,
+table,
+.table,
+.pj-toc-toggle {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 220ms;
+  transition-timing-function: ease;
+}
+.navbar {
+  transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 300ms ease,
+    background-color 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease,
+    box-shadow 220ms ease !important;
+}
+body.pj-theme-transition {
+  transition: background-color 220ms ease, color 220ms ease;
+}
 
-  body.pj-toc-showing #quarto-margin-sidebar {
-    opacity: 1;
-    transform: translateX(0);
-    visibility: visible;
-    pointer-events: auto;
-  }
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.table-responsive > table { min-width: 38rem; }
 
-  /* 左サイドバーだけを閉じる場合は右の TOC 列を維持する。
-     左右を同時に閉じる組み合わせは下の専用セレクタで上書きする。 */
-  
-  /* 開くとき（左側だけ広げる） */
-  body.custom-sidebar-hidden .page-columns .content {
-    grid-column: screen-start-inset / body-content-end !important;
-    max-width: 100% !important;
-    animation: expandContent 0.4s ease-out forwards;
-  }
-
-  /* 閉じるとき（元に戻す） */
-  body.custom-sidebar-showing .page-columns .content {
-    grid-column: screen-start-inset / body-content-end !important;
-    max-width: 100% !important;
-    animation: shrinkContent 0.4s ease-out forwards;
-  }
-
-  /* grid-column itself cannot interpolate. Padding preserves the old visual
-     width while the content smoothly takes over (or releases) the TOC track. */
-  body.pj-toc-hidden .page-columns .content,
-  body.pj-toc-showing .page-columns .content {
-    grid-column: body-content-start / page-end-inset !important;
-    max-width: 100% !important;
-  }
-
-  body.pj-toc-hidden .page-columns .content {
-    animation: pj-expand-toc-space 0.4s ease-out forwards;
-  }
-
-  body.pj-toc-showing .page-columns .content {
-    animation: pj-shrink-toc-space 0.4s ease-out forwards;
-  }
-
-  body.custom-sidebar-hidden.pj-toc-hidden .page-columns .content,
-  body.custom-sidebar-hidden.pj-toc-showing .page-columns .content,
-  body.custom-sidebar-showing.pj-toc-hidden .page-columns .content,
-  body.custom-sidebar-showing.pj-toc-showing .page-columns .content {
-    grid-column: screen-start-inset / page-end-inset !important;
-  }
-
-  @keyframes expandContent {
-    0% {
-      padding-left: 250px;
-    }
-    100% {
-      padding-left: 0;
-    }
-  }
-
-  @keyframes shrinkContent {
-    0% {
-      padding-left: 0;
-    }
-    100% {
-      padding-left: 250px;
-    }
-  }
-
-  @keyframes pj-expand-toc-space {
-    from { padding-right: 250px; }
-    to   { padding-right: 0; }
-  }
-
-  @keyframes pj-shrink-toc-space {
-    from { padding-right: 0; }
-    to   { padding-right: 250px; }
+@media (max-width: 991.98px) {
+  body { overflow-x: hidden; }
+  .page-columns .content { padding-inline: 1rem !important; }
+  .quarto-title-block { border-radius: 20px; }
+  .page-columns .content > :is(p, ul, ol, blockquote, .callout, table, .table, .table-responsive) { max-width: none; }
+  /* Pandoc can emit a table without Quarto's optional responsive wrapper.
+     Keep that table readable with an inline scroller instead of letting it
+     widen the document and create a second horizontal page scrollbar. */
+  .page-columns .content table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .callout.pj-callout-pulse,
+  .pj-anchor-target { animation: none !important; }
+  .pj-toc-marker,
+  .code-copy-button,
+  body { transition: none !important; }
+}
+
+/* --- 左右レールと本文の連続遷移 -----------------------------------------
+   grid-column の差し替えや左右で異なる keyframes は、片側だけを閉じた
+   状態からの復帰時にブラウザが補間できず本文がジャンプする。本文は
+   常にフレーム全体を占有し、レール分の余白だけを CSS 変数で補間する。 */
+:root {
+  --pj-rail-width: 232px;
+  --pj-rail-gutter: 24px;
+  --pj-frame-edge: 18px;
+  --pj-layout-duration: 380ms;
+  --pj-layout-ease: cubic-bezier(.22, .61, .36, 1);
+  --pj-left-reserve: 0px;
+  --pj-right-reserve: 0px;
+}
+
+@media (min-width: 992px) {
+  #quarto-content.page-columns {
+    position: relative;
+    box-sizing: border-box;
+    width: calc(100% - 48px) !important;
+    max-width: 1380px !important;
+    margin-inline: auto !important;
+  }
+
+  /* The article spans the frame. Sidebars remain in their Quarto tracks and
+     sit above the article while their reserved inline space is animated. */
+  #quarto-content.page-columns > .content,
+  #quarto-content.page-columns .content {
+    grid-column: 1 / -1 !important;
+    min-width: 0;
+    max-width: none !important;
+    padding-inline-start: calc(var(--pj-left-reserve) + var(--pj-frame-edge));
+    padding-inline-end: calc(var(--pj-right-reserve) + var(--pj-frame-edge));
+    transition:
+      padding-inline-start var(--pj-layout-duration) var(--pj-layout-ease),
+      padding-inline-end var(--pj-layout-duration) var(--pj-layout-ease);
+    position: relative;
+    z-index: 1;
+  }
+
+  body[data-pj-left="open"] { --pj-left-reserve: calc(var(--pj-rail-width) + var(--pj-rail-gutter)); }
+  body[data-pj-right="open"] { --pj-right-reserve: calc(var(--pj-rail-width) + var(--pj-rail-gutter)); }
+
+  #quarto-sidebar,
+  #quarto-margin-sidebar {
+    z-index: 20 !important;
+    min-width: var(--pj-rail-width);
+    transition:
+      opacity var(--pj-layout-duration) var(--pj-layout-ease),
+      transform var(--pj-layout-duration) var(--pj-layout-ease),
+      visibility 0s linear 0s;
+    will-change: opacity, transform;
+  }
+
+  /* Quarto's compiled selector assigns both rails z-index: 1 with two IDs.
+     Match that specificity so overlay rails never fall behind article glass. */
+  #quarto-content.page-columns #quarto-sidebar,
+  #quarto-content.page-columns #quarto-margin-sidebar {
+    z-index: 20 !important;
+  }
+
+  #quarto-sidebar { transform-origin: left center; }
+  #quarto-margin-sidebar { transform-origin: right center; }
+
+  body[data-pj-left="closed"] #quarto-sidebar {
+    opacity: 0;
+    transform: translateX(calc(-1 * var(--pj-rail-width)));
+    pointer-events: none;
+    visibility: hidden;
+    transition-delay: 0s, 0s, var(--pj-layout-duration);
+  }
+  body[data-pj-right="closed"] #quarto-margin-sidebar {
+    opacity: 0;
+    transform: translateX(var(--pj-rail-width));
+    pointer-events: none;
+    visibility: hidden;
+    transition-delay: 0s, 0s, var(--pj-layout-duration);
+  }
+
+  /* At tablet widths rails overlay the article instead of narrowing it. */
+  @media (max-width: 1279.98px) {
+    #quarto-content.page-columns > .content,
+    #quarto-content.page-columns .content {
+      padding-inline: var(--pj-frame-edge);
+    }
+    #quarto-sidebar,
+    #quarto-margin-sidebar {
+      position: fixed !important;
+      inset-block-start: var(--pj-floating-navbar-clearance) !important;
+      inset-block-end: var(--pj-frame-edge) !important;
+      width: var(--pj-rail-width) !important;
+      max-width: calc(100vw - (2 * var(--pj-frame-edge))) !important;
+      height: auto !important;
+      overflow-y: auto;
+      box-sizing: border-box;
+      background: var(--mobile-sidebar-bg);
+      -webkit-backdrop-filter: blur(18px) saturate(150%);
+      backdrop-filter: blur(18px) saturate(150%);
+      border-radius: 0 var(--glass-radius, 18px) var(--glass-radius, 18px) 0;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, .18);
+    }
+    #quarto-sidebar { inset-inline-start: var(--pj-frame-edge) !important; inset-inline-end: auto !important; }
+    #quarto-margin-sidebar {
+      inset-inline-start: auto !important;
+      inset-inline-end: var(--pj-frame-edge) !important;
+      border-radius: var(--glass-radius, 18px) 0 0 var(--glass-radius, 18px);
+    }
+  }
+
+  /* The explicit grid is used only where the full frame has enough room for
+     both rails. Equal tracks keep the left and right gaps truly symmetric. */
+  @media (min-width: 1280px) {
+    #quarto-content.page-columns {
+      grid-template-columns:
+        [screen-start screen-start-inset] 0px
+        [page-start] var(--pj-frame-edge)
+        [page-start-inset body-start-outset] var(--pj-rail-width)
+        [body-start] var(--pj-rail-gutter)
+        [body-content-start] minmax(0, 1fr)
+        [body-content-end] var(--pj-rail-gutter)
+        [body-end body-end-outset] var(--pj-rail-width)
+        [page-end-inset] var(--pj-frame-edge)
+        [page-end screen-end-inset screen-end] 0px !important;
+    }
+  }
+}
+
+/* No layout transition should run while the first state is being applied. */
+body:not([data-pj-motion-ready]) .page-columns .content,
+body:not([data-pj-motion-ready]) #quarto-sidebar,
+body:not([data-pj-motion-ready]) #quarto-margin-sidebar {
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
   #quarto-margin-sidebar,
+  #quarto-sidebar,
   .page-columns .content,
   .pj-toc-toggle {
     transition: none !important;
@@ -245,29 +394,6 @@ div.sourceCode pre.sourceCode {
 #quarto-sidebar .sidebar-item-container,
 #quarto-sidebar .sidebar-item-section {
   border: none !important;
-}
-
-/* --- 本文エリアをトップバーの幅と中央揃えに合わせる対称グリッド --- */
-@media (min-width: 1400px) {
-  #quarto-content.page-columns {
-    /* navbarの横幅とマージンに合わせる */
-    width: calc(100% - 48px) !important;
-    max-width: 1380px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    
-    /* 左右対称なグリッド構成を強制する */
-    grid-template-columns: 
-      [screen-start screen-start-inset] 0px
-      [page-start] 18px
-      [page-start-inset body-start-outset] 232px 
-      [body-start] 1.5rem 
-      [body-content-start] 1fr 
-      [body-content-end] 1.5rem 
-      [body-end body-end-outset] 232px 
-      [page-end-inset] 18px
-      [page-end screen-end-inset screen-end] 0px !important;
-  }
 }
 
 /* --- モバイル用セカンダリナビ（デフォルトのトップバー）の完全非表示 --- */
@@ -351,7 +477,7 @@ body.pj-drawer-active { overflow: hidden; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem 1.25rem 1rem;
+  padding: 1.25rem 1.25rem .9rem;
   border-bottom: 1px solid var(--mobile-sidebar-border);
   flex-shrink: 0;
 }
@@ -382,11 +508,88 @@ body.pj-drawer-active { overflow: hidden; }
   color: var(--gl-cat0);
 }
 
+/* One mobile navigation sheet: switch between the site tree and this page's
+   outline without opening a second drawer. */
+#pj-drawer-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: .75rem .75rem 0;
+  flex-shrink: 0;
+}
+#pj-drawer-tabs .pj-drawer-tab {
+  appearance: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 8px 8px 0 0;
+  padding: .55rem .65rem;
+  color: var(--mobile-sidebar-link-color);
+  background: transparent;
+  font: inherit;
+  font-size: .82rem;
+  font-weight: 650;
+  cursor: pointer;
+  transition: color .18s ease, background-color .18s ease, border-color .18s ease;
+}
+#pj-drawer-tabs .pj-drawer-tab:hover,
+#pj-drawer-tabs .pj-drawer-tab:focus-visible {
+  color: var(--gl-cat0);
+  background: var(--mobile-sidebar-cat-color);
+}
+#pj-drawer-tabs .pj-drawer-tab[aria-selected="true"] {
+  color: var(--gl-cat0);
+  border-bottom-color: var(--gl-cat0);
+  background: var(--mobile-sidebar-cat-color);
+}
+#pj-drawer-tabs .pj-drawer-tab:focus-visible,
+#pj-drawer-close:focus-visible {
+  outline: 2px solid var(--gl-cat0);
+  outline-offset: 2px;
+}
+
 /* ── パネルボディ（ナビ一覧） ── */
 #pj-drawer-body {
   flex: 1;
   overflow-y: auto;
-  padding: 0.75rem 0.75rem 2.5rem;
+  padding: 0;
+  min-height: 0;
+}
+#pj-drawer-body .pj-drawer-view {
+  padding: .75rem .75rem 2.5rem;
+}
+#pj-drawer-body .pj-drawer-view[hidden] {
+  display: none !important;
+}
+#pj-drawer-toc #TOC,
+#pj-drawer-toc .sidebar-toc {
+  padding: 0;
+}
+#pj-drawer-toc .toc-title {
+  padding-left: 13px;
+  margin-top: .2rem;
+}
+#pj-drawer-toc ul {
+  padding-left: 0;
+}
+#pj-drawer-toc ul ul {
+  padding-left: .72rem;
+}
+#pj-drawer-toc a {
+  border-left: 0;
+  border-radius: 10px;
+  padding: 9px 13px;
+}
+#pj-drawer-toc a:hover,
+#pj-drawer-toc a.active {
+  background: var(--mobile-sidebar-cat-color);
+}
+
+@media (max-width: 991.98px) {
+  body #quarto-sidebar,
+  body #quarto-margin-sidebar {
+    display: none !important;
+  }
+}
 }
 
 /* リストのリセット */

@@ -78,8 +78,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-9ce02ba9bf05f77acce06f7d436c50a3.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-0c6e397e4b841f4e11debe22e153e804.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="dark">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-e3fd57220414d64ff0363a55b3b9b7d9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-1f9ac3ef0e8f262428fcc6bb703857ff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-12243f65cb2b4c4bc0dbf661224a9805.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -111,8 +111,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "use strict";
 
   document.addEventListener("DOMContentLoaded", function () {
+    var body = document.body;
+    var reducedMotion = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var sidebar = document.getElementById('quarto-sidebar');
+    var marginSidebar = document.getElementById('quarto-margin-sidebar');
+    var toc = marginSidebar && marginSidebar.querySelector('#TOC, .sidebar-toc');
+    var navbarTools = document.querySelector('.quarto-navbar-tools');
+    var brandContainer = document.querySelector('.navbar-brand-container');
+    var LEFT_STORAGE_KEY = 'serika-glass-left-visible';
+    var TOC_STORAGE_KEY = 'serika-glass-toc-visible';
 
-    // ── 1. 現在地に一致する navbar リンクだけを active にする ────────
+    function readStoredBoolean(key, fallback) {
+      try {
+        var value = window.sessionStorage.getItem(key);
+        return value === null ? fallback : value !== 'false';
+      } catch (_) {
+        return fallback;
+      }
+    }
+
+    function writeStoredBoolean(key, value) {
+      try { window.sessionStorage.setItem(key, String(value)); } catch (_) { /* no-op */ }
+    }
+
+    // ── navbar の現在地 ----------------------------------------------------
     function normalizedPath(url) {
       var path = url.pathname.replace(/\/index\.html$/i, '/');
       path = path.replace(/\.html$/i, '');
@@ -123,120 +146,126 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     function updateNavbarActiveLink() {
       var current = new URL(window.location.href);
       var currentPath = normalizedPath(current);
-
       document.querySelectorAll('.navbar .navbar-nav a.nav-link[href]').forEach(function (link) {
         var href = link.getAttribute('href');
         if (!href || link.hasAttribute('data-bs-toggle')) return;
-
         var target;
-        try {
-          target = new URL(href, current);
-        } catch (_) {
-          return;
-        }
-
-        // 外部リンク（mailto: 等を含む）の状態は Quarto/利用側に委ねる。
+        try { target = new URL(href, current); } catch (_) { return; }
         if (target.origin !== current.origin) return;
-
         var isCurrent = normalizedPath(target) === currentPath;
         link.classList.toggle('active', isCurrent);
-        if (isCurrent) {
-          link.setAttribute('aria-current', 'page');
-        } else {
-          link.removeAttribute('aria-current');
-        }
+        if (isCurrent) link.setAttribute('aria-current', 'page');
+        else link.removeAttribute('aria-current');
       });
     }
-
     updateNavbarActiveLink();
-
-    // bfcache から復帰した場合も URL と active 状態を同期する。
     window.addEventListener('pageshow', updateNavbarActiveLink);
 
-    // ── 2. デスクトップ用 TOC トグル ─────────────────────────────────
-    var marginSidebar = document.getElementById('quarto-margin-sidebar');
-    var toc = marginSidebar && marginSidebar.querySelector('#TOC, .sidebar-toc');
-    var navbarTools = document.querySelector('.quarto-navbar-tools');
-    var TOC_STORAGE_KEY = 'serika-glass-toc-visible';
-    var TOC_DURATION = 400;
+    // ── rail state: 左右を独立した属性として同時に適用 ---------------------
+    var leftVisible = readStoredBoolean(LEFT_STORAGE_KEY, true);
+    var tocVisible = readStoredBoolean(TOC_STORAGE_KEY, true);
+    var leftToggleBtn;
+    var tocToggleBtn;
+    var drawerOpen = false;
+    var overlayPanel = null;
 
-    if (toc && navbarTools) {
-      var tocToggleBtn = document.createElement('button');
+    function isMobileNavigation() {
+      return window.innerWidth < 992;
+    }
+
+    function isOverlayNavigation() {
+      return window.innerWidth >= 992 && window.innerWidth < 1280;
+    }
+
+    function effectiveLeftVisible() {
+      return isOverlayNavigation() ? overlayPanel === 'left' : leftVisible;
+    }
+
+    function effectiveTocVisible() {
+      return isOverlayNavigation() ? overlayPanel === 'right' : tocVisible;
+    }
+
+    function updateLeftToggleState() {
+      if (!leftToggleBtn) return;
+      var mobile = isMobileNavigation();
+      var expanded = mobile ? drawerOpen : effectiveLeftVisible();
+      var label = mobile
+        ? (expanded ? 'ナビゲーションを閉じる' : 'ナビゲーションを開く')
+        : (expanded ? 'サイドバーを非表示' : 'サイドバーを表示');
+      leftToggleBtn.setAttribute('aria-controls', mobile ? 'pj-drawer' : 'quarto-sidebar');
+      leftToggleBtn.setAttribute('aria-expanded', String(expanded));
+      leftToggleBtn.setAttribute('aria-label', label);
+      leftToggleBtn.title = label;
+    }
+
+    function setInert(element, inert) {
+      if (!element) return;
+      if ('inert' in element) element.inert = inert;
+      if (inert) element.setAttribute('inert', '');
+      else element.removeAttribute('inert');
+    }
+
+    function applyLayoutState(animate) {
+      var leftOpen = effectiveLeftVisible();
+      var tocOpen = effectiveTocVisible();
+      body.dataset.pjLeft = leftOpen ? 'open' : 'closed';
+      body.dataset.pjRight = tocOpen ? 'open' : 'closed';
+      if (sidebar) {
+        sidebar.setAttribute('aria-hidden', String(!leftOpen));
+        setInert(sidebar, !leftOpen);
+      }
+      if (marginSidebar) {
+        marginSidebar.setAttribute('aria-hidden', String(!tocOpen));
+        setInert(marginSidebar, !tocOpen);
+      }
+      updateLeftToggleState();
+      if (tocToggleBtn) {
+        tocToggleBtn.setAttribute('aria-expanded', String(tocOpen));
+        tocToggleBtn.setAttribute('aria-label', tocOpen ? '目次を非表示' : '目次を表示');
+        tocToggleBtn.title = tocOpen ? '目次を非表示' : '目次を表示';
+      }
+      if (animate && !reducedMotion) body.dataset.pjMotionReady = 'true';
+    }
+
+    if (navbarTools && toc) {
+      tocToggleBtn = document.createElement('button');
       tocToggleBtn.type = 'button';
-      tocToggleBtn.className = 'pj-toc-toggle quarto-navigation-tool';
+      tocToggleBtn.className = 'pj-toc-toggle pj-rail-toggle quarto-navigation-tool';
       tocToggleBtn.innerHTML = '<i class="bi bi-layout-text-sidebar-reverse" aria-hidden="true"></i>';
       tocToggleBtn.setAttribute('aria-controls', 'quarto-margin-sidebar');
       navbarTools.insertBefore(tocToggleBtn, navbarTools.firstChild);
-
-      var tocVisible = true;
-      try {
-        tocVisible = window.sessionStorage.getItem(TOC_STORAGE_KEY) !== 'false';
-      } catch (_) {
-        // Storage を利用できない環境ではページごとの既定表示にフォールバック。
-      }
-
-      function updateTocButton(visible) {
-        var label = visible ? '目次を非表示' : '目次を表示';
-        tocToggleBtn.setAttribute('aria-expanded', String(visible));
-        tocToggleBtn.setAttribute('aria-label', label);
-        tocToggleBtn.title = label;
-      }
-
-      function setTocVisible(visible, animate) {
-        window.clearTimeout(tocToggleBtn._pjTocTimer);
-        document.body.classList.remove('pj-toc-showing');
-
-        if (visible) {
-          if (animate && document.body.classList.contains('pj-toc-hidden')) {
-            document.body.classList.add('pj-toc-showing');
-          }
-          document.body.classList.remove('pj-toc-hidden');
-          marginSidebar.setAttribute('aria-hidden', 'false');
-
-          if (animate) {
-            tocToggleBtn._pjTocTimer = window.setTimeout(function () {
-              document.body.classList.remove('pj-toc-showing');
-            }, TOC_DURATION);
-          }
-        } else {
-          document.body.classList.add('pj-toc-hidden');
-          marginSidebar.setAttribute('aria-hidden', 'true');
-        }
-
-        updateTocButton(visible);
-      }
-
-      setTocVisible(tocVisible, false);
-
       tocToggleBtn.addEventListener('click', function () {
-        tocVisible = document.body.classList.contains('pj-toc-hidden');
-        var reduceMotion = window.matchMedia &&
-          window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        setTocVisible(tocVisible, !reduceMotion);
-        try {
-          window.sessionStorage.setItem(TOC_STORAGE_KEY, String(tocVisible));
-        } catch (_) {
-          // UI は storage の可否に関係なく動作させる。
+        if (isOverlayNavigation()) {
+          overlayPanel = overlayPanel === 'right' ? null : 'right';
+          applyLayoutState(true);
+          return;
         }
+        tocVisible = !tocVisible;
+        writeStoredBoolean(TOC_STORAGE_KEY, tocVisible);
+        applyLayoutState(true);
       });
     }
 
-    // ── 3. ≡ ボタンをナビバーに挿入 ────────────────────────────────────
-    var brandContainer = document.querySelector('.navbar-brand-container');
+    if (brandContainer) {
+      leftToggleBtn = document.createElement('button');
+      leftToggleBtn.type = 'button';
+      leftToggleBtn.innerHTML = [
+        '<i class="bi bi-layout-sidebar-inset pj-left-desktop-icon" aria-hidden="true"></i>',
+        '<i class="bi bi-list pj-left-mobile-icon" aria-hidden="true"></i>'
+      ].join('');
+      leftToggleBtn.className = 'navbar-sidebar-toggle pj-rail-toggle quarto-navigation-tool';
+      brandContainer.insertBefore(leftToggleBtn, brandContainer.firstChild);
+    }
+
+    // First paint uses the final state; transitions become available on the next frame.
+    applyLayoutState(false);
+    window.requestAnimationFrame(function () { body.dataset.pjMotionReady = 'true'; });
+
     if (!brandContainer) return;
 
-    var toggleBtn = document.createElement('a');
-    toggleBtn.href = "#";
-    toggleBtn.innerHTML = '<i class="bi bi-list"></i>';
-    toggleBtn.className = 'navbar-sidebar-toggle pe-2';
-    toggleBtn.style.cssText = 'color:inherit;text-decoration:none;font-size:1.5rem;display:flex;align-items:center;';
-    toggleBtn.title = "サイドバーを切り替え";
-    brandContainer.insertBefore(toggleBtn, brandContainer.firstChild);
-
-    // ── 4. カスタムドロワーを構築 ───────────────────────────────────────
+    // ── mobile navigation sheet -------------------------------------------
     var siteName = (document.querySelector('.navbar-brand') || {}).textContent;
     siteName = siteName ? siteName.trim() : 'Menu';
-
     var drawer = document.createElement('div');
     drawer.id = 'pj-drawer';
     drawer.setAttribute('aria-hidden', 'true');
@@ -246,124 +275,266 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       '<div id="pj-drawer-backdrop"></div>',
       '<nav id="pj-drawer-panel" aria-label="ナビゲーション">',
         '<div id="pj-drawer-header">',
-          '<span id="pj-drawer-site-name">' + siteName + '</span>',
-          '<button id="pj-drawer-close" aria-label="閉じる" type="button">',
-            '<i class="bi bi-x-lg"></i>',
-          '</button>',
+          '<span id="pj-drawer-site-name"></span>',
+          '<button id="pj-drawer-close" aria-label="閉じる" type="button"><i class="bi bi-x-lg" aria-hidden="true"></i></button>',
         '</div>',
-        '<div id="pj-drawer-body"></div>',
+        '<div id="pj-drawer-tabs" role="tablist" aria-label="ナビゲーションの種類">',
+          '<button class="pj-drawer-tab" id="pj-drawer-tab-site" type="button" role="tab" aria-selected="true" aria-controls="pj-drawer-site">サイト</button>',
+          '<button class="pj-drawer-tab" id="pj-drawer-tab-toc" type="button" role="tab" aria-selected="false" aria-controls="pj-drawer-toc">このページ</button>',
+        '</div>',
+        '<div id="pj-drawer-body">',
+          '<div id="pj-drawer-site" class="pj-drawer-view" role="tabpanel" aria-labelledby="pj-drawer-tab-site"></div>',
+          '<div id="pj-drawer-toc" class="pj-drawer-view" role="tabpanel" aria-labelledby="pj-drawer-tab-toc" hidden></div>',
+        '</div>',
       '</nav>'
     ].join('');
+    drawer.querySelector('#pj-drawer-site-name').textContent = siteName;
     document.body.appendChild(drawer);
 
-    // サイドバーのナビコンテンツをクローンして挿入（ID重複を回避）
-    var sidebarNav = document.querySelector('#quarto-sidebar .sidebar-menu-container');
-    if (sidebarNav) {
-      var clone = sidebarNav.cloneNode(true);
-
-      clone.querySelectorAll('[id]').forEach(function (el) {
-        el.id = 'pj-' + el.id;
-      });
+    function cloneInto(source, destination, prefix) {
+      if (!source || !destination) return null;
+      var clone = source.cloneNode(true);
+      clone.querySelectorAll('[id]').forEach(function (el) { el.id = prefix + el.id; });
       clone.querySelectorAll('[data-bs-target]').forEach(function (el) {
-        var t = el.getAttribute('data-bs-target');
-        if (t && t.charAt(0) === '#') {
-          el.setAttribute('data-bs-target', '#pj-' + t.slice(1));
-        }
+        var target = el.getAttribute('data-bs-target');
+        if (target && target.charAt(0) === '#') el.setAttribute('data-bs-target', '#' + prefix + target.slice(1));
       });
       clone.querySelectorAll('[aria-controls]').forEach(function (el) {
-        el.setAttribute('aria-controls', 'pj-' + el.getAttribute('aria-controls'));
+        var controls = el.getAttribute('aria-controls');
+        if (controls) el.setAttribute('aria-controls', controls.split(/\s+/).map(function (id) { return prefix + id; }).join(' '));
       });
-
-      document.getElementById('pj-drawer-body').appendChild(clone);
+      destination.appendChild(clone);
+      return clone;
     }
 
-    // ── 5. 開閉ロジック ─────────────────────────────────────────────────
+    cloneInto(sidebar && sidebar.querySelector('.sidebar-menu-container'), document.getElementById('pj-drawer-site'), 'pj-');
+    var drawerToc = cloneInto(toc, document.getElementById('pj-drawer-toc'), 'pj-toc-');
+    var tocTab = document.getElementById('pj-drawer-tab-toc');
+    if (!drawerToc) tocTab.hidden = true;
+
     var backdrop = document.getElementById('pj-drawer-backdrop');
     var closeBtn = document.getElementById('pj-drawer-close');
-    var CLOSE_DURATION = 250;
+    var closeTimer;
+
+    function drawerFocusables() {
+      return Array.prototype.slice.call(drawer.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])')).filter(function (el) {
+        return !el.hidden && el.offsetParent !== null;
+      });
+    }
 
     function openDrawer() {
-      drawer.removeAttribute('aria-hidden');
+      window.clearTimeout(closeTimer);
+      drawerOpen = true;
+      drawer.classList.remove('pj-closing');
       drawer.classList.add('pj-open');
-      document.body.classList.add('pj-drawer-active');
+      drawer.removeAttribute('aria-hidden');
+      body.classList.add('pj-drawer-active');
+      updateLeftToggleState();
+      window.requestAnimationFrame(function () { closeBtn.focus(); });
     }
 
     function closeDrawer() {
+      if (!drawerOpen) return;
+      drawerOpen = false;
+      updateLeftToggleState();
       drawer.classList.add('pj-closing');
-      setTimeout(function () {
+      window.clearTimeout(closeTimer);
+      closeTimer = window.setTimeout(function () {
         drawer.classList.remove('pj-open', 'pj-closing');
         drawer.setAttribute('aria-hidden', 'true');
-        document.body.classList.remove('pj-drawer-active');
-      }, CLOSE_DURATION);
+        body.classList.remove('pj-drawer-active');
+        leftToggleBtn.focus();
+      }, reducedMotion ? 0 : 280);
     }
 
+    function selectDrawerTab(tab) {
+      var siteTab = document.getElementById('pj-drawer-tab-site');
+      var sitePanel = document.getElementById('pj-drawer-site');
+      var pagePanel = document.getElementById('pj-drawer-toc');
+      var pageTab = document.getElementById('pj-drawer-tab-toc');
+      var pageSelected = tab === 'toc' && !pageTab.hidden;
+      siteTab.setAttribute('aria-selected', String(!pageSelected));
+      pageTab.setAttribute('aria-selected', String(pageSelected));
+      sitePanel.hidden = pageSelected;
+      pagePanel.hidden = !pageSelected;
+      (pageSelected ? pageTab : siteTab).focus();
+    }
+
+    document.getElementById('pj-drawer-tab-site').addEventListener('click', function () { selectDrawerTab('site'); });
+    tocTab.addEventListener('click', function () { selectDrawerTab('toc'); });
     backdrop.addEventListener('click', closeDrawer);
     closeBtn.addEventListener('click', closeDrawer);
+    document.getElementById('pj-drawer-body').addEventListener('click', function (event) {
+      var link = event.target.closest('a[href]');
+      if (link && !link.getAttribute('data-bs-toggle')) closeDrawer();
+    });
 
-    // ドロワー内のリンクをクリックしたら閉じる（アコーディオン以外）
-    document.getElementById('pj-drawer-body').addEventListener('click', function (e) {
-      var link = e.target.closest('a[href]');
-      if (link && !link.getAttribute('data-bs-toggle')) {
-        closeDrawer();
+    document.addEventListener('keydown', function (event) {
+      if (!drawerOpen) return;
+      if (event.key === 'Escape') { event.preventDefault(); closeDrawer(); return; }
+      if (event.key !== 'Tab') return;
+      var focusables = drawerFocusables();
+      if (!focusables.length) return;
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    });
+
+    leftToggleBtn.addEventListener('click', function () {
+      if (isMobileNavigation()) {
+        if (drawerOpen) closeDrawer(); else openDrawer();
+        return;
       }
+      if (isOverlayNavigation()) {
+        overlayPanel = overlayPanel === 'left' ? null : 'left';
+        applyLayoutState(true);
+        return;
+      }
+      leftVisible = !leftVisible;
+      writeStoredBoolean(LEFT_STORAGE_KEY, leftVisible);
+      applyLayoutState(true);
     });
 
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && drawer.classList.contains('pj-open')) closeDrawer();
+    var wasOverlayNavigation = isOverlayNavigation();
+    window.addEventListener('resize', function () {
+      var overlayNow = isOverlayNavigation();
+      if (overlayNow !== wasOverlayNavigation) {
+        overlayPanel = null;
+        wasOverlayNavigation = overlayNow;
+        applyLayoutState(false);
+      }
+      if (!isMobileNavigation() && drawerOpen) closeDrawer();
+      else updateLeftToggleState();
     });
 
-    // ── 6. スクロールで navbar を隠す/表示する ──────────────────────
+    document.addEventListener('pointerdown', function (event) {
+      if (!isOverlayNavigation() || !overlayPanel) return;
+      if (event.target.closest('#quarto-sidebar, #quarto-margin-sidebar, .pj-rail-toggle')) return;
+      overlayPanel = null;
+      applyLayoutState(true);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key !== 'Escape' || !isOverlayNavigation() || !overlayPanel) return;
+      overlayPanel = null;
+      applyLayoutState(true);
+    });
+
+    // ── navbar は下方向で退避、上方向で復帰 -------------------------------
     var navbar = document.querySelector('.navbar');
     if (navbar) {
       var lastScrollY = window.scrollY;
       var ticking = false;
-      var SCROLL_HIDE_THRESHOLD = 80;
-
       function handleNavbarScroll() {
         var current = window.scrollY;
-        if (current < SCROLL_HIDE_THRESHOLD) {
-          navbar.classList.remove('pj-navbar-hidden');
-        } else if (current > lastScrollY) {
-          navbar.classList.add('pj-navbar-hidden');
-        } else {
-          navbar.classList.remove('pj-navbar-hidden');
-        }
+        if (current < 80 || current <= lastScrollY) navbar.classList.remove('pj-navbar-hidden');
+        else navbar.classList.add('pj-navbar-hidden');
         lastScrollY = current;
         ticking = false;
       }
-
       window.addEventListener('scroll', function () {
-        if (!ticking) {
-          window.requestAnimationFrame(handleNavbarScroll);
-          ticking = true;
-        }
+        if (!ticking) { window.requestAnimationFrame(handleNavbarScroll); ticking = true; }
       }, { passive: true });
     }
 
-    // ── 7. ≡ ボタンのクリック処理 ─────────────────────────────────────
-    toggleBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-
-      if (window.innerWidth < 992) {
-        // モバイル: カスタムドロワーを使用
-        drawer.classList.contains('pj-open') ? closeDrawer() : openDrawer();
-        return;
+    // ── P2: 小さな操作フィードバック --------------------------------------
+    document.addEventListener('click', function (event) {
+      var calloutHeader = event.target.closest('.callout-header[data-bs-toggle="collapse"]');
+      if (calloutHeader && !reducedMotion) {
+        var callout = calloutHeader.closest('.callout');
+        if (callout) {
+          callout.classList.remove('pj-callout-pulse');
+          void callout.offsetWidth;
+          callout.classList.add('pj-callout-pulse');
+          window.setTimeout(function () { callout.classList.remove('pj-callout-pulse'); }, 420);
+        }
       }
 
-      // デスクトップ: 既存のカスタムアニメーション
-      var body = document.body;
-      if (body.classList.contains('custom-sidebar-hidden')) {
-        body.classList.remove('custom-sidebar-hidden');
-        body.classList.add('custom-sidebar-showing');
-        setTimeout(function () { body.classList.remove('custom-sidebar-showing'); }, 400);
-      } else {
-        body.classList.remove('custom-sidebar-showing');
-        body.classList.add('custom-sidebar-hidden');
+      var copyButton = event.target.closest('.code-copy-button');
+      if (copyButton && !reducedMotion) {
+        copyButton.classList.add('pj-copy-success');
+        copyButton.setAttribute('data-pj-copy-state', 'copied');
+        window.setTimeout(function () {
+          copyButton.classList.remove('pj-copy-success');
+          copyButton.removeAttribute('data-pj-copy-state');
+        }, 1000);
       }
-    });
+
+      var anchor = event.target.closest('a[href^="#"]');
+      if (anchor) {
+        var targetId = anchor.getAttribute('href').slice(1);
+        var decodedTargetId = targetId;
+        try { decodedTargetId = decodeURIComponent(targetId); } catch (_) { /* keep raw hash */ }
+        var target = targetId && document.getElementById(decodedTargetId);
+        if (target && !reducedMotion) {
+          target.classList.remove('pj-anchor-target');
+          void target.offsetWidth;
+          target.classList.add('pj-anchor-target');
+          window.setTimeout(function () { target.classList.remove('pj-anchor-target'); }, 900);
+        }
+      }
+
+      if (event.target.closest('.quarto-color-scheme-toggle') && !reducedMotion) {
+        body.classList.remove('pj-theme-transition');
+        void body.offsetWidth;
+        body.classList.add('pj-theme-transition');
+        window.setTimeout(function () { body.classList.remove('pj-theme-transition'); }, 360);
+      }
+    }, true);
+
+    // TOC の現在地に追従する細いマーカー（既存の active 表現は維持）。
+    if (toc && window.IntersectionObserver) {
+      function tocTargetId(link) {
+        var href = link.getAttribute('href') || '';
+        var hash = '';
+        try {
+          var targetUrl = new URL(href, window.location.href);
+          var currentUrl = new URL(window.location.href);
+          if (targetUrl.origin !== currentUrl.origin ||
+              normalizedPath(targetUrl) !== normalizedPath(currentUrl)) return '';
+          hash = targetUrl.hash;
+        } catch (_) { return ''; }
+        var id = hash.slice(1);
+        try { id = decodeURIComponent(id); } catch (_) { /* keep raw hash */ }
+        return id;
+      }
+
+      var tocLinks = Array.prototype.slice.call(toc.querySelectorAll('a[href]')).filter(function (link) {
+        return document.getElementById(tocTargetId(link));
+      });
+      if (tocLinks.length) {
+        toc.style.position = 'relative';
+        var marker = document.createElement('span');
+        marker.className = 'pj-toc-marker';
+        marker.setAttribute('aria-hidden', 'true');
+        toc.appendChild(marker);
+        var visibleHeadings = new Map();
+        function moveMarker(link) {
+          var tocRect = toc.getBoundingClientRect();
+          var linkRect = link.getBoundingClientRect();
+          marker.style.left = Math.max(0, linkRect.left - tocRect.left) + 'px';
+          marker.style.height = linkRect.height + 'px';
+          marker.style.transform = 'translateY(' + (linkRect.top - tocRect.top + toc.scrollTop) + 'px)';
+          marker.style.opacity = '1';
+        }
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            var link = tocLinks.find(function (item) { return tocTargetId(item) === entry.target.id; });
+            if (link) visibleHeadings.set(entry.target, entry.isIntersecting ? entry.boundingClientRect.top : Infinity);
+          });
+          var current = Array.from(visibleHeadings.entries()).sort(function (a, b) { return a[1] - b[1]; })[0];
+          if (current) moveMarker(tocLinks.find(function (link) { return tocTargetId(link) === current[0].id; }));
+        }, { rootMargin: '-18% 0px -68% 0px', threshold: [0, 1] });
+        tocLinks.forEach(function (link) { observer.observe(document.getElementById(tocTargetId(link))); });
+        window.addEventListener('resize', function () {
+          var active = toc.querySelector('a.active') || tocLinks[0];
+          if (active) moveMarker(active);
+        });
+      }
+    }
   });
-})();
-</script>
+})();</script>
 
 <script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
@@ -1088,6 +1259,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/数学2F.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学2F</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../posts/univ_lecs/3S/材料力学2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料力学2</span></a>
   </div>
@@ -1481,7 +1658,7 @@ window.Quarto = {
 </div>
 </div>
 <p>ここでは1908年に出版された “The Virdict”を題材に使う。</p>
-<div id="7bbc9b63" class="cell" data-execution_count="1">
+<div id="f24f2dc1" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"./source/The_Verdict.txt"</span>, <span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    raw_text <span class="op">=</span> f.read()</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1523,7 +1700,7 @@ First 500 characters:
 </tbody>
 </table>
 <p>こんな感じで分割する。</p>
-<div id="ccc00c1f" class="cell" data-execution_count="2">
+<div id="e9795c40" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"Hello, world! This is an example."</span></span>
@@ -1540,7 +1717,7 @@ First 500 characters:
 </div>
 </div>
 <p>実際に与えられたテキストをトークンに分割する。</p>
-<div id="5f2778a4" class="cell" data-execution_count="3">
+<div id="d1f61140" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>preprocessed <span class="op">=</span> re.split(<span class="vs">r'</span><span class="kw">(</span><span class="pp">[,.:;?_!"()</span><span class="ch">\'</span><span class="pp">]</span><span class="cf">|</span><span class="vs">--</span><span class="cf">|</span><span class="dv">\s</span><span class="kw">)</span><span class="vs">'</span>, raw_text)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>preprocessed <span class="op">=</span> [token <span class="cf">for</span> token <span class="kw">in</span> preprocessed <span class="cf">if</span> token <span class="op">!=</span> <span class="st">''</span> <span class="kw">and</span> token <span class="op">!=</span> <span class="st">' '</span> <span class="kw">and</span> token <span class="op">!=</span> <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>]</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of tokens:"</span>, <span class="bu">len</span>(preprocessed))</span>
@@ -1551,7 +1728,7 @@ First 20 tokens: ['I', 'HAD', 'always', 'thought', 'Jack', 'Gisburn', 'rather', 
 </div>
 </div>
 <p>これをこれから、トークンにインデックスを割り当てていく。ただし今回はベクトルにするんじゃなくて、一次元のインデックスにする。</p>
-<div id="cb735120" class="cell" data-execution_count="4">
+<div id="41f6ccde" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>vocab <span class="op">=</span> <span class="bu">sorted</span>(<span class="bu">set</span>(preprocessed))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>token_to_idx <span class="op">=</span> {token: idx <span class="cf">for</span> idx, token <span class="kw">in</span> <span class="bu">enumerate</span>(vocab)}</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>idx_to_token <span class="op">=</span> {idx: token <span class="cf">for</span> token, idx <span class="kw">in</span> token_to_idx.items()}</span>
@@ -1585,7 +1762,7 @@ First 10 tokens with indices:
 </div>
 </div>
 <p>これまでの処理をまとめたクラスを作る。</p>
-<div id="f1467223" class="cell" data-execution_count="5">
+<div id="d3c40591" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SimpleTokenizer:</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, token_to_idx):</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.str_to_int <span class="op">=</span> token_to_idx</span>
@@ -1605,7 +1782,7 @@ First 10 tokens with indices:
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> text</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>上のクラスを試してみると、こんな感じになる。</p>
-<div id="4ae72e90" class="cell" data-execution_count="6">
+<div id="c7993ef5" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> SimpleTokenizer(token_to_idx)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>sample_text <span class="op">=</span> <span class="st">""""It's the last he painted, you know." Mrs. Gisburn said with pardonable pride. """</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>encoded <span class="op">=</span> tokenizer.encode(sample_text)</span>
@@ -1628,7 +1805,7 @@ Error encoding text with unknown token: 'token'</code></pre>
 </div>
 </div>
 <p>以上のテストからわかるように、適当な設計をすると辞書にない単語とかが出てきたときにエラーになる。実際のLLMでは、未知のトークンを扱うために <strong>Unknown Token (UNK)</strong> を用意する。また、同様にして、文の始まりや終わりを示す <strong>Start of Sequence (SOS)</strong> や <strong>End of Sequence (EOS)</strong> トークンも用意することが多い。これらの特殊トークンを辞書に追加して、モデルが適切に学習できるようにする。</p>
-<div id="96ca7bd1" class="cell" data-execution_count="7">
+<div id="3d2d5148" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>special_tokens <span class="op">=</span> [<span class="st">'&lt;UNK&gt;'</span>, <span class="st">'&lt;EOT&gt;'</span>]</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>vocab_extended <span class="op">=</span> special_tokens <span class="op">+</span> vocab</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>token_to_idx_extended <span class="op">=</span> {token: idx <span class="cf">for</span> idx, token <span class="kw">in</span> <span class="bu">enumerate</span>(vocab_extended)}</span>
@@ -1688,7 +1865,7 @@ Decoded with extended tokenizer: This &lt;UNK&gt; &lt;UNK&gt; not &lt;UNK&gt;: &
 <section id="bpe-トークナイザーの簡単な実装" class="level3">
 <h3 class="anchored" data-anchor-id="bpe-トークナイザーの簡単な実装">BPE トークナイザーの簡単な実装</h3>
 <p>これより以降は<a href="https://github.com/openai/tiktoken">tiktoken</a>を使って実装をしていく。</p>
-<div id="71135f58" class="cell" data-execution_count="8">
+<div id="ae4c03c9" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tiktoken</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>tokenizer_bpe <span class="op">=</span> tiktoken.get_encoding(<span class="st">"gpt2"</span>)</span>
@@ -1706,14 +1883,14 @@ Decoded with BPE tokenizer: Hello, world! This is an example. &lt;|endoftext|&gt
 </div>
 </div>
 <p>偶然の発見だが、「ち」は２つのトークンに分割されている。</p>
-<div id="27f3367c" class="cell" data-execution_count="9">
+<div id="1baa025e" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"22174 is encoded as:"</span>, tokenizer_bpe.decode([<span class="dv">2515</span>, <span class="dv">94</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>22174 is encoded as: ち</code></pre>
 </div>
 </div>
 <p>さて、ここから文章データをtokenizerにかけて、インデックス化していく。</p>
-<div id="2c3669e4" class="cell" data-execution_count="10">
+<div id="e243e555" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"./source/The_Verdict.txt"</span>, <span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    raw_text <span class="op">=</span> f.read()</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>encoded_text <span class="op">=</span> tokenizer_bpe.encode(raw_text)</span>
@@ -1725,7 +1902,7 @@ First 20 tokens: [40, 367, 2885, 1464, 1807, 3619, 402, 271, 10899, 2138, 257, 7
 </div>
 </div>
 <p>これからやっていく作業は、与えられた文章の先を推定するモデルである。</p>
-<div id="c28e0bea" class="cell" data-execution_count="11">
+<div id="b14c6bbf" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>context_size <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, context_size <span class="op">+</span> <span class="dv">1</span>):</span>
@@ -1794,7 +1971,7 @@ Decoded target token:  a
 </section>
 <section id="pytorch" class="level3">
 <h3 class="anchored" data-anchor-id="pytorch">PyTorch</h3>
-<div id="cf0a7422" class="cell" data-execution_count="12">
+<div id="f9aab67f" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.utils.data <span class="im">import</span> Dataset, DataLoader</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1819,7 +1996,7 @@ Decoded target token:  a
 </div>
 <p>以上のコードのように、テキストデータを<code>stride</code>ずつずらしながら、<code>max_length</code>の長さの入力シーケンスと対応するターゲットシーケンスを作成するデータセットクラスを定義する。</p>
 <p>実際に中身がどうなっているのかを見てみよう。</p>
-<div id="133d2da3" class="cell" data-execution_count="13">
+<div id="657aadfd" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> GPTDataset(raw_text, tokenizer_bpe, max_length<span class="op">=</span><span class="dv">10</span>, stride<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
@@ -1883,7 +2060,7 @@ Decoded target sequence:  a cheap genius--though a good fellow enough--
 </div>
 </div>
 <p>ちなみにGPT-4oのtokenizer使ってみると、こんな感じになる。</p>
-<div id="f9b585ca" class="cell" data-execution_count="14">
+<div id="9271305e" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>tokenizer_4o <span class="op">=</span> tiktoken.encoding_for_model(<span class="st">"gpt-4o"</span>)</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>dataset_4o <span class="op">=</span> GPTDataset(raw_text, tokenizer_4o, max_length<span class="op">=</span><span class="dv">10</span>, stride<span class="op">=</span><span class="dv">1</span>)</span>
@@ -1935,7 +2112,7 @@ Decoded target sequence:  Gisburn rather a cheap genius--though a good
 </div>
 </div>
 <p>次に、DataLoaderを使ってバッチ処理を行う。</p>
-<div id="26efdd92" class="cell" data-execution_count="15">
+<div id="5ffde685" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_dataloader_v1(txt, batchsize<span class="op">=</span><span class="dv">4</span>, max_length<span class="op">=</span><span class="dv">10</span>, stride<span class="op">=</span><span class="dv">1</span>, shuffle<span class="op">=</span><span class="va">True</span>, drop_last<span class="op">=</span><span class="va">True</span>, num_workers<span class="op">=</span><span class="dv">0</span>):</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    tokenizer <span class="op">=</span> tiktoken.get_encoding(<span class="st">"gpt2"</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    dataset <span class="op">=</span> GPTDataset(txt, tokenizer, max_length, stride)</span>
@@ -1944,7 +2121,7 @@ Decoded target sequence:  Gisburn rather a cheap genius--though a good
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dataloader</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>実際にこれのテストを行う。</p>
-<div id="aa7441c3" class="cell" data-execution_count="16">
+<div id="d461c660" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>dataloader <span class="op">=</span> create_dataloader_v1(raw_text, batchsize<span class="op">=</span><span class="dv">4</span>, max_length<span class="op">=</span><span class="dv">10</span>, stride<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>data_iter <span class="op">=</span> <span class="bu">iter</span>(dataloader)</span>
@@ -1952,14 +2129,14 @@ Decoded target sequence:  Gisburn rather a cheap genius--though a good
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Input:"</span>, inputs)</span>
 <span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Target:"</span>, targets)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Input: tensor([[  257,  6487,    13,   366, 10049,   262, 21296,   286,   340,   318],
-        [34900,  4875,  5888,    11,  3170,   416, 11661,    11,   318,  5364],
-        [  198,  3347, 27846,   503,  2048,  4628, 24882,   379,   262,  8812],
-        [  621,   339,   373,    13,   198,   198,  6653,  3656, 27846,   379]])
-Target: tensor([[ 6487,    13,   366, 10049,   262, 21296,   286,   340,   318,   326],
-        [ 4875,  5888,    11,  3170,   416, 11661,    11,   318,  5364,   284],
-        [ 3347, 27846,   503,  2048,  4628, 24882,   379,   262,  8812,   558],
-        [  339,   373,    13,   198,   198,  6653,  3656, 27846,   379,   683]])</code></pre>
+<pre><code>Input: tensor([[ 4185,  1359,    26,   788,   314,  3114,   379,   262, 50085,   757],
+        [   81,   621,   339,   373,    13,   198,   198,  6653,  3656, 27846],
+        [ 5975,   284,   502,   284,  3285,   326,    11,   287,   262,  6001],
+        [  812,   286,  5827, 40987,   913, 30802,   287,   790,  1627,    13]])
+Target: tensor([[ 1359,    26,   788,   314,  3114,   379,   262, 50085,   757,    13],
+        [  621,   339,   373,    13,   198,   198,  6653,  3656, 27846,   379],
+        [  284,   502,   284,  3285,   326,    11,   287,   262,  6001,   286],
+        [  286,  5827, 40987,   913, 30802,   287,   790,  1627,    13,   317]])</code></pre>
 </div>
 </div>
 <p>問題なさそうだ。</p>
@@ -1967,7 +2144,7 @@ Target: tensor([[ 6487,    13,   366, 10049,   262, 21296,   286,   340,   318, 
 <section id="embedding" class="level3">
 <h3 class="anchored" data-anchor-id="embedding">Embedding</h3>
 <p>実際にembedding層を作ってみる。</p>
-<div id="d114e5af" class="cell" data-execution_count="17">
+<div id="0f64f74f" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>input_ids <span class="op">=</span> torch.tensor([<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>])  <span class="co"># Example token indices</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>vocab_size <span class="op">=</span> <span class="dv">5</span>  <span class="co"># Example vocabulary size</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>embedding_dim <span class="op">=</span> <span class="dv">3</span>  <span class="co"># Example embedding dimension</span></span>
@@ -1979,9 +2156,9 @@ Target: tensor([[ 6487,    13,   366, 10049,   262, 21296,   286,   340,   318, 
 <div class="cell-output cell-output-stdout">
 <pre><code>Input IDs: tensor([2, 3, 1])
 Embedded Vectors:
- tensor([[ 1.3750,  1.4128, -0.3422],
-        [-1.9551,  0.3154, -1.4372],
-        [ 0.7122, -0.5318, -0.6350]], grad_fn=&lt;EmbeddingBackward0&gt;)</code></pre>
+ tensor([[-0.1691, -0.3079, -0.5277],
+        [-2.2306, -0.5798,  0.0470],
+        [-0.2808,  0.6765, -0.5553]], grad_fn=&lt;EmbeddingBackward0&gt;)</code></pre>
 </div>
 </div>
 <p>ここで何をしているのかをまとめておく。</p>
@@ -2057,7 +2234,7 @@ o^{\mathrm{T}} E =
 \]</span></p>
 <p>こんな感じで、各単語に対応する embedding vector を取り出すことができる。</p>
 <p>では実際にGPT-2のembedding層を使ってみる。</p>
-<div id="c8ffa237" class="cell" data-execution_count="18">
+<div id="4c0a7cf7" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoConfig</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>model_name <span class="op">=</span> <span class="st">"gpt2"</span></span>
@@ -2082,17 +2259,14 @@ o^{\mathrm{T}} E =
 <span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sample Input IDs:"</span>, sample_input_ids)</span>
 <span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Embedded Output Shape:"</span>, embedded_output.shape)</span>
 <span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Embedded Output:</span><span class="ch">\n</span><span class="st">"</span>, embedded_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.</code></pre>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Sample Input IDs: tensor([15496,    11,   995,     0])
 Embedded Output Shape: torch.Size([4, 768])
 Embedded Output:
- tensor([[ 0.1838,  0.6320, -0.3968,  ...,  0.9581, -1.4830, -0.7088],
-        [ 0.5373,  0.8564, -2.0265,  ..., -2.7716, -0.6980,  0.6588],
-        [-1.5653,  0.7370,  0.2167,  ...,  0.6617, -0.2603,  1.5293],
-        [ 1.3409,  0.6616,  0.0775,  ...,  1.6147, -1.2061,  0.3651]],
+ tensor([[-0.5483,  1.1533,  1.9400,  ..., -0.4255, -1.4242, -2.2976],
+        [ 0.0739,  0.1986, -0.7734,  ..., -0.6620,  0.3373,  0.3143],
+        [-0.6217,  1.2036,  0.4624,  ..., -0.4461,  0.4297,  0.3198],
+        [ 0.9759, -0.8635,  0.9318,  ...,  0.3954, -1.1938,  0.9783]],
        grad_fn=&lt;EmbeddingBackward0&gt;)</code></pre>
 </div>
 </div>
