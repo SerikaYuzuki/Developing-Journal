@@ -1,0 +1,53 @@
+<script>(function () {
+  "use strict";
+  document.addEventListener("DOMContentLoaded", function () {
+    var selectedText = "";
+    var actions = [["要約する", "次の文章を日本語で簡潔に要約してください。"], ["わかりやすく説明", "次の文章の内容を、前提知識がない人にもわかるように説明してください。"], ["文章を改善", "次の文章を自然で読みやすい日本語に改善してください。意味は変えないでください。"], ["自由に聞く", "次の文章について質問に答えてください。"]];
+    var destinations = { chatgpt: "https://chatgpt.com/", gemini: "https://gemini.google.com/app", desktop: "" };
+    var destination = "chatgpt";
+    var bubble = document.createElement("div");
+    bubble.className = "serika-selection-ai";
+    bubble.hidden = true;
+    bubble.setAttribute("role", "dialog");
+    bubble.setAttribute("aria-label", "選択テキストをAIに聞く");
+    bubble.innerHTML = '<button type="button" class="serika-selection-ai-trigger">✦ AIに聞く</button><div class="serika-selection-ai-menu" hidden><div class="serika-selection-ai-heading">送信先</div><div class="serika-selection-ai-destinations" role="group" aria-label="AIの送信先"><button type="button" data-ai-destination="chatgpt" aria-pressed="true">ChatGPT</button><button type="button" data-ai-destination="gemini" aria-pressed="false">Gemini</button><button type="button" data-ai-destination="desktop" aria-pressed="false">Desktop</button></div></div>';
+    document.body.appendChild(bubble);
+    var trigger = bubble.querySelector(".serika-selection-ai-trigger");
+    var menu = bubble.querySelector(".serika-selection-ai-menu");
+    bubble.addEventListener("mousedown", function (event) {
+      event.preventDefault();
+    });
+    var destinationButtons = bubble.querySelectorAll("[data-ai-destination]");
+    destinationButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        destination = button.getAttribute("data-ai-destination");
+        destinationButtons.forEach(function (item) { item.setAttribute("aria-pressed", String(item === button)); });
+        hint.textContent = destination === "desktop" ? "コピー後：⌥Space → ⌘V" : "開いたら ⌘V で貼り付け";
+      });
+    });
+    actions.forEach(function (action) {
+      var button = document.createElement("button");
+      button.type = "button"; button.textContent = action[0];
+      button.addEventListener("click", function () {
+        var prompt = action[1] + "\n\n--- 選択した文章 ---\n" + selectedText;
+        var copy = navigator.clipboard && navigator.clipboard.writeText ? navigator.clipboard.writeText(prompt) : Promise.reject();
+        if (destinations[destination]) window.open(destinations[destination], "_blank", "noopener");
+        copy.catch(function () { var area = document.createElement("textarea"); area.value = prompt; area.style.position = "fixed"; area.style.opacity = "0"; document.body.appendChild(area); area.select(); try { document.execCommand("copy"); } catch (_) {} area.remove(); }).then(function () { if (destination === "desktop") { hint.textContent = "✓ コピー済み：⌥Space → ⌘V"; } else { menu.hidden = true; } });
+      });
+      menu.appendChild(button);
+    });
+    var hint = document.createElement("div");
+    hint.className = "serika-selection-ai-hint";
+    hint.textContent = "開いたら ⌘V で貼り付け";
+    menu.appendChild(hint);
+    document.addEventListener("selectionchange", function () {
+      var selection = window.getSelection(); var text = selection ? selection.toString().trim() : "";
+      if (!text || !selection.rangeCount || !document.body.contains(selection.anchorNode)) { selectedText = ""; menu.hidden = true; bubble.hidden = true; return; }
+      selectedText = text; var rect = selection.getRangeAt(0).getBoundingClientRect();
+      bubble.style.left = Math.max(12, Math.min(window.innerWidth - 150, rect.left + rect.width / 2 - 72)) + "px";
+      bubble.style.top = Math.max(12, rect.top - 48 + window.scrollY) + "px"; bubble.hidden = false;
+    });
+    trigger.addEventListener("click", function () { menu.hidden = !menu.hidden; });
+    document.addEventListener("mousedown", function (event) { if (!bubble.contains(event.target)) menu.hidden = true; });
+  });
+})();</script>

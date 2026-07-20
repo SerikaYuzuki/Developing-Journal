@@ -131,6 +131,38 @@ $toc-active-border: $primary !default;
   --mobile-sidebar-title-color:  #f0f1f7;
   --mobile-sidebar-link-color:   #{rgba(164, 167, 194, 1)};
   --mobile-sidebar-cat-color:    #{rgba(255, 255, 255, 0.08)};
+
+  /* Prismatic Mathematical Observatory design system */
+  --obs-surface:                 rgba(20, 22, 39, 0.94);
+  --obs-surface-muted:           rgba(25, 28, 48, 0.92);
+  --obs-glass:                   rgba(35, 38, 66, 0.68);
+  --obs-glass-strong:            rgba(30, 33, 57, 0.84);
+  --obs-text:                    #eceef8;
+  --obs-text-muted:              #b4b7cc;
+  --obs-accent:                  #aa98ff;
+  --obs-accent-cyan:             #65d4e7;
+  --obs-accent-magenta:          #ef83c5;
+  --obs-border:                  rgba(196, 190, 255, 0.16);
+  --obs-border-highlight:        rgba(255, 255, 255, 0.12);
+  --obs-shadow-soft:             0 18px 50px rgba(3, 4, 14, 0.34);
+  --obs-shadow-float:            0 28px 80px rgba(3, 4, 14, 0.48);
+  --obs-grid:                    rgba(151, 174, 255, 0.045);
+  --obs-blur-sm:                 12px;
+  --obs-blur-lg:                 24px;
+  --obs-radius-sm:               10px;
+  --obs-radius-md:               18px;
+  --obs-radius-lg:               30px;
+  --obs-space-1:                 0.25rem;
+  --obs-space-2:                 0.5rem;
+  --obs-space-3:                 0.75rem;
+  --obs-space-4:                 1rem;
+  --obs-space-6:                 1.5rem;
+  --obs-space-8:                 2rem;
+  --obs-duration-fast:           160ms;
+  --obs-duration-ui:             260ms;
+  --obs-duration-narrative:      620ms;
+  --obs-ease:                    cubic-bezier(.22, .61, .36, 1);
+  --obs-ease-spring:             cubic-bezier(.2, .82, .2, 1);
 }
 
 // ---- Page background (gradient blobs over deep base) -----------------------
@@ -161,9 +193,9 @@ body {
     48% 100%,
     100% 88%,
     0% 0%;
-  background-attachment: fixed;
-  will-change: background-position;
-  animation: pj-bg-drift 24s ease-in-out infinite alternate;
+  background-attachment: scroll;
+  will-change: auto;
+  animation: none;
 }
 
 @keyframes pj-bg-drift {

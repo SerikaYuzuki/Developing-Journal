@@ -43,8 +43,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-9ce02ba9bf05f77acce06f7d436c50a3.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-1f9ac3ef0e8f262428fcc6bb703857ff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="dark">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-12243f65cb2b4c4bc0dbf661224a9805.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-3a630bdbd1324d3e097bbd82f884da11.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-61cfebcadcbd7f388d00fd026dfe9a05.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,6 +74,27 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script>(function () {
   "use strict";
+
+  // Load the two site-wide TeX extensions before Quarto starts MathJax.
+  // This keeps individual .qmd files free from repeated \require commands.
+  var mathJaxConfig = window.MathJax = window.MathJax || {};
+  var mathJaxLoader = mathJaxConfig.loader = mathJaxConfig.loader || {};
+  var mathJaxLoad = mathJaxLoader.load = mathJaxLoader.load || [];
+  ['[tex]/physics', '[tex]/mhchem'].forEach(function (component) {
+    if (mathJaxLoad.indexOf(component) < 0) mathJaxLoad.push(component);
+  });
+  var mathJaxTex = mathJaxConfig.tex = mathJaxConfig.tex || {};
+  var mathJaxPackages = mathJaxTex.packages = mathJaxTex.packages || {};
+  if (Array.isArray(mathJaxPackages)) {
+    ['physics', 'mhchem'].forEach(function (name) {
+      if (mathJaxPackages.indexOf(name) < 0) mathJaxPackages.push(name);
+    });
+  } else {
+    var mathJaxAdditions = mathJaxPackages['[+]'] = mathJaxPackages['[+]'] || [];
+    ['physics', 'mhchem'].forEach(function (name) {
+      if (mathJaxAdditions.indexOf(name) < 0) mathJaxAdditions.push(name);
+    });
+  }
 
   document.addEventListener("DOMContentLoaded", function () {
     var body = document.body;
@@ -405,6 +426,17 @@ ul.task-list li input[type="checkbox"] {
 
     // ── P2: 小さな操作フィードバック --------------------------------------
     document.addEventListener('click', function (event) {
+      var sidebarSectionToggle = event.target.closest('#quarto-sidebar .sidebar-item-toggle, #pj-drawer-body .sidebar-item-toggle');
+      if (sidebarSectionToggle && !reducedMotion) {
+        var chevron = sidebarSectionToggle.querySelector('.bi-chevron-right');
+        if (chevron) {
+          chevron.classList.remove('pj-chevron-highlight');
+          void chevron.offsetWidth;
+          chevron.classList.add('pj-chevron-highlight');
+          window.setTimeout(function () { chevron.classList.remove('pj-chevron-highlight'); }, 480);
+        }
+      }
+
       var calloutHeader = event.target.closest('.callout-header[data-bs-toggle="collapse"]');
       if (calloutHeader && !reducedMotion) {
         var callout = calloutHeader.closest('.callout');
@@ -448,8 +480,10 @@ ul.task-list li input[type="checkbox"] {
       }
     }, true);
 
-    // TOC の現在地に追従する細いマーカー（既存の active 表現は維持）。
-    if (toc && window.IntersectionObserver) {
+    // TOC marker follows the last heading that crossed the reading line.
+    // IntersectionObserver could retain a parent chapter while scrolling down,
+    // because no child heading happened to remain inside its narrow root band.
+    if (toc) {
       function tocTargetId(link) {
         var href = link.getAttribute('href') || '';
         var hash = '';
@@ -474,8 +508,15 @@ ul.task-list li input[type="checkbox"] {
         marker.className = 'pj-toc-marker';
         marker.setAttribute('aria-hidden', 'true');
         toc.appendChild(marker);
-        var visibleHeadings = new Map();
+        var tocItems = tocLinks.map(function (link) {
+          return { link: link, heading: document.getElementById(tocTargetId(link)), top: 0 };
+        });
+        var markerFrame = 0;
         function moveMarker(link) {
+          tocLinks.forEach(function (item) { item.classList.toggle('pj-toc-current', item === link); });
+          toc.querySelectorAll('ul.collapse').forEach(function (list) {
+            list.classList.toggle('show', list.contains(link));
+          });
           var tocRect = toc.getBoundingClientRect();
           var linkRect = link.getBoundingClientRect();
           marker.style.left = Math.max(0, linkRect.left - tocRect.left) + 'px';
@@ -483,24 +524,526 @@ ul.task-list li input[type="checkbox"] {
           marker.style.transform = 'translateY(' + (linkRect.top - tocRect.top + toc.scrollTop) + 'px)';
           marker.style.opacity = '1';
         }
-        var observer = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            var link = tocLinks.find(function (item) { return tocTargetId(item) === entry.target.id; });
-            if (link) visibleHeadings.set(entry.target, entry.isIntersecting ? entry.boundingClientRect.top : Infinity);
+
+        function refreshTocOffsets() {
+          tocItems.forEach(function (item) {
+            item.top = item.heading.getBoundingClientRect().top + window.scrollY;
           });
-          var current = Array.from(visibleHeadings.entries()).sort(function (a, b) { return a[1] - b[1]; })[0];
-          if (current) moveMarker(tocLinks.find(function (link) { return tocTargetId(link) === current[0].id; }));
-        }, { rootMargin: '-18% 0px -68% 0px', threshold: [0, 1] });
-        tocLinks.forEach(function (link) { observer.observe(document.getElementById(tocTargetId(link))); });
-        window.addEventListener('resize', function () {
-          var active = toc.querySelector('a.active') || tocLinks[0];
-          if (active) moveMarker(active);
+          tocItems.sort(function (a, b) { return a.top - b.top; });
+        }
+
+        function updateTocMarker() {
+          var readingLine = window.scrollY + Math.min(window.innerHeight * 0.24, 220);
+          var current = tocItems[0];
+          tocItems.forEach(function (item) {
+            if (item.top <= readingLine) current = item;
+          });
+          if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+            current = tocItems[tocItems.length - 1];
+          }
+          if (current) moveMarker(current.link);
+          markerFrame = 0;
+        }
+
+        function requestTocMarkerUpdate(refresh) {
+          if (refresh) refreshTocOffsets();
+          if (!markerFrame) markerFrame = window.requestAnimationFrame(updateTocMarker);
+        }
+
+        refreshTocOffsets();
+        requestTocMarkerUpdate(false);
+        window.addEventListener('scroll', function () { requestTocMarkerUpdate(false); }, { passive: true });
+        window.addEventListener('resize', function () { requestTocMarkerUpdate(true); });
+        window.addEventListener('load', function () { requestTocMarkerUpdate(true); });
+        document.addEventListener('shown.bs.collapse', function () { requestTocMarkerUpdate(true); });
+        document.addEventListener('hidden.bs.collapse', function () { requestTocMarkerUpdate(true); });
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(function () { requestTocMarkerUpdate(true); });
+        }
+        if (window.ResizeObserver) {
+          var tocResizeObserver = new ResizeObserver(function () { requestTocMarkerUpdate(true); });
+          tocResizeObserver.observe(toc);
+        }
+        document.addEventListener('click', function (event) {
+          if (event.target.closest('.pj-toc-toggle')) {
+            window.setTimeout(function () { requestTocMarkerUpdate(true); }, reducedMotion ? 0 : 400);
+          }
         });
       }
+    }
+
+    // ── Prismatic Mathematical Observatory: Phase 1 reading layer ---------
+    var article = document.getElementById('quarto-document-content');
+    if (article) {
+      var titleBlock = article.querySelector('#title-block-header');
+      var title = titleBlock && titleBlock.querySelector('.title');
+      var chapterSections = Array.prototype.slice.call(article.querySelectorAll(':scope > section.level2'));
+      var allHeadings = Array.prototype.slice.call(article.querySelectorAll('section > h2, section > h3'));
+      var budouHeadings = Array.prototype.slice.call(article.querySelectorAll('section > h2, section > h3, section > h4, section > h5, section > h6'));
+
+      function applyBudouToHeading(heading) {
+        if (!heading || heading.querySelector(':scope > budoux-ja')) return;
+        if (!/[\u3040-\u30ff\u3400-\u9fff]/.test(heading.textContent || '')) return;
+        var excluded = '.anchorjs-link, .header-section-number, .pj-chapter-marker';
+        var contentNodes = Array.prototype.slice.call(heading.childNodes).filter(function (node) {
+          return node.nodeType === Node.TEXT_NODE ||
+            (node.nodeType === Node.ELEMENT_NODE && !node.matches(excluded));
+        });
+        if (!contentNodes.length) return;
+        var wrapper = document.createElement('budoux-ja');
+        var insertionPoint = document.createComment('budoux');
+        heading.insertBefore(insertionPoint, contentNodes[0]);
+        contentNodes.forEach(function (node) { wrapper.appendChild(node); });
+        heading.replaceChild(wrapper, insertionPoint);
+      }
+
+      applyBudouToHeading(title);
+      budouHeadings.forEach(applyBudouToHeading);
+
+      // Progress UI remains useful without animation and is announced only
+      // when explicitly focused, avoiding noisy live-region scroll updates.
+      var progress = document.createElement('div');
+      progress.id = 'pj-reading-progress';
+      progress.setAttribute('role', 'progressbar');
+      progress.setAttribute('aria-label', '記事の読書進捗');
+      progress.setAttribute('aria-valuemin', '0');
+      progress.setAttribute('aria-valuemax', '100');
+      progress.setAttribute('aria-valuenow', '0');
+      progress.innerHTML = '<span class="pj-reading-progress-bar" aria-hidden="true"></span>';
+      document.body.insertBefore(progress, document.body.firstChild);
+
+      var status = document.createElement('aside');
+      status.id = 'pj-reading-status';
+      status.setAttribute('aria-label', '現在の読書位置');
+      status.setAttribute('tabindex', '0');
+      status.innerHTML = [
+        '<span class="pj-reading-orbit" aria-hidden="true"></span>',
+        '<span class="pj-reading-copy">',
+          '<span class="pj-reading-chapter">Introduction</span>',
+          '<span class="pj-reading-heading">記事の先頭</span>',
+        '</span>',
+        '<span class="pj-reading-percent">0%</span>'
+      ].join('');
+      document.body.appendChild(status);
+
+      if (titleBlock && title) {
+        titleBlock.classList.add('pj-observatory-hero');
+
+        if (!reducedMotion && window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+          ['cyan', 'magenta'].forEach(function (tone) {
+            var layer = document.createElement('span');
+            layer.className = 'pj-title-chroma pj-title-chroma-' + tone;
+            layer.setAttribute('aria-hidden', 'true');
+            Array.prototype.slice.call(title.childNodes).forEach(function (node) {
+              if (node.nodeType === Node.ELEMENT_NODE && node.matches('.anchorjs-link, .pj-title-chroma')) return;
+              layer.appendChild(node.cloneNode(true));
+            });
+            title.appendChild(layer);
+          });
+
+          var chromaFrame = 0;
+          var pointerX = -10000;
+          var pointerY = -10000;
+          function renderTitleChroma() {
+            var rect = title.getBoundingClientRect();
+            var nearestX = Math.max(rect.left, Math.min(pointerX, rect.right));
+            var nearestY = Math.max(rect.top, Math.min(pointerY, rect.bottom));
+            var distance = Math.hypot(pointerX - nearestX, pointerY - nearestY);
+            var proximity = Math.max(0, 1 - distance / 150);
+            var horizontal = pointerX < rect.left + rect.width / 2 ? -1 : 1;
+            var vertical = pointerY < rect.top + rect.height / 2 ? -1 : 1;
+            var shift = 0.55 + proximity * 1.25;
+            title.style.setProperty('--pj-chroma-opacity', String(proximity * 0.3));
+            title.style.setProperty('--pj-chroma-cyan-x', (-horizontal * shift) + 'px');
+            title.style.setProperty('--pj-chroma-cyan-y', (-vertical * shift * 0.28) + 'px');
+            title.style.setProperty('--pj-chroma-magenta-x', (horizontal * shift) + 'px');
+            title.style.setProperty('--pj-chroma-magenta-y', (vertical * shift * 0.28) + 'px');
+            chromaFrame = 0;
+          }
+          document.addEventListener('pointermove', function (event) {
+            pointerX = event.clientX;
+            pointerY = event.clientY;
+            if (!chromaFrame) chromaFrame = window.requestAnimationFrame(renderTitleChroma);
+          }, { passive: true });
+          window.addEventListener('blur', function () {
+            title.style.setProperty('--pj-chroma-opacity', '0');
+          });
+        }
+
+        var yearMatch = (titleBlock.textContent || '').match(/(?:19|20)\d{2}/);
+        var overline = document.createElement('p');
+        overline.className = 'pj-hero-overline';
+        overline.textContent = 'PRISMATIC MATHEMATICAL OBSERVATORY' + (yearMatch ? ' · ' + yearMatch[0] : '');
+        title.parentNode.insertBefore(overline, title);
+
+        var readingText = Array.prototype.slice.call(article.querySelectorAll('section p, section li'))
+          .map(function (node) { return node.textContent || ''; }).join(' ');
+        var japaneseChars = (readingText.match(/[\u3040-\u30ff\u3400-\u9fff]/g) || []).length;
+        var latinWords = (readingText.match(/[A-Za-z0-9]+/g) || []).length;
+        var readingMinutes = Math.max(1, Math.ceil(japaneseChars / 500 + latinWords / 220));
+
+        var dashboard = document.createElement('div');
+        dashboard.className = 'pj-hero-dashboard';
+        dashboard.innerHTML = [
+          '<div class="pj-hero-stat"><span>READING TIME</span><strong>' + readingMinutes + ' min</strong></div>',
+          '<div class="pj-hero-stat"><span>CHAPTERS</span><strong>' + chapterSections.length + '</strong></div>'
+        ].join('');
+        titleBlock.appendChild(dashboard);
+
+      }
+
+      chapterSections.forEach(function (section, index) {
+        var heading = section.querySelector(':scope > h2');
+        if (!heading) return;
+        section.classList.add('pj-chapter');
+        section.style.setProperty('--pj-chapter-index', String(index));
+        var marker = document.createElement('span');
+        marker.className = 'pj-chapter-marker';
+        marker.setAttribute('aria-hidden', 'true');
+        marker.innerHTML = '<span class="pj-chapter-number">CHAPTER ' + String(index + 1).padStart(2, '0') + '</span><span class="pj-chapter-symbol">' + ['∿', '∑', 'ƒ', '∫'][index % 4] + '</span>';
+        heading.insertBefore(marker, heading.firstChild);
+      });
+
+      article.querySelectorAll('.callout').forEach(function (callout) {
+        var calloutTitle = callout.querySelector('.callout-title-container');
+        var label = calloutTitle ? calloutTitle.textContent.trim() : '';
+        if (/理論|Theory/i.test(label)) callout.classList.add('pj-theory-card');
+        if (/解答|Answer|Solution/i.test(label)) {
+          callout.classList.add('pj-solution-card');
+          var header = callout.querySelector('.callout-header[data-bs-toggle="collapse"]');
+          if (header) header.setAttribute('aria-label', header.getAttribute('aria-expanded') === 'true' ? '解答を閉じる' : '解答を見る');
+        }
+      });
+
+      document.addEventListener('shown.bs.collapse', function (event) {
+        var header = event.target.closest('.callout') && event.target.closest('.callout').querySelector('.callout-header');
+        if (header && header.closest('.pj-solution-card')) header.setAttribute('aria-label', '解答を閉じる');
+      });
+      document.addEventListener('hidden.bs.collapse', function (event) {
+        var header = event.target.closest('.callout') && event.target.closest('.callout').querySelector('.callout-header');
+        if (header && header.closest('.pj-solution-card')) header.setAttribute('aria-label', '解答を見る');
+      });
+
+      if (window.IntersectionObserver && !reducedMotion) {
+        var chapterRevealObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              var chapter = entry.target.closest('.pj-chapter');
+              if (chapter) chapter.classList.add('pj-chapter-visible');
+              chapterRevealObserver.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -14% 0px', threshold: 0.12 });
+        chapterSections.forEach(function (section) {
+          var heading = section.querySelector(':scope > h2');
+          if (heading) chapterRevealObserver.observe(heading);
+        });
+      } else {
+        chapterSections.forEach(function (section) { section.classList.add('pj-chapter-visible'); });
+      }
+
+      var statusChapter = status.querySelector('.pj-reading-chapter');
+      var statusHeading = status.querySelector('.pj-reading-heading');
+      var statusPercent = status.querySelector('.pj-reading-percent');
+      var progressBar = progress.querySelector('.pj-reading-progress-bar');
+      var progressTicking = false;
+      var completed = false;
+      var headingOffsets = [];
+
+      function refreshHeadingOffsets() {
+        headingOffsets = allHeadings.map(function (heading) {
+          return {
+            heading: heading,
+            top: heading.getBoundingClientRect().top + window.scrollY
+          };
+        });
+      }
+
+      function headingAtReadingLine() {
+        var readingLine = window.scrollY + Math.min(window.innerHeight * 0.32, 280);
+        var current = null;
+        headingOffsets.forEach(function (item) {
+          if (item.top <= readingLine) current = item.heading;
+        });
+        return current;
+      }
+
+      function updateReadingState() {
+        var root = document.documentElement;
+        var max = Math.max(1, root.scrollHeight - window.innerHeight);
+        var percentage = Math.max(0, Math.min(100, Math.round(window.scrollY / max * 100)));
+        var currentHeading = headingAtReadingLine();
+        var currentChapter = currentHeading && currentHeading.closest('.pj-chapter');
+        var chapterIndex = currentChapter ? chapterSections.indexOf(currentChapter) + 1 : 0;
+        var headingLabel = currentHeading ? currentHeading.cloneNode(true) : null;
+        if (headingLabel) headingLabel.querySelectorAll('.pj-chapter-marker, .anchorjs-link').forEach(function (node) { node.remove(); });
+        var headingText = headingLabel ? headingLabel.textContent.trim() : '記事の先頭';
+        var chapterHeading = currentChapter && currentChapter.querySelector(':scope > h2');
+        var chapterText = chapterHeading ? chapterHeading.cloneNode(true) : null;
+        if (chapterText) chapterText.querySelectorAll('.pj-chapter-marker, .anchorjs-link').forEach(function (node) { node.remove(); });
+
+        document.documentElement.style.setProperty('--pj-reading-progress', percentage + '%');
+        progressBar.style.transform = 'scaleX(' + (percentage / 100) + ')';
+        progress.setAttribute('aria-valuenow', String(percentage));
+        progress.setAttribute('aria-valuetext', percentage + '%、' + headingText);
+        statusPercent.textContent = percentage + '%';
+        statusHeading.textContent = headingText;
+        statusChapter.textContent = chapterIndex ? 'Chapter ' + String(chapterIndex).padStart(2, '0') + ' · ' + chapterText.textContent.trim() : 'Introduction';
+        document.body.dataset.pjChapter = chapterIndex ? String(chapterIndex) : '0';
+
+        if (percentage >= 99 && !completed) {
+          completed = true;
+          status.classList.add('pj-reading-complete');
+        } else if (percentage < 96 && completed) {
+          completed = false;
+          status.classList.remove('pj-reading-complete');
+        }
+        progressTicking = false;
+      }
+
+      function requestReadingUpdate() {
+        if (!progressTicking) {
+          progressTicking = true;
+          window.requestAnimationFrame(updateReadingState);
+        }
+      }
+      refreshHeadingOffsets();
+      updateReadingState();
+      window.addEventListener('scroll', requestReadingUpdate, { passive: true });
+      window.addEventListener('resize', function () {
+        refreshHeadingOffsets();
+        requestReadingUpdate();
+      });
+      window.addEventListener('load', function () {
+        refreshHeadingOffsets();
+        requestReadingUpdate();
+      }, { once: true });
+
+      // ── Lightweight reference previews ---------------------------------
+      // Same-page equations/headings are read from the current DOM. Internal
+      // pages are fetched only on first hover/focus and cached. External URLs
+      // never trigger a network request; their destination is shown instead.
+      var linkPreview = document.createElement('div');
+      linkPreview.id = 'pj-link-preview';
+      linkPreview.setAttribute('role', 'tooltip');
+      linkPreview.hidden = true;
+      document.body.appendChild(linkPreview);
+      var previewCache = new Map();
+      var activePreviewLink = null;
+      var previewCloseTimer;
+
+      function previewLinkFromEvent(event) {
+        var link = event.target.closest && event.target.closest('a[href]');
+        if (!link || !article.contains(link)) return null;
+        if (link.matches('.anchorjs-link, .code-copy-button, [data-bs-toggle], [role="button"]')) return null;
+        var href = link.getAttribute('href') || '';
+        if (!href || href === '#' || /^(javascript|mailto|tel):/i.test(href)) return null;
+        return link;
+      }
+
+      function previewText(value, limit) {
+        var text = String(value || '').replace(/\s+/g, ' ').trim();
+        return text.length > limit ? text.slice(0, limit - 1) + '…' : text;
+      }
+
+      function renderLinkPreview(data, link) {
+        if (activePreviewLink !== link) return;
+        linkPreview.replaceChildren();
+        var type = document.createElement('span');
+        type.className = 'pj-link-preview-type';
+        type.textContent = data.type;
+        var heading = document.createElement('strong');
+        heading.textContent = data.title;
+        linkPreview.appendChild(type);
+        linkPreview.appendChild(heading);
+        if (data.node) {
+          var nodeWrap = document.createElement('div');
+          nodeWrap.className = 'pj-link-preview-math';
+          nodeWrap.appendChild(data.node.cloneNode(true));
+          linkPreview.appendChild(nodeWrap);
+        } else if (data.description) {
+          var description = document.createElement('span');
+          description.className = 'pj-link-preview-description';
+          description.textContent = data.description;
+          linkPreview.appendChild(description);
+        }
+        linkPreview.hidden = false;
+        var describedBy = (link.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean);
+        if (describedBy.indexOf('pj-link-preview') === -1) {
+          link.dataset.pjPreviewDescribedby = describedBy.join(' ');
+          describedBy.push('pj-link-preview');
+          link.setAttribute('aria-describedby', describedBy.join(' '));
+        }
+        window.requestAnimationFrame(function () {
+          if (activePreviewLink !== link) return;
+          var linkRect = link.getBoundingClientRect();
+          var previewRect = linkPreview.getBoundingClientRect();
+          var left = Math.min(window.innerWidth - previewRect.width - 12, Math.max(12, linkRect.left));
+          var below = linkRect.bottom + 10;
+          var top = below + previewRect.height <= window.innerHeight - 12
+            ? below
+            : Math.max(12, linkRect.top - previewRect.height - 10);
+          linkPreview.style.left = left + 'px';
+          linkPreview.style.top = top + 'px';
+        });
+      }
+
+      function localTargetPreview(url, link) {
+        if (!url.hash || normalizedPath(url) !== normalizedPath(new URL(window.location.href))) return null;
+        var id = url.hash.slice(1);
+        try { id = decodeURIComponent(id); } catch (_) { /* keep raw id */ }
+        var target = document.getElementById(id);
+        if (!target) return null;
+        var math = target.matches('.math, mjx-container, [id^="eq-"]') ? target : null;
+        var targetHeading = target.matches('h1, h2, h3, h4, h5, h6')
+          ? target
+          : target.querySelector('h1, h2, h3, h4, h5, h6');
+        var targetParagraph = target.matches('p, li') ? target : target.querySelector('p, li');
+        return {
+          type: math ? 'EQUATION' : 'ON THIS PAGE',
+          title: previewText((targetHeading || link).textContent, 80) || '参照先',
+          description: math ? '' : previewText((targetParagraph || target).textContent, 180),
+          node: math
+        };
+      }
+
+      function internalPagePreview(url) {
+        var cacheKey = url.origin + url.pathname + url.search;
+        if (!previewCache.has(cacheKey)) {
+          previewCache.set(cacheKey, window.fetch(cacheKey, {
+            credentials: 'same-origin',
+            headers: { 'Accept': 'text/html' }
+          }).then(function (response) {
+            if (!response.ok) throw new Error('preview unavailable');
+            return response.text();
+          }).then(function (html) {
+            var previewDocument = new DOMParser().parseFromString(html, 'text/html');
+            var pageTitle = previewDocument.querySelector('main h1, .quarto-title .title, h1');
+            var description = previewDocument.querySelector('meta[name="description"]');
+            var firstParagraph = previewDocument.querySelector('main p, article p');
+            return {
+              type: 'PAGE PREVIEW',
+              title: previewText(pageTitle ? pageTitle.textContent : previewDocument.title, 90) || url.pathname,
+              description: previewText(description ? description.content : (firstParagraph && firstParagraph.textContent), 190)
+            };
+          }).catch(function () {
+            return { type: 'INTERNAL LINK', title: url.pathname, description: 'リンク先を開いて内容を確認できます。' };
+          }));
+        }
+        return previewCache.get(cacheKey);
+      }
+
+      function showLinkPreview(link) {
+        window.clearTimeout(previewCloseTimer);
+        activePreviewLink = link;
+        var url;
+        try { url = new URL(link.href, window.location.href); } catch (_) { return; }
+        var localPreview = localTargetPreview(url, link);
+        if (localPreview) {
+          renderLinkPreview(localPreview, link);
+          return;
+        }
+        if (url.origin === window.location.origin) {
+          internalPagePreview(url).then(function (data) { renderLinkPreview(data, link); });
+          return;
+        }
+        renderLinkPreview({
+          type: 'EXTERNAL LINK',
+          title: previewText(link.textContent, 90) || url.hostname,
+          description: url.hostname
+        }, link);
+      }
+
+      function hideLinkPreview(link) {
+        window.clearTimeout(previewCloseTimer);
+        previewCloseTimer = window.setTimeout(function () {
+          if (link) {
+            var previousDescription = link.dataset.pjPreviewDescribedby || '';
+            if (previousDescription) link.setAttribute('aria-describedby', previousDescription);
+            else link.removeAttribute('aria-describedby');
+            delete link.dataset.pjPreviewDescribedby;
+          }
+          activePreviewLink = null;
+          linkPreview.hidden = true;
+        }, reducedMotion ? 0 : 90);
+      }
+
+      article.addEventListener('pointerover', function (event) {
+        var link = previewLinkFromEvent(event);
+        if (link && (!event.relatedTarget || !link.contains(event.relatedTarget))) showLinkPreview(link);
+      });
+      article.addEventListener('pointerout', function (event) {
+        var link = previewLinkFromEvent(event);
+        if (link && (!event.relatedTarget || !link.contains(event.relatedTarget))) hideLinkPreview(link);
+      });
+      article.addEventListener('focusin', function (event) {
+        var link = previewLinkFromEvent(event);
+        if (link) showLinkPreview(link);
+      });
+      article.addEventListener('focusout', function (event) {
+        var link = previewLinkFromEvent(event);
+        if (link) hideLinkPreview(link);
+      });
+      window.addEventListener('scroll', function () {
+        if (activePreviewLink) hideLinkPreview(activePreviewLink);
+      }, { passive: true });
     }
   });
 })();</script>
 
+<script>(function () {
+  "use strict";
+  document.addEventListener("DOMContentLoaded", function () {
+    var selectedText = "";
+    var actions = [["要約する", "次の文章を日本語で簡潔に要約してください。"], ["わかりやすく説明", "次の文章の内容を、前提知識がない人にもわかるように説明してください。"], ["文章を改善", "次の文章を自然で読みやすい日本語に改善してください。意味は変えないでください。"], ["自由に聞く", "次の文章について質問に答えてください。"]];
+    var destinations = { chatgpt: "https://chatgpt.com/", gemini: "https://gemini.google.com/app", desktop: "" };
+    var destination = "chatgpt";
+    var bubble = document.createElement("div");
+    bubble.className = "serika-selection-ai";
+    bubble.hidden = true;
+    bubble.setAttribute("role", "dialog");
+    bubble.setAttribute("aria-label", "選択テキストをAIに聞く");
+    bubble.innerHTML = '<button type="button" class="serika-selection-ai-trigger">✦ AIに聞く</button><div class="serika-selection-ai-menu" hidden><div class="serika-selection-ai-heading">送信先</div><div class="serika-selection-ai-destinations" role="group" aria-label="AIの送信先"><button type="button" data-ai-destination="chatgpt" aria-pressed="true">ChatGPT</button><button type="button" data-ai-destination="gemini" aria-pressed="false">Gemini</button><button type="button" data-ai-destination="desktop" aria-pressed="false">Desktop</button></div></div>';
+    document.body.appendChild(bubble);
+    var trigger = bubble.querySelector(".serika-selection-ai-trigger");
+    var menu = bubble.querySelector(".serika-selection-ai-menu");
+    bubble.addEventListener("mousedown", function (event) {
+      event.preventDefault();
+    });
+    var destinationButtons = bubble.querySelectorAll("[data-ai-destination]");
+    destinationButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        destination = button.getAttribute("data-ai-destination");
+        destinationButtons.forEach(function (item) { item.setAttribute("aria-pressed", String(item === button)); });
+        hint.textContent = destination === "desktop" ? "コピー後：⌥Space → ⌘V" : "開いたら ⌘V で貼り付け";
+      });
+    });
+    actions.forEach(function (action) {
+      var button = document.createElement("button");
+      button.type = "button"; button.textContent = action[0];
+      button.addEventListener("click", function () {
+        var prompt = action[1] + "\n\n--- 選択した文章 ---\n" + selectedText;
+        var copy = navigator.clipboard && navigator.clipboard.writeText ? navigator.clipboard.writeText(prompt) : Promise.reject();
+        if (destinations[destination]) window.open(destinations[destination], "_blank", "noopener");
+        copy.catch(function () { var area = document.createElement("textarea"); area.value = prompt; area.style.position = "fixed"; area.style.opacity = "0"; document.body.appendChild(area); area.select(); try { document.execCommand("copy"); } catch (_) {} area.remove(); }).then(function () { if (destination === "desktop") { hint.textContent = "✓ コピー済み：⌥Space → ⌘V"; } else { menu.hidden = true; } });
+      });
+      menu.appendChild(button);
+    });
+    var hint = document.createElement("div");
+    hint.className = "serika-selection-ai-hint";
+    hint.textContent = "開いたら ⌘V で貼り付け";
+    menu.appendChild(hint);
+    document.addEventListener("selectionchange", function () {
+      var selection = window.getSelection(); var text = selection ? selection.toString().trim() : "";
+      if (!text || !selection.rangeCount || !document.body.contains(selection.anchorNode)) { selectedText = ""; menu.hidden = true; bubble.hidden = true; return; }
+      selectedText = text; var rect = selection.getRangeAt(0).getBoundingClientRect();
+      bubble.style.left = Math.max(12, Math.min(window.innerWidth - 150, rect.left + rect.width / 2 - 72)) + "px";
+      bubble.style.top = Math.max(12, rect.top - 48 + window.scrollY) + "px"; bubble.hidden = false;
+    });
+    trigger.addEventListener("click", function () { menu.hidden = !menu.hidden; });
+    document.addEventListener("mousedown", function (event) { if (!bubble.contains(event.target)) menu.hidden = true; });
+  });
+})();</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -2585,10 +3128,10 @@ E_v  ─────────────────</code></pre>
 <p>太陽電池は基本的には pn 接合であり，<span class="math inline">\(h\nu \ge E_g\)</span> の光子が電子・正孔対を生成し，空乏層の内蔵電場がそれらを分離することで外部回路に電流を取り出す。<span class="math inline">\(E_g\)</span> より小さいエネルギーの光は吸収されず，<span class="math inline">\(E_g\)</span> より大きすぎる余剰エネルギーは主に熱として失われる。</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 8%">
-<col style="width: 38%">
-<col style="width: 24%">
-<col style="width: 28%">
+<col style="width: 20%">
+<col style="width: 33%">
+<col style="width: 20%">
+<col style="width: 25%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -2658,7 +3201,7 @@ E_v  ─────────────────</code></pre>
 </ul>
 <ol start="2" type="1">
 <li><p>異なる <span class="math inline">\(E_g\)</span> を持つ複数の材料を積層する（<strong>タンデム型太陽電池</strong>）。光の入射側から順に <span class="math inline">\(E_g\)</span> の大きな材料、中間の材料、小さな材料を配置する。これにより、高エネルギーの短波長光は上層の大きな <span class="math inline">\(E_g\)</span> を持つ材料で高い電圧として回収し、透過した低エネルギーの長波長光は下層の小さな <span class="math inline">\(E_g\)</span> の材料で吸収・発電させることで、太陽光スペクトル全体を極めて効率的に利用できる。</p></li>
-<li><p>格子定数がほぼ等しく（格子整合）、異なる <span class="math inline">\(E_g\)</span> を持つ <strong>InGaP（上層・高 <span class="math inline">\(E_g\)</span>）/ GaAs（中層・中 <span class="math inline">\(E_g\)</span>）/ Ge（下層・低 <span class="math inline">\(E_g\)</span>）</strong> の 3 接合の組み合わせが代表的である。</p></li>
+<li><p>格子定数がほぼ等しく（格子整合）、異なる <span class="math inline">\(E_g\)</span> を持つ <strong>InGaP（上層・高</strong> <span class="math inline">\(E_g\)</span>）/ GaAs（中層・中 <span class="math inline">\(E_g\)</span>）/ Ge（下層・低 <span class="math inline">\(E_g\)</span>） の 3 接合の組み合わせが代表的である。</p></li>
 </ol>
 <p>図示するなら，光入射側から「高 <span class="math inline">\(E_g\)</span> 層 → 中 <span class="math inline">\(E_g\)</span> 層 → 低 <span class="math inline">\(E_g\)</span> 層」の順に積み，上層が短波長光を吸収し，下層ほど透過した長波長光を吸収するように描けばよい。</p>
 <ol start="4" type="1">
@@ -3025,7 +3568,7 @@ E_i=\frac{E_c+E_v}{2}+\frac{kT}{2}\ln\left(\frac{N_v}{N_c}\right)
 <p>この問題は，前半で別々に出てきた三つの考え方を接続する問題である。水素原子の量子化は <a href="#quiz-3-bohr">小テスト #3【1】</a>，キャリヤ密度とフェルミ準位の数値計算は <a href="#quiz-6-doped-si">小テスト #6</a>，真性半導体との違いは <a href="#past-1-intrinsic">過去問１</a> を参照する。ここでは「不純物がなぜ浅い準位を作り，その電子が伝導帯へ移るとバンド図と金属接触がどう変わるか」を一本の物語として組み立てる。</p>
 <p><strong>1. As は，5 本目の電子を持ってきた Si の代役</strong></p>
 <p>Si 原子は 4 個の価電子を使い，周囲の Si と 4 本の共有結合を作る。Si の一部を V 族の As に置き換えると，As の価電子 5 個のうち 4 個は同じ結合に使われ，1 個だけ余る。この電子は結晶中を動ける電子として提供されるので As を<strong>ドナー</strong>と呼び，電子を放した後の As は正に帯電した固定イオン <span class="math inline">\(\mathrm{As}^+\)</span> になる。</p>
-<p>ただし 0 K では，余った電子はすぐ伝導帯を自由に走るわけではない。正に帯電したドナーへ弱く束縛され，伝導帯下端 <span class="math inline">\(E_c\)</span> の少し下に<strong>ドナー準位 <span class="math inline">\(E_D\)</span></strong> を作る。B は価電子が 3 個なので逆に電子を一つ受け入れる<strong>アクセプタ準位</strong>を <span class="math inline">\(E_v\)</span> の少し上に作り，p 型 Si になる。</p>
+<p>ただし 0 K では，余った電子はすぐ伝導帯を自由に走るわけではない。正に帯電したドナーへ弱く束縛され，伝導帯下端 <span class="math inline">\(E_c\)</span> の少し下に<strong>ドナー準位</strong> <span class="math inline">\(E_D\)</span> を作る。B は価電子が 3 個なので逆に電子を一つ受け入れる<strong>アクセプタ準位</strong>を <span class="math inline">\(E_v\)</span> の少し上に作り，p 型 Si になる。</p>
 <p><strong>2. ドナー電子は「巨大で弱い水素原子」として概算できる</strong></p>
 <p>ドナーイオンと電子の組は水素原子に似ているが，半導体中では二つの物性が変わる。</p>
 <ul>
@@ -3102,10 +3645,10 @@ E_B=13.6\times\frac{0.26}{11.9^2}=2.50\times10^{-2}\ \mathrm{eV}
 <p>300 K で不純物が完全電離しているとみなすと，n 型では <span class="math inline">\(N_e\simeq N_D\)</span>，p 型では <span class="math inline">\(N_h\simeq N_A\)</span> である。少数キャリアは質量作用の法則 <span class="math inline">\(N_eN_h=N_i^2\)</span> から求まる。</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 23%">
-<col style="width: 26%">
-<col style="width: 26%">
-<col style="width: 23%">
+<col style="width: 24%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 24%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -3269,8 +3812,8 @@ C_j=\left|\frac{dQ}{dV}\right|=\frac{\varepsilon_sA}{W}.
 \]</span></p>
 <p>となる。ここは電圧軸の定義を必ず答案に書く。</p>
 <ul>
-<li><strong>順方向を正とする <span class="math inline">\(V\)</span> 軸</strong>：傾きは負，<span class="math inline">\(1/C_j^2=0\)</span> への外挿切片は <span class="math inline">\(V=V_D\)</span>。</li>
-<li><strong>逆バイアスの大きさ <span class="math inline">\(V_R&gt;0\)</span> を横軸</strong>：<span class="math inline">\(V_D-V=V_D+V_R\)</span> なので傾きは正，電圧軸への外挿切片は <span class="math inline">\(V_R=-V_D\)</span>。</li>
+<li><strong>順方向を正とする</strong> <span class="math inline">\(V\)</span> 軸：傾きは負，<span class="math inline">\(1/C_j^2=0\)</span> への外挿切片は <span class="math inline">\(V=V_D\)</span>。</li>
+<li><strong>逆バイアスの大きさ</strong> <span class="math inline">\(V_R&gt;0\)</span> を横軸：<span class="math inline">\(V_D-V=V_D+V_R\)</span> なので傾きは正，電圧軸への外挿切片は <span class="math inline">\(V_R=-V_D\)</span>。</li>
 </ul>
 <p>傾きから直接求まるのは，</p>
 <p><span class="math display">\[
@@ -3455,7 +3998,7 @@ J_s=q\left(
 \right)
 \]</span></p>
 <p>となる。問題文の <span class="math inline">\(i_s\)</span> に接合面積 <span class="math inline">\(A\)</span> が含まれていないなら，次元は電流密度であり，全電流は <span class="math inline">\(I=AJ\)</span> である。最後に <span class="math inline">\(V=0\)</span> なら <span class="math inline">\(J=0\)</span>，十分な逆バイアスなら <span class="math inline">\(J\simeq-J_s\)</span> と確かめると，式の符号を点検できる。</p>
-<p><strong>3. 理想係数 <span class="math inline">\(\eta\)</span> は，どの過程が電流を律速しているかを示す</strong></p>
+<p><strong>3. 理想係数</strong> <span class="math inline">\(\eta\)</span> は，どの過程が電流を律速しているかを示す</p>
 <p>実測電流を局所的に</p>
 <p><span class="math display">\[
 I\propto\exp\!\left(\frac{V}{\eta V_T}\right)
@@ -3622,7 +4165,7 @@ i=\left(\frac{qD_hN_{h(n)}^0}{L_h}
 </tr>
 </tbody>
 </table>
-<p>格子定数は結晶タイルの一辺の長さに似ている。間隔の違うタイルを無理に貼れば，どこかにずれが集中する。それがミスフィット転位であり，電子と正孔を光らせずに消す再結合中心や，移動する電子の散乱源になる。したがって格子定数–<span class="math inline">\(E_g\)</span> 図では，まず<strong>格子定数が近く，目的に合う <span class="math inline">\(E_g\)</span> の差を持つ材料</strong>を探す。臨界膜厚以下の歪み層やメタモルフィック成長もあるので格子整合は絶対条件ではないが，高品質な厚い積層を作る基本指針である。</p>
+<p>格子定数は結晶タイルの一辺の長さに似ている。間隔の違うタイルを無理に貼れば，どこかにずれが集中する。それがミスフィット転位であり，電子と正孔を光らせずに消す再結合中心や，移動する電子の散乱源になる。したがって格子定数–<span class="math inline">\(E_g\)</span> 図では，まず<strong>格子定数が近く，目的に合う</strong> <span class="math inline">\(E_g\)</span> の差を持つ材料を探す。臨界膜厚以下の歪み層やメタモルフィック成長もあるので格子整合は絶対条件ではないが，高品質な厚い積層を作る基本指針である。</p>
 <p><strong>1. 太陽電池：光子をエネルギーごとに仕分ける</strong></p>
 <p><span class="math inline">\(h\nu&lt;E_g\)</span> の透過損失，<span class="math inline">\(h\nu&gt;E_g\)</span> の熱化損失，そして「小さい <span class="math inline">\(E_g\)</span> は大電流・低電圧，大きい <span class="math inline">\(E_g\)</span> は小電流・高電圧」という交換条件は <a href="#quiz-11-solar-design">小テスト #11</a> で説明した。この過去問では，その交換条件を格子定数–<span class="math inline">\(E_g\)</span> 図の材料選択へ接続する。</p>
 <p>詳細釣り合い限界の最大位置は太陽スペクトルの仮定で変わり，原論文の黒体近似では約 <span class="math inline">\(1.1\ \mathrm{eV}\)</span>，AM1.5G ではおよそ <span class="math inline">\(1.3\)</span>–<span class="math inline">\(1.4\ \mathrm{eV}\)</span> となる。Si の <span class="math inline">\(E_g=1.12\ \mathrm{eV}\)</span> は後者の最適値より小さいが，広い波長域を電流へ変えながら実用的な電圧も得られる範囲にある。</p>
@@ -3633,7 +4176,7 @@ i=\left(\frac{qD_hN_{h(n)}^0}{L_h}
 <li>高品質な <span class="math inline">\(\ce{SiO2}\)</span> で表面再結合を抑えやすい</li>
 <li>資源が豊富で製造技術が成熟している</li>
 </ul>
-<p>という長所が弱点を補う。したがって「<span class="math inline">\(E_g\)</span> がよいから」だけでなく，<strong>適切な <span class="math inline">\(E_g\)</span> と結晶・界面・プロセス品質が同時にそろうから</strong> Si 太陽電池は高効率かつ実用的なのである。</p>
+<p>という長所が弱点を補う。したがって「<span class="math inline">\(E_g\)</span> がよいから」だけでなく，<strong>適切な</strong> <span class="math inline">\(E_g\)</span> と結晶・界面・プロセス品質が同時にそろうから Si 太陽電池は高効率かつ実用的なのである。</p>
 <p>タンデム型では，入射側から <span class="math inline">\(E_g\)</span> の大きい層，中間の層，小さい層の順に積む。上層は高エネルギー光を高い電圧として回収し，通過した低エネルギー光を下層へ渡す。これは一つの材料へ全波長を任せず，各層へ得意な光子だけを渡す「光子の仕分け機」である。</p>
 <p>代表例は，格子整合を取りやすい <span class="math inline">\(\ce{InGaP}/\ce{GaAs}/\ce{Ge}\)</span> 多接合太陽電池である。サブセルを直列接続する場合は，最も電流の小さいセルが全体の電流を制限するので，組成・膜厚・吸収量を調整する<strong>電流整合</strong>も必要になる。</p>
 <p><strong>2. 半導体レーザ：電子・正孔・光を同じ狭い部屋に集める</strong></p>

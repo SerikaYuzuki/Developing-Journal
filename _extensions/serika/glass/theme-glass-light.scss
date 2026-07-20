@@ -124,6 +124,38 @@ $toc-active-border: $primary !default;
   --mobile-sidebar-title-color:  #2d2a44;
   --mobile-sidebar-link-color:   #4a4769;
   --mobile-sidebar-cat-color:    rgba(124, 92, 255, 0.06);
+
+  /* Prismatic Mathematical Observatory design system */
+  --obs-surface:                 rgba(252, 252, 255, 0.94);
+  --obs-surface-muted:           rgba(246, 247, 253, 0.90);
+  --obs-glass:                   rgba(255, 255, 255, 0.64);
+  --obs-glass-strong:            rgba(255, 255, 255, 0.82);
+  --obs-text:                    #24233a;
+  --obs-text-muted:              #62627a;
+  --obs-accent:                  #7057e8;
+  --obs-accent-cyan:             #168eaa;
+  --obs-accent-magenta:          #b7448e;
+  --obs-border:                  rgba(79, 70, 132, 0.14);
+  --obs-border-highlight:        rgba(255, 255, 255, 0.82);
+  --obs-shadow-soft:             0 16px 45px rgba(48, 43, 92, 0.10);
+  --obs-shadow-float:            0 22px 70px rgba(48, 43, 92, 0.16);
+  --obs-grid:                    rgba(73, 91, 145, 0.055);
+  --obs-blur-sm:                 12px;
+  --obs-blur-lg:                 24px;
+  --obs-radius-sm:               10px;
+  --obs-radius-md:               18px;
+  --obs-radius-lg:               30px;
+  --obs-space-1:                 0.25rem;
+  --obs-space-2:                 0.5rem;
+  --obs-space-3:                 0.75rem;
+  --obs-space-4:                 1rem;
+  --obs-space-6:                 1.5rem;
+  --obs-space-8:                 2rem;
+  --obs-duration-fast:           160ms;
+  --obs-duration-ui:             260ms;
+  --obs-duration-narrative:      620ms;
+  --obs-ease:                    cubic-bezier(.22, .61, .36, 1);
+  --obs-ease-spring:             cubic-bezier(.2, .82, .2, 1);
 }
 
 // ---- Page background (gradient blobs) --------------------------------------
@@ -149,9 +181,9 @@ body {
     48% 100%,
     100% 88%,
     0% 0%;
-  background-attachment: fixed;
-  will-change: background-position;
-  animation: pj-bg-drift 24s ease-in-out infinite alternate;
+  background-attachment: scroll;
+  will-change: auto;
+  animation: none;
   color: $body-color;
   font-size: 1rem;
   line-height: $line-height-base;

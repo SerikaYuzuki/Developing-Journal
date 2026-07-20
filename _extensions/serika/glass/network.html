@@ -1,0 +1,473 @@
+<style>
+  .pj-network-toggle {
+    appearance: none;
+    display: inline-grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    color: inherit;
+    background: transparent;
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .pj-network-toggle:hover,
+  .pj-network-toggle:focus-visible {
+    color: var(--obs-accent, #9b87ff);
+    background: color-mix(in srgb, var(--obs-accent, #9b87ff) 12%, transparent);
+    outline: none;
+  }
+</style>
+<script>
+(function () {
+  "use strict";
+
+  if (customElements.get('serika-network')) return;
+
+  var palette = ['#72dcff', '#9f8cff', '#d987ff', '#76e6bd', '#f2bd76', '#77a5ff'];
+
+  function hash(value) {
+    var result = 2166136261;
+    for (var i = 0; i < value.length; i += 1) {
+      result ^= value.charCodeAt(i);
+      result = Math.imul(result, 16777619);
+    }
+    return result >>> 0;
+  }
+
+  function escapeSelector(value) {
+    return window.CSS && CSS.escape ? CSS.escape(value) : value.replace(/["\\]/g, '\\$&');
+  }
+
+  class SerikaNetwork extends HTMLElement {
+    constructor() {
+      super();
+      this.attachShadow({ mode: 'open' });
+      this.shadowRoot.innerHTML = [
+        '<style>',
+          ':host{color-scheme:light dark;--net-bg:color-mix(in srgb,var(--obs-surface,#15182a) 92%,transparent);--net-panel:color-mix(in srgb,var(--obs-glass-strong,#252a45) 84%,transparent);--net-border:color-mix(in srgb,var(--obs-accent,#9f8cff) 25%,transparent);--net-text:var(--obs-text,#eef0f8);--net-muted:var(--obs-muted,#a9aec3);--net-accent:var(--obs-accent,#9f8cff)}',
+          '*{box-sizing:border-box}',
+          'dialog{width:min(1180px,calc(100vw - 32px));height:min(780px,calc(100dvh - 32px));max-width:none;max-height:none;padding:0;border:1px solid var(--net-border);border-radius:28px;background:var(--net-bg);color:var(--net-text);box-shadow:0 28px 90px rgba(3,5,14,.48);backdrop-filter:blur(24px) saturate(1.14);overflow:hidden}',
+          'dialog::backdrop{background:rgba(5,7,18,.66);backdrop-filter:blur(5px)}',
+          '.shell{height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto;position:relative}',
+          'header{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;padding:17px 20px;border-bottom:1px solid var(--net-border);background:linear-gradient(110deg,color-mix(in srgb,var(--net-panel) 94%,transparent),color-mix(in srgb,var(--net-accent) 7%,transparent))}',
+          '.eyebrow{display:block;color:var(--net-accent);font:700 .68rem/1.2 ui-monospace,SFMono-Regular,monospace;letter-spacing:.16em;text-transform:uppercase}',
+          'h2{font:650 clamp(1.1rem,2.4vw,1.55rem)/1.2 var(--bs-body-font-family,system-ui);margin:.25rem 0 0}',
+          '.header-tools,.modes,.zoom{display:flex;align-items:center;gap:8px}',
+          'button,input,a{font:inherit}',
+          'button{border:1px solid var(--net-border);background:color-mix(in srgb,var(--net-panel) 80%,transparent);color:var(--net-text);border-radius:999px;min-height:38px;padding:0 14px;cursor:pointer}',
+          'button:hover,button:focus-visible{border-color:color-mix(in srgb,var(--net-accent) 62%,transparent);outline:none;background:color-mix(in srgb,var(--net-accent) 13%,var(--net-panel))}',
+          'button[aria-pressed=true]{color:var(--net-accent);border-color:color-mix(in srgb,var(--net-accent) 55%,transparent);background:color-mix(in srgb,var(--net-accent) 14%,var(--net-panel))}',
+          '.icon{width:40px;padding:0;display:grid;place-items:center;font-size:1.25rem}',
+          '.stage{position:relative;min-height:0;overflow:hidden;background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--net-accent) 9%,transparent),transparent 42%),linear-gradient(color-mix(in srgb,var(--net-text) 3%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--net-text) 3%,transparent) 1px,transparent 1px);background-size:auto,44px 44px,44px 44px}',
+          'canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}',
+          'canvas.dragging{cursor:grabbing}',
+          '.loading{position:absolute;inset:0;display:grid;place-items:center;color:var(--net-muted);pointer-events:none}',
+          '.loading[hidden]{display:none}',
+          '.floating{position:absolute;left:16px;top:16px;display:flex;gap:10px;align-items:center;z-index:2}',
+          '.search{width:min(280px,47vw);height:40px;border:1px solid var(--net-border);border-radius:999px;padding:0 16px;background:var(--net-panel);color:var(--net-text);outline:none}',
+          '.search:focus{border-color:color-mix(in srgb,var(--net-accent) 62%,transparent)}',
+          '.zoom{position:absolute;right:16px;top:16px;z-index:2}',
+          '.zoom button{width:40px;padding:0}',
+          'footer{min-height:74px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;padding:13px 20px;border-top:1px solid var(--net-border);background:var(--net-panel)}',
+          '.selection strong{display:block;font-size:.98rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
+          '.selection span{display:block;color:var(--net-muted);font-size:.8rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:.2rem}',
+          '.open-link{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 16px;border:1px solid var(--net-border);border-radius:999px;color:var(--net-text);text-decoration:none}',
+          '.open-link[hidden]{display:none}',
+          '.legend{position:absolute;left:18px;bottom:16px;color:var(--net-muted);font:600 .68rem/1.3 ui-monospace,SFMono-Regular,monospace;letter-spacing:.05em;pointer-events:none}',
+          '.legend i{display:inline-block;width:18px;height:1px;vertical-align:middle;margin:0 5px 2px 10px;background:var(--net-accent)}.legend i.related{opacity:.35;border-top:1px dashed var(--net-accent);background:none}',
+          '@media(max-width:680px){dialog{width:100vw;height:100dvh;border-radius:0;border-inline:0}header{padding:14px 15px}.header-tools{gap:6px}.modes button{padding:0 10px;font-size:.78rem}.floating{left:10px;top:10px}.zoom{right:10px;top:58px;flex-direction:column}.legend{display:none}footer{padding:11px 15px}.selection span{max-width:62vw}}',
+          '@media(prefers-reduced-motion:reduce){dialog{scroll-behavior:auto}}',
+        '</style>',
+        '<dialog aria-labelledby="network-title">',
+          '<div class="shell">',
+            '<header>',
+              '<div><span class="eyebrow">Knowledge constellation</span><h2 id="network-title">記事の星図</h2></div>',
+              '<div class="header-tools"><div class="modes" role="group" aria-label="表示範囲"><button type="button" data-mode="local" aria-pressed="true">周辺</button><button type="button" data-mode="all" aria-pressed="false">全体</button></div><button class="icon close" type="button" aria-label="閉じる">×</button></div>',
+            '</header>',
+            '<div class="stage">',
+              '<canvas role="img" aria-label="記事同士のリンクを表すネットワーク図"></canvas>',
+              '<div class="floating"><input class="search" type="search" placeholder="記事を検索" aria-label="記事を検索"></div>',
+              '<div class="zoom"><button type="button" data-zoom="in" aria-label="拡大">＋</button><button type="button" data-zoom="out" aria-label="縮小">−</button><button type="button" data-zoom="reset" aria-label="表示をリセット">◎</button></div>',
+              '<div class="legend"><i></i>リンク <i class="related"></i>関連</div>',
+              '<div class="loading">星図を読み込んでいます…</div>',
+            '</div>',
+            '<footer><div class="selection"><strong>記事を選択</strong><span>点を選ぶと概要を表示します。ダブルクリックで移動します。</span></div><a class="open-link" hidden>開く</a></footer>',
+          '</div>',
+        '</dialog>'
+      ].join('');
+      this.dialog = this.shadowRoot.querySelector('dialog');
+      this.canvas = this.shadowRoot.querySelector('canvas');
+      this.ctx = this.canvas.getContext('2d');
+      this.nodes = [];
+      this.edges = [];
+      this.visibleNodes = [];
+      this.visibleEdges = [];
+      this.mode = 'local';
+      this.scale = 1;
+      this.panX = 0;
+      this.panY = 0;
+      this.pointer = null;
+      this.dragNode = null;
+      this.hoverNode = null;
+      this.selectedNode = null;
+      this.frame = 0;
+      this.reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+
+    connectedCallback() {
+      var self = this;
+      this.shadowRoot.querySelector('.close').addEventListener('click', function () { self.close(); });
+      this.dialog.addEventListener('cancel', function (event) { event.preventDefault(); self.close(); });
+      this.shadowRoot.querySelectorAll('[data-mode]').forEach(function (button) {
+        button.addEventListener('click', function () { self.setMode(button.dataset.mode); });
+      });
+      this.shadowRoot.querySelectorAll('[data-zoom]').forEach(function (button) {
+        button.addEventListener('click', function () {
+          if (button.dataset.zoom === 'reset') self.resetView();
+          else self.zoom(button.dataset.zoom === 'in' ? 1.18 : 0.84, self.width / 2, self.height / 2);
+        });
+      });
+      this.shadowRoot.querySelector('.search').addEventListener('input', function (event) { self.search(event.target.value); });
+      this.canvas.addEventListener('pointerdown', function (event) { self.pointerDown(event); });
+      this.canvas.addEventListener('pointermove', function (event) { self.pointerMove(event); });
+      this.canvas.addEventListener('pointerup', function (event) { self.pointerUp(event); });
+      this.canvas.addEventListener('pointercancel', function (event) { self.pointerUp(event); });
+      this.canvas.addEventListener('dblclick', function (event) {
+        var node = self.nodeAt(event.offsetX, event.offsetY);
+        if (node) window.location.href = self.nodeUrl(node);
+      });
+      this.canvas.addEventListener('wheel', function (event) {
+        event.preventDefault();
+        self.zoom(event.deltaY < 0 ? 1.1 : 0.9, event.offsetX, event.offsetY);
+      }, { passive: false });
+      this.resizeObserver = new ResizeObserver(function () { self.resize(); });
+      this.resizeObserver.observe(this.shadowRoot.querySelector('.stage'));
+    }
+
+    disconnectedCallback() {
+      if (this.resizeObserver) this.resizeObserver.disconnect();
+      cancelAnimationFrame(this.frame);
+    }
+
+    open() {
+      if (this.dialog.showModal) this.dialog.showModal();
+      else this.dialog.setAttribute('open', '');
+      document.documentElement.classList.add('pj-network-open');
+      this.resize();
+      if (!this.dataPromise) this.dataPromise = this.load();
+      this.dataPromise.catch(function () { /* rendered in load */ });
+    }
+
+    close() {
+      cancelAnimationFrame(this.frame);
+      if (this.dialog.open && this.dialog.close) this.dialog.close();
+      else this.dialog.removeAttribute('open');
+      document.documentElement.classList.remove('pj-network-open');
+    }
+
+    graphUrl() {
+      var offset = (document.querySelector('meta[name="quarto:offset"]') || {}).content || './';
+      return new URL(offset + 'assets/serika-graph.json', window.location.href).href;
+    }
+
+    nodeUrl(node) {
+      var offset = (document.querySelector('meta[name="quarto:offset"]') || {}).content || './';
+      return new URL(offset + node.href, window.location.href).href;
+    }
+
+    async load() {
+      var loading = this.shadowRoot.querySelector('.loading');
+      try {
+        var response = await fetch(this.graphUrl(), { cache: 'no-cache' });
+        if (!response.ok) throw new Error('graph index unavailable');
+        var data = await response.json();
+        var self = this;
+        this.nodes = data.nodes.map(function (node) {
+          return Object.assign({}, node, { x: 0, y: 0, vx: 0, vy: 0, degree: 0, color: palette[hash(node.section || node.id) % palette.length] });
+        });
+        this.nodeMap = new Map(this.nodes.map(function (node) { return [node.id, node]; }));
+        this.edges = data.edges.map(function (edge) {
+          var source = self.nodeMap.get(edge.source);
+          var target = self.nodeMap.get(edge.target);
+          if (source) source.degree += 1;
+          if (target) target.degree += 1;
+          return Object.assign({}, edge, { sourceNode: source, targetNode: target });
+        }).filter(function (edge) { return edge.sourceNode && edge.targetNode; });
+        var currentPath = window.location.pathname.replace(/\/$/, '/index.html');
+        this.currentNode = this.nodes.find(function (node) {
+          return new URL(self.nodeUrl(node)).pathname.replace(/\/$/, '/index.html') === currentPath;
+        }) || null;
+        this.selectedNode = this.currentNode;
+        loading.hidden = true;
+        this.setMode(this.currentNode ? 'local' : 'all');
+        this.updateSelection();
+      } catch (error) {
+        loading.textContent = '星図を読み込めませんでした。次のレンダー後に再度お試しください。';
+        throw error;
+      }
+    }
+
+    setMode(mode) {
+      this.mode = mode;
+      this.shadowRoot.querySelectorAll('[data-mode]').forEach(function (button) {
+        button.setAttribute('aria-pressed', String(button.dataset.mode === mode));
+      });
+      var visibleIds = new Set();
+      if (mode === 'all' || !this.currentNode) {
+        this.nodes.forEach(function (node) { visibleIds.add(node.id); });
+      } else {
+        visibleIds.add(this.currentNode.id);
+        var frontier = [this.currentNode.id];
+        for (var depth = 0; depth < 2; depth += 1) {
+          var next = [];
+          this.edges.forEach(function (edge) {
+            if (frontier.indexOf(edge.source) >= 0 && !visibleIds.has(edge.target)) { visibleIds.add(edge.target); next.push(edge.target); }
+            if (frontier.indexOf(edge.target) >= 0 && !visibleIds.has(edge.source)) { visibleIds.add(edge.source); next.push(edge.source); }
+          });
+          frontier = next;
+        }
+        if (visibleIds.size === 1) {
+          this.nodes.filter(function (node) { return node.section === this.currentNode.section; }, this).slice(0, 10).forEach(function (node) { visibleIds.add(node.id); });
+        }
+      }
+      this.visibleNodes = this.nodes.filter(function (node) { return visibleIds.has(node.id); });
+      this.visibleEdges = this.edges.filter(function (edge) { return visibleIds.has(edge.source) && visibleIds.has(edge.target); });
+      this.layout();
+    }
+
+    layout() {
+      cancelAnimationFrame(this.frame);
+      var radius = Math.min(this.width || 800, this.height || 600) * 0.34;
+      var total = Math.max(1, this.visibleNodes.length);
+      this.visibleNodes.forEach(function (node, index) {
+        var angle = index / total * Math.PI * 2 + (hash(node.id) % 100) / 100;
+        var spread = .38 + ((hash(node.id + 'r') % 620) / 1000);
+        node.x = Math.cos(angle) * radius * spread;
+        node.y = Math.sin(angle) * radius * spread;
+        node.vx = 0;
+        node.vy = 0;
+      });
+      if (this.currentNode && this.visibleNodes.indexOf(this.currentNode) >= 0) {
+        this.currentNode.x = 0;
+        this.currentNode.y = 0;
+      }
+      this.resetView(false);
+      if (this.reducedMotion) this.draw();
+      else this.simulate(0);
+    }
+
+    simulate(step) {
+      var nodes = this.visibleNodes;
+      var edges = this.visibleEdges;
+      var desired = this.mode === 'all' ? 88 : 112;
+      for (var i = 0; i < nodes.length; i += 1) {
+        for (var j = i + 1; j < nodes.length; j += 1) {
+          var dx = nodes[j].x - nodes[i].x;
+          var dy = nodes[j].y - nodes[i].y;
+          var distance2 = Math.max(80, dx * dx + dy * dy);
+          var force = Math.min(1.8, 850 / distance2);
+          nodes[i].vx -= dx * force * .04;
+          nodes[i].vy -= dy * force * .04;
+          nodes[j].vx += dx * force * .04;
+          nodes[j].vy += dy * force * .04;
+        }
+      }
+      edges.forEach(function (edge) {
+        var dx = edge.targetNode.x - edge.sourceNode.x;
+        var dy = edge.targetNode.y - edge.sourceNode.y;
+        var distance = Math.max(1, Math.sqrt(dx * dx + dy * dy));
+        var pull = (distance - desired) * (edge.type === 'link' ? .0028 : .0014);
+        edge.sourceNode.vx += dx / distance * pull;
+        edge.sourceNode.vy += dy / distance * pull;
+        edge.targetNode.vx -= dx / distance * pull;
+        edge.targetNode.vy -= dy / distance * pull;
+      });
+      nodes.forEach(function (node) {
+        node.vx += -node.x * .00045;
+        node.vy += -node.y * .00045;
+        node.vx *= .88;
+        node.vy *= .88;
+        if (node !== this.dragNode) { node.x += node.vx; node.y += node.vy; }
+      }, this);
+      this.draw();
+      if (step < 190 && this.dialog.open) {
+        var self = this;
+        this.frame = requestAnimationFrame(function () { self.simulate(step + 1); });
+      }
+    }
+
+    resize() {
+      var rect = this.canvas.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      var ratio = Math.min(2, window.devicePixelRatio || 1);
+      this.width = rect.width;
+      this.height = rect.height;
+      this.canvas.width = Math.round(rect.width * ratio);
+      this.canvas.height = Math.round(rect.height * ratio);
+      this.ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      this.draw();
+    }
+
+    screenPoint(node) {
+      return { x: this.width / 2 + this.panX + node.x * this.scale, y: this.height / 2 + this.panY + node.y * this.scale };
+    }
+
+    draw() {
+      if (!this.width || !this.height) return;
+      var ctx = this.ctx;
+      ctx.clearRect(0, 0, this.width, this.height);
+      var self = this;
+      this.visibleEdges.forEach(function (edge) {
+        var a = self.screenPoint(edge.sourceNode);
+        var b = self.screenPoint(edge.targetNode);
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.strokeStyle = edge.type === 'link' ? 'rgba(154,139,255,.52)' : 'rgba(151,170,210,.16)';
+        ctx.lineWidth = edge.type === 'link' ? 1.25 : .7;
+        ctx.setLineDash(edge.type === 'link' ? [] : [3, 5]);
+        ctx.stroke();
+      });
+      ctx.setLineDash([]);
+      this.visibleNodes.forEach(function (node) {
+        var point = self.screenPoint(node);
+        var active = node === self.currentNode || node === self.selectedNode || node === self.hoverNode;
+        var radius = (4.2 + Math.min(4, node.degree * .45)) * (active ? 1.35 : 1);
+        if (active) {
+          var glow = ctx.createRadialGradient(point.x, point.y, radius, point.x, point.y, radius * 4.2);
+          glow.addColorStop(0, node.color + '70');
+          glow.addColorStop(1, node.color + '00');
+          ctx.fillStyle = glow;
+          ctx.beginPath(); ctx.arc(point.x, point.y, radius * 4.2, 0, Math.PI * 2); ctx.fill();
+        }
+        ctx.fillStyle = node.color;
+        ctx.beginPath(); ctx.arc(point.x, point.y, radius, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = active ? 'rgba(255,255,255,.9)' : 'rgba(255,255,255,.28)';
+        ctx.lineWidth = active ? 1.5 : .7;
+        ctx.stroke();
+        if (active || self.mode === 'local' || self.scale > 1.35) {
+          ctx.font = (active ? '600 ' : '500 ') + (active ? '13px' : '11px') + ' system-ui,sans-serif';
+          ctx.fillStyle = active ? 'rgba(244,246,255,.96)' : 'rgba(218,222,239,.72)';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'top';
+          var label = node.title.length > 22 ? node.title.slice(0, 21) + '…' : node.title;
+          ctx.fillText(label, point.x, point.y + radius + 7);
+        }
+      });
+    }
+
+    nodeAt(x, y) {
+      for (var i = this.visibleNodes.length - 1; i >= 0; i -= 1) {
+        var point = this.screenPoint(this.visibleNodes[i]);
+        var dx = x - point.x;
+        var dy = y - point.y;
+        if (dx * dx + dy * dy <= 144) return this.visibleNodes[i];
+      }
+      return null;
+    }
+
+    pointerDown(event) {
+      this.canvas.setPointerCapture(event.pointerId);
+      this.pointer = { id: event.pointerId, x: event.offsetX, y: event.offsetY, panX: this.panX, panY: this.panY };
+      this.dragNode = this.nodeAt(event.offsetX, event.offsetY);
+      this.canvas.classList.add('dragging');
+    }
+
+    pointerMove(event) {
+      if (this.pointer && this.pointer.id === event.pointerId) {
+        if (this.dragNode) {
+          this.dragNode.x = (event.offsetX - this.width / 2 - this.panX) / this.scale;
+          this.dragNode.y = (event.offsetY - this.height / 2 - this.panY) / this.scale;
+          this.dragNode.vx = 0; this.dragNode.vy = 0;
+        } else {
+          this.panX = this.pointer.panX + event.offsetX - this.pointer.x;
+          this.panY = this.pointer.panY + event.offsetY - this.pointer.y;
+        }
+      } else {
+        this.hoverNode = this.nodeAt(event.offsetX, event.offsetY);
+      }
+      this.draw();
+    }
+
+    pointerUp(event) {
+      if (!this.pointer || this.pointer.id !== event.pointerId) return;
+      var moved = Math.abs(event.offsetX - this.pointer.x) + Math.abs(event.offsetY - this.pointer.y);
+      if (moved < 8) {
+        this.selectedNode = this.nodeAt(event.offsetX, event.offsetY);
+        this.updateSelection();
+      }
+      this.pointer = null;
+      this.dragNode = null;
+      this.canvas.classList.remove('dragging');
+      this.draw();
+    }
+
+    zoom(factor, x, y) {
+      var previous = this.scale;
+      this.scale = Math.max(.35, Math.min(3.4, this.scale * factor));
+      var ratio = this.scale / previous;
+      this.panX = x - this.width / 2 - (x - this.width / 2 - this.panX) * ratio;
+      this.panY = y - this.height / 2 - (y - this.height / 2 - this.panY) * ratio;
+      this.draw();
+    }
+
+    resetView(redraw) {
+      this.scale = this.mode === 'all' && this.visibleNodes.length > 50 ? .8 : 1;
+      this.panX = 0;
+      this.panY = 0;
+      if (redraw !== false) this.draw();
+    }
+
+    search(value) {
+      var query = value.trim().toLocaleLowerCase('ja');
+      if (!query) return;
+      var match = this.nodes.find(function (node) {
+        return (node.title + ' ' + node.categories.join(' ')).toLocaleLowerCase('ja').includes(query);
+      });
+      if (!match) return;
+      if (this.visibleNodes.indexOf(match) < 0) this.setMode('all');
+      this.selectedNode = match;
+      this.panX = -match.x * this.scale;
+      this.panY = -match.y * this.scale;
+      this.updateSelection();
+      this.draw();
+    }
+
+    updateSelection() {
+      var title = this.shadowRoot.querySelector('.selection strong');
+      var detail = this.shadowRoot.querySelector('.selection span');
+      var link = this.shadowRoot.querySelector('.open-link');
+      if (!this.selectedNode) {
+        title.textContent = '記事を選択';
+        detail.textContent = '点を選ぶと概要を表示します。ダブルクリックで移動します。';
+        link.hidden = true;
+        return;
+      }
+      title.textContent = this.selectedNode.title;
+      detail.textContent = this.selectedNode.description || this.selectedNode.categories.join(' · ') || this.selectedNode.href;
+      link.href = this.nodeUrl(this.selectedNode);
+      link.hidden = false;
+    }
+  }
+
+  customElements.define('serika-network', SerikaNetwork);
+
+  document.addEventListener('DOMContentLoaded', function () {
+    if (document.querySelector('serika-network')) return;
+    var tools = document.querySelector('.quarto-navbar-tools');
+    if (!tools) return;
+    var network = document.createElement('serika-network');
+    document.body.appendChild(network);
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'pj-network-toggle quarto-navigation-tool';
+    button.setAttribute('aria-label', '記事の星図を開く');
+    button.title = '記事の星図';
+    button.innerHTML = '<i class="bi bi-diagram-3" aria-hidden="true"></i>';
+    button.addEventListener('click', function () { network.open(); });
+    tools.insertBefore(button, tools.firstChild);
+  });
+})();
+</script>

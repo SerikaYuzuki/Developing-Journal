@@ -42,8 +42,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-9ce02ba9bf05f77acce06f7d436c50a3.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1f9ac3ef0e8f262428fcc6bb703857ff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-dark-12243f65cb2b4c4bc0dbf661224a9805.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-3a630bdbd1324d3e097bbd82f884da11.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-dark-61cfebcadcbd7f388d00fd026dfe9a05.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script src="site_libs/quarto-contrib/videojs/video.min.js"></script>
 <link href="site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -75,6 +75,27 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script>(function () {
   "use strict";
+
+  // Load the two site-wide TeX extensions before Quarto starts MathJax.
+  // This keeps individual .qmd files free from repeated \require commands.
+  var mathJaxConfig = window.MathJax = window.MathJax || {};
+  var mathJaxLoader = mathJaxConfig.loader = mathJaxConfig.loader || {};
+  var mathJaxLoad = mathJaxLoader.load = mathJaxLoader.load || [];
+  ['[tex]/physics', '[tex]/mhchem'].forEach(function (component) {
+    if (mathJaxLoad.indexOf(component) < 0) mathJaxLoad.push(component);
+  });
+  var mathJaxTex = mathJaxConfig.tex = mathJaxConfig.tex || {};
+  var mathJaxPackages = mathJaxTex.packages = mathJaxTex.packages || {};
+  if (Array.isArray(mathJaxPackages)) {
+    ['physics', 'mhchem'].forEach(function (name) {
+      if (mathJaxPackages.indexOf(name) < 0) mathJaxPackages.push(name);
+    });
+  } else {
+    var mathJaxAdditions = mathJaxPackages['[+]'] = mathJaxPackages['[+]'] || [];
+    ['physics', 'mhchem'].forEach(function (name) {
+      if (mathJaxAdditions.indexOf(name) < 0) mathJaxAdditions.push(name);
+    });
+  }
 
   document.addEventListener("DOMContentLoaded", function () {
     var body = document.body;
@@ -406,6 +427,17 @@ ul.task-list li input[type="checkbox"] {
 
     // ── P2: 小さな操作フィードバック --------------------------------------
     document.addEventListener('click', function (event) {
+      var sidebarSectionToggle = event.target.closest('#quarto-sidebar .sidebar-item-toggle, #pj-drawer-body .sidebar-item-toggle');
+      if (sidebarSectionToggle && !reducedMotion) {
+        var chevron = sidebarSectionToggle.querySelector('.bi-chevron-right');
+        if (chevron) {
+          chevron.classList.remove('pj-chevron-highlight');
+          void chevron.offsetWidth;
+          chevron.classList.add('pj-chevron-highlight');
+          window.setTimeout(function () { chevron.classList.remove('pj-chevron-highlight'); }, 480);
+        }
+      }
+
       var calloutHeader = event.target.closest('.callout-header[data-bs-toggle="collapse"]');
       if (calloutHeader && !reducedMotion) {
         var callout = calloutHeader.closest('.callout');
@@ -449,8 +481,10 @@ ul.task-list li input[type="checkbox"] {
       }
     }, true);
 
-    // TOC の現在地に追従する細いマーカー（既存の active 表現は維持）。
-    if (toc && window.IntersectionObserver) {
+    // TOC marker follows the last heading that crossed the reading line.
+    // IntersectionObserver could retain a parent chapter while scrolling down,
+    // because no child heading happened to remain inside its narrow root band.
+    if (toc) {
       function tocTargetId(link) {
         var href = link.getAttribute('href') || '';
         var hash = '';
@@ -475,8 +509,15 @@ ul.task-list li input[type="checkbox"] {
         marker.className = 'pj-toc-marker';
         marker.setAttribute('aria-hidden', 'true');
         toc.appendChild(marker);
-        var visibleHeadings = new Map();
+        var tocItems = tocLinks.map(function (link) {
+          return { link: link, heading: document.getElementById(tocTargetId(link)), top: 0 };
+        });
+        var markerFrame = 0;
         function moveMarker(link) {
+          tocLinks.forEach(function (item) { item.classList.toggle('pj-toc-current', item === link); });
+          toc.querySelectorAll('ul.collapse').forEach(function (list) {
+            list.classList.toggle('show', list.contains(link));
+          });
           var tocRect = toc.getBoundingClientRect();
           var linkRect = link.getBoundingClientRect();
           marker.style.left = Math.max(0, linkRect.left - tocRect.left) + 'px';
@@ -484,24 +525,526 @@ ul.task-list li input[type="checkbox"] {
           marker.style.transform = 'translateY(' + (linkRect.top - tocRect.top + toc.scrollTop) + 'px)';
           marker.style.opacity = '1';
         }
-        var observer = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            var link = tocLinks.find(function (item) { return tocTargetId(item) === entry.target.id; });
-            if (link) visibleHeadings.set(entry.target, entry.isIntersecting ? entry.boundingClientRect.top : Infinity);
+
+        function refreshTocOffsets() {
+          tocItems.forEach(function (item) {
+            item.top = item.heading.getBoundingClientRect().top + window.scrollY;
           });
-          var current = Array.from(visibleHeadings.entries()).sort(function (a, b) { return a[1] - b[1]; })[0];
-          if (current) moveMarker(tocLinks.find(function (link) { return tocTargetId(link) === current[0].id; }));
-        }, { rootMargin: '-18% 0px -68% 0px', threshold: [0, 1] });
-        tocLinks.forEach(function (link) { observer.observe(document.getElementById(tocTargetId(link))); });
-        window.addEventListener('resize', function () {
-          var active = toc.querySelector('a.active') || tocLinks[0];
-          if (active) moveMarker(active);
+          tocItems.sort(function (a, b) { return a.top - b.top; });
+        }
+
+        function updateTocMarker() {
+          var readingLine = window.scrollY + Math.min(window.innerHeight * 0.24, 220);
+          var current = tocItems[0];
+          tocItems.forEach(function (item) {
+            if (item.top <= readingLine) current = item;
+          });
+          if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+            current = tocItems[tocItems.length - 1];
+          }
+          if (current) moveMarker(current.link);
+          markerFrame = 0;
+        }
+
+        function requestTocMarkerUpdate(refresh) {
+          if (refresh) refreshTocOffsets();
+          if (!markerFrame) markerFrame = window.requestAnimationFrame(updateTocMarker);
+        }
+
+        refreshTocOffsets();
+        requestTocMarkerUpdate(false);
+        window.addEventListener('scroll', function () { requestTocMarkerUpdate(false); }, { passive: true });
+        window.addEventListener('resize', function () { requestTocMarkerUpdate(true); });
+        window.addEventListener('load', function () { requestTocMarkerUpdate(true); });
+        document.addEventListener('shown.bs.collapse', function () { requestTocMarkerUpdate(true); });
+        document.addEventListener('hidden.bs.collapse', function () { requestTocMarkerUpdate(true); });
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(function () { requestTocMarkerUpdate(true); });
+        }
+        if (window.ResizeObserver) {
+          var tocResizeObserver = new ResizeObserver(function () { requestTocMarkerUpdate(true); });
+          tocResizeObserver.observe(toc);
+        }
+        document.addEventListener('click', function (event) {
+          if (event.target.closest('.pj-toc-toggle')) {
+            window.setTimeout(function () { requestTocMarkerUpdate(true); }, reducedMotion ? 0 : 400);
+          }
         });
       }
+    }
+
+    // ── Prismatic Mathematical Observatory: Phase 1 reading layer ---------
+    var article = document.getElementById('quarto-document-content');
+    if (article) {
+      var titleBlock = article.querySelector('#title-block-header');
+      var title = titleBlock && titleBlock.querySelector('.title');
+      var chapterSections = Array.prototype.slice.call(article.querySelectorAll(':scope > section.level2'));
+      var allHeadings = Array.prototype.slice.call(article.querySelectorAll('section > h2, section > h3'));
+      var budouHeadings = Array.prototype.slice.call(article.querySelectorAll('section > h2, section > h3, section > h4, section > h5, section > h6'));
+
+      function applyBudouToHeading(heading) {
+        if (!heading || heading.querySelector(':scope > budoux-ja')) return;
+        if (!/[\u3040-\u30ff\u3400-\u9fff]/.test(heading.textContent || '')) return;
+        var excluded = '.anchorjs-link, .header-section-number, .pj-chapter-marker';
+        var contentNodes = Array.prototype.slice.call(heading.childNodes).filter(function (node) {
+          return node.nodeType === Node.TEXT_NODE ||
+            (node.nodeType === Node.ELEMENT_NODE && !node.matches(excluded));
+        });
+        if (!contentNodes.length) return;
+        var wrapper = document.createElement('budoux-ja');
+        var insertionPoint = document.createComment('budoux');
+        heading.insertBefore(insertionPoint, contentNodes[0]);
+        contentNodes.forEach(function (node) { wrapper.appendChild(node); });
+        heading.replaceChild(wrapper, insertionPoint);
+      }
+
+      applyBudouToHeading(title);
+      budouHeadings.forEach(applyBudouToHeading);
+
+      // Progress UI remains useful without animation and is announced only
+      // when explicitly focused, avoiding noisy live-region scroll updates.
+      var progress = document.createElement('div');
+      progress.id = 'pj-reading-progress';
+      progress.setAttribute('role', 'progressbar');
+      progress.setAttribute('aria-label', '記事の読書進捗');
+      progress.setAttribute('aria-valuemin', '0');
+      progress.setAttribute('aria-valuemax', '100');
+      progress.setAttribute('aria-valuenow', '0');
+      progress.innerHTML = '<span class="pj-reading-progress-bar" aria-hidden="true"></span>';
+      document.body.insertBefore(progress, document.body.firstChild);
+
+      var status = document.createElement('aside');
+      status.id = 'pj-reading-status';
+      status.setAttribute('aria-label', '現在の読書位置');
+      status.setAttribute('tabindex', '0');
+      status.innerHTML = [
+        '<span class="pj-reading-orbit" aria-hidden="true"></span>',
+        '<span class="pj-reading-copy">',
+          '<span class="pj-reading-chapter">Introduction</span>',
+          '<span class="pj-reading-heading">記事の先頭</span>',
+        '</span>',
+        '<span class="pj-reading-percent">0%</span>'
+      ].join('');
+      document.body.appendChild(status);
+
+      if (titleBlock && title) {
+        titleBlock.classList.add('pj-observatory-hero');
+
+        if (!reducedMotion && window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+          ['cyan', 'magenta'].forEach(function (tone) {
+            var layer = document.createElement('span');
+            layer.className = 'pj-title-chroma pj-title-chroma-' + tone;
+            layer.setAttribute('aria-hidden', 'true');
+            Array.prototype.slice.call(title.childNodes).forEach(function (node) {
+              if (node.nodeType === Node.ELEMENT_NODE && node.matches('.anchorjs-link, .pj-title-chroma')) return;
+              layer.appendChild(node.cloneNode(true));
+            });
+            title.appendChild(layer);
+          });
+
+          var chromaFrame = 0;
+          var pointerX = -10000;
+          var pointerY = -10000;
+          function renderTitleChroma() {
+            var rect = title.getBoundingClientRect();
+            var nearestX = Math.max(rect.left, Math.min(pointerX, rect.right));
+            var nearestY = Math.max(rect.top, Math.min(pointerY, rect.bottom));
+            var distance = Math.hypot(pointerX - nearestX, pointerY - nearestY);
+            var proximity = Math.max(0, 1 - distance / 150);
+            var horizontal = pointerX < rect.left + rect.width / 2 ? -1 : 1;
+            var vertical = pointerY < rect.top + rect.height / 2 ? -1 : 1;
+            var shift = 0.55 + proximity * 1.25;
+            title.style.setProperty('--pj-chroma-opacity', String(proximity * 0.3));
+            title.style.setProperty('--pj-chroma-cyan-x', (-horizontal * shift) + 'px');
+            title.style.setProperty('--pj-chroma-cyan-y', (-vertical * shift * 0.28) + 'px');
+            title.style.setProperty('--pj-chroma-magenta-x', (horizontal * shift) + 'px');
+            title.style.setProperty('--pj-chroma-magenta-y', (vertical * shift * 0.28) + 'px');
+            chromaFrame = 0;
+          }
+          document.addEventListener('pointermove', function (event) {
+            pointerX = event.clientX;
+            pointerY = event.clientY;
+            if (!chromaFrame) chromaFrame = window.requestAnimationFrame(renderTitleChroma);
+          }, { passive: true });
+          window.addEventListener('blur', function () {
+            title.style.setProperty('--pj-chroma-opacity', '0');
+          });
+        }
+
+        var yearMatch = (titleBlock.textContent || '').match(/(?:19|20)\d{2}/);
+        var overline = document.createElement('p');
+        overline.className = 'pj-hero-overline';
+        overline.textContent = 'PRISMATIC MATHEMATICAL OBSERVATORY' + (yearMatch ? ' · ' + yearMatch[0] : '');
+        title.parentNode.insertBefore(overline, title);
+
+        var readingText = Array.prototype.slice.call(article.querySelectorAll('section p, section li'))
+          .map(function (node) { return node.textContent || ''; }).join(' ');
+        var japaneseChars = (readingText.match(/[\u3040-\u30ff\u3400-\u9fff]/g) || []).length;
+        var latinWords = (readingText.match(/[A-Za-z0-9]+/g) || []).length;
+        var readingMinutes = Math.max(1, Math.ceil(japaneseChars / 500 + latinWords / 220));
+
+        var dashboard = document.createElement('div');
+        dashboard.className = 'pj-hero-dashboard';
+        dashboard.innerHTML = [
+          '<div class="pj-hero-stat"><span>READING TIME</span><strong>' + readingMinutes + ' min</strong></div>',
+          '<div class="pj-hero-stat"><span>CHAPTERS</span><strong>' + chapterSections.length + '</strong></div>'
+        ].join('');
+        titleBlock.appendChild(dashboard);
+
+      }
+
+      chapterSections.forEach(function (section, index) {
+        var heading = section.querySelector(':scope > h2');
+        if (!heading) return;
+        section.classList.add('pj-chapter');
+        section.style.setProperty('--pj-chapter-index', String(index));
+        var marker = document.createElement('span');
+        marker.className = 'pj-chapter-marker';
+        marker.setAttribute('aria-hidden', 'true');
+        marker.innerHTML = '<span class="pj-chapter-number">CHAPTER ' + String(index + 1).padStart(2, '0') + '</span><span class="pj-chapter-symbol">' + ['∿', '∑', 'ƒ', '∫'][index % 4] + '</span>';
+        heading.insertBefore(marker, heading.firstChild);
+      });
+
+      article.querySelectorAll('.callout').forEach(function (callout) {
+        var calloutTitle = callout.querySelector('.callout-title-container');
+        var label = calloutTitle ? calloutTitle.textContent.trim() : '';
+        if (/理論|Theory/i.test(label)) callout.classList.add('pj-theory-card');
+        if (/解答|Answer|Solution/i.test(label)) {
+          callout.classList.add('pj-solution-card');
+          var header = callout.querySelector('.callout-header[data-bs-toggle="collapse"]');
+          if (header) header.setAttribute('aria-label', header.getAttribute('aria-expanded') === 'true' ? '解答を閉じる' : '解答を見る');
+        }
+      });
+
+      document.addEventListener('shown.bs.collapse', function (event) {
+        var header = event.target.closest('.callout') && event.target.closest('.callout').querySelector('.callout-header');
+        if (header && header.closest('.pj-solution-card')) header.setAttribute('aria-label', '解答を閉じる');
+      });
+      document.addEventListener('hidden.bs.collapse', function (event) {
+        var header = event.target.closest('.callout') && event.target.closest('.callout').querySelector('.callout-header');
+        if (header && header.closest('.pj-solution-card')) header.setAttribute('aria-label', '解答を見る');
+      });
+
+      if (window.IntersectionObserver && !reducedMotion) {
+        var chapterRevealObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              var chapter = entry.target.closest('.pj-chapter');
+              if (chapter) chapter.classList.add('pj-chapter-visible');
+              chapterRevealObserver.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -14% 0px', threshold: 0.12 });
+        chapterSections.forEach(function (section) {
+          var heading = section.querySelector(':scope > h2');
+          if (heading) chapterRevealObserver.observe(heading);
+        });
+      } else {
+        chapterSections.forEach(function (section) { section.classList.add('pj-chapter-visible'); });
+      }
+
+      var statusChapter = status.querySelector('.pj-reading-chapter');
+      var statusHeading = status.querySelector('.pj-reading-heading');
+      var statusPercent = status.querySelector('.pj-reading-percent');
+      var progressBar = progress.querySelector('.pj-reading-progress-bar');
+      var progressTicking = false;
+      var completed = false;
+      var headingOffsets = [];
+
+      function refreshHeadingOffsets() {
+        headingOffsets = allHeadings.map(function (heading) {
+          return {
+            heading: heading,
+            top: heading.getBoundingClientRect().top + window.scrollY
+          };
+        });
+      }
+
+      function headingAtReadingLine() {
+        var readingLine = window.scrollY + Math.min(window.innerHeight * 0.32, 280);
+        var current = null;
+        headingOffsets.forEach(function (item) {
+          if (item.top <= readingLine) current = item.heading;
+        });
+        return current;
+      }
+
+      function updateReadingState() {
+        var root = document.documentElement;
+        var max = Math.max(1, root.scrollHeight - window.innerHeight);
+        var percentage = Math.max(0, Math.min(100, Math.round(window.scrollY / max * 100)));
+        var currentHeading = headingAtReadingLine();
+        var currentChapter = currentHeading && currentHeading.closest('.pj-chapter');
+        var chapterIndex = currentChapter ? chapterSections.indexOf(currentChapter) + 1 : 0;
+        var headingLabel = currentHeading ? currentHeading.cloneNode(true) : null;
+        if (headingLabel) headingLabel.querySelectorAll('.pj-chapter-marker, .anchorjs-link').forEach(function (node) { node.remove(); });
+        var headingText = headingLabel ? headingLabel.textContent.trim() : '記事の先頭';
+        var chapterHeading = currentChapter && currentChapter.querySelector(':scope > h2');
+        var chapterText = chapterHeading ? chapterHeading.cloneNode(true) : null;
+        if (chapterText) chapterText.querySelectorAll('.pj-chapter-marker, .anchorjs-link').forEach(function (node) { node.remove(); });
+
+        document.documentElement.style.setProperty('--pj-reading-progress', percentage + '%');
+        progressBar.style.transform = 'scaleX(' + (percentage / 100) + ')';
+        progress.setAttribute('aria-valuenow', String(percentage));
+        progress.setAttribute('aria-valuetext', percentage + '%、' + headingText);
+        statusPercent.textContent = percentage + '%';
+        statusHeading.textContent = headingText;
+        statusChapter.textContent = chapterIndex ? 'Chapter ' + String(chapterIndex).padStart(2, '0') + ' · ' + chapterText.textContent.trim() : 'Introduction';
+        document.body.dataset.pjChapter = chapterIndex ? String(chapterIndex) : '0';
+
+        if (percentage >= 99 && !completed) {
+          completed = true;
+          status.classList.add('pj-reading-complete');
+        } else if (percentage < 96 && completed) {
+          completed = false;
+          status.classList.remove('pj-reading-complete');
+        }
+        progressTicking = false;
+      }
+
+      function requestReadingUpdate() {
+        if (!progressTicking) {
+          progressTicking = true;
+          window.requestAnimationFrame(updateReadingState);
+        }
+      }
+      refreshHeadingOffsets();
+      updateReadingState();
+      window.addEventListener('scroll', requestReadingUpdate, { passive: true });
+      window.addEventListener('resize', function () {
+        refreshHeadingOffsets();
+        requestReadingUpdate();
+      });
+      window.addEventListener('load', function () {
+        refreshHeadingOffsets();
+        requestReadingUpdate();
+      }, { once: true });
+
+      // ── Lightweight reference previews ---------------------------------
+      // Same-page equations/headings are read from the current DOM. Internal
+      // pages are fetched only on first hover/focus and cached. External URLs
+      // never trigger a network request; their destination is shown instead.
+      var linkPreview = document.createElement('div');
+      linkPreview.id = 'pj-link-preview';
+      linkPreview.setAttribute('role', 'tooltip');
+      linkPreview.hidden = true;
+      document.body.appendChild(linkPreview);
+      var previewCache = new Map();
+      var activePreviewLink = null;
+      var previewCloseTimer;
+
+      function previewLinkFromEvent(event) {
+        var link = event.target.closest && event.target.closest('a[href]');
+        if (!link || !article.contains(link)) return null;
+        if (link.matches('.anchorjs-link, .code-copy-button, [data-bs-toggle], [role="button"]')) return null;
+        var href = link.getAttribute('href') || '';
+        if (!href || href === '#' || /^(javascript|mailto|tel):/i.test(href)) return null;
+        return link;
+      }
+
+      function previewText(value, limit) {
+        var text = String(value || '').replace(/\s+/g, ' ').trim();
+        return text.length > limit ? text.slice(0, limit - 1) + '…' : text;
+      }
+
+      function renderLinkPreview(data, link) {
+        if (activePreviewLink !== link) return;
+        linkPreview.replaceChildren();
+        var type = document.createElement('span');
+        type.className = 'pj-link-preview-type';
+        type.textContent = data.type;
+        var heading = document.createElement('strong');
+        heading.textContent = data.title;
+        linkPreview.appendChild(type);
+        linkPreview.appendChild(heading);
+        if (data.node) {
+          var nodeWrap = document.createElement('div');
+          nodeWrap.className = 'pj-link-preview-math';
+          nodeWrap.appendChild(data.node.cloneNode(true));
+          linkPreview.appendChild(nodeWrap);
+        } else if (data.description) {
+          var description = document.createElement('span');
+          description.className = 'pj-link-preview-description';
+          description.textContent = data.description;
+          linkPreview.appendChild(description);
+        }
+        linkPreview.hidden = false;
+        var describedBy = (link.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean);
+        if (describedBy.indexOf('pj-link-preview') === -1) {
+          link.dataset.pjPreviewDescribedby = describedBy.join(' ');
+          describedBy.push('pj-link-preview');
+          link.setAttribute('aria-describedby', describedBy.join(' '));
+        }
+        window.requestAnimationFrame(function () {
+          if (activePreviewLink !== link) return;
+          var linkRect = link.getBoundingClientRect();
+          var previewRect = linkPreview.getBoundingClientRect();
+          var left = Math.min(window.innerWidth - previewRect.width - 12, Math.max(12, linkRect.left));
+          var below = linkRect.bottom + 10;
+          var top = below + previewRect.height <= window.innerHeight - 12
+            ? below
+            : Math.max(12, linkRect.top - previewRect.height - 10);
+          linkPreview.style.left = left + 'px';
+          linkPreview.style.top = top + 'px';
+        });
+      }
+
+      function localTargetPreview(url, link) {
+        if (!url.hash || normalizedPath(url) !== normalizedPath(new URL(window.location.href))) return null;
+        var id = url.hash.slice(1);
+        try { id = decodeURIComponent(id); } catch (_) { /* keep raw id */ }
+        var target = document.getElementById(id);
+        if (!target) return null;
+        var math = target.matches('.math, mjx-container, [id^="eq-"]') ? target : null;
+        var targetHeading = target.matches('h1, h2, h3, h4, h5, h6')
+          ? target
+          : target.querySelector('h1, h2, h3, h4, h5, h6');
+        var targetParagraph = target.matches('p, li') ? target : target.querySelector('p, li');
+        return {
+          type: math ? 'EQUATION' : 'ON THIS PAGE',
+          title: previewText((targetHeading || link).textContent, 80) || '参照先',
+          description: math ? '' : previewText((targetParagraph || target).textContent, 180),
+          node: math
+        };
+      }
+
+      function internalPagePreview(url) {
+        var cacheKey = url.origin + url.pathname + url.search;
+        if (!previewCache.has(cacheKey)) {
+          previewCache.set(cacheKey, window.fetch(cacheKey, {
+            credentials: 'same-origin',
+            headers: { 'Accept': 'text/html' }
+          }).then(function (response) {
+            if (!response.ok) throw new Error('preview unavailable');
+            return response.text();
+          }).then(function (html) {
+            var previewDocument = new DOMParser().parseFromString(html, 'text/html');
+            var pageTitle = previewDocument.querySelector('main h1, .quarto-title .title, h1');
+            var description = previewDocument.querySelector('meta[name="description"]');
+            var firstParagraph = previewDocument.querySelector('main p, article p');
+            return {
+              type: 'PAGE PREVIEW',
+              title: previewText(pageTitle ? pageTitle.textContent : previewDocument.title, 90) || url.pathname,
+              description: previewText(description ? description.content : (firstParagraph && firstParagraph.textContent), 190)
+            };
+          }).catch(function () {
+            return { type: 'INTERNAL LINK', title: url.pathname, description: 'リンク先を開いて内容を確認できます。' };
+          }));
+        }
+        return previewCache.get(cacheKey);
+      }
+
+      function showLinkPreview(link) {
+        window.clearTimeout(previewCloseTimer);
+        activePreviewLink = link;
+        var url;
+        try { url = new URL(link.href, window.location.href); } catch (_) { return; }
+        var localPreview = localTargetPreview(url, link);
+        if (localPreview) {
+          renderLinkPreview(localPreview, link);
+          return;
+        }
+        if (url.origin === window.location.origin) {
+          internalPagePreview(url).then(function (data) { renderLinkPreview(data, link); });
+          return;
+        }
+        renderLinkPreview({
+          type: 'EXTERNAL LINK',
+          title: previewText(link.textContent, 90) || url.hostname,
+          description: url.hostname
+        }, link);
+      }
+
+      function hideLinkPreview(link) {
+        window.clearTimeout(previewCloseTimer);
+        previewCloseTimer = window.setTimeout(function () {
+          if (link) {
+            var previousDescription = link.dataset.pjPreviewDescribedby || '';
+            if (previousDescription) link.setAttribute('aria-describedby', previousDescription);
+            else link.removeAttribute('aria-describedby');
+            delete link.dataset.pjPreviewDescribedby;
+          }
+          activePreviewLink = null;
+          linkPreview.hidden = true;
+        }, reducedMotion ? 0 : 90);
+      }
+
+      article.addEventListener('pointerover', function (event) {
+        var link = previewLinkFromEvent(event);
+        if (link && (!event.relatedTarget || !link.contains(event.relatedTarget))) showLinkPreview(link);
+      });
+      article.addEventListener('pointerout', function (event) {
+        var link = previewLinkFromEvent(event);
+        if (link && (!event.relatedTarget || !link.contains(event.relatedTarget))) hideLinkPreview(link);
+      });
+      article.addEventListener('focusin', function (event) {
+        var link = previewLinkFromEvent(event);
+        if (link) showLinkPreview(link);
+      });
+      article.addEventListener('focusout', function (event) {
+        var link = previewLinkFromEvent(event);
+        if (link) hideLinkPreview(link);
+      });
+      window.addEventListener('scroll', function () {
+        if (activePreviewLink) hideLinkPreview(activePreviewLink);
+      }, { passive: true });
     }
   });
 })();</script>
 
+<script>(function () {
+  "use strict";
+  document.addEventListener("DOMContentLoaded", function () {
+    var selectedText = "";
+    var actions = [["要約する", "次の文章を日本語で簡潔に要約してください。"], ["わかりやすく説明", "次の文章の内容を、前提知識がない人にもわかるように説明してください。"], ["文章を改善", "次の文章を自然で読みやすい日本語に改善してください。意味は変えないでください。"], ["自由に聞く", "次の文章について質問に答えてください。"]];
+    var destinations = { chatgpt: "https://chatgpt.com/", gemini: "https://gemini.google.com/app", desktop: "" };
+    var destination = "chatgpt";
+    var bubble = document.createElement("div");
+    bubble.className = "serika-selection-ai";
+    bubble.hidden = true;
+    bubble.setAttribute("role", "dialog");
+    bubble.setAttribute("aria-label", "選択テキストをAIに聞く");
+    bubble.innerHTML = '<button type="button" class="serika-selection-ai-trigger">✦ AIに聞く</button><div class="serika-selection-ai-menu" hidden><div class="serika-selection-ai-heading">送信先</div><div class="serika-selection-ai-destinations" role="group" aria-label="AIの送信先"><button type="button" data-ai-destination="chatgpt" aria-pressed="true">ChatGPT</button><button type="button" data-ai-destination="gemini" aria-pressed="false">Gemini</button><button type="button" data-ai-destination="desktop" aria-pressed="false">Desktop</button></div></div>';
+    document.body.appendChild(bubble);
+    var trigger = bubble.querySelector(".serika-selection-ai-trigger");
+    var menu = bubble.querySelector(".serika-selection-ai-menu");
+    bubble.addEventListener("mousedown", function (event) {
+      event.preventDefault();
+    });
+    var destinationButtons = bubble.querySelectorAll("[data-ai-destination]");
+    destinationButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        destination = button.getAttribute("data-ai-destination");
+        destinationButtons.forEach(function (item) { item.setAttribute("aria-pressed", String(item === button)); });
+        hint.textContent = destination === "desktop" ? "コピー後：⌥Space → ⌘V" : "開いたら ⌘V で貼り付け";
+      });
+    });
+    actions.forEach(function (action) {
+      var button = document.createElement("button");
+      button.type = "button"; button.textContent = action[0];
+      button.addEventListener("click", function () {
+        var prompt = action[1] + "\n\n--- 選択した文章 ---\n" + selectedText;
+        var copy = navigator.clipboard && navigator.clipboard.writeText ? navigator.clipboard.writeText(prompt) : Promise.reject();
+        if (destinations[destination]) window.open(destinations[destination], "_blank", "noopener");
+        copy.catch(function () { var area = document.createElement("textarea"); area.value = prompt; area.style.position = "fixed"; area.style.opacity = "0"; document.body.appendChild(area); area.select(); try { document.execCommand("copy"); } catch (_) {} area.remove(); }).then(function () { if (destination === "desktop") { hint.textContent = "✓ コピー済み：⌥Space → ⌘V"; } else { menu.hidden = true; } });
+      });
+      menu.appendChild(button);
+    });
+    var hint = document.createElement("div");
+    hint.className = "serika-selection-ai-hint";
+    hint.textContent = "開いたら ⌘V で貼り付け";
+    menu.appendChild(hint);
+    document.addEventListener("selectionchange", function () {
+      var selection = window.getSelection(); var text = selection ? selection.toString().trim() : "";
+      if (!text || !selection.rangeCount || !document.body.contains(selection.anchorNode)) { selectedText = ""; menu.hidden = true; bubble.hidden = true; return; }
+      selectedText = text; var rect = selection.getRangeAt(0).getBoundingClientRect();
+      bubble.style.left = Math.max(12, Math.min(window.innerWidth - 150, rect.left + rect.width / 2 - 72)) + "px";
+      bubble.style.top = Math.max(12, rect.top - 48 + window.scrollY) + "px"; bubble.hidden = false;
+    });
+    trigger.addEventListener("click", function () { menu.hidden = !menu.hidden; });
+    document.addEventListener("mousedown", function (event) { if (!bubble.contains(event.target)) menu.hidden = true; });
+  });
+})();</script>
 <script src="site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="site_libs/quarto-diagram/mermaid-init.js"></script>
 <link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
