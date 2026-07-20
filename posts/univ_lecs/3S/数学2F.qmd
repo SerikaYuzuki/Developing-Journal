@@ -225,6 +225,144 @@ $$
 関係式が成立するのは $(x,y)=(0,-1)$ の一点だけであり、どの開領域でも成立しない。したがって $f$ は正則ではない。
 :::
 
+### 統合演習A：複素数・写像・正則性 {#math2f-basic-exercises}
+
+後の積分と展開で繰り返し使う基礎をまとめる。多価関数では、値を一つに決める枝を必ず意識する。
+
+::: {.callout-note collapse="true"}
+##### 問題A1 複素数の計算
+
+次を求めよ。
+
+1. $i^i$、$\log(1+i)$、$\cos(\pi/3-i)$、$\{(1+i)/(1-i)\}^5$、$e^{1+3i}e^{2-i}$ の実部と虚部
+2. $(1+i)^{1/3}$ の極表示
+3. $z^4=-1+\sqrt3i$ の解
+4. 実数 $\alpha,\beta$ に対し、Euler の公式から $e^{i\alpha}e^{i\beta}=e^{i(\alpha+\beta)}$ を示せ。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答A1
+
+複素対数を $\log z=\log|z|+i(\arg z+2\pi k)$ とすれば
+
+$$
+i^i=e^{-\pi/2-2\pi k},\qquad
+\log(1+i)=\frac12\log2+i\left(\frac\pi4+2\pi k\right).
+$$
+
+したがって $i^i$ の虚部は $0$ で、主値は $e^{-\pi/2}$。$\log(1+i)$ の主値の実部は $\frac12\log2$、虚部は $\pi/4$ である。また
+
+$$
+\cos\left(\frac\pi3-i\right)=\frac12\cosh1+i\frac{\sqrt3}{2}\sinh1,
+$$
+
+$$
+\left(\frac{1+i}{1-i}\right)^5=i,qquad
+e^{1+3i}e^{2-i}=e^3(\cos2+i\sin2).
+$$
+
+根はそれぞれ
+
+$$
+(1+i)^{1/3}=2^{1/6}\exp\left\{i\left(\frac\pi{12}+\frac{2\pi k}{3}\right)\right\},quad k=0,1,2,
+$$
+
+$$
+z_k=2^{1/4}\exp\left\{i\left(\frac\pi6+\frac{k\pi}{2}\right)\right\},quad k=0,1,2,3.
+$$
+
+最後に Euler の公式と三角関数の加法定理から
+
+$$
+(\cos\alpha+i\sin\alpha)(\cos\beta+i\sin\beta)
+=\cos(\alpha+\beta)+i\sin(\alpha+\beta)
+$$
+
+を得る。
+:::
+
+::: {.callout-note collapse="true"}
+##### 問題A2 一次分数変換
+
+$w=(az+b)/(cz+d)$、$ad-bc\ne0$ とする。次の領域を互いに一対一に写す係数条件を求めよ。
+
+1. 上半平面から上半平面
+2. 上半平面から単位円内部
+3. 右半平面から単位円外部
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答A2
+
+係数の共通非零倍は同じ写像を表す。上半平面の自己同型は
+
+$$
+w=\frac{Az+B}{Cz+D},\qquad A,B,C,D\in\mathbb R,qquad AD-BC>0
+$$
+
+で尽くされる。したがって第一の条件は $(a,b,c,d)=\lambda(A,B,C,D)$ となる $\lambda\ne0$ が存在することである。
+
+上半平面から単位円内部への全ての写像は、$z_0\in\mathbb H$、$\phi\in\mathbb R$ として
+
+$$
+w=e^{i\phi}\frac{z-z_0}{z-\overline{z_0}}
+$$
+
+と書ける。右半平面から単位円外部への全ての写像は、$\operatorname{Re}\alpha>0$ として
+
+$$
+w=e^{i\phi}\frac{z+\overline\alpha}{z-\alpha}
+$$
+
+と書ける。それぞれ分子・分母の係数を読めば $a,b,c,d$ の条件になる。
+:::
+
+::: {.callout-note collapse="true"}
+##### 問題A3 正則性と導関数
+
+$z=x+iy$ とする。次の関数の正則性を調べ、正則な領域では導関数を求めよ。
+
+1. $a^z$（$a$ は複素定数）
+2. $\tan^{-1}z$
+3. $\overline z$
+4. $|z|^2=z\overline z$
+5. $z^i$（$z\ne0$）
+6. $z^2$
+7. $x^2-y^2+2ixy$
+8. $(x+iy)/(x^2+y^2)$
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答A3
+
+1. $a\ne0$ で $\Log a$ を固定すれば $a^z=e^{z\Log a}$ は整関数で、$\dv*{a^z}{z}=(\Log a)a^z$。
+2. $\tan^{-1}z=(2i)^{-1}\{\Log(1+iz)-\Log(1-iz)\}$ は枝を選べる領域で正則で、導関数は $1/(1+z^2)$。$z=\pm i$ は特異点。
+3. $\overline z$ はどの開領域でも正則でない。
+4. $|z|^2$ は原点でのみ複素微分可能だが、どの開領域でも正則でない。
+5. $z^i=e^{i\Log z}$ は対数の枝を固定できる領域で正則で、導関数は $iz^{i-1}$。
+6. $z^2$ は整関数で、導関数は $2z$。
+7. 与式は $z^2$ なので整関数で、導関数は $2z$。
+8. 与式は $1/\overline z$ なので、$z\ne0$ のどの開領域でも正則でない。
+:::
+
+::: {.callout-note collapse="true"}
+##### 問題A4 実部から正則関数を復元する
+
+$x/(x^2+y^2)$、$e^x\cos y$、$\log|z|$ をそれぞれ実部にもつ正則関数を求めよ。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答A4
+
+Cauchy--Riemann 方程式から調和共役を求めると
+
+$$
+f(z)=\frac1z+iC,qquad f(z)=e^z+iC,qquad f(z)=\Log z+iC
+$$
+
+となる。$C$ は実定数で、第一式は $z\ne0$、第三式は対数の枝を固定できる領域で正則である。
+:::
+
 ### 2023年度 第1問【２】Liouville の定理 {#math2f-liouville-theory}
 
 Liouville の定理について説明せよ。また、$f(z)=\sin |z|$ が複素平面上で正則であるかどうかを、Liouville の定理に基づいて判別せよ。
@@ -378,6 +516,148 @@ f(z)=\sin |z|
 $$
 
 は複素平面上で正則ではない。
+:::
+
+### 統合演習B：Taylor 展開・Laurent 展開 {#math2f-series-exercises}
+
+正則関数の冪級数は収束円内で項別に微分・積分でき、Taylor 係数は Cauchy の微分公式から
+
+$$
+c_n=\frac{1}{2\pi i}\oint_C\frac{f(w)}{(w-z_0)^{n+1}}\,\dd w
+=\frac{1}{n!}\dv[n]{f}{z}(z_0)
+$$
+
+と求まる。中心から最も近い特異点までの距離が収束半径になる。孤立特異点では Laurent 展開の負冪がなくなれば可除、有限個なら極、無限個なら真性特異点である。
+
+::: {.callout-note collapse="true"}
+##### 問題B
+
+次を指定された点の周りで展開し、必要に応じて収束半径・極の位数・留数を求めよ。
+
+1. $(1+z)^a$、中心 $0$
+2. $(1-\cos z)/z^2$、中心 $0$
+3. $\sin^2z$、中心 $0$
+4. $e^z/(z-1)^4$、中心 $1$
+5. $\tan z$、中心 $0$
+6. $z^2/(z^3+2)$、中心 $0$
+7. $z\sin\{1/(1+z)\}$、中心 $-1$
+8. $e^z/(1+z)$、中心 $0$
+9. $3/\{(z+1)(z-2)\}$、中心 $2$
+10. $1/z$、中心 $1$
+11. $1/(1+z^2)$、中心 $i$
+12. $z\cos\{1/(z-1)\}$、中心 $1$
+13. $\sin z/z^2$、中心 $0$
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答B
+
+**1. 二項級数。**
+
+$$
+(1+z)^a=\sum_{n=0}^{\infty}\binom an z^n
+=1+az+\frac{a(a-1)}{2!}z^2+\cdots,qquad |z|<1.
+$$
+
+$a$ が非負整数なら有限和となり収束半径は無限大である。
+
+**2--3. 三角関数。**
+
+$$
+\frac{1-\cos z}{z^2}
+=\frac12-\frac{z^2}{4!}+\frac{z^4}{6!}-\cdots
+$$
+
+なので $z=0$ は可除特異点である。また
+
+$$
+\sin^2z=\frac{1-\cos2z}{2}
+=z^2-\frac{z^4}{3}+\frac{2z^6}{45}-\cdots.
+$$
+
+**4. 四位の極。** $w=z-1$ と置けば
+
+$$
+\frac{e^z}{(z-1)^4}
+=e\frac{e^w}{w^4}
+=e\sum_{n=0}^{\infty}\frac{w^{n-4}}{n!}.
+$$
+
+$z=1$ は四位の極で、$w^{-1}$ の係数より留数は $e/3!$。
+
+**5--6. 原点の Taylor 展開。**
+
+$$
+\tan z=z+\frac{z^3}{3}+\frac{2z^5}{15}+\frac{17z^7}{315}+\cdots,qquad |z|<\frac\pi2,
+$$
+
+$$
+\frac{z^2}{z^3+2}
+=\frac{z^2}{2}\sum_{n=0}^{\infty}\left(-\frac{z^3}{2}\right)^n
+=\sum_{n=0}^{\infty}\frac{(-1)^n}{2^{n+1}}z^{3n+2},qquad |z|<2^{1/3}.
+$$
+
+**7. 真性特異点。** $w=z+1$ と置くと
+
+$$
+z\sin\frac1{1+z}
+=(w-1)\sum_{n=0}^{\infty}\frac{(-1)^n}{(2n+1)!}w^{-(2n+1)}.
+$$
+
+負冪が無限に現れるので $z=-1$ は真性特異点である。
+
+**8. 商の Taylor 展開。**
+
+$$
+\frac{e^z}{1+z}
+=\left(\sum_{k=0}^{\infty}\frac{z^k}{k!}\right)
+\left(\sum_{m=0}^{\infty}(-z)^m\right)
+=\sum_{n=0}^{\infty}\left\{\sum_{k=0}^{n}\frac{(-1)^{n-k}}{k!}\right\}z^n,quad |z|<1.
+$$
+
+**9. 単純極。** $w=z-2$ とすれば
+
+$$
+\frac{3}{(z+1)(z-2)}
+=\frac1w-\frac1{w+3}
+=\frac1w-\frac13\sum_{n=0}^{\infty}\left(-\frac w3\right)^n,quad 0<|w|<3.
+$$
+
+留数は $1$。
+
+**10. 中心が特異点でない場合。**
+
+$$
+\frac1z=\frac1{1+(z-1)}
+=\sum_{n=0}^{\infty}(-1)^n(z-1)^n,qquad |z-1|<1.
+$$
+
+**11. 単純極 $z=i$。** $w=z-i$ とすれば
+
+$$
+\frac1{1+z^2}
+=\frac1{w(w+2i)}
+=\frac1{2iw}\sum_{n=0}^{\infty}\left(-\frac{w}{2i}\right)^n,qquad 0<|w|<2.
+$$
+
+留数は $1/(2i)$。
+
+**12. 真性特異点 $z=1$。** $w=z-1$ とすれば
+
+$$
+z\cos\frac1{z-1}
+=(1+w)\sum_{n=0}^{\infty}\frac{(-1)^n}{(2n)!}w^{-2n}.
+$$
+
+負冪が無限に現れる。
+
+**13. 単純極 $z=0$。**
+
+$$
+\frac{\sin z}{z^2}=\frac1z-\frac z{3!}+\frac{z^3}{5!}-\cdots.
+$$
+
+留数は $1$ である。
 :::
 
 ### 2023年度 第1問【３】三角関数を含む定積分 {#math2f-residue-theory}
