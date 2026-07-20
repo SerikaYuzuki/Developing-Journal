@@ -339,14 +339,14 @@ $$
 同じ操作を繰り返すと、一般に
 
 $$
-\frac{\dd^n f}{\dd z^n}(a)=\frac{n!}{2\pi i}\oint_C
+\dv[n]{f}{z}(a)=\frac{n!}{2\pi i}\oint_C
 \frac{f(w)}{(w-a)^{n+1}}\,\dd w.
 $$
 
 これは Taylor 展開の係数抽出でもある。分母 $(w-a)^{n+1}$ によって $1/(w-a)$ の項、すなわち $n$ 次係数だけが閉曲線積分に残る。中心 $a$、半径 $R$ の円周上で $|f(w)|\le M$ なら、円周の長さが $2\pi R$ であることから
 
 $$
-\left|\frac{\dd^n f}{\dd z^n}(a)\right|\le \frac{Mn!}{R^n}
+\left|\dv[n]{f}{z}(a)\right|\le \frac{Mn!}{R^n}
 $$
 
 を得る。

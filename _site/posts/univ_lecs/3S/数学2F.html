@@ -2431,12 +2431,12 @@ f(a)=\frac{1}{2\pi}\int_0^{2\pi}f(a+Re^{it})\,\dd t
 \]</span></p>
 <p>同じ操作を繰り返すと、一般に</p>
 <p><span class="math display">\[
-\frac{\dd^n f}{\dd z^n}(a)=\frac{n!}{2\pi i}\oint_C
+\dv[n]{f}{z}(a)=\frac{n!}{2\pi i}\oint_C
 \frac{f(w)}{(w-a)^{n+1}}\,\dd w.
 \]</span></p>
 <p>これは Taylor 展開の係数抽出でもある。分母 <span class="math inline">\((w-a)^{n+1}\)</span> によって <span class="math inline">\(1/(w-a)\)</span> の項、すなわち <span class="math inline">\(n\)</span> 次係数だけが閉曲線積分に残る。中心 <span class="math inline">\(a\)</span>、半径 <span class="math inline">\(R\)</span> の円周上で <span class="math inline">\(|f(w)|\le M\)</span> なら、円周の長さが <span class="math inline">\(2\pi R\)</span> であることから</p>
 <p><span class="math display">\[
-\left|\frac{\dd^n f}{\dd z^n}(a)\right|\le \frac{Mn!}{R^n}
+\left|\dv[n]{f}{z}(a)\right|\le \frac{Mn!}{R^n}
 \]</span></p>
 <p>を得る。</p>
 <p><strong>5. Liouville の定理。</strong> 整関数 <span class="math inline">\(f\)</span> が複素平面全体で <span class="math inline">\(|f(z)|\le M\)</span> を満たすとする。任意の点 <span class="math inline">\(a\)</span> と任意の半径 <span class="math inline">\(R&gt;0\)</span> に対して、一階の微分公式から</p>
