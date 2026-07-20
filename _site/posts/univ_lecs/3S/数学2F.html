@@ -1939,12 +1939,6 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/卒業論文/論文読書/GPT-Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ti-Al-N-Based Hard Coatings: Thermodynamical Background, CVD Deposition, and Properties. A Review</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../../posts/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ti-Al-N系硬質コーティング：熱力学的背景・CVD成膜・特性レビュー</span></a>
   </div>
@@ -2379,38 +2373,82 @@ z=\gamma(t)\qquad(a\le t\le b)
 <p><span class="math display">\[
 \oint_C f(z)\,\dd z=0
 \]</span></p>
-<p>となる。直感的には、正則関数には局所的な「複素数版の原始関数」があり、閉路では始点と終点が同じなので積分が相殺する、という定理である。</p>
-<p>証明の核は Goursat の補題である。長方形を四分割し、境界積分の大きさが最大の小長方形を選ぶ操作を繰り返すと、一点 <span class="math inline">\(z_*\)</span> へ縮む長方形列ができる。正則性から</p>
+<p>が成り立つ。ここでは「正則性が閉路積分を消す」理由を、まず直感的な Green の定理で見る。<span class="math inline">\(f(z)=u(x,y)+iv(x,y)\)</span>、<span class="math inline">\(dd z=dd x+i\,\dd y\)</span> と書けば</p>
 <p><span class="math display">\[
-f(z)=f(z_*)+f'(z_*)(z-z_*)+(z-z_*)\eta(z-z_*),
+f(z)\,\dd z=(u\,\dd x-v\,\dd y)+i(v\,\dd x+u\,\dd y).
+\]</span></p>
+<p>したがって実部と虚部は、それぞれベクトル場 <span class="math inline">\((u,-v)\)</span> と <span class="math inline">\((v,u)\)</span> の周回積分である。Green の定理により、その「回転」は</p>
+<p><span class="math display">\[
+-v_x-u_y,\qquad u_x-v_y
+\]</span></p>
+<p>となる。Cauchy–Riemann 方程式 <span class="math inline">\(u_x=v_y\)</span>、<span class="math inline">\(u_y=-v_x\)</span> によってどちらも <span class="math inline">\(0\)</span> だから、両方の周回積分が消える。すなわち</p>
+<p><span class="math display">\[
+\boxed{\text{正則性}\ \Rightarrow\ \text{二つのベクトル場が無回転}\ \Rightarrow\ \oint_C f(z)\,\dd z=0}.
+\]</span></p>
+<p>ただし Green の定理を直接使うには偏導関数の連続性を仮定する。正則性だけで成立する厳密な版が <strong>Goursat の定理</strong> である。三角形を四つに分け、境界積分の絶対値が最も大きい小三角形を選ぶことを繰り返すと、一点 <span class="math inline">\(z_*\)</span> へ縮む三角形列が得られる。正則性から</p>
+<p><span class="math display">\[
+f(z)=f(z_*)+\dv{f}{z}(z_*)(z-z_*)+(z-z_*)\eta(z-z_*),
 \qquad \eta(\zeta)\to0
 \]</span></p>
-<p>と書ける。定数項と一次項の閉路積分は <span class="math inline">\(0\)</span> で、残りも長方形が縮むと <span class="math inline">\(0\)</span> になる。三角形や一般の閉曲線を分割して同じ議論を適用すれば積分定理を得る。</p>
-<p>別の見方として、基準点 <span class="math inline">\(z_0\)</span> から <span class="math inline">\(z\)</span> までの積分を</p>
+<p>と書ける。定数項と一次項の閉路積分は <span class="math inline">\(0\)</span> であり、残りは三角形の直径と周長の積で評価すると任意に小さくなる。よって三角形の境界積分は <span class="math inline">\(0\)</span>、さらに一般の閉曲線も三角形分割により <span class="math inline">\(0\)</span> となる。</p>
+<p>「穴のない」が必要なのは、例えば <span class="math inline">\(1/z\)</span> が <span class="math inline">\(0\)</span> 以外では正則でも</p>
 <p><span class="math display">\[
-F(z)=\int_{z_0}^{z}f(w)\,\dd w
+\oint_{|z|=1}\frac{1}{z}\,\dd z=2\pi i
 \]</span></p>
-<p>と定める。積分定理により値は経路によらず、短い線分上の積分を調べると <span class="math inline">\(F'(z)=f(z)\)</span> となる。したがって閉曲線では <span class="math inline">\(F\)</span> の始点と終点の差が <span class="math inline">\(0\)</span> になる。</p>
-<p><strong>3. Cauchy の積分公式。</strong> <span class="math inline">\(f\)</span> が単純閉曲線 <span class="math inline">\(C\)</span> の内側と境界上で正則なら</p>
+<p>となるためである。円の内側に特異点という穴があるので、積分定理は適用できない。</p>
+<p><strong>3. Cauchy の積分公式。</strong> <span class="math inline">\(C\)</span> を反時計回りの単純閉曲線、<span class="math inline">\(a\)</span> をその内部の点とし、<span class="math inline">\(f\)</span> が <span class="math inline">\(C\)</span> とその内部で正則とする。このとき</p>
 <p><span class="math display">\[
-f(z)=\frac{1}{2\pi i}\oint_C\frac{f(w)}{w-z}\,\dd w.
+\boxed{f(a)=\frac{1}{2\pi i}\oint_C\frac{f(z)}{z-a}\,\dd z}.
 \]</span></p>
-<p><span class="math inline">\(z\)</span> の周りの小円へ積分路を変形し、<span class="math inline">\(f(w)=f(z)+\{f(w)-f(z)\}\)</span> と分ける。定数部分の積分は <span class="math inline">\(2\pi i f(z)\)</span> となり、差の部分は <span class="math inline">\(f\)</span> の連続性により小円の半径を <span class="math inline">\(0\)</span> にすると消える。</p>
-<p><strong>4. 微分公式と Cauchy の評価式。</strong> 積分公式を <span class="math inline">\(z\)</span> で微分すると</p>
+<p>まず <span class="math inline">\(z=a+Re^{it}\)</span> <span class="math inline">\((0\le t\le2\pi)\)</span> と置けば、<span class="math inline">\(\dd z=iRe^{it}\,\dd t\)</span> だから</p>
 <p><span class="math display">\[
-f^{(n)}(z)=\frac{n!}{2\pi i}\oint_C
-\frac{f(w)}{(w-z)^{n+1}}\,\dd w.
+\oint_C\frac{1}{z-a}\,\dd z
+=\int_0^{2\pi}\frac{iRe^{it}}{Re^{it}}\,\dd t
+=2\pi i.
 \]</span></p>
-<p>中心 <span class="math inline">\(z\)</span>、半径 <span class="math inline">\(R\)</span> の円周上で <span class="math inline">\(|f(w)|\le M\)</span> なら、円周の長さが <span class="math inline">\(2\pi R\)</span> であることから</p>
+<p>次に</p>
 <p><span class="math display">\[
-|f^{(n)}(z)|\le \frac{Mn!}{R^n}
+g(z)=
+\begin{cases}
+\dfrac{f(z)-f(a)}{z-a},&amp;z\ne a,\\[4pt]
+\dv{f}{z}(a),&amp;z=a
+\end{cases}
+\]</span></p>
+<p>とおく。<span class="math inline">\(g\)</span> は <span class="math inline">\(a\)</span> でも正則で、<span class="math inline">\(f(z)=f(a)+(z-a)g(z)\)</span> である。よって</p>
+<p><span class="math display">\[
+\oint_C\frac{f(z)}{z-a}\,\dd z
+=f(a)\oint_C\frac{1}{z-a}\,\dd z+\oint_Cg(z)\,\dd z
+=2\pi i f(a),
+\]</span></p>
+<p>最後の積分は Cauchy の積分定理で <span class="math inline">\(0\)</span> になった。境界上の値だけで内部の値 <span class="math inline">\(f(a)\)</span> が復元される、というのがこの公式の強さである。円の場合には</p>
+<p><span class="math display">\[
+f(a)=\frac{1}{2\pi}\int_0^{2\pi}f(a+Re^{it})\,\dd t
+\]</span></p>
+<p>となり、中心の値は円周上の値の平均に等しい。</p>
+<p><strong>4. 微分公式と Cauchy の評価式。</strong> 積分公式に <span class="math inline">\(a+h\)</span> を入れて差商を取り、<span class="math inline">\(h\to0\)</span> とすると</p>
+<p><span class="math display">\[
+\dv{f}{z}(a)=\frac{1}{2\pi i}\oint_C\frac{f(w)}{(w-a)^2}\,\dd w.
+\]</span></p>
+<p>同じ操作を繰り返すと、一般に</p>
+<p><span class="math display">\[
+\frac{\dd^n f}{\dd z^n}(a)=\frac{n!}{2\pi i}\oint_C
+\frac{f(w)}{(w-a)^{n+1}}\,\dd w.
+\]</span></p>
+<p>これは Taylor 展開の係数抽出でもある。分母 <span class="math inline">\((w-a)^{n+1}\)</span> によって <span class="math inline">\(1/(w-a)\)</span> の項、すなわち <span class="math inline">\(n\)</span> 次係数だけが閉曲線積分に残る。中心 <span class="math inline">\(a\)</span>、半径 <span class="math inline">\(R\)</span> の円周上で <span class="math inline">\(|f(w)|\le M\)</span> なら、円周の長さが <span class="math inline">\(2\pi R\)</span> であることから</p>
+<p><span class="math display">\[
+\left|\frac{\dd^n f}{\dd z^n}(a)\right|\le \frac{Mn!}{R^n}
 \]</span></p>
 <p>を得る。</p>
-<p><strong>5. Liouville の定理。</strong> 整関数 <span class="math inline">\(f\)</span> が複素平面全体で <span class="math inline">\(|f(z)|\le M\)</span> を満たすとする。上の評価式で <span class="math inline">\(n=1\)</span> とすれば、任意の <span class="math inline">\(R&gt;0\)</span> に対して</p>
+<p><strong>5. Liouville の定理。</strong> 整関数 <span class="math inline">\(f\)</span> が複素平面全体で <span class="math inline">\(|f(z)|\le M\)</span> を満たすとする。任意の点 <span class="math inline">\(a\)</span> と任意の半径 <span class="math inline">\(R&gt;0\)</span> に対して、一階の微分公式から</p>
 <p><span class="math display">\[
-|f'(z)|\le \frac{M}{R}.
+\left|\dv{f}{z}(a)\right|
+\le\frac{1}{2\pi}\cdot\frac{M}{R^2}\cdot2\pi R
+=\frac{M}{R}.
 \]</span></p>
-<p><span class="math inline">\(R\to\infty\)</span> とすると <span class="math inline">\(f'(z)=0\)</span> なので、<span class="math inline">\(f\)</span> は定数である。</p>
+<p>整関数では円をいくらでも大きく取れる。<span class="math inline">\(R\to\infty\)</span> とすれば <span class="math inline">\(\dv{f}{z}(a)=0\)</span> であり、<span class="math inline">\(a\)</span> は任意だったから <span class="math inline">\(f\)</span> は定数である。流れをまとめると</p>
+<p><span class="math display">\[
+\boxed{\text{Cauchy の積分定理}\Rightarrow\text{積分公式}\Rightarrow\text{微分公式}\Rightarrow\text{Liouville の定理}}.
+\]</span></p>
 <p>本問の <span class="math inline">\(|z|\)</span> は常に実数なので、<span class="math inline">\(\sin |z|\)</span> は <span class="math inline">\(-1\)</span> 以上 <span class="math inline">\(1\)</span> 以下で有界である。したがって、もし整関数なら Liouville の定理によって定数でなければならない。</p>
 </div>
 </div>
