@@ -1939,6 +1939,12 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/論文読書/GPT-Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ti-Al-N-Based Hard Coatings: Thermodynamical Background, CVD Deposition, and Properties. A Review</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../posts/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ti-Al-N系硬質コーティング：熱力学的背景・CVD成膜・特性レビュー</span></a>
   </div>
@@ -2365,13 +2371,13 @@ z=\gamma(t)\qquad(a\le t\le b)
 \]</span></p>
 <p>と媒介変数表示する。曲線に沿う積分は</p>
 <p><span class="math display">\[
-\int_C f(z)\,dz
-=\int_a^b f(\gamma(t))\gamma'(t)\,dt
+\int_C f(z)\,\dd z
+=\int_a^b f(\gamma(t))\gamma'(t)\,\dd t
 \]</span></p>
 <p>で定義する。つまり、実数の定積分へ直して計算する。始点と終点が一致する曲線を閉曲線といい、閉曲線上の積分を <span class="math inline">\(\oint_C\)</span> と書く。曲線の向きを逆にすると積分の符号が反転する。</p>
 <p><strong>2. Cauchy の積分定理。</strong> 穴のない領域で <span class="math inline">\(f\)</span> が正則なら、その領域内の閉曲線 <span class="math inline">\(C\)</span> に対して</p>
 <p><span class="math display">\[
-\oint_C f(z)\,dz=0
+\oint_C f(z)\,\dd z=0
 \]</span></p>
 <p>となる。直感的には、正則関数には局所的な「複素数版の原始関数」があり、閉路では始点と終点が同じなので積分が相殺する、という定理である。</p>
 <p>証明の核は Goursat の補題である。長方形を四分割し、境界積分の大きさが最大の小長方形を選ぶ操作を繰り返すと、一点 <span class="math inline">\(z_*\)</span> へ縮む長方形列ができる。正則性から</p>
@@ -2382,18 +2388,18 @@ f(z)=f(z_*)+f'(z_*)(z-z_*)+(z-z_*)\eta(z-z_*),
 <p>と書ける。定数項と一次項の閉路積分は <span class="math inline">\(0\)</span> で、残りも長方形が縮むと <span class="math inline">\(0\)</span> になる。三角形や一般の閉曲線を分割して同じ議論を適用すれば積分定理を得る。</p>
 <p>別の見方として、基準点 <span class="math inline">\(z_0\)</span> から <span class="math inline">\(z\)</span> までの積分を</p>
 <p><span class="math display">\[
-F(z)=\int_{z_0}^{z}f(w)\,dw
+F(z)=\int_{z_0}^{z}f(w)\,\dd w
 \]</span></p>
 <p>と定める。積分定理により値は経路によらず、短い線分上の積分を調べると <span class="math inline">\(F'(z)=f(z)\)</span> となる。したがって閉曲線では <span class="math inline">\(F\)</span> の始点と終点の差が <span class="math inline">\(0\)</span> になる。</p>
 <p><strong>3. Cauchy の積分公式。</strong> <span class="math inline">\(f\)</span> が単純閉曲線 <span class="math inline">\(C\)</span> の内側と境界上で正則なら</p>
 <p><span class="math display">\[
-f(z)=\frac{1}{2\pi i}\oint_C\frac{f(w)}{w-z}\,dw.
+f(z)=\frac{1}{2\pi i}\oint_C\frac{f(w)}{w-z}\,\dd w.
 \]</span></p>
 <p><span class="math inline">\(z\)</span> の周りの小円へ積分路を変形し、<span class="math inline">\(f(w)=f(z)+\{f(w)-f(z)\}\)</span> と分ける。定数部分の積分は <span class="math inline">\(2\pi i f(z)\)</span> となり、差の部分は <span class="math inline">\(f\)</span> の連続性により小円の半径を <span class="math inline">\(0\)</span> にすると消える。</p>
 <p><strong>4. 微分公式と Cauchy の評価式。</strong> 積分公式を <span class="math inline">\(z\)</span> で微分すると</p>
 <p><span class="math display">\[
 f^{(n)}(z)=\frac{n!}{2\pi i}\oint_C
-\frac{f(w)}{(w-z)^{n+1}}\,dw.
+\frac{f(w)}{(w-z)^{n+1}}\,\dd w.
 \]</span></p>
 <p>中心 <span class="math inline">\(z\)</span>、半径 <span class="math inline">\(R\)</span> の円周上で <span class="math inline">\(|f(w)|\le M\)</span> なら、円周の長さが <span class="math inline">\(2\pi R\)</span> であることから</p>
 <p><span class="math display">\[
@@ -2477,7 +2483,7 @@ z_{\pm}=-a\pm\sqrt{a^2-1}
 <p>であり、<span class="math inline">\(z_-=-a-\sqrt{a^2-1}\)</span> は単位円外にある。したがって円内で考える極は <span class="math inline">\(z_+\)</span> の一つだけである。</p>
 <p><strong>Cauchy の積分定理から留数定理へ進む。</strong> <a href="#math2f-liouville-theory">前節</a>では、特異点のない領域なら閉路積分が <span class="math inline">\(0\)</span> になることを示した。特異点 <span class="math inline">\(z_j\)</span> がある場合は、それぞれを小円 <span class="math inline">\(C_j\)</span> でくり抜き、外周 <span class="math inline">\(C\)</span> と小円を細いブリッジで結ぶ。ブリッジの往復は打ち消し合うため</p>
 <p><span class="math display">\[
-\oint_C h(z)\,dz=\sum_j\oint_{C_j}h(z)\,dz
+\oint_C h(z)\,\dd z=\sum_j\oint_{C_j}h(z)\,\dd z
 \]</span></p>
 <p>となる。各特異点の周りで <a href="#math2f-laurent-theory">Laurent 展開</a></p>
 <p><span class="math display">\[
@@ -3780,11 +3786,11 @@ f(t)=\frac{g}{\gamma^2}e^{-\gamma t}
 <section id="テイラー展開" class="level4">
 <h4 class="anchored" data-anchor-id="テイラー展開">テイラー展開</h4>
 <p><strong>定理</strong> 正則関数 <span class="math inline">\(f\)</span> は <span class="math inline">\(f(z) = \sum_{n=0}^\infty c_n (z-z_0)^n\)</span> と展開できる。</p>
-<p><strong>証明</strong> コーシーの積分公式より <span class="math inline">\(f(z) = \frac{1}{2\pi i} \oint_{C} \frac{f(w)}{w-z}dw\)</span>。 分母を <span class="math inline">\(\frac{1}{w-z} = \frac{1}{w-z_0} \frac{1}{1 - \frac{z-z_0}{w-z_0}} = \sum \frac{(z-z_0)^n}{(w-z_0)^{n+1}}\)</span> と等比級数展開する。一様収束性から積分と和の順序を交換することで、テイラー展開の係数 <span class="math inline">\(c_n = \frac{1}{2\pi i} \oint \frac{f(w)}{(w-z_0)^{n+1}}dw\)</span> を得る。</p>
+<p><strong>証明</strong> コーシーの積分公式より <span class="math inline">\(f(z) = \frac{1}{2\pi i} \oint_{C} \frac{f(w)}{w-z}\,\dd w\)</span>。 分母を <span class="math inline">\(\frac{1}{w-z} = \frac{1}{w-z_0} \frac{1}{1 - \frac{z-z_0}{w-z_0}} = \sum \frac{(z-z_0)^n}{(w-z_0)^{n+1}}\)</span> と等比級数展開する。一様収束性から積分と和の順序を交換することで、テイラー展開の係数 <span class="math inline">\(c_n = \frac{1}{2\pi i} \oint \frac{f(w)}{(w-z_0)^{n+1}}dw\)</span> を得る。</p>
 </section>
 <section id="モレラの定理" class="level4">
 <h4 class="anchored" data-anchor-id="モレラの定理">モレラの定理</h4>
-<p><strong>定理</strong> 連続関数 <span class="math inline">\(f\)</span> について任意の閉曲線で <span class="math inline">\(\oint_C f(z)dz = 0\)</span> なら、<span class="math inline">\(f\)</span> は正則。</p>
+<p><strong>定理</strong> 連続関数 <span class="math inline">\(f\)</span> について任意の閉曲線で <span class="math inline">\(\oint_C f(z)\,\dd z = 0\)</span> なら、<span class="math inline">\(f\)</span> は正則。</p>
 <p><strong>証明</strong> 折れ線経路による原始関数 <span class="math inline">\(F(z) = \int_{z_0}^z f(w)dw\)</span> を構成できる。微分の定義より <span class="math inline">\(F'(z) = f(z)\)</span> となり、<span class="math inline">\(F\)</span> が正則。正則関数の導関数 <span class="math inline">\(f\)</span> も正則である。</p>
 </section>
 <section id="零点の孤立性と代数学の基本定理" class="level4">
