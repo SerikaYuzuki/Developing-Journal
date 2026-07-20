@@ -350,8 +350,8 @@ $$
 なので
 
 $$
-\int_{-\pi}^{\pi}\frac{dx}{a+\cos x}
-=\frac{2}{i}\oint_{|z|=1}\frac{dz}{z^2+2az+1}
+\int_{-\pi}^{\pi}\frac{\dd x}{a+\cos x}
+=\frac{2}{i}\oint_{|z|=1}\frac{\dd z}{z^2+2az+1}
 $$
 
 と、有理関数の閉路積分へ変わる。
@@ -420,7 +420,7 @@ $$
 
 $$
 \begin{aligned}
-\int_{-\pi}^{\pi}\frac{dx}{a+\cos x}
+\int_{-\pi}^{\pi}\frac{\dd x}{a+\cos x}
 &=\frac{2}{i}\oint_{|z|=1}\frac{\dd z}{z^2+2az+1}\\
 &=\frac{2\pi}{\sqrt{a^2-1}}.
 \end{aligned}
@@ -432,7 +432,7 @@ $$
 $-1<a<1$ とする。複素積分を用いて
 
 $$
-\int_{-\infty}^{\infty}\frac{dx}{x^2+2ax+1}
+\int_{-\infty}^{\infty}\frac{\dd x}{x^2+2ax+1}
 $$
 
 を求めよ。
@@ -475,7 +475,7 @@ $$
 
 $$
 \boxed{
-\int_{-\infty}^{\infty}\frac{dx}{x^2+2ax+1}
+\int_{-\infty}^{\infty}\frac{\dd x}{x^2+2ax+1}
 =\frac{\pi}{\sqrt{1-a^2}}
 }.
 $$
@@ -1218,7 +1218,7 @@ $$
 $\gamma,\omega,g>0$ とし、$t\ge 0$ で
 
 $$
-\frac{\dd f(t)}{\dd t}+2\gamma f(t)+\omega^2\int_0^t f(\tau)\,\dd\tau=g
+\dv{f(t)}{t}+2\gamma f(t)+\omega^2\int_0^t f(\tau)\,\dd\tau=g
 $$
 
 を考える。$F(s)=\int_0^\infty f(t)e^{-st}\,dt$ とする。
@@ -1345,8 +1345,8 @@ $$
 $\gamma,\omega,g>0$ とし、$t\ge 0$ で
 
 $$
-\frac{\dd^2 f(t)}{\dd t^2}
-+2\gamma\frac{\dd f(t)}{\dd t}
+\dv[2]{f(t)}{t}
++2\gamma\dv{f(t)}{t}
 +\omega^2f(t)
 =ge^{-\gamma t}\sin(\omega t)
 $$
