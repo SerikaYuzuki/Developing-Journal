@@ -416,6 +416,52 @@ $$
 
 と、有理関数の閉路積分へ変わる。
 
+**一般形も同じ計算で求まる。** $a>|b|$（したがって $a^2-b^2>0$）なら
+
+$$
+I(a,b)=\int_0^{2\pi}\frac{\dd\theta}{a+b\cos\theta}
+$$
+
+に対し、$z=e^{i\theta}$、$\dd\theta=\dd z/(iz)$ を代入すると
+
+$$
+\begin{aligned}
+I(a,b)
+&=\oint_{|z|=1}
+\frac{1}{a+\dfrac b2\left(z+\dfrac1z\right)}\frac{\dd z}{iz}\\
+&=\frac{2}{i}\oint_{|z|=1}
+\frac{\dd z}{bz^2+2az+b}.
+\end{aligned}
+$$
+
+$b\ne0$ とすると分母の零点は
+
+$$
+z_\pm=\frac{-a\pm\sqrt{a^2-b^2}}{b}
+$$
+
+であり、$z_+z_-=1$ だから一方だけが単位円の内部にある。$a>|b|$ のとき内部の極は $z_+$ である。単純極の留数は
+
+$$
+\underset{z=z_+}{\operatorname{Res}}
+\frac{1}{bz^2+2az+b}
+=\frac{1}{2bz_++2a}
+=\frac{1}{2\sqrt{a^2-b^2}}
+$$
+
+となる。よって留数定理から
+
+$$
+\begin{aligned}
+\int_0^{2\pi}\frac{\dd\theta}{a+b\cos\theta}
+&=\frac{2}{i}\cdot 2\pi i\cdot
+\frac{1}{2\sqrt{a^2-b^2}}\\
+&=\boxed{\frac{2\pi}{\sqrt{a^2-b^2}}}.
+\end{aligned}
+$$
+
+$b=0$ のときも左辺は $2\pi/a$ であり、この式に一致する。本問は $b=1$、積分区間を $[-\pi,\pi]$ に取り直した場合である。
+
 **特異点と留数を調べる。** 分母の零点は
 
 $$
