@@ -1939,12 +1939,6 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/卒業論文/論文読書/GPT-Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ti-Al-N-Based Hard Coatings: Thermodynamical Background, CVD Deposition, and Properties. A Review</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../../posts/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ti-Al-N系硬質コーティング：熱力学的背景・CVD成膜・特性レビュー</span></a>
   </div>
@@ -2634,19 +2628,71 @@ h(z)=\sum_{n=-\infty}^{\infty}c_n(z-z_j)^n
 </div>
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><a href="#math2f-residue-theory">留数定理の導出</a>を上半平面の半円経路へ適用する。</p>
-<p><span class="math inline">\(b=\sqrt{1-a^2}&gt;0\)</span> と置くと、分母は</p>
+<p><strong>実軸積分を上半円で囲み、留数に変える。</strong> 求める積分を</p>
 <p><span class="math display">\[
-(z+a)^2+b^2=(z+a-ib)(z+a+ib)
+I=\int_{-\infty}^{\infty}\frac{\dd x}{x^2+2ax+1}
 \]</span></p>
-<p>と因数分解できる。上半平面の半円で閉じれば、内部の極は <span class="math inline">\(z=-a+ib\)</span> の一つだけである。被積分関数は <span class="math inline">\(O(|z|^{-2})\)</span> なので半円弧の寄与は消える。</p>
-<p>実際、半径 <span class="math inline">\(R\)</span> の円弧上では被積分関数の絶対値が <span class="math inline">\(C/R^2\)</span> 以下、円弧の長さが <span class="math inline">\(\pi R\)</span> なので、積分の絶対値は</p>
+<p>とする。まず <span class="math inline">\(b=\sqrt{1-a^2}&gt;0\)</span> と置けば</p>
 <p><span class="math display">\[
-\left|\int_{\text{半円弧}}\frac{\dd z}{z^2+2az+1}\right|
-\le \pi R\frac{C}{R^2}
-=\frac{\pi C}{R}\longrightarrow0
+x^2+2ax+1=(x+a)^2+b^2
 \]</span></p>
-<p>と評価できる。これは「積分の大きさ <span class="math inline">\(\le\)</span> 経路の長さ <span class="math inline">\(\times\)</span> 経路上の最大値」という <span class="math inline">\(ML\)</span> 評価である。</p>
+<p>である。複素関数</p>
+<p><span class="math display">\[
+f(z)=\frac{1}{z^2+2az+1}
+=\frac{1}{(z+a-ib)(z+a+ib)}
+\]</span></p>
+<p>を考えると、極は</p>
+<p><span class="math display">\[
+z_+=-a+ib,\qquad z_-=-a-ib
+\]</span></p>
+<p>の二つである。実軸を挟んで上下に一つずつあり、上半平面にあるのは <span class="math inline">\(z_+\)</span> だけである。</p>
+<p>半径 <span class="math inline">\(R\)</span> の上半円弧を <span class="math inline">\(\Gamma_R\)</span> とし、実軸の区間 <span class="math inline">\([-R,R]\)</span> と合わせた反時計回りの閉曲線を <span class="math inline">\(C_R\)</span> とする。<span class="math inline">\(R&gt;|z_+|\)</span> なら、留数定理から</p>
+<p><span class="math display">\[
+\oint_{C_R}f(z)\,\dd z
+=2\pi i\operatorname{Res}(f,z_+).
+\]</span></p>
+<p>ここで閉曲線積分は、欲しい実軸部分と上半円部分に分かれる。</p>
+<p><span class="math display">\[
+\oint_{C_R}f(z)\,\dd z
+=\int_{-R}^{R}\frac{\dd x}{x^2+2ax+1}
++\int_{\Gamma_R}\frac{\dd z}{z^2+2az+1}.
+\]</span></p>
+<p><strong>上半円の寄与が消える理由。</strong> <span class="math inline">\(\Gamma_R\)</span> 上では <span class="math inline">\(|z|=R\)</span> なので、分母は主項 <span class="math inline">\(z^2\)</span> により大きさが <span class="math inline">\(R^2\)</span> 程度になる。一方で円弧の長さは <span class="math inline">\(\pi R\)</span> である。したがって積分全体は「<span class="math inline">\(R^{-2}\)</span> の関数を長さ <span class="math inline">\(R\)</span> の道に沿って積分する」ので <span class="math inline">\(O(R^{-1})\)</span> となり、<span class="math inline">\(R\to\infty\)</span> で消える。</p>
+<p>厳密には逆三角不等式から</p>
+<p><span class="math display">\[
+\begin{aligned}
+|z^2+2az+1|
+&amp;\ge |z|^2-|2az+1|\\
+&amp;\ge R^2-2|a|R-1.
+\end{aligned}
+\]</span></p>
+<p>よって十分大きい <span class="math inline">\(R\)</span> では</p>
+<p><span class="math display">\[
+\left|\frac{1}{z^2+2az+1}\right|
+\le\frac{1}{R^2-2|a|R-1}.
+\]</span></p>
+<p>円弧の長さが <span class="math inline">\(\pi R\)</span> であることと <span class="math inline">\(ML\)</span> 評価を使うと</p>
+<p><span class="math display">\[
+\left|\int_{\Gamma_R}\frac{\dd z}{z^2+2az+1}\right|
+\le\frac{\pi R}{R^2-2|a|R-1}
+=\frac{\pi/R}{1-2|a|/R-1/R^2}
+\longrightarrow0.
+\]</span></p>
+<p>したがって極限では実軸積分だけが残る。残る留数は、単純極の公式または因数分解から</p>
+<p><span class="math display">\[
+\operatorname{Res}(f,z_+)
+=\frac{1}{z_+-z_-}
+=\frac{1}{2ib}
+\]</span></p>
+<p>である。ゆえに</p>
+<p><span class="math display">\[
+I=2\pi i\cdot\frac{1}{2ib}=\frac{\pi}{b}.
+\]</span></p>
+<p>最後に <span class="math inline">\(b=\sqrt{1-a^2}\)</span> を戻せば答えを得る。流れは</p>
+<p><span class="math display">\[
+\boxed{\text{実軸積分}\ \Rightarrow\ \text{上半円で閉じる}\ \Rightarrow\ \text{上側の極の留数}\ \Rightarrow\ \text{円弧を消す}}
+\]</span></p>
+<p>である。一般に、円弧上で <span class="math inline">\(f(z)=O(|z|^{-p})\)</span>、<span class="math inline">\(p&gt;1\)</span> なら、円弧の長さが <span class="math inline">\(O(R)\)</span> なので円弧積分は <span class="math inline">\(O(R^{1-p})\to0\)</span> となる。</p>
 </div>
 </div>
 </div>

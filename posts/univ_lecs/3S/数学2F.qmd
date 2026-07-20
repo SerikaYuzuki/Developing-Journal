@@ -546,25 +546,97 @@ $$
 ::: {.callout-note collapse="true"}
 ##### 理論
 
-[留数定理の導出](#math2f-residue-theory)を上半平面の半円経路へ適用する。
-
-$b=\sqrt{1-a^2}>0$ と置くと、分母は
+**実軸積分を上半円で囲み、留数に変える。** 求める積分を
 
 $$
-(z+a)^2+b^2=(z+a-ib)(z+a+ib)
+I=\int_{-\infty}^{\infty}\frac{\dd x}{x^2+2ax+1}
 $$
 
-と因数分解できる。上半平面の半円で閉じれば、内部の極は $z=-a+ib$ の一つだけである。被積分関数は $O(|z|^{-2})$ なので半円弧の寄与は消える。
-
-実際、半径 $R$ の円弧上では被積分関数の絶対値が $C/R^2$ 以下、円弧の長さが $\pi R$ なので、積分の絶対値は
+とする。まず $b=\sqrt{1-a^2}>0$ と置けば
 
 $$
-\left|\int_{\text{半円弧}}\frac{\dd z}{z^2+2az+1}\right|
-\le \pi R\frac{C}{R^2}
-=\frac{\pi C}{R}\longrightarrow0
+x^2+2ax+1=(x+a)^2+b^2
 $$
 
-と評価できる。これは「積分の大きさ $\le$ 経路の長さ $\times$ 経路上の最大値」という $ML$ 評価である。
+である。複素関数
+
+$$
+f(z)=\frac{1}{z^2+2az+1}
+=\frac{1}{(z+a-ib)(z+a+ib)}
+$$
+
+を考えると、極は
+
+$$
+z_+=-a+ib,\qquad z_-=-a-ib
+$$
+
+の二つである。実軸を挟んで上下に一つずつあり、上半平面にあるのは $z_+$ だけである。
+
+半径 $R$ の上半円弧を $\Gamma_R$ とし、実軸の区間 $[-R,R]$ と合わせた反時計回りの閉曲線を $C_R$ とする。$R>|z_+|$ なら、留数定理から
+
+$$
+\oint_{C_R}f(z)\,\dd z
+=2\pi i\operatorname{Res}(f,z_+).
+$$
+
+ここで閉曲線積分は、欲しい実軸部分と上半円部分に分かれる。
+
+$$
+\oint_{C_R}f(z)\,\dd z
+=\int_{-R}^{R}\frac{\dd x}{x^2+2ax+1}
++\int_{\Gamma_R}\frac{\dd z}{z^2+2az+1}.
+$$
+
+**上半円の寄与が消える理由。** $\Gamma_R$ 上では $|z|=R$ なので、分母は主項 $z^2$ により大きさが $R^2$ 程度になる。一方で円弧の長さは $\pi R$ である。したがって積分全体は「$R^{-2}$ の関数を長さ $R$ の道に沿って積分する」ので $O(R^{-1})$ となり、$R\to\infty$ で消える。
+
+厳密には逆三角不等式から
+
+$$
+\begin{aligned}
+|z^2+2az+1|
+&\ge |z|^2-|2az+1|\\
+&\ge R^2-2|a|R-1.
+\end{aligned}
+$$
+
+よって十分大きい $R$ では
+
+$$
+\left|\frac{1}{z^2+2az+1}\right|
+\le\frac{1}{R^2-2|a|R-1}.
+$$
+
+円弧の長さが $\pi R$ であることと $ML$ 評価を使うと
+
+$$
+\left|\int_{\Gamma_R}\frac{\dd z}{z^2+2az+1}\right|
+\le\frac{\pi R}{R^2-2|a|R-1}
+=\frac{\pi/R}{1-2|a|/R-1/R^2}
+\longrightarrow0.
+$$
+
+したがって極限では実軸積分だけが残る。残る留数は、単純極の公式または因数分解から
+
+$$
+\operatorname{Res}(f,z_+)
+=\frac{1}{z_+-z_-}
+=\frac{1}{2ib}
+$$
+
+である。ゆえに
+
+$$
+I=2\pi i\cdot\frac{1}{2ib}=\frac{\pi}{b}.
+$$
+
+最後に $b=\sqrt{1-a^2}$ を戻せば答えを得る。流れは
+
+$$
+\boxed{\text{実軸積分}\ \Rightarrow\ \text{上半円で閉じる}\ \Rightarrow\ \text{上側の極の留数}\ \Rightarrow\ \text{円弧を消す}}
+$$
+
+である。一般に、円弧上で $f(z)=O(|z|^{-p})$、$p>1$ なら、円弧の長さが $O(R)$ なので円弧積分は $O(R^{1-p})\to0$ となる。
 :::
 
 ::: {.callout-tip collapse="true"}
