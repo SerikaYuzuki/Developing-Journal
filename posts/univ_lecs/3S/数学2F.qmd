@@ -453,7 +453,7 @@ $$
 実際、半径 $R$ の円弧上では被積分関数の絶対値が $C/R^2$ 以下、円弧の長さが $\pi R$ なので、積分の絶対値は
 
 $$
-\left|\int_{\text{半円弧}}\frac{dz}{z^2+2az+1}\right|
+\left|\int_{\text{半円弧}}\frac{\dd z}{z^2+2az+1}\right|
 \le \pi R\frac{C}{R^2}
 =\frac{\pi C}{R}\longrightarrow0
 $$
@@ -701,7 +701,7 @@ $$
 複素積分は [曲線の媒介変数表示](#math2f-liouville-theory)で実積分へ戻せる。経路を $z=re^{\pi i/4}$（$-R\le r\le R$）と置くと
 
 $$
-z^2=ir^2,\qquad dz=e^{\pi i/4}dr.
+z^2=ir^2,\qquad \dd z=e^{\pi i/4}\,\dd r.
 $$
 
 複素指数関数が実 Gauss 関数 $e^{-\pi r^2/(2p)}$ に変わるのが、この角度を選ぶ理由である。
@@ -843,7 +843,7 @@ $$
 [2023年度第2問【2】で導いた斜め経路と Gauss 積分](#math2f-gauss-integral)を使う。$z=re^{i\pi/4}$ と置けば $z^2=ir^2$ となり、
 
 $$
-\phi(z)=-e^{-\pi r^2/p},\qquad dz=e^{i\pi/4}dr
+\phi(z)=-e^{-\pi r^2/p},\qquad \dd z=e^{i\pi/4}\,\dd r
 $$
 
 へ変わる。残るのは実 Gauss 積分である。
