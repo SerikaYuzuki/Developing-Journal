@@ -2278,7 +2278,7 @@ f'(z_0)=\lim_{h\to0}\frac{f(z_0+h)-f(z_0)}{h}
 <p><strong>問題に出る四種類を区別する。</strong></p>
 <ul>
 <li><strong>正則関数：</strong> 例えば <span class="math inline">\(z^2\)</span> や <span class="math inline">\(e^z\)</span>。通常の多項式は複素平面全体で正則である。</li>
-<li><strong>多値関数：</strong> 一つの <span class="math inline">\(z\)</span> に複数の候補値が対応する関数。例えば <span class="math inline">\(w^2=z\)</span> の解は通常 <span class="math inline">\(w=\pm\sqrt z\)</span> の二つであり、<span class="math inline">\(\log z=\log|z|+i(\arg z+2\pi n)\)</span> も無数の値を持つ。一価関数として扱うには、偏角の範囲を決める<strong>枝</strong>を選ぶ。</li>
+<li><strong>多値関数：</strong> 一つの <span class="math inline">\(z\)</span> に複数の候補値が対応する関数。例えば <span class="math inline">\(w^2=z\)</span> の解は通常 <span class="math inline">\(w=\pm\sqrt z\)</span> の二つであり、<span class="math inline">\(\ln z=\ln|z|+i(\arg z+2\pi n)\)</span> も無数の値を持つ。一価関数として扱うには、偏角の範囲を決める<strong>枝</strong>を選ぶ。</li>
 <li><strong>有理型関数：</strong> 正則関数のほかに孤立した極だけを持つ関数。例えば <span class="math inline">\(1/z\)</span> は <span class="math inline">\(z=0\)</span> で無限大へ発散するが、それ以外では正則である。</li>
 <li><strong>真性特異点を持つ関数：</strong> 例えば <span class="math inline">\(e^{1/z}\)</span>。<span class="math inline">\(z=0\)</span> の近くで極よりも複雑に振る舞う。</li>
 </ul>
@@ -2465,8 +2465,8 @@ u=x^2+y^2,\qquad v=2x
 <h4 class="anchored" data-anchor-id="理論a1極形式指数対数">理論A1：極形式・指数・対数</h4>
 <p>非零複素数は <span class="math inline">\(z=re^{i\theta}\)</span>（<span class="math inline">\(r=|z|\)</span>）と書ける。偏角は <span class="math inline">\(2\pi\)</span> の整数倍だけ不定なので</p>
 <p><span class="math display">\[
-\log z=\log r+i(\theta+2\pi k),\qquad
-z^\alpha=\exp(\{\alpha\log z\})
+\ln z=\ln r+i(\theta+2\pi k),\qquad
+z^\alpha=\exp(\{\alpha\ln z\})
 \]</span></p>
 <p>は一般に多価である。<span class="math inline">\(n\)</span> 乗根は</p>
 <p><span class="math display">\[
@@ -2483,7 +2483,7 @@ w_k=r^{1/n}\exp\left\{i\frac{\theta+2\pi k}{n}\right\},\qquad k=0,1,\ldots,n-1
 <h4 class="anchored" data-anchor-id="問題a1-複素数の計算">問題A1 複素数の計算</h4>
 <p>次を求めよ。</p>
 <ol type="1">
-<li><span class="math inline">\(i^i\)</span>、<span class="math inline">\(\log(1+i)\)</span>、<span class="math inline">\(\cos(\pi/3-i)\)</span>、<span class="math inline">\(\{(1+i)/(1-i)\}^5\)</span>、<span class="math inline">\(e^{1+3i}e^{2-i}\)</span> の実部と虚部</li>
+<li><span class="math inline">\(i^i\)</span>、<span class="math inline">\(\ln(1+i)\)</span>、<span class="math inline">\(\cos(\pi/3-i)\)</span>、<span class="math inline">\(\{(1+i)/(1-i)\}^5\)</span>、<span class="math inline">\(e^{1+3i}e^{2-i}\)</span> の実部と虚部</li>
 <li><span class="math inline">\((1+i)^{1/3}\)</span> の極表示</li>
 <li><span class="math inline">\(z^4=-1+\sqrt3i\)</span> の解</li>
 <li>実数 <span class="math inline">\(\alpha,\beta\)</span> に対し、Euler の公式から <span class="math inline">\(e^{i\alpha}e^{i\beta}=e^{i(\alpha+\beta)}\)</span> を示せ。</li>
@@ -2500,12 +2500,12 @@ w_k=r^{1/n}\exp\left\{i\frac{\theta+2\pi k}{n}\right\},\qquad k=0,1,\ldots,n-1
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>複素対数を <span class="math inline">\(\log z=\log|z|+i(\arg z+2\pi k)\)</span> とすれば</p>
+<p>複素対数を <span class="math inline">\(\ln z=\ln|z|+i(\arg z+2\pi k)\)</span> とすれば</p>
 <p><span class="math display">\[
 i^i=e^{-\pi/2-2\pi k},\qquad
-\log(1+i)=\frac12\log2+i\left(\frac\pi4+2\pi k\right).
+\ln(1+i)=\frac12\ln2+i\left(\frac\pi4+2\pi k\right).
 \]</span></p>
-<p>したがって <span class="math inline">\(i^i\)</span> の虚部は <span class="math inline">\(0\)</span> で、主値は <span class="math inline">\(e^{-\pi/2}\)</span>。<span class="math inline">\(\log(1+i)\)</span> の主値の実部は <span class="math inline">\(\frac12\log2\)</span>、虚部は <span class="math inline">\(\pi/4\)</span> である。また</p>
+<p>したがって <span class="math inline">\(i^i\)</span> の虚部は <span class="math inline">\(0\)</span> で、主値は <span class="math inline">\(e^{-\pi/2}\)</span>。<span class="math inline">\(\ln(1+i)\)</span> の主値の実部は <span class="math inline">\(\frac12\ln2\)</span>、虚部は <span class="math inline">\(\pi/4\)</span> である。また</p>
 <p><span class="math display">\[
 \cos\left(\frac\pi3-i\right)=\frac12\cosh1+i\frac{\sqrt3}{2}\sinh1,
 \]</span></p>
@@ -2586,11 +2586,11 @@ w=e^{i\phi}\frac{z+\overline\alpha}{z-\alpha}
 </section>
 <section id="理論a3枝を持つ関数と正則性" class="level4">
 <h4 class="anchored" data-anchor-id="理論a3枝を持つ関数と正則性">理論A3：枝を持つ関数と正則性</h4>
-<p>多項式は整関数で、<span class="math inline">\(\overline z\)</span> を含む式は通常 Cauchy–Riemann 方程式を満たさない。対数や複素冪は、切断を入れて <span class="math inline">\(\Log z\)</span> の枝を一つ固定した領域で考える。</p>
+<p>多項式は整関数で、<span class="math inline">\(\overline z\)</span> を含む式は通常 Cauchy–Riemann 方程式を満たさない。対数や複素冪は、切断を入れて <span class="math inline">\(\ln z\)</span> の枝を一つ固定した領域で考える。</p>
 <p><span class="math display">\[
-a^z=e^{z\Log a},\qquad
-z^\alpha=e^{\alpha\Log z},\qquad
-\tan^{-1}z=\frac{1}{2i}\{\Log(1+iz)-\Log(1-iz)\}.
+a^z=e^{z\ln a},\qquad
+z^\alpha=e^{\alpha\ln z},\qquad
+\tan^{-1}z=\frac{1}{2i}\{\ln(1+iz)-\ln(1-iz)\}.
 \]</span></p>
 <p>枝を固定した領域では通常の合成関数として微分できる。正則性を調べる順序は、<strong>既知の正則関数へ書き換える → 特異点と枝を除く → 書き換えられなければ Cauchy–Riemann 方程式を調べる</strong>、である。</p>
 </section>
@@ -2620,11 +2620,11 @@ z^\alpha=e^{\alpha\Log z},\qquad
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><span class="math inline">\(a\ne0\)</span> で <span class="math inline">\(\Log a\)</span> を固定すれば <span class="math inline">\(a^z=e^{z\Log a}\)</span> は整関数で、<span class="math inline">\(\dv*{a^z}{z}=(\Log a)a^z\)</span>。</li>
-<li><span class="math inline">\(\tan^{-1}z=(2i)^{-1}\{\Log(1+iz)-\Log(1-iz)\}\)</span> は枝を選べる領域で正則で、導関数は <span class="math inline">\(1/(1+z^2)\)</span>。<span class="math inline">\(z=\pm i\)</span> は特異点。</li>
+<li><span class="math inline">\(a\ne0\)</span> で <span class="math inline">\(\ln a\)</span> を固定すれば <span class="math inline">\(a^z=e^{z\ln a}\)</span> は整関数で、<span class="math inline">\(\dv*{a^z}{z}=(\ln a)a^z\)</span>。</li>
+<li><span class="math inline">\(\tan^{-1}z=(2i)^{-1}\{\ln(1+iz)-\ln(1-iz)\}\)</span> は枝を選べる領域で正則で、導関数は <span class="math inline">\(1/(1+z^2)\)</span>。<span class="math inline">\(z=\pm i\)</span> は特異点。</li>
 <li><span class="math inline">\(\overline z\)</span> はどの開領域でも正則でない。</li>
 <li><span class="math inline">\(|z|^2\)</span> は原点でのみ複素微分可能だが、どの開領域でも正則でない。</li>
-<li><span class="math inline">\(z^i=e^{i\Log z}\)</span> は対数の枝を固定できる領域で正則で、導関数は <span class="math inline">\(iz^{i-1}\)</span>。</li>
+<li><span class="math inline">\(z^i=e^{i\ln z}\)</span> は対数の枝を固定できる領域で正則で、導関数は <span class="math inline">\(iz^{i-1}\)</span>。</li>
 <li><span class="math inline">\(z^2\)</span> は整関数で、導関数は <span class="math inline">\(2z\)</span>。</li>
 <li>与式は <span class="math inline">\(z^2\)</span> なので整関数で、導関数は <span class="math inline">\(2z\)</span>。</li>
 <li>与式は <span class="math inline">\(1/\overline z\)</span> なので、<span class="math inline">\(z\ne0\)</span> のどの開領域でも正則でない。</li>
@@ -2643,7 +2643,7 @@ u_x=v_y,\qquad u_y=-v_x
 </section>
 <section id="問題a4-実部から正則関数を復元する" class="level4">
 <h4 class="anchored" data-anchor-id="問題a4-実部から正則関数を復元する">問題A4 実部から正則関数を復元する</h4>
-<p><span class="math inline">\(x/(x^2+y^2)\)</span>、<span class="math inline">\(e^x\cos y\)</span>、<span class="math inline">\(\log|z|\)</span> をそれぞれ実部にもつ正則関数を求めよ。</p>
+<p><span class="math inline">\(x/(x^2+y^2)\)</span>、<span class="math inline">\(e^x\cos y\)</span>、<span class="math inline">\(\ln|z|\)</span> をそれぞれ実部にもつ正則関数を求めよ。</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -2658,7 +2658,7 @@ u_x=v_y,\qquad u_y=-v_x
 <div class="callout-body-container callout-body">
 <p>Cauchy–Riemann 方程式から調和共役を求めると</p>
 <p><span class="math display">\[
-f(z)=\frac1z+iC,\qquad f(z)=e^z+iC,\qquad f(z)=\Log z+iC
+f(z)=\frac1z+iC,\qquad f(z)=e^z+iC,\qquad f(z)=\ln z+iC
 \]</span></p>
 <p>となる。<span class="math inline">\(C\)</span> は実定数で、第一式は <span class="math inline">\(z\ne0\)</span>、第三式は対数の枝を固定できる領域で正則である。</p>
 </div>
@@ -3235,8 +3235,8 @@ I=2\pi i\cdot\frac{1}{2ib}=\frac{\pi}{b}.
 <p><span class="math inline">\(z/(1+z)=1-1/(1+z)\)</span> の原始関数を使うと</p>
 <p><span class="math display">\[
 \int_0^{1+i}\frac{z}{1+z}\,\dd z
-=1+i-\Log(2+i)
-=1-\frac12\log5+i\left(1-\tan^{-1}\frac12\right).
+=1+i-\ln(2+i)
+=1-\frac12\ln5+i\left(1-\tan^{-1}\frac12\right).
 \]</span></p>
 <p>第二問では <span class="math inline">\(|\pi-3|&lt;1\)</span> なので極は曲線内にある。Cauchy の微分公式より</p>
 <p><span class="math display">\[
