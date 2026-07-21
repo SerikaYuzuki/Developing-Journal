@@ -993,6 +993,109 @@ ul.task-list li input[type="checkbox"] {
 
 <script>(function () {
   "use strict";
+
+  var MATH_SOURCE_ATTRIBUTE = "data-serika-tex-source";
+  var BLOCK_ELEMENTS = {
+    ADDRESS: true, ARTICLE: true, ASIDE: true, BLOCKQUOTE: true, DD: true,
+    DIV: true, DL: true, DT: true, FIGCAPTION: true, FIGURE: true, FOOTER: true,
+    H1: true, H2: true, H3: true, H4: true, H5: true, H6: true, HEADER: true,
+    HR: true, LI: true, MAIN: true, NAV: true, OL: true, P: true, PRE: true,
+    SECTION: true, TABLE: true, TBODY: true, TD: true, TFOOT: true, TH: true,
+    THEAD: true, TR: true, UL: true
+  };
+
+  function rememberMathSource(element) {
+    if (!element || element.nodeType !== 1 || !element.matches(".math")) return;
+    if (element.hasAttribute(MATH_SOURCE_ATTRIBUTE) || element.querySelector("mjx-container")) return;
+    var source = element.textContent.trim();
+    if (source) element.setAttribute(MATH_SOURCE_ATTRIBUTE, source);
+  }
+
+  function rememberMathSources(root) {
+    if (!root || root.nodeType !== 1) return;
+    rememberMathSource(root);
+    root.querySelectorAll(".math").forEach(rememberMathSource);
+  }
+
+  // Quarto leaves the original TeX in .math until MathJax replaces its contents.
+  // Preserve it as an attribute so mixed prose/math selections can be reconstructed.
+  rememberMathSources(document.documentElement);
+  var mathSourceObserver = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      mutation.addedNodes.forEach(rememberMathSources);
+    });
+  });
+  mathSourceObserver.observe(document.documentElement, { childList: true, subtree: true });
+
+  function closestMath(node) {
+    var element = node && (node.nodeType === 1 ? node : node.parentElement);
+    return element && element.closest ? element.closest(".math") : null;
+  }
+
+  function formatMathSource(element) {
+    var source = (element.getAttribute(MATH_SOURCE_ATTRIBUTE) || "").trim();
+    var display = element.classList.contains("display");
+    var match = source.match(/^\\\[([\s\S]*)\\\]$/);
+    if (match) { source = match[1].trim(); display = true; }
+    else {
+      match = source.match(/^\\\(([\s\S]*)\\\)$/);
+      if (match) { source = match[1].trim(); display = false; }
+    }
+    if (!source) return element.textContent || "";
+    return display ? "\n$$\n" + source + "\n$$\n" : "$" + source + "$";
+  }
+
+  function serializeSelectionNode(node) {
+    if (node.nodeType === 3) return node.nodeValue || "";
+    if (node.nodeType !== 1) {
+      var fragmentText = "";
+      node.childNodes.forEach(function (child) { fragmentText += serializeSelectionNode(child); });
+      return fragmentText;
+    }
+    if (node.matches(".serika-selection-ai, script, style, noscript, template")) return "";
+    if (node.matches(".math")) return formatMathSource(node);
+    if (node.tagName === "BR") return "\n";
+    var text = "";
+    node.childNodes.forEach(function (child) { text += serializeSelectionNode(child); });
+    return BLOCK_ELEMENTS[node.tagName] ? "\n" + text + "\n" : text;
+  }
+
+  function selectionTextWithTex(selection) {
+    if (!selection || !selection.rangeCount) return "";
+    var range = selection.getRangeAt(0).cloneRange();
+    var startMath = closestMath(range.startContainer);
+    var endMath = closestMath(range.endContainer);
+    if (startMath) range.setStartBefore(startMath);
+    if (endMath) range.setEndAfter(endMath);
+    var text = serializeSelectionNode(range.cloneContents());
+    return text
+      .replace(/\u00a0/g, " ")
+      .replace(/[ \t]+\n/g, "\n")
+      .replace(/\n[ \t]+/g, "\n")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim();
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text).catch(function () { return legacyCopyText(text); });
+    }
+    return Promise.resolve(legacyCopyText(text));
+  }
+
+  function legacyCopyText(text) {
+    var area = document.createElement("textarea");
+    area.value = text;
+    area.style.position = "fixed";
+    area.style.opacity = "0";
+    document.body.appendChild(area);
+    area.select();
+    var copied = false;
+    try { copied = document.execCommand("copy"); } catch (_) { /* no-op */ }
+    area.remove();
+    return copied;
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     var selectedText = "";
     var actions = [["要約する", "次の文章を日本語で簡潔に要約してください。"], ["わかりやすく説明", "次の文章の内容を、前提知識がない人にもわかるように説明してください。"], ["文章を改善", "次の文章を自然で読みやすい日本語に改善してください。意味は変えないでください。"], ["自由に聞く", "次の文章について質問に答えてください。"]];
@@ -1003,9 +1106,10 @@ ul.task-list li input[type="checkbox"] {
     bubble.hidden = true;
     bubble.setAttribute("role", "dialog");
     bubble.setAttribute("aria-label", "選択テキストをAIに聞く");
-    bubble.innerHTML = '<button type="button" class="serika-selection-ai-trigger">✦ AIに聞く</button><div class="serika-selection-ai-menu" hidden><div class="serika-selection-ai-heading">送信先</div><div class="serika-selection-ai-destinations" role="group" aria-label="AIの送信先"><button type="button" data-ai-destination="chatgpt" aria-pressed="true">ChatGPT</button><button type="button" data-ai-destination="gemini" aria-pressed="false">Gemini</button><button type="button" data-ai-destination="desktop" aria-pressed="false">Desktop</button></div></div>';
+    bubble.innerHTML = '<div class="serika-selection-ai-actions"><button type="button" class="serika-selection-ai-trigger">✦ AI</button><button type="button" class="serika-selection-copy-trigger">コピー</button></div><div class="serika-selection-ai-menu" hidden><div class="serika-selection-ai-heading">送信先</div><div class="serika-selection-ai-destinations" role="group" aria-label="AIの送信先"><button type="button" data-ai-destination="chatgpt" aria-pressed="true">ChatGPT</button><button type="button" data-ai-destination="gemini" aria-pressed="false">Gemini</button><button type="button" data-ai-destination="desktop" aria-pressed="false">Desktop</button></div></div>';
     document.body.appendChild(bubble);
     var trigger = bubble.querySelector(".serika-selection-ai-trigger");
+    var copyTrigger = bubble.querySelector(".serika-selection-copy-trigger");
     var menu = bubble.querySelector(".serika-selection-ai-menu");
     bubble.addEventListener("mousedown", function (event) {
       event.preventDefault();
@@ -1023,9 +1127,9 @@ ul.task-list li input[type="checkbox"] {
       button.type = "button"; button.textContent = action[0];
       button.addEventListener("click", function () {
         var prompt = action[1] + "\n\n--- 選択した文章 ---\n" + selectedText;
-        var copy = navigator.clipboard && navigator.clipboard.writeText ? navigator.clipboard.writeText(prompt) : Promise.reject();
+        var copy = copyText(prompt);
         if (destinations[destination]) window.open(destinations[destination], "_blank", "noopener");
-        copy.catch(function () { var area = document.createElement("textarea"); area.value = prompt; area.style.position = "fixed"; area.style.opacity = "0"; document.body.appendChild(area); area.select(); try { document.execCommand("copy"); } catch (_) {} area.remove(); }).then(function () { if (destination === "desktop") { hint.textContent = "✓ コピー済み：⌥Space → ⌘V"; } else { menu.hidden = true; } });
+        copy.then(function () { if (destination === "desktop") { hint.textContent = "✓ コピー済み：⌥Space → ⌘V"; } else { menu.hidden = true; } });
       });
       menu.appendChild(button);
     });
@@ -1034,13 +1138,19 @@ ul.task-list li input[type="checkbox"] {
     hint.textContent = "開いたら ⌘V で貼り付け";
     menu.appendChild(hint);
     document.addEventListener("selectionchange", function () {
-      var selection = window.getSelection(); var text = selection ? selection.toString().trim() : "";
+      var selection = window.getSelection(); var text = selectionTextWithTex(selection);
       if (!text || !selection.rangeCount || !document.body.contains(selection.anchorNode)) { selectedText = ""; menu.hidden = true; bubble.hidden = true; return; }
       selectedText = text; var rect = selection.getRangeAt(0).getBoundingClientRect();
       bubble.style.left = Math.max(12, Math.min(window.innerWidth - 150, rect.left + rect.width / 2 - 72)) + "px";
       bubble.style.top = Math.max(12, rect.top - 48 + window.scrollY) + "px"; bubble.hidden = false;
     });
     trigger.addEventListener("click", function () { menu.hidden = !menu.hidden; });
+    copyTrigger.addEventListener("click", function () {
+      copyText(selectedText).then(function () {
+        copyTrigger.textContent = "✓ コピー";
+        window.setTimeout(function () { copyTrigger.textContent = "コピー"; }, 1200);
+      });
+    });
     document.addEventListener("mousedown", function (event) { if (!bubble.contains(event.target)) menu.hidden = true; });
   });
 })();</script>
