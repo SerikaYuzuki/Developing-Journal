@@ -3138,3 +3138,409 @@ $$
 $$
 
 は積分区間を分け、一様収束と Morera の定理を使うことで正則性を示せる。Beta--Gamma 関係は [畳み込みの演習](#math2f-laplace-exercises)で導いた。さらに Beta 積分から Gamma 関数の相反公式・倍角公式へ進み、絶対収束する Dirichlet 級数の積を素数ごとに整理するとゼータ関数の Euler 積が得られる。
+
+## 本編問題用公式集（演習A〜Eを除く） {#math2f-formula-sheet}
+
+ここでは、演習A〜E以外の問題を解くときに使う公式を、本文の順にまとめる。公式を適用する前に、正則な領域、積分路の向き、特異点の位置、収束条件を確認する。
+
+### 複素数・正則性・特異点
+
+**極形式と Euler の公式**
+
+$$
+z=x+iy=re^{i\theta},\qquad
+e^{i\theta}=\cos\theta+i\sin\theta,
+$$
+
+$$
+\overline z=x-iy,\qquad
+|z|^2=z\overline z.
+$$
+
+**複素指数・対数・双曲線関数**
+
+$$
+e^{x+iy}=e^x(\cos y+i\sin y),
+$$
+
+$$
+\ln z=\ln|z|+i(\arg z+2\pi k),\qquad k\in\mathbb Z,
+$$
+
+$$
+\cosh z=\frac{e^z+e^{-z}}2,\qquad
+\sinh z=\frac{e^z-e^{-z}}2,
+$$
+
+$$
+\cosh(iy)=\cos y,\qquad
+\sinh(iy)=i\sin y.
+$$
+
+**Cauchy--Riemann 方程式**
+
+$f(z)=u(x,y)+iv(x,y)$ の偏導関数が連続なら
+
+$$
+f\text{ が正則}
+\iff
+u_x=v_y,\qquad u_y=-v_x.
+$$
+
+条件が一点だけで成立しても正則とは限らない。正則性には、その点を含む開領域での成立が必要である。
+
+**Laurent 展開による孤立特異点の分類**
+
+$$
+f(z)=\sum_{n=-\infty}^{\infty}c_n(z-z_0)^n.
+$$
+
+| 主要部 $\sum_{n<0}c_n(z-z_0)^n$ | 特異点 |
+|---|---|
+| なし | 可除特異点 |
+| 有限個、最低次数が $-m$ | $m$ 位の極 |
+| 無限個 | 真性特異点 |
+
+特異点が $z_0$ へ集積している場合は、$z_0$ の周りに特異点を含まない円環を取れないため、この三分類の対象外である。
+
+### Cauchy の公式・Liouville の定理
+
+**曲線の媒介変数表示**
+
+$$
+z=\gamma(t)\quad(a\le t\le b)
+\quad\Longrightarrow\quad
+\int_Cf(z)\,\dd z
+=\int_a^bf(\gamma(t))\gamma'(t)\,\dd t.
+$$
+
+**Cauchy の積分定理と積分公式**
+
+$$
+\oint_Cf(z)\,\dd z=0,
+$$
+
+$$
+f(a)=\frac1{2\pi i}\oint_C\frac{f(z)}{z-a}\,\dd z.
+$$
+
+前者は $f$ が穴のない領域で正則なとき、後者は $a$ が正向き閉曲線 $C$ の内部にあり、$f$ が $C$ とその内部で正則なときに使う。
+
+**Cauchy の微分公式と評価式**
+
+$$
+\dv[n]{f}{z}(a)
+=\frac{n!}{2\pi i}\oint_C
+\frac{f(z)}{(z-a)^{n+1}}\,\dd z,
+$$
+
+$$
+\max_{|z-a|=R}|f(z)|\le M
+\quad\Longrightarrow\quad
+\left|\dv[n]{f}{z}(a)\right|
+\le\frac{Mn!}{R^n}.
+$$
+
+**Liouville の定理**
+
+$$
+f\text{ が整関数かつ有界}
+\quad\Longrightarrow\quad
+f\text{ は定数}.
+$$
+
+有界だが非定数であることが分かれば、対偶により整関数ではないと判定できる。
+
+### 留数と実積分
+
+**留数定理**
+
+$$
+\oint_Cf(z)\,\dd z
+=2\pi i\sum_{z_j\in\operatorname{Int}C}
+\operatorname{Res}(f;z_j).
+$$
+
+積分路が時計回りなら右辺の符号を反転する。
+
+**留数の計算公式**
+
+単純極では
+
+$$
+\operatorname{Res}(f;z_0)
+=\lim_{z\to z_0}(z-z_0)f(z).
+$$
+
+$f=P/Q$、$Q(z_0)=0$、$Q'(z_0)\ne0$ なら
+
+$$
+\operatorname{Res}(f;z_0)=\frac{P(z_0)}{Q'(z_0)}.
+$$
+
+$m$ 位の極では
+
+$$
+\operatorname{Res}(f;z_0)
+=\frac1{(m-1)!}
+\lim_{z\to z_0}\dv[m-1]{}{z}
+\left\{(z-z_0)^mf(z)\right\}.
+$$
+
+**$ML$ 評価**
+
+$$
+\left|\int_Cf(z)\,\dd z\right|
+\le \max_{z\in C}|f(z)|\,\ell(C).
+$$
+
+半径 $R$ の円弧上で $f(z)=O(R^{-p})$、$p>1$ なら、円弧の長さが $O(R)$ なので円弧積分は $O(R^{1-p})\to0$ となる。
+
+**三角関数積分を単位円へ移す公式**
+
+$$
+z=e^{i\theta},\qquad
+\dd \theta=\frac{\dd z}{iz},
+$$
+
+$$
+\cos\theta=\frac12\left(z+\frac1z\right),\qquad
+\sin\theta=\frac1{2i}\left(z-\frac1z\right).
+$$
+
+特に $a>|b|$ なら
+
+$$
+\int_0^{2\pi}\frac{\dd \theta}{a+b\cos\theta}
+=\frac{2\pi}{\sqrt{a^2-b^2}}.
+$$
+
+**実軸上の有理関数**
+
+被積分関数が実軸上に極を持たず、円弧積分が消えるなら
+
+$$
+\int_{-\infty}^{\infty}f(x)\,\dd x
+=2\pi i
+\sum_{\operatorname{Im}z_j>0}\operatorname{Res}(f;z_j)
+$$
+
+と上半円で計算できる。$\cos x$ や $\sin x$ を含む場合は、$\cos z$ を直接使わず $e^{iz}$ を上半円で積分し、最後に実部または虚部を取る。
+
+### Fourier 変換の基本公式
+
+本編の規格化は
+
+$$
+F(k)=\frac1{2\pi}\int_{-\infty}^{\infty}
+f(x)e^{-ikx}\,\dd x.
+$$
+
+実数値の偶関数の変換は実数値かつ偶関数、実数値の奇関数の変換は純虚数値かつ奇関数になる。
+
+**指数減衰核**
+
+$a>0$ に対して
+
+$$
+\int_{-\infty}^{\infty}e^{-a|x|}e^{-ikx}\,\dd x
+=\frac{2a}{a^2+k^2}.
+$$
+
+**$x$ を掛ける操作**
+
+$$
+\pdv{}{k}e^{-ikx}=-ixe^{-ikx}
+$$
+
+より、積分と微分を交換できるとき
+
+$$
+\mathcal F[xf(x)](k)=i\dv{F}{k}.
+$$
+
+**双曲線余弦を含む指数減衰**
+
+$a>b>0$ なら
+
+$$
+e^{-a|x|}\cosh(bx)
+=\frac12\left(e^{-(a-b)|x|}+e^{-(a+b)|x|}\right).
+$$
+
+したがって、二つの指数減衰核へ分解して変換できる。
+
+### Gauss 和と斜め経路
+
+**有限和の添字移動**
+
+$$
+\sum_{n=0}^{N-1}A_{n+1}-\sum_{n=0}^{N-1}A_n
+=A_N-A_0.
+$$
+
+有限和を一つずらした差では、中間項が相殺され、端の二項だけが残る。
+
+**$45^\circ$ 回転と Gauss 積分**
+
+$$
+z=re^{i\pi/4}
+\quad\Longrightarrow\quad
+z^2=ir^2,\qquad
+\dd z=e^{i\pi/4}\,\dd r,
+$$
+
+$$
+\int_{-\infty}^{\infty}e^{-\alpha r^2}\,\dd r
+=\sqrt{\frac\pi\alpha}
+\qquad(\alpha>0).
+$$
+
+この置換により、$e^{icz^2}$ 型の振動指数を実 Gauss 関数へ変える。
+
+**整数点・半整数点を作る分母**
+
+$$
+e^{2\pi iz}-1=0
+\iff z\in\mathbb Z,
+$$
+
+$$
+e^{2\pi iz}+1=0
+\iff z\in\mathbb Z+\frac12.
+$$
+
+$g(z)=f(z)/(e^{2\pi iz}-1)$ なら整数点 $m$ において
+
+$$
+\operatorname{Res}(g;m)=\frac{f(m)}{2\pi i}.
+$$
+
+$g(z)=f(z)/(e^{2\pi iz}+1)$ なら半整数点 $m+1/2$ において
+
+$$
+\operatorname{Res}\left(g;m+\frac12\right)
+=-\frac{f(m+1/2)}{2\pi i}.
+$$
+
+幅 $1$ の平行四辺形では、向かい合う辺をそろえると $g(z+1)-g(z)$ が現れる。この差を斜め経路上の Gauss 積分へ変え、内部の一つの留数と結び付ける。
+
+### 周期化・双曲線核・Fourier 係数
+
+**周期 $2\pi$ の Fourier 係数**
+
+$$
+a_n=\frac1\pi\int_{-\pi}^{\pi}g(x)\cos(nx)\,\dd x,
+\qquad
+b_n=\frac1\pi\int_{-\pi}^{\pi}g(x)\sin(nx)\,\dd x.
+$$
+
+$g$ が偶関数なら $b_n=0$ である。
+
+**急減少関数の周期化**
+
+$$
+g(x)=\sum_{m\in\mathbb Z}f(x+2m\pi)
+$$
+
+が絶対かつ一様に収束し、$f$ が偶関数なら
+
+$$
+a_n=\frac1\pi\int_{-\infty}^{\infty}
+f(x)\cos(nx)\,\dd x.
+$$
+
+和と積分の交換には Weierstrass の $M$ テストを使う。
+
+**双曲線関数の周期性と零点**
+
+$$
+\cosh(w+2\pi i)=\cosh w,
+$$
+
+$$
+\cosh w=0
+\iff
+w=i\pi\left(m+\frac12\right),
+\qquad m\in\mathbb Z.
+$$
+
+単純極の留数は、分母を微分して $P(z_0)/Q'(z_0)$ で求める。
+
+**長方形経路の上下辺**
+
+$$
+|e^{inz}|=e^{-n\operatorname{Im}z}
+\qquad(n>0).
+$$
+
+双曲線関数の虚方向の周期性と組み合わせると、上辺の積分を実軸上の積分の定数倍にできる。左右の辺は核の指数減衰で消す。
+
+sech 核で使う標準積分は
+
+$$
+\int_{-\infty}^{\infty}
+\frac{e^{inx}}{\cosh\!\left(\dfrac{\pi x}{2\lambda}\right)}\,\dd x
+=\frac{2\lambda}{\cosh(n\lambda)}.
+$$
+
+### Laplace 変換と減衰方程式
+
+**定義と微分・積分公式**
+
+$$
+F(s)=\mathcal L[f](s)
+=\int_0^\infty f(t)e^{-st}\,\dd t,
+$$
+
+$$
+\mathcal L[f']=sF(s)-f(0),
+$$
+
+$$
+\mathcal L[f'']
+=s^2F(s)-sf(0)-f'(0),
+$$
+
+$$
+\mathcal L\left[\int_0^tf(\tau)\,\dd \tau\right]
+=\frac{F(s)}s.
+$$
+
+**指数移動則**
+
+$$
+\mathcal L[e^{-\gamma t}f(t)](s)=F(s+\gamma).
+$$
+
+**平方完成**
+
+$$
+s^2+2\gamma s+\omega^2
+=(s+\gamma)^2+(\omega^2-\gamma^2).
+$$
+
+したがって $\omega^2-\gamma^2$ の符号によって、逆変換を三つに分ける。
+
+$$
+\mathcal L[e^{-\gamma t}\sin(\Omega t)]
+=\frac{\Omega}{(s+\gamma)^2+\Omega^2},
+$$
+
+$$
+\mathcal L[te^{-\gamma t}]
+=\frac1{(s+\gamma)^2},
+$$
+
+$$
+\mathcal L[e^{-\gamma t}\sinh(\beta t)]
+=\frac{\beta}{(s+\gamma)^2-\beta^2}.
+$$
+
+二階減衰方程式では
+
+$$
+f(t)=e^{-\gamma t}y(t)
+$$
+
+と置くと一階微分項が消え、$y$ の方程式は $\omega^2-\gamma^2$ の符号に応じて三角関数、一次関数、双曲線関数の三場合へ分かれる。
