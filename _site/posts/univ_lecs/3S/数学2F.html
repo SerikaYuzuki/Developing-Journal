@@ -2418,8 +2418,18 @@ u=x^2+y^2,\qquad v=2x
 <section id="math2f-basic-exercises" class="level3">
 <h3 class="anchored" data-anchor-id="math2f-basic-exercises">複素数・写像・正則性の演習</h3>
 <p>後の積分と展開で繰り返し使う基礎をまとめる。多価関数では、値を一つに決める枝を必ず意識する。</p>
-<section id="理論a1極形式指数対数" class="level4">
-<h4 class="anchored" data-anchor-id="理論a1極形式指数対数">理論A1：極形式・指数・対数</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論A1：極形式・指数・対数
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>非零複素数は <span class="math inline">\(z=re^{i\theta}\)</span>（<span class="math inline">\(r=|z|\)</span>）と書ける。偏角は <span class="math inline">\(2\pi\)</span> の整数倍だけ不定なので</p>
 <p><span class="math display">\[
 \ln z=\ln r+i(\theta+2\pi k),\qquad
@@ -2435,7 +2445,32 @@ w_k=r^{1/n}\exp\left\{i\frac{\theta+2\pi k}{n}\right\},\qquad k=0,1,\ldots,n-1
 \sin z=\frac{e^{iz}-e^{-iz}}{2i}
 \]</span></p>
 <p>と定義する。これらと Euler の公式を使えば、実部・虚部・積・冪・根を同じ手順で計算できる。</p>
-</section>
+<p>計算は次の順序で進めるとよい。</p>
+<ol type="1">
+<li><span class="math inline">\(z=x+iy\)</span> から <span class="math inline">\(r=|z|\)</span> と偏角 <span class="math inline">\(\theta\)</span> を求め、<span class="math inline">\(z=re^{i\theta}\)</span> と書く。</li>
+<li>対数・冪・根では、偏角を <span class="math inline">\(\theta+2\pi k\)</span> として多価性を残す。主値だけを求める場合は指定された偏角の範囲に戻す。</li>
+<li>積と商は絶対値を掛け割りし、偏角を足し引きする。</li>
+<li>最後に <span class="math inline">\(e^{i\phi}=\cos\phi+i\sin\phi\)</span> へ戻し、実部と虚部を読む。</li>
+</ol>
+<p>例えば</p>
+<p><span class="math display">\[
+\frac{1+i}{1-i}
+=\frac{(1+i)^2}{2}=i
+\]</span></p>
+<p>であるから、その <span class="math inline">\(5\)</span> 乗は <span class="math inline">\(i^5=i\)</span> とすぐ分かる。また <span class="math inline">\(z=x+iy\)</span> を指数表示へ代入すれば</p>
+<p><span class="math display">\[
+\cos(x+iy)=\cos x\cosh y-i\sin x\sinh y
+\]</span></p>
+<p>を得る。問題の <span class="math inline">\(\cos(\pi/3-i)\)</span> では <span class="math inline">\(y=-1\)</span> なので、虚部の符号がもう一度反転することに注意する。</p>
+<p><span class="math inline">\(i^i\)</span> のような複素冪では、<span class="math inline">\(i=e^{i(\pi/2+2\pi k)}\)</span> より</p>
+<p><span class="math display">\[
+i^i=\exp\left\{i\,i\left(\frac\pi2+2\pi k\right)\right\}
+=e^{-\pi/2-2\pi k}
+\]</span></p>
+<p>となる。複素数の複素数乗が実数になることもあり、値が一つとは限らない。</p>
+</div>
+</div>
+</div>
 <section id="問題a1-複素数の計算" class="level4">
 <h4 class="anchored" data-anchor-id="問題a1-複素数の計算">問題A1 複素数の計算</h4>
 <p>次を求めよ。</p>
@@ -2446,7 +2481,7 @@ w_k=r^{1/n}\exp\left\{i\frac{\theta+2\pi k}{n}\right\},\qquad k=0,1,\ldots,n-1
 <li>実数 <span class="math inline">\(\alpha,\beta\)</span> に対し、Euler の公式から <span class="math inline">\(e^{i\alpha}e^{i\beta}=e^{i(\alpha+\beta)}\)</span> を示せ。</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2455,7 +2490,7 @@ w_k=r^{1/n}\exp\left\{i\frac{\theta+2\pi k}{n}\right\},\qquad k=0,1,\ldots,n-1
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>複素対数を <span class="math inline">\(\ln z=\ln|z|+i(\arg z+2\pi k)\)</span> とすれば</p>
 <p><span class="math display">\[
@@ -2486,9 +2521,18 @@ z_k=2^{1/4}\exp\left\{i\left(\frac\pi6+\frac{k\pi}{2}\right)\right\},\qquad k=0,
 </div>
 </div>
 </div>
-</section>
-<section id="理論a2一次分数変換" class="level4">
-<h4 class="anchored" data-anchor-id="理論a2一次分数変換">理論A2：一次分数変換</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論A2：一次分数変換
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>一次分数変換</p>
 <p><span class="math display">\[
 w=\frac{az+b}{cz+d},\qquad ad-bc\ne0
@@ -2502,6 +2546,26 @@ w=\frac{az+b}{cz+d},\qquad ad-bc\ne0
 \frac{z-\alpha}{z+\overline\alpha}\qquad(\operatorname{Re}\alpha&gt;0)
 \]</span></p>
 <p>である。像を円外へ移すには逆数を取り、回転を加えるには絶対値 <span class="math inline">\(1\)</span> の定数を掛ける。</p>
+<p>一次分数変換を決めるときは、次の三点を順に確認する。</p>
+<ol type="1">
+<li><span class="math inline">\(ad-bc\ne0\)</span> を確認し、定数写像を除く。</li>
+<li>境界の直線または円が、行き先の境界へ移る形を作る。</li>
+<li>境界の片側から試験点を一つ選び、円の内側・外側または上側・下側のどちらへ移るかを確認する。</li>
+</ol>
+<p>例えば <span class="math inline">\(z_0=p+iq\)</span>（<span class="math inline">\(q&gt;0\)</span>）に対して</p>
+<p><span class="math display">\[
+T(z)=\frac{z-z_0}{z-\overline{z_0}}
+\]</span></p>
+<p>と置く。<span class="math inline">\(z=x+iy\)</span> なら</p>
+<p><span class="math display">\[
+|z-\overline{z_0}|^2-|z-z_0|^2
+=4qy&gt;0
+\]</span></p>
+<p>なので、<span class="math inline">\(\operatorname{Im}z&gt;0\)</span> では <span class="math inline">\(|T(z)|&lt;1\)</span> となる。実軸上では両距離が等しいため <span class="math inline">\(|T(z)|=1\)</span> である。これで「境界が単位円へ、上半平面がその内部へ」写ることが式から確認できる。</p>
+<p>係数 <span class="math inline">\((a,b,c,d)\)</span> を共通の非零定数倍にしても写像は変わらない。したがって係数を一意に求めるのではなく、標準形を共通倍まで求めればよい。複雑な領域の写像は、平行移動・回転・上の基本変換・逆数を順に合成して作る。</p>
+</div>
+</div>
+</div>
 </section>
 <section id="問題a2-一次分数変換" class="level4">
 <h4 class="anchored" data-anchor-id="問題a2-一次分数変換">問題A2 一次分数変換</h4>
@@ -2512,7 +2576,7 @@ w=\frac{az+b}{cz+d},\qquad ad-bc\ne0
 <li>右半平面から単位円外部</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2521,7 +2585,7 @@ w=\frac{az+b}{cz+d},\qquad ad-bc\ne0
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>係数の共通非零倍は同じ写像を表す。上半平面の自己同型は</p>
 <p><span class="math display">\[
@@ -2540,9 +2604,18 @@ w=e^{i\phi}\frac{z+\overline\alpha}{z-\alpha}
 </div>
 </div>
 </div>
-</section>
-<section id="理論a3枝を持つ関数と正則性" class="level4">
-<h4 class="anchored" data-anchor-id="理論a3枝を持つ関数と正則性">理論A3：枝を持つ関数と正則性</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論A3：枝を持つ関数と正則性
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>多項式は整関数で、<span class="math inline">\(\overline z\)</span> を含む式は通常 Cauchy–Riemann 方程式を満たさない。対数や複素冪は、切断を入れて <span class="math inline">\(\ln z\)</span> の枝を一つ固定した領域で考える。</p>
 <p><span class="math display">\[
 a^z=e^{z\ln a},\qquad
@@ -2550,6 +2623,34 @@ z^\alpha=e^{\alpha\ln z},\qquad
 \tan^{-1}z=\frac{1}{2i}\{\ln(1+iz)-\ln(1-iz)\}.
 \]</span></p>
 <p>枝を固定した領域では通常の合成関数として微分できる。正則性を調べる順序は、<strong>既知の正則関数へ書き換える → 特異点と枝を除く → 書き換えられなければ Cauchy–Riemann 方程式を調べる</strong>、である。</p>
+<p>より具体的には次のように判定する。</p>
+<ol type="1">
+<li>多項式・有理関数・指数関数などの組合せなら、分母の零点を除いて正則である。</li>
+<li><span class="math inline">\(\ln z\)</span> や <span class="math inline">\(z^\alpha\)</span> を含むなら、原点と切断を除き、一つの枝を固定する。</li>
+<li><span class="math inline">\(x,y,\overline z,|z|\)</span> が直接現れるなら、<span class="math inline">\(f=u+iv\)</span> として Cauchy–Riemann 方程式を調べる。</li>
+<li>一点だけで複素微分できても、その点を含む開近傍で正則とは限らないことを確認する。</li>
+</ol>
+<p>例えば</p>
+<p><span class="math display">\[
+|z|^2=z\overline z,\qquad
+\frac{x+iy}{x^2+y^2}=\frac{z}{z\overline z}=\frac1{\overline z}
+\]</span></p>
+<p>はいずれも <span class="math inline">\(\overline z\)</span> に依存する。Wirtinger 微分を使えば、<span class="math inline">\(C^1\)</span> 級の関数について</p>
+<p><span class="math display">\[
+\pdv{f}{\overline z}
+=\frac12\left(\pdv{f}{x}+i\pdv{f}{y}\right)=0
+\]</span></p>
+<p>が正則性の判定条件になる。<span class="math inline">\(\overline z\)</span> ではこの値が <span class="math inline">\(1\)</span> なので正則ではない。</p>
+<p>一方、枝を固定した領域では</p>
+<p><span class="math display">\[
+\dv{}{z}z^\alpha=\alpha z^{\alpha-1},
+\qquad
+\dv{}{z}\tan^{-1}z=\frac1{1+z^2}
+\]</span></p>
+<p>と通常どおり微分できる。ただし後者では <span class="math inline">\(z=\pm i\)</span> を除き、対数の枝が連続に選べる領域に制限する。</p>
+</div>
+</div>
+</div>
 </section>
 <section id="問題a3-正則性と導関数" class="level4">
 <h4 class="anchored" data-anchor-id="問題a3-正則性と導関数">問題A3 正則性と導関数</h4>
@@ -2565,7 +2666,7 @@ z^\alpha=e^{\alpha\ln z},\qquad
 <li><span class="math inline">\((x+iy)/(x^2+y^2)\)</span></li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2574,7 +2675,7 @@ z^\alpha=e^{\alpha\ln z},\qquad
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><span class="math inline">\(a\ne0\)</span> で <span class="math inline">\(\ln a\)</span> を固定すれば <span class="math inline">\(a^z=e^{z\ln a}\)</span> は整関数で、<span class="math inline">\(\dv*{a^z}{z}=(\ln a)a^z\)</span>。</li>
@@ -2589,20 +2690,49 @@ z^\alpha=e^{\alpha\ln z},\qquad
 </div>
 </div>
 </div>
-</section>
-<section id="理論a4調和共役" class="level4">
-<h4 class="anchored" data-anchor-id="理論a4調和共役">理論A4：調和共役</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論A4：調和共役
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p><span class="math inline">\(f=u+iv\)</span> が正則なら</p>
 <p><span class="math display">\[
 u_x=v_y,\qquad u_y=-v_x
 \]</span></p>
 <p>であり、実部 <span class="math inline">\(u\)</span> は <span class="math inline">\(u_{xx}+u_{yy}=0\)</span> を満たす。<span class="math inline">\(u\)</span> から <span class="math inline">\(f\)</span> を復元するには、<span class="math inline">\(v_y=u_x\)</span> を <span class="math inline">\(y\)</span> で積分し、その積分定数を <span class="math inline">\(x\)</span> の関数として <span class="math inline">\(v_x=-u_y\)</span> で決める。最後に既知の <span class="math inline">\(z\)</span> の式へまとめる。</p>
+<p>まず <span class="math inline">\(u_{xx}+u_{yy}=0\)</span> を確認する。この条件を満たさなければ、<span class="math inline">\(u\)</span> を実部にもつ正則関数は存在しない。条件を満たすとき、例えば</p>
+<p><span class="math display">\[
+u(x,y)=e^x\cos y
+\]</span></p>
+<p>では</p>
+<p><span class="math display">\[
+v_y=u_x=e^x\cos y
+\]</span></p>
+<p>を <span class="math inline">\(y\)</span> で積分して</p>
+<p><span class="math display">\[
+v=e^x\sin y+\phi(x)
+\]</span></p>
+<p>と置く。もう一方の式 <span class="math inline">\(v_x=-u_y=e^x\sin y\)</span> と比べると <span class="math inline">\(\phi'(x)=0\)</span> なので、<span class="math inline">\(v=e^x\sin y+C\)</span> である。したがって</p>
+<p><span class="math display">\[
+f=u+iv=e^x(\cos y+i\sin y)+iC=e^z+iC.
+\]</span></p>
+<p>積分定数が実部ではなく虚部に加わるため、最後の自由度は <span class="math inline">\(iC\)</span>（<span class="math inline">\(C\in\mathbb R\)</span>）である。<span class="math inline">\(\ln|z|\)</span> の場合には対数の枝を選べる領域で議論し、原点を含む領域では復元できない。</p>
+</div>
+</div>
+</div>
 </section>
 <section id="問題a4-実部から正則関数を復元する" class="level4">
 <h4 class="anchored" data-anchor-id="問題a4-実部から正則関数を復元する">問題A4 実部から正則関数を復元する</h4>
 <p><span class="math inline">\(x/(x^2+y^2)\)</span>、<span class="math inline">\(e^x\cos y\)</span>、<span class="math inline">\(\ln|z|\)</span> をそれぞれ実部にもつ正則関数を求めよ。</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2611,7 +2741,7 @@ u_x=v_y,\qquad u_y=-v_x
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Cauchy–Riemann 方程式から調和共役を求めると</p>
 <p><span class="math display">\[
@@ -2629,7 +2759,7 @@ f(z)=\frac1z+iC,\qquad f(z)=e^z+iC,\qquad f(z)=\ln z+iC
 <h4 class="anchored" data-anchor-id="基本例有界な整関数">基本例：有界な整関数</h4>
 <p>Liouville の定理について説明せよ。また、<span class="math inline">\(f(z)=\sin |z|\)</span> が複素平面上で正則であるかどうかを、Liouville の定理に基づいて判別せよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2638,7 +2768,7 @@ f(z)=\frac1z+iC,\qquad f(z)=e^z+iC,\qquad f(z)=\ln z+iC
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Liouville の定理は「複素平面全体で正則な関数（整関数）が有界なら、その関数は定数である」という定理である。その証明に必要な複素積分から順に準備する。</p>
 <p><strong>1. 複素積分。</strong> 複素平面上の曲線 <span class="math inline">\(C\)</span> を</p>
@@ -2736,7 +2866,7 @@ f(a)=\frac{1}{2\pi}\int_0^{2\pi}f(a+Re^{it})\,\dd t
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2745,7 +2875,7 @@ f(a)=\frac{1}{2\pi}\int_0^{2\pi}f(a+Re^{it})\,\dd t
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math inline">\(f(0)=0\)</span> である一方、<span class="math inline">\(f(\pi/2)=1\)</span> なので <span class="math inline">\(f\)</span> は定数ではない。それにもかかわらず <span class="math inline">\(|f(z)|\le 1\)</span> であるから、Liouville の定理の対偶より</p>
 <p><span class="math display">\[
@@ -2771,8 +2901,18 @@ f(z)=\sin |z|
 </section>
 <section id="math2f-series-exercises" class="level3">
 <h3 class="anchored" data-anchor-id="math2f-series-exercises">Taylor 展開・Laurent 展開の演習</h3>
-<section id="理論b基本級数収束半径特異点" class="level4">
-<h4 class="anchored" data-anchor-id="理論b基本級数収束半径特異点">理論B：基本級数・収束半径・特異点</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論B：基本級数・収束半径・特異点
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>正則関数の冪級数は収束円内で項別に微分・積分でき、Taylor 係数は Cauchy の微分公式から</p>
 <p><span class="math display">\[
 c_n=\frac{1}{2\pi i}\oint_C\frac{f(w)}{(w-z_0)^{n+1}}\,\dd w
@@ -2789,10 +2929,37 @@ e^w=\sum_{n=0}^{\infty}\frac{w^n}{n!},
 \cos w=\sum_{n=0}^{\infty}\frac{(-1)^nw^{2n}}{(2n)!},
 \]</span></p>
 <p><span class="math display">\[
-(1+w)^a=\sum_{n=0}^{\infty}\binom an w^nqquad(|w|&lt;1).
+(1+w)^a=\sum_{n=0}^{\infty}\binom an w^n\qquad(|w|&lt;1).
 \]</span></p>
 <p>積・商では Cauchy 積または等比級数を使う。特異点を中心とする場合は <span class="math inline">\(w=z-z_0\)</span> と置き、<span class="math inline">\(w^{-1}\)</span> の係数を読めば留数、最も低い負冪を見れば極の位数、負冪が無限なら真性特異点と判定できる。</p>
-</section>
+<p>実際の計算では、最初に中心を原点へ移す。</p>
+<p><span class="math display">\[
+w=z-z_0
+\]</span></p>
+<p>と置き、式を <span class="math inline">\(w\)</span> の基本級数へ直す。例えば中心 <span class="math inline">\(z_0=0\)</span> で</p>
+<p><span class="math display">\[
+\frac1{z+3}
+=\frac13\frac1{1+z/3}
+=\frac13\sum_{n=0}^{\infty}\left(-\frac z3\right)^n,
+\qquad |z|&lt;3.
+\]</span></p>
+<p>収束半径 <span class="math inline">\(3\)</span> は、中心から特異点 <span class="math inline">\(z=-3\)</span> までの距離でもある。中心 <span class="math inline">\(z_0=1\)</span> で</p>
+<p><span class="math display">\[
+\frac{e^z}{(z-1)^4}
+=e\,\frac{e^w}{w^4}
+=e\sum_{n=0}^{\infty}\frac{w^{n-4}}{n!}
+\]</span></p>
+<p>とすれば、<span class="math inline">\(w^{-4}\)</span> から始まるので <span class="math inline">\(z=1\)</span> は <span class="math inline">\(4\)</span> 位の極であり、留数は <span class="math inline">\(w^{-1}\)</span> の係数 <span class="math inline">\(e/3!\)</span> である。</p>
+<p>積の係数が必要なときは</p>
+<p><span class="math display">\[
+\left(\sum_{n=0}^{\infty}a_nw^n\right)
+\left(\sum_{n=0}^{\infty}b_nw^n\right)
+=\sum_{n=0}^{\infty}\left(\sum_{k=0}^na_kb_{n-k}\right)w^n
+\]</span></p>
+<p>を使う。商は分母から定数をくくり、<span class="math inline">\(1/(1-q)\)</span> の形へ直すのが基本である。Taylor 展開か Laurent 展開か迷ったら、中心で関数が正則かを先に確認する。</p>
+</div>
+</div>
+</div>
 <section id="問題b" class="level4">
 <h4 class="anchored" data-anchor-id="問題b">問題B</h4>
 <p>次を指定された点の周りで展開し、必要に応じて収束半径・極の位数・留数を求めよ。</p>
@@ -2812,7 +2979,7 @@ e^w=\sum_{n=0}^{\infty}\frac{w^n}{n!},
 <li><span class="math inline">\(\sin z/z^2\)</span>、中心 <span class="math inline">\(0\)</span></li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2821,7 +2988,7 @@ e^w=\sum_{n=0}^{\infty}\frac{w^n}{n!},
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>1. 二項級数。</strong></p>
 <p><span class="math display">\[
@@ -2987,7 +3154,7 @@ f(z)=\sum_{n=-\infty}^{\infty}c_n(z-z_0)^n
 \]</span></p>
 <p>を求めよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2996,7 +3163,7 @@ f(z)=\sum_{n=-\infty}^{\infty}c_n(z-z_0)^n
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>実積分を単位円上の複素積分へ移す。</strong> Euler の公式より</p>
 <p><span class="math display">\[
@@ -3070,7 +3237,7 @@ z_{\pm}=-a\pm\sqrt{a^2-1}
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3079,7 +3246,7 @@ z_{\pm}=-a\pm\sqrt{a^2-1}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[
 \begin{aligned}
@@ -3103,7 +3270,7 @@ z_{\pm}=-a\pm\sqrt{a^2-1}
 \]</span></p>
 <p>を求めよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3112,7 +3279,7 @@ z_{\pm}=-a\pm\sqrt{a^2-1}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>実軸積分を上半円で囲み、留数に変える。</strong> 求める積分を</p>
 <p><span class="math display">\[
@@ -3183,7 +3350,7 @@ I=2\pi i\cdot\frac{1}{2ib}=\frac{\pi}{b}.
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3192,7 +3359,7 @@ I=2\pi i\cdot\frac{1}{2ib}=\frac{\pi}{b}.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>上半平面内の留数は</p>
 <p><span class="math display">\[
@@ -3214,15 +3381,39 @@ I=2\pi i\cdot\frac{1}{2ib}=\frac{\pi}{b}.
 <section id="math2f-contour-exercises" class="level3">
 <h3 class="anchored" data-anchor-id="math2f-contour-exercises">複素積分と実定積分の演習</h3>
 <p>以下では、実軸上に極がある場合に「通常の広義積分」と「Cauchy の主値」を区別する。実軸上の極を対称に避けた極限だけが存在するときは <span class="math inline">\(\operatorname{p.v.}\)</span> と書く。</p>
-<section id="理論c1経路積分の二つの計算法" class="level4">
-<h4 class="anchored" data-anchor-id="理論c1経路積分の二つの計算法">理論C1：経路積分の二つの計算法</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論C1：経路積分の二つの計算法
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>原始関数 <span class="math inline">\(F\)</span> があれば <span class="math inline">\(\int_Cf(z)\,\dd z=F(z_1)-F(z_0)\)</span> で求められる。閉曲線が特異点を囲む場合は</p>
 <p><span class="math display">\[
 \oint_C\frac{f(z)}{(z-a)^{n+1}}\,\dd z
 =\frac{2\pi i}{n!}\dv[n]{f}{z}(a)
 \]</span></p>
 <p>を使う。最初に「原始関数で終わるか」「閉曲線内に極があるか」を判定する。</p>
-</section>
+<p>経路積分では次の三通りを使い分ける。</p>
+<ol type="1">
+<li><strong>原始関数法</strong>：積分路が特異点を横切らず、領域内で原始関数が選べれば端点だけを見る。</li>
+<li><strong>パラメータ表示</strong>：<span class="math inline">\(z=z(t)\)</span> と置き、<span class="math inline">\(\int_a^b f(z(t))z'(t)\,\dd t\)</span> という実変数積分へ直す。</li>
+<li><strong>Cauchy の積分公式</strong>：閉曲線内の極が <span class="math inline">\((z-a)^{-n-1}\)</span> の形なら、分子の <span class="math inline">\(n\)</span> 階導関数を読む。</li>
+</ol>
+<p>例えば線分 <span class="math inline">\(z=z_0+t(z_1-z_0)\)</span>（<span class="math inline">\(0\le t\le1\)</span>）では</p>
+<p><span class="math display">\[
+\int_Cf(z)\,\dd z
+=\int_0^1f\{z_0+t(z_1-z_0)\}(z_1-z_0)\,\dd t.
+\]</span></p>
+<p>閉曲線の問題では、極が曲線の内側にあるか、向きが反時計回りかを必ず確認する。時計回りなら符号が反転し、極が外側ならその極の寄与は <span class="math inline">\(0\)</span> である。分母が <span class="math inline">\((z-a)^3\)</span> なら <span class="math inline">\(n+1=3\)</span>、すなわち分子を <span class="math inline">\(2\)</span> 回微分して <span class="math inline">\(2!\)</span> で割る。</p>
+</div>
+</div>
+</div>
 <section id="問題c1-経路積分" class="level4">
 <h4 class="anchored" data-anchor-id="問題c1-経路積分">問題C1 経路積分</h4>
 <ol type="1">
@@ -3230,7 +3421,7 @@ I=2\pi i\cdot\frac{1}{2ib}=\frac{\pi}{b}.
 <li><span class="math inline">\(e^{iz}/(z-\pi)^3\)</span> を <span class="math inline">\(|z-3|=1\)</span> 上で反時計回りに積分せよ。</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3239,7 +3430,7 @@ I=2\pi i\cdot\frac{1}{2ib}=\frac{\pi}{b}.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math inline">\(z/(1+z)=1-1/(1+z)\)</span> の原始関数を使うと</p>
 <p><span class="math display">\[
@@ -3256,14 +3447,79 @@ I=2\pi i\cdot\frac{1}{2ib}=\frac{\pi}{b}.
 </div>
 </div>
 </div>
-</section>
-<section id="理論c2実積分に合う積分路" class="level4">
-<h4 class="anchored" data-anchor-id="理論c2実積分に合う積分路">理論C2：実積分に合う積分路</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論C2：実積分に合う積分路
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>有理関数だけなら上半円、<span class="math inline">\(e^{ikz}\)</span> を含み <span class="math inline">\(k&gt;0\)</span> なら指数が減衰する上半平面、<span class="math inline">\(x^\alpha\)</span> を含むなら鍵穴型、<span class="math inline">\(x^4\)</span> の対称性を使うなら扇形を候補にする。閉曲線積分は</p>
 <p><span class="math display">\[
 \oint_Cf(z)\,\dd z=2\pi i\sum\operatorname{Res}(f;z_j)
 \]</span></p>
 <p>であり、円弧部分は <span class="math inline">\(ML\)</span> 評価または Jordan の補題で消す。実軸上に単純極があるときは小半円で避け、その寄与 <span class="math inline">\(\pm i\pi\operatorname{Res}\)</span> を含めて主値を計算する。通常の広義積分が存在するかは、主値を計算する前に片側極限で確認する。</p>
+<p>積分路の選択は、被積分関数の形から逆算する。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>実積分の形</th>
+<th>複素関数と積分路</th>
+<th>狙い</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>有理関数、分母の次数が十分高い</td>
+<td>上半円または下半円</td>
+<td>円弧を <span class="math inline">\(ML\)</span> 評価で消す</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\cos(ax),\sin(ax)\)</span> を含む</td>
+<td><span class="math inline">\(e^{iaz}\)</span> と半円</td>
+<td>実部・虚部を最後に取る</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(x^\alpha\)</span> を含む</td>
+<td>枝を固定した鍵穴型</td>
+<td>切断の上下の位相差を利用する</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(1+x^4\)</span> など回転対称</td>
+<td>扇形</td>
+<td>二本の半径上の積分を関係付ける</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(0\)</span> から <span class="math inline">\(2\pi\)</span> の三角関数</td>
+<td><span class="math inline">\(z=e^{i\theta}\)</span> の単位円</td>
+<td><span class="math inline">\(\sin\theta,\cos\theta\)</span> を有理式にする</td>
+</tr>
+</tbody>
+</table>
+<p>半径 <span class="math inline">\(R\)</span> の円弧で <span class="math inline">\(f(z)=O(R^{-p})\)</span> なら、円弧の長さが <span class="math inline">\(O(R)\)</span> なので</p>
+<p><span class="math display">\[
+\left|\int_{\Gamma_R}f(z)\,\dd z\right|=O(R^{1-p}).
+\]</span></p>
+<p>したがって <span class="math inline">\(p&gt;1\)</span> なら円弧積分は消える。単に <span class="math inline">\(f(z)\to0\)</span> と述べるだけでは、経路の長さが増える効果を考えていないため不十分である。</p>
+<p>留数計算では、まず分母を因数分解して極を図示し、選んだ領域内の極だけを列挙する。単純極なら</p>
+<p><span class="math display">\[
+\operatorname{Res}\left(\frac{P}{Q};z_0\right)
+=\frac{P(z_0)}{Q'(z_0)}
+\]</span></p>
+<p>が速い。<span class="math inline">\(e^{iaz}\)</span> を使った場合は、複素積分の実部が余弦積分、虚部が正弦積分になる。実軸上の極を避ける小半円は向きによって符号が変わるので、図に矢印を書いてから <span class="math inline">\(\pm i\pi\operatorname{Res}\)</span> を決める。</p>
+</div>
+</div>
+</div>
 </section>
 <section id="問題c2-留数で求める定積分" class="level4">
 <h4 class="anchored" data-anchor-id="問題c2-留数で求める定積分">問題C2 留数で求める定積分</h4>
@@ -3288,7 +3544,7 @@ I=2\pi i\cdot\frac{1}{2ib}=\frac{\pi}{b}.
 <li><span class="math inline">\(\displaystyle\int_0^\infty\frac{x^\alpha}{x^2+x+1}\,\dd x\)</span>（<span class="math inline">\(-1&lt;\alpha&lt;1\)</span>）</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3297,7 +3553,7 @@ I=2\pi i\cdot\frac{1}{2ib}=\frac{\pi}{b}.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>基本方針は、<span class="math inline">\(e^{ikz}\)</span> を含む積分では <span class="math inline">\(k&gt;0\)</span> なら上半平面、偶関数の有理積分では上半平面または扇形を使うことである。結果は次の通り。</p>
 <p><span class="math display">\[
@@ -3339,10 +3595,35 @@ I=2\pi i\cdot\frac{1}{2ib}=\frac{\pi}{b}.
 </div>
 </div>
 </div>
-</section>
-<section id="理論c3扇形で積分方向を回転する" class="level4">
-<h4 class="anchored" data-anchor-id="理論c3扇形で積分方向を回転する">理論C3：扇形で積分方向を回転する</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論C3：扇形で積分方向を回転する
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>整関数を扇形境界で積分すると全周積分は <span class="math inline">\(0\)</span> である。斜辺 <span class="math inline">\(z=re^{i\phi}\)</span> では <span class="math inline">\(z^2=r^2e^{2i\phi}\)</span>、<span class="math inline">\(\dd z=e^{i\phi}\dd r\)</span> となる。角度 <span class="math inline">\(\phi\)</span> を選ぶことで実 Gauss 積分と振動積分を結び付け、残る円弧を評価して <span class="math inline">\(R\to\infty\)</span> とすればよい。</p>
+<p>扇形境界を、実軸上の線分 <span class="math inline">\(L_1\)</span>、円弧 <span class="math inline">\(A_R\)</span>、斜辺を原点へ戻る線分 <span class="math inline">\(L_2\)</span> に分ける。反時計回りなら</p>
+<p><span class="math display">\[
+0=\int_{L_1}e^{-z^2}\,\dd z
++\int_{A_R}e^{-z^2}\,\dd z
++\int_{L_2}e^{-z^2}\,\dd z.
+\]</span></p>
+<p><span class="math inline">\(L_2\)</span> は向きが <span class="math inline">\(R\to0\)</span> なので、<span class="math inline">\(z=re^{i\phi}\)</span> とすると</p>
+<p><span class="math display">\[
+\int_{L_2}e^{-z^2}\,\dd z
+=-e^{i\phi}\int_0^Re^{-r^2e^{2i\phi}}\,\dd r.
+\]</span></p>
+<p>ここで <span class="math inline">\(\phi=\pi/4\)</span> と選べば <span class="math inline">\(e^{2i\phi}=i\)</span> となり、斜辺上の積分が <span class="math inline">\(\int_0^Re^{-ir^2}\,\dd r\)</span> に変わる。角度は与えられたものを機械的に使うのではなく、「指数 <span class="math inline">\(z^2\)</span> を欲しい位相 <span class="math inline">\(iz^2\)</span> へ回す」ために選ばれている。</p>
+<p>円弧では <span class="math inline">\(z=Re^{i\theta}\)</span> として <span class="math inline">\(|e^{-z^2}|=e^{-R^2\cos2\theta}\)</span> を評価する。端点 <span class="math inline">\(\theta=\pi/4\)</span> 付近も含めて円弧積分が消えることを示した後、<span class="math inline">\(R\to\infty\)</span> として実軸上の Gauss 積分 <span class="math inline">\(\sqrt\pi/2\)</span> と振動積分を結ぶ。</p>
+</div>
+</div>
+</div>
 </section>
 <section id="問題c3-45度の扇形経路" class="level4">
 <h4 class="anchored" data-anchor-id="問題c3-45度の扇形経路">問題C3 45度の扇形経路</h4>
@@ -3352,7 +3633,7 @@ I=\int_0^\infty e^{-ix^2}\,\dd x
 \]</span></p>
 <p>を求めよ。</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3361,7 +3642,7 @@ I=\int_0^\infty e^{-ix^2}\,\dd x
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div id="callout-26" class="callout-26-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math inline">\(e^{-z^2}\)</span> は整関数なので扇形境界の積分は <span class="math inline">\(0\)</span>。実軸部分は <span class="math inline">\(\int_0^R e^{-x^2}\,\dd x\)</span>、斜辺を <span class="math inline">\(z=re^{i\pi/4}\)</span> と逆向きにたどる部分は</p>
 <p><span class="math display">\[
@@ -3379,10 +3660,36 @@ I=\int_0^\infty e^{-ix^2}\,\dd x
 </div>
 </div>
 </div>
-</section>
-<section id="理論c4同じ積分を別の変換で見る" class="level4">
-<h4 class="anchored" data-anchor-id="理論c4同じ積分を別の変換で見る">理論C4：同じ積分を別の変換で見る</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論C4：同じ積分を別の変換で見る
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p><span class="math inline">\(\sin x/x\)</span> は、複素積分では <span class="math inline">\(e^{iz}/z\)</span> の原点回避、Fourier 変換では矩形関数の逆変換、Laplace 変換では積分順序の交換から現れる。三手法を比べると、留数・周波数の再構成・パラメータ積分が同じ値を与えることを確認できる。</p>
+<p>三つの方法は次のように進む。</p>
+<ol type="1">
+<li><strong>複素積分</strong>では <span class="math inline">\(e^{iz}/z\)</span> を上半円で積分し、原点を上側の小半円で避ける。大円弧は Jordan の補題で消え、小半円が半留数に相当する <span class="math inline">\(-i\pi\)</span> を与える。実部と虚部を分けると Dirichlet 積分が残る。</li>
+<li><strong>Fourier 変換</strong>では <span class="math inline">\([-1,1]\)</span> の指示関数 <span class="math inline">\(\chi\)</span> に対し、<span class="math inline">\(\widehat\chi(k)\)</span> が <span class="math inline">\(\sin k/k\)</span> 型になる。逆変換公式を連続点 <span class="math inline">\(x=0\)</span> で使うと、<span class="math inline">\(\chi(0)=1\)</span> が積分値を決める。</li>
+<li><strong>Laplace 変換</strong>では <span class="math inline">\(g(t)=\int_0^\infty\sin(xt)/x\,\dd x\)</span> を直接求めにくいので、まず <span class="math inline">\(e^{-st}\)</span> を掛けて <span class="math inline">\(t\)</span> について積分する。積分順序を交換すると</li>
+</ol>
+<p><span class="math display">\[
+\mathcal L[g](s)
+=\int_0^\infty\frac1x
+\left(\int_0^\infty e^{-st}\sin(xt)\,\dd t\right)\dd x
+=\int_0^\infty\frac{\dd x}{s^2+x^2}
+=\frac\pi{2s}.
+\]</span></p>
+<p>したがって <span class="math inline">\(g(t)=\pi/2\)</span>（<span class="math inline">\(t&gt;0\)</span>）である。積分順序の交換が気になる場合は <span class="math inline">\(e^{-\varepsilon x}\)</span> を入れて絶対収束させ、最後に <span class="math inline">\(\varepsilon\downarrow0\)</span> とする。</p>
+</div>
+</div>
+</div>
 </section>
 <section id="問題c4-dirichlet-積分を三通りで求める" class="level4">
 <h4 class="anchored" data-anchor-id="問題c4-dirichlet-積分を三通りで求める">問題C4 Dirichlet 積分を三通りで求める</h4>
@@ -3391,7 +3698,7 @@ I=\int_0^\infty e^{-ix^2}\,\dd x
 \]</span></p>
 <p>を、複素積分、区間 <span class="math inline">\([-1,1]\)</span> の指示関数の Fourier 変換、<span class="math inline">\(g(t)=\int_0^\infty\sin(xt)/x\,\dd x\)</span> の Laplace 変換の三通りで求めよ。</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3400,7 +3707,7 @@ I=\int_0^\infty e^{-ix^2}\,\dd x
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div id="callout-28" class="callout-28-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>いずれも</p>
 <p><span class="math display">\[
@@ -3434,7 +3741,7 @@ F(k)=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(x)e^{-ikx}\,\dd x
 \]</span></p>
 <p>を求めよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3443,7 +3750,7 @@ F(k)=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(x)e^{-ikx}\,\dd x
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div id="callout-29" class="callout-29-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>フーリエ変換の意味。</strong> <span class="math inline">\(e^{ikx}\)</span> は波数 <span class="math inline">\(k\)</span> の複素正弦波であり、フーリエ変換は関数を「どの波数の波がどれだけ含まれるか」という表示へ移す操作である。この例の規約では</p>
 <p><span class="math display">\[
@@ -3478,7 +3785,7 @@ J'(k)=-i\int_{-\infty}^{\infty}xe^{-a|x|}e^{-ikx}\,\dd x
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3487,7 +3794,7 @@ J'(k)=-i\int_{-\infty}^{\infty}xe^{-a|x|}e^{-ikx}\,\dd x
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div id="callout-30" class="callout-30-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[
 \begin{aligned}
@@ -3512,7 +3819,7 @@ F(k)=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(x)e^{-ikx}\,\dd x
 \]</span></p>
 <p>を求めよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3521,7 +3828,7 @@ F(k)=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(x)e^{-ikx}\,\dd x
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-22" class="callout-22-contents callout-collapse collapse">
+<div id="callout-31" class="callout-31-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>双曲線余弦は</p>
 <p><span class="math display">\[
@@ -3542,7 +3849,7 @@ e^{-a|x|}\cosh(bx)
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3551,7 +3858,7 @@ e^{-a|x|}\cosh(bx)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div id="callout-32" class="callout-32-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[
 \boxed{
@@ -3591,7 +3898,7 @@ g(z)=\frac{f(z)}{e^{2\pi iz}-1},\qquad
 \]</span></p>
 <p>と定義する。<span class="math inline">\(\phi(z)\)</span> の具体的な表式を求めよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3600,7 +3907,7 @@ g(z)=\frac{f(z)}{e^{2\pi iz}-1},\qquad
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div id="callout-33" class="callout-33-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>有限和では端の項を追う。</strong> <span class="math inline">\(f(z+1)\)</span> の和で <span class="math inline">\(m=n+1\)</span> と置くと</p>
 <p><span class="math display">\[
@@ -3628,7 +3935,7 @@ f(z+1)=\sum_{m=1}^{2p}
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-34-contents" aria-controls="callout-34" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3637,7 +3944,7 @@ f(z+1)=\sum_{m=1}^{2p}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div id="callout-34" class="callout-34-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[
 f(z+1)-f(z)
@@ -3658,7 +3965,7 @@ f(z+1)-f(z)
 \lim_{R\to\infty}\int_{\ell_R}\phi(z)\,\dd z
 \]</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-35-contents" aria-controls="callout-35" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3667,7 +3974,7 @@ f(z+1)-f(z)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-26" class="callout-26-contents callout-collapse collapse">
+<div id="callout-35" class="callout-35-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>複素積分は <a href="#math2f-liouville-theory">曲線の媒介変数表示</a>で実積分へ戻せる。経路を <span class="math inline">\(z=re^{\pi i/4}\)</span>（<span class="math inline">\(-R\le r\le R\)</span>）と置くと</p>
 <p><span class="math display">\[
@@ -3690,7 +3997,7 @@ I^2
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3699,7 +4006,7 @@ I^2
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-27" class="callout-27-contents callout-collapse collapse">
+<div id="callout-36" class="callout-36-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[
 \begin{aligned}
@@ -3720,7 +4027,7 @@ f(0)=\sum_{n=0}^{2p-1}e^{\pi in^2/(2p)}
 \]</span></p>
 <p>を求めよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-37-contents" aria-controls="callout-37" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3729,7 +4036,7 @@ f(0)=\sum_{n=0}^{2p-1}e^{\pi in^2/(2p)}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-28" class="callout-28-contents callout-collapse collapse">
+<div id="callout-37" class="callout-37-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><a href="#math2f-residue-theory">留数定理とその証明</a>を、この問題では平行四辺形の積分路に適用する。</p>
 <p><span class="math inline">\(g(z)\)</span> の分母 <span class="math inline">\(e^{2\pi iz}-1\)</span> は整数点で単純零点を持つ。<span class="math inline">\(Q(z)=e^{2\pi iz}-1\)</span> とすれば <span class="math inline">\(Q'(0)=2\pi i\)</span> なので、<a href="#math2f-residue-theory">単純極の留数公式</a>から</p>
@@ -3746,7 +4053,7 @@ g(z+1)-g(z)=\phi(z)
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-38-contents" aria-controls="callout-38" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3755,7 +4062,7 @@ g(z+1)-g(z)=\phi(z)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-29" class="callout-29-contents callout-collapse collapse">
+<div id="callout-38" class="callout-38-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>留数定理と前節の斜め経路積分より</p>
 <p><span class="math display">\[
@@ -3783,7 +4090,7 @@ g(z)=\frac{f(z)}{e^{2\pi iz}+1},\qquad
 \]</span></p>
 <p>と定義する。可除特異点を全て除去し、<span class="math inline">\(\phi(z)\)</span> を正則関数として表せ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-39-contents" aria-controls="callout-39" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3792,7 +4099,7 @@ g(z)=\frac{f(z)}{e^{2\pi iz}+1},\qquad
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-30" class="callout-30-contents callout-collapse collapse">
+<div id="callout-39" class="callout-39-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><a href="#math2f-gauss-difference">整数格子の場合</a>と同じく、有限和の添字を一つずらして端の二項だけを比較する。ここでは <span class="math inline">\(p\)</span> が奇数なので、端の項は</p>
 <p><span class="math display">\[
@@ -3804,7 +4111,7 @@ g(z)=\frac{f(z)}{e^{2\pi iz}+1},\qquad
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-40-contents" aria-controls="callout-40" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3813,7 +4120,7 @@ g(z)=\frac{f(z)}{e^{2\pi iz}+1},\qquad
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-31" class="callout-31-contents callout-collapse collapse">
+<div id="callout-40" class="callout-40-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[
 f(z+1)-f(z)
@@ -3836,7 +4143,7 @@ f(z+1)-f(z)
 \lim_{R\to\infty}\int_{\ell_R}\phi(z)\,\dd z
 \]</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-41-contents" aria-controls="callout-41" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3845,7 +4152,7 @@ f(z+1)-f(z)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-32" class="callout-32-contents callout-collapse collapse">
+<div id="callout-41" class="callout-41-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><a href="#math2f-gauss-integral">整数格子の場合に導いた斜め経路と Gauss 積分</a>を使う。<span class="math inline">\(z=re^{i\pi/4}\)</span> と置けば <span class="math inline">\(z^2=ir^2\)</span> となり、</p>
 <p><span class="math display">\[
@@ -3856,7 +4163,7 @@ f(z+1)-f(z)
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-42-contents" aria-controls="callout-42" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3865,7 +4172,7 @@ f(z+1)-f(z)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-33" class="callout-33-contents callout-collapse collapse">
+<div id="callout-42" class="callout-42-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[
 \begin{aligned}
@@ -3887,7 +4194,7 @@ f\left(\frac12\right)
 \]</span></p>
 <p>を求めよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-34-contents" aria-controls="callout-34" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-43-contents" aria-controls="callout-43" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3896,7 +4203,7 @@ f\left(\frac12\right)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-34" class="callout-34-contents callout-collapse collapse">
+<div id="callout-43" class="callout-43-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><a href="#math2f-gauss-sum">整数格子の Gauss 和と同じ平行四辺形の方法</a>を使う。違いは、分母 <span class="math inline">\(e^{2\pi iz}+1\)</span> の零点が整数ではなく半整数にあることである。</p>
 <p><span class="math inline">\(e^{2\pi iz}+1\)</span> の零点は半整数である。幅 <span class="math inline">\(1\)</span> の平行四辺形を選ぶと、その内部には <span class="math inline">\(z=1/2\)</span> の極が一つ入る。分母の微分を使えば</p>
@@ -3909,7 +4216,7 @@ f\left(\frac12\right)
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-35-contents" aria-controls="callout-35" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-44-contents" aria-controls="callout-44" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3918,7 +4225,7 @@ f\left(\frac12\right)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-35" class="callout-35-contents callout-collapse collapse">
+<div id="callout-44" class="callout-44-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[
 \boxed{
@@ -3949,7 +4256,7 @@ g(x)=\frac{a_0}{2}+\sum_{n=1}^{\infty}a_n\cos(nx)
 \]</span></p>
 <p>の係数 <span class="math inline">\(a_n\)</span> を <span class="math inline">\(f(x)\)</span> に関する積分で表せ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-45-contents" aria-controls="callout-45" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3958,7 +4265,7 @@ g(x)=\frac{a_0}{2}+\sum_{n=1}^{\infty}a_n\cos(nx)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-36" class="callout-36-contents callout-collapse collapse">
+<div id="callout-45" class="callout-45-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>周期関数を正弦波へ分解する。</strong> 周期 <span class="math inline">\(2\pi\)</span> の関数 <span class="math inline">\(g\)</span> は、条件がよければ</p>
 <p><span class="math display">\[
@@ -4023,7 +4330,7 @@ D_N(x)=\sum_{n=-N}^{N}e^{inx}
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-37-contents" aria-controls="callout-37" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-46-contents" aria-controls="callout-46" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4032,7 +4339,7 @@ D_N(x)=\sum_{n=-N}^{N}e^{inx}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-37" class="callout-37-contents callout-collapse collapse">
+<div id="callout-46" class="callout-46-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[
 g(-x)=\sum_{m=-\infty}^{\infty}f(-x+2m\pi)
@@ -4057,7 +4364,7 @@ f(x)=\frac{\sin(\pi\lambda/\mu)}
 \]</span></p>
 <p>を複素関数とみなす。全ての極と各極における留数を求めよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-38-contents" aria-controls="callout-38" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-47-contents" aria-controls="callout-47" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4066,7 +4373,7 @@ f(x)=\frac{\sin(\pi\lambda/\mu)}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-38" class="callout-38-contents callout-collapse collapse">
+<div id="callout-47" class="callout-47-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math inline">\(\cosh\)</span> と <span class="math inline">\(\sinh\)</span> は複素数に対しても</p>
 <p><span class="math display">\[
@@ -4097,7 +4404,7 @@ D'(z)=\frac{2\pi\lambda}{\mu}
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-39-contents" aria-controls="callout-39" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-48-contents" aria-controls="callout-48" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4106,7 +4413,7 @@ D'(z)=\frac{2\pi\lambda}{\mu}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-39" class="callout-39-contents callout-collapse collapse">
+<div id="callout-48" class="callout-48-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math inline">\(m\in\mathbb Z\)</span> に対して全て単純極であり、</p>
 <p><span class="math display">\[
@@ -4124,7 +4431,7 @@ z=i\{(2m+1)\mu-\lambda\} &amp; \displaystyle -\frac{i\mu}{2\pi\lambda}
 <h4 class="anchored" data-anchor-id="math2f-rectangle-fourier">長方形経路による Fourier 係数</h4>
 <p>留数定理を用いて周期化の節で現れた積分を実行し、<span class="math inline">\(a_n\)</span>（<span class="math inline">\(n=0,1,2,\ldots\)</span>）を求めよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-40-contents" aria-controls="callout-40" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-49-contents" aria-controls="callout-49" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4133,7 +4440,7 @@ z=i\{(2m+1)\mu-\lambda\} &amp; \displaystyle -\frac{i\mu}{2\pi\lambda}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-40" class="callout-40-contents callout-collapse collapse">
+<div id="callout-49" class="callout-49-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><a href="#math2f-residue-theory">留数定理</a>を、実軸と平行な長方形経路に適用する。</p>
 <p><span class="math inline">\(\cos(nx)\)</span> を直接扱う代わりに <span class="math inline">\(e^{inx}\)</span> を使うのは、最後に実部を取れば <span class="math inline">\(\cos(nx)\)</span> が得られ、上下の辺を移したときの倍率も簡単に計算できるからである。<span class="math inline">\(n&gt;0\)</span> では <span class="math inline">\(|e^{inz}|=e^{-n\operatorname{Im}z}\)</span> なので、上半平面側で減衰する。</p>
@@ -4147,7 +4454,7 @@ z=i\{(2m+1)\mu-\lambda\} &amp; \displaystyle -\frac{i\mu}{2\pi\lambda}
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-41-contents" aria-controls="callout-41" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-50-contents" aria-controls="callout-50" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4156,7 +4463,7 @@ z=i\{(2m+1)\mu-\lambda\} &amp; \displaystyle -\frac{i\mu}{2\pi\lambda}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-41" class="callout-41-contents callout-collapse collapse">
+<div id="callout-50" class="callout-50-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[
 \boxed{
@@ -4183,7 +4490,7 @@ f(x)=\frac{\pi}{2\lambda\cosh\!\left(\dfrac{\pi x}{2\lambda}\right)}
 <h4 class="anchored" data-anchor-id="極と留数">極と留数</h4>
 <p><span class="math inline">\(f(x)\)</span> を複素関数とみなし、全ての極と各極における留数を求めよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-42-contents" aria-controls="callout-42" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-51-contents" aria-controls="callout-51" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4192,7 +4499,7 @@ f(x)=\frac{\pi}{2\lambda\cosh\!\left(\dfrac{\pi x}{2\lambda}\right)}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-42" class="callout-42-contents callout-collapse collapse">
+<div id="callout-51" class="callout-51-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><a href="#math2f-hyperbolic-poles">双曲線関数の定義と虚方向の周期性</a>を使う。<span class="math inline">\(\cosh w\)</span> の零点は</p>
 <p><span class="math display">\[
@@ -4203,7 +4510,7 @@ w=i\pi\left(m+\frac12\right)\qquad(m\in\mathbb Z)
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-43-contents" aria-controls="callout-43" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-52-contents" aria-controls="callout-52" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4212,7 +4519,7 @@ w=i\pi\left(m+\frac12\right)\qquad(m\in\mathbb Z)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-43" class="callout-43-contents callout-collapse collapse">
+<div id="callout-52" class="callout-52-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math inline">\(m\in\mathbb Z\)</span> に対して</p>
 <p><span class="math display">\[
@@ -4230,7 +4537,7 @@ z_m=i(2m+1)\lambda,\qquad
 <h4 class="anchored" data-anchor-id="fourier-係数">Fourier 係数</h4>
 <p>留数定理を用いて、<a href="#math2f-fourier-series-theory">周期化の節</a>で得た積分を実行し、<span class="math inline">\(a_n\)</span>（<span class="math inline">\(n=0,1,2,\ldots\)</span>）を求めよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-44-contents" aria-controls="callout-44" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-53-contents" aria-controls="callout-53" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4239,7 +4546,7 @@ z_m=i(2m+1)\lambda,\qquad
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-44" class="callout-44-contents callout-collapse collapse">
+<div id="callout-53" class="callout-53-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><a href="#math2f-fourier-series-theory">周期化とフーリエ係数の収束論</a>および<a href="#math2f-residue-theory">留数定理</a>を使う。</p>
 <p>必要な積分は</p>
@@ -4257,7 +4564,7 @@ a_n=\frac{1}{\pi}\int_{-\infty}^{\infty}f(x)\cos(nx)\,\dd x.
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-45-contents" aria-controls="callout-45" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-54-contents" aria-controls="callout-54" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4266,7 +4573,7 @@ a_n=\frac{1}{\pi}\int_{-\infty}^{\infty}f(x)\cos(nx)\,\dd x.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-45" class="callout-45-contents callout-collapse collapse">
+<div id="callout-54" class="callout-54-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[
 \boxed{
@@ -4291,8 +4598,18 @@ f(x)\sim\frac{a_0}{2}+\sum_{n=1}^{\infty}\{a_n\cos(nx)+b_n\sin(nx)\}
 F(k)=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(x)e^{-ikx}\,\dd x
 \]</span></p>
 <p>で定義する。</p>
-<section id="理論d1係数対称性級数の和" class="level4">
-<h4 class="anchored" data-anchor-id="理論d1係数対称性級数の和">理論D1：係数・対称性・級数の和</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-55-contents" aria-controls="callout-55" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論D1：係数・対称性・級数の和
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-55" class="callout-55-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>周期 <span class="math inline">\(2\pi\)</span> の関数では</p>
 <p><span class="math display">\[
 a_n=\frac1\pi\int_{-\pi}^{\pi}f(x)\cos(nx)\,\dd x,
@@ -4305,7 +4622,28 @@ b_n=\frac1\pi\int_{-\pi}^{\pi}f(x)\sin(nx)\,\dd x.
 =\frac{a_0^2}{2}+\sum_{n=1}^{\infty}(a_n^2+b_n^2)
 \]</span></p>
 <p>を使う。区分的に滑らかな関数の級数は連続点で関数値へ、不連続点で左右極限の平均へ収束する。係数が絶対可和なら Weierstrass の <span class="math inline">\(M\)</span> テストにより一様収束する。</p>
-</section>
+<p>係数公式は三角関数の直交性から得られる。Fourier 級数の両辺に <span class="math inline">\(\cos(mx)\)</span> を掛けて <span class="math inline">\([-\pi,\pi]\)</span> で積分すると、<span class="math inline">\(m\)</span> と異なる周波数の項は全て <span class="math inline">\(0\)</span> になり、<span class="math inline">\(m\)</span> 番目だけが残る。「欲しい周波数との内積を取る」という考え方が Fourier 解析の基本である。</p>
+<p>計算前に対称性を調べると積分量を半分にできる。偶関数なら</p>
+<p><span class="math display">\[
+a_n=\frac2\pi\int_0^\pi f(x)\cos(nx)\,\dd x,
+\qquad b_n=0,
+\]</span></p>
+<p>奇関数なら</p>
+<p><span class="math display">\[
+a_n=0,
+\qquad b_n=\frac2\pi\int_0^\pi f(x)\sin(nx)\,\dd x.
+\]</span></p>
+<p>区分的な関数では、積分区間を式が変わる点で分割する。<span class="math inline">\(|x|\)</span> や三角形関数は偶関数なので余弦係数だけを計算し、部分積分を使うと通常 <span class="math inline">\(1/n^2\)</span> 型の係数が現れる。</p>
+<p>級数の和を取り出す手順は、次の通りである。</p>
+<ol type="1">
+<li>求めたい数列が残るような <span class="math inline">\(x=0,\pi,\pi/2\)</span> などを選ぶ。</li>
+<li>その点が不連続点なら、左極限と右極限の平均を左辺に置く。</li>
+<li>係数の二乗和なら、点への代入ではなく Parseval の等式を使う。</li>
+</ol>
+<p>端点 <span class="math inline">\(x=\pm\pi\)</span> では周期延長後の左右の値を見る。元の区間上で連続に見えても、周期の継ぎ目で跳びが生じることがある。</p>
+</div>
+</div>
+</div>
 <section id="問題d1-fourier-級数" class="level4">
 <h4 class="anchored" data-anchor-id="問題d1-fourier-級数">問題D1 Fourier 級数</h4>
 <p><span class="math inline">\(-\pi&lt;x\le\pi\)</span> 上の関数を周期 <span class="math inline">\(2\pi\)</span> で延長し、Fourier 級数を求めよ。</p>
@@ -4321,7 +4659,7 @@ b_n=\frac1\pi\int_{-\pi}^{\pi}f(x)\sin(nx)\,\dd x.
 </ol>
 <p>さらに適切な <span class="math inline">\(x\)</span> を代入し、<span class="math inline">\(\sum_{n\ge1}(2n-1)^{-2}(2n+1)^{-2}\)</span>、<span class="math inline">\(\sum_{n\ge1}(2n-1)^{-2}\)</span>、<span class="math inline">\(\sum_{n\ge1}(-1)^n/n^2\)</span> を求めよ。</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-46-contents" aria-controls="callout-46" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-56-contents" aria-controls="callout-56" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4330,7 +4668,7 @@ b_n=\frac1\pi\int_{-\pi}^{\pi}f(x)\sin(nx)\,\dd x.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-46" class="callout-46-contents callout-collapse collapse">
+<div id="callout-56" class="callout-56-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>1. 指数関数。</strong></p>
 <p><span class="math display">\[
@@ -4386,9 +4724,18 @@ x\cos x\sim-\frac12\sin x
 </div>
 </div>
 </div>
-</section>
-<section id="理論d2変換公式と極限" class="level4">
-<h4 class="anchored" data-anchor-id="理論d2変換公式と極限">理論D2：変換公式と極限</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-57-contents" aria-controls="callout-57" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論D2：変換公式と極限
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-57" class="callout-57-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>偶関数の変換は余弦積分、奇関数の変換は純虚な正弦積分になる。平行移動・変調・微分・畳み込みは</p>
 <p><span class="math display">\[
 f(x-x_0)\longleftrightarrow e^{-ikx_0}F(k),
@@ -4401,6 +4748,33 @@ xf(x)\longleftrightarrow i\dv{F}{k},
 (f*g)(x)\longleftrightarrow2\pi F(k)G(k)
 \]</span></p>
 <p>となる（本ノートの規格化）。幅を <span class="math inline">\(0\)</span> に縮めながら面積を <span class="math inline">\(1\)</span> に保つ矩形関数はデルタ列となり、連続関数 <span class="math inline">\(g\)</span> に対する積分は <span class="math inline">\(g(0)\)</span> へ収束する。</p>
+<p>本ノートの規格化では</p>
+<p><span class="math display">\[
+F(k)=\frac1{2\pi}\int_{-\infty}^{\infty}f(x)e^{-ikx}\,\dd x,
+\qquad
+f(x)=\int_{-\infty}^{\infty}F(k)e^{ikx}\,\dd k.
+\]</span></p>
+<p>定数 <span class="math inline">\(2\pi\)</span> の位置は規格化によって変わるので、公式を使う前にこの対を確認する。例えば <span class="math inline">\([-a,a]\)</span> の指示関数では</p>
+<p><span class="math display">\[
+F(k)=\frac1{2\pi}\int_{-a}^ae^{-ikx}\,\dd x
+=\frac{\sin(ak)}{\pi k},
+\]</span></p>
+<p><span class="math inline">\(e^{-a|x|}\)</span> では偶関数性を使って</p>
+<p><span class="math display">\[
+F(k)=\frac1\pi\int_0^\infty e^{-ax}\cos(kx)\,\dd x
+=\frac{a}{\pi(a^2+k^2)}.
+\]</span></p>
+<p>複雑な関数は、まず既知の関数の平行移動・変調・積へ分解する。例えば <span class="math inline">\(e^{-|x|}\sin x\)</span> は、<span class="math inline">\(e^{-|x|}\)</span> に <span class="math inline">\(e^{ix}\)</span> と <span class="math inline">\(e^{-ix}\)</span> を掛けたものの差なので、変調公式によって変換を周波数方向へずらせばよい。</p>
+<p>高さ <span class="math inline">\(1/\varepsilon\)</span>、幅 <span class="math inline">\(\varepsilon\)</span> の矩形関数 <span class="math inline">\(\delta_\varepsilon\)</span> は面積が常に <span class="math inline">\(1\)</span> であり、連続な <span class="math inline">\(g\)</span> に対して</p>
+<p><span class="math display">\[
+\int_{-\infty}^{\infty}\delta_\varepsilon(x)g(x)\,\dd x
+=\frac1\varepsilon\int_{-\varepsilon/2}^{\varepsilon/2}g(x)\,\dd x
+\longrightarrow g(0).
+\]</span></p>
+<p>これは関数そのものの点ごとの極限ではなく、積分の中で Dirac のデルタとして働く極限である。</p>
+</div>
+</div>
+</div>
 </section>
 <section id="問題d2-fourier-変換" class="level4">
 <h4 class="anchored" data-anchor-id="問題d2-fourier-変換">問題D2 Fourier 変換</h4>
@@ -4420,7 +4794,7 @@ xf(x)\longleftrightarrow i\dv{F}{k},
 \]</span></p>
 <p>を示せ。</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-47-contents" aria-controls="callout-47" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-58-contents" aria-controls="callout-58" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4429,7 +4803,7 @@ xf(x)\longleftrightarrow i\dv{F}{k},
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-47" class="callout-47-contents callout-collapse collapse">
+<div id="callout-58" class="callout-58-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>順に</p>
 <p><span class="math display">\[
@@ -4467,7 +4841,7 @@ F_6(k)&amp;=\frac{1}{2\sqrt{\pi a}}e^{-k^2/(4a)}.
 <h4 class="anchored" data-anchor-id="math2f-laplace-rule">変換による代数方程式化</h4>
 <p><span class="math inline">\(\gamma,\omega,g,f(0)\)</span> を用いて <span class="math inline">\(F(s)\)</span> を表せ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-48-contents" aria-controls="callout-48" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-59-contents" aria-controls="callout-59" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4476,7 +4850,7 @@ F_6(k)&amp;=\frac{1}{2\sqrt{\pi a}}e^{-k^2/(4a)}.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-48" class="callout-48-contents callout-collapse collapse">
+<div id="callout-59" class="callout-59-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>ラプラス変換は微分方程式を代数方程式へ変える。</strong> 時間関数 <span class="math inline">\(f(t)\)</span> に対して</p>
 <p><span class="math display">\[
@@ -4507,7 +4881,7 @@ F(s)=\mathcal L[f](s)
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-49-contents" aria-controls="callout-49" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-60-contents" aria-controls="callout-60" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4516,7 +4890,7 @@ F(s)=\mathcal L[f](s)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-49" class="callout-49-contents callout-collapse collapse">
+<div id="callout-60" class="callout-60-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[
 \left(s+2\gamma+\frac{\omega^2}{s}\right)F(s)
@@ -4536,7 +4910,7 @@ F(s)=\frac{sf(0)+g}{s^2+2\gamma s+\omega^2}
 <h4 class="anchored" data-anchor-id="math2f-laplace-inverse">逆 Laplace 変換</h4>
 <p><span class="math inline">\(f(0)=0\)</span> とする。逆ラプラス変換により、(i) <span class="math inline">\(\gamma&gt;\omega\)</span>、(ii) <span class="math inline">\(\gamma=\omega\)</span>、(iii) <span class="math inline">\(\gamma&lt;\omega\)</span> の各場合について <span class="math inline">\(f(t)\)</span> を求めよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-50-contents" aria-controls="callout-50" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-61-contents" aria-controls="callout-61" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4545,7 +4919,7 @@ F(s)=\frac{sf(0)+g}{s^2+2\gamma s+\omega^2}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-50" class="callout-50-contents callout-collapse collapse">
+<div id="callout-61" class="callout-61-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>分母を平方完成すると</p>
 <p><span class="math display">\[
@@ -4572,7 +4946,7 @@ F(s)=\frac{g}{(s+\gamma)^2+(\omega^2-\gamma^2)}
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-51-contents" aria-controls="callout-51" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-62-contents" aria-controls="callout-62" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4581,7 +4955,7 @@ F(s)=\frac{g}{(s+\gamma)^2+(\omega^2-\gamma^2)}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-51" class="callout-51-contents callout-collapse collapse">
+<div id="callout-62" class="callout-62-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[
 f(t)=
@@ -4617,7 +4991,7 @@ g t e^{-\gamma t},
 <h4 class="anchored" data-anchor-id="初期値を含む変換">初期値を含む変換</h4>
 <p><span class="math inline">\(\gamma,\omega,g,f(0),f'(0)\)</span> を用いて、微分方程式を満たす <span class="math inline">\(F(s)\)</span> を表せ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-52-contents" aria-controls="callout-52" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-63-contents" aria-controls="callout-63" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4626,7 +5000,7 @@ g t e^{-\gamma t},
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-52" class="callout-52-contents callout-collapse collapse">
+<div id="callout-63" class="callout-63-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><a href="#math2f-laplace-rule">一階微分のラプラス変換の証明</a>を二階微分にも繰り返して使う。</p>
 <p>初期値を <span class="math inline">\(f(0)=f_0\)</span>、<span class="math inline">\(f'(0)=f_1\)</span> と置く。二階微分と右辺の変換は</p>
@@ -4646,7 +5020,7 @@ g t e^{-\gamma t},
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-53-contents" aria-controls="callout-53" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-64-contents" aria-controls="callout-64" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4655,7 +5029,7 @@ g t e^{-\gamma t},
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-53" class="callout-53-contents callout-collapse collapse">
+<div id="callout-64" class="callout-64-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[
 \boxed{
@@ -4673,7 +5047,7 @@ F(s)=
 <h4 class="anchored" data-anchor-id="パラメータによる解の分類">パラメータによる解の分類</h4>
 <p><span class="math inline">\(f(0)=f'(0)=0\)</span> とする。逆ラプラス変換により、(i) <span class="math inline">\(\gamma&gt;\omega\)</span>、(ii) <span class="math inline">\(\gamma=\omega\)</span>、(iii) <span class="math inline">\(\gamma&lt;\omega\)</span> の各場合について <span class="math inline">\(f(t)\)</span> を求めよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-54-contents" aria-controls="callout-54" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-65-contents" aria-controls="callout-65" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4682,7 +5056,7 @@ F(s)=
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-54" class="callout-54-contents callout-collapse collapse">
+<div id="callout-65" class="callout-65-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math inline">\(f(t)=e^{-\gamma t}y(t)\)</span> と置くと減衰の一階微分項が消え、</p>
 <p><span class="math display">\[
@@ -4706,7 +5080,7 @@ y(0)=y'(0)=0
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-55-contents" aria-controls="callout-55" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-66-contents" aria-controls="callout-66" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4715,7 +5089,7 @@ y(0)=y'(0)=0
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-55" class="callout-55-contents callout-collapse collapse">
+<div id="callout-66" class="callout-66-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[
 f(t)=\frac{g}{\gamma^2}e^{-\gamma t}
@@ -4739,8 +5113,18 @@ f(t)=\frac{g}{\gamma^2}e^{-\gamma t}
 </section>
 <section id="math2f-laplace-exercises" class="level3">
 <h3 class="anchored" data-anchor-id="math2f-laplace-exercises">Laplace 変換と微分方程式の演習</h3>
-<section id="理論e1基本対移動畳み込み" class="level4">
-<h4 class="anchored" data-anchor-id="理論e1基本対移動畳み込み">理論E1：基本対・移動・畳み込み</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-67-contents" aria-controls="callout-67" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論E1：基本対・移動・畳み込み
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-67" class="callout-67-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>定義と基本公式は</p>
 <p><span class="math display">\[
 \mathcal L[f](s)=\int_0^\infty f(t)e^{-st}\,\dd t,
@@ -4756,7 +5140,37 @@ f(t)=\frac{g}{\gamma^2}e^{-\gamma t}
 (f*g)(t)=\int_0^tf(\tau)g(t-\tau)\,\dd \tau
 \]</span></p>
 <p>である。冪関数は変数変換 <span class="math inline">\(u=st\)</span> により Gamma 関数へ、二つの冪関数の畳み込みは <span class="math inline">\(\tau=tu\)</span> により Beta 関数へつながる。</p>
-</section>
+<p>基本対は定義から確認できる。例えば <span class="math inline">\(\operatorname{Re}s&gt;a\)</span> なら</p>
+<p><span class="math display">\[
+\mathcal L[e^{at}](s)
+=\int_0^\infty e^{-(s-a)t}\,\dd t
+=\frac1{s-a}.
+\]</span></p>
+<p><span class="math inline">\(F(s)=\mathcal L[f](s)\)</span> を <span class="math inline">\(s\)</span> で微分すると</p>
+<p><span class="math display">\[
+\dv{F}{s}
+=-\int_0^\infty tf(t)e^{-st}\,\dd t,
+\]</span></p>
+<p>したがって <span class="math inline">\(\mathcal L[tf]=-F'(s)\)</span> である。<span class="math inline">\(t\cos t\)</span> のように <span class="math inline">\(t\)</span> が掛かった問題は、先に <span class="math inline">\(\mathcal L[\cos t]=s/(s^2+1)\)</span> を用意して <span class="math inline">\(s\)</span> で微分する。</p>
+<p>畳み込み公式は、三角形領域 <span class="math inline">\(0\le\tau\le t&lt;\infty\)</span> の積分順序を交換すると導ける。</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathcal L[f*g](s)
+&amp;=\int_0^\infty e^{-st}
+  \int_0^tf(\tau)g(t-\tau)\,\dd \tau\,\dd t\\
+&amp;=F(s)G(s).
+\end{aligned}
+\]</span></p>
+<p>また <span class="math inline">\(u=st\)</span> と置けば</p>
+<p><span class="math display">\[
+\mathcal L[t^{a-1}](s)
+=\frac1{s^a}\int_0^\infty u^{a-1}e^{-u}\,\dd u
+=\frac{\Gamma(a)}{s^a}.
+\]</span></p>
+<p>二つの冪関数の畳み込みを、積の公式から計算した結果と <span class="math inline">\(\tau=tu\)</span> で直接計算した結果で比較すると、Beta–Gamma 関係が得られる。</p>
+</div>
+</div>
+</div>
 <section id="問題e1-基本変換と畳み込み" class="level4">
 <h4 class="anchored" data-anchor-id="問題e1-基本変換と畳み込み">問題E1 基本変換と畳み込み</h4>
 <p>次の Laplace 変換を求めよ。</p>
@@ -4767,7 +5181,7 @@ f(t)=\frac{g}{\gamma^2}e^{-\gamma t}
 <li><span class="math inline">\(t^4\)</span></li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-56-contents" aria-controls="callout-56" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-68-contents" aria-controls="callout-68" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4776,7 +5190,7 @@ f(t)=\frac{g}{\gamma^2}e^{-\gamma t}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-56" class="callout-56-contents callout-collapse collapse">
+<div id="callout-68" class="callout-68-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>基本変換と <span class="math inline">\(\mathcal L[tf(t)]=-\dv{}{s}\mathcal L[f](s)\)</span> から</p>
 <p><span class="math display">\[
@@ -4816,14 +5230,41 @@ f(t)=\frac{g}{\gamma^2}e^{-\gamma t}
 </div>
 </div>
 </div>
-</section>
-<section id="理論e2初期値問題を代数方程式へ変える" class="level4">
-<h4 class="anchored" data-anchor-id="理論e2初期値問題を代数方程式へ変える">理論E2：初期値問題を代数方程式へ変える</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-69-contents" aria-controls="callout-69" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論E2：初期値問題を代数方程式へ変える
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-69" class="callout-69-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>微分公式</p>
 <p><span class="math display">\[
 \mathcal L\left[\dv{x}{t}\right]=sX(s)-x(0)
 \]</span></p>
 <p>を使い、初期値を残したまま <span class="math inline">\(X(s)\)</span> の一次方程式へ変える。解く順序は、<strong>各項を変換する → <span class="math inline">\(X(s)\)</span> を解く → 部分分数分解する → 基本対で逆変換する</strong>、である。</p>
+<p>一般に</p>
+<p><span class="math display">\[
+\dv{x}{t}+\alpha x=g(t),
+\qquad x(0)=x_0
+\]</span></p>
+<p>を変換すると</p>
+<p><span class="math display">\[
+sX(s)-x_0+\alpha X(s)=G(s),
+\]</span></p>
+<p>したがって</p>
+<p><span class="math display">\[
+X(s)=\frac{x_0+G(s)}{s+\alpha}
+\]</span></p>
+<p>となる。微分を単に <span class="math inline">\(sX(s)\)</span> とせず、初期値 <span class="math inline">\(-x_0\)</span> を必ず残すのが要点である。</p>
+<p>逆変換できない形に見えるときは、分母を一次式・既知の二次式へ因数分解して部分分数分解する。求めた解は <span class="math inline">\(t=0\)</span> を代入して初期条件を確認し、さらに微分方程式へ代入すれば符号の誤りを検出できる。</p>
+</div>
+</div>
+</div>
 </section>
 <section id="問題e2-初期値問題" class="level4">
 <h4 class="anchored" data-anchor-id="問題e2-初期値問題">問題E2 初期値問題</h4>
@@ -4832,7 +5273,7 @@ f(t)=\frac{g}{\gamma^2}e^{-\gamma t}
 \]</span></p>
 <p>を Laplace 変換で解け。</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-57-contents" aria-controls="callout-57" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-70-contents" aria-controls="callout-70" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4841,7 +5282,7 @@ f(t)=\frac{g}{\gamma^2}e^{-\gamma t}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-57" class="callout-57-contents callout-collapse collapse">
+<div id="callout-70" class="callout-70-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>変換後は</p>
 <p><span class="math display">\[
@@ -4855,10 +5296,41 @@ X(s)=\frac{s}{(s+1)(s^2+1)}.
 </div>
 </div>
 </div>
-</section>
-<section id="理論e3境界条件に合う固有関数" class="level4">
-<h4 class="anchored" data-anchor-id="理論e3境界条件に合う固有関数">理論E3：境界条件に合う固有関数</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-71-contents" aria-controls="callout-71" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論E3：境界条件に合う固有関数
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-71" class="callout-71-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>区間 <span class="math inline">\(0&lt;x&lt;L\)</span> で両端が <span class="math inline">\(0\)</span> なら、空間固有関数は <span class="math inline">\(\sin(n\pi x/L)\)</span> である。熱方程式では各モードの時間係数が指数減衰し、初期条件を正弦級数へ展開すればモードごとに解ける。時間について Laplace 変換する場合は、初期値を含む空間方向の常微分方程式へ変わる。</p>
+<p>変数分離 <span class="math inline">\(u(x,t)=X(x)T(t)\)</span> を代入すると</p>
+<p><span class="math display">\[
+\frac{T'}{c^2T}=\frac{X''}{X}=-\lambda
+\]</span></p>
+<p>となる。境界条件 <span class="math inline">\(X(0)=X(L)=0\)</span> を満たす非自明解が存在するのは</p>
+<p><span class="math display">\[
+\lambda_n=\left(\frac{n\pi}{L}\right)^2,
+\qquad
+X_n(x)=\sin\frac{n\pi x}{L}
+\]</span></p>
+<p>のときである。時間方向は</p>
+<p><span class="math display">\[
+\dv{T_n}{t}=-c^2\lambda_nT_n
+\]</span></p>
+<p>なので、高い周波数ほど速く減衰する。一般の初期値を正弦級数</p>
+<p><span class="math display">\[
+u(x,0)=\sum_{n=1}^{\infty}b_n\sin\frac{n\pi x}{L}
+\]</span></p>
+<p>へ展開すれば、各係数に <span class="math inline">\(e^{-c^2(n\pi/L)^2t}\)</span> を掛ければよい。本問の初期値は最初から <span class="math inline">\(n=1\)</span> の固有関数なので、一つのモードだけで解が閉じる。</p>
+</div>
+</div>
+</div>
 </section>
 <section id="問題e3-熱方程式" class="level4">
 <h4 class="anchored" data-anchor-id="問題e3-熱方程式">問題E3 熱方程式</h4>
@@ -4869,7 +5341,7 @@ u(0,t)=u(L,t)=0
 \]</span></p>
 <p>を、Fourier 級数と Laplace 変換の二通りで解け。</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-58-contents" aria-controls="callout-58" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-72-contents" aria-controls="callout-72" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4878,7 +5350,7 @@ u(0,t)=u(L,t)=0
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-58" class="callout-58-contents callout-collapse collapse">
+<div id="callout-72" class="callout-72-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>境界条件を満たす固有関数は <span class="math inline">\(\sin(n\pi x/L)\)</span> である。初期条件には <span class="math inline">\(n=1\)</span> の成分しかないため、Fourier 法では時間係数 <span class="math inline">\(T\)</span> が</p>
 <p><span class="math display">\[
@@ -4896,10 +5368,42 @@ c^2\dv[2]{U}{x}-sU=-\sin\frac{\pi x}{L},\qquad U(0,s)=U(L,s)=0.
 </div>
 </div>
 </div>
-</section>
-<section id="理論e4波動方程式と移動波" class="level4">
-<h4 class="anchored" data-anchor-id="理論e4波動方程式と移動波">理論E4：波動方程式と移動波</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-73-contents" aria-controls="callout-73" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論E4：波動方程式と移動波
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-73" class="callout-73-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>全実線で空間 Fourier 変換を取ると、各波数は単振動方程式になる。半直線で時間 Laplace 変換を取ると、減衰条件によって <span class="math inline">\(e^{-sx/c}\)</span> 側だけが残る。因子 <span class="math inline">\(e^{-as}\)</span> の逆変換は時間遅延 <span class="math inline">\(H(t-a)f(t-a)\)</span> であり、境界波形が速度 <span class="math inline">\(c\)</span> で伝わることを表す。</p>
+<p>全実線では <span class="math inline">\(x\)</span> について Fourier 変換し、<span class="math inline">\(\widehat u(k,t)\)</span> を用いると</p>
+<p><span class="math display">\[
+\pdv[2]{\widehat u}{t}+c^2k^2\widehat u=0
+\]</span></p>
+<p>となる。各 <span class="math inline">\(k\)</span> については単振動なので</p>
+<p><span class="math display">\[
+\widehat u(k,t)
+=\widehat f(k)\cos(ckt)
++\widehat g(k)\frac{\sin(ckt)}{ck}.
+\]</span></p>
+<p>これを逆変換すると、初期変位が左右へ進む項と、初期速度を区間積分した項に分かれ、d’Alembert の公式になる。</p>
+<p>半直線問題では <span class="math inline">\(t\)</span> について Laplace 変換すると、零初期条件のもとで</p>
+<p><span class="math display">\[
+c^2\dv[2]{U}{x}-s^2U=0.
+\]</span></p>
+<p>一般解は <span class="math inline">\(A(s)e^{-sx/c}+B(s)e^{sx/c}\)</span> だが、<span class="math inline">\(x\to\infty\)</span> での減衰条件から <span class="math inline">\(B(s)=0\)</span>。境界条件 <span class="math inline">\(U(0,s)=F(s)\)</span> より</p>
+<p><span class="math display">\[
+U(x,s)=F(s)e^{-sx/c}.
+\]</span></p>
+<p>遅延定理を使えば、時刻 <span class="math inline">\(t=x/c\)</span> までは境界の影響が届かず、その後 <span class="math inline">\(f(t-x/c)\)</span> が現れる。これは波の有限伝播速度を変換の因子 <span class="math inline">\(e^{-sx/c}\)</span> が表しているということである。</p>
+</div>
+</div>
+</div>
 </section>
 <section id="問題e4-波動方程式" class="level4">
 <h4 class="anchored" data-anchor-id="問題e4-波動方程式">問題E4 波動方程式</h4>
@@ -4908,7 +5412,7 @@ c^2\dv[2]{U}{x}-sU=-\sin\frac{\pi x}{L},\qquad U(0,s)=U(L,s)=0.
 <li>半直線 <span class="math inline">\(x&gt;0\)</span> 上で初期値 <span class="math inline">\(u(x,0)=u_t(x,0)=0\)</span>、境界値 <span class="math inline">\(u(0,t)=f(t)\)</span>、<span class="math inline">\(x\to\infty\)</span> で減衰する解を Laplace 変換で求めよ。</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-59-contents" aria-controls="callout-59" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-74-contents" aria-controls="callout-74" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4917,7 +5421,7 @@ c^2\dv[2]{U}{x}-sU=-\sin\frac{\pi x}{L},\qquad U(0,s)=U(L,s)=0.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-59" class="callout-59-contents callout-collapse collapse">
+<div id="callout-74" class="callout-74-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>空間 Fourier 変換を取ると、各波数 <span class="math inline">\(k\)</span> について</p>
 <p><span class="math display">\[
