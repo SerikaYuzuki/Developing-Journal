@@ -2418,6 +2418,15 @@ u=x^2+y^2,\qquad v=2x
 <section id="math2f-basic-exercises" class="level3">
 <h3 class="anchored" data-anchor-id="math2f-basic-exercises">複素数・写像・正則性の演習</h3>
 <p>後の積分と展開で繰り返し使う基礎をまとめる。多価関数では、値を一つに決める枝を必ず意識する。</p>
+<section id="問題a1-複素数の計算" class="level4">
+<h4 class="anchored" data-anchor-id="問題a1-複素数の計算">問題A1 複素数の計算</h4>
+<p>次を求めよ。</p>
+<ol type="1">
+<li><span class="math inline">\(i^i\)</span>、<span class="math inline">\(\ln(1+i)\)</span>、<span class="math inline">\(\cos(\pi/3-i)\)</span>、<span class="math inline">\(\{(1+i)/(1-i)\}^5\)</span>、<span class="math inline">\(e^{1+3i}e^{2-i}\)</span> の実部と虚部</li>
+<li><span class="math inline">\((1+i)^{1/3}\)</span> の極表示</li>
+<li><span class="math inline">\(z^4=-1+\sqrt3i\)</span> の解</li>
+<li>実数 <span class="math inline">\(\alpha,\beta\)</span> に対し、Euler の公式から <span class="math inline">\(e^{i\alpha}e^{i\beta}=e^{i(\alpha+\beta)}\)</span> を示せ。</li>
+</ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -2471,15 +2480,6 @@ i^i=\exp\left\{i\,i\left(\frac\pi2+2\pi k\right)\right\}
 </div>
 </div>
 </div>
-<section id="問題a1-複素数の計算" class="level4">
-<h4 class="anchored" data-anchor-id="問題a1-複素数の計算">問題A1 複素数の計算</h4>
-<p>次を求めよ。</p>
-<ol type="1">
-<li><span class="math inline">\(i^i\)</span>、<span class="math inline">\(\ln(1+i)\)</span>、<span class="math inline">\(\cos(\pi/3-i)\)</span>、<span class="math inline">\(\{(1+i)/(1-i)\}^5\)</span>、<span class="math inline">\(e^{1+3i}e^{2-i}\)</span> の実部と虚部</li>
-<li><span class="math inline">\((1+i)^{1/3}\)</span> の極表示</li>
-<li><span class="math inline">\(z^4=-1+\sqrt3i\)</span> の解</li>
-<li>実数 <span class="math inline">\(\alpha,\beta\)</span> に対し、Euler の公式から <span class="math inline">\(e^{i\alpha}e^{i\beta}=e^{i(\alpha+\beta)}\)</span> を示せ。</li>
-</ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -2521,6 +2521,15 @@ z_k=2^{1/4}\exp\left\{i\left(\frac\pi6+\frac{k\pi}{2}\right)\right\},\qquad k=0,
 </div>
 </div>
 </div>
+</section>
+<section id="問題a2-一次分数変換" class="level4">
+<h4 class="anchored" data-anchor-id="問題a2-一次分数変換">問題A2 一次分数変換</h4>
+<p><span class="math inline">\(w=(az+b)/(cz+d)\)</span>、<span class="math inline">\(ad-bc\ne0\)</span> とする。次の領域を互いに一対一に写す係数条件を求めよ。</p>
+<ol type="1">
+<li>上半平面から上半平面</li>
+<li>上半平面から単位円内部</li>
+<li>右半平面から単位円外部</li>
+</ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -2566,15 +2575,6 @@ T(z)=\frac{z-z_0}{z-\overline{z_0}}
 </div>
 </div>
 </div>
-</section>
-<section id="問題a2-一次分数変換" class="level4">
-<h4 class="anchored" data-anchor-id="問題a2-一次分数変換">問題A2 一次分数変換</h4>
-<p><span class="math inline">\(w=(az+b)/(cz+d)\)</span>、<span class="math inline">\(ad-bc\ne0\)</span> とする。次の領域を互いに一対一に写す係数条件を求めよ。</p>
-<ol type="1">
-<li>上半平面から上半平面</li>
-<li>上半平面から単位円内部</li>
-<li>右半平面から単位円外部</li>
-</ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -2604,6 +2604,20 @@ w=e^{i\phi}\frac{z+\overline\alpha}{z-\alpha}
 </div>
 </div>
 </div>
+</section>
+<section id="問題a3-正則性と導関数" class="level4">
+<h4 class="anchored" data-anchor-id="問題a3-正則性と導関数">問題A3 正則性と導関数</h4>
+<p><span class="math inline">\(z=x+iy\)</span> とする。次の関数の正則性を調べ、正則な領域では導関数を求めよ。</p>
+<ol type="1">
+<li><span class="math inline">\(a^z\)</span>（<span class="math inline">\(a\)</span> は複素定数）</li>
+<li><span class="math inline">\(\tan^{-1}z\)</span></li>
+<li><span class="math inline">\(\overline z\)</span></li>
+<li><span class="math inline">\(|z|^2=z\overline z\)</span></li>
+<li><span class="math inline">\(z^i\)</span>（<span class="math inline">\(z\ne0\)</span>）</li>
+<li><span class="math inline">\(z^2\)</span></li>
+<li><span class="math inline">\(x^2-y^2+2ixy\)</span></li>
+<li><span class="math inline">\((x+iy)/(x^2+y^2)\)</span></li>
+</ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -2651,20 +2665,6 @@ z^\alpha=e^{\alpha\ln z},\qquad
 </div>
 </div>
 </div>
-</section>
-<section id="問題a3-正則性と導関数" class="level4">
-<h4 class="anchored" data-anchor-id="問題a3-正則性と導関数">問題A3 正則性と導関数</h4>
-<p><span class="math inline">\(z=x+iy\)</span> とする。次の関数の正則性を調べ、正則な領域では導関数を求めよ。</p>
-<ol type="1">
-<li><span class="math inline">\(a^z\)</span>（<span class="math inline">\(a\)</span> は複素定数）</li>
-<li><span class="math inline">\(\tan^{-1}z\)</span></li>
-<li><span class="math inline">\(\overline z\)</span></li>
-<li><span class="math inline">\(|z|^2=z\overline z\)</span></li>
-<li><span class="math inline">\(z^i\)</span>（<span class="math inline">\(z\ne0\)</span>）</li>
-<li><span class="math inline">\(z^2\)</span></li>
-<li><span class="math inline">\(x^2-y^2+2ixy\)</span></li>
-<li><span class="math inline">\((x+iy)/(x^2+y^2)\)</span></li>
-</ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -2690,6 +2690,10 @@ z^\alpha=e^{\alpha\ln z},\qquad
 </div>
 </div>
 </div>
+</section>
+<section id="問題a4-実部から正則関数を復元する" class="level4">
+<h4 class="anchored" data-anchor-id="問題a4-実部から正則関数を復元する">問題A4 実部から正則関数を復元する</h4>
+<p><span class="math inline">\(x/(x^2+y^2)\)</span>、<span class="math inline">\(e^x\cos y\)</span>、<span class="math inline">\(\ln|z|\)</span> をそれぞれ実部にもつ正則関数を求めよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -2727,10 +2731,6 @@ f=u+iv=e^x(\cos y+i\sin y)+iC=e^z+iC.
 </div>
 </div>
 </div>
-</section>
-<section id="問題a4-実部から正則関数を復元する" class="level4">
-<h4 class="anchored" data-anchor-id="問題a4-実部から正則関数を復元する">問題A4 実部から正則関数を復元する</h4>
-<p><span class="math inline">\(x/(x^2+y^2)\)</span>、<span class="math inline">\(e^x\cos y\)</span>、<span class="math inline">\(\ln|z|\)</span> をそれぞれ実部にもつ正則関数を求めよ。</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -2901,6 +2901,24 @@ f(z)=\sin |z|
 </section>
 <section id="math2f-series-exercises" class="level3">
 <h3 class="anchored" data-anchor-id="math2f-series-exercises">Taylor 展開・Laurent 展開の演習</h3>
+<section id="問題b" class="level4">
+<h4 class="anchored" data-anchor-id="問題b">問題B</h4>
+<p>次を指定された点の周りで展開し、必要に応じて収束半径・極の位数・留数を求めよ。</p>
+<ol type="1">
+<li><span class="math inline">\((1+z)^a\)</span>、中心 <span class="math inline">\(0\)</span></li>
+<li><span class="math inline">\((1-\cos z)/z^2\)</span>、中心 <span class="math inline">\(0\)</span></li>
+<li><span class="math inline">\(\sin^2z\)</span>、中心 <span class="math inline">\(0\)</span></li>
+<li><span class="math inline">\(e^z/(z-1)^4\)</span>、中心 <span class="math inline">\(1\)</span></li>
+<li><span class="math inline">\(\tan z\)</span>、中心 <span class="math inline">\(0\)</span></li>
+<li><span class="math inline">\(z^2/(z^3+2)\)</span>、中心 <span class="math inline">\(0\)</span></li>
+<li><span class="math inline">\(z\sin\{1/(1+z)\}\)</span>、中心 <span class="math inline">\(-1\)</span></li>
+<li><span class="math inline">\(e^z/(1+z)\)</span>、中心 <span class="math inline">\(0\)</span></li>
+<li><span class="math inline">\(3/\{(z+1)(z-2)\}\)</span>、中心 <span class="math inline">\(2\)</span></li>
+<li><span class="math inline">\(1/z\)</span>、中心 <span class="math inline">\(1\)</span></li>
+<li><span class="math inline">\(1/(1+z^2)\)</span>、中心 <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(z\cos\{1/(z-1)\}\)</span>、中心 <span class="math inline">\(1\)</span></li>
+<li><span class="math inline">\(\sin z/z^2\)</span>、中心 <span class="math inline">\(0\)</span></li>
+</ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -2960,24 +2978,6 @@ w=z-z_0
 </div>
 </div>
 </div>
-<section id="問題b" class="level4">
-<h4 class="anchored" data-anchor-id="問題b">問題B</h4>
-<p>次を指定された点の周りで展開し、必要に応じて収束半径・極の位数・留数を求めよ。</p>
-<ol type="1">
-<li><span class="math inline">\((1+z)^a\)</span>、中心 <span class="math inline">\(0\)</span></li>
-<li><span class="math inline">\((1-\cos z)/z^2\)</span>、中心 <span class="math inline">\(0\)</span></li>
-<li><span class="math inline">\(\sin^2z\)</span>、中心 <span class="math inline">\(0\)</span></li>
-<li><span class="math inline">\(e^z/(z-1)^4\)</span>、中心 <span class="math inline">\(1\)</span></li>
-<li><span class="math inline">\(\tan z\)</span>、中心 <span class="math inline">\(0\)</span></li>
-<li><span class="math inline">\(z^2/(z^3+2)\)</span>、中心 <span class="math inline">\(0\)</span></li>
-<li><span class="math inline">\(z\sin\{1/(1+z)\}\)</span>、中心 <span class="math inline">\(-1\)</span></li>
-<li><span class="math inline">\(e^z/(1+z)\)</span>、中心 <span class="math inline">\(0\)</span></li>
-<li><span class="math inline">\(3/\{(z+1)(z-2)\}\)</span>、中心 <span class="math inline">\(2\)</span></li>
-<li><span class="math inline">\(1/z\)</span>、中心 <span class="math inline">\(1\)</span></li>
-<li><span class="math inline">\(1/(1+z^2)\)</span>、中心 <span class="math inline">\(i\)</span></li>
-<li><span class="math inline">\(z\cos\{1/(z-1)\}\)</span>、中心 <span class="math inline">\(1\)</span></li>
-<li><span class="math inline">\(\sin z/z^2\)</span>、中心 <span class="math inline">\(0\)</span></li>
-</ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -3381,6 +3381,12 @@ I=2\pi i\cdot\frac{1}{2ib}=\frac{\pi}{b}.
 <section id="math2f-contour-exercises" class="level3">
 <h3 class="anchored" data-anchor-id="math2f-contour-exercises">複素積分と実定積分の演習</h3>
 <p>以下では、実軸上に極がある場合に「通常の広義積分」と「Cauchy の主値」を区別する。実軸上の極を対称に避けた極限だけが存在するときは <span class="math inline">\(\operatorname{p.v.}\)</span> と書く。</p>
+<section id="問題c1-経路積分" class="level4">
+<h4 class="anchored" data-anchor-id="問題c1-経路積分">問題C1 経路積分</h4>
+<ol type="1">
+<li><span class="math inline">\(z/(1+z)\)</span> を <span class="math inline">\(0\)</span> から <span class="math inline">\(1+i\)</span> までの線分に沿って積分せよ。</li>
+<li><span class="math inline">\(e^{iz}/(z-\pi)^3\)</span> を <span class="math inline">\(|z-3|=1\)</span> 上で反時計回りに積分せよ。</li>
+</ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -3414,12 +3420,6 @@ I=2\pi i\cdot\frac{1}{2ib}=\frac{\pi}{b}.
 </div>
 </div>
 </div>
-<section id="問題c1-経路積分" class="level4">
-<h4 class="anchored" data-anchor-id="問題c1-経路積分">問題C1 経路積分</h4>
-<ol type="1">
-<li><span class="math inline">\(z/(1+z)\)</span> を <span class="math inline">\(0\)</span> から <span class="math inline">\(1+i\)</span> までの線分に沿って積分せよ。</li>
-<li><span class="math inline">\(e^{iz}/(z-\pi)^3\)</span> を <span class="math inline">\(|z-3|=1\)</span> 上で反時計回りに積分せよ。</li>
-</ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -3447,6 +3447,29 @@ I=2\pi i\cdot\frac{1}{2ib}=\frac{\pi}{b}.
 </div>
 </div>
 </div>
+</section>
+<section id="問題c2-留数で求める定積分" class="level4">
+<h4 class="anchored" data-anchor-id="問題c2-留数で求める定積分">問題C2 留数で求める定積分</h4>
+<p>次を求めよ。実軸上に極があるものは必要に応じて Cauchy の主値を取る。</p>
+<ol type="1">
+<li><span class="math inline">\(\displaystyle\int_{-\infty}^{\infty}\frac{\cos x}{x^2+1}\,\dd x\)</span></li>
+<li><span class="math inline">\(\displaystyle\int_{-\infty}^{\infty}\frac{x}{1-x^3}\,\dd x\)</span></li>
+<li><span class="math inline">\(\displaystyle\int_{-\infty}^{\infty}\frac{x}{8-x^3}\,\dd x\)</span></li>
+<li><span class="math inline">\(\displaystyle\int_{-\infty}^{\infty}\frac{\sin\pi x}{x^2+x+1}\,\dd x\)</span></li>
+<li><span class="math inline">\(\displaystyle\int_0^{2\pi}\frac{\dd \theta}{2+\cos\theta}\)</span></li>
+<li><span class="math inline">\(\displaystyle\int_0^\infty\frac{\dd x}{1+x^4}\)</span></li>
+<li><span class="math inline">\(\displaystyle\int_{-\infty}^{\infty}\frac{\dd x}{x^2-ix}\)</span></li>
+<li><span class="math inline">\(\displaystyle\int_{-\infty}^{\infty}\frac{\dd x}{x^2+x+1}\)</span></li>
+<li><span class="math inline">\(\displaystyle\int_{-\infty}^{\infty}\frac{\dd x}{(x^2+1)(x^2-3x+2)}\)</span></li>
+<li><span class="math inline">\(\displaystyle\int_{-\infty}^{\infty}\frac{\dd x}{(1+x^2)^2}\)</span></li>
+<li><span class="math inline">\(\displaystyle\int_0^\infty\frac{x\sin x}{1+x^2}\,\dd x\)</span></li>
+<li><span class="math inline">\(\displaystyle\int_0^\infty\frac{\sin^2x}{x^2}\,\dd x\)</span></li>
+<li><span class="math inline">\(\displaystyle\int_0^\infty\frac{x^2}{x^4+5x^2+4}\,\dd x\)</span></li>
+<li><span class="math inline">\(\displaystyle\int_{-\infty}^{\infty}\frac{\dd x}{x^2-2x+2}\)</span></li>
+<li><span class="math inline">\(\displaystyle\int_{-\infty}^{\infty}\frac{x\sin(ax)}{x^2+x+1}\,\dd x\)</span>（<span class="math inline">\(a&gt;0\)</span>）</li>
+<li><span class="math inline">\(\displaystyle\int_0^{2\pi}\frac{\dd \theta}{1-2a\sin\theta+a^2}\)</span></li>
+<li><span class="math inline">\(\displaystyle\int_0^\infty\frac{x^\alpha}{x^2+x+1}\,\dd x\)</span>（<span class="math inline">\(-1&lt;\alpha&lt;1\)</span>）</li>
+</ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -3520,29 +3543,6 @@ I=2\pi i\cdot\frac{1}{2ib}=\frac{\pi}{b}.
 </div>
 </div>
 </div>
-</section>
-<section id="問題c2-留数で求める定積分" class="level4">
-<h4 class="anchored" data-anchor-id="問題c2-留数で求める定積分">問題C2 留数で求める定積分</h4>
-<p>次を求めよ。実軸上に極があるものは必要に応じて Cauchy の主値を取る。</p>
-<ol type="1">
-<li><span class="math inline">\(\displaystyle\int_{-\infty}^{\infty}\frac{\cos x}{x^2+1}\,\dd x\)</span></li>
-<li><span class="math inline">\(\displaystyle\int_{-\infty}^{\infty}\frac{x}{1-x^3}\,\dd x\)</span></li>
-<li><span class="math inline">\(\displaystyle\int_{-\infty}^{\infty}\frac{x}{8-x^3}\,\dd x\)</span></li>
-<li><span class="math inline">\(\displaystyle\int_{-\infty}^{\infty}\frac{\sin\pi x}{x^2+x+1}\,\dd x\)</span></li>
-<li><span class="math inline">\(\displaystyle\int_0^{2\pi}\frac{\dd \theta}{2+\cos\theta}\)</span></li>
-<li><span class="math inline">\(\displaystyle\int_0^\infty\frac{\dd x}{1+x^4}\)</span></li>
-<li><span class="math inline">\(\displaystyle\int_{-\infty}^{\infty}\frac{\dd x}{x^2-ix}\)</span></li>
-<li><span class="math inline">\(\displaystyle\int_{-\infty}^{\infty}\frac{\dd x}{x^2+x+1}\)</span></li>
-<li><span class="math inline">\(\displaystyle\int_{-\infty}^{\infty}\frac{\dd x}{(x^2+1)(x^2-3x+2)}\)</span></li>
-<li><span class="math inline">\(\displaystyle\int_{-\infty}^{\infty}\frac{\dd x}{(1+x^2)^2}\)</span></li>
-<li><span class="math inline">\(\displaystyle\int_0^\infty\frac{x\sin x}{1+x^2}\,\dd x\)</span></li>
-<li><span class="math inline">\(\displaystyle\int_0^\infty\frac{\sin^2x}{x^2}\,\dd x\)</span></li>
-<li><span class="math inline">\(\displaystyle\int_0^\infty\frac{x^2}{x^4+5x^2+4}\,\dd x\)</span></li>
-<li><span class="math inline">\(\displaystyle\int_{-\infty}^{\infty}\frac{\dd x}{x^2-2x+2}\)</span></li>
-<li><span class="math inline">\(\displaystyle\int_{-\infty}^{\infty}\frac{x\sin(ax)}{x^2+x+1}\,\dd x\)</span>（<span class="math inline">\(a&gt;0\)</span>）</li>
-<li><span class="math inline">\(\displaystyle\int_0^{2\pi}\frac{\dd \theta}{1-2a\sin\theta+a^2}\)</span></li>
-<li><span class="math inline">\(\displaystyle\int_0^\infty\frac{x^\alpha}{x^2+x+1}\,\dd x\)</span>（<span class="math inline">\(-1&lt;\alpha&lt;1\)</span>）</li>
-</ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -3595,6 +3595,14 @@ I=2\pi i\cdot\frac{1}{2ib}=\frac{\pi}{b}.
 </div>
 </div>
 </div>
+</section>
+<section id="問題c3-45度の扇形経路" class="level4">
+<h4 class="anchored" data-anchor-id="問題c3-45度の扇形経路">問題C3 45度の扇形経路</h4>
+<p>中心角 <span class="math inline">\(\pi/4\)</span>、半径 <span class="math inline">\(R\)</span> の扇形で <span class="math inline">\(e^{-z^2}\)</span> を積分し、</p>
+<p><span class="math display">\[
+I=\int_0^\infty e^{-ix^2}\,\dd x
+\]</span></p>
+<p>を求めよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -3624,14 +3632,6 @@ I=2\pi i\cdot\frac{1}{2ib}=\frac{\pi}{b}.
 </div>
 </div>
 </div>
-</section>
-<section id="問題c3-45度の扇形経路" class="level4">
-<h4 class="anchored" data-anchor-id="問題c3-45度の扇形経路">問題C3 45度の扇形経路</h4>
-<p>中心角 <span class="math inline">\(\pi/4\)</span>、半径 <span class="math inline">\(R\)</span> の扇形で <span class="math inline">\(e^{-z^2}\)</span> を積分し、</p>
-<p><span class="math display">\[
-I=\int_0^\infty e^{-ix^2}\,\dd x
-\]</span></p>
-<p>を求めよ。</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -3660,6 +3660,13 @@ I=\int_0^\infty e^{-ix^2}\,\dd x
 </div>
 </div>
 </div>
+</section>
+<section id="問題c4-dirichlet-積分を三通りで求める" class="level4">
+<h4 class="anchored" data-anchor-id="問題c4-dirichlet-積分を三通りで求める">問題C4 Dirichlet 積分を三通りで求める</h4>
+<p><span class="math display">\[
+\int_0^\infty\frac{\sin x}{x}\,\dd x
+\]</span></p>
+<p>を、複素積分、区間 <span class="math inline">\([-1,1]\)</span> の指示関数の Fourier 変換、<span class="math inline">\(g(t)=\int_0^\infty\sin(xt)/x\,\dd x\)</span> の Laplace 変換の三通りで求めよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -3690,13 +3697,6 @@ I=\int_0^\infty e^{-ix^2}\,\dd x
 </div>
 </div>
 </div>
-</section>
-<section id="問題c4-dirichlet-積分を三通りで求める" class="level4">
-<h4 class="anchored" data-anchor-id="問題c4-dirichlet-積分を三通りで求める">問題C4 Dirichlet 積分を三通りで求める</h4>
-<p><span class="math display">\[
-\int_0^\infty\frac{\sin x}{x}\,\dd x
-\]</span></p>
-<p>を、複素積分、区間 <span class="math inline">\([-1,1]\)</span> の指示関数の Fourier 変換、<span class="math inline">\(g(t)=\int_0^\infty\sin(xt)/x\,\dd x\)</span> の Laplace 変換の三通りで求めよ。</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -4598,6 +4598,20 @@ f(x)\sim\frac{a_0}{2}+\sum_{n=1}^{\infty}\{a_n\cos(nx)+b_n\sin(nx)\}
 F(k)=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(x)e^{-ikx}\,\dd x
 \]</span></p>
 <p>で定義する。</p>
+<section id="問題d1-fourier-級数" class="level4">
+<h4 class="anchored" data-anchor-id="問題d1-fourier-級数">問題D1 Fourier 級数</h4>
+<p><span class="math inline">\(-\pi&lt;x\le\pi\)</span> 上の関数を周期 <span class="math inline">\(2\pi\)</span> で延長し、Fourier 級数を求めよ。</p>
+<ol type="1">
+<li><span class="math inline">\(e^x\)</span></li>
+<li><span class="math inline">\(|\sin x|\)</span></li>
+<li><span class="math inline">\(1-|x|/a\)</span>（<span class="math inline">\(|x|&lt;a\)</span>）、<span class="math inline">\(0\)</span>（<span class="math inline">\(a\le|x|\le\pi\)</span>）、ただし <span class="math inline">\(0&lt;a\le\pi\)</span></li>
+<li><span class="math inline">\(\pi-|x|\)</span></li>
+<li><span class="math inline">\(x\cos x\)</span></li>
+<li><span class="math inline">\(\pi/2-|x|\)</span></li>
+<li><span class="math inline">\(\sinh x\)</span></li>
+<li><span class="math inline">\(x^2/2\)</span></li>
+</ol>
+<p>さらに適切な <span class="math inline">\(x\)</span> を代入し、<span class="math inline">\(\sum_{n\ge1}(2n-1)^{-2}(2n+1)^{-2}\)</span>、<span class="math inline">\(\sum_{n\ge1}(2n-1)^{-2}\)</span>、<span class="math inline">\(\sum_{n\ge1}(-1)^n/n^2\)</span> を求めよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-55-contents" aria-controls="callout-55" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -4644,20 +4658,6 @@ a_n=0,
 </div>
 </div>
 </div>
-<section id="問題d1-fourier-級数" class="level4">
-<h4 class="anchored" data-anchor-id="問題d1-fourier-級数">問題D1 Fourier 級数</h4>
-<p><span class="math inline">\(-\pi&lt;x\le\pi\)</span> 上の関数を周期 <span class="math inline">\(2\pi\)</span> で延長し、Fourier 級数を求めよ。</p>
-<ol type="1">
-<li><span class="math inline">\(e^x\)</span></li>
-<li><span class="math inline">\(|\sin x|\)</span></li>
-<li><span class="math inline">\(1-|x|/a\)</span>（<span class="math inline">\(|x|&lt;a\)</span>）、<span class="math inline">\(0\)</span>（<span class="math inline">\(a\le|x|\le\pi\)</span>）、ただし <span class="math inline">\(0&lt;a\le\pi\)</span></li>
-<li><span class="math inline">\(\pi-|x|\)</span></li>
-<li><span class="math inline">\(x\cos x\)</span></li>
-<li><span class="math inline">\(\pi/2-|x|\)</span></li>
-<li><span class="math inline">\(\sinh x\)</span></li>
-<li><span class="math inline">\(x^2/2\)</span></li>
-</ol>
-<p>さらに適切な <span class="math inline">\(x\)</span> を代入し、<span class="math inline">\(\sum_{n\ge1}(2n-1)^{-2}(2n+1)^{-2}\)</span>、<span class="math inline">\(\sum_{n\ge1}(2n-1)^{-2}\)</span>、<span class="math inline">\(\sum_{n\ge1}(-1)^n/n^2\)</span> を求めよ。</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-56-contents" aria-controls="callout-56" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -4724,6 +4724,24 @@ x\cos x\sim-\frac12\sin x
 </div>
 </div>
 </div>
+</section>
+<section id="問題d2-fourier-変換" class="level4">
+<h4 class="anchored" data-anchor-id="問題d2-fourier-変換">問題D2 Fourier 変換</h4>
+<p>次の Fourier 変換を求めよ。</p>
+<ol type="1">
+<li>高さ <span class="math inline">\(1/\varepsilon\)</span>、台 <span class="math inline">\([-\varepsilon/2,\varepsilon/2]\)</span> の矩形関数</li>
+<li><span class="math inline">\([-a,a]\)</span> の指示関数</li>
+<li><span class="math inline">\(e^{-a|x|}\)</span>（<span class="math inline">\(a&gt;0\)</span>）</li>
+<li><span class="math inline">\(e^{-|x|}\sin x\)</span></li>
+<li><span class="math inline">\(|x|\le1\)</span> で <span class="math inline">\(\sin(\pi x)\)</span>、それ以外で <span class="math inline">\(0\)</span> の関数</li>
+<li><span class="math inline">\(e^{-ax^2}\)</span>（<span class="math inline">\(a&gt;0\)</span>）</li>
+</ol>
+<p>さらに第1問の <span class="math inline">\(\varepsilon\to0\)</span>、第2問から Dirichlet 積分、第3問から</p>
+<p><span class="math display">\[
+\int_0^\infty\frac{\dd x}{(x^2+a^2)(x^2+b^2)}
+=\frac{\pi}{2ab(a+b)}
+\]</span></p>
+<p>を示せ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-57-contents" aria-controls="callout-57" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -4775,24 +4793,6 @@ F(k)=\frac1\pi\int_0^\infty e^{-ax}\cos(kx)\,\dd x
 </div>
 </div>
 </div>
-</section>
-<section id="問題d2-fourier-変換" class="level4">
-<h4 class="anchored" data-anchor-id="問題d2-fourier-変換">問題D2 Fourier 変換</h4>
-<p>次の Fourier 変換を求めよ。</p>
-<ol type="1">
-<li>高さ <span class="math inline">\(1/\varepsilon\)</span>、台 <span class="math inline">\([-\varepsilon/2,\varepsilon/2]\)</span> の矩形関数</li>
-<li><span class="math inline">\([-a,a]\)</span> の指示関数</li>
-<li><span class="math inline">\(e^{-a|x|}\)</span>（<span class="math inline">\(a&gt;0\)</span>）</li>
-<li><span class="math inline">\(e^{-|x|}\sin x\)</span></li>
-<li><span class="math inline">\(|x|\le1\)</span> で <span class="math inline">\(\sin(\pi x)\)</span>、それ以外で <span class="math inline">\(0\)</span> の関数</li>
-<li><span class="math inline">\(e^{-ax^2}\)</span>（<span class="math inline">\(a&gt;0\)</span>）</li>
-</ol>
-<p>さらに第1問の <span class="math inline">\(\varepsilon\to0\)</span>、第2問から Dirichlet 積分、第3問から</p>
-<p><span class="math display">\[
-\int_0^\infty\frac{\dd x}{(x^2+a^2)(x^2+b^2)}
-=\frac{\pi}{2ab(a+b)}
-\]</span></p>
-<p>を示せ。</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-58-contents" aria-controls="callout-58" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -5113,6 +5113,15 @@ f(t)=\frac{g}{\gamma^2}e^{-\gamma t}
 </section>
 <section id="math2f-laplace-exercises" class="level3">
 <h3 class="anchored" data-anchor-id="math2f-laplace-exercises">Laplace 変換と微分方程式の演習</h3>
+<section id="問題e1-基本変換と畳み込み" class="level4">
+<h4 class="anchored" data-anchor-id="問題e1-基本変換と畳み込み">問題E1 基本変換と畳み込み</h4>
+<p>次の Laplace 変換を求めよ。</p>
+<ol type="1">
+<li><span class="math inline">\(f(t)=e^t\)</span>、<span class="math inline">\(g(t)=t\)</span>。さらに畳み込み <span class="math inline">\(f*g\)</span> を計算し、積の公式を確認せよ。</li>
+<li><span class="math inline">\(t\cos t\)</span></li>
+<li><span class="math inline">\(t^{a-1}\)</span>（<span class="math inline">\(a&gt;0\)</span>）。さらに Beta 関数と Gamma 関数の関係を示せ。</li>
+<li><span class="math inline">\(t^4\)</span></li>
+</ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-67-contents" aria-controls="callout-67" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -5171,15 +5180,6 @@ f(t)=\frac{g}{\gamma^2}e^{-\gamma t}
 </div>
 </div>
 </div>
-<section id="問題e1-基本変換と畳み込み" class="level4">
-<h4 class="anchored" data-anchor-id="問題e1-基本変換と畳み込み">問題E1 基本変換と畳み込み</h4>
-<p>次の Laplace 変換を求めよ。</p>
-<ol type="1">
-<li><span class="math inline">\(f(t)=e^t\)</span>、<span class="math inline">\(g(t)=t\)</span>。さらに畳み込み <span class="math inline">\(f*g\)</span> を計算し、積の公式を確認せよ。</li>
-<li><span class="math inline">\(t\cos t\)</span></li>
-<li><span class="math inline">\(t^{a-1}\)</span>（<span class="math inline">\(a&gt;0\)</span>）。さらに Beta 関数と Gamma 関数の関係を示せ。</li>
-<li><span class="math inline">\(t^4\)</span></li>
-</ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-68-contents" aria-controls="callout-68" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -5230,6 +5230,13 @@ f(t)=\frac{g}{\gamma^2}e^{-\gamma t}
 </div>
 </div>
 </div>
+</section>
+<section id="問題e2-初期値問題" class="level4">
+<h4 class="anchored" data-anchor-id="問題e2-初期値問題">問題E2 初期値問題</h4>
+<p><span class="math display">\[
+\dv{x(t)}{t}+x(t)=\cos t,\qquad x(0)=0
+\]</span></p>
+<p>を Laplace 変換で解け。</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-69-contents" aria-controls="callout-69" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -5265,13 +5272,6 @@ X(s)=\frac{x_0+G(s)}{s+\alpha}
 </div>
 </div>
 </div>
-</section>
-<section id="問題e2-初期値問題" class="level4">
-<h4 class="anchored" data-anchor-id="問題e2-初期値問題">問題E2 初期値問題</h4>
-<p><span class="math display">\[
-\dv{x(t)}{t}+x(t)=\cos t,\qquad x(0)=0
-\]</span></p>
-<p>を Laplace 変換で解け。</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-70-contents" aria-controls="callout-70" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -5296,6 +5296,15 @@ X(s)=\frac{s}{(s+1)(s^2+1)}.
 </div>
 </div>
 </div>
+</section>
+<section id="問題e3-熱方程式" class="level4">
+<h4 class="anchored" data-anchor-id="問題e3-熱方程式">問題E3 熱方程式</h4>
+<p><span class="math display">\[
+\pdv{u}{t}=c^2\pdv[2]{u}{x},\qquad
+u(x,0)=\sin\frac{\pi x}{L},\qquad
+u(0,t)=u(L,t)=0
+\]</span></p>
+<p>を、Fourier 級数と Laplace 変換の二通りで解け。</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-71-contents" aria-controls="callout-71" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -5331,15 +5340,6 @@ u(x,0)=\sum_{n=1}^{\infty}b_n\sin\frac{n\pi x}{L}
 </div>
 </div>
 </div>
-</section>
-<section id="問題e3-熱方程式" class="level4">
-<h4 class="anchored" data-anchor-id="問題e3-熱方程式">問題E3 熱方程式</h4>
-<p><span class="math display">\[
-\pdv{u}{t}=c^2\pdv[2]{u}{x},\qquad
-u(x,0)=\sin\frac{\pi x}{L},\qquad
-u(0,t)=u(L,t)=0
-\]</span></p>
-<p>を、Fourier 級数と Laplace 変換の二通りで解け。</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-72-contents" aria-controls="callout-72" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -5368,6 +5368,13 @@ c^2\dv[2]{U}{x}-sU=-\sin\frac{\pi x}{L},\qquad U(0,s)=U(L,s)=0.
 </div>
 </div>
 </div>
+</section>
+<section id="問題e4-波動方程式" class="level4">
+<h4 class="anchored" data-anchor-id="問題e4-波動方程式">問題E4 波動方程式</h4>
+<ol type="1">
+<li>全実線上の <span class="math inline">\(u_{tt}=c^2u_{xx}\)</span> を、<span class="math inline">\(u(x,0)=f(x)\)</span>、<span class="math inline">\(u_t(x,0)=g(x)\)</span> と減衰条件のもとで Fourier 変換により解け。</li>
+<li>半直線 <span class="math inline">\(x&gt;0\)</span> 上で初期値 <span class="math inline">\(u(x,0)=u_t(x,0)=0\)</span>、境界値 <span class="math inline">\(u(0,t)=f(t)\)</span>、<span class="math inline">\(x\to\infty\)</span> で減衰する解を Laplace 変換で求めよ。</li>
+</ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-73-contents" aria-controls="callout-73" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -5404,13 +5411,6 @@ U(x,s)=F(s)e^{-sx/c}.
 </div>
 </div>
 </div>
-</section>
-<section id="問題e4-波動方程式" class="level4">
-<h4 class="anchored" data-anchor-id="問題e4-波動方程式">問題E4 波動方程式</h4>
-<ol type="1">
-<li>全実線上の <span class="math inline">\(u_{tt}=c^2u_{xx}\)</span> を、<span class="math inline">\(u(x,0)=f(x)\)</span>、<span class="math inline">\(u_t(x,0)=g(x)\)</span> と減衰条件のもとで Fourier 変換により解け。</li>
-<li>半直線 <span class="math inline">\(x&gt;0\)</span> 上で初期値 <span class="math inline">\(u(x,0)=u_t(x,0)=0\)</span>、境界値 <span class="math inline">\(u(0,t)=f(t)\)</span>、<span class="math inline">\(x\to\infty\)</span> で減衰する解を Laplace 変換で求めよ。</li>
-</ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-74-contents" aria-controls="callout-74" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
