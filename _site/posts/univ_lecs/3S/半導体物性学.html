@@ -2083,12 +2083,6 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/卒業論文/論文読書/GPT-Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ti-Al-N-Based Hard Coatings: Thermodynamical Background, CVD Deposition, and Properties. A Review</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../../posts/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ti-Al-N系硬質コーティング：熱力学的背景・CVD成膜・特性レビュー</span></a>
   </div>
@@ -2242,9 +2236,12 @@ window.Quarto = {
   <li><a href="#semiconductor-dram" id="toc-semiconductor-dram" class="nav-link" data-scroll-target="#semiconductor-dram">DRAM</a></li>
   <li><a href="#semiconductor-scaling" id="toc-semiconductor-scaling" class="nav-link" data-scroll-target="#semiconductor-scaling">微細化と新材料</a></li>
   </ul></li>
-  <li><a href="#semiconductor-source-map" id="toc-semiconductor-source-map" class="nav-link" data-scroll-target="#semiconductor-source-map">過去問と統合問題の対応表</a></li>
-  <li><a href="#semiconductor-constants" id="toc-semiconductor-constants" class="nav-link" data-scroll-target="#semiconductor-constants">このノートで用いる300 K Siの定数</a></li>
-  <li><a href="#semiconductor-formula-sheet" id="toc-semiconductor-formula-sheet" class="nav-link" data-scroll-target="#semiconductor-formula-sheet">直前確認用公式集</a>
+  <li><a href="#総合問題状態密度からpn接合まで式をつなぐ" id="toc-総合問題状態密度からpn接合まで式をつなぐ" class="nav-link" data-scroll-target="#総合問題状態密度からpn接合まで式をつなぐ">総合問題：状態密度からpn接合まで式をつなぐ</a>
+  <ul class="collapse">
+  <li><a href="#semiconductor-fill-in-all" id="toc-semiconductor-fill-in-all" class="nav-link" data-scroll-target="#semiconductor-fill-in-all">空欄（あ）〜（し）</a></li>
+  </ul></li>
+  <li><a href="#semiconductor-constants" id="toc-semiconductor-constants" class="nav-link" data-scroll-target="#semiconductor-constants">付録A このノートで用いる300 K Siの定数</a></li>
+  <li><a href="#semiconductor-formula-sheet" id="toc-semiconductor-formula-sheet" class="nav-link" data-scroll-target="#semiconductor-formula-sheet">付録B 直前確認用公式集</a>
   <ul class="collapse">
   <li><a href="#原子光子" id="toc-原子光子" class="nav-link" data-scroll-target="#原子光子">原子・光子</a></li>
   <li><a href="#状態密度fermi分布真性半導体" id="toc-状態密度fermi分布真性半導体" class="nav-link" data-scroll-target="#状態密度fermi分布真性半導体">状態密度・Fermi分布・真性半導体</a></li>
@@ -2305,7 +2302,7 @@ window.Quarto = {
 \]</span></p>
 <section id="semiconductor-reading-guide" class="level2">
 <h2 class="anchored" data-anchor-id="semiconductor-reading-guide">このノートの読み方</h2>
-<p>このノートは、2008年度から2024年度までの過去問を年度順に並べ直したものではない。<strong>初めて半導体を学ぶ人が、必要な道具を一つずつ増やせる順</strong>に、重複する問題を一つへ統合した対策ノートである。</p>
+<p>このノートは、過去問を元の並びのまま写したものではない。<strong>初めて半導体を学ぶ人が、必要な道具を一つずつ増やせる順</strong>に、重複する問題を一つへ統合した対策ノートである。</p>
 <p>各問題は、次の順に読む。</p>
 <ol type="1">
 <li>まず問題文だけを読み、「何を説明すべきか」「何を求めるか」を自分の言葉で確認する。</li>
@@ -2324,7 +2321,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>元資料はOCR転記なので、数式コマンドの崩れや誤植を含む。本文では、重複年度と物理的整合性から復元できる式を正規化した。2014年以降の一部は問題要約しかなく、特に「あ〜し」の穴埋め本文が欠けているため、復元不能な箇所は推測で埋めず「資料欠損」と明示する。全年度の原問と統合先は末尾の<a href="#semiconductor-source-map">対応表</a>から逆引きできる。</p>
+<p>文字起こし資料には数式コマンドの崩れや誤植があるため、本文では元PDFの問題文・式番号・記号を優先して数式を正規化した。空欄（あ）〜（し）は元PDFから復元し、末尾の総合問題に原文の論理順でまとめている。</p>
 </div>
 </div>
 <section id="記号と単位" class="level3">
@@ -2358,17 +2355,15 @@ n=N_e,\qquad p=N_h
 <p>過去問は、一見すると多く見える。しかし、中心にあるのは「電子がどこにいるか」「何個いるか」「どう動くか」「接合すると何が起こるか」の四つである。</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>部</th>
 <th>中心となる問い</th>
 <th>身につける道具</th>
-<th>主な出題年度</th>
 </tr>
 </thead>
 <tbody>
@@ -2376,53 +2371,45 @@ n=N_e,\qquad p=N_h
 <td>第1部 半導体をバンドで見る</td>
 <td>なぜ物質によって電気の流れやすさが違うか</td>
 <td>伝導度、バンド、バンドギャップ、直接・間接遷移</td>
-<td>2013、2014</td>
 </tr>
 <tr class="even">
 <td>第2部 電子の居場所を数える</td>
 <td>利用できる状態と電子の占有確率はいくつか</td>
 <td>状態密度、Fermi 分布、Boltzmann 近似、<span class="math inline">\(n_i\)</span></td>
-<td>2008、2013、2018、2021、2024</td>
 </tr>
 <tr class="odd">
 <td>第3部 不純物でキャリヤを作る</td>
 <td>ドーピングで何が変わるか</td>
 <td>Bohr 模型、ドナー・アクセプタ、Fermi 準位、温度依存性</td>
-<td>2008、2009、2013、2014、2018、2022、2024</td>
 </tr>
 <tr class="even">
 <td>第4部 キャリヤはどう動くか</td>
 <td>電界・濃度差・再結合で流れはどう決まるか</td>
 <td>移動度、ドリフト、拡散、連続の式、拡散長</td>
-<td>2009、2014、2016</td>
 </tr>
 <tr class="odd">
 <td>第5部 pn接合</td>
 <td>接合した瞬間と電圧印加後に何が起こるか</td>
 <td>拡散電位、空乏層、Poisson 方程式、I–V、C–V</td>
-<td>2008–2024の多くの年度</td>
 </tr>
 <tr class="even">
 <td>第6部 金属・半導体接合</td>
 <td>整流接触と低抵抗接触は何で決まるか</td>
 <td>仕事関数、Schottky 障壁、Ohmic 接触</td>
-<td>2008、2009、2012、2018</td>
 </tr>
 <tr class="odd">
 <td>第7部 異種半導体デバイス</td>
 <td>材料を組み合わせると何が良くなるか</td>
 <td>格子整合、バンドオフセット、光閉じ込め</td>
-<td>2008、2009、2011、2012、2013、2016、2018、2021、2022、2024</td>
 </tr>
 <tr class="even">
 <td>第8部 集積回路素子</td>
 <td>トランジスタとメモリはどう働くか</td>
 <td>BJT、HEMT、MOSFET、CMOS、DRAM、微細化</td>
-<td>2012、2013、2014、2016、2018、2021、2024</td>
 </tr>
 </tbody>
 </table>
-<p>この表で場所を確認したら、本文は第1部から順に読む。試験直前には、各問題の解答だけを閉じたまま再現し、最後の過去問対応表で未確認の年度がないかを点検する。</p>
+<p>この表で場所を確認したら、本文は第1部から順に読む。試験直前には、各問題を見て式と図を白紙から再現できるか点検する。</p>
 </section>
 <section id="第1部-半導体をバンドで見る" class="level2">
 <h2 class="anchored" data-anchor-id="第1部-半導体をバンドで見る">第1部 半導体をバンドで見る</h2>
@@ -2431,7 +2418,6 @@ n=N_e,\qquad p=N_h
 <h3 class="anchored" data-anchor-id="semiconductor-conductivity-chart">伝導度の図を読む</h3>
 <section id="問題a1-伝導度比抵抗から物質を分類する" class="level4">
 <h4 class="anchored" data-anchor-id="問題a1-伝導度比抵抗から物質を分類する">問題A1 伝導度・比抵抗から物質を分類する</h4>
-<p><strong>出題対応：</strong> 2014年度【1】の図の読み方。導体・半導体・絶縁体をバンドで説明する部分は <a href="#semiconductor-band-classification">問題A2</a>、伝導度を変える要因は <a href="#semiconductor-conductivity-factors">問題D1</a> に統合した。</p>
 <p>物質の伝導度 <span class="math inline">\(\sigma\)</span> と比抵抗 <span class="math inline">\(\rho\)</span> を横軸に取った図を考え、次の問いに答えよ。</p>
 <ol type="1">
 <li><span class="math inline">\(\sigma\)</span> と <span class="math inline">\(\rho\)</span> の関係を示せ。</li>
@@ -2444,11 +2430,23 @@ n=N_e,\qquad p=N_h
 <img src="images/半導体物性学/conductivity-chart-2014.png" class="img-fluid figure-img" style="width:95.0%" alt="下側の対数軸に伝導度、上側の逆向き対数軸に比抵抗を取り、石英、ダイヤモンド、Si、Ge、GaAs、金属などの範囲を示す日本語の資料図。">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-conductivity-source-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-図&nbsp;1: 2014年度試験資料として提供された、絶縁体・半導体・導体の伝導度と比抵抗の範囲図。
+図&nbsp;1: 元PDFの問題図として提示された、絶縁体・半導体・導体の伝導度と比抵抗の範囲図。
 </figcaption>
 </figure>
 </div>
-<p>上図は提供された試験資料である。次のPython図は、逆数軸と三分類の読み方を見失わないよう、同じ関係を模式的に再構成したもの。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ノート</span>理論A1：一つの電子ではなく、断面全体の流れを測る
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>上図は問題文に添付された資料である。次のPython図は、逆数軸と三分類の読み方を見失わないよう、同じ関係を模式的に再構成したもの。</p>
 <div id="cell-fig-conductivity-classification" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>コードはこちら</summary>
@@ -2522,18 +2520,6 @@ n=N_e,\qquad p=N_h
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">ノート</span>理論A1：一つの電子ではなく、断面全体の流れを測る
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
 <p><strong>電流と電流密度。</strong> 電流 <span class="math inline">\(I\)</span> は、断面を単位時間に通過する電荷である。通過電荷を <span class="math inline">\(Q\)</span>、断面に垂直な電流密度成分を <span class="math inline">\(J_\perp\)</span> とすれば</p>
 <p><span class="math display">\[
 I=\dv{Q}{t}=\int_A J_\perp\,\dd A.
@@ -2589,12 +2575,23 @@ E=\rho J,\qquad \boxed{\rho=\frac{1}{\sigma}}.
 <h3 class="anchored" data-anchor-id="semiconductor-band-classification">バンド構造による分類</h3>
 <section id="問題a2-導体半導体絶縁体をエネルギーバンドで説明する" class="level4">
 <h4 class="anchored" data-anchor-id="問題a2-導体半導体絶縁体をエネルギーバンドで説明する">問題A2 導体・半導体・絶縁体をエネルギーバンドで説明する</h4>
-<p><strong>出題対応：</strong> 2014年度【1】(1)(2)。2014年度【1】(3) は <a href="#semiconductor-conductivity-factors">問題D1</a> で扱う。</p>
 <ol type="1">
 <li>導体と半導体の電気伝導性の違いを、占有されたバンドと空いた状態の位置に注目して説明せよ。</li>
 <li>半導体と絶縁体の違いを、エネルギーギャップ <span class="math inline">\(E_g\)</span> と熱励起に注目して説明せよ。</li>
 <li>真性半導体の価電子帯から伝導帯へ電子が一つ励起されたとき、電流を運ぶものを二つ答えよ。</li>
 </ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ノート</span>理論A2：満席の列では動けない
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div id="cell-fig-band-classification" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>コードはこちら</summary>
@@ -2671,18 +2668,6 @@ E=\rho J,\qquad \boxed{\rho=\frac{1}{\sigma}}.
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">ノート</span>理論A2：満席の列では動けない
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
 <p><strong>孤立原子からバンドへ。</strong> 原子が一個だけなら、電子が取れるエネルギーは飛び飛びである。多数の原子を結晶として近づけると、同じ原子準位が原子数だけ細かく分裂し、ほぼ連続に見える<strong>許容帯（バンド）</strong>を作る。バンドとバンドの間の、電子が存在できない範囲が<strong>禁制帯</strong>である。</p>
 <p>半導体では、0 K で電子が入っている最上部のバンドを価電子帯、その上の空いたバンドを伝導帯と呼ぶ。価電子帯上端を <span class="math inline">\(E_v\)</span>、伝導帯下端を <span class="math inline">\(E_c\)</span> とすれば、バンドギャップは</p>
 <p><span class="math display">\[
@@ -2731,12 +2716,23 @@ n_i\propto \exp\left(-\frac{E_g}{2kT}\right)
 <h3 class="anchored" data-anchor-id="semiconductor-si-ge-transition">Si・Geと直接遷移・間接遷移</h3>
 <section id="問題a3-siとgeを比較し光る半導体の条件を説明する" class="level4">
 <h4 class="anchored" data-anchor-id="問題a3-siとgeを比較し光る半導体の条件を説明する">問題A3 SiとGeを比較し、光る半導体の条件を説明する</h4>
-<p><strong>出題対応：</strong> 2013年度問5。格子定数–バンドギャップ図を用いる2008年度問1、2009年度問1、2016年度【1】、2022年度【2】と、LED・半導体レーザ問題を解くための基礎理論もここへ統合した。</p>
 <ol type="1">
 <li>直接遷移型半導体と間接遷移型半導体の違いを、<span class="math inline">\(E\)</span>–<span class="math inline">\(k\)</span> 図と運動量保存に基づいて説明せよ。</li>
 <li>Si と Ge の共通点・相違点を、バンドギャップ、移動度、酸化膜、熱的性質の観点からまとめよ。</li>
 <li>現在 Si が集積回路の主材料である理由と、Ge の利用が期待される分野を説明せよ。</li>
 </ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ノート</span>理論A3：エネルギーだけでなく、結晶運動量も受け渡す
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div id="cell-fig-direct-indirect-gap" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>コードはこちら</summary>
@@ -2811,18 +2807,6 @@ n_i\propto \exp\left(-\frac{E_g}{2kT}\right)
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">ノート</span>理論A3：エネルギーだけでなく、結晶運動量も受け渡す
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
 <p><strong>バンドには場所と傾きがある。</strong> バンド図には、縦軸をエネルギー <span class="math inline">\(E\)</span>、横軸を波数 <span class="math inline">\(k\)</span> とした <span class="math inline">\(E\)</span>–<span class="math inline">\(k\)</span> 図がある。<span class="math inline">\(k\)</span> は結晶中の電子の波の進み方を表し、結晶運動量 <span class="math inline">\(\hbar k\)</span> に対応する。</p>
 <p>電子と正孔が再結合して光子を出すには、エネルギー保存だけでなく結晶運動量保存も満たさなければならない。</p>
 <ul>
@@ -2933,7 +2917,6 @@ n_i\propto \exp\left(-\frac{E_g}{2kT}\right)
 <h3 class="anchored" data-anchor-id="semiconductor-density-of-states">状態密度とフェルミ分布</h3>
 <section id="問題b1-状態密度とキャリヤ密度を導出する" class="level4">
 <h4 class="anchored" data-anchor-id="問題b1-状態密度とキャリヤ密度を導出する">問題B1 状態密度とキャリヤ密度を導出する</h4>
-<p><strong>統合元：</strong> 2008問2、2013問1、2016【2】、2018問1、2021問1、2022【1】、2024問1</p>
 <p>三次元の放物線型伝導帯</p>
 <p><span class="math display">\[
 E(k)=E_\mathrm{c}+\frac{\hbar^2k^2}{2m_\mathrm{n}^*}
@@ -3120,14 +3103,13 @@ n=\int_{E_\mathrm{c}}^\infty g_\mathrm{c}(E)f(E)\,\dd E.
 <h3 class="anchored" data-anchor-id="semiconductor-intrinsic">真性半導体と質量作用則</h3>
 <section id="問題b2-真性キャリヤ密度と真性フェルミ準位を求める" class="level4">
 <h4 class="anchored" data-anchor-id="問題b2-真性キャリヤ密度と真性フェルミ準位を求める">問題B2 真性キャリヤ密度と真性フェルミ準位を求める</h4>
-<p><strong>統合元：</strong> 2008問2、2013問1、2014【2】、2016【2】、2018問1、2021問1、2022【1】、2024問1</p>
 <ol type="1">
 <li><span class="math inline">\(np=n_\mathrm{i}^2\)</span> と <span class="math inline">\(n_\mathrm{i}\)</span> の式を導け。</li>
-<li>バンドギャップ <span class="math inline">\(E_\mathrm{g}\)</span> が大きいほど真性キャリヤ密度と電気伝導度がどうなるか述べよ。</li>
-<li>真性フェルミ準位 <span class="math inline">\(E_\mathrm{i}\)</span> を求め、300 K の Si について禁制帯中央からのずれを計算せよ。試験資料の <span class="math inline">\(m_\mathrm{n}^*/m_0=0.26\)</span>、<span class="math inline">\(m_\mathrm{p}^*/m_0=0.69\)</span> を使う場合と、<span class="math inline">\(N_\mathrm{c}=2.86\times10^{19}\)</span>、<span class="math inline">\(N_\mathrm{v}=2.66\times10^{19}\ \mathrm{cm^{-3}}\)</span> を使う場合を区別せよ。</li>
+<li>真性フェルミ準位 <span class="math inline">\(E_\mathrm{i}\)</span> を求め、<span class="math inline">\(N_\mathrm{c}=2.86\times10^{19}\)</span>、<span class="math inline">\(N_\mathrm{v}=2.66\times10^{19}\ \mathrm{cm^{-3}}\)</span> を用いて、300 K の Si で禁制帯中央からどれだけずれるか計算せよ。</li>
+<li>バンドギャップ <span class="math inline">\(E_\mathrm{g}\)</span> が大きいほど、真性キャリヤ密度と電気伝導度がどうなるか述べよ。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3136,7 +3118,7 @@ n=\int_{E_\mathrm{c}}^\infty g_\mathrm{c}(E)f(E)\,\dd E.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>真性半導体では、価電子帯から伝導帯へ電子が一つ励起されるたびに、価電子帯へ正孔が一つ残る。したがって</p>
 <p><span class="math display">\[
@@ -3167,35 +3149,27 @@ E_\mathrm{i}=\frac{E_\mathrm{c}+E_\mathrm{v}}{2}
 +\frac{k_\mathrm{B}T}{2}\ln\left(\frac{N_\mathrm{v}}{N_\mathrm{c}}\right)
 }.
 \]</span></p>
-<p>単一の等方的放物線バンドで <span class="math inline">\(N_\mathrm{c}\propto(m_\mathrm{n}^*)^{3/2}\)</span>、<span class="math inline">\(N_\mathrm{v}\propto(m_\mathrm{p}^*)^{3/2}\)</span> と置くなら</p>
+<p>この式は、価電子帯側と伝導帯側で利用できる状態数が違うと、<span class="math inline">\(n=p\)</span> にするためのフェルミ準位が中央から少し動くことを表す。したがって空欄問題の</p>
 <p><span class="math display">\[
-E_\mathrm{i}-\frac{E_\mathrm{c}+E_\mathrm{v}}{2}
-=\frac{3}{4}k_\mathrm{B}T\ln\left(\frac{m_\mathrm{p}^*}{m_\mathrm{n}^*}\right).
+(\text{お})\quad
+n_\mathrm{i}=\sqrt{N_\mathrm{c}N_\mathrm{v}}
+\exp\left(-\frac{E_\mathrm{g}}{2k_\mathrm{B}T}\right),
 \]</span></p>
-<p>重い側は同じエネルギー幅により多くの席を持つ。正孔側の席が多ければ、電子数と正孔数を等しくするため <span class="math inline">\(E_\mathrm{i}\)</span> は少し上へ動く。</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">警告</span>提供定数には二つの近似が混在している
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>300 K で <span class="math inline">\(k_\mathrm{B}T=0.0259\ \mathrm{eV}\)</span> とする。</p>
-<ul>
-<li>有効質量 <span class="math inline">\(0.26m_0,0.69m_0\)</span> を単一放物線モデルへ入れると、中央から <strong><span class="math inline">\(+18.9\ \mathrm{meV}\)</span>（伝導帯側）</strong>。</li>
-<li>掲載された <span class="math inline">\(N_\mathrm{c},N_\mathrm{v}\)</span> を直接使うと、<strong><span class="math inline">\(-0.94\ \mathrm{meV}\)</span>（価電子帯側）</strong>。</li>
-</ul>
-<p>Si の伝導帯には谷の縮退と異方性があり、「運動に使う有効質量」と「状態密度有効質量」は一般に同じではない。試験で使用値が指定されたら、その組だけを一貫して使い、採用モデルを一行添える。</p>
-</div>
-</div>
+<p><span class="math display">\[
+(\text{か})\quad
+\frac{k_\mathrm{B}T}{2}\ln\left(\frac{N_\mathrm{v}}{N_\mathrm{c}}\right)
+\]</span></p>
+<p>が得られる。300 K で <span class="math inline">\(k_\mathrm{B}T=0.025875\ \mathrm{eV}\)</span> とすれば、中央からのずれは</p>
+<p><span class="math display">\[
+\frac{0.025875}{2}\ln\frac{2.66}{2.86}
+=-9.38\times10^{-4}\ \mathrm{eV}
+\]</span></p>
+<p>であり、価電子帯側へ約 <span class="math inline">\(0.94\ \mathrm{meV}\)</span> ずれる。</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3204,28 +3178,31 @@ E_\mathrm{i}-\frac{E_\mathrm{c}+E_\mathrm{v}}{2}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[
 \boxed{np=n_\mathrm{i}^2},
 \qquad
-\boxed{n_\mathrm{i}=\sqrt{N_\mathrm{c}N_\mathrm{v}}
-e^{-E_\mathrm{g}/(2k_\mathrm{B}T)}}.
+\boxed{
+n_\mathrm{i}=\sqrt{N_\mathrm{c}N_\mathrm{v}}
+e^{-E_\mathrm{g}/(2k_\mathrm{B}T)}
+}.
+\]</span></p>
+<p>真性フェルミ準位は</p>
+<p><span class="math display">\[
+\boxed{
+E_\mathrm{i}
+=\frac{E_\mathrm{c}+E_\mathrm{v}}{2}
++\frac{k_\mathrm{B}T}{2}\ln\frac{N_\mathrm{v}}{N_\mathrm{c}}
+}.
+\]</span></p>
+<p>したがって</p>
+<p><span class="math display">\[
+E_\mathrm{i}-\frac{E_\mathrm{c}+E_\mathrm{v}}2
+=\frac{0.025875}{2}\ln\frac{2.66}{2.86}
+=\boxed{-9.38\times10^{-4}\ \mathrm{eV}}.
 \]</span></p>
 <p><span class="math inline">\(E_\mathrm{g}\)</span> が大きいほど <span class="math inline">\(n_\mathrm{i}\)</span> は指数関数的に小さくなり、移動度が同程度なら <span class="math inline">\(\sigma=q(n\mu_\mathrm{n}+p\mu_\mathrm{p})\)</span> も小さくなる。</p>
-<p><span class="math display">\[
-\boxed{E_\mathrm{i}=\frac{E_\mathrm{c}+E_\mathrm{v}}2+\frac{k_\mathrm{B}T}{2}\ln\frac{N_\mathrm{v}}{N_\mathrm{c}}}.
-\]</span></p>
-<p>試験資料の有効質量を単一放物線モデルに使えば</p>
-<p><span class="math display">\[
-\Delta E_\mathrm{i}=\frac34(0.0259)\ln\frac{0.69}{0.26}
-=\boxed{+1.89\times10^{-2}\ \mathrm{eV}}.
-\]</span></p>
-<p>資料掲載の <span class="math inline">\(N_\mathrm{c},N_\mathrm{v}\)</span> を直接使う場合は</p>
-<p><span class="math display">\[
-\Delta E_\mathrm{i}=\frac{0.0259}{2}\ln\frac{2.66}{2.86}
-=\boxed{-9.4\times10^{-4}\ \mathrm{eV}}.
-\]</span></p>
 </div>
 </div>
 </div>
@@ -3238,13 +3215,12 @@ e^{-E_\mathrm{g}/(2k_\mathrm{B}T)}}.
 <h3 class="anchored" data-anchor-id="semiconductor-donor-bohr">水素原子模型からドナー準位へ</h3>
 <section id="問題c1-水素の準位とsi中asドナーの束縛を求める" class="level4">
 <h4 class="anchored" data-anchor-id="問題c1-水素の準位とsi中asドナーの束縛を求める">問題C1 水素の準位とSi中Asドナーの束縛を求める</h4>
-<p><strong>統合元：</strong> 2008問2・問3、2009問4、2013問2、2014【2】、2018問2、2024問2</p>
 <ol type="1">
 <li>ボーア模型から水素原子のエネルギー準位とリュードベリ定数を導け。</li>
 <li>水素様模型を半導体中のドナーへ写し、Si中Asの束縛エネルギー <span class="math inline">\(E_\mathrm{B}\)</span> と有効ボーア半径 <span class="math inline">\(a_\mathrm{B}^*\)</span> を概算せよ。<span class="math inline">\(\varepsilon_\mathrm{r}=11.9\)</span>、<span class="math inline">\(m_\mathrm{n}^*=0.26m_0\)</span> とする。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3253,7 +3229,7 @@ e^{-E_\mathrm{g}/(2k_\mathrm{B}T)}}.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>ボーア模型では、円運動の向心力をクーロン力が与え、角運動量が <span class="math inline">\(n\hbar\)</span> に量子化されると仮定する。</p>
 <p><span class="math display">\[
@@ -3311,7 +3287,7 @@ m_0\to m_\mathrm{n}^*
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3320,7 +3296,7 @@ m_0\to m_\mathrm{n}^*
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[
 E_n=-\frac{m_0q^4}{2(4\pi\varepsilon_0)^2\hbar^2}\frac1{n^2},
@@ -3347,15 +3323,14 @@ a_\mathrm{B}^*=0.0529\times11.9\times\frac1{0.26}
 <h3 class="anchored" data-anchor-id="semiconductor-doping">n型・p型半導体</h3>
 <section id="問題c2-キャリヤ密度とフェルミ準位を計算する" class="level4">
 <h4 class="anchored" data-anchor-id="問題c2-キャリヤ密度とフェルミ準位を計算する">問題C2 キャリヤ密度とフェルミ準位を計算する</h4>
-<p><strong>統合元：</strong> 2008問2、2009問4、2011問1、2012問1、2013問2、2014【2】、2018問2、2021問2、2022【1】、2024問2</p>
-<p>300 K のSiで <span class="math inline">\(n_\mathrm{i}=9.65\times10^9\ \mathrm{cm^{-3}}\)</span>、<span class="math inline">\(N_\mathrm{c}=2.86\times10^{19}\ \mathrm{cm^{-3}}\)</span>、<span class="math inline">\(N_\mathrm{v}=2.66\times10^{19}\ \mathrm{cm^{-3}}\)</span> とする。完全電離・非縮退を仮定する。</p>
+<p>300 K の Si で <span class="math inline">\(n_\mathrm{i}=9.65\times10^9\ \mathrm{cm^{-3}}\)</span>、<span class="math inline">\(N_\mathrm{c}=2.86\times10^{19}\ \mathrm{cm^{-3}}\)</span>、<span class="math inline">\(N_\mathrm{v}=2.66\times10^{19}\ \mathrm{cm^{-3}}\)</span> とする。完全電離・非縮退を仮定する。</p>
 <ol type="1">
-<li><span class="math inline">\(N_\mathrm{A}=10^{17}\ \mathrm{cm^{-3}}\)</span> のp型Siと、<span class="math inline">\(N_\mathrm{D}=10^{18}\ \mathrm{cm^{-3}}\)</span> のn型Siについて <span class="math inline">\(n,p\)</span> を求めよ。</li>
-<li>p型では <span class="math inline">\(E_\mathrm{F}-E_\mathrm{v}\)</span>、n型では <span class="math inline">\(E_\mathrm{c}-E_\mathrm{F}\)</span> を求めよ。</li>
+<li>As を <span class="math inline">\(N_\mathrm{D}=10^{17}\ \mathrm{cm^{-3}}\)</span> 添加した n 型 Si と、B を <span class="math inline">\(N_\mathrm{A}=10^{18}\ \mathrm{cm^{-3}}\)</span> 添加した p 型 Si について <span class="math inline">\(n,p\)</span> を求めよ。</li>
+<li>n 型では <span class="math inline">\(E_\mathrm{c}-E_\mathrm{F}\)</span>、p 型では <span class="math inline">\(E_\mathrm{F}-E_\mathrm{v}\)</span> を求めよ。</li>
 <li><span class="math inline">\(N_\mathrm{D}=10^{16},10^{17},10^{18}\ \mathrm{cm^{-3}}\)</span> の濃度違いも一つの表にまとめよ。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3364,7 +3339,7 @@ a_\mathrm{B}^*=0.0529\times11.9\times\frac1{0.26}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Siの一原子をV族Asで置き換えると、共有結合に使った後の電子が一つ余り、Asは<strong>ドナー</strong>になる。III族Bなら結合電子が一つ不足し、電子を受け取る<strong>アクセプター</strong>になる。</p>
 <p>電荷中性条件は</p>
@@ -3442,7 +3417,7 @@ E_\mathrm{F}=E_\mathrm{i}+k_\mathrm{B}T\ln\frac{n}{n_\mathrm{i}}
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3451,29 +3426,33 @@ E_\mathrm{F}=E_\mathrm{i}+k_\mathrm{B}T\ln\frac{n}{n_\mathrm{i}}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math inline">\(n_\mathrm{i}^2=(9.65\times10^9)^2=9.31\times10^{19}\ \mathrm{cm^{-6}}\)</span> である。</p>
 <ul>
-<li><p>p型（<span class="math inline">\(N_\mathrm{A}=10^{17}\)</span>）：</p>
+<li><p>n 型（<span class="math inline">\(N_\mathrm{D}=10^{17}\)</span>）：</p>
 <p><span class="math display">\[
-p\simeq\boxed{1.00\times10^{17}},
+n\simeq\boxed{1.00\times10^{17}},
 \qquad
-n=\frac{n_\mathrm{i}^2}{p}=\boxed{9.31\times10^2}\ \mathrm{cm^{-3}}.
+p=\frac{n_\mathrm{i}^2}{n}
+=\boxed{9.31\times10^2}\ \mathrm{cm^{-3}},
 \]</span></p>
 <p><span class="math display">\[
-E_\mathrm{F}-E_\mathrm{v}=k_\mathrm{B}T\ln\frac{N_\mathrm{v}}{N_\mathrm{A}}
-=\boxed{0.144\ \mathrm{eV}}.
+E_\mathrm{c}-E_\mathrm{F}
+=k_\mathrm{B}T\ln\frac{N_\mathrm{c}}{N_\mathrm{D}}
+=\boxed{0.146\ \mathrm{eV}}.
 \]</span></p></li>
-<li><p>n型（<span class="math inline">\(N_\mathrm{D}=10^{18}\)</span>）：</p>
+<li><p>p 型（<span class="math inline">\(N_\mathrm{A}=10^{18}\)</span>）：</p>
 <p><span class="math display">\[
-n\simeq\boxed{1.00\times10^{18}},
+p\simeq\boxed{1.00\times10^{18}},
 \qquad
-p=\frac{n_\mathrm{i}^2}{n}=\boxed{9.31\times10^1}\ \mathrm{cm^{-3}}.
+n=\frac{n_\mathrm{i}^2}{p}
+=\boxed{9.31\times10^1}\ \mathrm{cm^{-3}},
 \]</span></p>
 <p><span class="math display">\[
-E_\mathrm{c}-E_\mathrm{F}=k_\mathrm{B}T\ln\frac{N_\mathrm{c}}{N_\mathrm{D}}
-=\boxed{0.0868\ \mathrm{eV}}.
+E_\mathrm{F}-E_\mathrm{v}
+=k_\mathrm{B}T\ln\frac{N_\mathrm{v}}{N_\mathrm{A}}
+=\boxed{0.0849\ \mathrm{eV}}.
 \]</span></p></li>
 </ul>
 <table class="caption-top table">
@@ -3521,10 +3500,9 @@ E_\mathrm{c}-E_\mathrm{F}=k_\mathrm{B}T\ln\frac{N_\mathrm{c}}{N_\mathrm{D}}
 <h3 class="anchored" data-anchor-id="semiconductor-temperature-regions">キャリヤ密度の温度依存性</h3>
 <section id="問題c3-n型半導体を三つの温度領域に分ける" class="level4">
 <h4 class="anchored" data-anchor-id="問題c3-n型半導体を三つの温度領域に分ける">問題C3 n型半導体を三つの温度領域に分ける</h4>
-<p><strong>統合元：</strong> 2009問3、2013問2、2014【2】、2018問2、2021問1、2022【1】</p>
 <p>n型半導体の電子濃度 <span class="math inline">\(n(T)\)</span> を、低温・中温・高温の三領域に分けて説明せよ。各領域で電子を供給するものと、フェルミ準位のおおよその位置も述べよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3533,7 +3511,7 @@ E_\mathrm{c}-E_\mathrm{F}=k_\mathrm{B}T\ln\frac{N_\mathrm{c}}{N_\mathrm{D}}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>温度を上げる過程は次の三段階で覚える。</p>
 <ol type="1">
@@ -3593,7 +3571,7 @@ E_\mathrm{c}-E_\mathrm{F}=k_\mathrm{B}T\ln\frac{N_\mathrm{c}}{N_\mathrm{D}}
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3602,7 +3580,7 @@ E_\mathrm{c}-E_\mathrm{F}=k_\mathrm{B}T\ln\frac{N_\mathrm{c}}{N_\mathrm{D}}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-22" class="callout-22-contents callout-collapse collapse">
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>低温の<strong>凍結領域</strong>ではドナーの多くが中性で、熱電離により <span class="math inline">\(n\)</span> が急増する。<span class="math inline">\(E_\mathrm{F}\)</span> はドナー準位近傍。</li>
@@ -3622,7 +3600,6 @@ E_\mathrm{c}-E_\mathrm{F}=k_\mathrm{B}T\ln\frac{N_\mathrm{c}}{N_\mathrm{D}}
 <h3 class="anchored" data-anchor-id="semiconductor-conductivity-factors">電気伝導度を決める要因</h3>
 <section id="問題d1-キャリヤ密度と移動度から伝導度を説明する" class="level4">
 <h4 class="anchored" data-anchor-id="問題d1-キャリヤ密度と移動度から伝導度を説明する">問題D1 キャリヤ密度と移動度から伝導度を説明する</h4>
-<p><strong>出題対応：</strong> 2014年度【1】(3)。伝導度の図と逆数関係は <a href="#semiconductor-conductivity-chart">問題A1</a> に統合した。</p>
 <ol type="1">
 <li>電子密度 <span class="math inline">\(n\)</span>、正孔密度 <span class="math inline">\(p\)</span>、電子移動度 <span class="math inline">\(\mu_n\)</span>、正孔移動度 <span class="math inline">\(\mu_p\)</span> を用いて半導体の伝導度を表せ。</li>
 <li>半導体の伝導度を変える代表的な要因を三つ挙げ、「キャリヤ密度」と「移動度」という語を用いて影響を説明せよ。</li>
@@ -3630,7 +3607,7 @@ E_\mathrm{c}-E_\mathrm{F}=k_\mathrm{B}T\ln\frac{N_\mathrm{c}}{N_\mathrm{D}}
 <li>ドナー濃度を十倍にした結果、<span class="math inline">\(n\)</span> は十倍、イオン化不純物散乱により <span class="math inline">\(\mu_n\)</span> は <span class="math inline">\(9.0\times10^2\,\mathrm{cm^2/(V\,s)}\)</span> になった。伝導度は元の何倍か。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3639,7 +3616,7 @@ E_\mathrm{c}-E_\mathrm{F}=k_\mathrm{B}T\ln\frac{N_\mathrm{c}}{N_\mathrm{D}}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>移動度とは何か。</strong> 熱運動中の電子はあらゆる方向へ動いているため、電界がないと平均速度は <span class="math inline">\(0\)</span> である。電界 <span class="math inline">\(E\)</span> をかけると速度分布がわずかに偏り、平均として一定方向へ進む。この平均速度の大きさをドリフト速度 <span class="math inline">\(v_d\)</span> といい、低電界では</p>
 <p><span class="math display">\[
@@ -3678,7 +3655,7 @@ J=J_n+J_p=q(n\mu_n+p\mu_p)E.
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3687,7 +3664,7 @@ J=J_n+J_p=q(n\mu_n+p\mu_p)E.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><span class="math display">\[
@@ -3716,7 +3693,6 @@ J=J_n+J_p=q(n\mu_n+p\mu_p)E.
 <h3 class="anchored" data-anchor-id="semiconductor-excess-carrier-diffusion">拡散・再結合・連続の式</h3>
 <section id="問題d2-表面で生成した過剰正孔の分布を求める" class="level4">
 <h4 class="anchored" data-anchor-id="問題d2-表面で生成した過剰正孔の分布を求める">問題D2 表面で生成した過剰正孔の分布を求める</h4>
-<p><strong>出題対応：</strong> 2009年度問2。2014年度【3】(3)–(6)および2016年度【3】の理想ダイオード導出で再利用する、少数キャリヤ拡散方程式の基礎を兼ねる。</p>
 <p>n 型半導体の表面 <span class="math inline">\(x=0\)</span> に光を照射し、光の侵入長は無視できるほど短いとする。<span class="math inline">\(x&gt;0\)</span> の内部には光生成がなく、半導体は <span class="math inline">\(x\ge0\)</span> の半無限領域とみなせる。正孔の拡散係数を <span class="math inline">\(D_p\)</span>、寿命を <span class="math inline">\(\tau_p\)</span>、平衡正孔密度を <span class="math inline">\(p_0\)</span> とする。</p>
 <ol type="1">
 <li>電界がなく、一次元、定常状態であるとき、過剰正孔 <span class="math inline">\(\Delta p=p-p_0\)</span> が従う連続の式を書け。</li>
@@ -3725,6 +3701,18 @@ p(0)=p_s,\qquad p(\infty)=p_0
 \]</span> の下で <span class="math inline">\(p(x)\)</span> を求めよ。</li>
 <li><span class="math inline">\(D_p=10\,\mathrm{cm^2/s}\)</span>、<span class="math inline">\(\tau_p=1.0\,\mu\mathrm{s}\)</span> のとき、正孔拡散長 <span class="math inline">\(L_p\)</span> を <span class="math inline">\(\mu\mathrm m\)</span> 単位で求めよ。また <span class="math inline">\(x=L_p\)</span> で過剰正孔密度は表面値の何倍か。</li>
 </ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ノート</span>理論D2：広がろうとする拡散と、消そうとする再結合の綱引き
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div id="cell-fig-excess-hole-diffusion" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>コードはこちら</summary>
@@ -3777,18 +3765,6 @@ p(0)=p_s,\qquad p(\infty)=p_0
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">ノート</span>理論D2：広がろうとする拡散と、消そうとする再結合の綱引き
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-26" class="callout-26-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
 <p><strong>まず平衡分を引く。</strong> 光を当てる前にも、n 型半導体には少数キャリヤとして正孔が <span class="math inline">\(p_0\)</span> だけ存在する。再結合によって消えていくのは光で増えた分なので、</p>
 <p><span class="math display">\[
 \Delta p(x,t)=p(x,t)-p_0
@@ -3862,7 +3838,7 @@ p(x)=p_0+(p_s-p_0)
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3871,7 +3847,7 @@ p(x)=p_0+(p_s-p_0)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-27" class="callout-27-contents callout-collapse collapse">
+<div id="callout-26" class="callout-26-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><span class="math inline">\(x&gt;0\)</span> では <span class="math inline">\(G_p=0\)</span>、定常状態なので <span class="math display">\[
@@ -3911,7 +3887,6 @@ L_p=\sqrt{(10)(1.0\times10^{-6})}\,\mathrm{cm}
 <h3 class="anchored" data-anchor-id="semiconductor-pn-equilibrium">熱平衡と拡散電位</h3>
 <section id="問題e1-pn接合の形成フェルミ準位拡散電位" class="level4">
 <h4 class="anchored" data-anchor-id="問題e1-pn接合の形成フェルミ準位拡散電位">問題E1 pn接合の形成・フェルミ準位・拡散電位</h4>
-<p><strong>対応年度:</strong> 2008 問2、2009 問4、2011 問1、2012 問1、2013 問3、2014【2】、2016【2】、2018 問3、2021 問2、2022【1】、2024 問2</p>
 <p>300 K の Si について、</p>
 <p><span class="math display">\[
 N_c=2.86\times10^{19}\ \mathrm{cm^{-3}},\qquad
@@ -3921,16 +3896,16 @@ N_v=2.66\times10^{19}\ \mathrm{cm^{-3}},
 n_i=9.65\times10^9\ \mathrm{cm^{-3}},\qquad
 E_g=1.12\ \mathrm{eV}
 \]</span></p>
-<p>とする。B を <span class="math inline">\(N_A=10^{17}\ \mathrm{cm^{-3}}\)</span> 添加した p 型 Si と、As を <span class="math inline">\(N_D=10^{18}\ \mathrm{cm^{-3}}\)</span> 添加した n 型 Si がある。完全電離・非縮退・無補償を仮定して、次を求めよ。</p>
+<p>とする。B を <span class="math inline">\(N_A=10^{18}\ \mathrm{cm^{-3}}\)</span> 添加した p 型 Si と、As を <span class="math inline">\(N_D=10^{17}\ \mathrm{cm^{-3}}\)</span> 添加した n 型 Si がある。完全電離・非縮退・無補償を仮定して、次を求めよ。</p>
 <p><a href="#semiconductor-doping">問題C2</a>で求めた接合前のキャリヤ密度とフェルミ準位を用い、次を答えよ。</p>
 <ol type="1">
 <li>両試料を接触させたときにキャリヤが移動する向き、空乏層が生じる理由を説明せよ。</li>
 <li>熱平衡でフェルミ準位が一定になることを、ドリフトと拡散の釣り合いから示せ。</li>
 <li>拡散電位 <span class="math inline">\(V_{\mathrm{bi}}\)</span> を導出し、数値を求めよ。</li>
-<li>過去問に現れる <span class="math inline">\(N_A=10^{16},N_D=10^{17}\)</span> および <span class="math inline">\(N_A=10^{17},N_D=10^{15}\ \mathrm{cm^{-3}}\)</span> の場合も計算せよ。</li>
+<li><span class="math inline">\(N_A=10^{16},N_D=10^{17}\)</span> および <span class="math inline">\(N_A=10^{17},N_D=10^{15}\ \mathrm{cm^{-3}}\)</span> の場合も計算せよ。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3939,7 +3914,7 @@ E_g=1.12\ \mathrm{eV}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-28" class="callout-28-contents callout-collapse collapse">
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <section id="まず接合する前のキャリヤ数を決める" class="level6">
 <h6 class="anchored" data-anchor-id="まず接合する前のキャリヤ数を決める">まず、接合する前のキャリヤ数を決める</h6>
@@ -4021,7 +3996,7 @@ V_T\ln 10\simeq59.6\ \mathrm{mV}
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4030,7 +4005,7 @@ V_T\ln 10\simeq59.6\ \mathrm{mV}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-29" class="callout-29-contents callout-collapse collapse">
+<div id="callout-28" class="callout-28-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>300 K では</p>
 <p><span class="math display">\[
@@ -4039,30 +4014,30 @@ n_i^2=(9.65\times10^9)^2
 \]</span></p>
 <p>p 型側は</p>
 <p><span class="math display">\[
-p_p\simeq N_A=1.00\times10^{17}\ \mathrm{cm^{-3}},
+p_p\simeq N_A=1.00\times10^{18}\ \mathrm{cm^{-3}},
 \]</span></p>
 <p><span class="math display">\[
 n_p=\frac{n_i^2}{N_A}
-=9.31\times10^2\ \mathrm{cm^{-3}}.
+=9.31\times10^1\ \mathrm{cm^{-3}}.
 \]</span></p>
 <p>n 型側は</p>
 <p><span class="math display">\[
-n_n\simeq N_D=1.00\times10^{18}\ \mathrm{cm^{-3}},
+n_n\simeq N_D=1.00\times10^{17}\ \mathrm{cm^{-3}},
 \]</span></p>
 <p><span class="math display">\[
 p_n=\frac{n_i^2}{N_D}
-=9.31\times10^1\ \mathrm{cm^{-3}}.
+=9.31\times10^2\ \mathrm{cm^{-3}}.
 \]</span></p>
 <p>フェルミ準位は</p>
 <p><span class="math display">\[
 E_f-E_v
 =kT\ln\frac{N_v}{N_A}
-=0.1445\ \mathrm{eV},
+=0.0849\ \mathrm{eV},
 \]</span></p>
 <p><span class="math display">\[
 E_c-E_f
 =kT\ln\frac{N_c}{N_D}
-=0.0868\ \mathrm{eV}.
+=0.146\ \mathrm{eV}.
 \]</span></p>
 <p>接触直後、電子は n 側から p 側へ、正孔は p 側から n 側へ拡散する。界面に残った固定イオンが空乏層と n→p 向きの電場を作り、熱平衡ではドリフトと拡散が釣り合う。このときフェルミ準位は接合全体で一定である。</p>
 <p>拡散電位は</p>
@@ -4071,25 +4046,23 @@ E_c-E_f
 V_{\mathrm{bi}}
 &amp;=0.025875
 \ln\left[
-\frac{(10^{17})(10^{18})}
+\frac{(10^{18})(10^{17})}
 {(9.65\times10^9)^2}
 \right]\\
 &amp;=\boxed{0.896\ \mathrm{V}}.
 \end{aligned}
 \]</span></p>
-<p>過去問の濃度違いは次の通りである。</p>
+<p>濃度条件を変えた計算例は次の通りである。</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: right;"><span class="math inline">\(N_A\ (\mathrm{cm^{-3}})\)</span></th>
 <th style="text-align: right;"><span class="math inline">\(N_D\ (\mathrm{cm^{-3}})\)</span></th>
-<th style="text-align: left;">対応年度</th>
 <th style="text-align: right;"><span class="math inline">\(V_{\mathrm{bi}}\ (\mathrm V)\)</span></th>
 </tr>
 </thead>
@@ -4097,112 +4070,25 @@ V_{\mathrm{bi}}
 <tr class="odd">
 <td style="text-align: right;"><span class="math inline">\(10^{16}\)</span></td>
 <td style="text-align: right;"><span class="math inline">\(10^{17}\)</span></td>
-<td style="text-align: left;">2008 問2</td>
 <td style="text-align: right;"><span class="math inline">\(0.776\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: right;"><span class="math inline">\(10^{17}\)</span></td>
 <td style="text-align: right;"><span class="math inline">\(10^{18}\)</span></td>
-<td style="text-align: left;">2009、2011、2012、2013、2021、2024</td>
 <td style="text-align: right;"><span class="math inline">\(0.896\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;"><span class="math inline">\(10^{18}\)</span></td>
 <td style="text-align: right;"><span class="math inline">\(10^{17}\)</span></td>
-<td style="text-align: left;">2014、2022</td>
 <td style="text-align: right;"><span class="math inline">\(0.896\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: right;"><span class="math inline">\(10^{17}\)</span></td>
 <td style="text-align: right;"><span class="math inline">\(10^{15}\)</span></td>
-<td style="text-align: left;">2018 問3</td>
 <td style="text-align: right;"><span class="math inline">\(0.717\)</span></td>
 </tr>
 </tbody>
 </table>
-<section id="問2の穴埋め復元" class="level6">
-<h6 class="anchored" data-anchor-id="問2の穴埋め復元">2008 問2の穴埋め復元</h6>
-<p>文章の空欄は次の通り。</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: center;">空欄</th>
-<th style="text-align: left;">復元</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">A</td>
-<td style="text-align: left;"><span class="math inline">\(E_g\)</span> が大きいほどキャリヤ密度は<strong>小さい</strong></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">B</td>
-<td style="text-align: left;">電気伝導度は<strong>小さい（低い）</strong></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C</td>
-<td style="text-align: left;">n 側から p 側へ移動するのは<strong>電子</strong>（同時に正孔は逆向きへ移動）</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">D</td>
-<td style="text-align: left;"><strong>空乏層</strong></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">E</td>
-<td style="text-align: left;">不純物濃度が低い側ほど<strong>厚い</strong></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">F</td>
-<td style="text-align: left;">逆バイアスでは p 側に<strong>負極</strong></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">G</td>
-<td style="text-align: left;">逆バイアスでは n 側に<strong>正極</strong></td>
-</tr>
-</tbody>
-</table>
-<p>数式の空欄は</p>
-<p><span class="math display">\[
-(\text{あ})\quad
-d_e(E)=\frac{1}{2\pi^2}
-\left(\frac{2m_e^*}{\hbar^2}\right)^{3/2}
-\sqrt{E-E_c},
-\]</span></p>
-<p><span class="math display">\[
-(\text{い})\quad
-f(E)=\frac{1}{\exp[(E-E_f)/kT]+1},
-\]</span></p>
-<p><span class="math display">\[
-(\text{う})\quad E-E_f\gg kT,
-\]</span></p>
-<p><span class="math display">\[
-(\text{え})\quad
-f(E)\simeq\exp\left[-\frac{E-E_f}{kT}\right],
-\]</span></p>
-<p><span class="math display">\[
-(\text{お})\quad
-n_i=\sqrt{N_cN_v}\exp\left(-\frac{E_g}{2kT}\right),
-\]</span></p>
-<p><span class="math display">\[
-(\text{か})\quad
-\frac{kT}{2}\ln\frac{N_v}{N_c}
-=\frac{3}{4}kT\ln\frac{m_h^*}{m_e^*},
-\]</span></p>
-<p><span class="math display">\[
-(\text{き})\quad kT\ln\frac{N_c}{N_D},\qquad
-(\text{く})\quad kT\ln\frac{N_D}{n_i},
-\]</span></p>
-<p><span class="math display">\[
-(\text{け})\quad kT\ln\frac{N_v}{N_A},\qquad
-(\text{こ})\quad kT\ln\frac{N_A}{n_i},
-\]</span></p>
-<p><span class="math display">\[
-(\text{さ})\quad
-\frac{kT}{q}\ln\frac{N_AN_D}{n_i^2}
-\]</span></p>
-<p>である。<span class="math inline">\((\text{か})\)</span> の二つ目の等号は、単一の放物線バンドで状態密度有効質量を使う場合に成り立つ。</p>
-<p><strong>2014【2】は元の文章が資料中に残っていないため、同年が要求する <span class="math inline">\((\text{し})\)</span> は安全には復元できない。</strong> 原本なしに推測して穴を埋めない。</p>
-</section>
 </div>
 </div>
 </div>
@@ -4212,16 +4098,15 @@ n_i=\sqrt{N_cN_v}\exp\left(-\frac{E_g}{2kT}\right),
 <h3 class="anchored" data-anchor-id="semiconductor-depletion">空乏層とポアソン方程式</h3>
 <section id="問題e2-空乏層の電荷電場電位幅" class="level4">
 <h4 class="anchored" data-anchor-id="問題e2-空乏層の電荷電場電位幅">問題E2 空乏層の電荷・電場・電位・幅</h4>
-<p><strong>対応年度:</strong> 2008 問2、2011 問1(7)、2012 問1(5)(6)、2013 問3(3)(4)、2014【3】(8)〜(10)、2016【3】、2018 問3、2021 問2(7)、2024 問2(6)</p>
 <p><span class="math inline">\(x=0\)</span> を急峻 pn 接合の界面とし、p 側を <span class="math inline">\(x&lt;0\)</span>、n 側を <span class="math inline">\(x&gt;0\)</span> とする。空乏層端をそれぞれ <span class="math inline">\(-x_p,x_n\)</span> とする。</p>
 <ol type="1">
 <li>空乏近似のもとで電荷密度 <span class="math inline">\(\rho(x)\)</span>、電場 <span class="math inline">\(\mathcal E(x)\)</span>、電位 <span class="math inline">\(\phi(x)\)</span> を求めよ。</li>
 <li><span class="math inline">\(N_Ax_p=N_Dx_n\)</span> を示し、低濃度側の空乏層が厚くなる理由を説明せよ。</li>
 <li>順方向電圧を <span class="math inline">\(V_a&gt;0\)</span> として、全空乏層幅 <span class="math inline">\(W=x_p+x_n\)</span> のバイアス依存性を導出せよ。</li>
-<li>300 K、<span class="math inline">\(N_A=10^{17},N_D=10^{18}\ \mathrm{cm^{-3}}\)</span>、無バイアスの Si について <span class="math inline">\(W,x_p,x_n\)</span> および最大電場を求めよ。</li>
+<li>300 K、<span class="math inline">\(N_A=10^{18},N_D=10^{17}\ \mathrm{cm^{-3}}\)</span>、無バイアスの Si について <span class="math inline">\(W,x_p,x_n\)</span> および最大電場を求めよ。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4230,7 +4115,7 @@ n_i=\sqrt{N_cN_v}\exp\left(-\frac{E_g}{2kT}\right),
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-30" class="callout-30-contents callout-collapse collapse">
+<div id="callout-29" class="callout-29-contents callout-collapse collapse">
 <section id="空乏近似" class="level6 callout-body-container callout-body">
 <h6 class="anchored" data-anchor-id="空乏近似">空乏近似</h6>
 <p>空乏層内の自由電子と自由正孔を無視し、イオン化不純物だけが残ると考える。</p>
@@ -4315,7 +4200,7 @@ x_n=\frac{N_A}{N_A+N_D}W.
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">300.0</span>                    <span class="co"># K</span></span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>eps0 <span class="op">=</span> <span class="fl">8.85e-14</span>              <span class="co"># F/cm</span></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>eps_s <span class="op">=</span> <span class="fl">11.9</span> <span class="op">*</span> eps0          <span class="co"># F/cm</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>NA, ND <span class="op">=</span> <span class="fl">1.0e17</span>, <span class="fl">1.0e18</span>      <span class="co"># cm^-3</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>NA, ND <span class="op">=</span> <span class="fl">1.0e18</span>, <span class="fl">1.0e17</span>      <span class="co"># cm^-3</span></span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>ni <span class="op">=</span> <span class="fl">9.65e9</span>                  <span class="co"># cm^-3</span></span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>Nc <span class="op">=</span> <span class="fl">2.86e19</span>                 <span class="co"># cm^-3</span></span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>Eg <span class="op">=</span> <span class="fl">1.12</span>                    <span class="co"># eV</span></span>
@@ -4397,13 +4282,13 @@ x_n=\frac{N_A}{N_A+N_D}W.
 <span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-pn-depletion-four-panel" class="quarto-float quarto-figure quarto-figure-center anchored" alt="p側の広い負電荷領域とn側の狭い正電荷領域、三角形状の負の電場、単調に上昇する電位、水平なフェルミ準位と曲がる伝導帯・価電子帯を縦に4段で示した図。">
+<div id="fig-pn-depletion-four-panel" class="quarto-float quarto-figure quarto-figure-center anchored" alt="p側の狭い負電荷領域とn側の広い正電荷領域、三角形状の負の電場、単調に上昇する電位、水平なフェルミ準位と曲がる伝導帯・価電子帯を縦に4段で示した図。">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pn-depletion-four-panel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="半導体物性学_files/figure-html/fig-pn-depletion-four-panel-output-1.png" alt="p側の広い負電荷領域とn側の狭い正電荷領域、三角形状の負の電場、単調に上昇する電位、水平なフェルミ準位と曲がる伝導帯・価電子帯を縦に4段で示した図。" width="857" height="992" class="figure-img">
+<img src="半導体物性学_files/figure-html/fig-pn-depletion-four-panel-output-1.png" alt="p側の狭い負電荷領域とn側の広い正電荷領域、三角形状の負の電場、単調に上昇する電位、水平なフェルミ準位と曲がる伝導帯・価電子帯を縦に4段で示した図。" width="853" height="992" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pn-depletion-four-panel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-図&nbsp;9: NA=10^17 cm<sup>-3、ND=10</sup>18 cm^-3 の急峻 Si pn 接合における空間電荷密度、電場、電位、バンド端。横軸は接合界面からの距離で、灰色の範囲が空乏層である。
+図&nbsp;9: NA=10^18 cm<sup>-3、ND=10</sup>17 cm^-3 の急峻 Si pn 接合における空間電荷密度、電場、電位、バンド端。横軸は接合界面からの距離で、灰色の範囲が空乏層である。
 </figcaption>
 </figure>
 </div>
@@ -4414,7 +4299,7 @@ x_n=\frac{N_A}{N_A+N_D}W.
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4423,7 +4308,7 @@ x_n=\frac{N_A}{N_A+N_D}W.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-31" class="callout-31-contents callout-collapse collapse">
+<div id="callout-30" class="callout-30-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>空乏近似により</p>
 <p><span class="math display">\[
@@ -4457,10 +4342,10 @@ W=\sqrt{
 \boxed{W=0.1139\ \mu\mathrm m},
 \]</span></p>
 <p><span class="math display">\[
-\boxed{x_p=0.1035\ \mu\mathrm m},\qquad
-\boxed{x_n=0.01035\ \mu\mathrm m}.
+\boxed{x_p=0.01035\ \mu\mathrm m},\qquad
+\boxed{x_n=0.1035\ \mu\mathrm m}.
 \]</span></p>
-<p>p 側が n 側の10倍厚い。最大電場の大きさは</p>
+<p>n 側が p 側の10倍厚い。最大電場の大きさは</p>
 <p><span class="math display">\[
 |\mathcal E_{\max}|
 =\frac{qN_Ax_p}{\varepsilon_s}
@@ -4476,10 +4361,9 @@ W=\sqrt{
 <h3 class="anchored" data-anchor-id="semiconductor-cv">接合容量とC–V特性</h3>
 <section id="問題e3-cv-特性から拡散電位と不純物濃度を読む" class="level4">
 <h4 class="anchored" data-anchor-id="問題e3-cv-特性から拡散電位と不純物濃度を読む">問題E3 C–V 特性から拡散電位と不純物濃度を読む</h4>
-<p><strong>対応年度:</strong> 2008 問2(6)、2009 問4(6)、2011 問1(8)、2012 問1(7)、2013 問3(5)、2014【3】(11)、2016【3】、2018 問3、2021 問2(8)、2024 問2(7)</p>
 <p>急峻 pn 接合の空乏層を誘電体とみなし、接合容量 <span class="math inline">\(C\)</span> のバイアス依存性を導出せよ。また、<span class="math inline">\(1/C^2\)</span>–<span class="math inline">\(V\)</span> 測定から拡散電位と不純物濃度を求める方法、ならびにその測定だけでは決められない量を説明せよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4488,7 +4372,7 @@ W=\sqrt{
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-32" class="callout-32-contents callout-collapse collapse">
+<div id="callout-31" class="callout-31-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>接合面積を <span class="math inline">\(A\)</span>、単位面積当たりの容量を <span class="math inline">\(c=C/A\)</span> とする。空乏層は、電荷を蓄える二枚の領域の間隔が <span class="math inline">\(W\)</span> のコンデンサとして働くので</p>
 <p><span class="math display">\[
@@ -4623,7 +4507,7 @@ N(W)=
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4632,7 +4516,7 @@ N(W)=
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-33" class="callout-33-contents callout-collapse collapse">
+<div id="callout-32" class="callout-32-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>接合容量は</p>
 <p><span class="math display">\[
@@ -4672,14 +4556,13 @@ N_{\mathrm{eff}}
 <h3 class="anchored" data-anchor-id="semiconductor-diode-iv">少数キャリヤ拡散とI–V特性</h3>
 <section id="問題e4-理想-pn-ダイオードの-iv-特性を導く" class="level4">
 <h4 class="anchored" data-anchor-id="問題e4-理想-pn-ダイオードの-iv-特性を導く">問題E4 理想 pn ダイオードの I–V 特性を導く</h4>
-<p><strong>対応年度:</strong> 2008 問2(8)、2009 問4(7)、2011 問1(9)、2012 問1(8)、2013 問3(6)、2014【3】(1)〜(7)、2016【3】、2018 問3、2021 問2(9)、2022【1】</p>
 <p>理想 pn ダイオードの導出で用いる仮定を述べたうえで、順方向電圧 <span class="math inline">\(V\)</span> を印加したときの空乏層端の少数キャリヤ濃度、準中性領域での濃度分布、拡散電流を順に求め、</p>
 <p><span class="math display">\[
 J=J_s\left[\exp\left(\frac{qV}{kT}\right)-1\right]
 \]</span></p>
 <p>を導出せよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-34-contents" aria-controls="callout-34" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4688,7 +4571,7 @@ J=J_s\left[\exp\left(\frac{qV}{kT}\right)-1\right]
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-34" class="callout-34-contents callout-collapse collapse">
+<div id="callout-33" class="callout-33-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <section id="導出の前提" class="level6">
 <h6 class="anchored" data-anchor-id="導出の前提">導出の前提</h6>
@@ -4825,7 +4708,7 @@ J\simeq-J_s
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-35-contents" aria-controls="callout-35" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-34-contents" aria-controls="callout-34" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4834,7 +4717,7 @@ J\simeq-J_s
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-35" class="callout-35-contents callout-collapse collapse">
+<div id="callout-34" class="callout-34-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>低注入、非縮退、完全電離、急峻接合・空乏近似、定常一次元、空乏層内生成再結合なし、理想オーミック接触を仮定する。</p>
 <p>順バイアスにより空乏層端の少数キャリヤは</p>
@@ -4889,7 +4772,6 @@ J=q\left(
 <h3 class="anchored" data-anchor-id="semiconductor-ideality">理想係数と非理想性</h3>
 <section id="問題e5-理想係数と実際のダイオード" class="level4">
 <h4 class="anchored" data-anchor-id="問題e5-理想係数と実際のダイオード">問題E5 理想係数と実際のダイオード</h4>
-<p><strong>対応年度:</strong> 2016【2】、2018 問3、2021 問2(10)、2022【1】、2024 問2(8)</p>
 <p>実際のダイオードを</p>
 <p><span class="math display">\[
 I=I_0\left[
@@ -4898,7 +4780,7 @@ I=I_0\left[
 \]</span></p>
 <p>と表すとき、理想係数 <span class="math inline">\(\eta\simeq1\)</span> と <span class="math inline">\(\eta\simeq2\)</span> が現れる物理的理由を説明せよ。また、低電流・中電流・高電流、逆バイアスにおいて理想式から外れる主な原因を述べよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-35-contents" aria-controls="callout-35" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4907,7 +4789,7 @@ I=I_0\left[
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-36" class="callout-36-contents callout-collapse collapse">
+<div id="callout-35" class="callout-35-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <section id="半対数グラフの傾きが理想係数である" class="level6">
 <h6 class="anchored" data-anchor-id="半対数グラフの傾きが理想係数である">半対数グラフの傾きが理想係数である</h6>
@@ -5072,7 +4954,7 @@ I=I_0\left[
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-37-contents" aria-controls="callout-37" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -5081,7 +4963,7 @@ I=I_0\left[
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-37" class="callout-37-contents callout-collapse collapse">
+<div id="callout-36" class="callout-36-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>理想係数は半対数 I–V の傾きから</p>
 <p><span class="math display">\[
@@ -5111,10 +4993,9 @@ I=I_0\left[
 <h3 class="anchored" data-anchor-id="semiconductor-schottky-ohmic">Schottky接合とオーミック接合</h3>
 <section id="問題f1-schottky-接合とオーミック接合" class="level4">
 <h4 class="anchored" data-anchor-id="問題f1-schottky-接合とオーミック接合">問題F1 Schottky 接合とオーミック接合</h4>
-<p><strong>対応年度:</strong> 2008 問2(7)、2009 問5、2012 問5、2018 問2</p>
 <p>n 型半導体と金属を接触させる。理想界面を仮定したとき、金属仕事関数 <span class="math inline">\(\Phi_M\)</span>、半導体仕事関数 <span class="math inline">\(\Phi_S\)</span>、電子親和力 <span class="math inline">\(\chi\)</span> を用いて、Schottky 接合とオーミック接合になる条件を説明せよ。接触前後のエネルギーバンド図と I–V 特性を示し、現実の接触で仕事関数則だけでは判定できない理由も述べよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-38-contents" aria-controls="callout-38" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-37-contents" aria-controls="callout-37" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -5123,7 +5004,7 @@ I=I_0\left[
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-38" class="callout-38-contents callout-collapse collapse">
+<div id="callout-37" class="callout-37-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <section id="接触前電子を真空へ取り出す費用を比べる" class="level6">
 <h6 class="anchored" data-anchor-id="接触前電子を真空へ取り出す費用を比べる">接触前：電子を真空へ取り出す費用を比べる</h6>
@@ -5251,7 +5132,7 @@ W\simeq
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-39-contents" aria-controls="callout-39" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-38-contents" aria-controls="callout-38" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -5260,7 +5141,7 @@ W\simeq
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-39" class="callout-39-contents callout-collapse collapse">
+<div id="callout-38" class="callout-38-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>n 型半導体の理想界面では、</p>
 <p><span class="math display">\[
@@ -5288,7 +5169,6 @@ W\simeq
 <h3 class="anchored" data-anchor-id="semiconductor-material-map">直接遷移・格子整合・バンドギャップ</h3>
 <section id="問題g1-格子定数バンドギャップ図を読む" class="level4">
 <h4 class="anchored" data-anchor-id="問題g1-格子定数バンドギャップ図を読む">問題G1 格子定数–バンドギャップ図を読む</h4>
-<p><strong>統合元：</strong> 2008問1、2009問1、2011問3、2012問3、2016【1】、2022【2】</p>
 <p>添付図を用いて、次を説明せよ。</p>
 <p>直接遷移と間接遷移の物理は<a href="#semiconductor-si-ge-transition">問題A3</a>で扱った。ここでは図の読み方へ集中する。</p>
 <ol type="1">
@@ -5306,7 +5186,7 @@ W\simeq
 </figure>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-41-contents" aria-controls="callout-41" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-40-contents" aria-controls="callout-40" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -5315,7 +5195,7 @@ W\simeq
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-41" class="callout-41-contents callout-collapse collapse">
+<div id="callout-40" class="callout-40-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>直接遷移・間接遷移とフォノンの役割は<a href="#semiconductor-si-ge-transition">問題A3</a>を参照する。ここでは、その線種を材料選択へ使う。</p>
 <p><strong>材料図は三手で読む。</strong></p>
@@ -5359,7 +5239,7 @@ E_\mathrm{g}(x)=xE_{\mathrm{g},A}+(1-x)E_{\mathrm{g},B}-bx(1-x)
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-42-contents" aria-controls="callout-42" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-41-contents" aria-controls="callout-41" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -5368,7 +5248,7 @@ E_\mathrm{g}(x)=xE_{\mathrm{g},A}+(1-x)E_{\mathrm{g},B}-bx(1-x)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-42" class="callout-42-contents callout-collapse collapse">
+<div id="callout-41" class="callout-41-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>異種材料は、まず横軸で格子定数が近い組を選んで転位を抑え、次に縦軸の <span class="math inline">\(E_\mathrm{g}\)</span> 差で吸収波長またはキャリヤ障壁を設計し、発光層なら直接ギャップを選ぶ。例えば AlGaAs/GaAs は格子不整合が小さく、組成によりギャップ差を作れるため、レーザ、HBT、HEMTに利用できる。</p>
 </div>
@@ -5380,7 +5260,6 @@ E_\mathrm{g}(x)=xE_{\mathrm{g},A}+(1-x)E_{\mathrm{g},B}-bx(1-x)
 <h3 class="anchored" data-anchor-id="semiconductor-solar-cell">太陽電池</h3>
 <section id="問題g2-単接合とタンデム太陽電池を説明する" class="level4">
 <h4 class="anchored" data-anchor-id="問題g2-単接合とタンデム太陽電池を説明する">問題G2 単接合とタンデム太陽電池を説明する</h4>
-<p><strong>統合元：</strong> 2008問1、2009問1、2011問2、2012問2、2013問4、2014【4】、2016【1】、2018問4、2021問3、2022【2】、2024問3</p>
 <ol type="1">
 <li>太陽電池の構造と動作原理を説明せよ。</li>
 <li>照射下I–V特性を示し、短絡電流 <span class="math inline">\(I_\mathrm{sc}\)</span>、開放電圧 <span class="math inline">\(V_\mathrm{oc}\)</span>、最大電力点、フィルファクター <span class="math inline">\(FF\)</span>、変換効率を定義せよ。</li>
@@ -5388,7 +5267,7 @@ E_\mathrm{g}(x)=xE_{\mathrm{g},A}+(1-x)E_{\mathrm{g},B}-bx(1-x)
 <li>タンデム化の原理と、格子整合を考えた材料例を示せ。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-43-contents" aria-controls="callout-43" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-42-contents" aria-controls="callout-42" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -5397,7 +5276,7 @@ E_\mathrm{g}(x)=xE_{\mathrm{g},A}+(1-x)E_{\mathrm{g},B}-bx(1-x)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-43" class="callout-43-contents callout-collapse collapse">
+<div id="callout-42" class="callout-42-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>太陽電池の仕事は三段階である。</p>
 <ol type="1">
@@ -5486,7 +5365,7 @@ FF=\frac{V_\mathrm{mp}I_\mathrm{mp}}{V_\mathrm{oc}I_\mathrm{sc}},
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-44-contents" aria-controls="callout-44" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-43-contents" aria-controls="callout-43" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -5495,7 +5374,7 @@ FF=\frac{V_\mathrm{mp}I_\mathrm{mp}}{V_\mathrm{oc}I_\mathrm{sc}},
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-44" class="callout-44-contents callout-collapse collapse">
+<div id="callout-43" class="callout-43-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>太陽電池は光吸収で生成した電子・正孔対をpn接合の内蔵電界と拡散で分離し、選択接触から外部回路へ取り出す。</p>
 <p><span class="math display">\[
@@ -5516,14 +5395,13 @@ FF=\frac{V_\mathrm{mp}I_\mathrm{mp}}{V_\mathrm{oc}I_\mathrm{sc}},\quad
 <h3 class="anchored" data-anchor-id="semiconductor-led-laser">LEDと半導体レーザ</h3>
 <section id="問題g3-発光原理と二重ヘテロ構造を説明する" class="level4">
 <h4 class="anchored" data-anchor-id="問題g3-発光原理と二重ヘテロ構造を説明する">問題G3 発光原理と二重ヘテロ構造を説明する</h4>
-<p><strong>統合元：</strong> 2008問1、2009問1、2011問3、2012問3、2013問4、2014【4】、2016【1】、2018問4、2021問3、2022【2】、2024問3</p>
 <ol type="1">
 <li>LEDの発光原理、波長制御、直接遷移材料を使う理由を述べよ。</li>
 <li>AlGaAs/GaAs/AlGaAs 二重ヘテロ構造が発光効率を高める理由を説明せよ。</li>
 <li>LEDと半導体レーザを、自発／誘導放出、共振器、しきい値、スペクトル、指向性で比較せよ。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-45-contents" aria-controls="callout-45" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-44-contents" aria-controls="callout-44" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -5532,7 +5410,7 @@ FF=\frac{V_\mathrm{mp}I_\mathrm{mp}}{V_\mathrm{oc}I_\mathrm{sc}},\quad
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-45" class="callout-45-contents callout-collapse collapse">
+<div id="callout-44" class="callout-44-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>LEDへ順バイアスをかけると、n側から電子、p側から正孔が活性領域へ注入される。電子が空いた価電子帯状態へ落ちて正孔と再結合すると、エネルギー差が光子になる。</p>
 <p><span class="math display">\[
@@ -5635,7 +5513,7 @@ h\nu\simeq E_\mathrm{g},
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-46-contents" aria-controls="callout-46" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-45-contents" aria-controls="callout-45" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -5644,7 +5522,7 @@ h\nu\simeq E_\mathrm{g},
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-46" class="callout-46-contents callout-collapse collapse">
+<div id="callout-45" class="callout-45-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>LEDは順バイアスで注入した電子と正孔の放射再結合を利用し、<span class="math inline">\(h\nu\simeq E_\mathrm{g}\)</span> なので混晶組成などで色を制御する。直接遷移型では光子だけで遷移でき、発光効率が高い。</p>
 <p>AlGaAs/GaAs/AlGaAsでは、広ギャップAlGaAsが電子・正孔に対する障壁を作って狭ギャップGaAs活性層へ閉じ込め、屈折率差が光も閉じ込める。半導体レーザはこの活性層に反転分布と誘導放出を作り、共振器利得が損失を超えて発振する。LEDは自発放出で広帯域・低指向性、レーザはしきい値を持ち狭帯域・高指向性である。</p>
@@ -5657,14 +5535,13 @@ h\nu\simeq E_\mathrm{g},
 <h3 class="anchored" data-anchor-id="semiconductor-heterotransistors">BJT・HBT・HEMT</h3>
 <section id="問題g4-異種材料でトランジスタを高性能化する" class="level4">
 <h4 class="anchored" data-anchor-id="問題g4-異種材料でトランジスタを高性能化する">問題G4 異種材料でトランジスタを高性能化する</h4>
-<p><strong>統合元：</strong> 2008問1、2009問1、2013問4、2014【5】、2016【1】【4】、2018問4、2021問3、2022【2】、2024問3</p>
 <ol type="1">
 <li>npnバイポーラトランジスタ（BJT）の構造と能動領域での増幅原理を説明せよ。</li>
 <li>AlGaAs/GaAsヘテロ接合バイポーラトランジスタ（HBT）で、広ギャップエミッタを使う利点を述べよ。</li>
 <li>AlGaAs/GaAs高電子移動度トランジスタ（HEMT）で、変調ドープと二次元電子ガスが高移動度を生む理由を説明せよ。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-47-contents" aria-controls="callout-47" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-46-contents" aria-controls="callout-46" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -5673,7 +5550,7 @@ h\nu\simeq E_\mathrm{g},
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-47" class="callout-47-contents callout-collapse collapse">
+<div id="callout-46" class="callout-46-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>BJT。</strong> npn BJTは、重ドープn型エミッタ、薄く軽ドープされたp型ベース、n型コレクタでできる。エミッタ–ベース接合を順バイアス、ベース–コレクタ接合を逆バイアスにすると、エミッタからベースへ電子が注入される。ベースが薄いため大部分は再結合せずコレクタ側へ到達し、逆電界に回収される。小さいベース電流で大きいコレクタ電流を制御できる。</p>
 <p>性能を上げる基本は、次の三つである。</p>
@@ -5767,7 +5644,7 @@ h\nu\simeq E_\mathrm{g},
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-48-contents" aria-controls="callout-48" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-47-contents" aria-controls="callout-47" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -5776,7 +5653,7 @@ h\nu\simeq E_\mathrm{g},
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-48" class="callout-48-contents callout-collapse collapse">
+<div id="callout-47" class="callout-47-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>npn BJTでは、順バイアスされたエミッタ–ベース接合から電子を薄いp型ベースへ注入し、大部分を逆バイアスのコレクタ接合が回収するため、小さいベース電流で大きいコレクタ電流を制御できる。</p>
 <p>AlGaAs/GaAs HBTでは広ギャップAlGaAsエミッタがベースからの正孔逆注入を抑え、電子注入効率を保ったままベースを高濃度化して抵抗を下げられる。</p>
@@ -5793,14 +5670,13 @@ h\nu\simeq E_\mathrm{g},
 <h3 class="anchored" data-anchor-id="semiconductor-mos-cmos">MOSFETとCMOS</h3>
 <section id="問題h1-mosfetとcmosインバータを説明する" class="level4">
 <h4 class="anchored" data-anchor-id="問題h1-mosfetとcmosインバータを説明する">問題H1 MOSFETとCMOSインバータを説明する</h4>
-<p><strong>統合元：</strong> 2012問4、2013問4、2014【5】、2016【4】、2018問5、2021問3、2024問3</p>
 <ol type="1">
 <li>p型基板上のnMOSの構造と、ゲート電圧による反転チャネル形成を説明せよ。</li>
 <li>長チャネル近似で線形領域と飽和領域の違いを述べよ。</li>
 <li>nMOSとpMOSからCMOS NOT回路を作り、入力Low/Highでの動作と静的消費電力を説明せよ。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-49-contents" aria-controls="callout-49" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-48-contents" aria-controls="callout-48" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -5809,7 +5685,7 @@ h\nu\simeq E_\mathrm{g},
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-49" class="callout-49-contents callout-collapse collapse">
+<div id="callout-48" class="callout-48-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>nMOSはp型半導体中のn<span class="math inline">\(^+\)</span>ソース・ドレイン、その上の薄いゲート絶縁膜、金属ゲートからなる。ゲートへ正電圧を加えると、まず表面の正孔が追い出されて空乏化し、さらに電圧を上げると電子が引き寄せられてn型の<strong>反転層</strong>ができる。これがソースとドレインを結ぶチャネルである。</p>
 <p>ゲートは絶縁されているため、理想的には定常ゲート電流をほとんど流さず、電界でチャネルの有無を制御できる。</p>
@@ -5899,7 +5775,7 @@ I_\mathrm{D,sat}=\frac12\mu_\mathrm{n}C_\mathrm{ox}\frac{W}{L}
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-50-contents" aria-controls="callout-50" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-49-contents" aria-controls="callout-49" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -5908,7 +5784,7 @@ I_\mathrm{D,sat}=\frac12\mu_\mathrm{n}C_\mathrm{ox}\frac{W}{L}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-50" class="callout-50-contents callout-collapse collapse">
+<div id="callout-49" class="callout-49-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>nMOSでは正のゲート電圧がp型表面の正孔を排除し、しきい値を超えると電子反転層を作ってn<span class="math inline">\(^+\)</span>ソース・ドレインを接続する。小さい <span class="math inline">\(V_\mathrm{DS}\)</span> では抵抗的な線形領域、<span class="math inline">\(V_\mathrm{DS}\ge V_\mathrm{GS}-V_\mathrm{T}\)</span> ではドレイン端がピンチオフする飽和領域となる。</p>
 <p>CMOSインバータはpMOSを電源側、nMOSを接地側へ置く。入力LowでpMOSのみONとなり出力High、入力HighでnMOSのみONとなり出力Lowである。定常時は一方がOFFなので、理想的な静的消費電力が小さい。</p>
@@ -5921,10 +5797,9 @@ I_\mathrm{D,sat}=\frac12\mu_\mathrm{n}C_\mathrm{ox}\frac{W}{L}
 <h3 class="anchored" data-anchor-id="semiconductor-dram">DRAM</h3>
 <section id="問題h2-1t1cメモリセルの一周期を説明する" class="level4">
 <h4 class="anchored" data-anchor-id="問題h2-1t1cメモリセルの一周期を説明する">問題H2 1T1Cメモリセルの一周期を説明する</h4>
-<p><strong>統合元：</strong> 2012問4、2013問4</p>
 <p>DRAMの1トランジスタ・1キャパシタ（1T1C）セルについて、書込み、保持、読出し、再書込み、リフレッシュを説明せよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-51-contents" aria-controls="callout-51" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-50-contents" aria-controls="callout-50" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -5933,7 +5808,7 @@ I_\mathrm{D,sat}=\frac12\mu_\mathrm{n}C_\mathrm{ox}\frac{W}{L}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-51" class="callout-51-contents callout-collapse collapse">
+<div id="callout-50" class="callout-50-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>DRAMセルでは、アクセストランジスタがビット線と蓄積キャパシタの間の弁、ワード線が弁を開く信号である。</p>
 <ol type="1">
@@ -5948,7 +5823,7 @@ I_\mathrm{D,sat}=\frac12\mu_\mathrm{n}C_\mathrm{ox}\frac{W}{L}
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-52-contents" aria-controls="callout-52" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-51-contents" aria-controls="callout-51" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -5957,7 +5832,7 @@ I_\mathrm{D,sat}=\frac12\mu_\mathrm{n}C_\mathrm{ox}\frac{W}{L}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-52" class="callout-52-contents callout-collapse collapse">
+<div id="callout-51" class="callout-51-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>1T1Cセルは、ワード線でアクセストランジスタをONにし、ビット線からキャパシタへ電荷の有無を書き込む。保持中はトランジスタをOFFにする。読出しではプリチャージしたビット線とセルを電荷共有し、微小電圧差をセンスアンプで判定する。読出しは蓄積電荷を乱すため再書込みが必要であり、漏れによる消失を防ぐため周期的なリフレッシュを行う。</p>
 </div>
@@ -5969,14 +5844,13 @@ I_\mathrm{D,sat}=\frac12\mu_\mathrm{n}C_\mathrm{ox}\frac{W}{L}
 <h3 class="anchored" data-anchor-id="semiconductor-scaling">微細化と新材料</h3>
 <section id="問題h3-スケーリング則限界材料対策を説明する" class="level4">
 <h4 class="anchored" data-anchor-id="問題h3-スケーリング則限界材料対策を説明する">問題H3 スケーリング則・限界・材料対策を説明する</h4>
-<p><strong>統合元：</strong> 2012問4、2014【5】、2016【4】、2018問5、2021問3、2024問3</p>
 <ol type="1">
 <li>寸法と電圧を <span class="math inline">\(1/\kappa\)</span> にする定電界スケーリングで、容量、電流、遅延、素子密度、スイッチングエネルギーがどう変わるか示せ。</li>
 <li>理想スケーリングが破綻する物理要因を挙げよ。</li>
 <li>high-<span class="math inline">\(k\)</span>絶縁膜、金属ゲート、歪みチャネル、FinFET/GAA、Ge・III–V材料が何を改善するか説明せよ。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-53-contents" aria-controls="callout-53" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-52-contents" aria-controls="callout-52" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -5985,7 +5859,7 @@ I_\mathrm{D,sat}=\frac12\mu_\mathrm{n}C_\mathrm{ox}\frac{W}{L}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-53" class="callout-53-contents callout-collapse collapse">
+<div id="callout-52" class="callout-52-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>理想的な定電界スケーリングでは</p>
 <p><span class="math display">\[
@@ -6077,7 +5951,7 @@ N\to\kappa N
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-54-contents" aria-controls="callout-54" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-53-contents" aria-controls="callout-53" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -6086,7 +5960,7 @@ N\to\kappa N
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-54" class="callout-54-contents callout-collapse collapse">
+<div id="callout-53" class="callout-53-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>定電界スケーリングでは寸法・電圧を <span class="math inline">\(1/\kappa\)</span> とし、面積は <span class="math inline">\(1/\kappa^2\)</span>、密度は <span class="math inline">\(\kappa^2\)</span>、容量と電流は <span class="math inline">\(1/\kappa\)</span>、遅延は <span class="math inline">\(1/\kappa\)</span>、スイッチングエネルギーは <span class="math inline">\(1/\kappa^3\)</span> となる。</p>
 <p>実際には短チャネル効果、サブスレッショルド・ゲート漏れ、速度飽和、発熱、配線遅延、統計ばらつきにより理想則が破綻する。high-<span class="math inline">\(k\)</span>/金属ゲートはゲート漏れとしきい値制御、歪みSi・Ge・III–Vは輸送、FinFET/GAAはチャネルの静電制御を改善する。</p>
@@ -6096,1128 +5970,198 @@ N\to\kappa N
 </section>
 </section>
 </section>
-<section id="semiconductor-source-map" class="level2">
-<h2 class="anchored" data-anchor-id="semiconductor-source-map">過去問と統合問題の対応表</h2>
-<p>同じ内容を年度ごとに繰り返す代わりに、次の統合問題IDへまとめる。完全に同じ文面だけでなく、数値や要求する導出の深さだけが異なる問題も同じIDに集約し、年度差は問題中の条件違いとして残す。</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>部</th>
-<th>統合問題ID</th>
-<th>主題</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>第1部</td>
-<td>A1–A3</td>
-<td>伝導度図、バンド分類、Si・Geと直接／間接遷移</td>
-</tr>
-<tr class="even">
-<td>第2部</td>
-<td>B1–B2</td>
-<td>状態密度・Fermi分布、真性キャリヤと真性Fermi準位</td>
-</tr>
-<tr class="odd">
-<td>第3部</td>
-<td>C1–C3</td>
-<td>Bohr模型・ドナー、ドープ半導体、三温度領域</td>
-</tr>
-<tr class="even">
-<td>第4部</td>
-<td>D1–D2</td>
-<td>伝導度の要因、過剰少数キャリヤ拡散</td>
-</tr>
-<tr class="odd">
-<td>第5部</td>
-<td>E1–E5</td>
-<td>pn接合平衡、空乏層、C–V、I–V、理想係数</td>
-</tr>
-<tr class="even">
-<td>第6部</td>
-<td>F1</td>
-<td>Schottky接合とオーミック接合</td>
-</tr>
-<tr class="odd">
-<td>第7部</td>
-<td>G1–G4</td>
-<td>材料図、太陽電池、LED・レーザ、BJT・HBT・HEMT</td>
-</tr>
-<tr class="even">
-<td>第8部</td>
-<td>H1–H3</td>
-<td>MOSFET・CMOS、DRAM、微細化と新材料</td>
-</tr>
-</tbody>
-</table>
-<p>「原資料行」は、転記元 <code>semiconductor_physics_exams.md</code> の行番号である。要約しか残っていない設問は、対応IDを「暫定」とした。</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 23%">
-<col style="width: 17%">
-<col style="width: 23%">
-<col style="width: 17%">
-<col style="width: 17%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: right;">年度</th>
-<th>原問</th>
-<th style="text-align: right;">原資料行</th>
-<th>統合問題ID</th>
-<th>対応する内容</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">2008</td>
-<td>1(1)</td>
-<td style="text-align: right;">15–20</td>
-<td>G2</td>
-<td>タンデム太陽電池の材料選択と各層の役割</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2008</td>
-<td>1(2)</td>
-<td style="text-align: right;">15–21</td>
-<td>G3</td>
-<td>半導体レーザの異種材料選択</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2008</td>
-<td>1(3)</td>
-<td style="text-align: right;">15–22</td>
-<td>G4</td>
-<td>ヘテロ接合BJTの材料選択</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2008</td>
-<td>2(1) A・B</td>
-<td style="text-align: right;">58, 94</td>
-<td>B2, D1</td>
-<td>バンドギャップ、真性キャリヤ密度、伝導度の関係</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2008</td>
-<td>2(1) C–G</td>
-<td style="text-align: right;">83–94</td>
-<td>E1, E2</td>
-<td>接合形成、空乏層、幅の非対称性、順逆バイアス</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2008</td>
-<td>2(2) あ–え</td>
-<td style="text-align: right;">29–48, 95</td>
-<td>B1</td>
-<td>状態密度、Fermi分布、Boltzmann近似、電子・正孔密度</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2008</td>
-<td>2(2) お・か</td>
-<td style="text-align: right;">50–62, 95</td>
-<td>B2</td>
-<td>真性キャリヤ密度と真性Fermi準位</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2008</td>
-<td>2(2) き–こ</td>
-<td style="text-align: right;">64–79, 95</td>
-<td>C2</td>
-<td>n型・p型半導体のFermi準位</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2008</td>
-<td>2(2) さ</td>
-<td style="text-align: right;">83–85, 95</td>
-<td>E1</td>
-<td>拡散電位の式</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2008</td>
-<td>2(3)</td>
-<td style="text-align: right;">96</td>
-<td>B2</td>
-<td>300 K Siの真性Fermi準位のずれ</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2008</td>
-<td>2(4)</td>
-<td style="text-align: right;">97</td>
-<td>C1</td>
-<td>Asドナーの束縛エネルギー</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2008</td>
-<td>2(5)</td>
-<td style="text-align: right;">98</td>
-<td>E1</td>
-<td><span class="math inline">\(N_D=10^{17},N_A=10^{16}\,\mathrm{cm^{-3}}\)</span> の拡散電位</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2008</td>
-<td>2(6)</td>
-<td style="text-align: right;">99</td>
-<td>E3</td>
-<td>C–Vから不純物濃度・拡散電位を求める方法</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2008</td>
-<td>2(7)</td>
-<td style="text-align: right;">100</td>
-<td>F1</td>
-<td>n型半導体のSchottky条件とバンド図</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2008</td>
-<td>2(8)</td>
-<td style="text-align: right;">101</td>
-<td>E4</td>
-<td>理想ダイオード式の導出</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2008</td>
-<td>3(1)–(3)</td>
-<td style="text-align: right;">105–116</td>
-<td>C1</td>
-<td>ボーア模型、準位、Rydberg定数の導出と計算</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2009</td>
-<td>1(1)</td>
-<td style="text-align: right;">150–155</td>
-<td>G2</td>
-<td>2008年1(1)と同文</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2009</td>
-<td>1(2)</td>
-<td style="text-align: right;">150–156</td>
-<td>G3</td>
-<td>2008年1(2)と同文</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2009</td>
-<td>1(3)</td>
-<td style="text-align: right;">150–157</td>
-<td>G4</td>
-<td>2008年1(3)と同文</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2009</td>
-<td>2(1)(2)</td>
-<td style="text-align: right;">161–165</td>
-<td>D2</td>
-<td>表面生成した過剰正孔の連続の式と濃度分布</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2009</td>
-<td>3</td>
-<td style="text-align: right;">169–170</td>
-<td>C3</td>
-<td>n型電子濃度の三つの温度領域</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2009</td>
-<td>4(1)</td>
-<td style="text-align: right;">174–177</td>
-<td>C1</td>
-<td>ドナー準位のボーア模型計算</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2009</td>
-<td>4(2)(3)</td>
-<td style="text-align: right;">178–179</td>
-<td>C2</td>
-<td>p型・n型SiのFermi準位</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2009</td>
-<td>4(4)</td>
-<td style="text-align: right;">180</td>
-<td>E1</td>
-<td>拡散電位の計算</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2009</td>
-<td>4(5)</td>
-<td style="text-align: right;">181</td>
-<td>E1</td>
-<td>熱平衡でのFermi準位一致</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2009</td>
-<td>4(6)</td>
-<td style="text-align: right;">182</td>
-<td>E3</td>
-<td>C–V測定</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2009</td>
-<td>4(7)</td>
-<td style="text-align: right;">183</td>
-<td>E4</td>
-<td>理想I–Vの導出</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2009</td>
-<td>5</td>
-<td style="text-align: right;">187–188</td>
-<td>F1</td>
-<td>Schottky／オーミック条件と両バンド図</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2010</td>
-<td>–</td>
-<td style="text-align: right;">–</td>
-<td>–</td>
-<td>元資料に収録なし</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2011</td>
-<td>1(1)(3)</td>
-<td style="text-align: right;">203–208</td>
-<td>C2</td>
-<td>p型・n型Siの多数・少数キャリヤ濃度</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2011</td>
-<td>1(2)(4)</td>
-<td style="text-align: right;">207–209</td>
-<td>C2</td>
-<td>p型・n型SiのFermi準位</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2011</td>
-<td>1(5)</td>
-<td style="text-align: right;">210</td>
-<td>E1</td>
-<td>拡散電位</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2011</td>
-<td>1(6)</td>
-<td style="text-align: right;">211</td>
-<td>E1</td>
-<td>Fermi準位一致</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2011</td>
-<td>1(7)</td>
-<td style="text-align: right;">212</td>
-<td>E2</td>
-<td>空乏層幅の比較</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2011</td>
-<td>1(8)</td>
-<td style="text-align: right;">213</td>
-<td>E3</td>
-<td>C–V測定</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2011</td>
-<td>1(9)</td>
-<td style="text-align: right;">214–219</td>
-<td>E4</td>
-<td>理想I–Vの仮定と導出</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2011</td>
-<td>2(1)(2)</td>
-<td style="text-align: right;">223–227</td>
-<td>G2</td>
-<td>太陽電池の原理・特徴・将来性</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2011</td>
-<td>2(3)</td>
-<td style="text-align: right;">228</td>
-<td>G2</td>
-<td><span class="math inline">\(V_{oc},I_{sc},FF\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2011</td>
-<td>2(4)</td>
-<td style="text-align: right;">229</td>
-<td>G2</td>
-<td>単接合の <span class="math inline">\(E_g\)</span> と効率</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2011</td>
-<td>2(5)</td>
-<td style="text-align: right;">230</td>
-<td>G2</td>
-<td>多接合化と材料例</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2011</td>
-<td>3(1)</td>
-<td style="text-align: right;">234–237</td>
-<td>G3</td>
-<td>LEDの発光・波長制御・材料</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2011</td>
-<td>3(2)</td>
-<td style="text-align: right;">238</td>
-<td>G3</td>
-<td>LEDの特徴・将来性</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2011</td>
-<td>3(3)</td>
-<td style="text-align: right;">239</td>
-<td>G3</td>
-<td>LEDのヘテロ構造と高効率化</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2011</td>
-<td>3(4)</td>
-<td style="text-align: right;">240</td>
-<td>G3</td>
-<td>AlGaAs/GaAs/AlGaAsレーザとLEDとの差</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2012</td>
-<td>1(1)(2)</td>
-<td style="text-align: right;">253–257</td>
-<td>C2</td>
-<td>2011年1(1)(3)と同文</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2012</td>
-<td>1(3)</td>
-<td style="text-align: right;">258</td>
-<td>E1</td>
-<td>2011年1(5)と同文</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2012</td>
-<td>1(4)</td>
-<td style="text-align: right;">259</td>
-<td>E1</td>
-<td>2011年1(6)と同文</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2012</td>
-<td>1(5)</td>
-<td style="text-align: right;">260</td>
-<td>E2</td>
-<td>2011年1(7)と同文</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2012</td>
-<td>1(6)</td>
-<td style="text-align: right;">261</td>
-<td>E2</td>
-<td>空乏層幅のバイアス依存性</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2012</td>
-<td>1(7)</td>
-<td style="text-align: right;">262</td>
-<td>E3</td>
-<td>C–Vによる濃度・拡散電位推定</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2012</td>
-<td>1(8)</td>
-<td style="text-align: right;">263</td>
-<td>E4</td>
-<td>理想I–Vの前提と導出</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2012</td>
-<td>2(1)</td>
-<td style="text-align: right;">267–270</td>
-<td>G2</td>
-<td>太陽電池の原理・特徴</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2012</td>
-<td>2(2)</td>
-<td style="text-align: right;">271</td>
-<td>G2</td>
-<td><span class="math inline">\(E_g\)</span> と変換効率</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2012</td>
-<td>2(3)</td>
-<td style="text-align: right;">272</td>
-<td>G2</td>
-<td>タンデム太陽電池</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2012</td>
-<td>3(1)</td>
-<td style="text-align: right;">276–279</td>
-<td>G3</td>
-<td>LEDの発光・波長制御・材料</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2012</td>
-<td>3(2)</td>
-<td style="text-align: right;">280</td>
-<td>G3</td>
-<td>2011年3(2)と同文</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2012</td>
-<td>3(3)</td>
-<td style="text-align: right;">281</td>
-<td>G3</td>
-<td>半導体レーザとLEDとの差</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2012</td>
-<td>4(1)</td>
-<td style="text-align: right;">285–288</td>
-<td>H1</td>
-<td>MOSFETとCMOS NOT回路</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2012</td>
-<td>4(2)</td>
-<td style="text-align: right;">289</td>
-<td>H2</td>
-<td>DRAMセル</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2012</td>
-<td>4(3)(4)</td>
-<td style="text-align: right;">290–291</td>
-<td>H3</td>
-<td>微細化の効果と新材料</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2012</td>
-<td>5(1)(2)</td>
-<td style="text-align: right;">295–299</td>
-<td>F1</td>
-<td>金属–半導体接合のI–V・形成条件</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2013</td>
-<td>1(1)–(3)</td>
-<td style="text-align: right;">312–321</td>
-<td>B1</td>
-<td>状態密度、Fermi分布、<span class="math inline">\(N_e,N_h\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2013</td>
-<td>1(4)</td>
-<td style="text-align: right;">322</td>
-<td>B2</td>
-<td>真性Fermi準位のずれ</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2013</td>
-<td>2(1)(2)</td>
-<td style="text-align: right;">326–330</td>
-<td>C1</td>
-<td>ドナー準位の名称と束縛エネルギー</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2013</td>
-<td>2(3)</td>
-<td style="text-align: right;">331</td>
-<td>C2</td>
-<td>As <span class="math inline">\(10^{16}\,\mathrm{cm^{-3}}\)</span> の電子・正孔濃度</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2013</td>
-<td>2(4)</td>
-<td style="text-align: right;">332</td>
-<td>C2</td>
-<td>Fermi準位とバンド図</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2013</td>
-<td>2(5)</td>
-<td style="text-align: right;">333</td>
-<td>C3</td>
-<td>三温度領域</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2013</td>
-<td>3(1)</td>
-<td style="text-align: right;">337–340</td>
-<td>E1</td>
-<td>拡散電位</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2013</td>
-<td>3(2)</td>
-<td style="text-align: right;">341</td>
-<td>E1</td>
-<td>Fermi準位一致</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2013</td>
-<td>3(3)</td>
-<td style="text-align: right;">342</td>
-<td>E2</td>
-<td>空乏層幅の非対称性</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2013</td>
-<td>3(4)</td>
-<td style="text-align: right;">343</td>
-<td>E2</td>
-<td>空乏層幅のバイアス依存性</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2013</td>
-<td>3(5)</td>
-<td style="text-align: right;">344</td>
-<td>E3</td>
-<td>C–V測定</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2013</td>
-<td>3(6)</td>
-<td style="text-align: right;">345</td>
-<td>E4</td>
-<td>理想I–V</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2013</td>
-<td>4(1)</td>
-<td style="text-align: right;">349–352</td>
-<td>G2</td>
-<td>太陽電池の構造・原理・材料工学</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2013</td>
-<td>4(2)</td>
-<td style="text-align: right;">353</td>
-<td>G3</td>
-<td>半導体レーザ</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2013</td>
-<td>4(3)</td>
-<td style="text-align: right;">354</td>
-<td>G3</td>
-<td>LED</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2013</td>
-<td>4(4)</td>
-<td style="text-align: right;">355</td>
-<td>G4</td>
-<td>BJT</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2013</td>
-<td>4(5)</td>
-<td style="text-align: right;">356</td>
-<td>H1, H3</td>
-<td>MOSFET</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2013</td>
-<td>4(6)</td>
-<td style="text-align: right;">357</td>
-<td>H2</td>
-<td>DRAM</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2013</td>
-<td>5</td>
-<td style="text-align: right;">361–362</td>
-<td>A3</td>
-<td>SiとGeの比較</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2014</td>
-<td>1(1)(2)</td>
-<td style="text-align: right;">374–380</td>
-<td>A2</td>
-<td>導体・半導体・絶縁体のバンドによる比較</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2014</td>
-<td>1(3)</td>
-<td style="text-align: right;">381</td>
-<td>D1</td>
-<td>伝導度を変える三要因</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2014</td>
-<td>2(1)</td>
-<td style="text-align: right;">385–388</td>
-<td>暫定 C1, B1, C1, C2, E1</td>
-<td>あ–しの本文欠落につき厳密な内訳は不明</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2014</td>
-<td>2(2)</td>
-<td style="text-align: right;">389</td>
-<td>B2</td>
-<td>真性Fermi準位のずれ</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2014</td>
-<td>2(3)</td>
-<td style="text-align: right;">390</td>
-<td>C1</td>
-<td>Asドナーの束縛エネルギー</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2014</td>
-<td>2(4)</td>
-<td style="text-align: right;">391</td>
-<td>C3</td>
-<td>n型電子濃度の温度依存性</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2014</td>
-<td>2(5)</td>
-<td style="text-align: right;">392</td>
-<td>C2</td>
-<td>As <span class="math inline">\(10^{17}\,\mathrm{cm^{-3}}\)</span> のFermi準位とバンド図</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2014</td>
-<td>2(6)</td>
-<td style="text-align: right;">393</td>
-<td>E1</td>
-<td>Fermi準位一定の証明</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2014</td>
-<td>2(7)</td>
-<td style="text-align: right;">394</td>
-<td>E1</td>
-<td><span class="math inline">\(N_A=10^{18},N_D=10^{17}\,\mathrm{cm^{-3}}\)</span> の拡散電位</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2014</td>
-<td>3(1)–(7)</td>
-<td style="text-align: right;">398–407</td>
-<td>E4</td>
-<td>仮定から少数キャリヤ分布・電流・理想I–Vまで</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2014</td>
-<td>3(8)–(10)</td>
-<td style="text-align: right;">408–410</td>
-<td>E2</td>
-<td>Poisson方程式、電界、空乏層幅</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2014</td>
-<td>3(11)</td>
-<td style="text-align: right;">411</td>
-<td>E3</td>
-<td>C–V式</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2014</td>
-<td>4</td>
-<td style="text-align: right;">415–416</td>
-<td>G2, G3</td>
-<td>LED・レーザ・単接合／タンデム太陽電池。小問内訳は欠落</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2014</td>
-<td>5</td>
-<td style="text-align: right;">420–421</td>
-<td>G4, H1, H3</td>
-<td>BJT・MOSFET・微細化・新材料。小問内訳は欠落</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2015</td>
-<td>–</td>
-<td style="text-align: right;">–</td>
-<td>–</td>
-<td>元資料に収録なし</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2016</td>
-<td>1(1)</td>
-<td style="text-align: right;">434–439</td>
-<td>G2</td>
-<td>太陽電池の構造・原理・材料選択</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2016</td>
-<td>1(2)</td>
-<td style="text-align: right;">440</td>
-<td>G3</td>
-<td>半導体レーザ</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2016</td>
-<td>1(3)</td>
-<td style="text-align: right;">441</td>
-<td>G4</td>
-<td>HEMT</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2016</td>
-<td>2 本体</td>
-<td style="text-align: right;">445–446</td>
-<td>暫定 C1, B1, C1, C2, C3, E1, E2</td>
-<td>真性・n型・pn接合の理論式と計算。元の小問・穴埋め本文は欠落</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2016</td>
-<td>2 理想係数</td>
-<td style="text-align: right;">448</td>
-<td>E5</td>
-<td>ηの1と2の違い</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2016</td>
-<td>3</td>
-<td style="text-align: right;">452–453</td>
-<td>E2, E3, E4</td>
-<td>I–V・C–Vの導出。小問内訳は欠落</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2016</td>
-<td>4</td>
-<td style="text-align: right;">457–458</td>
-<td>G4, H1, H3</td>
-<td>BJT・MOSFET・材料工学。小問内訳は欠落</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2017</td>
-<td>–</td>
-<td style="text-align: right;">–</td>
-<td>–</td>
-<td>元資料に収録なし</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2018</td>
-<td>1</td>
-<td style="text-align: right;">471–472</td>
-<td>B1, B2</td>
-<td>真性キャリヤ密度と真性Fermi準位</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2018</td>
-<td>2 第1項</td>
-<td style="text-align: right;">476–477</td>
-<td>C1</td>
-<td>ドナー準位の概算</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2018</td>
-<td>2 第2項</td>
-<td style="text-align: right;">478</td>
-<td>C2</td>
-<td>As <span class="math inline">\(10^{16}\,\mathrm{cm^{-3}}\)</span> のFermi準位とバンド図</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2018</td>
-<td>2 第3項</td>
-<td style="text-align: right;">479</td>
-<td>C3</td>
-<td>三温度領域</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2018</td>
-<td>2 第4項</td>
-<td style="text-align: right;">480</td>
-<td>F1</td>
-<td>オーミック接合の条件とバンド図</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2018</td>
-<td>3 第1項</td>
-<td style="text-align: right;">484–485</td>
-<td>E1</td>
-<td><span class="math inline">\(N_A=10^{17},N_D=10^{15}\,\mathrm{cm^{-3}}\)</span> の拡散電位</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2018</td>
-<td>3 第2項</td>
-<td style="text-align: right;">486</td>
-<td>E1, E2</td>
-<td>Fermi準位一致と空乏層幅の非対称性</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2018</td>
-<td>3 第3項</td>
-<td style="text-align: right;">487</td>
-<td>E2, E3</td>
-<td>空乏層幅とC–V</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2018</td>
-<td>3 第4項</td>
-<td style="text-align: right;">488</td>
-<td>E4, E5</td>
-<td>理想I–Vと再結合電流などの非理想性</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2018</td>
-<td>4</td>
-<td style="text-align: right;">492–493</td>
-<td>G2, G3, G4</td>
-<td>太陽電池・レーザ・BJT。小問内訳は要約のみ</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2018</td>
-<td>5</td>
-<td style="text-align: right;">497–498</td>
-<td>H3</td>
-<td>MOSスケーリング、限界、新材料・プロセス</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2019</td>
-<td>–</td>
-<td style="text-align: right;">–</td>
-<td>–</td>
-<td>元資料に収録なし</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2020</td>
-<td>–</td>
-<td style="text-align: right;">–</td>
-<td>–</td>
-<td>元資料に収録なし</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2021</td>
-<td>1</td>
-<td style="text-align: right;">511–512</td>
-<td>B1, B2, C3</td>
-<td>状態密度、Fermi分布、真性Fermi準位、温度依存性</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2021</td>
-<td>2(1)(3)</td>
-<td style="text-align: right;">516–520</td>
-<td>C2</td>
-<td>p型・n型Siのキャリヤ濃度</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2021</td>
-<td>2(2)(4)</td>
-<td style="text-align: right;">519–521</td>
-<td>C2</td>
-<td>p型・n型SiのFermi準位</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2021</td>
-<td>2(5)</td>
-<td style="text-align: right;">522</td>
-<td>E1</td>
-<td>拡散電位</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2021</td>
-<td>2(6)</td>
-<td style="text-align: right;">523</td>
-<td>E1</td>
-<td>Fermi準位一致</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2021</td>
-<td>2(7)</td>
-<td style="text-align: right;">524</td>
-<td>E2</td>
-<td>空乏層幅の比較</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2021</td>
-<td>2(8)</td>
-<td style="text-align: right;">525</td>
-<td>E3</td>
-<td>C–V測定</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2021</td>
-<td>2(9)</td>
-<td style="text-align: right;">526</td>
-<td>E4</td>
-<td>理想I–V</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2021</td>
-<td>2(10)</td>
-<td style="text-align: right;">527</td>
-<td>E5</td>
-<td>理想係数</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2021</td>
-<td>3</td>
-<td style="text-align: right;">531–532</td>
-<td>G2, G3, G4, H1, H3</td>
-<td>太陽電池・レーザ・HEMT・MOSFET。個別の小問文は欠落</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2022</td>
-<td>1 穴埋め・真性半導体</td>
-<td style="text-align: right;">545–546</td>
-<td>暫定 C1, B1</td>
-<td>あ–しの本文欠落</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2022</td>
-<td>1 n型半導体</td>
-<td style="text-align: right;">545–546</td>
-<td>C2, C3</td>
-<td>Fermi準位・バンド図・温度依存性</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2022</td>
-<td>1 pn接合</td>
-<td style="text-align: right;">545–546</td>
-<td>E1, E4, E5</td>
-<td>拡散電位、Fermi準位一致、I–V、理想係数</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2022</td>
-<td>2(1)</td>
-<td style="text-align: right;">550–554</td>
-<td>G2</td>
-<td>太陽電池</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2022</td>
-<td>2(2)</td>
-<td style="text-align: right;">555</td>
-<td>G3</td>
-<td>半導体レーザ</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2022</td>
-<td>2(3)</td>
-<td style="text-align: right;">556</td>
-<td>G4</td>
-<td>HEMT</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2023</td>
-<td>–</td>
-<td style="text-align: right;">–</td>
-<td>–</td>
-<td>元資料に収録なし</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2024</td>
-<td>1(1)(2)</td>
-<td style="text-align: right;">569–572</td>
-<td>B1</td>
-<td>状態密度と電子密度の導出</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2024</td>
-<td>1(3)</td>
-<td style="text-align: right;">573</td>
-<td>B2</td>
-<td>真性Fermi準位のずれ</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2024</td>
-<td>2(1)</td>
-<td style="text-align: right;">577–579</td>
-<td>C2</td>
-<td>p型Siのキャリヤ濃度</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2024</td>
-<td>2(2)</td>
-<td style="text-align: right;">580</td>
-<td>C2</td>
-<td>p型SiのFermi準位</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2024</td>
-<td>2(3)</td>
-<td style="text-align: right;">581</td>
-<td>C1</td>
-<td>ドナー準位</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2024</td>
-<td>2(4)</td>
-<td style="text-align: right;">582</td>
-<td>E1</td>
-<td>拡散電位</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2024</td>
-<td>2(5)</td>
-<td style="text-align: right;">583</td>
-<td>E1</td>
-<td>Fermi準位一致</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2024</td>
-<td>2(6)</td>
-<td style="text-align: right;">584</td>
-<td>E2</td>
-<td>空乏層幅の非対称性</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2024</td>
-<td>2(7)</td>
-<td style="text-align: right;">585</td>
-<td>E2, E3</td>
-<td>空乏層容量のバイアス依存性</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2024</td>
-<td>2(8)</td>
-<td style="text-align: right;">586</td>
-<td>E5</td>
-<td>理想係数</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2024</td>
-<td>3(1)</td>
-<td style="text-align: right;">590–592</td>
-<td>G2</td>
-<td>太陽電池</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2024</td>
-<td>3(2)</td>
-<td style="text-align: right;">593</td>
-<td>G3</td>
-<td>半導体レーザ</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2024</td>
-<td>3(3)</td>
-<td style="text-align: right;">594</td>
-<td>G4</td>
-<td>BJT</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2024</td>
-<td>3(4)</td>
-<td style="text-align: right;">595</td>
-<td>H1, H3</td>
-<td>ULSI用MOSFET</td>
-</tr>
-</tbody>
-</table>
-<div class="callout callout-style-default callout-warning callout-titled" title="転記資料から確定できないこと">
-<div class="callout-header d-flex align-content-center">
+<section id="総合問題状態密度からpn接合まで式をつなぐ" class="level2">
+<h2 class="anchored" data-anchor-id="総合問題状態密度からpn接合まで式をつなぐ">総合問題：状態密度からpn接合まで式をつなぐ</h2>
+<section id="semiconductor-fill-in-all" class="level3">
+<h3 class="anchored" data-anchor-id="semiconductor-fill-in-all">空欄（あ）〜（し）</h3>
+<section id="問題i1-空欄あしを埋める" class="level4">
+<h4 class="anchored" data-anchor-id="問題i1-空欄あしを埋める">問題I1 空欄（あ）〜（し）を埋める</h4>
+<p>真性半導体の電子密度を <span class="math inline">\(N_e\)</span>、正孔密度を <span class="math inline">\(N_h\)</span>、状態密度を <span class="math inline">\(d_e(E)\)</span>、フェルミ分布関数を <span class="math inline">\(f(E)\)</span> とする。</p>
+<p><span class="math display">\[
+N_e=\int_{E_c}^{\infty}d_e(E)f(E)\,\dd E.
+\tag{1}
+\]</span></p>
+<p>次の空欄に入る式または条件を答え、必要な記号は定義せよ。</p>
+<p><span class="math display">\[
+d_e(E)=(\text{あ}),
+\tag{2}
+\]</span></p>
+<p><span class="math display">\[
+f(E)=(\text{い}).
+\tag{3}
+\]</span></p>
+<p>フェルミ分布が <span class="math inline">\((\text{う})\)</span> を満たすとき、</p>
+<p><span class="math display">\[
+f(E)\simeq(\text{え})
+\tag{4}
+\]</span></p>
+<p>と近似できる。これを用いると</p>
+<p><span class="math display">\[
+N_e=N_c\exp\left(-\frac{E_c-E_f}{kT}\right),
+\qquad
+N_h=N_v\exp\left(-\frac{E_f-E_v}{kT}\right),
+\tag{5,6}
+\]</span></p>
+<p><span class="math display">\[
+N_eN_h=N_i^2
+\tag{7}
+\]</span></p>
+<p>より</p>
+<p><span class="math display">\[
+N_i=(\text{お}).
+\tag{8}
+\]</span></p>
+<p>真性フェルミ準位は</p>
+<p><span class="math display">\[
+E_i=\frac{E_c+E_v}{2}+(\text{か})
+\tag{9}
+\]</span></p>
+<p>である。n型半導体のドナー密度を <span class="math inline">\(N_D\)</span> とし、室温で <span class="math inline">\(N_e\simeq N_D\)</span> とすれば</p>
+<p><span class="math display">\[
+E_{f(n)}=E_c-(\text{き}).
+\tag{10}
+\]</span></p>
+<p>また</p>
+<p><span class="math display">\[
+N_i=N_c\exp\left(-\frac{E_c-E_i}{kT}\right)
+\tag{11}
+\]</span></p>
+<p>を用いると</p>
+<p><span class="math display">\[
+E_{f(n)}=E_i+(\text{く}),
+\tag{12}
+\]</span></p>
+<p><span class="math display">\[
+N_e=N_i\cdot(\text{け}).
+\tag{13}
+\]</span></p>
+<p>p型半導体のアクセプタ密度を <span class="math inline">\(N_A\)</span> とすれば</p>
+<p><span class="math display">\[
+E_{f(p)}=E_v+(\text{こ}),
+\tag{14}
+\]</span></p>
+<p><span class="math display">\[
+E_{f(p)}=E_i-(\text{さ}).
+\tag{15}
+\]</span></p>
+<p>このp型半導体とn型半導体でpn接合を作ったとき、拡散電位は</p>
+<p><span class="math display">\[
+V_D=(\text{し})
+\tag{16}
+\]</span></p>
+<p>となる。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-54-contents" aria-controls="callout-54" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">警告</span>転記資料から確定できないこと
+<span class="screen-reader-only">ノート</span>理論I1：四本の鎖を切らずにつなぐ
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-54" class="callout-54-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>2014年以降は、原試験を一語ずつ転記したものではなく、設問全体を一行にまとめた年度が多い。特に2014年【2】、2016年【2】、2022年【1】は「あ〜し」に対応する文章そのものがないため、穴埋めの個数・順番・厳密な式は復元できない。上表の「暫定」は、残っている要約から学習先を割り当てたもので、原文一致を主張するものではない。</p>
-<p>また、2014年【4】【5】、2016年【3】【4】、2018年の各問、2021年1・3、2022年1は小問内訳が省略されている。元PDFを確認できた場合は、そのPDFを優先して対応表を更新する。</p>
+<p>この穴埋めは、独立な公式を十二個暗記する問題ではない。</p>
+<ol type="1">
+<li><strong>席を数える：</strong> 状態密度 <span class="math inline">\(d_e(E)\)</span> と着席確率 <span class="math inline">\(f(E)\)</span> を掛けて積分する。</li>
+<li><strong>非縮退近似を使う：</strong> <span class="math inline">\(E-E_f\gg kT\)</span> なら Fermi 分布の分母の <span class="math inline">\(1\)</span> を無視でき、指数関数になる。</li>
+<li><strong>真性条件を使う：</strong> 電子式と正孔式を掛けると <span class="math inline">\(E_f\)</span> が消え、<span class="math inline">\(N_i\)</span> が得られる。両式の比を使うと <span class="math inline">\(E_i\)</span> が得られる。</li>
+<li><strong>ドーピングと接合へ進む：</strong> <span class="math inline">\(N_e\simeq N_D\)</span>、<span class="math inline">\(N_h\simeq N_A\)</span> を代入してフェルミ準位を求め、その差を電荷 <span class="math inline">\(q\)</span> で割ると拡散電位になる。</li>
+</ol>
+<p>各段階の詳しい導出は、状態密度、真性半導体、ドープ半導体、pn接合の各理論欄にある。試験では、前の式から次の式へ何を代入したかを一行ずつ書く。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-55-contents" aria-controls="callout-55" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ヒント</span>解答I1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-55" class="callout-55-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+(\text{あ})\quad
+\boxed{
+d_e(E)=\frac{1}{2\pi^2}
+\left(\frac{2m_e^*}{\hbar^2}\right)^{3/2}
+\sqrt{E-E_c}
+},
+\]</span></p>
+<p><span class="math display">\[
+(\text{い})\quad
+\boxed{
+f(E)=\frac{1}{\exp[(E-E_f)/(kT)]+1}
+},
+\]</span></p>
+<p><span class="math display">\[
+(\text{う})\quad
+\boxed{E-E_f\gg kT}
+\quad
+\left(\exp\frac{E-E_f}{kT}\gg1\right),
+\]</span></p>
+<p><span class="math display">\[
+(\text{え})\quad
+\boxed{
+f(E)\simeq\exp\left(-\frac{E-E_f}{kT}\right)
+},
+\]</span></p>
+<p><span class="math display">\[
+(\text{お})\quad
+\boxed{
+N_i=\sqrt{N_cN_v}\exp\left(-\frac{E_g}{2kT}\right)
+},
+\]</span></p>
+<p><span class="math display">\[
+(\text{か})\quad
+\boxed{\frac{kT}{2}\ln\frac{N_v}{N_c}},
+\]</span></p>
+<p><span class="math display">\[
+(\text{き})\quad
+\boxed{kT\ln\frac{N_c}{N_D}},
+\qquad
+(\text{く})\quad
+\boxed{kT\ln\frac{N_D}{N_i}},
+\]</span></p>
+<p><span class="math display">\[
+(\text{け})\quad
+\boxed{
+\exp\left(\frac{E_{f(n)}-E_i}{kT}\right)
+},
+\]</span></p>
+<p><span class="math display">\[
+(\text{こ})\quad
+\boxed{kT\ln\frac{N_v}{N_A}},
+\qquad
+(\text{さ})\quad
+\boxed{kT\ln\frac{N_A}{N_i}},
+\]</span></p>
+<p><span class="math display">\[
+(\text{し})\quad
+\boxed{
+V_D=\frac{kT}{q}\ln\frac{N_AN_D}{N_i^2}
+}.
+\]</span></p>
+<p>300 K で <span class="math inline">\(N_c=2.86\times10^{19}\)</span>、<span class="math inline">\(N_v=2.66\times10^{19}\ \mathrm{cm^{-3}}\)</span> なら</p>
+<p><span class="math display">\[
+(\text{か})
+=\frac{0.025875}{2}\ln\frac{2.66}{2.86}
+=\boxed{-9.38\times10^{-4}\ \mathrm{eV}}.
+\]</span></p>
+</div>
 </div>
 </div>
 </section>
+</section>
+</section>
 <section id="semiconductor-constants" class="level2">
-<h2 class="anchored" data-anchor-id="semiconductor-constants">このノートで用いる300 K Siの定数</h2>
-<p>次の値は、<strong>2008年度問題の最終ページに転記されている数値を、このノート全体の共通規約として再利用したもの</strong>である。他年度の「裏面の物性値」は資料に残っていないため、年度ごとの公式値を再現したものではない。TeXの制御文字だけを修復し、数値は変更していない。</p>
+<h2 class="anchored" data-anchor-id="semiconductor-constants">付録A このノートで用いる300 K Siの定数</h2>
+<p>次の値は、元PDFの定数表に記載された値を、このノート全体で用いる単位へそろえたものである。</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 27%">
@@ -7263,36 +6207,31 @@ N\to\kappa N
 <td style="text-align: right;"><span class="math inline">\(0.26\)</span></td>
 </tr>
 <tr class="odd">
-<td>正孔の有効質量比</td>
-<td style="text-align: right;"><span class="math inline">\(m_h^*/m_0\)</span></td>
-<td style="text-align: right;"><span class="math inline">\(0.69\)</span></td>
-</tr>
-<tr class="even">
 <td>Boltzmann定数</td>
 <td style="text-align: right;"><span class="math inline">\(k\)</span></td>
 <td style="text-align: right;"><span class="math inline">\(1.38\times10^{-23}\,\mathrm{J/K}\)</span></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Planck定数</td>
 <td style="text-align: right;"><span class="math inline">\(h\)</span></td>
 <td style="text-align: right;"><span class="math inline">\(6.63\times10^{-34}\,\mathrm{J\,s}\)</span></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>素電荷の大きさ</td>
 <td style="text-align: right;"><span class="math inline">\(q\)</span></td>
 <td style="text-align: right;"><span class="math inline">\(1.60\times10^{-19}\,\mathrm{C}\)</span></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>真空の誘電率</td>
 <td style="text-align: right;"><span class="math inline">\(\varepsilon_0\)</span></td>
 <td style="text-align: right;"><span class="math inline">\(8.85\times10^{-14}\,\mathrm{F/cm}=8.85\times10^{-12}\,\mathrm{F/m}\)</span></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>光速</td>
 <td style="text-align: right;"><span class="math inline">\(c\)</span></td>
 <td style="text-align: right;"><span class="math inline">\(3.0\times10^8\,\mathrm{m/s}\)</span></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>自由電子質量</td>
 <td style="text-align: right;"><span class="math inline">\(m_0\)</span></td>
 <td style="text-align: right;"><span class="math inline">\(9.1\times10^{-31}\,\mathrm{kg}\)</span></td>
@@ -7311,22 +6250,9 @@ kT\simeq 2.59\times10^{-2}\,\mathrm{eV},
 \simeq 1.05\times10^{-12}\,\mathrm{F/cm}
 \]</span></p>
 <p>を使ってよい。有効数字は、問題で与えられた値に合わせる。</p>
-<div class="callout callout-style-default callout-warning callout-titled" title="真性Fermi準位の数値に関する注意">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">警告</span>真性Fermi準位の数値に関する注意
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>掲載された有効質量を単一放物線模型へ使うと中央から <span class="math inline">\(+18.9\ \mathrm{meV}\)</span>、掲載された <span class="math inline">\(N_c,N_v\)</span> を直接使うと <span class="math inline">\(-0.94\ \mathrm{meV}\)</span> となる。Siでは運動用有効質量と状態密度有効質量、谷の縮退を区別する必要があり、転記ミスとは断定できない。<a href="#semiconductor-intrinsic">問題B2</a>では両方を明示した。答案では設問が指定したデータだけを一貫して使い、採用模型を一行書く。</p>
-</div>
-</div>
 </section>
 <section id="semiconductor-formula-sheet" class="level2">
-<h2 class="anchored" data-anchor-id="semiconductor-formula-sheet">直前確認用公式集</h2>
+<h2 class="anchored" data-anchor-id="semiconductor-formula-sheet">付録B 直前確認用公式集</h2>
 <p>公式だけを暗記するのではなく、各欄の<strong>適用条件と符号</strong>を先に確認する。</p>
 <section id="原子光子" class="level3">
 <h3 class="anchored" data-anchor-id="原子光子">原子・光子</h3>
@@ -7442,7 +6368,7 @@ a_B^*=a_0\frac{\varepsilon_r}{m_e^*/m_0}.
 \]</span></p>
 <p>一様な準中性領域で、定常・低注入の過剰正孔 Δp は</p>
 <p><span class="math display">\[
-D_p\frac{\dd^2\Delta p}{\dd x^2}
+D_p\dv[2]{\Delta p}{x}
 -\frac{\Delta p}{\tau_p}+G_p=0,
 \qquad
 L_p=\sqrt{D_p\tau_p}.
