@@ -173,7 +173,9 @@ div.csl-indent {
     var navbarTools = document.querySelector('.quarto-navbar-tools');
     var brandContainer = document.querySelector('.navbar-brand-container');
     var LEFT_STORAGE_KEY = 'serika-glass-left-visible';
-    var TOC_STORAGE_KEY = 'serika-glass-toc-visible';
+    // Version the key so a previously stored "closed" state does not keep the
+    // repaired TOC hidden on the first visit after this release.
+    var TOC_STORAGE_KEY = 'serika-glass-toc-visible-v2';
 
     function readStoredBoolean(key, fallback) {
       try {
@@ -220,7 +222,9 @@ div.csl-indent {
     var leftToggleBtn;
     var tocToggleBtn;
     var drawerOpen = false;
-    var overlayPanel = null;
+    // Tablet/laptop layouts use an overlay rail. Start with the page TOC open
+    // so the reader sees orientation before choosing to dismiss it.
+    var overlayPanel = isOverlayNavigation() ? 'right' : null;
 
     function isMobileNavigation() {
       return window.innerWidth < 992;
@@ -453,7 +457,7 @@ div.csl-indent {
     window.addEventListener('resize', function () {
       var overlayNow = isOverlayNavigation();
       if (overlayNow !== wasOverlayNavigation) {
-        overlayPanel = null;
+        overlayPanel = overlayNow ? 'right' : null;
         wasOverlayNavigation = overlayNow;
         applyLayoutState(false);
       }

@@ -68,6 +68,18 @@
 }
 
 @media (min-width: 992px) {
+  /* Quarto creates a second, collapsed TOC at narrower desktop widths. The
+     Serika rail is already responsive, so keep one canonical TOC visible and
+     remove the competing pull-down copy. */
+  #quarto-toc-toggle {
+    display: none !important;
+  }
+
+  #quarto-margin-sidebar #TOC {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
   body.nav-fixed .sidebar,
   body.nav-fixed .headroom-target {
     top: var(--pj-floating-navbar-clearance) !important;
@@ -1588,7 +1600,6 @@ body::after {
   background: transparent;
   border: 0;
   border-radius: 0;
-  -webkit-overflow-scrolling: touch;
 }
 
 /* Progress: one top line plus a compact, keyboard-focusable status capsule. */
@@ -1890,6 +1901,7 @@ body::after {
   }
   .pj-reading-progress-bar {
     transition: none;
+    box-shadow: none;
   }
   .pj-reading-orbit-progress {
     transition: none;
@@ -1940,6 +1952,15 @@ body::after {
     right: 0.5rem;
     bottom: 0.5rem;
     width: calc(100vw - 1rem);
+  }
+
+  /* WebKit may promote every momentum-scrolling equation to a separate
+     compositing layer. Math-heavy notes can contain hundreds of equations,
+     which causes Safari to evict text tiles while the page is moving. Keep
+     horizontal equation scrolling, but use the normal scroll path. */
+  #quarto-document-content .math.display,
+  #quarto-document-content div[id^="eq-"] {
+    -webkit-overflow-scrolling: auto;
   }
 }
 
