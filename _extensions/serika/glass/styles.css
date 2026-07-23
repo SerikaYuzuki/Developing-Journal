@@ -1762,10 +1762,19 @@ body::after {
 @media (max-width: 991.98px) {
   body::before { background-size: 84px 84px; opacity: 0.42; }
   body::after { display: none; }
+  #quarto-content.page-columns {
+    grid-template-columns:
+      [screen-start] max(0.75rem, env(safe-area-inset-left))
+      [screen-start-inset page-start page-start-inset body-start-outset body-start body-content-start]
+      minmax(0, 1fr)
+      [body-content-end body-end body-end-outset page-end-inset page-end screen-end-inset]
+      max(0.75rem, env(safe-area-inset-right))
+      [screen-end] !important;
+  }
   #quarto-document-content.content {
-    width: calc(100% - 1rem);
-    margin-inline: 0.5rem;
-    padding: 0.75rem 1rem 4.5rem !important;
+    width: 100%;
+    margin-inline: 0;
+    padding: 0.75rem 0.25rem 4.5rem !important;
   }
   #quarto-document-content.content::before {
     inset-inline: 0;
