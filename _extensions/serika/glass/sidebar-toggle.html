@@ -431,11 +431,12 @@
         return document.getElementById(tocTargetId(link));
       });
       if (tocLinks.length) {
-        toc.style.position = 'relative';
+        var tocScroller = toc.querySelector(':scope > ul') || toc;
+        tocScroller.style.position = 'relative';
         var marker = document.createElement('span');
         marker.className = 'pj-toc-marker';
         marker.setAttribute('aria-hidden', 'true');
-        toc.appendChild(marker);
+        tocScroller.appendChild(marker);
         var tocItems = tocLinks.map(function (link) {
           return { link: link, heading: document.getElementById(tocTargetId(link)), top: 0 };
         });
@@ -443,14 +444,26 @@
         function moveMarker(link) {
           tocLinks.forEach(function (item) { item.classList.toggle('pj-toc-current', item === link); });
           toc.querySelectorAll('ul.collapse').forEach(function (list) {
-            list.classList.toggle('show', list.contains(link));
+            // Keep previously opened branches stable. Closing every non-active
+            // branch changes the TOC height near the document end and can leave
+            // only the title visible after the scroll position is clamped.
+            if (list.contains(link)) list.classList.add('show');
           });
-          var tocRect = toc.getBoundingClientRect();
+          var tocRect = tocScroller.getBoundingClientRect();
           var linkRect = link.getBoundingClientRect();
           marker.style.left = Math.max(0, linkRect.left - tocRect.left) + 'px';
           marker.style.height = linkRect.height + 'px';
-          marker.style.transform = 'translateY(' + (linkRect.top - tocRect.top + toc.scrollTop) + 'px)';
+          marker.style.transform = 'translateY(' + (linkRect.top - tocRect.top + tocScroller.scrollTop) + 'px)';
           marker.style.opacity = '1';
+
+          // The heading remains fixed while only the list scrolls. Reveal the
+          // active entry without moving the article or losing the TOC title.
+          var inset = 10;
+          if (linkRect.top < tocRect.top + inset) {
+            tocScroller.scrollTop += linkRect.top - tocRect.top - inset;
+          } else if (linkRect.bottom > tocRect.bottom - inset) {
+            tocScroller.scrollTop += linkRect.bottom - tocRect.bottom + inset;
+          }
         }
 
         function refreshTocOffsets() {
@@ -545,7 +558,13 @@
       status.setAttribute('aria-label', '現在の読書位置');
       status.setAttribute('tabindex', '0');
       status.innerHTML = [
-        '<span class="pj-reading-orbit" aria-hidden="true"></span>',
+        '<span class="pj-reading-orbit" aria-hidden="true">',
+          '<svg viewBox="0 0 36 36" focusable="false">',
+            '<circle class="pj-reading-orbit-track" cx="18" cy="18" r="15.5" pathLength="100"></circle>',
+            '<circle class="pj-reading-orbit-progress" cx="18" cy="18" r="15.5" pathLength="100"></circle>',
+          '</svg>',
+          '<span class="pj-reading-orbit-core"></span>',
+        '</span>',
         '<span class="pj-reading-copy">',
           '<span class="pj-reading-chapter">Introduction</span>',
           '<span class="pj-reading-heading">記事の先頭</span>',
@@ -673,6 +692,7 @@
       var statusChapter = status.querySelector('.pj-reading-chapter');
       var statusHeading = status.querySelector('.pj-reading-heading');
       var statusPercent = status.querySelector('.pj-reading-percent');
+      var statusOrbitProgress = status.querySelector('.pj-reading-orbit-progress');
       var progressBar = progress.querySelector('.pj-reading-progress-bar');
       var progressTicking = false;
       var completed = false;
@@ -714,6 +734,7 @@
         progressBar.style.transform = 'scaleX(' + (percentage / 100) + ')';
         progress.setAttribute('aria-valuenow', String(percentage));
         progress.setAttribute('aria-valuetext', percentage + '%、' + headingText);
+        statusOrbitProgress.style.strokeDashoffset = String(100 - percentage);
         statusPercent.textContent = percentage + '%';
         statusHeading.textContent = headingText;
         statusChapter.textContent = chapterIndex ? 'Chapter ' + String(chapterIndex).padStart(2, '0') + ' · ' + chapterText.textContent.trim() : 'Introduction';

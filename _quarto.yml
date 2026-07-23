@@ -2,6 +2,7 @@ project:
   type: website
   output-dir: _site
   post-render:
+    - _extensions/serika/glass/build-network.ts
     - scripts/stabilize-css-assets.py
   render:
     - "*.qmd"
@@ -53,6 +54,7 @@ format:
     include-in-header:
       - _extensions/serika/glass/sidebar-toggle.html
       - _extensions/serika/glass/plotly-config.html
+      - _extensions/serika/glass/network.html
       - _extensions/serika/glass/selection-ai.html
 
     toc: true
