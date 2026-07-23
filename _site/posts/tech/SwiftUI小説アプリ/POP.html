@@ -1,0 +1,3167 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Serika Yuzuki">
+<meta name="dcterms.date" content="2025-09-19">
+
+<title>Protocol Oriented Programming – 芹香のブログ 気軽にコメント残してね！</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-57df612ce7d31eb042a4162ec1190c32.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-9ce02ba9bf05f77acce06f7d436c50a3.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>(function () {
+  "use strict";
+
+  // Load the two site-wide TeX extensions before Quarto starts MathJax.
+  // This keeps individual .qmd files free from repeated \require commands.
+  var mathJaxConfig = window.MathJax = window.MathJax || {};
+  var mathJaxLoader = mathJaxConfig.loader = mathJaxConfig.loader || {};
+  var mathJaxLoad = mathJaxLoader.load = mathJaxLoader.load || [];
+  ['[tex]/physics', '[tex]/mhchem'].forEach(function (component) {
+    if (mathJaxLoad.indexOf(component) < 0) mathJaxLoad.push(component);
+  });
+  var mathJaxTex = mathJaxConfig.tex = mathJaxConfig.tex || {};
+  var mathJaxPackages = mathJaxTex.packages = mathJaxTex.packages || {};
+  if (Array.isArray(mathJaxPackages)) {
+    ['physics', 'mhchem'].forEach(function (name) {
+      if (mathJaxPackages.indexOf(name) < 0) mathJaxPackages.push(name);
+    });
+  } else {
+    var mathJaxAdditions = mathJaxPackages['[+]'] = mathJaxPackages['[+]'] || [];
+    ['physics', 'mhchem'].forEach(function (name) {
+      if (mathJaxAdditions.indexOf(name) < 0) mathJaxAdditions.push(name);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var body = document.body;
+    var reducedMotion = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var mobilePerformanceMode = window.matchMedia &&
+      window.matchMedia('(max-width: 991.98px)').matches;
+    var sidebar = document.getElementById('quarto-sidebar');
+    var marginSidebar = document.getElementById('quarto-margin-sidebar');
+    var toc = marginSidebar && marginSidebar.querySelector('#TOC, .sidebar-toc');
+    var navbarTools = document.querySelector('.quarto-navbar-tools');
+    var brandContainer = document.querySelector('.navbar-brand-container');
+    var LEFT_STORAGE_KEY = 'serika-glass-left-visible';
+    var TOC_STORAGE_KEY = 'serika-glass-toc-visible';
+
+    function readStoredBoolean(key, fallback) {
+      try {
+        var value = window.sessionStorage.getItem(key);
+        return value === null ? fallback : value !== 'false';
+      } catch (_) {
+        return fallback;
+      }
+    }
+
+    function writeStoredBoolean(key, value) {
+      try { window.sessionStorage.setItem(key, String(value)); } catch (_) { /* no-op */ }
+    }
+
+    // ── navbar の現在地 ----------------------------------------------------
+    function normalizedPath(url) {
+      var path = url.pathname.replace(/\/index\.html$/i, '/');
+      path = path.replace(/\.html$/i, '');
+      path = path.replace(/\/{2,}/g, '/').replace(/\/+$/, '');
+      return path || '/';
+    }
+
+    function updateNavbarActiveLink() {
+      var current = new URL(window.location.href);
+      var currentPath = normalizedPath(current);
+      document.querySelectorAll('.navbar .navbar-nav a.nav-link[href]').forEach(function (link) {
+        var href = link.getAttribute('href');
+        if (!href || link.hasAttribute('data-bs-toggle')) return;
+        var target;
+        try { target = new URL(href, current); } catch (_) { return; }
+        if (target.origin !== current.origin) return;
+        var isCurrent = normalizedPath(target) === currentPath;
+        link.classList.toggle('active', isCurrent);
+        if (isCurrent) link.setAttribute('aria-current', 'page');
+        else link.removeAttribute('aria-current');
+      });
+    }
+    updateNavbarActiveLink();
+    window.addEventListener('pageshow', updateNavbarActiveLink);
+
+    // ── rail state: 左右を独立した属性として同時に適用 ---------------------
+    var leftVisible = readStoredBoolean(LEFT_STORAGE_KEY, true);
+    var tocVisible = readStoredBoolean(TOC_STORAGE_KEY, true);
+    var leftToggleBtn;
+    var tocToggleBtn;
+    var drawerOpen = false;
+    var overlayPanel = null;
+
+    function isMobileNavigation() {
+      return window.innerWidth < 992;
+    }
+
+    function isOverlayNavigation() {
+      return window.innerWidth >= 992 && window.innerWidth < 1280;
+    }
+
+    function effectiveLeftVisible() {
+      return isOverlayNavigation() ? overlayPanel === 'left' : leftVisible;
+    }
+
+    function effectiveTocVisible() {
+      return isOverlayNavigation() ? overlayPanel === 'right' : tocVisible;
+    }
+
+    function updateLeftToggleState() {
+      if (!leftToggleBtn) return;
+      var mobile = isMobileNavigation();
+      var expanded = mobile ? drawerOpen : effectiveLeftVisible();
+      var label = mobile
+        ? (expanded ? 'ナビゲーションを閉じる' : 'ナビゲーションを開く')
+        : (expanded ? 'サイドバーを非表示' : 'サイドバーを表示');
+      leftToggleBtn.setAttribute('aria-controls', mobile ? 'pj-drawer' : 'quarto-sidebar');
+      leftToggleBtn.setAttribute('aria-expanded', String(expanded));
+      leftToggleBtn.setAttribute('aria-label', label);
+      leftToggleBtn.title = label;
+    }
+
+    function setInert(element, inert) {
+      if (!element) return;
+      if ('inert' in element) element.inert = inert;
+      if (inert) element.setAttribute('inert', '');
+      else element.removeAttribute('inert');
+    }
+
+    function applyLayoutState(animate) {
+      var leftOpen = effectiveLeftVisible();
+      var tocOpen = effectiveTocVisible();
+      body.dataset.pjLeft = leftOpen ? 'open' : 'closed';
+      body.dataset.pjRight = tocOpen ? 'open' : 'closed';
+      if (sidebar) {
+        sidebar.setAttribute('aria-hidden', String(!leftOpen));
+        setInert(sidebar, !leftOpen);
+      }
+      if (marginSidebar) {
+        marginSidebar.setAttribute('aria-hidden', String(!tocOpen));
+        setInert(marginSidebar, !tocOpen);
+      }
+      updateLeftToggleState();
+      if (tocToggleBtn) {
+        tocToggleBtn.setAttribute('aria-expanded', String(tocOpen));
+        tocToggleBtn.setAttribute('aria-label', tocOpen ? '目次を非表示' : '目次を表示');
+        tocToggleBtn.title = tocOpen ? '目次を非表示' : '目次を表示';
+      }
+      if (animate && !reducedMotion) body.dataset.pjMotionReady = 'true';
+    }
+
+    if (navbarTools && toc) {
+      tocToggleBtn = document.createElement('button');
+      tocToggleBtn.type = 'button';
+      tocToggleBtn.className = 'pj-toc-toggle pj-rail-toggle quarto-navigation-tool';
+      tocToggleBtn.innerHTML = '<i class="bi bi-layout-text-sidebar-reverse" aria-hidden="true"></i>';
+      tocToggleBtn.setAttribute('aria-controls', 'quarto-margin-sidebar');
+      navbarTools.insertBefore(tocToggleBtn, navbarTools.firstChild);
+      tocToggleBtn.addEventListener('click', function () {
+        if (isOverlayNavigation()) {
+          overlayPanel = overlayPanel === 'right' ? null : 'right';
+          applyLayoutState(true);
+          return;
+        }
+        tocVisible = !tocVisible;
+        writeStoredBoolean(TOC_STORAGE_KEY, tocVisible);
+        applyLayoutState(true);
+      });
+    }
+
+    if (brandContainer) {
+      leftToggleBtn = document.createElement('button');
+      leftToggleBtn.type = 'button';
+      leftToggleBtn.innerHTML = [
+        '<i class="bi bi-layout-sidebar-inset pj-left-desktop-icon" aria-hidden="true"></i>',
+        '<i class="bi bi-list pj-left-mobile-icon" aria-hidden="true"></i>'
+      ].join('');
+      leftToggleBtn.className = 'navbar-sidebar-toggle pj-rail-toggle quarto-navigation-tool';
+      brandContainer.insertBefore(leftToggleBtn, brandContainer.firstChild);
+    }
+
+    // First paint uses the final state; transitions become available on the next frame.
+    applyLayoutState(false);
+    window.requestAnimationFrame(function () { body.dataset.pjMotionReady = 'true'; });
+
+    if (!brandContainer) return;
+
+    // ── mobile navigation sheet -------------------------------------------
+    var siteName = (document.querySelector('.navbar-brand') || {}).textContent;
+    siteName = siteName ? siteName.trim() : 'Menu';
+    var drawer = document.createElement('div');
+    drawer.id = 'pj-drawer';
+    drawer.setAttribute('aria-hidden', 'true');
+    drawer.setAttribute('role', 'dialog');
+    drawer.setAttribute('aria-modal', 'true');
+    drawer.innerHTML = [
+      '<div id="pj-drawer-backdrop"></div>',
+      '<nav id="pj-drawer-panel" aria-label="ナビゲーション">',
+        '<div id="pj-drawer-header">',
+          '<span id="pj-drawer-site-name"></span>',
+          '<button id="pj-drawer-close" aria-label="閉じる" type="button"><i class="bi bi-x-lg" aria-hidden="true"></i></button>',
+        '</div>',
+        '<div id="pj-drawer-tabs" role="tablist" aria-label="ナビゲーションの種類">',
+          '<button class="pj-drawer-tab" id="pj-drawer-tab-site" type="button" role="tab" aria-selected="true" aria-controls="pj-drawer-site">サイト</button>',
+          '<button class="pj-drawer-tab" id="pj-drawer-tab-toc" type="button" role="tab" aria-selected="false" aria-controls="pj-drawer-toc">このページ</button>',
+        '</div>',
+        '<div id="pj-drawer-body">',
+          '<div id="pj-drawer-site" class="pj-drawer-view" role="tabpanel" aria-labelledby="pj-drawer-tab-site"></div>',
+          '<div id="pj-drawer-toc" class="pj-drawer-view" role="tabpanel" aria-labelledby="pj-drawer-tab-toc" hidden></div>',
+        '</div>',
+      '</nav>'
+    ].join('');
+    drawer.querySelector('#pj-drawer-site-name').textContent = siteName;
+    document.body.appendChild(drawer);
+
+    function cloneInto(source, destination, prefix) {
+      if (!source || !destination) return null;
+      var clone = source.cloneNode(true);
+      clone.querySelectorAll('[id]').forEach(function (el) { el.id = prefix + el.id; });
+      clone.querySelectorAll('[data-bs-target]').forEach(function (el) {
+        var target = el.getAttribute('data-bs-target');
+        if (target && target.charAt(0) === '#') el.setAttribute('data-bs-target', '#' + prefix + target.slice(1));
+      });
+      clone.querySelectorAll('[aria-controls]').forEach(function (el) {
+        var controls = el.getAttribute('aria-controls');
+        if (controls) el.setAttribute('aria-controls', controls.split(/\s+/).map(function (id) { return prefix + id; }).join(' '));
+      });
+      destination.appendChild(clone);
+      return clone;
+    }
+
+    cloneInto(sidebar && sidebar.querySelector('.sidebar-menu-container'), document.getElementById('pj-drawer-site'), 'pj-');
+    var drawerToc = cloneInto(toc, document.getElementById('pj-drawer-toc'), 'pj-toc-');
+    var tocTab = document.getElementById('pj-drawer-tab-toc');
+    if (!drawerToc) tocTab.hidden = true;
+
+    var backdrop = document.getElementById('pj-drawer-backdrop');
+    var closeBtn = document.getElementById('pj-drawer-close');
+    var closeTimer;
+
+    function drawerFocusables() {
+      return Array.prototype.slice.call(drawer.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])')).filter(function (el) {
+        return !el.hidden && el.offsetParent !== null;
+      });
+    }
+
+    function openDrawer() {
+      window.clearTimeout(closeTimer);
+      drawerOpen = true;
+      drawer.classList.remove('pj-closing');
+      drawer.classList.add('pj-open');
+      drawer.removeAttribute('aria-hidden');
+      body.classList.add('pj-drawer-active');
+      updateLeftToggleState();
+      window.requestAnimationFrame(function () { closeBtn.focus(); });
+    }
+
+    function closeDrawer() {
+      if (!drawerOpen) return;
+      drawerOpen = false;
+      updateLeftToggleState();
+      drawer.classList.add('pj-closing');
+      window.clearTimeout(closeTimer);
+      closeTimer = window.setTimeout(function () {
+        drawer.classList.remove('pj-open', 'pj-closing');
+        drawer.setAttribute('aria-hidden', 'true');
+        body.classList.remove('pj-drawer-active');
+        leftToggleBtn.focus();
+      }, reducedMotion ? 0 : 280);
+    }
+
+    function selectDrawerTab(tab) {
+      var siteTab = document.getElementById('pj-drawer-tab-site');
+      var sitePanel = document.getElementById('pj-drawer-site');
+      var pagePanel = document.getElementById('pj-drawer-toc');
+      var pageTab = document.getElementById('pj-drawer-tab-toc');
+      var pageSelected = tab === 'toc' && !pageTab.hidden;
+      siteTab.setAttribute('aria-selected', String(!pageSelected));
+      pageTab.setAttribute('aria-selected', String(pageSelected));
+      sitePanel.hidden = pageSelected;
+      pagePanel.hidden = !pageSelected;
+      (pageSelected ? pageTab : siteTab).focus();
+    }
+
+    document.getElementById('pj-drawer-tab-site').addEventListener('click', function () { selectDrawerTab('site'); });
+    tocTab.addEventListener('click', function () { selectDrawerTab('toc'); });
+    backdrop.addEventListener('click', closeDrawer);
+    closeBtn.addEventListener('click', closeDrawer);
+    document.getElementById('pj-drawer-body').addEventListener('click', function (event) {
+      var link = event.target.closest('a[href]');
+      if (link && !link.getAttribute('data-bs-toggle')) closeDrawer();
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (!drawerOpen) return;
+      if (event.key === 'Escape') { event.preventDefault(); closeDrawer(); return; }
+      if (event.key !== 'Tab') return;
+      var focusables = drawerFocusables();
+      if (!focusables.length) return;
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    });
+
+    leftToggleBtn.addEventListener('click', function () {
+      if (isMobileNavigation()) {
+        if (drawerOpen) closeDrawer(); else openDrawer();
+        return;
+      }
+      if (isOverlayNavigation()) {
+        overlayPanel = overlayPanel === 'left' ? null : 'left';
+        applyLayoutState(true);
+        return;
+      }
+      leftVisible = !leftVisible;
+      writeStoredBoolean(LEFT_STORAGE_KEY, leftVisible);
+      applyLayoutState(true);
+    });
+
+    var wasOverlayNavigation = isOverlayNavigation();
+    window.addEventListener('resize', function () {
+      var overlayNow = isOverlayNavigation();
+      if (overlayNow !== wasOverlayNavigation) {
+        overlayPanel = null;
+        wasOverlayNavigation = overlayNow;
+        applyLayoutState(false);
+      }
+      if (!isMobileNavigation() && drawerOpen) closeDrawer();
+      else updateLeftToggleState();
+    });
+
+    document.addEventListener('pointerdown', function (event) {
+      if (!isOverlayNavigation() || !overlayPanel) return;
+      if (event.target.closest('#quarto-sidebar, #quarto-margin-sidebar, .pj-rail-toggle')) return;
+      overlayPanel = null;
+      applyLayoutState(true);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key !== 'Escape' || !isOverlayNavigation() || !overlayPanel) return;
+      overlayPanel = null;
+      applyLayoutState(true);
+    });
+
+    // ── navbar は下方向で退避、上方向で復帰 -------------------------------
+    var navbar = document.querySelector('.navbar');
+    if (navbar && !mobilePerformanceMode) {
+      var lastScrollY = window.scrollY;
+      var ticking = false;
+      function handleNavbarScroll() {
+        var current = window.scrollY;
+        if (current < 80 || current <= lastScrollY) navbar.classList.remove('pj-navbar-hidden');
+        else navbar.classList.add('pj-navbar-hidden');
+        lastScrollY = current;
+        ticking = false;
+      }
+      window.addEventListener('scroll', function () {
+        if (!ticking) { window.requestAnimationFrame(handleNavbarScroll); ticking = true; }
+      }, { passive: true });
+    }
+
+    // ── P2: 小さな操作フィードバック --------------------------------------
+    document.addEventListener('click', function (event) {
+      var sidebarSectionToggle = event.target.closest('#quarto-sidebar .sidebar-item-toggle, #pj-drawer-body .sidebar-item-toggle');
+      if (sidebarSectionToggle && !reducedMotion) {
+        var chevron = sidebarSectionToggle.querySelector('.bi-chevron-right');
+        if (chevron) {
+          chevron.classList.remove('pj-chevron-highlight');
+          void chevron.offsetWidth;
+          chevron.classList.add('pj-chevron-highlight');
+          window.setTimeout(function () { chevron.classList.remove('pj-chevron-highlight'); }, 480);
+        }
+      }
+
+      var calloutHeader = event.target.closest('.callout-header[data-bs-toggle="collapse"]');
+      if (calloutHeader && !reducedMotion) {
+        var callout = calloutHeader.closest('.callout');
+        if (callout) {
+          callout.classList.remove('pj-callout-pulse');
+          void callout.offsetWidth;
+          callout.classList.add('pj-callout-pulse');
+          window.setTimeout(function () { callout.classList.remove('pj-callout-pulse'); }, 420);
+        }
+      }
+
+      var copyButton = event.target.closest('.code-copy-button');
+      if (copyButton && !reducedMotion) {
+        copyButton.classList.add('pj-copy-success');
+        copyButton.setAttribute('data-pj-copy-state', 'copied');
+        window.setTimeout(function () {
+          copyButton.classList.remove('pj-copy-success');
+          copyButton.removeAttribute('data-pj-copy-state');
+        }, 1000);
+      }
+
+      var anchor = event.target.closest('a[href^="#"]');
+      if (anchor) {
+        var targetId = anchor.getAttribute('href').slice(1);
+        var decodedTargetId = targetId;
+        try { decodedTargetId = decodeURIComponent(targetId); } catch (_) { /* keep raw hash */ }
+        var target = targetId && document.getElementById(decodedTargetId);
+        if (target && !reducedMotion) {
+          target.classList.remove('pj-anchor-target');
+          void target.offsetWidth;
+          target.classList.add('pj-anchor-target');
+          window.setTimeout(function () { target.classList.remove('pj-anchor-target'); }, 900);
+        }
+      }
+
+      if (event.target.closest('.quarto-color-scheme-toggle') && !reducedMotion) {
+        body.classList.remove('pj-theme-transition');
+        void body.offsetWidth;
+        body.classList.add('pj-theme-transition');
+        window.setTimeout(function () { body.classList.remove('pj-theme-transition'); }, 360);
+      }
+    }, true);
+
+    // TOC marker follows the last heading that crossed the reading line.
+    // IntersectionObserver could retain a parent chapter while scrolling down,
+    // because no child heading happened to remain inside its narrow root band.
+    if (toc && !mobilePerformanceMode) {
+      function tocTargetId(link) {
+        var href = link.getAttribute('href') || '';
+        var hash = '';
+        try {
+          var targetUrl = new URL(href, window.location.href);
+          var currentUrl = new URL(window.location.href);
+          if (targetUrl.origin !== currentUrl.origin ||
+              normalizedPath(targetUrl) !== normalizedPath(currentUrl)) return '';
+          hash = targetUrl.hash;
+        } catch (_) { return ''; }
+        var id = hash.slice(1);
+        try { id = decodeURIComponent(id); } catch (_) { /* keep raw hash */ }
+        return id;
+      }
+
+      var tocLinks = Array.prototype.slice.call(toc.querySelectorAll('a[href]')).filter(function (link) {
+        return document.getElementById(tocTargetId(link));
+      });
+      if (tocLinks.length) {
+        var tocScroller = toc.querySelector(':scope > ul') || toc;
+        tocScroller.style.position = 'relative';
+        var marker = document.createElement('span');
+        marker.className = 'pj-toc-marker';
+        marker.setAttribute('aria-hidden', 'true');
+        tocScroller.appendChild(marker);
+        var tocItems = tocLinks.map(function (link) {
+          return { link: link, heading: document.getElementById(tocTargetId(link)), top: 0 };
+        });
+        var markerFrame = 0;
+        function moveMarker(link) {
+          tocLinks.forEach(function (item) { item.classList.toggle('pj-toc-current', item === link); });
+          toc.querySelectorAll('ul.collapse').forEach(function (list) {
+            // Keep previously opened branches stable. Closing every non-active
+            // branch changes the TOC height near the document end and can leave
+            // only the title visible after the scroll position is clamped.
+            if (list.contains(link)) list.classList.add('show');
+          });
+          var tocRect = tocScroller.getBoundingClientRect();
+          var linkRect = link.getBoundingClientRect();
+          marker.style.left = Math.max(0, linkRect.left - tocRect.left) + 'px';
+          marker.style.height = linkRect.height + 'px';
+          marker.style.transform = 'translateY(' + (linkRect.top - tocRect.top + tocScroller.scrollTop) + 'px)';
+          marker.style.opacity = '1';
+
+          // The heading remains fixed while only the list scrolls. Reveal the
+          // active entry without moving the article or losing the TOC title.
+          var inset = 10;
+          if (linkRect.top < tocRect.top + inset) {
+            tocScroller.scrollTop += linkRect.top - tocRect.top - inset;
+          } else if (linkRect.bottom > tocRect.bottom - inset) {
+            tocScroller.scrollTop += linkRect.bottom - tocRect.bottom + inset;
+          }
+        }
+
+        function refreshTocOffsets() {
+          tocItems.forEach(function (item) {
+            item.top = item.heading.getBoundingClientRect().top + window.scrollY;
+          });
+          tocItems.sort(function (a, b) { return a.top - b.top; });
+        }
+
+        function updateTocMarker() {
+          var readingLine = window.scrollY + Math.min(window.innerHeight * 0.24, 220);
+          var current = tocItems[0];
+          tocItems.forEach(function (item) {
+            if (item.top <= readingLine) current = item;
+          });
+          if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+            current = tocItems[tocItems.length - 1];
+          }
+          if (current) moveMarker(current.link);
+          markerFrame = 0;
+        }
+
+        function requestTocMarkerUpdate(refresh) {
+          if (refresh) refreshTocOffsets();
+          if (!markerFrame) markerFrame = window.requestAnimationFrame(updateTocMarker);
+        }
+
+        refreshTocOffsets();
+        requestTocMarkerUpdate(false);
+        window.addEventListener('scroll', function () { requestTocMarkerUpdate(false); }, { passive: true });
+        window.addEventListener('resize', function () { requestTocMarkerUpdate(true); });
+        window.addEventListener('load', function () { requestTocMarkerUpdate(true); });
+        document.addEventListener('shown.bs.collapse', function () { requestTocMarkerUpdate(true); });
+        document.addEventListener('hidden.bs.collapse', function () { requestTocMarkerUpdate(true); });
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(function () { requestTocMarkerUpdate(true); });
+        }
+        if (window.ResizeObserver) {
+          var tocResizeObserver = new ResizeObserver(function () { requestTocMarkerUpdate(true); });
+          tocResizeObserver.observe(toc);
+        }
+        document.addEventListener('click', function (event) {
+          if (event.target.closest('.pj-toc-toggle')) {
+            window.setTimeout(function () { requestTocMarkerUpdate(true); }, reducedMotion ? 0 : 400);
+          }
+        });
+      }
+    }
+
+    // ── Prismatic Mathematical Observatory: Phase 1 reading layer ---------
+    var article = document.getElementById('quarto-document-content');
+    if (article) {
+      var titleBlock = article.querySelector('#title-block-header');
+      var title = titleBlock && titleBlock.querySelector('.title');
+      var chapterSections = Array.prototype.slice.call(article.querySelectorAll(':scope > section.level2'));
+      var allHeadings = Array.prototype.slice.call(article.querySelectorAll('section > h2, section > h3'));
+      var budouHeadings = Array.prototype.slice.call(article.querySelectorAll('section > h2, section > h3, section > h4, section > h5, section > h6'));
+
+      function applyBudouToHeading(heading) {
+        if (!heading || heading.querySelector(':scope > budoux-ja')) return;
+        if (!/[\u3040-\u30ff\u3400-\u9fff]/.test(heading.textContent || '')) return;
+        var excluded = '.anchorjs-link, .header-section-number, .pj-chapter-marker';
+        var contentNodes = Array.prototype.slice.call(heading.childNodes).filter(function (node) {
+          return node.nodeType === Node.TEXT_NODE ||
+            (node.nodeType === Node.ELEMENT_NODE && !node.matches(excluded));
+        });
+        if (!contentNodes.length) return;
+        var wrapper = document.createElement('budoux-ja');
+        var insertionPoint = document.createComment('budoux');
+        heading.insertBefore(insertionPoint, contentNodes[0]);
+        contentNodes.forEach(function (node) { wrapper.appendChild(node); });
+        heading.replaceChild(wrapper, insertionPoint);
+      }
+
+      applyBudouToHeading(title);
+      budouHeadings.forEach(applyBudouToHeading);
+
+      // Progress UI remains useful without animation and is announced only
+      // when explicitly focused, avoiding noisy live-region scroll updates.
+      var progress = document.createElement('div');
+      progress.id = 'pj-reading-progress';
+      progress.setAttribute('role', 'progressbar');
+      progress.setAttribute('aria-label', '記事の読書進捗');
+      progress.setAttribute('aria-valuemin', '0');
+      progress.setAttribute('aria-valuemax', '100');
+      progress.setAttribute('aria-valuenow', '0');
+      progress.innerHTML = '<span class="pj-reading-progress-bar" aria-hidden="true"></span>';
+      document.body.insertBefore(progress, document.body.firstChild);
+
+      var status = document.createElement('aside');
+      status.id = 'pj-reading-status';
+      status.setAttribute('aria-label', '現在の読書位置');
+      status.setAttribute('tabindex', '0');
+      status.innerHTML = [
+        '<span class="pj-reading-orbit" aria-hidden="true">',
+          '<svg viewBox="0 0 36 36" focusable="false">',
+            '<circle class="pj-reading-orbit-track" cx="18" cy="18" r="15.5" pathLength="100"></circle>',
+            '<circle class="pj-reading-orbit-progress" cx="18" cy="18" r="15.5" pathLength="100"></circle>',
+          '</svg>',
+          '<span class="pj-reading-orbit-core"></span>',
+        '</span>',
+        '<span class="pj-reading-copy">',
+          '<span class="pj-reading-chapter">Introduction</span>',
+          '<span class="pj-reading-heading">記事の先頭</span>',
+        '</span>',
+        '<span class="pj-reading-percent">0%</span>'
+      ].join('');
+      document.body.appendChild(status);
+
+      if (titleBlock && title) {
+        titleBlock.classList.add('pj-observatory-hero');
+
+        if (!reducedMotion && window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+          ['cyan', 'magenta'].forEach(function (tone) {
+            var layer = document.createElement('span');
+            layer.className = 'pj-title-chroma pj-title-chroma-' + tone;
+            layer.setAttribute('aria-hidden', 'true');
+            Array.prototype.slice.call(title.childNodes).forEach(function (node) {
+              if (node.nodeType === Node.ELEMENT_NODE && node.matches('.anchorjs-link, .pj-title-chroma')) return;
+              layer.appendChild(node.cloneNode(true));
+            });
+            title.appendChild(layer);
+          });
+
+          var chromaFrame = 0;
+          var pointerX = -10000;
+          var pointerY = -10000;
+          function renderTitleChroma() {
+            var rect = title.getBoundingClientRect();
+            var nearestX = Math.max(rect.left, Math.min(pointerX, rect.right));
+            var nearestY = Math.max(rect.top, Math.min(pointerY, rect.bottom));
+            var distance = Math.hypot(pointerX - nearestX, pointerY - nearestY);
+            var proximity = Math.max(0, 1 - distance / 150);
+            var horizontal = pointerX < rect.left + rect.width / 2 ? -1 : 1;
+            var vertical = pointerY < rect.top + rect.height / 2 ? -1 : 1;
+            var shift = 0.55 + proximity * 1.25;
+            title.style.setProperty('--pj-chroma-opacity', String(proximity * 0.3));
+            title.style.setProperty('--pj-chroma-cyan-x', (-horizontal * shift) + 'px');
+            title.style.setProperty('--pj-chroma-cyan-y', (-vertical * shift * 0.28) + 'px');
+            title.style.setProperty('--pj-chroma-magenta-x', (horizontal * shift) + 'px');
+            title.style.setProperty('--pj-chroma-magenta-y', (vertical * shift * 0.28) + 'px');
+            chromaFrame = 0;
+          }
+          document.addEventListener('pointermove', function (event) {
+            pointerX = event.clientX;
+            pointerY = event.clientY;
+            if (!chromaFrame) chromaFrame = window.requestAnimationFrame(renderTitleChroma);
+          }, { passive: true });
+          window.addEventListener('blur', function () {
+            title.style.setProperty('--pj-chroma-opacity', '0');
+          });
+        }
+
+        var yearMatch = (titleBlock.textContent || '').match(/(?:19|20)\d{2}/);
+        var overline = document.createElement('p');
+        overline.className = 'pj-hero-overline';
+        overline.textContent = 'PRISMATIC MATHEMATICAL OBSERVATORY' + (yearMatch ? ' · ' + yearMatch[0] : '');
+        title.parentNode.insertBefore(overline, title);
+
+        var readingText = Array.prototype.slice.call(article.querySelectorAll('section p, section li'))
+          .map(function (node) { return node.textContent || ''; }).join(' ');
+        var japaneseChars = (readingText.match(/[\u3040-\u30ff\u3400-\u9fff]/g) || []).length;
+        var latinWords = (readingText.match(/[A-Za-z0-9]+/g) || []).length;
+        var readingMinutes = Math.max(1, Math.ceil(japaneseChars / 500 + latinWords / 220));
+
+        var dashboard = document.createElement('div');
+        dashboard.className = 'pj-hero-dashboard';
+        dashboard.innerHTML = [
+          '<div class="pj-hero-stat"><span>READING TIME</span><strong>' + readingMinutes + ' min</strong></div>',
+          '<div class="pj-hero-stat"><span>CHAPTERS</span><strong>' + chapterSections.length + '</strong></div>'
+        ].join('');
+        titleBlock.appendChild(dashboard);
+
+      }
+
+      chapterSections.forEach(function (section, index) {
+        var heading = section.querySelector(':scope > h2');
+        if (!heading) return;
+        section.classList.add('pj-chapter');
+        section.style.setProperty('--pj-chapter-index', String(index));
+        var marker = document.createElement('span');
+        marker.className = 'pj-chapter-marker';
+        marker.setAttribute('aria-hidden', 'true');
+        marker.innerHTML = '<span class="pj-chapter-number">CHAPTER ' + String(index + 1).padStart(2, '0') + '</span><span class="pj-chapter-symbol">' + ['∿', '∑', 'ƒ', '∫'][index % 4] + '</span>';
+        heading.insertBefore(marker, heading.firstChild);
+      });
+
+      article.querySelectorAll('.callout').forEach(function (callout) {
+        var calloutTitle = callout.querySelector('.callout-title-container');
+        var label = calloutTitle ? calloutTitle.textContent.trim() : '';
+        if (/理論|Theory/i.test(label)) callout.classList.add('pj-theory-card');
+        if (/解答|Answer|Solution/i.test(label)) {
+          callout.classList.add('pj-solution-card');
+          var header = callout.querySelector('.callout-header[data-bs-toggle="collapse"]');
+          if (header) header.setAttribute('aria-label', header.getAttribute('aria-expanded') === 'true' ? '解答を閉じる' : '解答を見る');
+        }
+      });
+
+      document.addEventListener('shown.bs.collapse', function (event) {
+        var header = event.target.closest('.callout') && event.target.closest('.callout').querySelector('.callout-header');
+        if (header && header.closest('.pj-solution-card')) header.setAttribute('aria-label', '解答を閉じる');
+      });
+      document.addEventListener('hidden.bs.collapse', function (event) {
+        var header = event.target.closest('.callout') && event.target.closest('.callout').querySelector('.callout-header');
+        if (header && header.closest('.pj-solution-card')) header.setAttribute('aria-label', '解答を見る');
+      });
+
+      if (window.IntersectionObserver && !reducedMotion) {
+        var chapterRevealObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              var chapter = entry.target.closest('.pj-chapter');
+              if (chapter) chapter.classList.add('pj-chapter-visible');
+              chapterRevealObserver.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -14% 0px', threshold: 0.12 });
+        chapterSections.forEach(function (section) {
+          var heading = section.querySelector(':scope > h2');
+          if (heading) chapterRevealObserver.observe(heading);
+        });
+      } else {
+        chapterSections.forEach(function (section) { section.classList.add('pj-chapter-visible'); });
+      }
+
+      var statusChapter = status.querySelector('.pj-reading-chapter');
+      var statusHeading = status.querySelector('.pj-reading-heading');
+      var statusPercent = status.querySelector('.pj-reading-percent');
+      var statusOrbitProgress = status.querySelector('.pj-reading-orbit-progress');
+      var progressBar = progress.querySelector('.pj-reading-progress-bar');
+      var progressTicking = false;
+      var completed = false;
+      var headingOffsets = [];
+
+      function refreshHeadingOffsets() {
+        headingOffsets = allHeadings.map(function (heading) {
+          return {
+            heading: heading,
+            top: heading.getBoundingClientRect().top + window.scrollY
+          };
+        });
+      }
+
+      function headingAtReadingLine() {
+        var readingLine = window.scrollY + Math.min(window.innerHeight * 0.32, 280);
+        var current = null;
+        headingOffsets.forEach(function (item) {
+          if (item.top <= readingLine) current = item.heading;
+        });
+        return current;
+      }
+
+      function updateReadingState() {
+        var root = document.documentElement;
+        var max = Math.max(1, root.scrollHeight - window.innerHeight);
+        var percentage = Math.max(0, Math.min(100, Math.round(window.scrollY / max * 100)));
+        var currentHeading = headingAtReadingLine();
+        var currentChapter = currentHeading && currentHeading.closest('.pj-chapter');
+        var chapterIndex = currentChapter ? chapterSections.indexOf(currentChapter) + 1 : 0;
+        var headingLabel = currentHeading ? currentHeading.cloneNode(true) : null;
+        if (headingLabel) headingLabel.querySelectorAll('.pj-chapter-marker, .anchorjs-link').forEach(function (node) { node.remove(); });
+        var headingText = headingLabel ? headingLabel.textContent.trim() : '記事の先頭';
+        var chapterHeading = currentChapter && currentChapter.querySelector(':scope > h2');
+        var chapterText = chapterHeading ? chapterHeading.cloneNode(true) : null;
+        if (chapterText) chapterText.querySelectorAll('.pj-chapter-marker, .anchorjs-link').forEach(function (node) { node.remove(); });
+
+        document.documentElement.style.setProperty('--pj-reading-progress', percentage + '%');
+        progressBar.style.transform = 'scaleX(' + (percentage / 100) + ')';
+        progress.setAttribute('aria-valuenow', String(percentage));
+        progress.setAttribute('aria-valuetext', percentage + '%、' + headingText);
+        statusOrbitProgress.style.strokeDashoffset = String(100 - percentage);
+        statusPercent.textContent = percentage + '%';
+        statusHeading.textContent = headingText;
+        statusChapter.textContent = chapterIndex ? 'Chapter ' + String(chapterIndex).padStart(2, '0') + ' · ' + chapterText.textContent.trim() : 'Introduction';
+        document.body.dataset.pjChapter = chapterIndex ? String(chapterIndex) : '0';
+
+        if (percentage >= 99 && !completed) {
+          completed = true;
+          status.classList.add('pj-reading-complete');
+        } else if (percentage < 96 && completed) {
+          completed = false;
+          status.classList.remove('pj-reading-complete');
+        }
+        progressTicking = false;
+      }
+
+      function requestReadingUpdate() {
+        if (!progressTicking) {
+          progressTicking = true;
+          if (mobilePerformanceMode) window.setTimeout(updateReadingState, 80);
+          else window.requestAnimationFrame(updateReadingState);
+        }
+      }
+      refreshHeadingOffsets();
+      updateReadingState();
+      window.addEventListener('scroll', requestReadingUpdate, { passive: true });
+      window.addEventListener('resize', function () {
+        refreshHeadingOffsets();
+        requestReadingUpdate();
+      });
+      window.addEventListener('load', function () {
+        refreshHeadingOffsets();
+        requestReadingUpdate();
+      }, { once: true });
+
+      // ── Lightweight reference previews ---------------------------------
+      // Same-page equations/headings are read from the current DOM. Internal
+      // pages are fetched only on first hover/focus and cached. External URLs
+      // never trigger a network request; their destination is shown instead.
+      var linkPreview = document.createElement('div');
+      linkPreview.id = 'pj-link-preview';
+      linkPreview.setAttribute('role', 'tooltip');
+      linkPreview.hidden = true;
+      document.body.appendChild(linkPreview);
+      var previewCache = new Map();
+      var activePreviewLink = null;
+      var previewCloseTimer;
+
+      function previewLinkFromEvent(event) {
+        var link = event.target.closest && event.target.closest('a[href]');
+        if (!link || !article.contains(link)) return null;
+        if (link.matches('.anchorjs-link, .code-copy-button, [data-bs-toggle], [role="button"]')) return null;
+        var href = link.getAttribute('href') || '';
+        if (!href || href === '#' || /^(javascript|mailto|tel):/i.test(href)) return null;
+        return link;
+      }
+
+      function previewText(value, limit) {
+        var text = String(value || '').replace(/\s+/g, ' ').trim();
+        return text.length > limit ? text.slice(0, limit - 1) + '…' : text;
+      }
+
+      function renderLinkPreview(data, link) {
+        if (activePreviewLink !== link) return;
+        linkPreview.replaceChildren();
+        var type = document.createElement('span');
+        type.className = 'pj-link-preview-type';
+        type.textContent = data.type;
+        var heading = document.createElement('strong');
+        heading.textContent = data.title;
+        linkPreview.appendChild(type);
+        linkPreview.appendChild(heading);
+        if (data.node) {
+          var nodeWrap = document.createElement('div');
+          nodeWrap.className = 'pj-link-preview-math';
+          nodeWrap.appendChild(data.node.cloneNode(true));
+          linkPreview.appendChild(nodeWrap);
+        } else if (data.description) {
+          var description = document.createElement('span');
+          description.className = 'pj-link-preview-description';
+          description.textContent = data.description;
+          linkPreview.appendChild(description);
+        }
+        linkPreview.hidden = false;
+        var describedBy = (link.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean);
+        if (describedBy.indexOf('pj-link-preview') === -1) {
+          link.dataset.pjPreviewDescribedby = describedBy.join(' ');
+          describedBy.push('pj-link-preview');
+          link.setAttribute('aria-describedby', describedBy.join(' '));
+        }
+        window.requestAnimationFrame(function () {
+          if (activePreviewLink !== link) return;
+          var linkRect = link.getBoundingClientRect();
+          var previewRect = linkPreview.getBoundingClientRect();
+          var left = Math.min(window.innerWidth - previewRect.width - 12, Math.max(12, linkRect.left));
+          var below = linkRect.bottom + 10;
+          var top = below + previewRect.height <= window.innerHeight - 12
+            ? below
+            : Math.max(12, linkRect.top - previewRect.height - 10);
+          linkPreview.style.left = left + 'px';
+          linkPreview.style.top = top + 'px';
+        });
+      }
+
+      function localTargetPreview(url, link) {
+        if (!url.hash || normalizedPath(url) !== normalizedPath(new URL(window.location.href))) return null;
+        var id = url.hash.slice(1);
+        try { id = decodeURIComponent(id); } catch (_) { /* keep raw id */ }
+        var target = document.getElementById(id);
+        if (!target) return null;
+        var math = target.matches('.math, mjx-container, [id^="eq-"]') ? target : null;
+        var targetHeading = target.matches('h1, h2, h3, h4, h5, h6')
+          ? target
+          : target.querySelector('h1, h2, h3, h4, h5, h6');
+        var targetParagraph = target.matches('p, li') ? target : target.querySelector('p, li');
+        return {
+          type: math ? 'EQUATION' : 'ON THIS PAGE',
+          title: previewText((targetHeading || link).textContent, 80) || '参照先',
+          description: math ? '' : previewText((targetParagraph || target).textContent, 180),
+          node: math
+        };
+      }
+
+      function internalPagePreview(url) {
+        var cacheKey = url.origin + url.pathname + url.search;
+        if (!previewCache.has(cacheKey)) {
+          previewCache.set(cacheKey, window.fetch(cacheKey, {
+            credentials: 'same-origin',
+            headers: { 'Accept': 'text/html' }
+          }).then(function (response) {
+            if (!response.ok) throw new Error('preview unavailable');
+            return response.text();
+          }).then(function (html) {
+            var previewDocument = new DOMParser().parseFromString(html, 'text/html');
+            var pageTitle = previewDocument.querySelector('main h1, .quarto-title .title, h1');
+            var description = previewDocument.querySelector('meta[name="description"]');
+            var firstParagraph = previewDocument.querySelector('main p, article p');
+            return {
+              type: 'PAGE PREVIEW',
+              title: previewText(pageTitle ? pageTitle.textContent : previewDocument.title, 90) || url.pathname,
+              description: previewText(description ? description.content : (firstParagraph && firstParagraph.textContent), 190)
+            };
+          }).catch(function () {
+            return { type: 'INTERNAL LINK', title: url.pathname, description: 'リンク先を開いて内容を確認できます。' };
+          }));
+        }
+        return previewCache.get(cacheKey);
+      }
+
+      function showLinkPreview(link) {
+        window.clearTimeout(previewCloseTimer);
+        activePreviewLink = link;
+        var url;
+        try { url = new URL(link.href, window.location.href); } catch (_) { return; }
+        var localPreview = localTargetPreview(url, link);
+        if (localPreview) {
+          renderLinkPreview(localPreview, link);
+          return;
+        }
+        if (url.origin === window.location.origin) {
+          internalPagePreview(url).then(function (data) { renderLinkPreview(data, link); });
+          return;
+        }
+        renderLinkPreview({
+          type: 'EXTERNAL LINK',
+          title: previewText(link.textContent, 90) || url.hostname,
+          description: url.hostname
+        }, link);
+      }
+
+      function hideLinkPreview(link) {
+        window.clearTimeout(previewCloseTimer);
+        previewCloseTimer = window.setTimeout(function () {
+          if (link) {
+            var previousDescription = link.dataset.pjPreviewDescribedby || '';
+            if (previousDescription) link.setAttribute('aria-describedby', previousDescription);
+            else link.removeAttribute('aria-describedby');
+            delete link.dataset.pjPreviewDescribedby;
+          }
+          activePreviewLink = null;
+          linkPreview.hidden = true;
+        }, reducedMotion ? 0 : 90);
+      }
+
+      article.addEventListener('pointerover', function (event) {
+        var link = previewLinkFromEvent(event);
+        if (link && (!event.relatedTarget || !link.contains(event.relatedTarget))) showLinkPreview(link);
+      });
+      article.addEventListener('pointerout', function (event) {
+        var link = previewLinkFromEvent(event);
+        if (link && (!event.relatedTarget || !link.contains(event.relatedTarget))) hideLinkPreview(link);
+      });
+      article.addEventListener('focusin', function (event) {
+        var link = previewLinkFromEvent(event);
+        if (link) showLinkPreview(link);
+      });
+      article.addEventListener('focusout', function (event) {
+        var link = previewLinkFromEvent(event);
+        if (link) hideLinkPreview(link);
+      });
+      window.addEventListener('scroll', function () {
+        if (activePreviewLink) hideLinkPreview(activePreviewLink);
+      }, { passive: true });
+    }
+  });
+})();</script>
+
+<style>
+  .pj-network-toggle {
+    appearance: none;
+    display: inline-grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    color: inherit;
+    background: transparent;
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .pj-network-toggle:hover,
+  .pj-network-toggle:focus-visible {
+    color: var(--obs-accent, #9b87ff);
+    background: color-mix(in srgb, var(--obs-accent, #9b87ff) 12%, transparent);
+    outline: none;
+  }
+</style>
+<script>
+(function () {
+  "use strict";
+
+  if (customElements.get('serika-network')) return;
+
+  var palette = ['#72dcff', '#9f8cff', '#d987ff', '#76e6bd', '#f2bd76', '#77a5ff'];
+
+  function hash(value) {
+    var result = 2166136261;
+    for (var i = 0; i < value.length; i += 1) {
+      result ^= value.charCodeAt(i);
+      result = Math.imul(result, 16777619);
+    }
+    return result >>> 0;
+  }
+
+  function escapeSelector(value) {
+    return window.CSS && CSS.escape ? CSS.escape(value) : value.replace(/["\\]/g, '\\$&');
+  }
+
+  class SerikaNetwork extends HTMLElement {
+    constructor() {
+      super();
+      this.attachShadow({ mode: 'open' });
+      this.shadowRoot.innerHTML = [
+        '<style>',
+          ':host{color-scheme:light dark;--net-bg:color-mix(in srgb,var(--obs-surface,#15182a) 92%,transparent);--net-panel:color-mix(in srgb,var(--obs-glass-strong,#252a45) 84%,transparent);--net-border:color-mix(in srgb,var(--obs-accent,#9f8cff) 25%,transparent);--net-text:var(--obs-text,#eef0f8);--net-muted:var(--obs-muted,#a9aec3);--net-accent:var(--obs-accent,#9f8cff)}',
+          '*{box-sizing:border-box}',
+          'dialog{width:min(1180px,calc(100vw - 32px));height:min(780px,calc(100dvh - 32px));max-width:none;max-height:none;padding:0;border:1px solid var(--net-border);border-radius:28px;background:var(--net-bg);color:var(--net-text);box-shadow:0 28px 90px rgba(3,5,14,.48);backdrop-filter:blur(24px) saturate(1.14);overflow:hidden}',
+          'dialog::backdrop{background:rgba(5,7,18,.66);backdrop-filter:blur(5px)}',
+          '.shell{height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto;position:relative}',
+          'header{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;padding:17px 20px;border-bottom:1px solid var(--net-border);background:linear-gradient(110deg,color-mix(in srgb,var(--net-panel) 94%,transparent),color-mix(in srgb,var(--net-accent) 7%,transparent))}',
+          '.eyebrow{display:block;color:var(--net-accent);font:700 .68rem/1.2 ui-monospace,SFMono-Regular,monospace;letter-spacing:.16em;text-transform:uppercase}',
+          'h2{font:650 clamp(1.1rem,2.4vw,1.55rem)/1.2 var(--bs-body-font-family,system-ui);margin:.25rem 0 0}',
+          '.header-tools,.modes,.zoom{display:flex;align-items:center;gap:8px}',
+          'button,input,a{font:inherit}',
+          'button{border:1px solid var(--net-border);background:color-mix(in srgb,var(--net-panel) 80%,transparent);color:var(--net-text);border-radius:999px;min-height:38px;padding:0 14px;cursor:pointer}',
+          'button:hover,button:focus-visible{border-color:color-mix(in srgb,var(--net-accent) 62%,transparent);outline:none;background:color-mix(in srgb,var(--net-accent) 13%,var(--net-panel))}',
+          'button[aria-pressed=true]{color:var(--net-accent);border-color:color-mix(in srgb,var(--net-accent) 55%,transparent);background:color-mix(in srgb,var(--net-accent) 14%,var(--net-panel))}',
+          '.icon{width:40px;padding:0;display:grid;place-items:center;font-size:1.25rem}',
+          '.stage{position:relative;min-height:0;overflow:hidden;background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--net-accent) 9%,transparent),transparent 42%),linear-gradient(color-mix(in srgb,var(--net-text) 3%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--net-text) 3%,transparent) 1px,transparent 1px);background-size:auto,44px 44px,44px 44px}',
+          'canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}',
+          'canvas.dragging{cursor:grabbing}',
+          '.loading{position:absolute;inset:0;display:grid;place-items:center;color:var(--net-muted);pointer-events:none}',
+          '.loading[hidden]{display:none}',
+          '.floating{position:absolute;left:16px;top:16px;display:flex;gap:10px;align-items:center;z-index:2}',
+          '.search{width:min(280px,47vw);height:40px;border:1px solid var(--net-border);border-radius:999px;padding:0 16px;background:var(--net-panel);color:var(--net-text);outline:none}',
+          '.search:focus{border-color:color-mix(in srgb,var(--net-accent) 62%,transparent)}',
+          '.zoom{position:absolute;right:16px;top:16px;z-index:2}',
+          '.zoom button{width:40px;padding:0}',
+          'footer{min-height:74px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;padding:13px 20px;border-top:1px solid var(--net-border);background:var(--net-panel)}',
+          '.selection strong{display:block;font-size:.98rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
+          '.selection span{display:block;color:var(--net-muted);font-size:.8rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:.2rem}',
+          '.open-link{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 16px;border:1px solid var(--net-border);border-radius:999px;color:var(--net-text);text-decoration:none}',
+          '.open-link[hidden]{display:none}',
+          '.legend{position:absolute;left:18px;bottom:16px;color:var(--net-muted);font:600 .68rem/1.3 ui-monospace,SFMono-Regular,monospace;letter-spacing:.05em;pointer-events:none}',
+          '.legend i{display:inline-block;width:18px;height:1px;vertical-align:middle;margin:0 5px 2px 10px;background:var(--net-accent)}.legend i.related{opacity:.35;border-top:1px dashed var(--net-accent);background:none}',
+          '@media(max-width:680px){dialog{width:100vw;height:100dvh;border-radius:0;border-inline:0}header{padding:14px 15px}.header-tools{gap:6px}.modes button{padding:0 10px;font-size:.78rem}.floating{left:10px;top:10px}.zoom{right:10px;top:58px;flex-direction:column}.legend{display:none}footer{padding:11px 15px}.selection span{max-width:62vw}}',
+          '@media(prefers-reduced-motion:reduce){dialog{scroll-behavior:auto}}',
+        '</style>',
+        '<dialog aria-labelledby="network-title">',
+          '<div class="shell">',
+            '<header>',
+              '<div><span class="eyebrow">Knowledge constellation</span><h2 id="network-title">記事の星図</h2></div>',
+              '<div class="header-tools"><div class="modes" role="group" aria-label="表示範囲"><button type="button" data-mode="local" aria-pressed="true">周辺</button><button type="button" data-mode="all" aria-pressed="false">全体</button></div><button class="icon close" type="button" aria-label="閉じる">×</button></div>',
+            '</header>',
+            '<div class="stage">',
+              '<canvas role="img" aria-label="記事同士のリンクを表すネットワーク図"></canvas>',
+              '<div class="floating"><input class="search" type="search" placeholder="記事を検索" aria-label="記事を検索"></div>',
+              '<div class="zoom"><button type="button" data-zoom="in" aria-label="拡大">＋</button><button type="button" data-zoom="out" aria-label="縮小">−</button><button type="button" data-zoom="reset" aria-label="表示をリセット">◎</button></div>',
+              '<div class="legend"><i></i>リンク <i class="related"></i>関連</div>',
+              '<div class="loading">星図を読み込んでいます…</div>',
+            '</div>',
+            '<footer><div class="selection"><strong>記事を選択</strong><span>点を選ぶと概要を表示します。ダブルクリックで移動します。</span></div><a class="open-link" hidden>開く</a></footer>',
+          '</div>',
+        '</dialog>'
+      ].join('');
+      this.dialog = this.shadowRoot.querySelector('dialog');
+      this.canvas = this.shadowRoot.querySelector('canvas');
+      this.ctx = this.canvas.getContext('2d');
+      this.nodes = [];
+      this.edges = [];
+      this.visibleNodes = [];
+      this.visibleEdges = [];
+      this.mode = 'local';
+      this.scale = 1;
+      this.panX = 0;
+      this.panY = 0;
+      this.pointer = null;
+      this.dragNode = null;
+      this.hoverNode = null;
+      this.selectedNode = null;
+      this.frame = 0;
+      this.reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+
+    connectedCallback() {
+      var self = this;
+      this.shadowRoot.querySelector('.close').addEventListener('click', function () { self.close(); });
+      this.dialog.addEventListener('cancel', function (event) { event.preventDefault(); self.close(); });
+      this.shadowRoot.querySelectorAll('[data-mode]').forEach(function (button) {
+        button.addEventListener('click', function () { self.setMode(button.dataset.mode); });
+      });
+      this.shadowRoot.querySelectorAll('[data-zoom]').forEach(function (button) {
+        button.addEventListener('click', function () {
+          if (button.dataset.zoom === 'reset') self.resetView();
+          else self.zoom(button.dataset.zoom === 'in' ? 1.18 : 0.84, self.width / 2, self.height / 2);
+        });
+      });
+      this.shadowRoot.querySelector('.search').addEventListener('input', function (event) { self.search(event.target.value); });
+      this.canvas.addEventListener('pointerdown', function (event) { self.pointerDown(event); });
+      this.canvas.addEventListener('pointermove', function (event) { self.pointerMove(event); });
+      this.canvas.addEventListener('pointerup', function (event) { self.pointerUp(event); });
+      this.canvas.addEventListener('pointercancel', function (event) { self.pointerUp(event); });
+      this.canvas.addEventListener('dblclick', function (event) {
+        var node = self.nodeAt(event.offsetX, event.offsetY);
+        if (node) window.location.href = self.nodeUrl(node);
+      });
+      this.canvas.addEventListener('wheel', function (event) {
+        event.preventDefault();
+        self.zoom(event.deltaY < 0 ? 1.1 : 0.9, event.offsetX, event.offsetY);
+      }, { passive: false });
+      this.resizeObserver = new ResizeObserver(function () { self.resize(); });
+      this.resizeObserver.observe(this.shadowRoot.querySelector('.stage'));
+    }
+
+    disconnectedCallback() {
+      if (this.resizeObserver) this.resizeObserver.disconnect();
+      cancelAnimationFrame(this.frame);
+    }
+
+    open() {
+      if (this.dialog.showModal) this.dialog.showModal();
+      else this.dialog.setAttribute('open', '');
+      document.documentElement.classList.add('pj-network-open');
+      this.resize();
+      if (!this.dataPromise) this.dataPromise = this.load();
+      this.dataPromise.catch(function () { /* rendered in load */ });
+    }
+
+    close() {
+      cancelAnimationFrame(this.frame);
+      if (this.dialog.open && this.dialog.close) this.dialog.close();
+      else this.dialog.removeAttribute('open');
+      document.documentElement.classList.remove('pj-network-open');
+    }
+
+    graphUrl() {
+      var offset = (document.querySelector('meta[name="quarto:offset"]') || {}).content || './';
+      return new URL(offset + 'assets/serika-graph.json', window.location.href).href;
+    }
+
+    nodeUrl(node) {
+      var offset = (document.querySelector('meta[name="quarto:offset"]') || {}).content || './';
+      return new URL(offset + node.href, window.location.href).href;
+    }
+
+    async load() {
+      var loading = this.shadowRoot.querySelector('.loading');
+      try {
+        var response = await fetch(this.graphUrl(), { cache: 'no-cache' });
+        if (!response.ok) throw new Error('graph index unavailable');
+        var data = await response.json();
+        var self = this;
+        this.nodes = data.nodes.map(function (node) {
+          return Object.assign({}, node, { x: 0, y: 0, vx: 0, vy: 0, degree: 0, color: palette[hash(node.section || node.id) % palette.length] });
+        });
+        this.nodeMap = new Map(this.nodes.map(function (node) { return [node.id, node]; }));
+        this.edges = data.edges.map(function (edge) {
+          var source = self.nodeMap.get(edge.source);
+          var target = self.nodeMap.get(edge.target);
+          if (source) source.degree += 1;
+          if (target) target.degree += 1;
+          return Object.assign({}, edge, { sourceNode: source, targetNode: target });
+        }).filter(function (edge) { return edge.sourceNode && edge.targetNode; });
+        var currentPath = window.location.pathname.replace(/\/$/, '/index.html');
+        this.currentNode = this.nodes.find(function (node) {
+          return new URL(self.nodeUrl(node)).pathname.replace(/\/$/, '/index.html') === currentPath;
+        }) || null;
+        this.selectedNode = this.currentNode;
+        loading.hidden = true;
+        this.setMode(this.currentNode ? 'local' : 'all');
+        this.updateSelection();
+      } catch (error) {
+        loading.textContent = '星図を読み込めませんでした。次のレンダー後に再度お試しください。';
+        throw error;
+      }
+    }
+
+    setMode(mode) {
+      this.mode = mode;
+      this.shadowRoot.querySelectorAll('[data-mode]').forEach(function (button) {
+        button.setAttribute('aria-pressed', String(button.dataset.mode === mode));
+      });
+      var visibleIds = new Set();
+      if (mode === 'all' || !this.currentNode) {
+        this.nodes.forEach(function (node) { visibleIds.add(node.id); });
+      } else {
+        visibleIds.add(this.currentNode.id);
+        var frontier = [this.currentNode.id];
+        for (var depth = 0; depth < 2; depth += 1) {
+          var next = [];
+          this.edges.forEach(function (edge) {
+            if (frontier.indexOf(edge.source) >= 0 && !visibleIds.has(edge.target)) { visibleIds.add(edge.target); next.push(edge.target); }
+            if (frontier.indexOf(edge.target) >= 0 && !visibleIds.has(edge.source)) { visibleIds.add(edge.source); next.push(edge.source); }
+          });
+          frontier = next;
+        }
+        if (visibleIds.size === 1) {
+          this.nodes.filter(function (node) { return node.section === this.currentNode.section; }, this).slice(0, 10).forEach(function (node) { visibleIds.add(node.id); });
+        }
+      }
+      this.visibleNodes = this.nodes.filter(function (node) { return visibleIds.has(node.id); });
+      this.visibleEdges = this.edges.filter(function (edge) { return visibleIds.has(edge.source) && visibleIds.has(edge.target); });
+      this.layout();
+    }
+
+    layout() {
+      cancelAnimationFrame(this.frame);
+      var radius = Math.min(this.width || 800, this.height || 600) * 0.34;
+      var total = Math.max(1, this.visibleNodes.length);
+      this.visibleNodes.forEach(function (node, index) {
+        var angle = index / total * Math.PI * 2 + (hash(node.id) % 100) / 100;
+        var spread = .38 + ((hash(node.id + 'r') % 620) / 1000);
+        node.x = Math.cos(angle) * radius * spread;
+        node.y = Math.sin(angle) * radius * spread;
+        node.vx = 0;
+        node.vy = 0;
+      });
+      if (this.currentNode && this.visibleNodes.indexOf(this.currentNode) >= 0) {
+        this.currentNode.x = 0;
+        this.currentNode.y = 0;
+      }
+      this.resetView(false);
+      if (this.reducedMotion) this.draw();
+      else this.simulate(0);
+    }
+
+    simulate(step) {
+      var nodes = this.visibleNodes;
+      var edges = this.visibleEdges;
+      var desired = this.mode === 'all' ? 88 : 112;
+      for (var i = 0; i < nodes.length; i += 1) {
+        for (var j = i + 1; j < nodes.length; j += 1) {
+          var dx = nodes[j].x - nodes[i].x;
+          var dy = nodes[j].y - nodes[i].y;
+          var distance2 = Math.max(80, dx * dx + dy * dy);
+          var force = Math.min(1.8, 850 / distance2);
+          nodes[i].vx -= dx * force * .04;
+          nodes[i].vy -= dy * force * .04;
+          nodes[j].vx += dx * force * .04;
+          nodes[j].vy += dy * force * .04;
+        }
+      }
+      edges.forEach(function (edge) {
+        var dx = edge.targetNode.x - edge.sourceNode.x;
+        var dy = edge.targetNode.y - edge.sourceNode.y;
+        var distance = Math.max(1, Math.sqrt(dx * dx + dy * dy));
+        var pull = (distance - desired) * (edge.type === 'link' ? .0028 : .0014);
+        edge.sourceNode.vx += dx / distance * pull;
+        edge.sourceNode.vy += dy / distance * pull;
+        edge.targetNode.vx -= dx / distance * pull;
+        edge.targetNode.vy -= dy / distance * pull;
+      });
+      nodes.forEach(function (node) {
+        node.vx += -node.x * .00045;
+        node.vy += -node.y * .00045;
+        node.vx *= .88;
+        node.vy *= .88;
+        if (node !== this.dragNode) { node.x += node.vx; node.y += node.vy; }
+      }, this);
+      this.draw();
+      if (step < 190 && this.dialog.open) {
+        var self = this;
+        this.frame = requestAnimationFrame(function () { self.simulate(step + 1); });
+      }
+    }
+
+    resize() {
+      var rect = this.canvas.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      var ratio = Math.min(2, window.devicePixelRatio || 1);
+      this.width = rect.width;
+      this.height = rect.height;
+      this.canvas.width = Math.round(rect.width * ratio);
+      this.canvas.height = Math.round(rect.height * ratio);
+      this.ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      this.draw();
+    }
+
+    screenPoint(node) {
+      return { x: this.width / 2 + this.panX + node.x * this.scale, y: this.height / 2 + this.panY + node.y * this.scale };
+    }
+
+    draw() {
+      if (!this.width || !this.height) return;
+      var ctx = this.ctx;
+      ctx.clearRect(0, 0, this.width, this.height);
+      var self = this;
+      this.visibleEdges.forEach(function (edge) {
+        var a = self.screenPoint(edge.sourceNode);
+        var b = self.screenPoint(edge.targetNode);
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.strokeStyle = edge.type === 'link' ? 'rgba(154,139,255,.52)' : 'rgba(151,170,210,.16)';
+        ctx.lineWidth = edge.type === 'link' ? 1.25 : .7;
+        ctx.setLineDash(edge.type === 'link' ? [] : [3, 5]);
+        ctx.stroke();
+      });
+      ctx.setLineDash([]);
+      this.visibleNodes.forEach(function (node) {
+        var point = self.screenPoint(node);
+        var active = node === self.currentNode || node === self.selectedNode || node === self.hoverNode;
+        var radius = (4.2 + Math.min(4, node.degree * .45)) * (active ? 1.35 : 1);
+        if (active) {
+          var glow = ctx.createRadialGradient(point.x, point.y, radius, point.x, point.y, radius * 4.2);
+          glow.addColorStop(0, node.color + '70');
+          glow.addColorStop(1, node.color + '00');
+          ctx.fillStyle = glow;
+          ctx.beginPath(); ctx.arc(point.x, point.y, radius * 4.2, 0, Math.PI * 2); ctx.fill();
+        }
+        ctx.fillStyle = node.color;
+        ctx.beginPath(); ctx.arc(point.x, point.y, radius, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = active ? 'rgba(255,255,255,.9)' : 'rgba(255,255,255,.28)';
+        ctx.lineWidth = active ? 1.5 : .7;
+        ctx.stroke();
+        if (active || self.mode === 'local' || self.scale > 1.35) {
+          ctx.font = (active ? '600 ' : '500 ') + (active ? '13px' : '11px') + ' system-ui,sans-serif';
+          ctx.fillStyle = active ? 'rgba(244,246,255,.96)' : 'rgba(218,222,239,.72)';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'top';
+          var label = node.title.length > 22 ? node.title.slice(0, 21) + '…' : node.title;
+          ctx.fillText(label, point.x, point.y + radius + 7);
+        }
+      });
+    }
+
+    nodeAt(x, y) {
+      for (var i = this.visibleNodes.length - 1; i >= 0; i -= 1) {
+        var point = this.screenPoint(this.visibleNodes[i]);
+        var dx = x - point.x;
+        var dy = y - point.y;
+        if (dx * dx + dy * dy <= 144) return this.visibleNodes[i];
+      }
+      return null;
+    }
+
+    pointerDown(event) {
+      this.canvas.setPointerCapture(event.pointerId);
+      this.pointer = { id: event.pointerId, x: event.offsetX, y: event.offsetY, panX: this.panX, panY: this.panY };
+      this.dragNode = this.nodeAt(event.offsetX, event.offsetY);
+      this.canvas.classList.add('dragging');
+    }
+
+    pointerMove(event) {
+      if (this.pointer && this.pointer.id === event.pointerId) {
+        if (this.dragNode) {
+          this.dragNode.x = (event.offsetX - this.width / 2 - this.panX) / this.scale;
+          this.dragNode.y = (event.offsetY - this.height / 2 - this.panY) / this.scale;
+          this.dragNode.vx = 0; this.dragNode.vy = 0;
+        } else {
+          this.panX = this.pointer.panX + event.offsetX - this.pointer.x;
+          this.panY = this.pointer.panY + event.offsetY - this.pointer.y;
+        }
+      } else {
+        this.hoverNode = this.nodeAt(event.offsetX, event.offsetY);
+      }
+      this.draw();
+    }
+
+    pointerUp(event) {
+      if (!this.pointer || this.pointer.id !== event.pointerId) return;
+      var moved = Math.abs(event.offsetX - this.pointer.x) + Math.abs(event.offsetY - this.pointer.y);
+      if (moved < 8) {
+        this.selectedNode = this.nodeAt(event.offsetX, event.offsetY);
+        this.updateSelection();
+      }
+      this.pointer = null;
+      this.dragNode = null;
+      this.canvas.classList.remove('dragging');
+      this.draw();
+    }
+
+    zoom(factor, x, y) {
+      var previous = this.scale;
+      this.scale = Math.max(.35, Math.min(3.4, this.scale * factor));
+      var ratio = this.scale / previous;
+      this.panX = x - this.width / 2 - (x - this.width / 2 - this.panX) * ratio;
+      this.panY = y - this.height / 2 - (y - this.height / 2 - this.panY) * ratio;
+      this.draw();
+    }
+
+    resetView(redraw) {
+      this.scale = this.mode === 'all' && this.visibleNodes.length > 50 ? .8 : 1;
+      this.panX = 0;
+      this.panY = 0;
+      if (redraw !== false) this.draw();
+    }
+
+    search(value) {
+      var query = value.trim().toLocaleLowerCase('ja');
+      if (!query) return;
+      var match = this.nodes.find(function (node) {
+        return (node.title + ' ' + node.categories.join(' ')).toLocaleLowerCase('ja').includes(query);
+      });
+      if (!match) return;
+      if (this.visibleNodes.indexOf(match) < 0) this.setMode('all');
+      this.selectedNode = match;
+      this.panX = -match.x * this.scale;
+      this.panY = -match.y * this.scale;
+      this.updateSelection();
+      this.draw();
+    }
+
+    updateSelection() {
+      var title = this.shadowRoot.querySelector('.selection strong');
+      var detail = this.shadowRoot.querySelector('.selection span');
+      var link = this.shadowRoot.querySelector('.open-link');
+      if (!this.selectedNode) {
+        title.textContent = '記事を選択';
+        detail.textContent = '点を選ぶと概要を表示します。ダブルクリックで移動します。';
+        link.hidden = true;
+        return;
+      }
+      title.textContent = this.selectedNode.title;
+      detail.textContent = this.selectedNode.description || this.selectedNode.categories.join(' · ') || this.selectedNode.href;
+      link.href = this.nodeUrl(this.selectedNode);
+      link.hidden = false;
+    }
+  }
+
+  customElements.define('serika-network', SerikaNetwork);
+
+  document.addEventListener('DOMContentLoaded', function () {
+    if (document.querySelector('serika-network')) return;
+    var tools = document.querySelector('.quarto-navbar-tools');
+    if (!tools) return;
+    var network = document.createElement('serika-network');
+    document.body.appendChild(network);
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'pj-network-toggle quarto-navigation-tool';
+    button.setAttribute('aria-label', '記事の星図を開く');
+    button.title = '記事の星図';
+    button.innerHTML = '<i class="bi bi-diagram-3" aria-hidden="true"></i>';
+    button.addEventListener('click', function () { network.open(); });
+    tools.insertBefore(button, tools.firstChild);
+  });
+})();
+</script>
+<script>(function () {
+  "use strict";
+
+  var MATH_SOURCE_ATTRIBUTE = "data-serika-tex-source";
+  var BLOCK_ELEMENTS = {
+    ADDRESS: true, ARTICLE: true, ASIDE: true, BLOCKQUOTE: true, DD: true,
+    DIV: true, DL: true, DT: true, FIGCAPTION: true, FIGURE: true, FOOTER: true,
+    H1: true, H2: true, H3: true, H4: true, H5: true, H6: true, HEADER: true,
+    HR: true, LI: true, MAIN: true, NAV: true, OL: true, P: true, PRE: true,
+    SECTION: true, TABLE: true, TBODY: true, TD: true, TFOOT: true, TH: true,
+    THEAD: true, TR: true, UL: true
+  };
+
+  function rememberMathSource(element) {
+    if (!element || element.nodeType !== 1 || !element.matches(".math")) return;
+    if (element.hasAttribute(MATH_SOURCE_ATTRIBUTE) || element.querySelector("mjx-container")) return;
+    var source = element.textContent.trim();
+    if (source) element.setAttribute(MATH_SOURCE_ATTRIBUTE, source);
+  }
+
+  function rememberMathSources(root) {
+    if (!root || root.nodeType !== 1) return;
+    rememberMathSource(root);
+    root.querySelectorAll(".math").forEach(rememberMathSource);
+  }
+
+  // Quarto leaves the original TeX in .math until MathJax replaces its contents.
+  // Preserve it as an attribute so mixed prose/math selections can be reconstructed.
+  rememberMathSources(document.documentElement);
+  var mathSourceObserver = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      mutation.addedNodes.forEach(rememberMathSources);
+    });
+  });
+  mathSourceObserver.observe(document.documentElement, { childList: true, subtree: true });
+
+  function closestMath(node) {
+    var element = node && (node.nodeType === 1 ? node : node.parentElement);
+    return element && element.closest ? element.closest(".math") : null;
+  }
+
+  function formatMathSource(element) {
+    var source = (element.getAttribute(MATH_SOURCE_ATTRIBUTE) || "").trim();
+    var display = element.classList.contains("display");
+    var match = source.match(/^\\\[([\s\S]*)\\\]$/);
+    if (match) { source = match[1].trim(); display = true; }
+    else {
+      match = source.match(/^\\\(([\s\S]*)\\\)$/);
+      if (match) { source = match[1].trim(); display = false; }
+    }
+    if (!source) return element.textContent || "";
+    return display ? "\n$$\n" + source + "\n$$\n" : "$" + source + "$";
+  }
+
+  function serializeSelectionNode(node) {
+    if (node.nodeType === 3) return node.nodeValue || "";
+    if (node.nodeType !== 1) {
+      var fragmentText = "";
+      node.childNodes.forEach(function (child) { fragmentText += serializeSelectionNode(child); });
+      return fragmentText;
+    }
+    if (node.matches(".serika-selection-ai, script, style, noscript, template")) return "";
+    if (node.matches(".math")) return formatMathSource(node);
+    if (node.tagName === "BR") return "\n";
+    var text = "";
+    node.childNodes.forEach(function (child) { text += serializeSelectionNode(child); });
+    return BLOCK_ELEMENTS[node.tagName] ? "\n" + text + "\n" : text;
+  }
+
+  function selectionTextWithTex(selection) {
+    if (!selection || !selection.rangeCount) return "";
+    var range = selection.getRangeAt(0).cloneRange();
+    var startMath = closestMath(range.startContainer);
+    var endMath = closestMath(range.endContainer);
+    if (startMath) range.setStartBefore(startMath);
+    if (endMath) range.setEndAfter(endMath);
+    var text = serializeSelectionNode(range.cloneContents());
+    return text
+      .replace(/\u00a0/g, " ")
+      .replace(/[ \t]+\n/g, "\n")
+      .replace(/\n[ \t]+/g, "\n")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim();
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text).catch(function () { return legacyCopyText(text); });
+    }
+    return Promise.resolve(legacyCopyText(text));
+  }
+
+  function legacyCopyText(text) {
+    var area = document.createElement("textarea");
+    area.value = text;
+    area.style.position = "fixed";
+    area.style.opacity = "0";
+    document.body.appendChild(area);
+    area.select();
+    var copied = false;
+    try { copied = document.execCommand("copy"); } catch (_) { /* no-op */ }
+    area.remove();
+    return copied;
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var selectedText = "";
+    var actions = [["要約する", "次の文章を日本語で簡潔に要約してください。"], ["わかりやすく説明", "次の文章の内容を、前提知識がない人にもわかるように説明してください。"], ["文章を改善", "次の文章を自然で読みやすい日本語に改善してください。意味は変えないでください。"], ["自由に聞く", "次の文章について質問に答えてください。"]];
+    var destinations = { chatgpt: "https://chatgpt.com/", gemini: "https://gemini.google.com/app", desktop: "" };
+    var destination = "chatgpt";
+    var bubble = document.createElement("div");
+    bubble.className = "serika-selection-ai";
+    bubble.hidden = true;
+    bubble.setAttribute("role", "dialog");
+    bubble.setAttribute("aria-label", "選択テキストをAIに聞く");
+    bubble.innerHTML = '<div class="serika-selection-ai-actions"><button type="button" class="serika-selection-ai-trigger">✦ AI</button><button type="button" class="serika-selection-copy-trigger">コピー</button></div><div class="serika-selection-ai-menu" hidden><div class="serika-selection-ai-heading">送信先</div><div class="serika-selection-ai-destinations" role="group" aria-label="AIの送信先"><button type="button" data-ai-destination="chatgpt" aria-pressed="true">ChatGPT</button><button type="button" data-ai-destination="gemini" aria-pressed="false">Gemini</button><button type="button" data-ai-destination="desktop" aria-pressed="false">Desktop</button></div></div>';
+    document.body.appendChild(bubble);
+    var trigger = bubble.querySelector(".serika-selection-ai-trigger");
+    var copyTrigger = bubble.querySelector(".serika-selection-copy-trigger");
+    var menu = bubble.querySelector(".serika-selection-ai-menu");
+    bubble.addEventListener("mousedown", function (event) {
+      event.preventDefault();
+    });
+    var destinationButtons = bubble.querySelectorAll("[data-ai-destination]");
+    destinationButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        destination = button.getAttribute("data-ai-destination");
+        destinationButtons.forEach(function (item) { item.setAttribute("aria-pressed", String(item === button)); });
+        hint.textContent = destination === "desktop" ? "コピー後：⌥Space → ⌘V" : "開いたら ⌘V で貼り付け";
+      });
+    });
+    actions.forEach(function (action) {
+      var button = document.createElement("button");
+      button.type = "button"; button.textContent = action[0];
+      button.addEventListener("click", function () {
+        var prompt = action[1] + "\n\n--- 選択した文章 ---\n" + selectedText;
+        var copy = copyText(prompt);
+        if (destinations[destination]) window.open(destinations[destination], "_blank", "noopener");
+        copy.then(function () { if (destination === "desktop") { hint.textContent = "✓ コピー済み：⌥Space → ⌘V"; } else { menu.hidden = true; } });
+      });
+      menu.appendChild(button);
+    });
+    var hint = document.createElement("div");
+    hint.className = "serika-selection-ai-hint";
+    hint.textContent = "開いたら ⌘V で貼り付け";
+    menu.appendChild(hint);
+    document.addEventListener("selectionchange", function () {
+      var selection = window.getSelection(); var text = selectionTextWithTex(selection);
+      if (!text || !selection.rangeCount || !document.body.contains(selection.anchorNode)) { selectedText = ""; menu.hidden = true; bubble.hidden = true; return; }
+      selectedText = text; var rect = selection.getRangeAt(0).getBoundingClientRect();
+      bubble.style.left = Math.max(12, Math.min(window.innerWidth - 150, rect.left + rect.width / 2 - 72)) + "px";
+      bubble.style.top = Math.max(12, rect.top - 48 + window.scrollY) + "px"; bubble.hidden = false;
+    });
+    trigger.addEventListener("click", function () { menu.hidden = !menu.hidden; });
+    copyTrigger.addEventListener("click", function () {
+      copyText(selectedText).then(function () {
+        copyTrigger.textContent = "✓ コピー";
+        window.setTimeout(function () { copyTrigger.textContent = "コピー"; }, 1200);
+      });
+    });
+    document.addEventListener("mousedown", function (event) { if (!bubble.contains(event.target)) menu.hidden = true; });
+  });
+})();</script>
+
+
+<link rel="stylesheet" href="../../../site_libs/quarto-contrib/quarto-project/serika/glass/styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const darkModeDefault = authorPrefersDark;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">芹香のブログ 気軽にコメント残してね！</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://syosetu.org/novel/309340/"> <i class="bi bi-book" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/SerikaYuzuki"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/serika_yuzuki"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../../posts/tech/ENovelEpubConverter.html">Tech</a></li><li class="breadcrumb-item"><a href="../../../posts/tech/SwiftUI小説アプリ/EditorKitPlugin.html">SwiftUI小説アプリ</a></li><li class="breadcrumb-item"><a href="../../../posts/tech/SwiftUI小説アプリ/POP.html">Protocol Oriented Programming</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Posts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">At Coder</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/cargo_compete.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cargo Compete</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/template.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">template</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-01</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-02</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-03</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-04</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-05</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-06</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-07</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-08</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-09</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-10</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/at_coder/typical90-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">typical90-11</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Play Ground</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/play_ground/template.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">template</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tech</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/ENovelEpubConverter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">小説をEPUBに変換するpythonパッケージを作った話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/linkwarden.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linkwardenにブックマーク管理を任せる</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/MisskeyDockerSetup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DockerでMisskeyを立てる</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/NovelApp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SwiftUIで開発する小説執筆支援アプリ</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/QuartoRenderSingle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quartoで単一ファイルにレンダリングする方法</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SetUpNewDebianServer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Debianサーバーを立てた話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/StartUsingCodex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Codexを使い始めた件</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftPackageError.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Swift Packageの読み込みエラー</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/TailscaleAndNord.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NordとTailscaleで自宅サーバーを安全に公開する</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/TimeMachineServer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time Machine ServerをSambaで作った話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/UbuntuPartitionMissing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ミスって/boot/efiを消した話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">AI</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/AI/AttentionIsAllYouNeed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Attention Is All You Needを読む話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/AI/BuildLLM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Build a Large Language Model from Scratchを読む話</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">SwiftUI小説アプリ</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth3 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftUI小説アプリ/EditorKitPlugin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EditorKitのいじり方をプラグイン形式にする話</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftUI小説アプリ/General.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">小説執筆アプリを作る</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftUI小説アプリ/Gitflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git FlowとGitHub Flow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftUI小説アプリ/POP.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Protocol Oriented Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/SwiftUI小説アプリ/SwiftUIAndAppKit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SwiftUIとAppKitの連携</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Ue5 Aura Courses</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/ue5_aura_courses/section_02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Section 02</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/ue5_aura_courses/section_03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">section_03</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/ue5_aura_courses/section_04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">section_04</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/ue5_aura_courses/section_05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">section_05</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/ue5_aura_courses/section_06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">section_06</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/ue5_aura_courses/template.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">template</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Ue5 Project</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/ue5_project/planning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Planning</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Univ Lecs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false">
+ <span class="menu-text">2A</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料力学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">統計力学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料相平衡論.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料相平衡論</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料統計力学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料統計力学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料速度論.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料速度論</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/2A/材料量子力学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料量子力学</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
+ <span class="menu-text">3A</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/セラミック材料学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">セラミックノート</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/デバイス材料工学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">デバイス材料工学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/信頼性学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">信頼性学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/数学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/生産プロセス.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">生産プロセス</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3A/高分子２.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">高分子ノート</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false">
+ <span class="menu-text">3S</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/半導体物性学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">半導体物性学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/固体物性学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">固体物性学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/数学2F.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学2F</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/材料力学2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料力学2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/材料反応工学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料反応工学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/材料強度学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料強度学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/材料電気化学.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">材料電気化学</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/3S/組織生成論.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">組織生成論</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
+ <span class="menu-text">4S</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/4S/工学基礎演習.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">工学基礎演習</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false">
+ <span class="menu-text">卒業論文</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/flux.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">fluxの式</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/レポート.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">演習レポート</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/卒論輪講.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">卒論輪講</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/談話会.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">談話会</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/過去論文.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">過去論文</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false">
+ <span class="menu-text">論文読書</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/論文読書/GPT-Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ti-Al-N-Based Hard Coatings: Thermodynamical Background, CVD Deposition, and Properties. A Review</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ti-Al-N系硬質コーティング：熱力学的背景・CVD成膜・特性レビュー</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/univ_lecs/卒業論文/論文読書/概要.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">概要</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false">
+ <span class="menu-text">卒業論文</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/flux.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">fluxの式</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/レポート.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">演習レポート</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/卒論輪講.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">卒論輪講</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/談話会.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">談話会</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/過去論文.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">過去論文</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" role="navigation" aria-expanded="false">
+ <span class="menu-text">論文読書</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ti-Al-N系硬質コーティング：熱力学的背景・CVD成膜・特性レビュー</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/卒業論文/論文読書/概要.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">概要</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" role="navigation" aria-expanded="false">
+ <span class="menu-text">収容所配布用</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-18" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" role="navigation" aria-expanded="false">
+ <span class="menu-text">数学</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-19" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学A</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学B</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学I.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学I</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学II.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学II</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/数学III.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">数学III</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/数学/過去問演習.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">過去問演習</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-20" role="navigation" aria-expanded="false">
+ <span class="menu-text">物理</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-20" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-20" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/収容所配布用/物理/物理.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">物理</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#概要" id="toc-概要" class="nav-link active" data-scroll-target="#概要">概要</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../../posts/tech/ENovelEpubConverter.html">Tech</a></li><li class="breadcrumb-item"><a href="../../../posts/tech/SwiftUI小説アプリ/EditorKitPlugin.html">SwiftUI小説アプリ</a></li><li class="breadcrumb-item"><a href="../../../posts/tech/SwiftUI小説アプリ/POP.html">Protocol Oriented Programming</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Protocol Oriented Programming</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">programming</div>
+    <div class="quarto-category">2025</div>
+    <div class="quarto-category">swift</div>
+    <div class="quarto-category">novel</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Serika Yuzuki </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 19, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="概要" class="level2">
+<h2 class="anchored" data-anchor-id="概要">概要</h2>
+<p>Protocol Oriented programmingの概念を使用して考えた場所についての備忘録。</p>
+<p>このプロジェクトにおいて、NovelStorageとEditorViewというのは独立している。なぜなら、NovelStorageは小説のデータを保存・管理する役割を担い、EditorViewはそのデータを表示・編集するためのUIコンポーネントで、それらは相互に依存しないからである。</p>
+<p>EditorViewにおいて、具体的に小説を書いたときのそのデータの中身や保存方法を知らせないといけない場合が現れる。だって編集画面なのだから。</p>
+<p>ここで、</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode swift code-with-copy"><code class="sourceCode swift"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">protocol</span> EditorAdapter<span class="op">:</span> <span class="dt">AnyObject</span> <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">func</span> <span class="fu">setText</span><span class="op">(</span><span class="va">_</span> <span class="va">text</span><span class="op">:</span> <span class="dt">String</span><span class="op">)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">func</span> <span class="fu">getText</span><span class="op">()</span> -&gt; <span class="fu">String</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>こういったプロトコルを定義することによって、EditorView自体は小説データの中身の弄り方などを一切知らなくても、できる前提でテストすることができるわけだ。あとは、NovelApp自体が二つのコンポーネントを結びつける際に、NovelStorageからいじり方を教えてもらって、それをEditorViewにぶち込めばいい。</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<input type="hidden" id="giscus-base-theme" value="transparent_dark">
+<input type="hidden" id="giscus-alt-theme" value="transparent_dark">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "SerikaYuzuki/Developing-Journal";
+    script.dataset.repoId = "R_kgDOKdxfxA";
+    script.dataset.category = "General";
+    script.dataset.categoryId = "DIC_kwDOKdxfxM4CZ-FP";
+    script.dataset.mapping = "title";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
