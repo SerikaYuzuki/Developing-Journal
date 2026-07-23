@@ -1760,8 +1760,38 @@ body::after {
 }
 
 @media (max-width: 991.98px) {
-  body::before { background-size: 84px 84px; opacity: 0.42; }
+  html,
+  body {
+    overflow-x: hidden;
+  }
+  body::before {
+    background-size: 84px 84px;
+    opacity: 0.42;
+    animation: none;
+  }
   body::after { display: none; }
+  .navbar {
+    will-change: auto;
+  }
+  #pj-reading-status {
+    background: var(--obs-surface-muted);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .pj-reading-progress-bar {
+    transition: none;
+  }
+  #title-block-header.pj-observatory-hero::before,
+  .pj-observatory-hero .title,
+  .pj-observatory-hero .subtitle,
+  .pj-chapter > h2 {
+    animation: none;
+    transition: none;
+  }
+  .pj-chapter > h2 {
+    opacity: 1;
+    transform: none;
+  }
   #quarto-content.page-columns {
     grid-template-columns:
       [screen-start] max(0.75rem, env(safe-area-inset-left))

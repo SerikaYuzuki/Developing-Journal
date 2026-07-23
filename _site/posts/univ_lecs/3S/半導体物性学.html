@@ -134,6 +134,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     var body = document.body;
     var reducedMotion = window.matchMedia &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var mobilePerformanceMode = window.matchMedia &&
+      window.matchMedia('(max-width: 991.98px)').matches;
     var sidebar = document.getElementById('quarto-sidebar');
     var marginSidebar = document.getElementById('quarto-margin-sidebar');
     var toc = marginSidebar && marginSidebar.querySelector('#TOC, .sidebar-toc');
@@ -443,7 +445,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
     // ── navbar は下方向で退避、上方向で復帰 -------------------------------
     var navbar = document.querySelector('.navbar');
-    if (navbar) {
+    if (navbar && !mobilePerformanceMode) {
       var lastScrollY = window.scrollY;
       var ticking = false;
       function handleNavbarScroll() {
@@ -517,7 +519,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     // TOC marker follows the last heading that crossed the reading line.
     // IntersectionObserver could retain a parent chapter while scrolling down,
     // because no child heading happened to remain inside its narrow root band.
-    if (toc) {
+    if (toc && !mobilePerformanceMode) {
       function tocTargetId(link) {
         var href = link.getAttribute('href') || '';
         var hash = '';
@@ -838,7 +840,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       function requestReadingUpdate() {
         if (!progressTicking) {
           progressTicking = true;
-          window.requestAnimationFrame(updateReadingState);
+          if (mobilePerformanceMode) window.setTimeout(updateReadingState, 80);
+          else window.requestAnimationFrame(updateReadingState);
         }
       }
       refreshHeadingOffsets();
