@@ -4,6 +4,9 @@
   --pj-floating-navbar-offset: 18px;
   --pj-floating-navbar-clearance: 88px;
   --pj-reading-width: 76ch;
+  --pj-rail-utility-row: 2.75rem;
+  --pj-rail-label-row: 2.25rem;
+  --pj-rail-row-gap: 0.25rem;
 }
 
 /* ── スクロール連動 navbar ── */
@@ -171,20 +174,6 @@ main.content,
   100% { background-color: transparent; }
 }
 
-.pj-toc-marker {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 3px;
-  height: 1.2rem;
-  border-radius: 999px;
-  background: var(--gl-cat0);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(0);
-  transition: left 180ms var(--pj-layout-ease, ease-out), transform 220ms var(--pj-layout-ease, ease-out), height 180ms ease, opacity 180ms ease;
-}
-
 body,
 .quarto-title-block,
 .callout,
@@ -231,7 +220,6 @@ body.pj-theme-transition {
 @media (prefers-reduced-motion: reduce) {
   .callout.pj-callout-pulse,
   .pj-anchor-target { animation: none !important; }
-  .pj-toc-marker,
   .code-copy-button,
   body { transition: none !important; }
 }
@@ -1646,12 +1634,9 @@ body::after {
 
 .pj-reading-orbit {
   position: relative;
-  display: grid;
-  place-items: center;
+  display: block;
   width: 1.9rem;
   aspect-ratio: 1;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--obs-accent) 7%, transparent);
 }
 
 .pj-reading-orbit svg {
@@ -1677,17 +1662,10 @@ body::after {
   stroke: var(--obs-accent-cyan);
   stroke-width: 2.4;
   stroke-linecap: round;
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
+  stroke-dasharray: 94.2478 94.2478;
+  stroke-dashoffset: 94.2478;
   filter: drop-shadow(0 0 2px color-mix(in srgb, var(--obs-accent-cyan) 65%, transparent));
   transition: stroke-dashoffset 100ms linear;
-}
-
-.pj-reading-orbit-core {
-  width: 0.82rem;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--obs-accent) 10%, transparent);
 }
 
 .pj-reading-copy {
@@ -1726,6 +1704,7 @@ body::after {
 @media (min-width: 992px) {
   #quarto-sidebar,
   #quarto-margin-sidebar {
+    box-sizing: border-box;
     padding: 0.75rem !important;
     background: transparent;
     border: 0 !important;
@@ -1736,61 +1715,124 @@ body::after {
   }
 
   #quarto-margin-sidebar {
-    display: flex;
-    flex-direction: column;
+    display: block;
     overflow: hidden !important;
   }
 
-  #TOC {
-    position: relative;
+  #quarto-sidebar {
+    display: grid !important;
+    grid-template-rows: var(--pj-rail-utility-row) minmax(0, 1fr);
+    row-gap: var(--pj-rail-row-gap);
+    overflow: hidden !important;
+  }
+
+  #quarto-sidebar > .mt-2 {
+    align-self: stretch;
+    min-height: 0;
+    margin-top: 0 !important;
+  }
+
+  #quarto-sidebar > .sidebar-menu-container {
+    min-height: 0;
+    padding-top: 0 !important;
+    overflow: auto;
+  }
+
+  #quarto-sidebar > .sidebar-menu-container > ul {
+    margin-top: 0 !important;
+  }
+
+  #quarto-sidebar > .sidebar-menu-container > ul > .sidebar-item:first-child > .sidebar-item-container,
+  #TOC > #toc-title {
+    box-sizing: border-box;
+    min-height: var(--pj-rail-label-row);
+  }
+
+  #quarto-sidebar > .sidebar-menu-container > ul > .sidebar-item:first-child .sidebar-link {
     display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
+    align-items: center;
+    min-height: var(--pj-rail-label-row);
+    padding-block: 0;
+  }
+
+  #TOC {
+    display: grid;
+    grid-template-rows:
+      var(--pj-rail-utility-row)
+      var(--pj-rail-label-row)
+      minmax(0, 1fr);
+    row-gap: var(--pj-rail-row-gap);
+    height: 100%;
     min-height: 0;
     margin-top: 0 !important;
     padding-inline-start: 0.55rem;
     overflow: hidden !important;
   }
 
-  #TOC > #toc-title {
-    flex: 0 0 auto;
-    margin: 0.45rem 0 0.65rem;
+  #TOC::before {
+    content: "";
+    grid-row: 1;
   }
 
-  #TOC > ul {
-    flex: 1 1 auto;
+  #TOC > #toc-title {
+    grid-row: 2;
+    display: flex;
+    align-items: center;
+    margin: 0;
+  }
+
+  #TOC > .pj-toc-scroll-region {
+    grid-row: 3;
     min-height: 0;
-    margin-bottom: 0;
-    padding-bottom: 0.75rem;
     overflow-x: hidden;
     overflow-y: auto;
     overscroll-behavior: contain;
     scrollbar-gutter: stable;
   }
 
+  #TOC > .pj-toc-scroll-region > ul {
+    margin: 0;
+    padding-bottom: 0.75rem;
+  }
+
+  /* Quarto/Bootstrap ScrollSpy is the sole owner of the active state.
+     Keep every nested branch measurable so reaching the document end cannot
+     collapse the list underneath the active item. */
+  #TOC ul.collapse {
+    display: block !important;
+    height: auto !important;
+    visibility: visible !important;
+  }
+
   #TOC .nav-link {
+    position: relative;
     border-radius: 0.45rem;
     transition: color 180ms ease, background-color 180ms ease, text-shadow 180ms ease;
   }
 
-  #TOC .nav-link:is(.active, .pj-toc-current) {
-    color: color-mix(in srgb, var(--obs-accent-cyan) 48%, var(--obs-text)) !important;
-    background: color-mix(in srgb, var(--obs-accent-cyan) 7%, transparent);
-    text-shadow: 0 0 10px color-mix(in srgb, var(--obs-accent-cyan) 18%, transparent);
-  }
-
-  #TOC .nav-link.pj-toc-current {
-    font-weight: 650;
-  }
-
-  #TOC .nav-link.active:not(.pj-toc-current) {
-    color: var(--obs-text-muted) !important;
+  #TOC .nav-link.active {
+    color: inherit !important;
     background: transparent;
     font-weight: 500;
     text-shadow: none;
   }
 
-  #TOC::before,
+  #TOC .nav-link.pj-toc-visible-current {
+    color: color-mix(in srgb, var(--obs-accent-cyan) 48%, var(--obs-text)) !important;
+    background: color-mix(in srgb, var(--obs-accent-cyan) 7%, transparent);
+    font-weight: 650;
+    text-shadow: 0 0 10px color-mix(in srgb, var(--obs-accent-cyan) 18%, transparent);
+  }
+
+  #TOC .nav-link.pj-toc-visible-current::before {
+    content: "";
+    position: absolute;
+    inset: 0.18rem auto 0.18rem -0.45rem;
+    width: 3px;
+    border-radius: 999px;
+    background: var(--obs-accent-cyan);
+  }
+
   #TOC::after { content: none; }
 }
 
@@ -1830,19 +1872,21 @@ body::after {
   body {
     overflow-x: hidden;
   }
-  body::before {
-    background-size: 84px 84px;
-    opacity: 0.42;
-    animation: none;
+  html { scroll-behavior: auto; }
+  body {
+    background-attachment: scroll;
   }
-  body::after { display: none; }
+  body::before,
+  body::after { display: none !important; }
   .navbar {
     will-change: auto;
   }
   #pj-reading-status {
     background: var(--obs-surface-muted);
+    box-shadow: none;
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
+    contain: layout paint style;
   }
   .pj-reading-progress-bar {
     transition: none;

@@ -105,6 +105,16 @@ ul.task-list li input[type="checkbox"] {
     var sidebar = document.getElementById('quarto-sidebar');
     var marginSidebar = document.getElementById('quarto-margin-sidebar');
     var toc = marginSidebar && marginSidebar.querySelector('#TOC, .sidebar-toc');
+    var tocScrollRegion = null;
+    if (toc) {
+      var tocList = toc.querySelector(':scope > ul');
+      if (tocList) {
+        tocScrollRegion = document.createElement('div');
+        tocScrollRegion.className = 'pj-toc-scroll-region';
+        toc.insertBefore(tocScrollRegion, tocList);
+        tocScrollRegion.appendChild(tocList);
+      }
+    }
     var navbarTools = document.querySelector('.quarto-navbar-tools');
     var brandContainer = document.querySelector('.navbar-brand-container');
     var LEFT_STORAGE_KEY = 'serika-glass-left-visible';
@@ -482,109 +492,61 @@ ul.task-list li input[type="checkbox"] {
       }
     }, true);
 
-    // TOC marker follows the last heading that crossed the reading line.
-    // IntersectionObserver could retain a parent chapter while scrolling down,
-    // because no child heading happened to remain inside its narrow root band.
-    if (toc && !mobilePerformanceMode) {
-      function tocTargetId(link) {
-        var href = link.getAttribute('href') || '';
-        var hash = '';
-        try {
-          var targetUrl = new URL(href, window.location.href);
-          var currentUrl = new URL(window.location.href);
-          if (targetUrl.origin !== currentUrl.origin ||
-              normalizedPath(targetUrl) !== normalizedPath(currentUrl)) return '';
-          hash = targetUrl.hash;
-        } catch (_) { return ''; }
-        var id = hash.slice(1);
-        try { id = decodeURIComponent(id); } catch (_) { /* keep raw hash */ }
-        return id;
+    // Quarto ScrollSpy remains the sole owner of `.active`. Quarto can retain
+    // an ancestor/first entry while activating the current descendant, so the
+    // rail projects the last active link in document order to one visual state.
+    // The mobile drawer clone is outside `toc` and never participates.
+    if (toc && tocScrollRegion && !mobilePerformanceMode) {
+      var visibleTocCurrent = null;
+      var tocProjectionFrame = 0;
+
+      function revealVisibleTocCurrent(link) {
+        var regionRect = tocScrollRegion.getBoundingClientRect();
+        var linkRect = link.getBoundingClientRect();
+        var inset = 8;
+        if (linkRect.top < regionRect.top + inset) {
+          tocScrollRegion.scrollTop += linkRect.top - regionRect.top - inset;
+        } else if (linkRect.bottom > regionRect.bottom - inset) {
+          tocScrollRegion.scrollTop += linkRect.bottom - regionRect.bottom + inset;
+        }
       }
 
-      var tocLinks = Array.prototype.slice.call(toc.querySelectorAll('a[href]')).filter(function (link) {
-        return document.getElementById(tocTargetId(link));
+      function projectVisibleTocCurrent() {
+        tocProjectionFrame = 0;
+        var nativeActiveLinks = Array.prototype.slice.call(
+          toc.querySelectorAll('a.nav-link.active')
+        ).filter(function (link) {
+          return tocScrollRegion.contains(link);
+        });
+        var next = nativeActiveLinks.length
+          ? nativeActiveLinks[nativeActiveLinks.length - 1]
+          : visibleTocCurrent;
+        if (!next) return;
+
+        toc.querySelectorAll('a.pj-toc-visible-current').forEach(function (link) {
+          if (link !== next) link.classList.remove('pj-toc-visible-current');
+        });
+        if (!next.classList.contains('pj-toc-visible-current')) {
+          next.classList.add('pj-toc-visible-current');
+        }
+        visibleTocCurrent = next;
+        window.requestAnimationFrame(function () { revealVisibleTocCurrent(next); });
+      }
+
+      function requestTocProjection() {
+        if (!tocProjectionFrame) {
+          tocProjectionFrame = window.requestAnimationFrame(projectVisibleTocCurrent);
+        }
+      }
+
+      projectVisibleTocCurrent();
+      var tocActiveObserver = new MutationObserver(requestTocProjection);
+      tocActiveObserver.observe(tocScrollRegion, {
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['class']
       });
-      if (tocLinks.length) {
-        var tocScroller = toc.querySelector(':scope > ul') || toc;
-        tocScroller.style.position = 'relative';
-        var marker = document.createElement('span');
-        marker.className = 'pj-toc-marker';
-        marker.setAttribute('aria-hidden', 'true');
-        tocScroller.appendChild(marker);
-        var tocItems = tocLinks.map(function (link) {
-          return { link: link, heading: document.getElementById(tocTargetId(link)), top: 0 };
-        });
-        var markerFrame = 0;
-        function moveMarker(link) {
-          tocLinks.forEach(function (item) { item.classList.toggle('pj-toc-current', item === link); });
-          toc.querySelectorAll('ul.collapse').forEach(function (list) {
-            // Keep previously opened branches stable. Closing every non-active
-            // branch changes the TOC height near the document end and can leave
-            // only the title visible after the scroll position is clamped.
-            if (list.contains(link)) list.classList.add('show');
-          });
-          var tocRect = tocScroller.getBoundingClientRect();
-          var linkRect = link.getBoundingClientRect();
-          marker.style.left = Math.max(0, linkRect.left - tocRect.left) + 'px';
-          marker.style.height = linkRect.height + 'px';
-          marker.style.transform = 'translateY(' + (linkRect.top - tocRect.top + tocScroller.scrollTop) + 'px)';
-          marker.style.opacity = '1';
-
-          // The heading remains fixed while only the list scrolls. Reveal the
-          // active entry without moving the article or losing the TOC title.
-          var inset = 10;
-          if (linkRect.top < tocRect.top + inset) {
-            tocScroller.scrollTop += linkRect.top - tocRect.top - inset;
-          } else if (linkRect.bottom > tocRect.bottom - inset) {
-            tocScroller.scrollTop += linkRect.bottom - tocRect.bottom + inset;
-          }
-        }
-
-        function refreshTocOffsets() {
-          tocItems.forEach(function (item) {
-            item.top = item.heading.getBoundingClientRect().top + window.scrollY;
-          });
-          tocItems.sort(function (a, b) { return a.top - b.top; });
-        }
-
-        function updateTocMarker() {
-          var readingLine = window.scrollY + Math.min(window.innerHeight * 0.24, 220);
-          var current = tocItems[0];
-          tocItems.forEach(function (item) {
-            if (item.top <= readingLine) current = item;
-          });
-          if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
-            current = tocItems[tocItems.length - 1];
-          }
-          if (current) moveMarker(current.link);
-          markerFrame = 0;
-        }
-
-        function requestTocMarkerUpdate(refresh) {
-          if (refresh) refreshTocOffsets();
-          if (!markerFrame) markerFrame = window.requestAnimationFrame(updateTocMarker);
-        }
-
-        refreshTocOffsets();
-        requestTocMarkerUpdate(false);
-        window.addEventListener('scroll', function () { requestTocMarkerUpdate(false); }, { passive: true });
-        window.addEventListener('resize', function () { requestTocMarkerUpdate(true); });
-        window.addEventListener('load', function () { requestTocMarkerUpdate(true); });
-        document.addEventListener('shown.bs.collapse', function () { requestTocMarkerUpdate(true); });
-        document.addEventListener('hidden.bs.collapse', function () { requestTocMarkerUpdate(true); });
-        if (document.fonts && document.fonts.ready) {
-          document.fonts.ready.then(function () { requestTocMarkerUpdate(true); });
-        }
-        if (window.ResizeObserver) {
-          var tocResizeObserver = new ResizeObserver(function () { requestTocMarkerUpdate(true); });
-          tocResizeObserver.observe(toc);
-        }
-        document.addEventListener('click', function (event) {
-          if (event.target.closest('.pj-toc-toggle')) {
-            window.setTimeout(function () { requestTocMarkerUpdate(true); }, reducedMotion ? 0 : 400);
-          }
-        });
-      }
+      window.addEventListener('resize', requestTocProjection, { passive: true });
     }
 
     // ── Prismatic Mathematical Observatory: Phase 1 reading layer ---------
@@ -634,10 +596,9 @@ ul.task-list li input[type="checkbox"] {
       status.innerHTML = [
         '<span class="pj-reading-orbit" aria-hidden="true">',
           '<svg viewBox="0 0 36 36" focusable="false">',
-            '<circle class="pj-reading-orbit-track" cx="18" cy="18" r="15.5" pathLength="100"></circle>',
-            '<circle class="pj-reading-orbit-progress" cx="18" cy="18" r="15.5" pathLength="100"></circle>',
+            '<circle class="pj-reading-orbit-track" cx="18" cy="18" r="15"></circle>',
+            '<circle class="pj-reading-orbit-progress" cx="18" cy="18" r="15" stroke-dasharray="94.2478 94.2478" stroke-dashoffset="94.2478"></circle>',
           '</svg>',
-          '<span class="pj-reading-orbit-core"></span>',
         '</span>',
         '<span class="pj-reading-copy">',
           '<span class="pj-reading-chapter">Introduction</span>',
@@ -745,7 +706,7 @@ ul.task-list li input[type="checkbox"] {
         if (header && header.closest('.pj-solution-card')) header.setAttribute('aria-label', '解答を見る');
       });
 
-      if (window.IntersectionObserver && !reducedMotion) {
+      if (window.IntersectionObserver && !reducedMotion && !mobilePerformanceMode) {
         var chapterRevealObserver = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
             if (entry.isIntersecting) {
@@ -771,48 +732,71 @@ ul.task-list li input[type="checkbox"] {
       var progressTicking = false;
       var completed = false;
       var headingOffsets = [];
+      var currentHeadingNode = null;
+      var currentPercentage = -1;
+      var scrollRange = 1;
+      var geometryTimer = 0;
 
       function refreshHeadingOffsets() {
         headingOffsets = allHeadings.map(function (heading) {
+          var label = heading.cloneNode(true);
+          label.querySelectorAll('.pj-chapter-marker, .anchorjs-link').forEach(function (node) { node.remove(); });
           return {
             heading: heading,
-            top: heading.getBoundingClientRect().top + window.scrollY
+            top: heading.getBoundingClientRect().top + window.scrollY,
+            label: label.textContent.trim()
           };
         });
+        scrollRange = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
       }
 
       function headingAtReadingLine() {
         var readingLine = window.scrollY + Math.min(window.innerHeight * 0.32, 280);
-        var current = null;
-        headingOffsets.forEach(function (item) {
-          if (item.top <= readingLine) current = item.heading;
-        });
-        return current;
+        var low = 0;
+        var high = headingOffsets.length - 1;
+        var current = -1;
+        while (low <= high) {
+          var middle = (low + high) >> 1;
+          if (headingOffsets[middle].top <= readingLine) {
+            current = middle;
+            low = middle + 1;
+          } else {
+            high = middle - 1;
+          }
+        }
+        return current >= 0 ? headingOffsets[current] : null;
       }
 
       function updateReadingState() {
-        var root = document.documentElement;
-        var max = Math.max(1, root.scrollHeight - window.innerHeight);
-        var percentage = Math.max(0, Math.min(100, Math.round(window.scrollY / max * 100)));
-        var currentHeading = headingAtReadingLine();
+        if (activePreviewLink) hideLinkPreview(activePreviewLink);
+        var percentage = Math.max(0, Math.min(100, Math.round(window.scrollY / scrollRange * 100)));
+        var currentHeadingItem = headingAtReadingLine();
+        var currentHeading = currentHeadingItem && currentHeadingItem.heading;
         var currentChapter = currentHeading && currentHeading.closest('.pj-chapter');
         var chapterIndex = currentChapter ? chapterSections.indexOf(currentChapter) + 1 : 0;
-        var headingLabel = currentHeading ? currentHeading.cloneNode(true) : null;
-        if (headingLabel) headingLabel.querySelectorAll('.pj-chapter-marker, .anchorjs-link').forEach(function (node) { node.remove(); });
-        var headingText = headingLabel ? headingLabel.textContent.trim() : '記事の先頭';
-        var chapterHeading = currentChapter && currentChapter.querySelector(':scope > h2');
-        var chapterText = chapterHeading ? chapterHeading.cloneNode(true) : null;
-        if (chapterText) chapterText.querySelectorAll('.pj-chapter-marker, .anchorjs-link').forEach(function (node) { node.remove(); });
+        var headingText = currentHeadingItem ? currentHeadingItem.label : '記事の先頭';
 
-        document.documentElement.style.setProperty('--pj-reading-progress', percentage + '%');
-        progressBar.style.transform = 'scaleX(' + (percentage / 100) + ')';
-        progress.setAttribute('aria-valuenow', String(percentage));
-        progress.setAttribute('aria-valuetext', percentage + '%、' + headingText);
-        statusOrbitProgress.style.strokeDashoffset = String(100 - percentage);
-        statusPercent.textContent = percentage + '%';
-        statusHeading.textContent = headingText;
-        statusChapter.textContent = chapterIndex ? 'Chapter ' + String(chapterIndex).padStart(2, '0') + ' · ' + chapterText.textContent.trim() : 'Introduction';
-        document.body.dataset.pjChapter = chapterIndex ? String(chapterIndex) : '0';
+        if (percentage !== currentPercentage) {
+          currentPercentage = percentage;
+          var circumference = 94.2478;
+          document.documentElement.style.setProperty('--pj-reading-progress', percentage + '%');
+          progressBar.style.transform = 'scaleX(' + (percentage / 100) + ')';
+          progress.setAttribute('aria-valuenow', String(percentage));
+          statusOrbitProgress.style.strokeDashoffset = String(circumference * (1 - percentage / 100));
+          statusPercent.textContent = percentage + '%';
+          progress.setAttribute('aria-valuetext', percentage + '%、' + headingText);
+        }
+
+        if (currentHeading !== currentHeadingNode) {
+          currentHeadingNode = currentHeading;
+          var chapterHeading = currentChapter && currentChapter.querySelector(':scope > h2');
+          var chapterText = chapterHeading ? chapterHeading.cloneNode(true) : null;
+          if (chapterText) chapterText.querySelectorAll('.pj-chapter-marker, .anchorjs-link').forEach(function (node) { node.remove(); });
+          statusHeading.textContent = headingText;
+          statusChapter.textContent = chapterIndex ? 'Chapter ' + String(chapterIndex).padStart(2, '0') + ' · ' + chapterText.textContent.trim() : 'Introduction';
+          document.body.dataset.pjChapter = chapterIndex ? String(chapterIndex) : '0';
+          progress.setAttribute('aria-valuetext', percentage + '%、' + headingText);
+        }
 
         if (percentage >= 99 && !completed) {
           completed = true;
@@ -827,21 +811,28 @@ ul.task-list li input[type="checkbox"] {
       function requestReadingUpdate() {
         if (!progressTicking) {
           progressTicking = true;
-          if (mobilePerformanceMode) window.setTimeout(updateReadingState, 80);
-          else window.requestAnimationFrame(updateReadingState);
+          window.requestAnimationFrame(updateReadingState);
         }
       }
+
+      function scheduleGeometryRefresh() {
+        window.clearTimeout(geometryTimer);
+        geometryTimer = window.setTimeout(function () {
+          refreshHeadingOffsets();
+          requestReadingUpdate();
+        }, mobilePerformanceMode ? 220 : 120);
+      }
+
       refreshHeadingOffsets();
       updateReadingState();
       window.addEventListener('scroll', requestReadingUpdate, { passive: true });
-      window.addEventListener('resize', function () {
-        refreshHeadingOffsets();
-        requestReadingUpdate();
-      });
+      window.addEventListener('resize', scheduleGeometryRefresh, { passive: true });
       window.addEventListener('load', function () {
         refreshHeadingOffsets();
         requestReadingUpdate();
       }, { once: true });
+      document.addEventListener('shown.bs.collapse', scheduleGeometryRefresh);
+      document.addEventListener('hidden.bs.collapse', scheduleGeometryRefresh);
 
       // ── Lightweight reference previews ---------------------------------
       // Same-page equations/headings are read from the current DOM. Internal
@@ -1008,9 +999,6 @@ ul.task-list li input[type="checkbox"] {
         var link = previewLinkFromEvent(event);
         if (link) hideLinkPreview(link);
       });
-      window.addEventListener('scroll', function () {
-        if (activePreviewLink) hideLinkPreview(activePreviewLink);
-      }, { passive: true });
     }
   });
 })();</script>
