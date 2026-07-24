@@ -7,6 +7,8 @@
 from __future__ import annotations
 
 import os
+import subprocess
+import sys
 from pathlib import Path
 
 os.environ.setdefault("MPLCONFIGDIR", "/private/tmp/codex-mpl-metal-materials")
@@ -580,6 +582,18 @@ def main() -> None:
     dp_trip_processes()
     tmcp_process()
     l12_kw()
+
+    # 追加図はテーマ別ファイルへ分割し、この入口から一括再生成する。
+    for script_name in (
+        "metal_materials_foundations_figures.py",
+        "metal_materials_crystal_figures.py",
+        "metal_materials_steel_extra_figures.py",
+        "metal_materials_problem_order_figures.py",
+    ):
+        subprocess.run(
+            [sys.executable, str(Path(__file__).with_name(script_name))],
+            check=True,
+        )
 
 
 if __name__ == "__main__":
