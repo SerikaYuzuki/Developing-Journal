@@ -419,13 +419,15 @@ def heat_treatments() -> None:
     for ax, (title, color, note, end_x) in zip(axes.flat, processes, strict=True):
         ax.axhline(727, color=GRAY, ls="--", lw=1.3)
         ax.text(0.15, 742, "$A_1$", color=GRAY)
-        ax.axhspan(760, 835, color=GOLD, alpha=0.13)
+        ax.axhline(830, color=GRAY, ls=":", lw=1.3)
+        ax.text(0.15, 842, r"$A_3\approx830\,^\circ\mathrm{C}$", color=GRAY)
+        ax.axhspan(850, 895, color=GOLD, alpha=0.13)
         if title != "Temper after quench":
             x = [0, 1.2, 2.4, 3.2]
-            y = [20, 820, 820, 820]
+            y = [20, 870, 870, 870]
             ax.plot(x, y, color=color, lw=3)
             end_y = 20
-            ax.plot([3.2, end_x], [820, end_y], color=color, lw=3)
+            ax.plot([3.2, end_x], [870, end_y], color=color, lw=3)
             mid_x = (3.2 + end_x) / 2
             mid_y = 420
             ax.annotate(
@@ -436,11 +438,11 @@ def heat_treatments() -> None:
                 color=color,
             )
         else:
-            ax.plot([0, 0.8, 1.4], [820, 820, 20], color=BLUE, lw=2.4, alpha=0.55)
+            ax.plot([0, 0.8, 1.4], [870, 870, 20], color=BLUE, lw=2.4, alpha=0.55)
             ax.plot([1.4, 2.4, 3.2, 5.0, 6.0], [20, 540, 540, 540, 20], color=color, lw=3)
             ax.annotate(note, xy=(3.6, 540), xytext=(4.7, 680), arrowprops={"arrowstyle": "->", "color": color}, color=color)
         ax.set_title(title, weight="bold")
-        ax.set(xlim=(0, 8), ylim=(0, 900))
+        ax.set(xlim=(0, 8), ylim=(0, 950))
         ax.grid(alpha=0.20, color=GRID)
         ax.spines[["top", "right"]].set_visible(False)
     for ax in axes[:, 0]:
