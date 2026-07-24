@@ -3170,7 +3170,7 @@ d_2=\frac{100\,\mu\mathrm{m}}{10^2}
 <h3 class="anchored" data-anchor-id="切れない粒子を転位が迂回する">切れない粒子を転位が迂回する</h3>
 <section id="問題b1-orowan応力と多結晶降伏応力" class="level4">
 <h4 class="anchored" data-anchor-id="問題b1-orowan応力と多結晶降伏応力">問題B1 Orowan応力と多結晶降伏応力</h4>
-<p>十分に硬質で転位が切断できない粒子を、平均自由間隔 <span class="math inline">\(\lambda=0.50\,\mu\mathrm{m}\)</span> でAl中に分散させた。剛性率を <span class="math inline">\(G=27\,\mathrm{GPa}\)</span>、Burgers vectorの大きさを <span class="math inline">\(b=0.28\,\mathrm{nm}\)</span> とする。</p>
+<p>十分に硬質で転位が切断できない粒子を、平均間隔 <span class="math inline">\(0.50\,\mu\mathrm{m}\)</span> でAl中に分散させた。剛性率を <span class="math inline">\(G=27\,\mathrm{GPa}\)</span>、Burgers vectorの大きさを <span class="math inline">\(b=0.28\,\mathrm{nm}\)</span> とする。粒子径は与えられていない。</p>
 <ol type="1">
 <li>転位が粒子間を通過するための臨界せん断応力を概算せよ。</li>
 <li>fcc多結晶のTaylor因子を <span class="math inline">\(M=3.0\)</span> として、引張降伏応力の利得分を求めよ。</li>
@@ -3187,6 +3187,7 @@ d_2=\frac{100\,\mu\mathrm{m}}{10^2}
 </div>
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p>原問の「平均間隔」が中心間距離か粒子表面間距離かは不明である。粒子径なしで数値計算するため、ここでは与えられた値を転位が弓なりになれる<strong>有効自由間隔</strong> <span class="math inline">\(\lambda=0.50\,\mu\mathrm{m}\)</span> と近似する。</p>
 <p>転位には、長さを短くしようとする線張力</p>
 <p><span class="math display">\[
 T\simeq\frac{Gb^2}{2}
@@ -3255,7 +3256,7 @@ T\simeq\frac{Gb^2}{2}
 </div>
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Orowan応力を</p>
+<p>与えられた平均間隔を有効自由間隔と近似し、Orowan応力を</p>
 <p><span class="math display">\[
 \tau_\mathrm{Or}\simeq\frac{Gb}{\lambda}
 \]</span></p>
@@ -3335,7 +3336,7 @@ T\simeq\frac{Gb^2}{2}
 </figure>
 </div>
 <p><strong>A段階</strong>では、焼入れで凍結された空孔の助けを借りてCu原子が急速に集合し、Al母相の <span class="math inline">\(\{100\}\)</span> 面上へ微細なGPゾーンを作る。母相と整合で、周囲に整合ひずみ場を持つ。転位はまだ粒子を切断できるが、整合ひずみ、弾性率差、化学的相互作用を越える仕事が必要になる。</p>
-<p><strong>B段階</strong>では、GPゾーンが高密度化・成長し、GP(II)/<span class="math inline">\(\theta''\)</span> などの板状準安定析出物へ発達する。切断時には、新しい界面や逆位相を作るエネルギー、整合ひずみ場を横切る仕事が増える。Aより硬さの増加は緩やかでも、障害強度は上がり続ける。</p>
+<p><strong>B段階</strong>では、GPゾーンが高密度化・成長し、GP(II)/<span class="math inline">\(\theta''\)</span> などの板状準安定析出物へ発達する。GPゾーンでは主に整合ひずみ、弾性率差、化学・界面エネルギーが切断抵抗となる。規則化した<span class="math inline">\(\theta''\)</span>などでは、切断によって原子配列を乱し逆位相境界に相当するエネルギーを生じる効果も加わる。Aより硬さの増加は緩やかでも、障害強度は上がり続ける。</p>
 <p><strong>C段階</strong>はピーク時効付近である。設問がOrowan機構を指定しているため、答案では「難切断となった微細析出物が高密度に分散し、転位が粒子間で張り出してループを残す」と書く。粒子表面間隔 <span class="math inline">\(\lambda\)</span> が小さいほど</p>
 <p><span class="math display">\[
 \tau_\mathrm{Or}\propto\frac{1}{\lambda}
@@ -3396,8 +3397,8 @@ T\simeq\frac{Gb^2}{2}
 </ul>
 <p>低温では過飽和度が大きくても拡散が遅い。高温では拡散と成長は速いが、過飽和度が小さく、少数の核が急速に成長・粗大化しやすい。したがって実用上は、十分な核生成数と実用的な成長速度を両立する<strong>中間温度域</strong>を選ぶ。</p>
 <p>「低温ほど核生成頻度が必ず高い」とは限らない。核生成率には、核生成障壁だけでなく原子移動度も掛かるためである。</p>
-<p>一般的な複合材料では、繊維・粒子・母材を別々に用意し、外部から混合・積層・含浸して配置する。析出硬化材では、いったん均一な単相過飽和固溶体を作り、固相内の拡散と相変態で第二相を<strong>内部生成</strong>する。析出物の組成、体積率、整合性、形状は相平衡と熱処理履歴に制約される。</p>
-<p>析出硬化材も広い意味ではナノ複合組織である。「二相なら複合材料、二相でなければ析出材」という区別ではない。</p>
+<p>典型的な外部複合型材料では、繊維・粒子・母材を別々に用意し、混合・積層・含浸によって強化材の形状・配向・体積率を比較的独立に設計する。析出硬化材では、いったん均一な単相過飽和固溶体を作り、固相内の拡散と相変態で第二相を<strong>内部生成</strong>する。析出物の組成、体積率、整合性、形状は相平衡と熱処理履歴に強く結び付く。</p>
+<p>ただし、反応や凝固で強化相を内部生成するin-situ複合材料もあり、「外から入れるか、内部で作るか」は絶対的な分類境界ではない。析出硬化の本質は、ナノ第二相の状態が母相との熱力学・速度論へ結合し、熱処理で制御される点にある。析出硬化材も広い意味ではナノ複合組織である。</p>
 </div>
 </div>
 </div>
@@ -3414,7 +3415,7 @@ T\simeq\frac{Gb^2}{2}
 <div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>低温では核生成の駆動力は大きいが拡散が遅く、高温では拡散・成長は速いが過飽和度が小さく、少数粒子の粗大化が進みやすい。したがって、十分な核生成頻度と成長速度を両立し、微細・高密度分散を得られる中間の時効温度を選ぶ。</p>
-<p>一般的な複合材料は別に作った母材と強化材を外部から組み合わせる。一方、析出硬化材は均一な過飽和固溶体から拡散・相変態によって第二相を内部生成し、その分散状態を熱処理で制御する。</p>
+<p>典型的な複合材料は、別に用意した母材と強化材の形状・配向・体積率を比較的独立に設計する。一方、析出硬化材は均一な過飽和固溶体から拡散・相変態によって第二相を生成し、その組成・整合性・分散状態が相平衡と熱処理履歴に拘束される。in-situ複合材料もあるため、外部混合か内部生成かだけを絶対的な境界とはしない。</p>
 </div>
 </div>
 </div>
@@ -3556,13 +3557,17 @@ d\gg\ell_e
 <h4 class="anchored" data-anchor-id="問題d1-l1_2構造規則格子転位apb">問題D1 <span class="math inline">\(L1_2\)</span>構造、規則格子転位、APB</h4>
 <p>通常のfcc結晶の完全転位は <span class="math inline">\(\boldsymbol{b}=a/2\langle110\rangle\)</span> である。Ni<span class="math inline">\(_3\)</span>Al型の<span class="math inline">\(L1_2\)</span>規則構造について、次の空欄を埋め、APBを説明せよ。</p>
 <p><span class="math display">\[
+\boldsymbol{b}_\mathrm{order}
+=
 \boxed{\text{①}}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{\text{②}}
 =
 \frac{a}{2}[1\bar10]
 +\mathrm{APB}
 +\boxed{\text{③}}
 \]</span></p>
-<p>①は規則格子転位のバーガース・ベクトル、左辺全体を②とみなす。</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -3576,7 +3581,7 @@ d\gg\ell_e
 <div id="callout-19" class="callout-19-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>fccの幾何学だけなら <span class="math inline">\(a/2\langle110\rangle\)</span> の並進で等価な格子点へ移る。しかし<span class="math inline">\(L1_2\)</span>構造では、立方体頂点をAl、面心をNiのように異なる原子が規則的に占める。<span class="math inline">\(a/2\langle110\rangle\)</span>だけずらすと格子点は重なるが、NiサイトとAlサイトの対応は元に戻らず、規則性が反転した面が残る。</p>
-<p>この面欠陥を<strong>逆位相境界</strong>（antiphase boundary; APB）という。規則性を完全に回復する最小の並進は二倍の</p>
+<p>この面欠陥を<strong>逆位相境界</strong>（antiphase boundary; APB）という。<span class="math inline">\(\{111\}\)</span>すべり面内で規則性を完全に回復する最短の並進は二倍の</p>
 <p><span class="math display">\[
 \boldsymbol{b}=a\langle110\rangle
 \]</span></p>
@@ -3828,7 +3833,8 @@ a[1\bar10]
 <div id="callout-29" class="callout-29-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>hcpとfccはどちらも配位数12、充填率0.74の最密充填構造であり、違いは積層順序がhcpのABAB、fccのABCABCとなる点にある。したがって、単純な「原子が球だから」という幾何学だけではMgがhcpを選ぶ理由にならない。電子構造、バンドエネルギー、格子振動、温度・圧力・組成を含むGibbs自由エネルギーのわずかな差で安定相が決まる。</p>
-<p>fcc Mgを得る方策としては、fccを安定化する元素との合金化、fcc基板上へのエピタキシャル薄膜成長、ナノ粒子・多層膜による界面エネルギーの利用、高圧などが考えられる。ただし得られたfcc相がバルク常温常圧で平衡相とは限らず、準安定相として保持される場合が多い。</p>
+<p>fcc Mgを得る方策としては、fccを安定化する元素との合金化、fcc基板上へのエピタキシャル薄膜成長、ナノ粒子・多層膜による界面エネルギーの利用が考えられる。ただし得られたfcc相がバルク常温常圧で平衡相とは限らず、準安定相として保持される場合が多い。</p>
+<p>「純Mgへ単に高圧をかければfccになる」とは書けない。実験で最初に確認される代表的な高圧相は約45 GPa以上のbccであり、fcc化の一般的な経路ではない。</p>
 </div>
 </div>
 </div>
@@ -3844,7 +3850,7 @@ a[1\bar10]
 </div>
 <div id="callout-30" class="callout-30-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>hcpとfccはいずれも最密充填であり、安定性の差は積層順序に伴う電子・振動・界面などの自由エネルギー差で決まる。Mgは常温常圧ではhcpの自由エネルギーが低い。fcc安定化元素との合金化、fcc基板上のエピタキシャル拘束、ナノサイズ化・多層化、高圧などでfcc Mgを準安定化できる可能性がある。</p>
+<p>hcpとfccはいずれも最密充填であり、安定性の差は積層順序に伴う電子・振動・界面などの自由エネルギー差で決まる。Mgは常温常圧ではhcpの自由エネルギーが低い。fcc安定化元素との合金化、fcc基板上のエピタキシャル拘束、ナノサイズ化・多層化によってfcc Mgを準安定化できる可能性がある。単純な高圧化ではまずbcc相が現れるため、fcc化の一般解とはしない。</p>
 </div>
 </div>
 </div>
@@ -3869,7 +3875,7 @@ a[1\bar10]
 \frac{r_A}{r_B}\simeq\sqrt{\frac32}\simeq1.225
 \]</span></p>
 <p>である。ただし実在相は化学結合と電子構造の影響も大きく、この値は幾何学的目安にすぎない。</p>
-<p>水素は金属格子の四面体・八面体型の侵入位置へ入り、金属水素化物を形成する。温度と水素圧を変えれば吸蔵・放出を可逆に制御できる。気体を高圧だけで保持する方式に比べ、比較的低圧で体積密度の高い貯蔵が可能で、漏洩時にも水素が直ちに全量気体化しにくい利点がある。一方、重量密度、反応熱、粉化、活性化、劣化、希少元素コストは設計課題である。</p>
+<p>水素は主として金属格子の局所的な四面体侵入位置へ入り、金属水素化物を形成する。Laves相では周囲の原子種により<span class="math inline">\(A_2B_2\)</span>、<span class="math inline">\(AB_3\)</span>、<span class="math inline">\(B_4\)</span>型などの四面体位置を区別する。温度と水素圧を変えれば吸蔵・放出を可逆に制御できる。気体を高圧だけで保持する方式に比べ、比較的低圧で体積密度の高い貯蔵が可能で、漏洩時にも水素が直ちに全量気体化しにくい利点がある。一方、重量密度、反応熱、粉化、活性化、劣化、希少元素コストは設計課題である。</p>
 </div>
 </div>
 </div>
@@ -3885,7 +3891,7 @@ a[1\bar10]
 </div>
 <div id="callout-32" class="callout-32-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Laves相は主に<span class="math inline">\(AB_2\)</span>組成で、C14・C15・C36型の稠密な構造を持ち、大小原子の半径比は理想的には約1.225である。水素は結晶中の侵入型空隙へ入り金属水素化物を作る。温度・圧力で可逆に吸放出でき、高圧ガスより低圧で高い体積貯蔵密度と安全性を得やすい。ただし重量、熱管理、反応速度、粉化、材料コストを考慮する必要がある。</p>
+<p>Laves相は主に<span class="math inline">\(AB_2\)</span>組成で、C14・C15・C36型の稠密な構造を持ち、大小原子の半径比は理想的には約1.225である。水素は主として結晶中の四面体侵入位置へ入り金属水素化物を作る。温度・圧力で可逆に吸放出でき、高圧ガスより低圧で高い体積貯蔵密度と安全性を得やすい。ただし重量、熱管理、反応速度、粉化、材料コストを考慮する必要がある。</p>
 </div>
 </div>
 </div>
@@ -4066,9 +4072,9 @@ a[1\bar10]
 <tbody>
 <tr class="odd">
 <td>ベースメタル</td>
-<td>生産量が大きく産業基盤となる普通金属</td>
-<td>Fe、Al、Cu、Zn、Pb</td>
-<td>鉄鋼構造物、輸送機、電線、めっき、蓄電池</td>
+<td>生産量が大きく産業基盤となる普通非鉄金属</td>
+<td>Al、Cu、Zn、Pb</td>
+<td>輸送機、電線、めっき、蓄電池</td>
 </tr>
 <tr class="even">
 <td>レアメタル</td>
@@ -4101,7 +4107,7 @@ a[1\bar10]
 <div id="callout-38" class="callout-38-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
-<li>ベースメタル：Fe（構造用鋼）、Al（軽量輸送機）、Cu（電線）。</li>
+<li>ベースメタル：Al（軽量輸送機）、Cu（電線）、Zn（鋼板めっき）。</li>
 <li>レアメタル：Li（二次電池）、Co（正極・耐熱合金）、W（超硬工具）。</li>
 <li>プレシャスメタル：Au（耐食電子接点）、Ag（導電材料）、Pt（触媒）。</li>
 </ul>
@@ -4224,7 +4230,7 @@ a[1\bar10]
 </div>
 <div id="callout-42" class="callout-42-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>①<span class="math inline">\(\gamma\)</span>、②<span class="math inline">\(\alpha\)</span>、③P、④B、⑤M。Aでは拡散変態を回避して<span class="math inline">\(\gamma\rightarrow\mathrm{M}\)</span>、Bでは<span class="math inline">\(\gamma\rightarrow\alpha+\gamma\rightarrow\alpha+\mathrm{P}\)</span>となる。</p>
+<p>①<span class="math inline">\(\gamma\)</span>、②初析<span class="math inline">\(\alpha\)</span>（変態中は<span class="math inline">\(\alpha+\gamma\)</span>）、③P（最終組織は<span class="math inline">\(\alpha+\mathrm{P}\)</span>）、④B、⑤M。Aでは拡散変態を回避して<span class="math inline">\(\gamma\rightarrow\mathrm{M}\)</span>、Bでは<span class="math inline">\(\gamma\rightarrow\alpha+\gamma\rightarrow\alpha+\mathrm{P}\)</span>となる。</p>
 <p>約5 mass% Ni添加では拡散変態曲線が右・低温側へ移り、<span class="math inline">\(M_\mathrm{s}\)</span>も低下する。1300 ℃オーステナイト化では旧<span class="math inline">\(\gamma\)</span>粒粗大化により粒界核生成が減り、主にフェライト・パーライト開始が長時間側へ移るが、同じ組成なら<span class="math inline">\(M_\mathrm{s}\)</span>は概ね不変である。</p>
 </div>
 </div>
@@ -4347,7 +4353,7 @@ a[1\bar10]
 <div class="callout-body-container callout-body">
 <p>DP（dual phase）鋼は、軟らかいフェライト<span class="math inline">\(\alpha\)</span>母相中に硬いマルテンサイトMを島状に分散させる。フェライトが低降伏応力と延性を、Mとその周囲の高転位密度が高い加工硬化・引張強さを担う。</p>
 <p>初期組織が<span class="math inline">\(\alpha+\mathrm{P}\)</span>なら、<span class="math inline">\(A_\mathrm{c1}\)</span>と<span class="math inline">\(A_\mathrm{c3}\)</span>の間へ加熱・保持する。パーライトが溶解し、一部フェライトが<span class="math inline">\(\gamma\)</span>へ逆変態して<span class="math inline">\(\alpha+\gamma\)</span>となる。そこから急冷すれば、<span class="math inline">\(\alpha\)</span>は残り、Cの濃い<span class="math inline">\(\gamma\)</span>だけがMへ変わって<span class="math inline">\(\alpha+\mathrm{M}\)</span>を得る。</p>
-<p>初期組織がMなら、二相域へ再加熱する過程でMが焼戻され、Cの分配と逆変態によって<span class="math inline">\(\alpha+\gamma\)</span>となる。適切な保持後に急冷すれば、やはり<span class="math inline">\(\alpha+\mathrm{M}\)</span>となる。最終相名が同じでも、初期組織は核生成位置、粒径、M島の連結性へ影響する。</p>
+<p>初期組織がMなら、二相域へ再加熱する過程でMが焼戻され、Cの分配と、Mまたはその分解組織の一部が<span class="math inline">\(\gamma\)</span>へ戻る逆変態によって<span class="math inline">\(\alpha+\gamma\)</span>となる。適切な保持後に急冷すれば、やはり<span class="math inline">\(\alpha+\mathrm{M}\)</span>となる。最終相名が同じでも、初期組織は核生成位置、粒径、M島の連結性へ影響する。</p>
 </div>
 </div>
 </div>
@@ -4363,7 +4369,7 @@ a[1\bar10]
 </div>
 <div id="callout-48" class="callout-48-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><span class="math inline">\(A_\mathrm{c1}&lt;T&lt;A_\mathrm{c3}\)</span>の二相域で<span class="math inline">\(\alpha+\gamma\)</span>を作り、急冷して<span class="math inline">\(\gamma\)</span>のみをMへ変態させる。初期<span class="math inline">\(\alpha+\mathrm{P}\)</span>ではPの溶解と一部<span class="math inline">\(\alpha\)</span>の逆変態、初期Mでは焼戻し・C再分配と一部の<span class="math inline">\(\gamma\)</span>逆変態を経る。最終組織は軟質<span class="math inline">\(\alpha\)</span>母相＋硬質M島である。</p>
+<p><span class="math inline">\(A_\mathrm{c1}&lt;T&lt;A_\mathrm{c3}\)</span>の二相域で<span class="math inline">\(\alpha+\gamma\)</span>を作り、急冷して<span class="math inline">\(\gamma\)</span>のみをMへ変態させる。初期<span class="math inline">\(\alpha+\mathrm{P}\)</span>ではPの溶解と一部<span class="math inline">\(\alpha\)</span>の<span class="math inline">\(\gamma\)</span>への逆変態、初期Mでは焼戻し・C再分配と一部Mの<span class="math inline">\(\gamma\)</span>への逆変態を経る。最終組織は軟質<span class="math inline">\(\alpha\)</span>母相＋硬質M島である。</p>
 </div>
 </div>
 </div>
@@ -4384,6 +4390,17 @@ a[1\bar10]
 <div id="callout-49" class="callout-49-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>代表的な低合金TRIP鋼では、まず二相域焼なましで<span class="math inline">\(\alpha+\gamma\)</span>を作る。次にベイナイト変態温度域へ急冷して保持すると、一部<span class="math inline">\(\gamma\)</span>がベイニティックフェライトへ変態し、その際にCが未変態<span class="math inline">\(\gamma\)</span>へ排出される。SiやAlを加えてセメンタイト析出を抑えると、Cが炭化物へ奪われず残留<span class="math inline">\(\gamma\)</span>へ濃化し、室温まで安定化できる。</p>
+<p>初期組織を<span class="math inline">\(\alpha+\mathrm{P}\)</span>とすれば、二相域加熱でパーライト中のセメンタイトが溶解し、Cの濃い<span class="math inline">\(\gamma\)</span>が生成する。全体の組織変化は、</p>
+<p><span class="math display">\[
+\alpha+\mathrm{P}
+\longrightarrow
+\alpha+\gamma
+\longrightarrow
+\alpha+\mathrm{B}+\gamma_\text{C-rich}
+\longrightarrow
+\alpha+\mathrm{B}+\gamma_\mathrm{R}\;(+\mathrm{M})
+\]</span></p>
+<p>と整理できる。ここで<span class="math inline">\(\gamma_\mathrm{R}\)</span>は残留オーステナイトである。</p>
 <p>最終組織はフェライト、ベイナイト、残留<span class="math inline">\(\gamma\)</span>を主体とし、条件によって少量Mを含む。塑性変形中、適度に準安定な残留<span class="math inline">\(\gamma\)</span>がひずみ誘起マルテンサイトへ段階的に変態する。硬いMの生成と変態ひずみによって局所ひずみが分散し、加工硬化率が維持され、Considère条件に達するまでの一様伸びが増す。</p>
 <p>残留<span class="math inline">\(\gamma\)</span>が不安定すぎると変形初期に全てMとなり、安定すぎると最後まで変態せず、TRIP効果を十分に使えない。量だけでなく安定性の分布が重要である。</p>
 </div>
@@ -4401,7 +4418,7 @@ a[1\bar10]
 </div>
 <div id="callout-50" class="callout-50-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>二相域焼なましで<span class="math inline">\(\alpha+\gamma\)</span>を作り、ベイナイト域で保持する。ベイニティックフェライト生成時に排出されたCを未変態<span class="math inline">\(\gamma\)</span>へ濃化し、Si・Alなどで炭化物生成を抑えて室温まで残留させる。変形中に残留<span class="math inline">\(\gamma\)</span>がMへ段階的に変態して加工硬化を維持し、ひずみの局在とくびれを遅らせるため延性が向上する。</p>
+<p>初期<span class="math inline">\(\alpha+\mathrm{P}\)</span>を二相域焼なましして<span class="math inline">\(\alpha+\gamma\)</span>とし、ベイナイト域で保持する。ベイニティックフェライト生成時に排出されたCを未変態<span class="math inline">\(\gamma\)</span>へ濃化し、Si・Alなどで炭化物生成を抑えて室温まで残留させる。変形中に残留<span class="math inline">\(\gamma\)</span>がMへ段階的に変態して加工硬化を維持し、ひずみの局在とくびれを遅らせるため延性が向上する。</p>
 </div>
 </div>
 </div>
@@ -4500,7 +4517,7 @@ a[1\bar10]
 <td>工具鋼</td>
 <td>高硬度、耐摩耗性、圧縮強度、靭性。熱間工具・高速度工具では赤熱硬さ</td>
 <td>焼戻しM母相＋微細・硬質な合金炭化物</td>
-<td>高C、Cr、Mo、W、V、場合によりCo。焼入れ＋多段焼戻し。炭化物寸法・偏析を溶解、鍛造、粉末冶金で制御</td>
+<td>用途に応じてC量とCr、Mo、W、V、Coを選ぶ。冷間工具鋼は高C、高速度鋼はW/Mo/V/Co、熱間工具鋼は靭性のため比較的低Cの場合がある。焼入れ＋多段焼戻し</td>
 </tr>
 <tr class="even">
 <td>耐熱鋼</td>
@@ -4517,8 +4534,8 @@ a[1\bar10]
 <tr class="even">
 <td>IF鋼</td>
 <td>深絞り性、高延性、低降伏応力、非時効性、良好な表面品質</td>
-<td>清浄で低転位密度のフェライト、好ましい再結晶集合組織</td>
-<td>極低C・Nとし、Ti・NbでC,Nを炭窒化物として固定。真空脱ガス、熱間・冷間圧延、再結晶焼なましを制御</td>
+<td>清浄で低転位密度のフェライト、<span class="math inline">\(\{111\}//\mathrm{ND}\)</span>の<span class="math inline">\(\gamma\)</span>-fiber再結晶集合組織</td>
+<td>極低C・Nとし、Ti・NbでC,Nを炭窒化物として固定。真空脱ガス、熱間・冷間圧延、再結晶焼なましを制御して高<span class="math inline">\(r\)</span>値を得る</td>
 </tr>
 </tbody>
 </table>
@@ -4540,10 +4557,10 @@ a[1\bar10]
 <div id="callout-54" class="callout-54-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
-<li>工具鋼：焼戻しM＋合金炭化物とし、高C–Cr–Mo–W–V系を焼入れ・焼戻しして硬さと耐摩耗性を得る。</li>
+<li>工具鋼：焼戻しM＋合金炭化物とし、冷間・熱間・高速度工具という用途に応じてC量とCr、Mo、W、V、Coを選び、焼入れ・焼戻しで硬さ、赤熱硬さ、耐摩耗性、靭性を調整する。</li>
 <li>耐熱鋼：焼戻しMまたは<span class="math inline">\(\gamma\)</span>母相をCrで耐酸化化し、Mo/W固溶強化とMX・炭化物析出で転位・粒界移動を抑えてクリープ抵抗を得る。</li>
 <li>ステンレス鋼：Cr不働態皮膜で耐食性を得る。低温用はNiなどでfcc <span class="math inline">\(\gamma\)</span>を安定化し、溶体化処理で炭化物・<span class="math inline">\(\sigma\)</span>相を抑えて靭性を保つ。</li>
-<li>IF鋼：極低C,Nフェライト中の侵入型元素をTi,Nbで固定し、圧延・再結晶集合組織を制御して深絞り性と非時効性を得る。</li>
+<li>IF鋼：極低C,Nフェライト中の侵入型元素をTi,Nbで固定し、圧延・再結晶で<span class="math inline">\(\{111\}//\mathrm{ND}\)</span>の<span class="math inline">\(\gamma\)</span>-fiber集合組織と高<span class="math inline">\(r\)</span>値を作り、深絞り性と非時効性を得る。</li>
 </ul>
 </div>
 </div>
@@ -4630,7 +4647,7 @@ a[1\bar10]
 </blockquote>
 <p>と定義する。この定義には計算、学習、推論だけでなく、目的設定、身体・環境との相互作用、社会的理解、価値判断を含める。</p>
 <p>このとき「知性」は一次元の得点ではない。探索速度、記憶容量、特定課題の予測・生成ではAIが個人を越える領域が拡大するだろう。一方、現行AIの目標は人間と制度が与え、意味や責任も社会側が引き受けている。未知環境での頑健性、因果的理解、価値の衝突を調停する正当性を同じ軸で自動的に獲得したとはいえない。</p>
-<p>したがって結論は「多くの**能力軸では越えるが、知性全体を一列に並べた単一のシンギュラリティは定義しにくい」とできる。重要なのは勝敗より、AIを含む人間―機械―制度の複合系が、誤りを検出し、権限と責任を対応させられるかである。</p>
+<p>したがって、この定義では<strong>AIは知性全体として人類を越えない</strong>という立場を取る。ただし、多くの能力軸では人間を越える。知性全体を一列に並べた単一のシンギュラリティは定義しにくく、重要なのは勝敗より、AIを含む人間―機械―制度の複合系が、誤りを検出し、権限と責任を対応させられるかである。</p>
 </div>
 </div>
 </div>
@@ -4646,7 +4663,7 @@ a[1\bar10]
 </div>
 <div id="callout-58" class="callout-58-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>私は知性を、未知の状況で観測から世界モデルを更新し、目的そのものを吟味し、学んだ知識を転移して行動する複数能力の集合と定義する。この定義なら、AIは計算速度、記憶、探索、限定領域の推論ではすでに人間を越え、今後その範囲は広がる。一方、目的の正当性、身体を通した文脈理解、価値対立の調停、結果への責任は別の軸であり、同じ尺度へ還元できない。</p>
+<p>私は知性を、未知の状況で観測から世界モデルを更新し、目的そのものを吟味し、学んだ知識を転移して行動する複数能力の集合と定義する。この定義では、AIは知性全体として人類を<strong>越えない</strong>と考える。AIは計算速度、記憶、探索、限定領域の推論ではすでに人間を越え、今後その範囲は広がる。一方、目的の正当性、身体を通した文脈理解、価値対立の調停、結果への責任は別の軸であり、同じ尺度へ還元できない。</p>
 <p>ゆえにAIは人類を一つの総合順位で「越える」のではなく、多数の能力で人を上回りつつ、人間・制度と結合した知的システムになると考える。社会の課題は、性能向上だけでなく、検証可能性、停止権限、責任主体を設計することである。</p>
 </div>
 </div>
@@ -4742,7 +4759,10 @@ a[1\bar10]
 <li>Al–Cu時効曲線の出典確認：<a href="https://www.uacj.co.jp/development/rd/review/furukawasky/006/pdf/06_abst02.pdf">UACJ「アルミニウムの時効析出」</a>、<a href="https://www.jstage.jst.go.jp/article/jilm1951/36/9/36_9_594/_article/-char/ja/">幸田成康「時効硬化研究の歩み」</a></li>
 <li>Al–Cu析出系列と転位相互作用：<a href="https://www.phase-trans.msm.cam.ac.uk/abstracts/M24.html">University of Cambridge, <em>Age hardening of aluminium alloys</em></a></li>
 <li>Cu合金系の相平衡を比較する資料：<a href="https://skb.com/publication/2489043/R-17-20.pdf">SKB Report R-17-20</a>、<a href="https://www.metallurgy.nist.gov/phase/solder/bicu.html">NIST Cu–Bi phase-diagram page</a></li>
+<li>規則合金転位とKear–Wilsdorf lock：<a href="https://pure.mpg.de/view/item_3634684">Max Planck Institute, <em>The yield strength anomaly of Ni<span class="math inline">\(_3\)</span>Al</em></a></li>
+<li>Mgの高圧相とLaves相水素位置：<a href="https://journals.aps.org/prb/abstract/10.1103/PhysRevB.90.134105">Physical Review B, <em>High-pressure phase diagram of magnesium</em></a>、<a href="https://pubs.rsc.org/en/content/articlehtml/2014/ra/c4ra09082a">RSC Advances, C15 Laves hydride site analysis</a></li>
 <li>実用鋼のCCT実測データを調べる入口：<a href="https://weldcct.nims.go.jp/">NIMS CCTデータベース</a></li>
+<li>鋼の熱処理・TRIP・TMCP：<a href="https://www.asminternational.org/wp-content/uploads/files_main/pdf/ASM%20Subject%20Guide_HeatTreating.pdf">ASM Heat Treating Subject Guide</a>、<a href="https://www.jstage.jst.go.jp/article/isijinternational/53/8/53_1462/_html/-char/en">ISIJ InternationalのTRIP熱処理研究</a>、<a href="https://www.jstage.jst.go.jp/article/isijinternational/55/1/55_67/_html/-char/en">TMCPレビュー</a></li>
 <li>元素物性値の確認：<a href="https://periodic-table.rsc.org/">Royal Society of Chemistry Periodic Table</a></li>
 <li>チャレンジャー事故調査とファインマンの付録：<a href="https://www.nasa.gov/history/rogersrep/v2appf.htm">NASA, <em>Personal Observations on the Reliability of the Shuttle</em></a></li>
 </ul>
