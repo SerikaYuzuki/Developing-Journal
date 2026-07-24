@@ -218,7 +218,7 @@ def cct_shifts() -> None:
     ax.annotate(
         r"$M_\mathrm{s}$ は概ね不変",
         xy=(1.0, 450),
-        xytext=(18, 330),
+        xytext=(3.5, 340),
         arrowprops={"arrowstyle": "->", "color": TEAL},
         color=TEAL,
         weight="bold",
@@ -680,17 +680,23 @@ def dp_heat_treatment() -> None:
         (route_a, "（a）初期組織：フェライト + パーライト"),
         (route_b, "（b）初期組織：マルテンサイト単相"),
     ]:
-        ax.set(xlim=(0, 3.8), ylim=(0, 1.30))
+        ax.set(xlim=(0, 3.8), ylim=(0, 1.40))
         ax.axis("off")
         ax.set_title(title, loc="left", weight="bold", fontsize=11)
         for x0, label in [(0.12, "初期"), (1.49, "二相域保持"), (2.86, "急冷後")]:
-            ax.text(x0 + 0.40, 1.10, label, ha="center", color=GRAY)
+            ax.text(x0 + 0.40, 1.20, label, ha="center", color=GRAY)
 
     y0 = 0.36
     _draw_ferrite_pearlite(route_a, 0.12, y0)
     _draw_alpha_gamma(route_a, 1.49, y0)
     _draw_alpha_martensite(route_a, 2.86, y0)
-    _arrow_between(route_a, (0.95, 0.62), (1.43, 0.62), "P溶解・逆変態", 0.82)
+    _arrow_between(
+        route_a,
+        (0.95, 0.62),
+        (1.43, 0.62),
+        "P溶解\n+ 逆変態",
+        1.00,
+    )
     _arrow_between(route_a, (2.32, 0.62), (2.80, 0.62), "γ → M", 0.82)
     route_a.text(0.52, 0.18, "α + P", ha="center", weight="bold")
     route_a.text(1.89, 0.18, "α + γ", ha="center", weight="bold")
@@ -703,8 +709,8 @@ def dp_heat_treatment() -> None:
         route_b,
         (0.95, 0.62),
         (1.43, 0.62),
-        "焼戻し・C再分配・逆変態",
-        0.82,
+        "焼戻し・C再分配\n+ 逆変態",
+        1.00,
     )
     _arrow_between(route_b, (2.32, 0.62), (2.80, 0.62), "γ → M", 0.82)
     route_b.text(0.52, 0.18, "M", ha="center", weight="bold")
@@ -723,7 +729,14 @@ def dp_heat_treatment() -> None:
         ha="center",
         color=GRAY,
     )
-    fig.tight_layout(rect=(0, 0.065, 1, 0.92))
+    fig.subplots_adjust(
+        left=0.06,
+        right=0.985,
+        bottom=0.14,
+        top=0.83,
+        wspace=0.24,
+        hspace=0.52,
+    )
     finish(fig, "dp-heat-treatment.svg")
 
 
@@ -870,7 +883,13 @@ def trip_heat_treatment() -> None:
         ha="center",
         color=GRAY,
     )
-    fig.tight_layout(rect=(0, 0.075, 1, 0.91))
+    fig.subplots_adjust(
+        left=0.065,
+        right=0.985,
+        bottom=0.17,
+        top=0.82,
+        wspace=0.25,
+    )
     finish(fig, "trip-heat-treatment.svg")
 
 

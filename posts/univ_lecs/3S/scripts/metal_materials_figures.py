@@ -419,9 +419,9 @@ def heat_treatments() -> None:
     ]
     for ax, (title, color, note, end_x) in zip(axes.flat, processes, strict=True):
         ax.axhline(727, color=GRAY, ls="--", lw=1.3)
-        ax.text(0.15, 742, "$A_1$", color=GRAY)
+        ax.text(0.15, 742, "$A_{c1}$", color=GRAY)
         ax.axhline(830, color=GRAY, ls=":", lw=1.3)
-        ax.text(0.15, 842, r"$A_3\approx830\,^\circ\mathrm{C}$", color=GRAY)
+        ax.text(0.15, 842, r"$A_{c3}\approx830\,^\circ\mathrm{C}$", color=GRAY)
         ax.axhspan(850, 895, color=GOLD, alpha=0.13)
         if title in {"Quench", "Temper after quench"}:
             ax.axhline(450, color=BLUE, ls="-.", lw=1.1, alpha=0.75)
@@ -462,9 +462,9 @@ def dp_trip_processes() -> None:
     fig, axes = plt.subplots(2, 1, figsize=(10.8, 7.2), sharex=True)
     for ax in axes:
         ax.axhline(727, color=GRAY, ls="--", lw=1.2)
-        ax.text(0.12, 740, "$A_1$", color=GRAY)
+        ax.text(0.12, 740, "$A_{c1}$", color=GRAY)
         ax.axhline(850, color=GRAY, ls=":", lw=1.2)
-        ax.text(0.12, 862, "$A_3$", color=GRAY)
+        ax.text(0.12, 862, "$A_{c3}$", color=GRAY)
         ax.grid(alpha=0.20, color=GRID)
         ax.spines[["top", "right"]].set_visible(False)
         ax.set_ylim(0, 930)
