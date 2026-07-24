@@ -43,13 +43,27 @@ plt.rcParams.update(
         "ytick.color": NAVY,
         "text.color": NAVY,
         "svg.fonttype": "none",
+        "svg.hashsalt": "metal-materials-2026-07-24",
     }
 )
 
 
 def finish(fig: plt.Figure, name: str) -> None:
-    fig.savefig(OUT / name, format="svg", bbox_inches="tight", facecolor="white")
+    output_path = OUT / name
+    fig.savefig(
+        output_path,
+        format="svg",
+        bbox_inches="tight",
+        facecolor="white",
+        metadata={"Date": None},
+    )
     plt.close(fig)
+    # MatplotlibのSVGパスは行末に空白を含むため、Git差分を安定させる。
+    svg = output_path.read_text(encoding="utf-8")
+    output_path.write_text(
+        "\n".join(line.rstrip() for line in svg.splitlines()) + "\n",
+        encoding="utf-8",
+    )
 
 
 def phase_diagrams() -> None:
