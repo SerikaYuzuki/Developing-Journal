@@ -103,7 +103,7 @@ def phase_diagrams() -> None:
     ax.axvspan(11.5, 13.2, color=PURPLE, alpha=0.22)
     ax.text(2.1, 1020, "α-Cu\n(As in solution)", ha="center")
     ax.text(7.0, 520, "α-Cu + As-rich phase", ha="center")
-    ax.text(12.35, 980, "Cu₃As-\nrelated", ha="center", weight="bold")
+    ax.text(12.35, 980, "$\\mathrm{Cu_3As}$-\nrelated", ha="center", weight="bold")
     ax.set_ylim(350, 1350)
     ax.set_title("(c) Cu-rich Cu–As: appreciable solubility")
     ax.set_xticks([0, 15], ["Cu", "As →"])
@@ -208,18 +208,20 @@ def cu_microstructures() -> None:
     finish(fig, "cu-microstructure-models.svg")
 
 
-def age_hardening_curve() -> None:
-    log_t = np.array([-3, -2.0, -1.65, -1.25, -1.0, -0.35, 0.25, 0.75, 1.15, 1.45, 1.8, 2.25, 2.7, 3.0])
-    hardness = np.array([60, 60, 61, 69, 80, 87, 91, 103, 116, 119, 114, 98, 87, 83])
+def age_hardening_curve(show_answers: bool) -> None:
+    log_t = np.log10(
+        np.array([1e-3, 1e-2, 0.02, 0.03, 0.05, 0.1, 0.2, 1, 2, 5, 10, 15, 20, 30, 100, 300, 700, 1000])
+    )
+    hardness = np.array([60, 60, 62, 66, 72, 80, 85, 90, 95, 105, 116, 118, 117, 113, 95, 86, 82, 83])
     xx = np.linspace(-3, 3, 700)
     yy = PchipInterpolator(log_t, hardness)(xx)
 
     fig, ax = plt.subplots(figsize=(9.6, 5.3))
     stage_spans = [
-        (-2.0, -1.0, BLUE, "A"),
-        (-1.0, 0.75, TEAL, "B"),
-        (0.75, 1.65, GOLD, "C"),
-        (1.65, 3.0, RED, "D"),
+        (np.log10(0.02), -1.0, BLUE, "A"),
+        (-1.0, np.log10(5), TEAL, "B"),
+        (np.log10(5), np.log10(30), GOLD, "C"),
+        (np.log10(30), 3.0, RED, "D"),
     ]
     for left, right, color, label in stage_spans:
         ax.axvspan(10**left, 10**right, color=color, alpha=0.12)
@@ -227,19 +229,21 @@ def age_hardening_curve() -> None:
     ax.semilogx(10**xx, yy, color=NAVY, lw=3)
     peak_x = 10**xx[np.argmax(yy)]
     peak_y = np.max(yy)
-    ax.scatter([peak_x], [peak_y], color=RED, s=50, zorder=5)
-    ax.annotate(
-        "peak-aged",
-        xy=(peak_x, peak_y),
-        xytext=(32, 128),
-        arrowprops={"arrowstyle": "->", "color": NAVY},
-        ha="center",
-    )
-    ax.text(2.0e-3, 48, "supersaturated\nsolid solution", ha="center")
-    ax.text(3.0e-2, 68, "GP zones", ha="center")
-    ax.text(0.6, 83, "GP2 / θ″", ha="center")
-    ax.text(18, 103, "fine θ″ / θ′", ha="center")
-    ax.text(250, 75, "coarsened θ′ / θ\n(over-aged)", ha="center")
+    ax.axvline(15, color=GRAY, lw=1.4, ls=":")
+    if show_answers:
+        ax.scatter([peak_x], [peak_y], color=RED, s=50, zorder=5)
+        ax.annotate(
+            "peak-aged",
+            xy=(peak_x, peak_y),
+            xytext=(32, 128),
+            arrowprops={"arrowstyle": "->", "color": NAVY},
+            ha="center",
+        )
+        ax.text(2.0e-3, 48, "supersaturated\nsolid solution", ha="center")
+        ax.text(3.0e-2, 68, "GP zones", ha="center")
+        ax.text(0.6, 83, "GP2 / θ″", ha="center")
+        ax.text(15, 102, "fine θ″ / θ′", ha="center")
+        ax.text(250, 75, "coarsened θ′ / θ\n(over-aged)", ha="center")
     ax.set(xlim=(1e-3, 1e3), ylim=(40, 140), xlabel="Ageing time / day", ylabel="Hardness (schematic)")
     ax.set_title("Al–4 wt% Cu aged near 148 °C — schematic", fontsize=14, weight="bold")
     ax.grid(True, which="both", alpha=0.30, color=GRID)
@@ -252,7 +256,8 @@ def age_hardening_curve() -> None:
         color=GRAY,
     )
     fig.tight_layout(rect=(0, 0.05, 1, 1))
-    finish(fig, "alcu-age-hardening.svg")
+    name = "alcu-age-hardening.svg" if show_answers else "alcu-age-hardening-question.svg"
+    finish(fig, name)
 
 
 def precipitation_stages() -> None:
@@ -305,7 +310,7 @@ def precipitation_stages() -> None:
     finish(fig, "alcu-precipitation-stages.svg")
 
 
-def cct_diagram() -> None:
+def cct_diagram(show_answers: bool) -> None:
     fig, ax = plt.subplots(figsize=(9.6, 6.0))
     ax.set_xscale("log")
 
@@ -324,7 +329,8 @@ def cct_diagram() -> None:
     ax.plot(t_b_s, T_b_s, color=ORANGE, lw=2.6, label="bainite start")
     ax.plot(t_b_f, T_b_f, color=ORANGE, lw=2.6, ls="--", label="bainite finish")
     ax.axhline(450, color=BLUE, lw=2.4)
-    ax.text(0.23, 460, "$M_s$", color=BLUE, weight="bold")
+    if show_answers:
+        ax.text(0.23, 460, "$M_s$", color=BLUE, weight="bold")
 
     # Cooling paths A and B.
     t = np.logspace(-0.55, 2.25, 400)
@@ -338,11 +344,11 @@ def cct_diagram() -> None:
 
     # Numbered fields, following the supplied diagram's reading task.
     labels = [
-        (0.45, 705, "① γ"),
-        (7.0, 755, "② γ + α"),
-        (4.0, 635, "③ α + P"),
-        (2.3, 495, "④ B"),
-        (0.50, 365, "⑤ M"),
+        (0.45, 705, "① γ" if show_answers else "①"),
+        (7.0, 755, "② γ + α" if show_answers else "②"),
+        (4.0, 635, "③ α + P" if show_answers else "③"),
+        (2.3, 495, "④ B" if show_answers else "④"),
+        (0.50, 365, "⑤ M" if show_answers else "⑤"),
     ]
     for x, y, text in labels:
         ax.text(
@@ -364,28 +370,39 @@ def cct_diagram() -> None:
         title="Fe–0.15 wt% C continuous-cooling map — schematic",
     )
     ax.grid(True, which="both", alpha=0.28, color=GRID)
-    ax.legend(ncol=3, fontsize=8, loc="lower center", bbox_to_anchor=(0.5, -0.23))
+    if show_answers:
+        ax.legend(ncol=3, fontsize=8, loc="lower center", bbox_to_anchor=(0.5, -0.23))
+    else:
+        handles, _ = ax.get_legend_handles_labels()
+        ax.legend(
+            handles,
+            ["transformation start", "transformation finish", "lower-temperature start", "lower-temperature finish", "cooling A", "cooling B"],
+            ncol=3,
+            fontsize=8,
+            loc="lower center",
+            bbox_to_anchor=(0.5, -0.23),
+        )
     ax.spines[["top", "right"]].set_visible(False)
-    fig.text(
-        0.5,
-        0.01,
-        "γ: austenite, α: ferrite, P: pearlite, B: bainite, M: martensite. Curves are redrawn for concept reading.",
-        ha="center",
-        color=GRAY,
+    footnote = (
+        "γ: austenite, α: ferrite, P: pearlite, B: bainite, M: martensite. Curves are redrawn for concept reading."
+        if show_answers
+        else "Redrawn from the supplied exam figure. Boundary positions and transformation fractions are not quantitative data."
     )
+    fig.text(0.5, 0.01, footnote, ha="center", color=GRAY)
     fig.tight_layout(rect=(0, 0.09, 1, 1))
-    finish(fig, "fe015c-cct-schematic.svg")
+    name = "fe015c-cct-schematic.svg" if show_answers else "fe015c-cct-question.svg"
+    finish(fig, name)
 
 
 def heat_treatments() -> None:
     fig, axes = plt.subplots(2, 2, figsize=(11.0, 7.3), sharex=True, sharey=True)
     processes = [
-        ("Full anneal", RED, "furnace cool", 0.50),
-        ("Normalise", TEAL, "air cool", 0.72),
-        ("Quench", BLUE, "rapid cool", 0.94),
+        ("Full anneal", RED, "furnace cool", 7.8),
+        ("Normalise", TEAL, "air cool", 5.8),
+        ("Quench", BLUE, "rapid cool", 3.8),
         ("Temper after quench", PURPLE, "reheat below A₁", None),
     ]
-    for ax, (title, color, note, slope) in zip(axes.flat, processes, strict=True):
+    for ax, (title, color, note, end_x) in zip(axes.flat, processes, strict=True):
         ax.axhline(727, color=GRAY, ls="--", lw=1.3)
         ax.text(0.15, 742, "$A_1$", color=GRAY)
         ax.axhspan(760, 835, color=GOLD, alpha=0.13)
@@ -393,12 +410,17 @@ def heat_treatments() -> None:
             x = [0, 1.2, 2.4, 3.2]
             y = [20, 820, 820, 820]
             ax.plot(x, y, color=color, lw=3)
-            end_x = 7.8
             end_y = 20
             ax.plot([3.2, end_x], [820, end_y], color=color, lw=3)
-            ax.annotate(note, xy=(5.7, 360), xytext=(4.7, 520), arrowprops={"arrowstyle": "->", "color": color}, color=color)
-            if slope is not None:
-                ax.text(6.8, 105 + 110 * (1 - slope), f"relative rate\n{slope:.2f}", ha="center", color=GRAY, fontsize=8)
+            mid_x = (3.2 + end_x) / 2
+            mid_y = 420
+            ax.annotate(
+                note,
+                xy=(mid_x, mid_y),
+                xytext=(min(mid_x + 0.8, 6.6), 555),
+                arrowprops={"arrowstyle": "->", "color": color},
+                color=color,
+            )
         else:
             ax.plot([0, 0.8, 1.4], [820, 820, 20], color=BLUE, lw=2.4, alpha=0.55)
             ax.plot([1.4, 2.4, 3.2, 5.0, 6.0], [20, 540, 540, 540, 20], color=color, lw=3)
@@ -489,7 +511,10 @@ def l12_kw() -> None:
     ax = axes[0]
     for i in range(7):
         for j in range(5):
-            color = RED if (i % 2 == 0 and j % 2 == 0) else BLUE
+            ordered_corner = i % 2 == 0 and j % 2 == 0
+            if i >= 4:
+                ordered_corner = i % 2 == 1 and j % 2 == 0
+            color = RED if ordered_corner else BLUE
             ax.add_patch(Circle((i, j), 0.11, fc=color, ec="white", lw=0.5))
     ax.axvspan(3.05, 3.65, color=GOLD, alpha=0.35)
     ax.plot([3.35, 3.35], [-0.3, 4.3], color=NAVY, lw=2, ls="--")
@@ -526,9 +551,11 @@ def l12_kw() -> None:
 def main() -> None:
     phase_diagrams()
     cu_microstructures()
-    age_hardening_curve()
+    age_hardening_curve(show_answers=False)
+    age_hardening_curve(show_answers=True)
     precipitation_stages()
-    cct_diagram()
+    cct_diagram(show_answers=False)
+    cct_diagram(show_answers=True)
     heat_treatments()
     dp_trip_processes()
     tmcp_process()
