@@ -349,7 +349,8 @@ def cct_diagram(show_answers: bool) -> None:
     # Cooling paths A and B.
     t = np.logspace(-0.55, 2.25, 400)
     logt = np.log10(t)
-    T_A = 870 - 610 * (logt + 0.55) / 0.85
+    # Aは拡散変態ノーズを明確に回避し、Ms以下へ入る急冷経路とする。
+    T_A = 870 - 610 * (logt + 0.55) / 0.55
     T_B = 870 - 610 * (logt + 0.55) / 2.75
     ax.plot(t[T_A > 300], T_A[T_A > 300], color=NAVY, lw=2.0, ls="-.", label="cooling A")
     ax.plot(t[T_B > 300], T_B[T_B > 300], color=PURPLE, lw=2.0, ls="-.", label="cooling B")
@@ -359,8 +360,8 @@ def cct_diagram(show_answers: bool) -> None:
     # Numbered fields, following the supplied diagram's reading task.
     labels = [
         (0.45, 705, "① γ" if show_answers else "①"),
-        (7.0, 755, "② γ + α" if show_answers else "②"),
-        (4.0, 635, "③ α + P" if show_answers else "③"),
+        (7.0, 755, "② α forms\n(α + γ)" if show_answers else "②"),
+        (4.0, 635, "③ P forms\n(final α + P)" if show_answers else "③"),
         (2.3, 495, "④ B" if show_answers else "④"),
         (0.50, 365, "⑤ M" if show_answers else "⑤"),
     ]
@@ -422,6 +423,9 @@ def heat_treatments() -> None:
         ax.axhline(830, color=GRAY, ls=":", lw=1.3)
         ax.text(0.15, 842, r"$A_3\approx830\,^\circ\mathrm{C}$", color=GRAY)
         ax.axhspan(850, 895, color=GOLD, alpha=0.13)
+        if title in {"Quench", "Temper after quench"}:
+            ax.axhline(450, color=BLUE, ls="-.", lw=1.1, alpha=0.75)
+            ax.text(0.15, 462, r"$M_s$ (schematic)", color=BLUE)
         if title != "Temper after quench":
             x = [0, 1.2, 2.4, 3.2]
             y = [20, 870, 870, 870]
