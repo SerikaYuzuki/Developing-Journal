@@ -24,7 +24,7 @@ python -m ipykernel install --user --name quarto-notes --display-name "Python (q
 .venv/
 ```
 
-`.venv/`、`_freeze/`、`.quarto/`、Jupyter のチェックポイント、各種ランタイム／キャッシュファイルはコミットしない。一方、このリポジトリでは `_site/` をコミット対象としているため、ローカルレンダーで更新された静的サイトはソース変更と一緒にコミットする。
+`.venv/`、`_freeze/`、`.quarto/`、Jupyter のチェックポイント、各種ランタイム／キャッシュファイルはコミットしない。一方、このリポジトリでは `docs/` をコミット対象としているため、ローカルレンダーで更新された静的サイトはソース変更と一緒にコミットする。
 
 ### ローカルプレビュー
 
@@ -40,7 +40,7 @@ VS Code の Quarto 拡張は `scripts/quarto` のラッパーを使うため、�
 uv run quarto render
 ```
 
-GitHub Pages のデプロイワークフローは使用していない。公開またはレンダー結果を保存するときは、更新された `_site/` もコミットする。
+GitHub Pages のデプロイワークフローは使用していない。公開またはレンダー結果を保存するときは、更新された `docs/` もコミットする。
 
 ## 主な Python パッケージ
 

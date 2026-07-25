@@ -5,7 +5,7 @@
 | スキル | 用途 |
 |---|---|
 | [new-post](.claude/skills/new-post/SKILL.md) | 新しい記事 (.qmd) をテンプレートから正しいカテゴリ・frontmatter で作成する |
-| [render-check](.claude/skills/render-check/SKILL.md) | 変更後のレンダー確認と `_site/` の更新・コミット |
+| [render-check](.claude/skills/render-check/SKILL.md) | 変更後のレンダー確認と `docs/` の更新・コミット |
 | [autosync-recover](.claude/skills/autosync-recover/SKILL.md) | autosync の競合 (`autosave/<hostname>` 退避) からの復旧 |
 
 ## その他の小さな定型作業

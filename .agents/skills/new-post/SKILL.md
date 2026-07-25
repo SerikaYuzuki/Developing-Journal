@@ -51,4 +51,4 @@ image: "images/thumbnail.webp"    # リスティングカードのサムネイ�
 uv run quarto render "posts/<category>/<slug>.qmd"   # index/sidebar も追従更新される
 ```
 
-更新された `.qmd` と `_site/` をまとめてコミットする(`/render-check` 参照)。
+更新された `.qmd` と `docs/` をまとめてコミットする(`/render-check` 参照)。

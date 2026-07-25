@@ -6,7 +6,7 @@
 
 - **種類**: [Quarto](https://quarto.org) 製の個人ブログ／開発ジャーナル（サイトタイトル: 「芹香のブログ」）。
 - **著者**: Serika Yuzuki。記事・コメント・コミットメッセージは基本的に **日本語**。
-- **公開**: 静的サイトを `_site/` に出力し、`CNAME` で独自ドメインに配信（GitHub Pages のデプロイワークフローは使わない）。
+- **公開**: 静的サイトを `docs/` に出力し、`CNAME` で独自ドメインに配信（GitHub Pages のデプロイワークフローは使わない）。
 - **言語環境**: Python は [`uv`](https://docs.astral.sh/uv/) で管理。`.venv/` はプロジェクトローカル。`direnv`（`.envrc`）で自動有効化。
 
 ## ディレクトリ構成
@@ -17,7 +17,7 @@
 | `_extensions/serika/` | 共有テーマ・フィルタ・テンプレート（glass テーマ、styles.css、ヘッダ差し込み、Lua フィルタ、CSL など）の vendoring 先。**源は [quarto-serika](https://github.com/SerikaYuzuki/quarto-serika)**（ローカル: `/Users/recky/GitHub/quarto-serika`）。直接編集せず、修正は quarto-serika 側で行い `scripts/install.sh <このプロジェクトのパス>` で取り込む |
 | `bibliography.bib` | 文献データベース |
 | `_templates/` | リスティングカードのテンプレート（EJS） |
-| `_site/` | レンダー出力。**このリポジトリではコミット対象**（下記参照） |
+| `docs/` | レンダー出力。**このリポジトリではコミット対象**（下記参照） |
 | `_freeze/`, `.quarto/` | Quarto のキャッシュ。**コミットしない** |
 | `scripts/` | `quarto` ラッパーと autosync（複数 Mac 同期）。詳細は [`scripts/AUTOSYNC.md`](scripts/AUTOSYNC.md) |
 | `resource/` | 記事で参照する動画などのメディア |
@@ -50,7 +50,7 @@ uv run quarto render posts/xxx/yyy.qmd  # 単一ファイルのみレンダー�
 
 ## コミット規約
 
-- `_site/` は**コミットする**（このリポジトリはローカルレンダー結果を成果物として保存する運用）。ソース変更と一緒に更新された `_site/` をコミットすること。
+- `docs/` は**コミットする**（このリポジトリはローカルレンダー結果を成果物として保存する運用）。ソース変更と一緒に更新された `docs/` をコミットすること。
 - `.venv/`, `_freeze/`, `.quarto/`, Jupyter チェックポイント、各種キャッシュは**コミットしない**（`.gitignore` 済み）。
 - コミットメッセージは日本語で、変更内容が分かる簡潔な形（例: `refactor:`, `feat:` などのプレフィックスは既存履歴に倣う）。
 
