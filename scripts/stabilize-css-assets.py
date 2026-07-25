@@ -10,11 +10,12 @@ from __future__ import annotations
 
 import re
 import shutil
+import os
 from pathlib import Path
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-OUTPUT_DIR = PROJECT_ROOT / "_site"
+OUTPUT_DIR = PROJECT_ROOT / os.environ.get("QUARTO_PROJECT_OUTPUT_DIR", "docs")
 BOOTSTRAP_DIR = OUTPUT_DIR / "site_libs" / "bootstrap"
 
 THEMES = {
