@@ -62,15 +62,59 @@ $$
 ::: {.callout-note collapse="true"}
 ##### 理論A1：面の向きと力の向きを二つの添字で管理する
 
-**問いの正体**は、三次元の応力を「どの面に」「どの向きへ」作用するかで整理し、単軸試験の結果を重ね合わせることです。
+**問いの正体**は、物体内部で伝わる力を「どの面に」「どの向きへ」作用するかで整理し、点ごとの応力状態として表すことです。
 
-ある面の単位法線を $\boldsymbol n$ とすると、その面に作用する応力ベクトル $\boldsymbol t$ は Cauchy の関係
+**応力は、面を通して伝わる力の密度**
+
+物体内部の点 $\boldsymbol x$ を通る微小な面を仮想的に切り出します。その面積を $\Delta A$、単位法線を $\boldsymbol n$ とします。法線 $\boldsymbol n$ を外向き法線にもつ側へ、面の反対側から作用する力を $\Delta\boldsymbol F$ とすると、面上の応力ベクトル（traction vector）を
 
 $$
-\boldsymbol t=\boldsymbol{\sigma}^{\mathsf T}\boldsymbol n
+\boxed{
+\boldsymbol t^{(\boldsymbol n)}(\boldsymbol x)
+=
+\lim_{\Delta A\to0}
+\frac{\Delta\boldsymbol F}{\Delta A}
+}
 $$
 
-で与えられます。本問の添字規約では第1添字が面法線、第2添字が力の向きなので、正の $x_i$ 面に
+と定義します。単位は $\mathrm{Pa}=\mathrm{N\,m^{-2}}$ です。これは部材全体に加わる合力ではなく、**ある点において、ある向きの面へ作用する単位面積当たりの力**です。同じ点でも面の向き $\boldsymbol n$ を変えれば、一般に $\boldsymbol t^{(\boldsymbol n)}$ も変わります。反対向きの面では、局所的な力のつり合いから
+
+$$
+\boldsymbol t^{(-\boldsymbol n)}
+=-\boldsymbol t^{(\boldsymbol n)}
+$$
+
+となります。
+
+**応力テンソルは、面の法線を応力ベクトルへ写す線形変換**
+
+すべての向きの面について $\boldsymbol t^{(\boldsymbol n)}$ を個別に記録する必要はありません。微小要素の力のつり合いから、Cauchy の応力定理
+
+$$
+t_j^{(\boldsymbol n)}
+=n_i\sigma_{ij}
+$$
+
+が成り立ちます。この線形関係を担う二階テンソルが**応力テンソル** $\boldsymbol{\sigma}$ です。本問の成分配列では、法線から応力ベクトルへの写像の行列表現は $\boldsymbol{\sigma}^{\mathsf T}$ となります。
+
+本問では「第1添字 $i$ が面法線の方向、第2添字 $j$ が力の方向」という規約を用いるため、成分を行列へ並べると
+
+$$
+\boldsymbol{\sigma}
+=
+\begin{pmatrix}
+\sigma_{11}&\sigma_{12}&\sigma_{13}\\
+\sigma_{21}&\sigma_{22}&\sigma_{23}\\
+\sigma_{31}&\sigma_{32}&\sigma_{33}
+\end{pmatrix},
+\qquad
+\boxed{
+\boldsymbol t^{(\boldsymbol n)}
+=\boldsymbol{\sigma}^{\mathsf T}\boldsymbol n
+}.
+$$
+
+$\sigma_{ii}$ は $x_i$ 軸に垂直な面を押し引きする**垂直応力**、$\sigma_{ij}\ (i\neq j)$ はその面内の $x_j$ 方向へ滑らせる**せん断応力**です。したがって、正の $x_i$ 面に作用する応力ベクトルは
 
 $$
 \boldsymbol t^{(i)}
@@ -82,7 +126,11 @@ $$
 \end{pmatrix}
 $$
 
-が作用します。物体が勝手に回転しないためのモーメントのつり合いから
+です。教科書によって二つの添字の順を逆に定義することがあるため、行列表現だけを暗記せず、「どの面の、どの方向の力か」に戻って確認します。
+
+応力テンソルそのものは座標系によらない物理量であり、上の $3\times3$ 行列は選んだ座標系における成分表示です。座標軸を回すと行列の各成分は変わりますが、同じ点の同じ応力状態を表していることに変わりはありません。
+
+物体が勝手に回転しないためのモーメントのつり合いから
 
 $$
 \sigma_{ij}=\sigma_{ji}
