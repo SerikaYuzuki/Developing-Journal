@@ -1029,7 +1029,14 @@ def edge_dislocation_force() -> Path:
     force_same = xi * (xi**2 - 1) / (xi**2 + 1) ** 2
     force_opposite = -force_same
 
-    fig, axes = plt.subplots(1, 2, figsize=(12.6, 5.4), sharey=True)
+    # 安定点の注記をスマートフォンでも読めるよう、二条件を縦に並べる。
+    fig, axes = plt.subplots(
+        2,
+        1,
+        figsize=(7.2, 9.8),
+        sharex=True,
+        sharey=True,
+    )
     configurations = (
         (
             axes[0],
@@ -1125,14 +1132,14 @@ def edge_dislocation_force() -> Path:
         color=GRAY,
         fontsize=9,
     )
-    fig.tight_layout(rect=(0.02, 0.06, 0.99, 0.91))
+    fig.tight_layout(rect=(0.02, 0.055, 0.99, 0.93), h_pad=1.2)
     return finish(fig, "edge-dislocation-force.svg")
 
 
 def fcc_123_specimen() -> Path:
     """[123]引張と観察面(bar301)を示す試験片模式図。"""
 
-    fig, ax = plt.subplots(figsize=(12.0, 6.2))
+    fig, ax = plt.subplots(figsize=(5.6, 7.8))
     front = np.array(
         [
             [1.10, 0.55],
@@ -1208,10 +1215,34 @@ def fcc_123_specimen() -> Path:
         ha="center",
     )
 
-    plane_left = 5.25
-    plane_bottom = 0.78
-    plane_width = 5.15
-    plane_height = 4.72
+    ax.text(
+        2.20,
+        -0.30,
+        "試験片外形は模式表示。結晶方位を問題条件として用いる。",
+        ha="center",
+        color=GRAY,
+        fontsize=9,
+    )
+    ax.set(xlim=(0.45, 4.05), ylim=(-0.52, 6.38), aspect="equal")
+    ax.axis("off")
+    fig.suptitle(
+        "FCC単結晶試験片の引張軸と観察面",
+        fontsize=16,
+        weight="bold",
+        y=0.97,
+    )
+    fig.tight_layout(rect=(0, 0, 1, 0.91))
+    return finish(fig, "fcc-123-specimen.svg")
+
+
+def fcc_slip_trace() -> Path:
+    """観察面上の引張軸とすべり線の角度を示す。"""
+
+    fig, ax = plt.subplots(figsize=(7.2, 6.6))
+    plane_left = 0.62
+    plane_bottom = 0.86
+    plane_width = 6.00
+    plane_height = 4.78
     ax.add_patch(
         Rectangle(
             (plane_left, plane_bottom),
@@ -1224,112 +1255,114 @@ def fcc_123_specimen() -> Path:
         )
     )
     ax.text(
-        plane_left + 0.20,
-        plane_bottom + plane_height - 0.22,
+        plane_left + 0.22,
+        plane_bottom + plane_height - 0.24,
         r"観察面 $(\bar{3}01)$ を正面から見た模式図",
         color=BLUE,
         ha="left",
         va="top",
         weight="bold",
-        fontsize=11,
+        fontsize=12,
     )
 
-    center = np.array([7.80, 3.03])
+    center = np.array([3.58, 3.12])
     ax.plot(
         [center[0], center[0]],
-        [plane_bottom + 0.42, plane_bottom + plane_height - 0.50],
+        [plane_bottom + 0.48, plane_bottom + plane_height - 0.58],
         color=RED,
-        lw=1.7,
+        lw=1.8,
         linestyle="--",
         zorder=3,
     )
     arrow(
         ax,
-        (center[0], plane_bottom + plane_height - 0.88),
-        (center[0], plane_bottom + plane_height - 0.35),
+        (center[0], plane_bottom + plane_height - 1.03),
+        (center[0], plane_bottom + plane_height - 0.42),
         color=RED,
-        width=2.4,
-        scale=13,
+        width=2.6,
+        scale=14,
     )
     ax.text(
-        center[0] + 0.16,
-        plane_bottom + plane_height - 0.63,
-        r"$[123]$",
+        center[0] + 0.18,
+        plane_bottom + plane_height - 0.72,
+        r"引張方向 $[123]$",
         color=RED,
+        ha="left",
+        va="center",
+        weight="bold",
+        fontsize=11,
+    )
+
+    line_angle = math.radians(25.4)
+    direction = np.array([math.cos(line_angle), math.sin(line_angle)])
+    for offset_y in np.linspace(-0.20, 0.20, 5):
+        start = center + np.array([0, offset_y]) - 1.55 * direction
+        end = center + np.array([0, offset_y]) + 1.55 * direction
+        ax.plot(
+            [start[0], end[0]],
+            [start[1], end[1]],
+            color=PURPLE,
+            lw=2.3,
+            zorder=6,
+        )
+    ax.text(
+        center[0] + 1.72,
+        center[1] + 0.47,
+        r"すべり線 $[1\bar{2}3]$",
+        color=PURPLE,
+        fontsize=10.5,
         ha="left",
         va="center",
         weight="bold",
     )
 
-    line_angle = math.radians(25.4)
-    direction = np.array([math.cos(line_angle), math.sin(line_angle)])
-    for offset_y in np.linspace(-0.18, 0.18, 5):
-        start = center + np.array([0, offset_y]) - 1.18 * direction
-        end = center + np.array([0, offset_y]) + 1.18 * direction
-        ax.plot(
-            [start[0], end[0]],
-            [start[1], end[1]],
-            color=PURPLE,
-            lw=2.0,
-            zorder=6,
-        )
-    ax.text(
-        center[0] + 1.32,
-        center[1] + 0.37,
-        "観察されるすべり線",
-        color=PURPLE,
-        fontsize=9.5,
-        ha="left",
-        va="center",
-    )
-
     arc = Arc(
         tuple(center),
-        1.48,
-        1.48,
+        1.78,
+        1.78,
         angle=0,
         theta1=25.4,
         theta2=90,
         color=GOLD,
-        lw=2.5,
+        lw=2.8,
         zorder=8,
     )
     ax.add_patch(arc)
     ax.text(
-        center[0] + 0.44,
-        center[1] + 0.63,
-        r"$\theta$",
+        center[0] + 0.52,
+        center[1] + 0.76,
+        r"$\theta\simeq64.6^\circ$",
         color=GOLD,
-        fontsize=15,
+        fontsize=13,
         weight="bold",
     )
 
     ax.text(
         plane_left + plane_width / 2,
-        0.42,
-        r"$[-3,0,1]\cdot[1,2,3]=0$ より、引張軸は観察面内にある。",
+        0.48,
+        r"$[\bar{3}01]\cdot[123]=0$ より、引張軸は観察面内にある。",
         ha="center",
         color=GRAY,
-        fontsize=9.5,
+        fontsize=10,
     )
-    ax.text(
-        5.75,
-        -0.22,
-        "試験片外形とすべり線は模式表示。図から角度を測らず、結晶方位の内積で求める。",
-        ha="center",
-        color=GRAY,
-        fontsize=9,
-    )
-    ax.set(xlim=(0.45, 11.10), ylim=(-0.48, 6.38), aspect="equal")
+    ax.set(xlim=(0.22, 7.05), ylim=(0.20, 6.18), aspect="equal")
     ax.axis("off")
     fig.suptitle(
-        "FCC単結晶試験片の引張軸と観察面",
+        "観察面上の引張方向とすべり線",
         fontsize=16,
         weight="bold",
         y=0.97,
     )
-    fig.tight_layout(rect=(0, 0, 1, 0.91))
-    return finish(fig, "fcc-123-specimen.svg")
+    fig.text(
+        0.5,
+        0.018,
+        "結晶方位から描いた模式図。角度は図から測らず、方向ベクトルの内積で求める。",
+        ha="center",
+        color=GRAY,
+        fontsize=9,
+    )
+    fig.tight_layout(rect=(0, 0.055, 1, 0.91))
+    return finish(fig, "fcc-slip-trace.svg")
 
 
 def single_polycrystal_stress_strain() -> Path:
@@ -1459,6 +1492,7 @@ def main() -> None:
         edge_dislocation_pair,
         edge_dislocation_force,
         fcc_123_specimen,
+        fcc_slip_trace,
         single_polycrystal_stress_strain,
     )
     for generator in generators:
