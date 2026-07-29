@@ -2579,12 +2579,6 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/卒業論文/論文読書/GPT-Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ti-Al-N-Based Hard Coatings: Thermodynamical Background, CVD Deposition, and Properties. A Review</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../../posts/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ti-Al-N系硬質コーティング：熱力学的背景・CVD成膜・特性レビュー</span></a>
   </div>
@@ -2690,7 +2684,6 @@ window.Quarto = {
   <li><a href="#第2部-梁のせん断力曲げモーメントたわみ" id="toc-第2部-梁のせん断力曲げモーメントたわみ" class="nav-link" data-scroll-target="#第2部-梁のせん断力曲げモーメントたわみ">第2部 梁のせん断力・曲げモーメント・たわみ</a></li>
   <li><a href="#第3部-転位の弾性場と相互作用" id="toc-第3部-転位の弾性場と相互作用" class="nav-link" data-scroll-target="#第3部-転位の弾性場と相互作用">第3部 転位の弾性場と相互作用</a></li>
   <li><a href="#第4部-fcc結晶のすべりと多結晶" id="toc-第4部-fcc結晶のすべりと多結晶" class="nav-link" data-scroll-target="#第4部-fcc結晶のすべりと多結晶">第4部 FCC結晶のすべりと多結晶</a></li>
-  <li><a href="#ocr原資料の要確認箇所" id="toc-ocr原資料の要確認箇所" class="nav-link" data-scroll-target="#ocr原資料の要確認箇所">OCR・原資料の要確認箇所</a></li>
   <li><a href="#答案直前チェック" id="toc-答案直前チェック" class="nav-link" data-scroll-target="#答案直前チェック">答案直前チェック</a></li>
   <li><a href="#図の再生成" id="toc-図の再生成" class="nav-link" data-scroll-target="#図の再生成">図の再生成</a></li>
   </ul>
@@ -2740,7 +2733,7 @@ window.Quarto = {
 \require{mhchem}
 \]</span></p>
 <p>このノートは、複数年度の過去問を同じ内容ごとにまとめ直したものです。各問は、まず問題だけを解き、必要になったら折りたたみの「理論」を読み、最後に「解答」で答案を確認できる順にしています。</p>
-<p>図は、低解像度の資料画像を数値データとして読み取ったものではありません。設問の幾何と解析式から再作図した模式図です。OCRで確定できない箇所は末尾の「OCR・原資料の要確認箇所」にまとめています。</p>
+<p>図は、設問の幾何と解析式に基づいて再作図した模式図です。形状や曲線の関係を示すためのもので、縮尺は任意です。</p>
 <section id="第1部-応力ひずみ降伏" class="level2">
 <h2 class="anchored" data-anchor-id="第1部-応力ひずみ降伏">第1部 応力・ひずみ・降伏</h2>
 <section id="問題a1-応力テンソルと等方弾性体" class="level4">
@@ -3618,29 +3611,18 @@ D=\frac{\mu b_{\mathrm I}}{2\pi(1-\nu)}
 \frac{x_1(x_1^2-x_2^2)}{r^4},\\
 \sigma_{22}
 &amp;=D
-\frac{x_2(x_1^2-x_2^2)}{r^4},
+\frac{x_2(x_1^2-x_2^2)}{r^4},\\
+\sigma_{33}
+&amp;=-2\nu D\frac{x_2}{r^2},
 \end{aligned}
 \]</span></p>
-<p>であり、<span class="math inline">\(\sigma_{13}=\sigma_{23}=0\)</span> とする。</p>
+<p>であり、<span class="math inline">\(\sigma_{13}=\sigma_{31}=\sigma_{23}=\sigma_{32}=0\)</span> とする。</p>
 <ol type="1">
 <li>転位Iの応力場が転位IIに及ぼす力を求めよ。</li>
 <li>その <span class="math inline">\(x_1\)</span> 方向成分を <span class="math inline">\(x_1\)</span> の関数として図示し、2本の転位が安定して存在する位置を示せ。</li>
 </ol>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-警告
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>転記された原式の <span class="math inline">\(\sigma_{33}\)</span> は正号でしたが、上の <span class="math inline">\(\sigma_{11},\sigma_{22}\)</span> と平面ひずみ条件を組み合わせると負号になります。この設問の力には <span class="math inline">\(\sigma_{33}\)</span> を使わないため、結論には影響しません。詳しくは末尾のOCR確認欄に示します。</p>
-</div>
-</div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3649,7 +3631,7 @@ D=\frac{\mu b_{\mathrm I}}{2\pi(1-\nu)}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>応力場の中に置かれた転位が受ける Peach–Koehler 力は、転位線の<strong>単位長さ当たり</strong></p>
 <p><span class="math display">\[
@@ -3718,12 +3700,12 @@ d(3x^2+d^2)\\
 =\frac{K}{2d^2}.
 \]</span></p>
 <p>わずかにずらしたとき元へ戻す力となる条件は <span class="math inline">\(\dv*{f_1}{x}&lt;0\)</span> です。したがって安定点は <span class="math inline">\(b_{\mathrm I}b_{\mathrm{II}}\)</span> の符号で入れ替わります。</p>
-<p>なお、資料中の「転位間距離 <span class="math inline">\(d\)</span>」という表現は図と整合しません。<span class="math inline">\(d\)</span> は二つのすべり面の間隔 <span class="math inline">\(x_2=d\)</span> であり、実際の転位間距離は <span class="math inline">\(\sqrt{x^2+d^2}\)</span> です。</p>
+<p>ここで <span class="math inline">\(d\)</span> は二つのすべり面の間隔 <span class="math inline">\(x_2=d\)</span> です。転位IIが <span class="math inline">\(x_1=x\)</span> にあるとき、実際の転位間距離は <span class="math inline">\(\sqrt{x^2+d^2}\)</span> となります。</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3732,7 +3714,7 @@ d(3x^2+d^2)\\
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>転位線の単位長さ当たりの Peach–Koehler 力は</p>
 <p><span class="math display">\[
@@ -3814,7 +3796,7 @@ x=-d,\qquad 0,\qquad d.
 </figure>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3823,7 +3805,7 @@ x=-d,\qquad 0,\qquad d.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>単軸引張応力 <span class="math inline">\(\sigma\)</span> がすべり系へ作る分解せん断応力は Schmid 則</p>
 <p><span class="math display">\[
@@ -3924,7 +3906,7 @@ m
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3933,7 +3915,7 @@ m
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p>引張軸を <span class="math inline">\(\hat{\boldsymbol s}=[123]/\sqrt{14}\)</span> とし、</p>
@@ -4008,82 +3990,6 @@ m_{\max}
 </div>
 </div>
 </section>
-</section>
-<section id="ocr原資料の要確認箇所" class="level2">
-<h2 class="anchored" data-anchor-id="ocr原資料の要確認箇所">OCR・原資料の要確認箇所</h2>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-警告
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>以下はOCR文と添付図を数式上の整合性から点検した結果です。元の試験問題PDFを確認できていないため、「確定した訂正」ではなく、再確認が必要な箇所として残します。</p>
-<ol type="1">
-<li><p><strong>らせん転位のエネルギーの単位</strong><br>
-「単位体積当たり」と <span class="math inline">\(r_0\)</span> から <span class="math inline">\(R\)</span> までの積分指定は両立しません。局所密度は</p>
-<p><span class="math display">\[
-w(r)=\frac{\mu b^2}{8\pi^2r^2},
-\]</span></p>
-<p>積分して得る標準的な量は転位線の単位長さ当たり</p>
-<p><span class="math display">\[
-\frac{U}{\ell}
-=\frac{\mu b^2}{4\pi}\ln\frac{R}{r_0}
-\]</span></p>
-<p>です。本文では両方に答えました。</p></li>
-<li><p><strong>刃状転位の <span class="math inline">\(\sigma_{33}\)</span> の符号</strong><br>
-OCR転記では</p>
-<p><span class="math display">\[
-\sigma_{33}
-=
-+\frac{\mu\nu b}{\pi(1-\nu)}
-\frac{x_2}{x_1^2+x_2^2}
-\]</span></p>
-<p>でした。しかし、同じ問題に与えられた <span class="math inline">\(\sigma_{11},\sigma_{22}\)</span> と平面ひずみ条件</p>
-<p><span class="math display">\[
-\sigma_{33}=\nu(\sigma_{11}+\sigma_{22})
-\]</span></p>
-<p>を使うと、</p>
-<p><span class="math display">\[
-\boxed{
-\sigma_{33}
-=
--\frac{\mu\nu b}{\pi(1-\nu)}
-\frac{x_2}{x_1^2+x_2^2}
-}
-\]</span></p>
-<p>となります。先頭の負号の脱落が疑われます。Peach–Koehler 力の計算では <span class="math inline">\(\sigma_{11},\sigma_{12}\)</span> しか使わないため、本問の答えは影響を受けません。</p></li>
-<li><p><strong>転位IIの位置と <span class="math inline">\(d\)</span></strong><br>
-OCR文の「転位Iから距離 <span class="math inline">\(d\)</span> だけ離れて位置（図中の点線上）を滑る」は文が欠けています。図から読み取れる条件は「転位IIは <span class="math inline">\(x_2=d\)</span> の点線上を滑る」です。実際の転位間距離は <span class="math inline">\(\sqrt{x_1^2+d^2}\)</span> で、一定ではありません。</p></li>
-<li><p><strong>刃状転位へ働く <span class="math inline">\(F\)</span> の意味</strong><br>
-無限に長い転位へ Peach–Koehler 式を使って直接得るのは、転位線の単位長さ当たりの力 <span class="math inline">\(\boldsymbol f\)</span> です。全力 <span class="math inline">\(\boldsymbol F\)</span> を求めるには有限な転位長さ <span class="math inline">\(\ell\)</span> が必要で、<span class="math inline">\(\boldsymbol F=\ell\boldsymbol f\)</span> です。</p></li>
-<li><p><strong>安定点はバーガースベクトルの符号に依存</strong><br>
-元文では <span class="math inline">\(b_{\mathrm I}b_{\mathrm{II}}\)</span> の符号が明示されていません。同符号なら <span class="math inline">\(x_1=0\)</span>、異符号なら <span class="math inline">\(x_1=\pm d\)</span> が、点線上の滑り運動に関する安定点です。</p></li>
-<li><p><strong>圧延ロールの <span class="math inline">\(q\)</span> の次元</strong><br>
-文章では「圧力 <span class="math inline">\(q\)</span>」、図では「等分布荷重 <span class="math inline">\(q\)</span>」です。梁モデルで使う <span class="math inline">\(q\)</span> は線荷重 <span class="math inline">\(\mathrm{N\,m^{-1}}\)</span> です。接触圧力 <span class="math inline">\(\mathrm{Pa}\)</span> を意図した場合は、梁へ集約する奥行き幅が追加で必要です。</p></li>
-<li><p><strong>らせん転位の角度の正方向</strong><br>
-添付図と文章は、<span class="math inline">\(x_1\)</span> から <span class="math inline">\(x_2\)</span> へ紙面上で時計回りに <span class="math inline">\(\theta\)</span> を測っています。通常の平面図で使う反時計回り角と取り違えると、ひずみ・応力の符号がすべて反転します。本文では図の向きを正と定義しました。符号付き <span class="math inline">\(b\)</span> を逆向きに定義しても同じ反転が起こり、エネルギーは不変です。</p></li>
-<li><p><strong>片持ち梁の長さ記号</strong><br>
-OCR文は大文字 <span class="math inline">\(L\)</span>、添付図は小文字 <span class="math inline">\(l\)</span> または筆記体の <span class="math inline">\(\ell\)</span> に見えます。本文では圧延ロールの <span class="math inline">\(l\)</span> と区別し、片持ち梁を <span class="math inline">\(L\)</span> に統一しました。</p></li>
-<li><p><strong>余白の崩れた数式</strong><br>
-OCRに含まれた <span class="math inline">\(b_8,\beta,\rho,J_1,9\pi\)</span> などの式は、らせん転位の手書き解答</p>
-<p><span class="math display">\[
-\ell\int_{r_0}^{R}
-\frac{\mu b^2}{8\pi^2r^2}
-2\pi r\,\dd r
-=
-\frac{\mu b^2\ell}{4\pi}
-\ln\frac{R}{r_0}
-\]</span></p>
-<p>が崩れた可能性があります。一方、<span class="math inline">\(P/(KL)\)</span> や <span class="math inline">\(c^7/6^7\)</span> を含む式は転位問題と対応せず、梁問題の別の手書き計算が混入したように見えます。いずれも問題条件としては採用しませんでした。</p></li>
-<li><p><strong>科目名</strong><br>
-添付図には試験表紙や科目名が写っていません。記事名「材料力学II」は提供されたOCR見出しに従っていますが、転位論・結晶塑性を含むことから、元PDFでの確認余地があります。</p></li>
-</ol>
-</div>
-</div>
 </section>
 <section id="答案直前チェック" class="level2">
 <h2 class="anchored" data-anchor-id="答案直前チェック">答案直前チェック</h2>
