@@ -21,41 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -2685,7 +2650,6 @@ window.Quarto = {
   <li><a href="#第3部-転位の弾性場と相互作用" id="toc-第3部-転位の弾性場と相互作用" class="nav-link" data-scroll-target="#第3部-転位の弾性場と相互作用">第3部 転位の弾性場と相互作用</a></li>
   <li><a href="#第4部-fcc結晶のすべりと多結晶" id="toc-第4部-fcc結晶のすべりと多結晶" class="nav-link" data-scroll-target="#第4部-fcc結晶のすべりと多結晶">第4部 FCC結晶のすべりと多結晶</a></li>
   <li><a href="#答案直前チェック" id="toc-答案直前チェック" class="nav-link" data-scroll-target="#答案直前チェック">答案直前チェック</a></li>
-  <li><a href="#図の再生成" id="toc-図の再生成" class="nav-link" data-scroll-target="#図の再生成">図の再生成</a></li>
   </ul>
 </nav>
     </div>
@@ -2733,7 +2697,7 @@ window.Quarto = {
 \require{mhchem}
 \]</span></p>
 <p>このノートは、複数年度の過去問を同じ内容ごとにまとめ直したものです。各問は、まず問題だけを解き、必要になったら折りたたみの「理論」を読み、最後に「解答」で答案を確認できる順にしています。</p>
-<p>図は、設問の幾何と解析式に基づいて再作図した模式図です。形状や曲線の関係を示すためのもので、縮尺は任意です。</p>
+<p>本文中の図は、設問条件や曲線の関係を示す模式図であり、縮尺は任意です。</p>
 <section id="第1部-応力ひずみ降伏" class="level2">
 <h2 class="anchored" data-anchor-id="第1部-応力ひずみ降伏">第1部 応力・ひずみ・降伏</h2>
 <section id="問題a1-応力テンソルと等方弾性体" class="level4">
@@ -3103,7 +3067,7 @@ R=
 <ol type="1">
 <li>せん断力分布を描け。</li>
 <li>曲げモーメント分布を描け。</li>
-<li>自由端のたわみを求めよ。</li>
+<li>先端のたわみ <span class="math inline">\(\delta\)</span> を求めよ。</li>
 </ol>
 <div id="fig-mech2-cantilever-setup" class="quarto-float quarto-figure quarto-figure-center anchored" alt="左端を固定された水平な梁。右端に下向き集中荷重Pが作用し、梁長をL、固定端からの座標をxとする。">
 <figure class="quarto-float quarto-float-fig figure">
@@ -3188,7 +3152,7 @@ v(x)=\frac{Px^2(3L-x)}{6EI}
 <img src="images/材料力学II/cantilever-vmd-solution.svg" class="img-fluid figure-img" style="width:100.0%" alt="上段は全区間でマイナスP一定のせん断力図、中段は固定端でマイナスPLから自由端でゼロへ直線的に変化する曲げモーメント図、下段は固定端で変位と傾きがゼロ、自由端で最大となる下向きたわみ曲線。">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mech2-cantilever-diagrams-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-図&nbsp;3: 片持ち梁のせん断力、曲げモーメント、正規化たわみを並べた解析式による図。
+図&nbsp;3: 片持ち梁のせん断力、曲げモーメント、正規化たわみを並べた図。
 </figcaption>
 </figure>
 </div>
@@ -3361,7 +3325,7 @@ M(x)=
 <img src="images/材料力学II/rolling-roll-vmd-solution.svg" class="img-fluid figure-img" style="width:100.0%" alt="上段は左右の無荷重区間で一定、中央荷重区間で直線的に減るせん断力図。中段は支点でゼロ、中央で最大となり、荷重区間で放物線となる曲げモーメント図。下段は左右対称で中央が最大の下向きたわみ模式曲線。">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mech2-rolling-diagrams-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-図&nbsp;5: 中央部等分布荷重を受けるロールのせん断力、曲げモーメント、正規化たわみを並べた解析式による図。
+図&nbsp;5: 中央部等分布荷重を受けるロールのせん断力、曲げモーメント、正規化たわみを並べた図。
 </figcaption>
 </figure>
 </div>
@@ -3388,11 +3352,11 @@ M(x)=
 <h2 class="anchored" data-anchor-id="第3部-転位の弾性場と相互作用">第3部 転位の弾性場と相互作用</h2>
 <section id="問題c1-らせん転位の変位ひずみ応力エネルギー" class="level4">
 <h4 class="anchored" data-anchor-id="問題c1-らせん転位の変位ひずみ応力エネルギー">問題C1 らせん転位の変位・ひずみ・応力・エネルギー</h4>
-<p>転位線が <span class="math inline">\(x_3\)</span> 軸上にある、十分に長いらせん転位を考える。<span class="math inline">\(x_1\)</span> 軸から <span class="math inline">\(x_3\)</span> 軸のまわりを図の時計回りに1周するとき、<span class="math inline">\(x_1,x_2\)</span> 方向のずれはなく、<span class="math inline">\(x_3\)</span> 方向にだけ <span class="math inline">\(b\)</span> の変位が生じる。材料の剛性率を <span class="math inline">\(\mu\)</span> とする。</p>
+<p>転位線が <span class="math inline">\(x_3\)</span> 軸上にある、十分に長いらせん転位を考える。<span class="math inline">\(x_1\)</span> 軸から <span class="math inline">\(x_3\)</span> 軸のまわりを図の時計回りに1回転 <span class="math inline">\((2\pi)\)</span> するとき、<span class="math inline">\(x_1,x_2\)</span> 方向のずれはなく、<span class="math inline">\(x_3\)</span> 方向にだけ <span class="math inline">\(b\)</span> の変位が生じる。材料の剛性率を <span class="math inline">\(\mu\)</span> とする。</p>
 <ol type="1">
 <li>弾性ひずみの全成分 <span class="math inline">\(\epsilon_{ij}\)</span> を求めよ。</li>
 <li>弾性応力の全成分 <span class="math inline">\(\sigma_{ij}\)</span> を求めよ。</li>
-<li>単位体積当たりの弾性ひずみエネルギーを求めよ。ただし、転位芯半径 <span class="math inline">\(r_0\)</span> から外側半径 <span class="math inline">\(R\)</span> までの弾性変形を考える。</li>
+<li>単位体積当たりの弾性ひずみエネルギーを求めよ。ただし、転位芯寸法 <span class="math inline">\(r_0\)</span> から結晶粒半径 <span class="math inline">\(R\)</span> までの弾性変形を考える。</li>
 </ol>
 <div id="fig-mech2-screw-setup" class="quarto-float quarto-figure quarto-figure-center anchored" alt="円柱の軸がx3方向のらせん転位。断面上にx1、x2、半径r、x1からx2への時計回り角θを示し、円柱軸と平行にバーガースベクトルbを示す。">
 <figure class="quarto-float quarto-float-fig figure">
@@ -3618,8 +3582,8 @@ D=\frac{\mu b_{\mathrm I}}{2\pi(1-\nu)}
 \]</span></p>
 <p>であり、<span class="math inline">\(\sigma_{13}=\sigma_{31}=\sigma_{23}=\sigma_{32}=0\)</span> とする。</p>
 <ol type="1">
-<li>転位Iの応力場が転位IIに及ぼす力を求めよ。</li>
-<li>その <span class="math inline">\(x_1\)</span> 方向成分を <span class="math inline">\(x_1\)</span> の関数として図示し、2本の転位が安定して存在する位置を示せ。</li>
+<li>転位Iの応力場が転位IIに及ぼす力 <span class="math inline">\(\boldsymbol F\)</span> を求めよ。</li>
+<li><span class="math inline">\(\boldsymbol F\)</span> の <span class="math inline">\(x_1\)</span> 方向成分 <span class="math inline">\(f_1\)</span> を <span class="math inline">\(x_1\)</span> の関数として図示し、2本の転位が安定して存在する位置を示せ。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
@@ -3633,7 +3597,7 @@ D=\frac{\mu b_{\mathrm I}}{2\pi(1-\nu)}
 </div>
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>応力場の中に置かれた転位が受ける Peach–Koehler 力は、転位線の<strong>単位長さ当たり</strong></p>
+<p>転位線の長さが指定されていないため、<span class="math inline">\(\boldsymbol F\)</span> の単位長さ当たりの値を <span class="math inline">\(\boldsymbol f=\boldsymbol F/\ell\)</span> として求めます。応力場の中に置かれた転位が受ける Peach–Koehler 力は</p>
 <p><span class="math display">\[
 \boldsymbol f
 =
@@ -3751,7 +3715,7 @@ f_1(x)
 <img src="images/材料力学II/edge-dislocation-force.svg" class="img-fluid figure-img" style="width:96.0%" alt="横軸x1/d、縦軸を規格化した滑り力。奇関数でx1/d=-1、0、1を横切る。同符号では0が安定で±1が不安定、異符号ではその逆。">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mech2-edge-force-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-図&nbsp;8: 刃状転位IIに働く無次元滑り力を位置x1/dに対して示し、同符号と異符号で安定点が入れ替わることを示す解析式によるグラフ。
+図&nbsp;8: 刃状転位IIに働く無次元滑り力と、同符号・異符号それぞれの安定点を示すグラフ。
 </figcaption>
 </figure>
 </div>
@@ -3890,10 +3854,10 @@ m
 [\bar301]\vdot[123]=-3+3=0
 \]</span></p>
 <p>より、引張軸 <span class="math inline">\([123]\)</span> は観察面内にあります。したがって、観察面上で二本の線の普通の角度を内積から計算できます。</p>
-<div id="fig-mech2-fcc-slip-trace" class="quarto-float quarto-figure quarto-figure-center anchored" alt="観察面バー301を正面から見た図。縦の引張方向[123]と、斜めのすべり線[1バー23]のなす鋭角をθ約64.6度と示す。結晶方位から描いた模式図。">
+<div id="fig-mech2-fcc-slip-trace" class="quarto-float quarto-figure quarto-figure-center anchored" alt="観察面バー301を正面から見た図。縦の引張方向[123]と、斜めのすべり線[1バー23]のなす鋭角をθ約64.6度と示す。結晶方位関係を表す模式図。">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mech2-fcc-slip-trace-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/材料力学II/fcc-slip-trace.svg" class="img-fluid figure-img" style="width:78.0%" alt="観察面バー301を正面から見た図。縦の引張方向[123]と、斜めのすべり線[1バー23]のなす鋭角をθ約64.6度と示す。結晶方位から描いた模式図。">
+<img src="images/材料力学II/fcc-slip-trace.svg" class="img-fluid figure-img" style="width:78.0%" alt="観察面バー301を正面から見た図。縦の引張方向[123]と、斜めのすべり線[1バー23]のなす鋭角をθ約64.6度と示す。結晶方位関係を表す模式図。">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mech2-fcc-slip-trace-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 図&nbsp;10: 観察面上の引張方向と主すべり面の交線として現れるすべり線、および両者の角度を示す模式図。
@@ -4039,11 +4003,6 @@ m_{\max}
 </tr>
 </tbody>
 </table>
-</section>
-<section id="図の再生成" class="level2">
-<h2 class="anchored" data-anchor-id="図の再生成">図の再生成</h2>
-<p>この記事の図は、次のスクリプトで解析式または設問の幾何から再生成できます。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python posts/univ_lecs/3S/scripts/materials_mechanics_ii_figures.py</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>
