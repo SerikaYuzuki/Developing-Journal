@@ -1479,18 +1479,615 @@ def single_polycrystal_stress_strain() -> Path:
     return finish(fig, "single-polycrystal-stress-strain.svg")
 
 
+def cleavage_traction() -> Path:
+    """単軸引張下の斜め結晶面と応力ベクトルの分解を描く。"""
+
+    fig, ax = plt.subplots(figsize=(8.2, 4.8))
+    specimen = Rectangle(
+        (0.9, 0.75),
+        6.2,
+        3.0,
+        facecolor=PALE_BLUE,
+        edgecolor=NAVY,
+        linewidth=2.0,
+    )
+    ax.add_patch(specimen)
+
+    for y in (1.45, 2.25, 3.05):
+        arrow(ax, (0.9, y), (0.18, y), color=RED, width=2.0, scale=13)
+        arrow(ax, (7.1, y), (7.82, y), color=RED, width=2.0, scale=13)
+    ax.text(0.28, 3.45, r"$\sigma\,\boldsymbol{e}_1$", color=RED, ha="left")
+    ax.text(7.72, 3.45, r"$\sigma\,\boldsymbol{e}_1$", color=RED, ha="right")
+
+    plane_start = np.array([3.05, 0.82])
+    plane_end = np.array([4.55, 3.68])
+    ax.plot(
+        [plane_start[0], plane_end[0]],
+        [plane_start[1], plane_end[1]],
+        color=GOLD,
+        linewidth=7,
+        solid_capstyle="round",
+        alpha=0.75,
+        zorder=4,
+    )
+    midpoint = (plane_start + plane_end) / 2
+    normal = np.array([plane_end[1] - plane_start[1], -(plane_end[0] - plane_start[0])])
+    normal = normal / np.linalg.norm(normal)
+    tangent = (plane_end - plane_start) / np.linalg.norm(plane_end - plane_start)
+
+    normal_base = midpoint - 0.62 * tangent
+    arrow(
+        ax,
+        tuple(normal_base),
+        tuple(normal_base + 1.05 * normal),
+        color=TEAL,
+        width=2.5,
+        scale=14,
+    )
+    ax.text(
+        *(normal_base + 1.22 * normal),
+        r"$\boldsymbol{n}$",
+        color=TEAL,
+        weight="bold",
+        ha="center",
+        va="center",
+    )
+
+    traction_end = midpoint + np.array([1.65, 0.0])
+    arrow(
+        ax,
+        tuple(midpoint),
+        tuple(traction_end),
+        color=BLUE,
+        width=2.6,
+        scale=15,
+    )
+    ax.text(
+        traction_end[0] + 0.12,
+        traction_end[1] + 0.12,
+        r"$\boldsymbol{t}=\boldsymbol{\sigma}\boldsymbol{n}$",
+        color=BLUE,
+        ha="left",
+        weight="bold",
+    )
+
+    normal_length = float(np.dot(np.array([1.65, 0.0]), normal))
+    normal_end = midpoint + normal_length * normal
+    arrow(
+        ax,
+        tuple(midpoint),
+        tuple(normal_end),
+        color=PURPLE,
+        width=2.2,
+        scale=13,
+        zorder=10,
+    )
+    ax.plot(
+        [normal_end[0], traction_end[0]],
+        [normal_end[1], traction_end[1]],
+        color=GRAY,
+        linewidth=1.4,
+        linestyle="--",
+    )
+    ax.text(
+        *(midpoint + 0.52 * normal - 0.18 * tangent),
+        r"$\sigma_n\boldsymbol{n}$",
+        color=PURPLE,
+        ha="right",
+        va="center",
+    )
+    ax.text(
+        midpoint[0] - 0.33,
+        midpoint[1] + 0.78,
+        "結晶面",
+        color=GOLD,
+        weight="bold",
+        rotation=62,
+        ha="center",
+    )
+
+    arrow(ax, (1.2, 0.35), (2.1, 0.35), color=NAVY, width=1.7, scale=11)
+    ax.text(2.23, 0.35, r"$x_1$", va="center")
+    ax.set(xlim=(-0.05, 8.05), ylim=(0.05, 4.15), aspect="equal")
+    ax.axis("off")
+    ax.set_title(
+        "任意の結晶面に作用する応力ベクトル",
+        fontsize=15,
+        weight="bold",
+        pad=12,
+    )
+    fig.tight_layout()
+    return finish(fig, "cleavage-traction.svg")
+
+
+def stress_coordinate_rotation() -> Path:
+    """主応力座標から45度回転した座標軸を描く。"""
+
+    fig, ax = plt.subplots(figsize=(6.8, 5.6))
+    origin = np.array([0.0, 0.0])
+    arrow(ax, tuple(origin), (2.65, 0.0), color=NAVY, width=2.1, scale=13)
+    arrow(ax, tuple(origin), (0.0, 2.65), color=NAVY, width=2.1, scale=13)
+    ax.text(2.82, -0.03, r"$x_1$", color=NAVY, va="center", fontsize=12)
+    ax.text(0.03, 2.83, r"$x_2$", color=NAVY, ha="left", fontsize=12)
+
+    theta = math.pi / 4
+    e1p = np.array([math.cos(theta), math.sin(theta)])
+    e2p = np.array([-math.sin(theta), math.cos(theta)])
+    arrow(ax, tuple(origin), tuple(2.65 * e1p), color=RED, width=2.7, scale=14)
+    arrow(ax, tuple(origin), tuple(2.65 * e2p), color=BLUE, width=2.7, scale=14)
+    ax.text(*(2.88 * e1p), r"$x_1^{\prime}$", color=RED, fontsize=12, ha="center")
+    ax.text(*(2.88 * e2p), r"$x_2^{\prime}$", color=BLUE, fontsize=12, ha="center")
+
+    arc = Arc(
+        (0, 0),
+        1.45,
+        1.45,
+        theta1=0,
+        theta2=45,
+        edgecolor=GOLD,
+        linewidth=2.5,
+    )
+    ax.add_patch(arc)
+    arrow(
+        ax,
+        (0.72 * math.cos(math.radians(39)), 0.72 * math.sin(math.radians(39))),
+        (0.72 * math.cos(theta), 0.72 * math.sin(theta)),
+        color=GOLD,
+        width=1.8,
+        scale=10,
+    )
+    ax.text(0.78, 0.31, r"$45^\circ$", color=GOLD, weight="bold")
+
+    circle = Circle((0, 0), 0.17, facecolor="white", edgecolor=TEAL, linewidth=2)
+    ax.add_patch(circle)
+    ax.plot(0, 0, marker=".", markersize=9, color=TEAL)
+    ax.text(
+        0.19,
+        -0.28,
+        r"$x_3=x_3^{\prime}$（紙面手前）",
+        color=TEAL,
+        ha="left",
+    )
+
+    ax.axhline(0, color=GRID, lw=0.8, zorder=0)
+    ax.axvline(0, color=GRID, lw=0.8, zorder=0)
+    ax.set(xlim=(-2.55, 3.2), ylim=(-0.75, 3.15), aspect="equal")
+    ax.axis("off")
+    ax.set_title(
+        "座標軸を反時計回りに回す受動変換",
+        fontsize=15,
+        weight="bold",
+        pad=12,
+    )
+    fig.tight_layout()
+    return finish(fig, "stress-coordinate-rotation.svg")
+
+
+def mises_tresca_yield_loci() -> Path:
+    """平面応力空間でMises楕円とTresca六角形を比較する。"""
+
+    fig, ax = plt.subplots(figsize=(7.2, 6.7))
+    angles = np.linspace(0, 2 * np.pi, 721)
+    c = np.cos(angles)
+    s = np.sin(angles)
+    radius = 1.0 / np.sqrt(c**2 - c * s + s**2)
+    ax.plot(
+        radius * c,
+        radius * s,
+        color=BLUE,
+        linewidth=2.8,
+        label="Mises",
+    )
+
+    tresca = np.array(
+        [
+            [1, 0],
+            [1, 1],
+            [0, 1],
+            [-1, 0],
+            [-1, -1],
+            [0, -1],
+            [1, 0],
+        ],
+        dtype=float,
+    )
+    ax.plot(
+        tresca[:, 0],
+        tresca[:, 1],
+        color=RED,
+        linewidth=2.8,
+        label="Tresca",
+    )
+
+    line = np.linspace(-1.2, 1.2, 101)
+    ax.plot(
+        line,
+        -line,
+        color=TEAL,
+        linestyle="--",
+        linewidth=1.8,
+        label=r"純せん断 $\sigma_2=-\sigma_1$",
+    )
+    mises_point = np.array([1 / math.sqrt(3), -1 / math.sqrt(3)])
+    tresca_point = np.array([0.5, -0.5])
+    ax.scatter(*mises_point, s=62, color=BLUE, edgecolor="white", zorder=10)
+    ax.scatter(*tresca_point, s=62, color=RED, edgecolor="white", zorder=10)
+    ax.annotate(
+        r"$|\tau|/\sigma_{\mathrm{y}}=1/\sqrt{3}$",
+        xy=mises_point,
+        xytext=(0.72, -0.88),
+        color=BLUE,
+        arrowprops={"arrowstyle": "->", "color": BLUE},
+        fontsize=9.5,
+    )
+    ax.annotate(
+        r"$|\tau|/\sigma_{\mathrm{y}}=1/2$",
+        xy=tresca_point,
+        xytext=(0.63, -0.43),
+        color=RED,
+        arrowprops={"arrowstyle": "->", "color": RED},
+        fontsize=9.5,
+    )
+
+    ax.axhline(0, color=NAVY, lw=1.0)
+    ax.axvline(0, color=NAVY, lw=1.0)
+    ax.set_xlabel(r"$\sigma_1/\sigma_{\mathrm{y}}$")
+    ax.set_ylabel(r"$\sigma_2/\sigma_{\mathrm{y}}$")
+    ax.set(xlim=(-1.25, 1.25), ylim=(-1.25, 1.25), aspect="equal")
+    ax.grid(color=GRID, lw=0.7, alpha=0.65)
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.legend(loc="upper left", fontsize=9.5, frameon=True)
+    ax.set_title(
+        "Mises条件とTresca条件の降伏曲線",
+        fontsize=15,
+        weight="bold",
+        pad=12,
+    )
+    fig.tight_layout()
+    return finish(fig, "mises-tresca-yield-loci.svg")
+
+
+def _truss_support(
+    ax: plt.Axes,
+    x: float,
+    y: float,
+    support: str,
+) -> None:
+    """平面トラス用のピン・ローラー・固定支持を描く。"""
+
+    if support == "fixed":
+        ax.plot([x + 0.04, x + 0.04], [y - 0.42, y + 0.42], color=NAVY, lw=3)
+        for offset in np.linspace(-0.34, 0.34, 5):
+            ax.plot(
+                [x + 0.04, x + 0.24],
+                [y + offset, y + offset - 0.15],
+                color=GRAY,
+                lw=1.0,
+            )
+        return
+
+    triangle = Polygon(
+        [[x, y - 0.04], [x - 0.23, y - 0.35], [x + 0.23, y - 0.35]],
+        closed=True,
+        facecolor="white",
+        edgecolor=NAVY,
+        linewidth=1.5,
+    )
+    ax.add_patch(triangle)
+    base_y = y - 0.40
+    if support == "roller":
+        for dx in (-0.12, 0.12):
+            ax.add_patch(
+                Circle(
+                    (x + dx, base_y),
+                    0.055,
+                    facecolor="white",
+                    edgecolor=NAVY,
+                    linewidth=1.2,
+                )
+            )
+        base_y -= 0.08
+    ax.plot([x - 0.32, x + 0.32], [base_y, base_y], color=NAVY, lw=1.4)
+
+
+def truss_determinacy() -> Path:
+    """4種類のトラスと支持条件をベクターで清書する。"""
+
+    fig, axes = plt.subplots(1, 4, figsize=(12.4, 3.8))
+    cases = (
+        ("(a)", [(0, 0), (0, 1), (1.5, 1), (1.5, 0)], [(0, 1), (1, 2), (2, 3), (3, 0), (0, 2)], ("pin", "roller"), (5, 4, 3, 0)),
+        ("(b)", [(0, 0), (0, 1), (1.5, 1), (1.5, 0)], [(0, 1), (1, 2), (2, 3), (3, 0), (0, 2), (1, 3)], ("pin", "roller"), (6, 4, 3, 1)),
+        ("(c)", [(0, 0), (0, 1), (1.5, 1), (1.5, 0)], [(0, 1), (1, 2), (2, 3), (0, 2)], ("pin", "pin"), (4, 4, 4, 0)),
+        ("(d)", [(0, 0), (0, 1), (1.5, 1), (1.5, 0)], [(0, 1), (1, 2), (2, 3), (0, 2)], ("pin", "fixed"), (4, 4, 5, 1)),
+    )
+
+    for ax, (label, nodes, members, supports, counts) in zip(axes, cases):
+        points = np.asarray(nodes, dtype=float)
+        for i, j in members:
+            ax.plot(
+                [points[i, 0], points[j, 0]],
+                [points[i, 1], points[j, 1]],
+                color=BLUE,
+                linewidth=2.6,
+                zorder=2,
+            )
+        for x, y in points:
+            ax.add_patch(
+                Circle(
+                    (x, y),
+                    0.065,
+                    facecolor="white",
+                    edgecolor=NAVY,
+                    linewidth=1.7,
+                    zorder=6,
+                )
+            )
+        _truss_support(ax, *points[0], supports[0])
+        _truss_support(ax, *points[3], supports[1])
+        m, n, r, ds = counts
+        ax.text(
+            0.75,
+            -0.72,
+            rf"$m={m},\ n={n},\ r={r}$" + "\n" + rf"$D_s={ds}$",
+            ha="center",
+            va="top",
+            fontsize=10,
+            color=NAVY,
+        )
+        ax.set_title(label, fontsize=13, weight="bold", pad=4)
+        ax.set(xlim=(-0.45, 1.95), ylim=(-0.92, 1.27), aspect="equal")
+        ax.axis("off")
+
+    fig.suptitle(
+        "平面トラスの部材配置と支持条件",
+        fontsize=15,
+        weight="bold",
+        y=1.02,
+    )
+    fig.tight_layout()
+    return finish(fig, "truss-determinacy.svg")
+
+
+def afm_cantilever() -> Path:
+    """AFMカンチレバーの側面と断面寸法を描く。"""
+
+    fig, ax = plt.subplots(figsize=(9.6, 4.8))
+    ax.add_patch(
+        Rectangle(
+            (0.75, 1.65),
+            6.0,
+            0.36,
+            facecolor=PALE_BLUE,
+            edgecolor=NAVY,
+            linewidth=2.0,
+        )
+    )
+    ax.plot([0.75, 0.75], [1.05, 2.65], color=NAVY, lw=4)
+    for y in np.linspace(1.12, 2.55, 8):
+        ax.plot([0.42, 0.75], [y - 0.16, y], color=GRAY, lw=1.1)
+    arrow(ax, (6.75, 2.72), (6.75, 1.05), color=RED, width=2.5, scale=15)
+    ax.text(
+        6.88,
+        2.55,
+        r"$P=100\,\mu\mathrm{N}$",
+        color=RED,
+        ha="left",
+        va="center",
+        weight="bold",
+    )
+    dimension(
+        ax,
+        (0.75, 0.82),
+        (6.75, 0.82),
+        r"$L=200\,\mu\mathrm{m}$",
+        label_offset=(0, -0.14),
+    )
+
+    inset_x, inset_y = 7.55, 1.35
+    section_w, section_h = 1.5, 0.72
+    ax.add_patch(
+        Rectangle(
+            (inset_x, inset_y),
+            section_w,
+            section_h,
+            facecolor=PALE_GOLD,
+            edgecolor=NAVY,
+            linewidth=1.8,
+        )
+    )
+    dimension(
+        ax,
+        (inset_x, inset_y + section_h + 0.33),
+        (inset_x + section_w, inset_y + section_h + 0.33),
+        r"$b=50\,\mu\mathrm{m}$",
+    )
+    dimension(
+        ax,
+        (inset_x + section_w + 0.32, inset_y),
+        (inset_x + section_w + 0.32, inset_y + section_h),
+        r"$h=5\,\mu\mathrm{m}$",
+        label_offset=(0.55, 0),
+    )
+    arrow(
+        ax,
+        (inset_x - 0.42, inset_y + section_h + 0.65),
+        (inset_x - 0.42, inset_y + section_h + 0.10),
+        color=RED,
+        width=1.8,
+        scale=10,
+    )
+    ax.text(
+        inset_x - 0.42,
+        inset_y + section_h + 0.80,
+        "荷重方向",
+        color=RED,
+        ha="center",
+        fontsize=9,
+    )
+    ax.text(
+        inset_x + section_w / 2,
+        0.62,
+        r"$I=bh^3/12$",
+        ha="center",
+        color=PURPLE,
+        weight="bold",
+        fontsize=11,
+    )
+    ax.text(3.75, 2.25, r"$E=200\,\mathrm{GPa}$", ha="center", color=BLUE)
+    ax.set(xlim=(0.0, 10.25), ylim=(0.15, 3.25), aspect="equal")
+    ax.axis("off")
+    ax.set_title(
+        "AFMカンチレバーの梁モデルと断面",
+        fontsize=15,
+        weight="bold",
+        pad=10,
+    )
+    fig.tight_layout()
+    return finish(fig, "afm-cantilever.svg")
+
+
+def screw_dislocation_pair() -> Path:
+    """同符号ならせん転位対と斥力を断面図で示す。"""
+
+    fig, ax = plt.subplots(figsize=(7.6, 4.3))
+    positions = (-1.55, 1.55)
+    for x in positions:
+        ax.add_patch(
+            Circle(
+                (x, 0),
+                0.28,
+                facecolor=PALE_BLUE,
+                edgecolor=BLUE,
+                linewidth=2.3,
+            )
+        )
+        ax.plot(x, 0, marker=".", markersize=13, color=BLUE)
+        ax.text(
+            x,
+            -0.55,
+            r"$+x_3$",
+            color=BLUE,
+            ha="center",
+            fontsize=10,
+        )
+    arrow(ax, (-1.85, 0.0), (-3.05, 0.0), color=RED, width=2.5, scale=15)
+    arrow(ax, (1.85, 0.0), (3.05, 0.0), color=RED, width=2.5, scale=15)
+    ax.text(-2.50, 0.25, r"$\boldsymbol{f}$", color=RED, weight="bold")
+    ax.text(2.50, 0.25, r"$\boldsymbol{f}$", color=RED, weight="bold")
+    dimension(
+        ax,
+        (-1.55, 0.82),
+        (1.55, 0.82),
+        r"$r$",
+        label_offset=(0, 0.16),
+    )
+    ax.text(
+        0,
+        -1.02,
+        r"$b_{\mathrm{I}}b_{\mathrm{II}}>0$：同符号なら斥力",
+        ha="center",
+        color=NAVY,
+        weight="bold",
+    )
+    arrow(ax, (-3.15, -0.73), (-2.35, -0.73), color=NAVY, width=1.5, scale=9)
+    ax.text(-2.22, -0.73, r"$x_1$", va="center", fontsize=9)
+    arrow(ax, (-3.15, -0.73), (-3.15, 0.02), color=NAVY, width=1.5, scale=9)
+    ax.text(-3.12, 0.14, r"$x_2$", ha="left", fontsize=9)
+    ax.set(xlim=(-3.5, 3.5), ylim=(-1.25, 1.45), aspect="equal")
+    ax.axis("off")
+    ax.set_title(
+        "平行ならせん転位間の相互作用",
+        fontsize=15,
+        weight="bold",
+        pad=10,
+    )
+    fig.tight_layout()
+    return finish(fig, "screw-dislocation-pair.svg")
+
+
+def schmid_factor_geometry() -> Path:
+    """Schmid則の引張軸・面法線・すべり方向を模式化する。"""
+
+    fig, ax = plt.subplots(figsize=(7.7, 5.7))
+    plane = Polygon(
+        [[-2.4, -0.65], [1.45, -1.25], [2.55, 0.45], [-1.3, 1.05]],
+        closed=True,
+        facecolor=PALE_GOLD,
+        edgecolor=GOLD,
+        linewidth=2.0,
+        alpha=0.82,
+    )
+    ax.add_patch(plane)
+    origin = np.array([0.0, 0.0])
+    load = np.array([0.65, 2.55])
+    normal = np.array([-0.60, 2.15])
+    slip = np.array([2.25, -0.35])
+    arrow(ax, tuple(origin), tuple(load), color=RED, width=2.7, scale=15)
+    arrow(ax, tuple(origin), tuple(normal), color=TEAL, width=2.6, scale=15)
+    arrow(ax, tuple(origin), tuple(slip), color=BLUE, width=2.6, scale=15)
+    ax.text(*(load + np.array([0.08, 0.16])), r"$\boldsymbol{L}$", color=RED, fontsize=13, weight="bold")
+    ax.text(*(normal + np.array([-0.15, 0.15])), r"$\boldsymbol{n}$", color=TEAL, fontsize=13, weight="bold")
+    ax.text(*(slip + np.array([0.16, -0.04])), r"$\boldsymbol{d}$", color=BLUE, fontsize=13, weight="bold")
+
+    phi1 = math.degrees(math.atan2(normal[1], normal[0]))
+    phi2 = math.degrees(math.atan2(load[1], load[0]))
+    arc_phi = Arc((0, 0), 1.55, 1.55, theta1=phi2, theta2=phi1, color=PURPLE, lw=2)
+    ax.add_patch(arc_phi)
+    ax.text(-0.02, 0.83, r"$\phi$", color=PURPLE, fontsize=12, weight="bold")
+
+    slip_angle = math.degrees(math.atan2(slip[1], slip[0]))
+    arc_lambda = Arc(
+        (0, 0),
+        2.15,
+        2.15,
+        theta1=slip_angle,
+        theta2=phi2,
+        color=ORANGE,
+        lw=2,
+    )
+    ax.add_patch(arc_lambda)
+    ax.text(0.91, 0.56, r"$\lambda$", color=ORANGE, fontsize=12, weight="bold")
+
+    ax.text(-1.72, -0.60, "すべり面", color=GOLD, weight="bold", rotation=-8)
+    ax.text(
+        -2.45,
+        2.35,
+        r"$\tau_{\mathrm{R}}=\sigma\cos\phi\cos\lambda$",
+        color=NAVY,
+        fontsize=12,
+        weight="bold",
+    )
+    ax.set(xlim=(-2.75, 3.0), ylim=(-1.65, 3.0), aspect="equal")
+    ax.axis("off")
+    ax.set_title(
+        "Schmid則の幾何",
+        fontsize=15,
+        weight="bold",
+        pad=10,
+    )
+    fig.tight_layout()
+    return finish(fig, "schmid-factor-geometry.svg")
+
+
 def main() -> None:
     """全図を生成し、生成先を表示する。"""
 
     generators = (
         stress_cube_components,
+        cleavage_traction,
+        stress_coordinate_rotation,
+        mises_tresca_yield_loci,
+        truss_determinacy,
         cantilever_problem,
         cantilever_solution,
+        afm_cantilever,
         rolling_roll_problem,
         rolling_roll_solution,
         screw_dislocation_geometry,
+        screw_dislocation_pair,
         edge_dislocation_pair,
         edge_dislocation_force,
+        schmid_factor_geometry,
         fcc_123_specimen,
         fcc_slip_trace,
         single_polycrystal_stress_strain,
