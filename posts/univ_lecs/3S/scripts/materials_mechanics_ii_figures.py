@@ -1545,7 +1545,7 @@ def cleavage_traction() -> Path:
     ax.text(
         traction_end[0] + 0.12,
         traction_end[1] + 0.12,
-        r"$\boldsymbol{t}=\boldsymbol{\sigma}\boldsymbol{n}$",
+        r"$\boldsymbol{t}=\boldsymbol{\sigma}^{\mathsf{T}}\boldsymbol{n}$",
         color=BLUE,
         ha="left",
         weight="bold",
@@ -1801,7 +1801,7 @@ def truss_determinacy() -> Path:
         ("(d)", [(0, 0), (0, 1), (1.5, 1), (1.5, 0)], [(0, 1), (1, 2), (2, 3), (0, 2)], ("pin", "fixed"), (4, 4, 5, 1)),
     )
 
-    for ax, (label, nodes, members, supports, counts) in zip(axes, cases):
+    for ax, (label, nodes, members, supports, _counts) in zip(axes, cases):
         points = np.asarray(nodes, dtype=float)
         for i, j in members:
             ax.plot(
@@ -1824,18 +1824,8 @@ def truss_determinacy() -> Path:
             )
         _truss_support(ax, *points[0], supports[0])
         _truss_support(ax, *points[3], supports[1])
-        m, n, r, ds = counts
-        ax.text(
-            0.75,
-            -0.72,
-            rf"$m={m},\ n={n},\ r={r}$" + "\n" + rf"$D_s={ds}$",
-            ha="center",
-            va="top",
-            fontsize=10,
-            color=NAVY,
-        )
         ax.set_title(label, fontsize=13, weight="bold", pad=4)
-        ax.set(xlim=(-0.45, 1.95), ylim=(-0.92, 1.27), aspect="equal")
+        ax.set(xlim=(-0.45, 1.95), ylim=(-0.57, 1.27), aspect="equal")
         ax.axis("off")
 
     fig.suptitle(
@@ -1927,11 +1917,11 @@ def afm_cantilever() -> Path:
     ax.text(
         inset_x + section_w / 2,
         0.62,
-        r"$I=bh^3/12$",
+        "長方形断面",
         ha="center",
-        color=PURPLE,
+        color=NAVY,
         weight="bold",
-        fontsize=11,
+        fontsize=10,
     )
     ax.text(3.75, 2.25, r"$E=200\,\mathrm{GPa}$", ha="center", color=BLUE)
     ax.set(xlim=(0.0, 10.25), ylim=(0.15, 3.25), aspect="equal")
@@ -1970,10 +1960,8 @@ def screw_dislocation_pair() -> Path:
             ha="center",
             fontsize=10,
         )
-    arrow(ax, (-1.85, 0.0), (-3.05, 0.0), color=RED, width=2.5, scale=15)
-    arrow(ax, (1.85, 0.0), (3.05, 0.0), color=RED, width=2.5, scale=15)
-    ax.text(-2.50, 0.25, r"$\boldsymbol{f}$", color=RED, weight="bold")
-    ax.text(2.50, 0.25, r"$\boldsymbol{f}$", color=RED, weight="bold")
+    ax.text(-1.55, 0.52, "転位 I", color=NAVY, ha="center", weight="bold")
+    ax.text(1.55, 0.52, "転位 II", color=NAVY, ha="center", weight="bold")
     dimension(
         ax,
         (-1.55, 0.82),
@@ -1981,19 +1969,11 @@ def screw_dislocation_pair() -> Path:
         r"$r$",
         label_offset=(0, 0.16),
     )
-    ax.text(
-        0,
-        -1.02,
-        r"$b_{\mathrm{I}}b_{\mathrm{II}}>0$：同符号なら斥力",
-        ha="center",
-        color=NAVY,
-        weight="bold",
-    )
     arrow(ax, (-3.15, -0.73), (-2.35, -0.73), color=NAVY, width=1.5, scale=9)
     ax.text(-2.22, -0.73, r"$x_1$", va="center", fontsize=9)
     arrow(ax, (-3.15, -0.73), (-3.15, 0.02), color=NAVY, width=1.5, scale=9)
     ax.text(-3.12, 0.14, r"$x_2$", ha="left", fontsize=9)
-    ax.set(xlim=(-3.5, 3.5), ylim=(-1.25, 1.45), aspect="equal")
+    ax.set(xlim=(-3.5, 3.5), ylim=(-0.95, 1.45), aspect="equal")
     ax.axis("off")
     ax.set_title(
         "平行ならせん転位間の相互作用",
@@ -2049,14 +2029,6 @@ def schmid_factor_geometry() -> Path:
     ax.text(0.91, 0.56, r"$\lambda$", color=ORANGE, fontsize=12, weight="bold")
 
     ax.text(-1.72, -0.60, "すべり面", color=GOLD, weight="bold", rotation=-8)
-    ax.text(
-        -2.45,
-        2.35,
-        r"$\tau_{\mathrm{R}}=\sigma\cos\phi\cos\lambda$",
-        color=NAVY,
-        fontsize=12,
-        weight="bold",
-    )
     ax.set(xlim=(-2.75, 3.0), ylim=(-1.65, 3.0), aspect="equal")
     ax.axis("off")
     ax.set_title(
