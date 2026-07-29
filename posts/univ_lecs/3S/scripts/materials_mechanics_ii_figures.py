@@ -263,7 +263,9 @@ def _projected_cube(
 def stress_cube_components() -> Path:
     """各座標面に働く応力成分の向きを示す。"""
 
-    fig, axes = plt.subplots(1, 3, figsize=(13.2, 4.5))
+    # 3面を横一列にするとスマートフォンで添字が読めなくなるため、
+    # 縦に並べて各パネルの表示幅を確保する。
+    fig, axes = plt.subplots(3, 1, figsize=(7.2, 11.2))
     for face_index, ax in enumerate(axes, start=1):
         _projected_cube(
             ax,
@@ -275,18 +277,18 @@ def stress_cube_components() -> Path:
         "応力立方体：面の向きと力の向きを二つの添字で表す",
         fontsize=16,
         weight="bold",
-        y=0.98,
+        y=0.99,
     )
     fig.text(
         0.5,
-        0.035,
+        0.018,
         r"本問の規約：$\sigma_{ij}$ の第1添字 $i$ は面の法線方向、第2添字 $j$ は力の方向。"
         r"反対側の面にはつり合う逆向きの応力が働く。",
         ha="center",
         color=GRAY,
         fontsize=9.5,
     )
-    fig.tight_layout(rect=(0, 0.08, 1, 0.92))
+    fig.tight_layout(rect=(0, 0.055, 1, 0.965), h_pad=0.6)
     return finish(fig, "stress-cube-components.svg")
 
 
