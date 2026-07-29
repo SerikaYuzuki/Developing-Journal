@@ -13,22 +13,55 @@ $$
 \require{mhchem}
 $$
 
-このノートは、複数年度の過去問を同じ内容ごとにまとめ直したものです。各問は、まず問題だけを解き、必要になったら折りたたみの「理論」を読み、最後に「解答」で答案を確認できる順にしています。
+このノートは、期末試験の過去問と授業内のミニレポートを、同じ内容ごとにまとめ直したものです。各問は、まず問題だけを解き、必要になったら折りたたみの「理論」を読み、最後に「解答」で答案を確認できる順にしています。
 
 本文中の図は、設問条件や曲線の関係を示す模式図であり、縮尺は任意です。
 
 ## 第1部 応力・ひずみ・降伏
 
-#### 問題A1 応力テンソルと等方弾性体
+#### 問題A1 応力テンソル・面上の応力・等方弾性体
 
 直交座標系 $(x_1,x_2,x_3)$ に置かれた微小な立方体を考える。材料はヤング率 $E$、ポアソン比 $\nu$、剛性率 $\mu$ の等方線形弾性体とする。$\sigma_{ij}$ は「$x_i$ 軸に垂直な面に作用する $x_j$ 方向の応力」と定義する。
 
 1. 立方体の各面に作用する応力成分を矢印で図示せよ。
-2. $\sigma_{11}$ のみが作用するとき、$\epsilon_{11},\epsilon_{22},\epsilon_{33}$ を求めよ。
-3. $\sigma_{11},\sigma_{22},\sigma_{33}$ が同時に作用するとき、$\epsilon_{11}$ を求めよ。
-4. $\sigma_{12}=2\mu\epsilon_{12}$ を用い、$E,\nu,\mu$ の関係を示せ。
+2. 次の応力状態をテンソルで表せ。
+
+   a. 大きさ $p>0$ の静水圧を受ける状態
+   b. $x_1$ 方向の単軸引張応力 $\sigma_0$ と、せん断応力 $\sigma_{12}=\sigma_{21}=\tau$ が同時に作用する状態
+
+3. 二次元応力状態
+
+   $$
+   \boldsymbol{\sigma}
+   =
+   \begin{pmatrix}
+   6&2\\
+   2&3
+   \end{pmatrix}\ \mathrm{MPa}
+   $$
+
+   において、単位法線 $\boldsymbol n=(0.6,0.8)^{\mathsf T}$ をもつ面の応力ベクトルを求めよ。
+
+4. 単結晶へ $x_1$ 方向に $300\,\mathrm{MPa}$ の単軸引張応力を加える。単位法線
+
+   $$
+   \boldsymbol n
+   =\frac{1}{\sqrt3}(1,1,1)^{\mathsf T}
+   $$
+
+   をもつ結晶面について、次を求めよ。この面の引張垂直応力が $200\,\mathrm{MPa}$ に達すると、へき開破壊するものとする。
+
+   a. 面上の応力ベクトル
+   b. 面に垂直な応力
+   c. 加えた単軸引張応力を何倍にするとへき開するか
+
+5. $\sigma_{11}$ のみが作用するとき、$\epsilon_{11},\epsilon_{22},\epsilon_{33}$ を求めよ。
+6. $\sigma_{11},\sigma_{22},\sigma_{33}$ が同時に作用するとき、$\epsilon_{11}$ を求めよ。
+7. $\sigma_{12}=2\mu\epsilon_{12}$ を用い、$E,\nu,\mu$ の関係を示せ。
 
 ![直交座標系に置かれた微小立方体と応力成分の向きを示す模式図。](images/材料力学II/stress-cube-components.svg){#fig-mech2-stress-cube fig-alt="x1、x2、x3軸に沿う立方体。各正の面には、面法線方向の垂直応力と面内二方向のせん断応力を矢印で示している。反対面にはつり合う逆向きの応力が作用する。" width="88%"}
+
+![単軸引張を受ける結晶中の斜めの面について、面法線、面上の応力ベクトル、垂直成分を示す模式図。](images/材料力学II/cleavage-traction.svg){#fig-mech2-cleavage-traction fig-alt="x1方向へ単軸引張される材料の中に斜めの結晶面があり、単位法線n、面上の応力ベクトルt、法線方向成分sigma_nを示す。" width="82%"}
 
 ::: {.callout-note collapse="true"}
 ##### 理論A1：面の向きと力の向きを二つの添字で管理する
@@ -60,6 +93,49 @@ $$
 $$
 
 となり、独立な成分は垂直応力3個とせん断応力3個の計6個です。
+
+引張を正、圧縮を負に取ると、全方向から大きさ $p$ の圧縮を受ける静水圧応力は
+
+$$
+\boldsymbol{\sigma}_{\mathrm h}
+=-p\boldsymbol I
+$$
+
+です。一方、複数の応力成分が同時に作用する場合は、対応する行列要素へそのまま配置します。せん断成分は応力テンソルの対称性により対で現れます。
+
+面上の応力ベクトル $\boldsymbol t$ は、面を引っ張る垂直成分と、面内で滑らせる接線成分へ分けられます。
+
+$$
+\sigma_n
+=\boldsymbol n\vdot\boldsymbol t,
+\qquad
+\boldsymbol t_{\mathrm{tan}}
+=\boldsymbol t-\sigma_n\boldsymbol n.
+$$
+
+$\boldsymbol t$ 自体と、スカラーである垂直応力 $\sigma_n$ を区別することが大切です。単軸応力
+
+$$
+\boldsymbol{\sigma}
+=\sigma
+\begin{pmatrix}
+1&0&0\\
+0&0&0\\
+0&0&0
+\end{pmatrix}
+$$
+
+のもとでは、
+
+$$
+\boldsymbol t
+=\sigma n_1\boldsymbol e_1,
+\qquad
+\sigma_n
+=\sigma n_1^2.
+$$
+
+したがって結晶面の法線が荷重軸から傾くほど、その面を開く垂直応力は小さくなります。へき開問題では、外力と面上の垂直応力はこの関係で比例します。
 
 単軸応力 $\sigma_{11}$ を受ける棒は $x_1$ 方向へ伸び、横方向へ縮みます。ポアソン比を
 
@@ -112,43 +188,142 @@ $$
 
 1. 正の $x_i$ 面には、垂直応力 $\sigma_{ii}$ と面内せん断応力 $\sigma_{ij},\sigma_{ik}$ を図 @fig-mech2-stress-cube のように描く。反対面には力のつり合いを満たす逆向きの矢印を描く。モーメントのつり合いより $\sigma_{ij}=\sigma_{ji}$ である。
 
-2. $\sigma_{11}$ のみが作用するとき、
+2. 静水圧応力と、引張・せん断の組合せはそれぞれ
 
-$$
-\boxed{
-\epsilon_{11}=\frac{\sigma_{11}}{E},
-\qquad
-\epsilon_{22}=\epsilon_{33}
-=-\frac{\nu\sigma_{11}}{E}
-}
-$$
+   $$
+   \boxed{
+   \boldsymbol{\sigma}_{\mathrm h}
+   =
+   \begin{pmatrix}
+   -p&0&0\\
+   0&-p&0\\
+   0&0&-p
+   \end{pmatrix}
+   },
+   \qquad
+   \boxed{
+   \boldsymbol{\sigma}
+   =
+   \begin{pmatrix}
+   \sigma_0&\tau&0\\
+   \tau&0&0\\
+   0&0&0
+   \end{pmatrix}
+   }.
+   $$
 
-3. 重ね合わせより、
+3. 応力テンソルは対称なので、本問の添字規約でも
 
-$$
-\boxed{
-\epsilon_{11}
-=\frac{1}{E}
-\left\{
-\sigma_{11}-\nu(\sigma_{22}+\sigma_{33})
-\right\}
-}
-$$
+   $$
+   \boldsymbol t
+   =\boldsymbol{\sigma}^{\mathsf T}\boldsymbol n
+   =\boldsymbol{\sigma}\boldsymbol n
+   $$
 
-4. 純せん断を $45^\circ$ 回転した主軸で考えると、
+   である。したがって、
 
-$$
-\gamma_{12}
-=\frac{2(1+\nu)\sigma_{12}}{E}.
-$$
+   $$
+   \boxed{
+   \boldsymbol t
+   =
+   \begin{pmatrix}
+   6&2\\
+   2&3
+   \end{pmatrix}
+   \begin{pmatrix}
+   0.6\\
+   0.8
+   \end{pmatrix}
+   =
+   \begin{pmatrix}
+   5.2\\
+   3.6
+   \end{pmatrix}\ \mathrm{MPa}
+   }.
+   $$
 
-$\sigma_{12}=\mu\gamma_{12}$ と比較して、
+4. 単軸引張応力状態は
 
-$$
-\boxed{E=2\mu(1+\nu)}
-$$
+   $$
+   \boldsymbol{\sigma}
+   =
+   \begin{pmatrix}
+   300&0&0\\
+   0&0&0\\
+   0&0&0
+   \end{pmatrix}\ \mathrm{MPa}
+   $$
 
-を得る。
+   だから、面上の応力ベクトルは
+
+   $$
+   \boxed{
+   \boldsymbol t
+   =\boldsymbol{\sigma}\boldsymbol n
+   =
+   \begin{pmatrix}
+   100\sqrt3\\
+   0\\
+   0
+   \end{pmatrix}\ \mathrm{MPa}
+   }.
+   $$
+
+   垂直応力は
+
+   $$
+   \boxed{
+   \sigma_n
+   =\boldsymbol n\vdot\boldsymbol t
+   =100\ \mathrm{MPa}
+   }.
+   $$
+
+   加えた応力を $k$ 倍すると $\sigma_n$ も $k$ 倍になるため、
+
+   $$
+   100k=200
+   \quad\Longrightarrow\quad
+   \boxed{k=2}.
+   $$
+
+5. $\sigma_{11}$ のみが作用するとき、
+
+   $$
+   \boxed{
+   \epsilon_{11}=\frac{\sigma_{11}}{E},
+   \qquad
+   \epsilon_{22}=\epsilon_{33}
+   =-\frac{\nu\sigma_{11}}{E}
+   }
+   $$
+
+6. 重ね合わせより、
+
+   $$
+   \boxed{
+   \epsilon_{11}
+   =\frac{1}{E}
+   \left\{
+   \sigma_{11}-\nu(\sigma_{22}+\sigma_{33})
+   \right\}
+   }
+   $$
+
+7. 純せん断を $45^\circ$ 回転した主軸で考えると、
+
+   $$
+   \gamma_{12}
+   =\frac{2(1+\nu)\sigma_{12}}{E}.
+   $$
+
+   $\sigma_{12}=\mu\gamma_{12}$ と比較して、
+
+   $$
+   \boxed{E=2\mu(1+\nu)}
+   $$
+
+   を得る。
 :::
 
 #### 問題A2 応力・塑性・数値解析の基本用語
