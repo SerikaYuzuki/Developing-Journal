@@ -326,23 +326,54 @@ $$
    を得る。
 :::
 
-#### 問題A2 応力・塑性・数値解析の基本用語
+#### 問題A2 応力テンソルの座標変換とモール円
 
-次の語句を、必要なら図や式を用いて説明せよ。
+主応力座標系 $(x_1,x_2,x_3)$ における応力テンソルが
 
-1. モール（Mohr）の応力円
-2. 降伏応力
-3. 真応力・真ひずみ
-4. 加工硬化指数
-5. ミーゼス（von Mises）の降伏条件
-6. 有限要素解析
+$$
+\boldsymbol{\sigma}
+=
+\begin{pmatrix}
+\sigma_1&0&0\\
+0&\sigma_2&0\\
+0&0&\sigma_3
+\end{pmatrix}
+$$
+
+である。座標軸を $x_3$ 軸まわりに $45^\circ$ 反時計回りに回して、$(x'_1,x'_2,x'_3)$ を取る。
+
+1. 新しい座標系における応力テンソル $\boldsymbol{\sigma}'$ を求めよ。
+2. 二次元応力状態に対するモール（Mohr）の応力円を説明し、主応力と最大面内せん断応力を円から読み取る方法を示せ。
+
+![主応力座標系から反時計回りに45度回転した座標系を示す模式図。](images/材料力学II/stress-coordinate-rotation.svg){#fig-mech2-stress-rotation fig-alt="x1軸を右、x2軸を上に置き、そこから反時計回り45度回転したx1プライム軸とx2プライム軸を色分けして示す。x3軸は紙面手前向き。" width="72%"}
 
 ::: {.callout-note collapse="true"}
-##### 理論A2：同じ試験結果を「座標・変形段階・計算法」から読み分ける
+##### 理論A2：ベクトルと同じ座標回転を、テンソルの両側へ作用させる
 
-この問題は暗記語句の寄せ集めに見えますが、役割は三つに分かれます。モール円は**面を回したときの応力**、降伏・真応力・加工硬化・ミーゼス条件は**弾性から塑性へ移る材料応答**、有限要素解析は**形の複雑な境界値問題を近似的に解く方法**です。
+座標軸を回す**受動変換**では、新しい基底ベクトルを古い基底で表した方向余弦を行列の各行へ並べます。図 @fig-mech2-stress-rotation の向きなら、
 
-**モールの応力円**
+$$
+\boldsymbol R
+=
+\begin{pmatrix}
+\cos\theta&\sin\theta&0\\
+-\sin\theta&\cos\theta&0\\
+0&0&1
+\end{pmatrix}.
+$$
+
+ベクトルの成分は $\boldsymbol v'=\boldsymbol R\boldsymbol v$、二階テンソルの成分は
+
+$$
+\boxed{
+\boldsymbol{\sigma}'
+=\boldsymbol R
+\boldsymbol{\sigma}
+\boldsymbol R^{\mathsf T}
+}
+$$
+
+と変換します。$\boldsymbol R^{\mathsf T}=\boldsymbol R^{-1}$ なので、トレース、行列式、主応力は座標を回しても変わりません。
 
 二次元応力状態
 
@@ -355,7 +386,7 @@ $$
 \end{pmatrix}
 $$
 
-において、法線が $x_1$ 軸から $\theta$ 傾いた面の垂直応力 $\sigma_n$ とせん断応力 $\tau_n$ は
+について、法線を $\theta$ 回した面の垂直応力 $\sigma_n$ とせん断応力 $\tau_n$ は
 
 $$
 \begin{aligned}
@@ -374,7 +405,7 @@ $$
 \end{aligned}
 $$
 
-したがって、
+$2\theta$ を消去すると、
 
 $$
 \left(
@@ -388,25 +419,613 @@ $$
 +\sigma_{12}^2
 $$
 
-です。これは横軸 $\sigma$、縦軸 $\tau$ 上の円です。中心と半径は
+を得ます。これがモール円です。中心と半径は
 
 $$
 C=\frac{\sigma_{11}+\sigma_{22}}{2},
 \qquad
 R=
 \sqrt{
-\left(\frac{\sigma_{11}-\sigma_{22}}{2}\right)^2
+\left(
+\frac{\sigma_{11}-\sigma_{22}}{2}
+\right)^2
 +\sigma_{12}^2
 }.
 $$
 
-$\tau=0$ となる円と横軸の交点が主応力
+横軸との交点 $C\pm R$ が主応力、円の上下端における $|\tau|=R$ が最大面内せん断応力です。実空間で面を $\theta$ 回すと円上では $2\theta$ 動きます。教科書によって $\tau$ 軸の正方向が逆になるため、角度の進む向きは採用した符号規約と一緒に確認します。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答A2
+
+1. $\theta=45^\circ$ では $\cos\theta=\sin\theta=1/\sqrt2$ なので、
+
+   $$
+   \boldsymbol R
+   =
+   \frac{1}{\sqrt2}
+   \begin{pmatrix}
+   1&1&0\\
+   -1&1&0\\
+   0&0&\sqrt2
+   \end{pmatrix}.
+   $$
+
+   よって、
+
+   $$
+   \boxed{
+   \boldsymbol{\sigma}'
+   =
+   \boldsymbol R\boldsymbol{\sigma}\boldsymbol R^{\mathsf T}
+   =
+   \begin{pmatrix}
+   \dfrac{\sigma_1+\sigma_2}{2}
+   &
+   \dfrac{\sigma_2-\sigma_1}{2}
+   &0\\[3mm]
+   \dfrac{\sigma_2-\sigma_1}{2}
+   &
+   \dfrac{\sigma_1+\sigma_2}{2}
+   &0\\[2mm]
+   0&0&\sigma_3
+   \end{pmatrix}
+   }.
+   $$
+
+2. モール円の中心と半径は
+
+   $$
+   \boxed{
+   C=\frac{\sigma_{11}+\sigma_{22}}{2},
+   \qquad
+   R=
+   \sqrt{
+   \left(
+   \frac{\sigma_{11}-\sigma_{22}}{2}
+   \right)^2+\sigma_{12}^2
+   }
+   }.
+   $$
+
+   したがって主応力と最大面内せん断応力は
+
+   $$
+   \boxed{
+   \sigma_{1,2}=C\pm R,
+   \qquad
+   |\tau_{\max}|=R
+   }.
+   $$
+:::
+
+#### 問題A3 変位勾配から求める微小ひずみと剛体回転
+
+座標と変位を基準長さで無次元化した二次元変位場
 
 $$
-\sigma_1=C+R,\qquad \sigma_2=C-R
+u_1=k(x_1^2+3x_2),
+\qquad
+u_2=k(2x_1x_2-x_2^2),
+\qquad
+k=1.0\times10^{-4}
 $$
 
-であり、最大面内せん断応力の大きさは $R$ です。実空間で面を $\theta$ 回すと、モール円上では $2\theta$ 動くこと、教科書によって $\tau$ 軸の正方向が逆になることが典型的な注意点です。
+を考える。点 $\mathrm P(1,2)$ における次の量を求めよ。
+
+1. 微小ひずみテンソル $\boldsymbol{\epsilon}$
+2. 剛体回転テンソル $\boldsymbol{\omega}$
+
+::: {.callout-note collapse="true"}
+##### 理論A3：変位勾配を対称部分と反対称部分へ分ける
+
+変位勾配を
+
+$$
+H_{ij}=\pdv{u_i}{x_j}
+$$
+
+と定義すると、微小変形では
+
+$$
+\boxed{
+\boldsymbol{\epsilon}
+=\frac12
+\left(
+\boldsymbol H+\boldsymbol H^{\mathsf T}
+\right)
+},
+\qquad
+\boxed{
+\boldsymbol{\omega}
+=\frac12
+\left(
+\boldsymbol H-\boldsymbol H^{\mathsf T}
+\right)
+}.
+$$
+
+対称部分 $\boldsymbol{\epsilon}$ は長さと角度の変化、反対称部分 $\boldsymbol{\omega}$ は形を変えない局所的な剛体回転を表します。したがって、回転成分をひずみとして数えないために対称化が必要です。
+
+本問では
+
+$$
+\boldsymbol H
+=k
+\begin{pmatrix}
+2x_1&3\\
+2x_2&2x_1-2x_2
+\end{pmatrix}.
+$$
+
+座標を先に代入してから差分を取るのではなく、まず変位場を微分し、最後に評価点を代入します。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答A3
+
+対称部分と反対称部分は
+
+$$
+\boldsymbol{\epsilon}
+=\frac{k}{2}
+\begin{pmatrix}
+4x_1&2x_2+3\\
+2x_2+3&4x_1-4x_2
+\end{pmatrix},
+$$
+
+$$
+\boldsymbol{\omega}
+=\frac{k}{2}
+\begin{pmatrix}
+0&3-2x_2\\
+2x_2-3&0
+\end{pmatrix}.
+$$
+
+$\mathrm P(1,2)$ と $k=10^{-4}$ を代入して、
+
+$$
+\boxed{
+\boldsymbol{\epsilon}
+=10^{-4}
+\begin{pmatrix}
+2&7/2\\
+7/2&-2
+\end{pmatrix}
+},
+\qquad
+\boxed{
+\boldsymbol{\omega}
+=10^{-4}
+\begin{pmatrix}
+0&-1/2\\
+1/2&0
+\end{pmatrix}
+}.
+$$
+:::
+
+#### 問題A4 熱ひずみと拘束による熱応力
+
+線膨張係数 $\alpha$ の等方線形弾性体を、一様に $\Delta T$ だけ温度上昇させる。
+
+1. 物体が全方向へ自由に膨張できるとき、応力とひずみを求めよ。
+2. $x_1$ 方向の伸びだけを完全に拘束し、$x_2,x_3$ 方向の表面は自由であるとき、$\sigma_{11}$ を求めよ。
+
+::: {.callout-note collapse="true"}
+##### 理論A4：全ひずみを弾性ひずみと熱ひずみに分ける
+
+等方弾性体の熱ひずみを含む構成式は
+
+$$
+\boxed{
+\epsilon_{ij}
+=
+\frac{1+\nu}{E}\sigma_{ij}
+-\frac{\nu}{E}\sigma_{kk}\delta_{ij}
++\alpha\Delta T\,\delta_{ij}
+}.
+$$
+
+右辺の最初の二項が応力による弾性ひずみ、最後の項が自由熱膨張です。温度が上がっただけでは、拘束がなければ応力は生じません。熱応力は、熱膨張しようとする変形を境界条件が妨げたときに生じます。
+
+$x_1$ 方向だけを拘束した場合の条件は
+
+$$
+\epsilon_{11}=0,
+\qquad
+\sigma_{22}=\sigma_{33}=0.
+$$
+
+「変形を拘束した方向」と「表面力がゼロの方向」を、ひずみ条件と応力条件へ正しく振り分けます。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答A4
+
+1. 自由膨張では、
+
+   $$
+   \boxed{\boldsymbol{\sigma}=\boldsymbol 0},
+   \qquad
+   \boxed{
+   \boldsymbol{\epsilon}
+   =\alpha\Delta T\,\boldsymbol I
+   }.
+   $$
+
+   すなわち $\epsilon_{11}=\epsilon_{22}=\epsilon_{33}=\alpha\Delta T$ で、せん断ひずみはゼロである。
+
+2. $\epsilon_{11}=0$、$\sigma_{22}=\sigma_{33}=0$ より、
+
+   $$
+   0
+   =\frac{\sigma_{11}}{E}
+   +\alpha\Delta T.
+   $$
+
+   したがって、
+
+   $$
+   \boxed{\sigma_{11}=-E\alpha\Delta T}.
+   $$
+
+   $\Delta T>0$ なら圧縮応力である。なお、横方向は自由なので
+
+   $$
+   \epsilon_{22}=\epsilon_{33}
+   =(1+\nu)\alpha\Delta T
+   $$
+
+   となる。
+:::
+
+#### 問題A5 平面ひずみの構成式
+
+等方線形弾性体が平面ひずみ状態
+
+$$
+\epsilon_{13}=\epsilon_{23}=\epsilon_{33}=0
+$$
+
+にあるとする。
+
+1. 有効定数
+
+   $$
+   E'=\frac{E}{1-\nu^2},
+   \qquad
+   \nu'=\frac{\nu}{1-\nu}
+   $$
+
+   を用いて、
+
+   $$
+   \epsilon_{11}
+   =\frac{1}{E'}
+   \left(
+   \sigma_{11}-\nu'\sigma_{22}
+   \right)
+   $$
+
+   を導け。
+
+2. $E=200\,\mathrm{GPa}$、$\nu=0.3$ の鋼材について、
+
+   $$
+   \epsilon_{11}=4.0\times10^{-4},
+   \qquad
+   \epsilon_{22}=1.0\times10^{-4}
+   $$
+
+   と測定された。$\sigma_{11},\sigma_{22},\sigma_{33}$ を求めよ。
+
+::: {.callout-note collapse="true"}
+##### 理論A5：平面ひずみでは面外応力が残る
+
+三次元Hooke則の面外成分は
+
+$$
+\epsilon_{33}
+=\frac{1}{E}
+\left\{
+\sigma_{33}
+-\nu(\sigma_{11}+\sigma_{22})
+\right\}.
+$$
+
+平面ひずみでは $\epsilon_{33}=0$ なので、
+
+$$
+\boxed{
+\sigma_{33}
+=\nu(\sigma_{11}+\sigma_{22})
+}.
+$$
+
+つまり面外**ひずみ**はゼロですが、面外**応力**は一般にゼロではありません。これは薄板の自由表面で用いる平面応力条件 $\sigma_{33}=0$ との重要な違いです。
+
+この $\sigma_{33}$ を面内のHooke則へ戻すと、
+
+$$
+\epsilon_{11}
+=\frac{1-\nu^2}{E}
+\left(
+\sigma_{11}
+-\frac{\nu}{1-\nu}\sigma_{22}
+\right),
+$$
+
+となり、設問の $E',\nu'$ が得られます。
+
+測定ひずみから応力を直接求めるときは、逆関係
+
+$$
+\boxed{
+\begin{pmatrix}
+\sigma_{11}\\
+\sigma_{22}
+\end{pmatrix}
+=
+\frac{E}{(1+\nu)(1-2\nu)}
+\begin{pmatrix}
+1-\nu&\nu\\
+\nu&1-\nu
+\end{pmatrix}
+\begin{pmatrix}
+\epsilon_{11}\\
+\epsilon_{22}
+\end{pmatrix}
+}
+$$
+
+を使うと計算が短くなります。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答A5
+
+1. $\epsilon_{33}=0$ から
+
+   $$
+   \sigma_{33}
+   =\nu(\sigma_{11}+\sigma_{22})
+   $$
+
+   を得る。これを
+
+   $$
+   \epsilon_{11}
+   =\frac{1}{E}
+   \left\{
+   \sigma_{11}
+   -\nu(\sigma_{22}+\sigma_{33})
+   \right\}
+   $$
+
+   へ代入すると、
+
+   $$
+   \boxed{
+   \epsilon_{11}
+   =
+   \frac{1-\nu^2}{E}
+   \left(
+   \sigma_{11}
+   -\frac{\nu}{1-\nu}\sigma_{22}
+   \right)
+   =
+   \frac{1}{E'}
+   \left(
+   \sigma_{11}-\nu'\sigma_{22}
+   \right)
+   }.
+   $$
+
+2. $E=2.00\times10^5\,\mathrm{MPa}$ を用いると、
+
+   $$
+   \begin{aligned}
+   \sigma_{11}
+   &=
+   \frac{2.00\times10^5}{(1.3)(0.4)}
+   \left\{
+   0.7(4.0\times10^{-4})
+   +0.3(1.0\times10^{-4})
+   \right\}\\
+   &=119.2\ \mathrm{MPa},\\
+   \sigma_{22}
+   &=
+   \frac{2.00\times10^5}{(1.3)(0.4)}
+   \left\{
+   0.3(4.0\times10^{-4})
+   +0.7(1.0\times10^{-4})
+   \right\}\\
+   &=73.1\ \mathrm{MPa}.
+   \end{aligned}
+   $$
+
+   さらに、
+
+   $$
+   \sigma_{33}
+   =0.3(\sigma_{11}+\sigma_{22})
+   =57.7\ \mathrm{MPa}.
+   $$
+
+   よって、
+
+   $$
+   \boxed{
+   \sigma_{11}=119.2\ \mathrm{MPa},
+   \quad
+   \sigma_{22}=73.1\ \mathrm{MPa},
+   \quad
+   \sigma_{33}=57.7\ \mathrm{MPa}
+   }.
+   $$
+:::
+
+#### 問題A6 純せん断におけるミーゼス条件とトレスカ条件
+
+平面応力状態 $(\sigma_3=0)$ において、主応力が
+
+$$
+\sigma_1=\tau,
+\qquad
+\sigma_2=-\tau,
+\qquad
+\sigma_3=0
+$$
+
+となる純せん断状態を考える。単軸引張の降伏応力を $\sigma_{\mathrm y}$ とする。
+
+1. ミーゼス条件とトレスカ条件について、降伏時の $|\tau|$ をそれぞれ求めよ。
+2. ミーゼス条件が許す限界を基準として、トレスカ条件が何 $\%$ 保守的か求めよ。
+
+![平面応力空間におけるミーゼスの降伏楕円、トレスカの降伏六角形、純せん断経路を比較する図。](images/材料力学II/mises-tresca-yield-loci.svg){#fig-mech2-yield-loci fig-alt="横軸を主応力sigma1、縦軸をsigma2として単軸降伏応力で規格化した平面。ミーゼスの楕円とトレスカの六角形、sigma2=-sigma1の純せん断経路、および両条件との交点を示す。" width="82%"}
+
+::: {.callout-note collapse="true"}
+##### 理論A6：同じ単軸降伏応力で二つの多軸降伏条件を比較する
+
+ミーゼス相当応力は主応力を用いて
+
+$$
+\sigma_{\mathrm{eq}}
+=
+\sqrt{
+\frac{
+(\sigma_1-\sigma_2)^2
++(\sigma_2-\sigma_3)^2
++(\sigma_3-\sigma_1)^2
+}{2}
+}
+$$
+
+と表され、$\sigma_{\mathrm{eq}}=\sigma_{\mathrm y}$ で降伏します。
+
+トレスカ条件は最大せん断応力が単軸降伏時と同じ値へ達したとき降伏すると考えます。主応力で書けば、
+
+$$
+\boxed{
+\max_{i,j}|\sigma_i-\sigma_j|
+=\sigma_{\mathrm y}
+}.
+$$
+
+平面応力の主応力平面では、ミーゼス条件は
+
+$$
+\sigma_1^2-\sigma_1\sigma_2+\sigma_2^2
+=\sigma_{\mathrm y}^2
+$$
+
+という楕円、トレスカ条件は
+
+$$
+\max
+\left(
+|\sigma_1|,
+|\sigma_2|,
+|\sigma_1-\sigma_2|
+\right)
+=\sigma_{\mathrm y}
+$$
+
+という六角形になります。図 @fig-mech2-yield-loci の純せん断経路 $\sigma_2=-\sigma_1$ と各降伏曲線の交点が、求める $|\tau|$ です。
+
+「何 $\%$ 保守的か」は分母の取り方で数値が変わります。本問では「ミーゼス条件が許す限界からどれだけ低いか」を問うため、
+
+$$
+\frac{
+\tau_{\mathrm{Mises}}-\tau_{\mathrm{Tresca}}
+}{
+\tau_{\mathrm{Mises}}
+}\times100
+$$
+
+と定義します。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答A6
+
+1. 純せん断状態をミーゼス相当応力へ代入すると、
+
+   $$
+   \sigma_{\mathrm{eq}}
+   =
+   \sqrt{
+   \frac{
+   (2\tau)^2+(-\tau)^2+(-\tau)^2
+   }{2}
+   }
+   =\sqrt3|\tau|.
+   $$
+
+   よって、
+
+   $$
+   \boxed{
+   |\tau|_{\mathrm{Mises}}
+   =\frac{\sigma_{\mathrm y}}{\sqrt3}
+   \simeq0.577\sigma_{\mathrm y}
+   }.
+   $$
+
+   トレスカ条件では最大主応力差が $2|\tau|$ なので、
+
+   $$
+   \boxed{
+   |\tau|_{\mathrm{Tresca}}
+   =\frac{\sigma_{\mathrm y}}{2}
+   =0.500\sigma_{\mathrm y}
+   }.
+   $$
+
+2. ミーゼス条件を基準とした差は、
+
+   $$
+   \begin{aligned}
+   \frac{
+   \tau_{\mathrm{Mises}}-\tau_{\mathrm{Tresca}}
+   }{
+   \tau_{\mathrm{Mises}}
+   }\times100
+   &=
+   \left(
+   1-\frac{\sqrt3}{2}
+   \right)100\\
+   &\simeq13.4\%.
+   \end{aligned}
+   $$
+
+   したがって、
+
+   $$
+   \boxed{
+   \text{トレスカ条件はミーゼス条件より約 }13.4\%\text{ 保守的}
+   }.
+   $$
+:::
+
+#### 問題A7 塑性・数値解析の基本用語
+
+次の語句を、必要なら図や式を用いて説明せよ。
+
+1. 降伏応力
+2. 真応力・真ひずみ
+3. 加工硬化指数
+4. ミーゼス（von Mises）の降伏条件
+5. 有限要素解析
+
+::: {.callout-note collapse="true"}
+##### 理論A7：変形段階と計算法の違いを読み分ける
+
+降伏・真応力・加工硬化・ミーゼス条件は**弾性から塑性へ移る材料応答**、有限要素解析は**形の複雑な境界値問題を近似的に解く方法**です。用語を一文で定義したうえで、代表式と成立条件まで示すと、答案の意味が明確になります。
 
 **降伏応力**
 
@@ -512,24 +1131,11 @@ $$
 :::
 
 ::: {.callout-tip collapse="true"}
-##### 解答A2
+##### 解答A7
 
-1. **モールの応力円**は、任意の面の垂直応力とせん断応力を $(\sigma,\tau)$ 平面上の円で表す方法である。中心と半径は
+1. **降伏応力**は、除荷後に永久ひずみが残る塑性変形の開始応力である。明瞭な降伏点がない材料では、通常は $0.2\%$ 耐力を用いる。
 
-   $$
-   C=\frac{\sigma_{11}+\sigma_{22}}{2},
-   \qquad
-   R=
-   \sqrt{
-   \left(\frac{\sigma_{11}-\sigma_{22}}{2}\right)^2+\sigma_{12}^2
-   }.
-   $$
-
-   横軸との交点が主応力 $\sigma_{1,2}=C\pm R$、半径が最大面内せん断応力である。実空間の角度 $\theta$ は円上で $2\theta$ に対応する。
-
-2. **降伏応力**は、除荷後に永久ひずみが残る塑性変形の開始応力である。明瞭な降伏点がない材料では、通常は $0.2\%$ 耐力を用いる。
-
-3. **真応力・真ひずみ**は瞬間断面積 $A$、瞬間長さ $l$ を用いて
+2. **真応力・真ひずみ**は瞬間断面積 $A$、瞬間長さ $l$ を用いて
 
    $$
    \sigma_{\mathrm t}=\frac{F}{A},
@@ -547,7 +1153,7 @@ $$
 
    である。
 
-4. **加工硬化指数** $n$ は Hollomon 則
+3. **加工硬化指数** $n$ は Hollomon 則
 
    $$
    \sigma_{\mathrm t}=K\epsilon_{\mathrm p}^{\,n}
@@ -555,7 +1161,7 @@ $$
 
    の指数であり、$n=\dv*{\ln\sigma_{\mathrm t}}{\ln\epsilon_{\mathrm p}}$ である。$n$ が大きいほど加工硬化が強く、くびれが遅れやすい。
 
-5. **ミーゼスの降伏条件**は
+4. **ミーゼスの降伏条件**は
 
    $$
    \sigma_{\mathrm{eq}}
@@ -572,7 +1178,7 @@ $$
 
    となると降伏するという条件である。静水圧応力だけでは降伏しない。
 
-6. **有限要素解析**は、連続体を要素へ分割し、要素内の変位を形状関数で近似して
+5. **有限要素解析**は、連続体を要素へ分割し、要素内の変位を形状関数で近似して
 
    $$
    \boldsymbol K\boldsymbol u=\boldsymbol f
@@ -581,20 +1187,74 @@ $$
    を解く数値解析法である。変位からひずみ・応力を求め、メッシュ収束を確認する必要がある。
 :::
 
-## 第2部 梁のせん断力・曲げモーメント・たわみ
+## 第2部 構造の静定判定と梁の曲げ
 
-#### 問題B1 先端荷重を受ける片持ち梁
+#### 問題B1 平面トラスの静定・不静定
+
+図 @fig-mech2-truss-determinacy の4種類の平面トラスについて、静定か不静定かを判定し、不静定なら不静定次数を求めよ。対角材が交差していても、節点記号がない交差部は接合されていないものとする。
+
+![部材配置と支持条件が異なる4種類の平面トラス。](images/材料力学II/truss-determinacy.svg){#fig-mech2-truss-determinacy fig-alt="四角形を基本とする四つの平面トラス。(a)は対角材一本で左ピン右ローラー、(b)は交差部を接合しない対角材二本で左ピン右ローラー、(c)は下辺なしで左右ピン、(d)は下辺なしで左ピン右固定。各図に部材数、節点数、反力数、不静定次数を示す。" width="100%"}
+
+::: {.callout-note collapse="true"}
+##### 理論B1：未知力の数と節点のつり合い式の数を比較する
+
+平面のピン接合トラスでは、各節点について $x,y$ 方向のつり合い式が2本あります。部材数を $m$、節点数を $n$、支点反力成分数を $r$ とすると、安定なトラスの静的不静定次数は
+
+$$
+\boxed{D_{\mathrm s}=m+r-2n}
+$$
+
+です。
+
+- $D_{\mathrm s}=0$：静定
+- $D_{\mathrm s}>0$：$D_{\mathrm s}$ 次不静定
+- $D_{\mathrm s}<0$：一般に機構となり、不安定
+
+支持条件ごとの反力成分数は、平面問題ではピン支点が2、ローラー支点が1、固定端が3です。
+
+ただし $D_{\mathrm s}=0$ は、未知数と式の**個数**が一致することを示すだけです。全部材が一直線に並ぶなど、配置によって独立なつり合い式が不足する機構もあり得ます。そのため、部材数の判定に加えて幾何学的な安定性も確認します。
+
+図 (b) の二本の対角材は交差していますが、中央に節点がありません。したがって中央を節点として数えず、各対角材を1本ずつ数えます。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答B1
+
+各構造について数えると、
+
+| 構造 | 部材数 $m$ | 節点数 $n$ | 反力成分数 $r$ | $D_{\mathrm s}=m+r-2n$ | 判定 |
+|---|---:|---:|---:|---:|---|
+| (a) | 5 | 4 | 3 | 0 | 静定 |
+| (b) | 6 | 4 | 3 | 1 | 1次不静定 |
+| (c) | 4 | 4 | 4 | 0 | 静定 |
+| (d) | 4 | 4 | 5 | 1 | 1次不静定 |
+
+したがって、
+
+$$
+\boxed{
+\text{(a), (c) は静定、(b), (d) は1次不静定}
+}.
+$$
+
+いずれも図示された部材配置について機構を生じないことを併せて確認する。
+:::
+
+#### 問題B2 先端荷重を受ける片持ち梁
 
 長さ $L$、断面二次モーメント $I$、ヤング率 $E$ の片持ち梁がある。固定端を $x=0$、自由端を $x=L$ とし、自由端へ下向きの集中荷重 $P$ を加える。
 
 1. せん断力分布を描け。
 2. 曲げモーメント分布を描け。
 3. 先端のたわみ $\delta$ を求めよ。
+4. この式を、原子間力顕微鏡（AFM）のカンチレバーへ適用する。荷重方向の高さ $h=5\,\mu\mathrm m$、幅 $b=50\,\mu\mathrm m$、長さ $L=200\,\mu\mathrm m$、ヤング率 $E=200\,\mathrm{GPa}$ の長方形断面梁の先端へ、下向き荷重 $P=100\,\mu\mathrm N$ を加えた。先端たわみを求めよ。
 
 ![固定端を左、自由端を右に置き、自由端へ集中荷重Pを受ける長さLの片持ち梁の模式図。](images/材料力学II/cantilever-problem.svg){#fig-mech2-cantilever-setup fig-alt="左端を固定された水平な梁。右端に下向き集中荷重Pが作用し、梁長をL、固定端からの座標をxとする。" width="92%"}
 
+![AFMカンチレバーの寸法と荷重方向、および長方形断面の幅と高さを示す模式図。](images/材料力学II/afm-cantilever.svg){#fig-mech2-afm-cantilever fig-alt="左端固定のAFMカンチレバー。長さ200マイクロメートル、自由端の下向き荷重100マイクロニュートンを示し、挿入断面図には荷重方向の高さ5マイクロメートル、幅50マイクロメートル、断面二次モーメントbh cubed over 12を示す。" width="92%"}
+
 ::: {.callout-note collapse="true"}
-##### 理論B1：切断面のつり合いから内力を決め、曲率を二回積分する
+##### 理論B2：切断面のつり合いから内力を決め、曲率を二回積分する
 
 梁の途中 $x$ で切り、右側だけを取り出すと、外力は自由端の $P$ だけです。切断面に現れるせん断力 $V$ と曲げモーメント $M$ が、この力とモーメントを打ち消します。
 
@@ -640,10 +1300,18 @@ $$
 となります。
 
 符号規約を変えれば $V,M,v$ の符号は変わりますが、大きさ、境界値、図形の形は変わりません。答案では採用した正方向を図へ書くことが大切です。
+
+長方形断面では、荷重による曲げ軸まわりの断面二次モーメントは
+
+$$
+I=\frac{bh^3}{12}
+$$
+
+です。3乗される $h$ は**荷重方向の断面寸法**です。幅と高さを取り違えると剛性を大きく誤るため、図 @fig-mech2-afm-cantilever の断面と曲げ方向を先に確認します。
 :::
 
 ::: {.callout-tip collapse="true"}
-##### 解答B1
+##### 解答B2
 
 上向き外力と正曲げを正とすると、
 
@@ -674,9 +1342,51 @@ $$
 $$
 
 となり、向きは下向きである。
+
+4. AFMカンチレバーの断面二次モーメントは
+
+   $$
+   \begin{aligned}
+   I
+   &=\frac{bh^3}{12}\\
+   &=
+   \frac{
+   (50\times10^{-6})
+   (5\times10^{-6})^3
+   }{12}\\
+   &=5.2083\times10^{-22}\ \mathrm{m^4}.
+   \end{aligned}
+   $$
+
+   よって、
+
+   $$
+   \begin{aligned}
+   \delta
+   &=
+   \frac{PL^3}{3EI}\\
+   &=
+   \frac{
+   (100\times10^{-6})
+   (200\times10^{-6})^3
+   }{
+   3(200\times10^9)
+   (5.2083\times10^{-22})
+   }\\
+   &=2.56\times10^{-6}\ \mathrm m.
+   \end{aligned}
+   $$
+
+   したがって、
+
+   $$
+   \boxed{\delta=2.56\,\mu\mathrm m}
+   $$
+
+   で、向きは荷重方向である。
 :::
 
-#### 問題B2 中央部に等分布荷重を受ける圧延ロール
+#### 問題B3 中央部に等分布荷重を受ける圧延ロール
 
 直径 $d$、支点間長さ $l$、ヤング率 $E$ の円柱形圧延ロールを、両端単純支持梁として近似する。ロール中央の幅 $a$ に、下向きの等分布線荷重 $q$ が作用する。
 
@@ -689,7 +1399,7 @@ $$
 ![両端を単純支持され、中央幅aに等分布線荷重qを受ける長さl、直径dのロールの梁モデル。](images/材料力学II/rolling-roll-problem.svg){#fig-mech2-rolling-setup fig-alt="長さlの水平梁を両端で単純支持し、中央の幅aに下向き等分布荷重qが作用する。荷重区間の左端をc=(l-a)/2、右端をe=(l+a)/2とする。" width="96%"}
 
 ::: {.callout-note collapse="true"}
-##### 理論B2：対称性で反力を決め、区間ごとに荷重を積み上げる
+##### 理論B3：対称性で反力を決め、区間ごとに荷重を積み上げる
 
 三次元の接触圧力は $\mathrm{Pa}=\mathrm{N\,m^{-2}}$ ですが、一次元梁へ入力する $q$ は単位長さ当たりの荷重 $\mathrm{N\,m^{-1}}$ です。元の接触圧力を $p$、梁モデルへ集約する奥行き幅を $w$ とすれば $q=pw$ です。本問では $q$ を線荷重として扱います。
 
@@ -786,7 +1496,7 @@ $$
 :::
 
 ::: {.callout-tip collapse="true"}
-##### 解答B2
+##### 解答B3
 
 1. 円形断面より、
 
@@ -1038,7 +1748,127 @@ $$
    である。
 :::
 
-#### 問題C2 平行な2本の刃状転位に働く力
+#### 問題C2 平行ならせん転位の相互作用
+
+無限に長い2本の平行ならせん転位が、距離
+
+$$
+r=15\,\mathrm{nm}
+$$
+
+だけ離れている。両転位のバーガースベクトルは転位線と同じ向きで、大きさは
+
+$$
+b_{\mathrm I}=b_{\mathrm{II}}=0.25\,\mathrm{nm}
+$$
+
+である。材料の剛性率を $\mu=45\,\mathrm{GPa}$ とする。
+
+1. 一方の転位が他方へ及ぼす単位長さ当たりの力の大きさを求めよ。
+2. この力が引力か斥力かを、バーガースベクトルの符号とともに説明せよ。
+
+![同符号の平行ならせん転位二本と、両者を遠ざける向きの力を示す模式図。](images/材料力学II/screw-dislocation-pair.svg){#fig-mech2-screw-pair fig-alt="x1 x2断面上に、どちらもx3正方向を向くらせん転位を二つの点付き円で示す。間隔rを寸法線で示し、二つの転位には互いから遠ざかる外向きの力が作用する。" width="76%"}
+
+::: {.callout-note collapse="true"}
+##### 理論C2：一方のせん断応力場へ、もう一方の転位を置く
+
+転位Iを原点、転位IIを $(x_1,x_2)=(r,0)$ に置き、両転位線を $+x_3$ 方向とします。問題C1で求めたらせん転位の応力場より、転位IIの位置では
+
+$$
+\sigma_{23}^{\mathrm I}
+=\frac{\mu b_{\mathrm I}}{2\pi r},
+\qquad
+\sigma_{13}^{\mathrm I}=0.
+$$
+
+転位IIに働く単位長さ当たりの Peach--Koehler 力は
+
+$$
+\boldsymbol f
+=
+\left(
+\boldsymbol{\sigma}^{\mathrm I}
+\boldsymbol b_{\mathrm{II}}
+\right)
+\times
+\boldsymbol t_{\mathrm{II}}.
+$$
+
+ここで
+
+$$
+\boldsymbol b_{\mathrm{II}}
+=b_{\mathrm{II}}\boldsymbol e_3,
+\qquad
+\boldsymbol t_{\mathrm{II}}
+=\boldsymbol e_3
+$$
+
+なので、
+
+$$
+\boxed{
+\boldsymbol f
+=
+\frac{\mu b_{\mathrm I}b_{\mathrm{II}}}{2\pi r}
+\boldsymbol e_1
+}.
+$$
+
+$b_{\mathrm I}b_{\mathrm{II}}>0$ なら、$+x_1$ 側にある転位IIへ $+x_1$ 向きの力が働くため、両転位は互いに遠ざかります。積が負なら力の向きが逆転します。
+
+したがって、力の大きさだけを書く場合は
+
+$$
+f
+=
+\frac{\mu|b_{\mathrm I}b_{\mathrm{II}}|}{2\pi r}
+$$
+
+とし、引力・斥力は $b_{\mathrm I}b_{\mathrm{II}}$ の符号から判定します。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答C2
+
+1. 数値をSI単位へ直して、
+
+   $$
+   \begin{aligned}
+   f
+   &=
+   \frac{
+   \mu b_{\mathrm I}b_{\mathrm{II}}
+   }{2\pi r}\\
+   &=
+   \frac{
+   (45\times10^9)
+   (0.25\times10^{-9})^2
+   }{
+   2\pi(15\times10^{-9})
+   }\\
+   &=2.984\times10^{-2}\ \mathrm{N\,m^{-1}}.
+   \end{aligned}
+   $$
+
+   よって、
+
+   $$
+   \boxed{
+   f\simeq0.030\ \mathrm{N\,m^{-1}}
+   }.
+   $$
+
+2. 本問では $b_{\mathrm I}b_{\mathrm{II}}>0$ なので、力は各転位を互いから遠ざける向きに働く。
+
+   $$
+   \boxed{\text{同符号のらせん転位間には斥力が働く}}
+   $$
+
+   バーガースベクトルが異符号なら $b_{\mathrm I}b_{\mathrm{II}}<0$ となり、力の向きが反転して引力となる。
+:::
+
+#### 問題C3 平行な2本の刃状転位に働く力
 
 互いに平行な刃状転位IとIIを考える。転位Iは原点に固定され、転位IIは $x_2=d$ の点線上を摩擦なく $x_1$ 方向へ滑るものとする。
 
@@ -1085,7 +1915,7 @@ $$
 2. $\boldsymbol F$ の $x_1$ 方向成分 $f_1$ を $x_1$ の関数として図示し、2本の転位が安定して存在する位置を示せ。
 
 ::: {.callout-note collapse="true"}
-##### 理論C2：応力そのものではなく、転位を滑らせる成分を取り出す
+##### 理論C3：応力そのものではなく、転位を滑らせる成分を取り出す
 
 転位線の長さが指定されていないため、$\boldsymbol F$ の単位長さ当たりの値を $\boldsymbol f=\boldsymbol F/\ell$ として求めます。応力場の中に置かれた転位が受ける Peach--Koehler 力は
 
@@ -1175,7 +2005,7 @@ $$
 :::
 
 ::: {.callout-tip collapse="true"}
-##### 解答C2
+##### 解答C3
 
 転位線の単位長さ当たりの Peach--Koehler 力は
 
@@ -1236,9 +2066,187 @@ $$
 である。これは $x_2=d$ 上の滑り運動だけに関する安定性である。
 :::
 
-## 第4部 FCC結晶のすべりと多結晶
+## 第4部 結晶すべりと多結晶
 
-#### 問題D1 $[123]$ 引張における主すべり系とすべり線
+#### 問題D1 シュミット因子と臨界分解せん断応力
+
+単軸引張を受ける単結晶のすべりを考える。
+
+1. BCC単結晶を $[100]$ 方向へ引張り、すべり系 $(110)[1\bar11]$ を考える。
+
+   a. このすべり系のシュミット因子を求めよ。
+   b. 単軸引張応力 $150\,\mathrm{MPa}$ で降伏したとき、臨界分解せん断応力 $\tau_{\mathrm{CRSS}}$ を求めよ。
+
+2. FCC単結晶を $[123]$ 方向へ引張る。次の二つのすべり系についてシュミット因子の絶対値を求め、どちらが活動しやすいか判定せよ。
+
+   a. $(111)[1\bar10]$
+   b. $(\bar11\bar1)[10\bar1]$
+
+![引張軸、すべり面法線、すべり方向、およびシュミット則で用いる二つの角を示す模式図。](images/材料力学II/schmid-factor-geometry.svg){#fig-mech2-schmid-geometry fig-alt="半透明のすべり面に面内すべり方向dを描き、面法線nと引張軸Lを示す。引張軸と法線の角をphi、引張軸とすべり方向の角をlambdaと示す。" width="78%"}
+
+::: {.callout-note collapse="true"}
+##### 理論D1：面法線とすべり方向への射影を掛ける
+
+単軸引張応力 $\sigma$ が、あるすべり系へ作る分解せん断応力は Schmid 則
+
+$$
+\boxed{
+\tau_{\mathrm R}
+=\sigma\cos\phi\cos\lambda
+=\sigma\widetilde m
+}
+$$
+
+で与えられます。$\phi$ は引張軸 $\boldsymbol L$ とすべり面法線 $\boldsymbol n$ の角、$\lambda$ は引張軸とすべり方向 $\boldsymbol d$ の角です。
+
+結晶指数をベクトルとして扱えば、
+
+$$
+\cos\phi
+=
+\frac{
+\boldsymbol L\vdot\boldsymbol n
+}{
+|\boldsymbol L||\boldsymbol n|
+},
+\qquad
+\cos\lambda
+=
+\frac{
+\boldsymbol L\vdot\boldsymbol d
+}{
+|\boldsymbol L||\boldsymbol d|
+}.
+$$
+
+符号付きシュミット因子 $\widetilde m=\cos\phi\cos\lambda$ の符号は、分解せん断応力の向きを表します。どのすべり系が先に活動するかを比較するときは
+
+$$
+\boxed{m=|\widetilde m|}
+$$
+
+を用います。面法線またはすべり方向の向きを反転すると符号は変わりますが、同じ物理的なすべり系です。
+
+計算前に、候補のすべり方向が本当にすべり面内にあることを
+
+$$
+\boxed{
+\boldsymbol n\vdot\boldsymbol d=0
+}
+$$
+
+で確認します。
+
+結晶が塑性変形を始める条件は、最も有利なすべり系の $|\tau_{\mathrm R}|$ が材料固有の臨界分解せん断応力 $\tau_{\mathrm{CRSS}}$ に達することです。したがって降伏時には
+
+$$
+\boxed{
+\tau_{\mathrm{CRSS}}
+=\sigma_{\mathrm y}m_{\max}
+}.
+$$
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答D1
+
+1. $(110)[1\bar11]$ について、まず
+
+   $$
+   [110]\vdot[1\bar11]=1-1+0=0
+   $$
+
+   なので、方向は面内にある。引張軸を $\boldsymbol L=[100]$ とすると、
+
+   $$
+   \cos\phi
+   =\frac{[100]\vdot[110]}{|[100]||[110]|}
+   =\frac{1}{\sqrt2},
+   $$
+
+   $$
+   \cos\lambda
+   =\frac{[100]\vdot[1\bar11]}{|[100]||[1\bar11]|}
+   =\frac{1}{\sqrt3}.
+   $$
+
+   よって、
+
+   $$
+   \boxed{
+   m=\frac{1}{\sqrt6}\simeq0.408
+   }.
+   $$
+
+   単軸引張応力 $150\,\mathrm{MPa}$ で降伏したから、
+
+   $$
+   \boxed{
+   \tau_{\mathrm{CRSS}}
+   =150\frac{1}{\sqrt6}
+   =25\sqrt6
+   \simeq61.2\ \mathrm{MPa}
+   }.
+   $$
+
+2. 引張軸を $\boldsymbol L=[123]$ とする。二つの方向はいずれも
+
+   $$
+   [111]\vdot[1\bar10]=0,
+   \qquad
+   [\bar11\bar1]\vdot[10\bar1]=0
+   $$
+
+   を満たす。
+
+   a. $(111)[1\bar10]$ では、
+
+   $$
+   \widetilde m_a
+   =
+   \frac{6}{\sqrt{42}}
+   \frac{-1}{\sqrt{28}}
+   =-\frac{\sqrt6}{14},
+   $$
+
+   したがって
+
+   $$
+   \boxed{
+   m_a=\frac{\sqrt6}{14}\simeq0.175
+   }.
+   $$
+
+   b. $(\bar11\bar1)[10\bar1]$ では、
+
+   $$
+   \widetilde m_b
+   =
+   \frac{-2}{\sqrt{42}}
+   \frac{-2}{\sqrt{28}}
+   =\frac{\sqrt6}{21},
+   $$
+
+   したがって
+
+   $$
+   \boxed{
+   m_b=\frac{\sqrt6}{21}\simeq0.117
+   }.
+   $$
+
+   $m_a>m_b$ なので、
+
+   $$
+   \boxed{
+   \text{a. }(111)[1\bar10]\text{ の方が活動しやすい}
+   }.
+   $$
+
+   $\widetilde m_a<0$ は分解せん断応力の向きが逆であることを示すだけで、活動しないことを意味しない。
+:::
+
+#### 問題D2 $[123]$ 引張における主すべり系とすべり線
 
 FCC単結晶の試験片を $[123]$ 方向へ引張る。FCCのすべり系を $\{111\}\langle 1\bar10\rangle$ とする。
 
@@ -1249,7 +2257,7 @@ FCC単結晶の試験片を $[123]$ 方向へ引張る。FCCのすべり系を $
 ![引張軸を[123]、観察面を(バー301)とする単結晶試験片、および観察面上のすべり線の模式図。](images/材料力学II/fcc-123-specimen.svg){#fig-mech2-fcc-specimen fig-alt="単結晶の引張試験片。上下の引張軸は[123]、前面の観察面はバー301、表面上に主すべり面との交線としてすべり線が描かれる。" width="72%"}
 
 ::: {.callout-note collapse="true"}
-##### 理論D1：面と方向を内積で選び、二平面の交線を外積で求める
+##### 理論D2：全すべり系を比較し、二平面の交線を外積で求める
 
 単軸引張応力 $\sigma$ がすべり系へ作る分解せん断応力は Schmid 則
 
@@ -1337,7 +2345,7 @@ $$
 :::
 
 ::: {.callout-tip collapse="true"}
-##### 解答D1
+##### 解答D2
 
 1. 引張軸を $\hat{\boldsymbol s}=[123]/\sqrt{14}$ とし、
 
