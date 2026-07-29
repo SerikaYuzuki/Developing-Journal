@@ -2544,12 +2544,6 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/卒業論文/論文読書/GPT-Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ti-Al-N-Based Hard Coatings: Thermodynamical Background, CVD Deposition, and Properties. A Review</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../../posts/卒業論文/論文読書/Ti-Al-N-Based Hard Coatings.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ti-Al-N系硬質コーティング：熱力学的背景・CVD成膜・特性レビュー</span></a>
   </div>
@@ -2651,10 +2645,10 @@ window.Quarto = {
     <h2 id="toc-title">目次</h2>
    
   <ul>
-  <li><a href="#第1部-応力ひずみ降伏" id="toc-第1部-応力ひずみ降伏" class="nav-link active" data-scroll-target="#第1部-応力ひずみ降伏">第1部 応力・ひずみ・降伏</a></li>
-  <li><a href="#第2部-梁のせん断力曲げモーメントたわみ" id="toc-第2部-梁のせん断力曲げモーメントたわみ" class="nav-link" data-scroll-target="#第2部-梁のせん断力曲げモーメントたわみ">第2部 梁のせん断力・曲げモーメント・たわみ</a></li>
+  <li><a href="#第1部-応力ひずみ構成式降伏" id="toc-第1部-応力ひずみ構成式降伏" class="nav-link active" data-scroll-target="#第1部-応力ひずみ構成式降伏">第1部 応力・ひずみ・構成式・降伏</a></li>
+  <li><a href="#第2部-構造の静定判定と梁の曲げ" id="toc-第2部-構造の静定判定と梁の曲げ" class="nav-link" data-scroll-target="#第2部-構造の静定判定と梁の曲げ">第2部 構造の静定判定と梁の曲げ</a></li>
   <li><a href="#第3部-転位の弾性場と相互作用" id="toc-第3部-転位の弾性場と相互作用" class="nav-link" data-scroll-target="#第3部-転位の弾性場と相互作用">第3部 転位の弾性場と相互作用</a></li>
-  <li><a href="#第4部-fcc結晶のすべりと多結晶" id="toc-第4部-fcc結晶のすべりと多結晶" class="nav-link" data-scroll-target="#第4部-fcc結晶のすべりと多結晶">第4部 FCC結晶のすべりと多結晶</a></li>
+  <li><a href="#第4部-結晶すべりと多結晶" id="toc-第4部-結晶すべりと多結晶" class="nav-link" data-scroll-target="#第4部-結晶すべりと多結晶">第4部 結晶すべりと多結晶</a></li>
   <li><a href="#答案直前チェック" id="toc-答案直前チェック" class="nav-link" data-scroll-target="#答案直前チェック">答案直前チェック</a></li>
   </ul>
 </nav>
@@ -2702,18 +2696,44 @@ window.Quarto = {
 \require{physics}
 \require{mhchem}
 \]</span></p>
-<p>このノートは、複数年度の過去問を同じ内容ごとにまとめ直したものです。各問は、まず問題だけを解き、必要になったら折りたたみの「理論」を読み、最後に「解答」で答案を確認できる順にしています。</p>
+<p>このノートは、期末試験の過去問と授業内のミニレポートを、同じ内容ごとにまとめ直したものです。各問は、まず問題だけを解き、必要になったら折りたたみの「理論」を読み、最後に「解答」で答案を確認できる順にしています。</p>
 <p>本文中の図は、設問条件や曲線の関係を示す模式図であり、縮尺は任意です。</p>
-<section id="第1部-応力ひずみ降伏" class="level2">
-<h2 class="anchored" data-anchor-id="第1部-応力ひずみ降伏">第1部 応力・ひずみ・降伏</h2>
-<section id="問題a1-応力テンソルと等方弾性体" class="level4">
-<h4 class="anchored" data-anchor-id="問題a1-応力テンソルと等方弾性体">問題A1 応力テンソルと等方弾性体</h4>
+<section id="第1部-応力ひずみ構成式降伏" class="level2">
+<h2 class="anchored" data-anchor-id="第1部-応力ひずみ構成式降伏">第1部 応力・ひずみ・構成式・降伏</h2>
+<section id="問題a1-応力テンソル面上の応力等方弾性体" class="level4">
+<h4 class="anchored" data-anchor-id="問題a1-応力テンソル面上の応力等方弾性体">問題A1 応力テンソル・面上の応力・等方弾性体</h4>
 <p>直交座標系 <span class="math inline">\((x_1,x_2,x_3)\)</span> に置かれた微小な立方体を考える。材料はヤング率 <span class="math inline">\(E\)</span>、ポアソン比 <span class="math inline">\(\nu\)</span>、剛性率 <span class="math inline">\(\mu\)</span> の等方線形弾性体とする。<span class="math inline">\(\sigma_{ij}\)</span> は「<span class="math inline">\(x_i\)</span> 軸に垂直な面に作用する <span class="math inline">\(x_j\)</span> 方向の応力」と定義する。</p>
 <ol type="1">
-<li>立方体の各面に作用する応力成分を矢印で図示せよ。</li>
-<li><span class="math inline">\(\sigma_{11}\)</span> のみが作用するとき、<span class="math inline">\(\epsilon_{11},\epsilon_{22},\epsilon_{33}\)</span> を求めよ。</li>
-<li><span class="math inline">\(\sigma_{11},\sigma_{22},\sigma_{33}\)</span> が同時に作用するとき、<span class="math inline">\(\epsilon_{11}\)</span> を求めよ。</li>
-<li><span class="math inline">\(\sigma_{12}=2\mu\epsilon_{12}\)</span> を用い、<span class="math inline">\(E,\nu,\mu\)</span> の関係を示せ。</li>
+<li><p>立方体の各面に作用する応力成分を矢印で図示せよ。</p></li>
+<li><p>次の応力状態をテンソルで表せ。</p>
+<ol type="a">
+<li>大きさ <span class="math inline">\(p&gt;0\)</span> の静水圧を受ける状態</li>
+<li><span class="math inline">\(x_1\)</span> 方向の単軸引張応力 <span class="math inline">\(\sigma_0\)</span> と、せん断応力 <span class="math inline">\(\sigma_{12}=\sigma_{21}=\tau\)</span> が同時に作用する状態</li>
+</ol></li>
+<li><p>二次元応力状態</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}
+=
+\begin{pmatrix}
+6&amp;2\\
+2&amp;3
+\end{pmatrix}\ \mathrm{MPa}
+\]</span></p>
+<p>において、単位法線 <span class="math inline">\(\boldsymbol n=(0.6,0.8)^{\mathsf T}\)</span> をもつ面の応力ベクトルを求めよ。</p></li>
+<li><p>単結晶へ <span class="math inline">\(x_1\)</span> 方向に <span class="math inline">\(300\,\mathrm{MPa}\)</span> の単軸引張応力を加える。単位法線</p>
+<p><span class="math display">\[
+\boldsymbol n
+=\frac{1}{\sqrt3}(1,1,1)^{\mathsf T}
+\]</span></p>
+<p>をもつ結晶面について、次を求めよ。この面の引張垂直応力が <span class="math inline">\(200\,\mathrm{MPa}\)</span> に達すると、へき開破壊するものとする。</p>
+<ol type="a">
+<li>面上の応力ベクトル</li>
+<li>面に垂直な応力</li>
+<li>加えた単軸引張応力を何倍にするとへき開するか</li>
+</ol></li>
+<li><p><span class="math inline">\(\sigma_{11}\)</span> のみが作用するとき、<span class="math inline">\(\epsilon_{11},\epsilon_{22},\epsilon_{33}\)</span> を求めよ。</p></li>
+<li><p><span class="math inline">\(\sigma_{11},\sigma_{22},\sigma_{33}\)</span> が同時に作用するとき、<span class="math inline">\(\epsilon_{11}\)</span> を求めよ。</p></li>
+<li><p><span class="math inline">\(\sigma_{12}=2\mu\epsilon_{12}\)</span> を用い、<span class="math inline">\(E,\nu,\mu\)</span> の関係を示せ。</p></li>
 </ol>
 <div id="fig-mech2-stress-cube" class="quarto-float quarto-figure quarto-figure-center anchored" alt="x1、x2、x3軸に沿う立方体。各正の面には、面法線方向の垂直応力と面内二方向のせん断応力を矢印で示している。反対面にはつり合う逆向きの応力が作用する。">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2722,6 +2742,16 @@ window.Quarto = {
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mech2-stress-cube-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 図&nbsp;1: 直交座標系に置かれた微小立方体と応力成分の向きを示す模式図。
+</figcaption>
+</figure>
+</div>
+<div id="fig-mech2-cleavage-traction" class="quarto-float quarto-figure quarto-figure-center anchored" alt="x1方向へ単軸引張される材料の中に斜めの結晶面があり、単位法線n、面上の応力ベクトルt、法線方向成分sigma_nを示す。">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mech2-cleavage-traction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/材料力学II/cleavage-traction.svg" class="img-fluid figure-img" style="width:82.0%" alt="x1方向へ単軸引張される材料の中に斜めの結晶面があり、単位法線n、面上の応力ベクトルt、法線方向成分sigma_nを示す。">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mech2-cleavage-traction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;2: 単軸引張を受ける結晶中の斜めの面について、面法線、面上の応力ベクトル、垂直成分を示す模式図。
 </figcaption>
 </figure>
 </div>
@@ -2757,6 +2787,39 @@ window.Quarto = {
 \sigma_{ij}=\sigma_{ji}
 \]</span></p>
 <p>となり、独立な成分は垂直応力3個とせん断応力3個の計6個です。</p>
+<p>引張を正、圧縮を負に取ると、全方向から大きさ <span class="math inline">\(p\)</span> の圧縮を受ける静水圧応力は</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}_{\mathrm h}
+=-p\boldsymbol I
+\]</span></p>
+<p>です。一方、複数の応力成分が同時に作用する場合は、対応する行列要素へそのまま配置します。せん断成分は応力テンソルの対称性により対で現れます。</p>
+<p>面上の応力ベクトル <span class="math inline">\(\boldsymbol t\)</span> は、面を引っ張る垂直成分と、面内で滑らせる接線成分へ分けられます。</p>
+<p><span class="math display">\[
+\sigma_n
+=\boldsymbol n\vdot\boldsymbol t,
+\qquad
+\boldsymbol t_{\mathrm{tan}}
+=\boldsymbol t-\sigma_n\boldsymbol n.
+\]</span></p>
+<p><span class="math inline">\(\boldsymbol t\)</span> 自体と、スカラーである垂直応力 <span class="math inline">\(\sigma_n\)</span> を区別することが大切です。単軸応力</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}
+=\sigma
+\begin{pmatrix}
+1&amp;0&amp;0\\
+0&amp;0&amp;0\\
+0&amp;0&amp;0
+\end{pmatrix}
+\]</span></p>
+<p>のもとでは、</p>
+<p><span class="math display">\[
+\boldsymbol t
+=\sigma n_1\boldsymbol e_1,
+\qquad
+\sigma_n
+=\sigma n_1^2.
+\]</span></p>
+<p>したがって結晶面の法線が荷重軸から傾くほど、その面を開く垂直応力は小さくなります。へき開問題では、外力と面上の垂直応力はこの関係で比例します。</p>
 <p>単軸応力 <span class="math inline">\(\sigma_{11}\)</span> を受ける棒は <span class="math inline">\(x_1\)</span> 方向へ伸び、横方向へ縮みます。ポアソン比を</p>
 <p><span class="math display">\[
 \nu=-\frac{\text{横ひずみ}}{\text{縦ひずみ}}
@@ -2806,8 +2869,92 @@ window.Quarto = {
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p>正の <span class="math inline">\(x_i\)</span> 面には、垂直応力 <span class="math inline">\(\sigma_{ii}\)</span> と面内せん断応力 <span class="math inline">\(\sigma_{ij},\sigma_{ik}\)</span> を図 <a href="#fig-mech2-stress-cube" class="quarto-xref">図&nbsp;1</a> のように描く。反対面には力のつり合いを満たす逆向きの矢印を描く。モーメントのつり合いより <span class="math inline">\(\sigma_{ij}=\sigma_{ji}\)</span> である。</p></li>
-<li><p><span class="math inline">\(\sigma_{11}\)</span> のみが作用するとき、</p></li>
-</ol>
+<li><p>静水圧応力と、引張・せん断の組合せはそれぞれ</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol{\sigma}_{\mathrm h}
+=
+\begin{pmatrix}
+-p&amp;0&amp;0\\
+0&amp;-p&amp;0\\
+0&amp;0&amp;-p
+\end{pmatrix}
+},
+\qquad
+\boxed{
+\boldsymbol{\sigma}
+=
+\begin{pmatrix}
+\sigma_0&amp;\tau&amp;0\\
+\tau&amp;0&amp;0\\
+0&amp;0&amp;0
+\end{pmatrix}
+}.
+\]</span></p></li>
+<li><p>応力テンソルは対称なので、本問の添字規約でも</p>
+<p><span class="math display">\[
+\boldsymbol t
+=\boldsymbol{\sigma}^{\mathsf T}\boldsymbol n
+=\boldsymbol{\sigma}\boldsymbol n
+\]</span></p>
+<p>である。したがって、</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol t
+=
+\begin{pmatrix}
+6&amp;2\\
+2&amp;3
+\end{pmatrix}
+\begin{pmatrix}
+0.6\\
+0.8
+\end{pmatrix}
+=
+\begin{pmatrix}
+5.2\\
+3.6
+\end{pmatrix}\ \mathrm{MPa}
+}.
+\]</span></p></li>
+<li><p>単軸引張応力状態は</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}
+=
+\begin{pmatrix}
+300&amp;0&amp;0\\
+0&amp;0&amp;0\\
+0&amp;0&amp;0
+\end{pmatrix}\ \mathrm{MPa}
+\]</span></p>
+<p>だから、面上の応力ベクトルは</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol t
+=\boldsymbol{\sigma}\boldsymbol n
+=
+\begin{pmatrix}
+100\sqrt3\\
+0\\
+0
+\end{pmatrix}\ \mathrm{MPa}
+}.
+\]</span></p>
+<p>垂直応力は</p>
+<p><span class="math display">\[
+\boxed{
+\sigma_n
+=\boldsymbol n\vdot\boldsymbol t
+=100\ \mathrm{MPa}
+}.
+\]</span></p>
+<p>加えた応力を <span class="math inline">\(k\)</span> 倍すると <span class="math inline">\(\sigma_n\)</span> も <span class="math inline">\(k\)</span> 倍になるため、</p>
+<p><span class="math display">\[
+100k=200
+\quad\Longrightarrow\quad
+\boxed{k=2}.
+\]</span></p></li>
+<li><p><span class="math inline">\(\sigma_{11}\)</span> のみが作用するとき、</p>
 <p><span class="math display">\[
 \boxed{
 \epsilon_{11}=\frac{\sigma_{11}}{E},
@@ -2815,10 +2962,8 @@ window.Quarto = {
 \epsilon_{22}=\epsilon_{33}
 =-\frac{\nu\sigma_{11}}{E}
 }
-\]</span></p>
-<ol start="3" type="1">
-<li>重ね合わせより、</li>
-</ol>
+\]</span></p></li>
+<li><p>重ね合わせより、</p>
 <p><span class="math display">\[
 \boxed{
 \epsilon_{11}
@@ -2827,10 +2972,8 @@ window.Quarto = {
 \sigma_{11}-\nu(\sigma_{22}+\sigma_{33})
 \right\}
 }
-\]</span></p>
-<ol start="4" type="1">
-<li>純せん断を <span class="math inline">\(45^\circ\)</span> 回転した主軸で考えると、</li>
-</ol>
+\]</span></p></li>
+<li><p>純せん断を <span class="math inline">\(45^\circ\)</span> 回転した主軸で考えると、</p>
 <p><span class="math display">\[
 \gamma_{12}
 =\frac{2(1+\nu)\sigma_{12}}{E}.
@@ -2839,36 +2982,71 @@ window.Quarto = {
 <p><span class="math display">\[
 \boxed{E=2\mu(1+\nu)}
 \]</span></p>
-<p>を得る。</p>
+<p>を得る。</p></li>
+</ol>
 </div>
 </div>
 </div>
 </section>
-<section id="問題a2-応力塑性数値解析の基本用語" class="level4">
-<h4 class="anchored" data-anchor-id="問題a2-応力塑性数値解析の基本用語">問題A2 応力・塑性・数値解析の基本用語</h4>
-<p>次の語句を、必要なら図や式を用いて説明せよ。</p>
+<section id="問題a2-応力テンソルの座標変換とモール円" class="level4">
+<h4 class="anchored" data-anchor-id="問題a2-応力テンソルの座標変換とモール円">問題A2 応力テンソルの座標変換とモール円</h4>
+<p>主応力座標系 <span class="math inline">\((x_1,x_2,x_3)\)</span> における応力テンソルが</p>
+<p><span class="math display">\[
+\boldsymbol{\sigma}
+=
+\begin{pmatrix}
+\sigma_1&amp;0&amp;0\\
+0&amp;\sigma_2&amp;0\\
+0&amp;0&amp;\sigma_3
+\end{pmatrix}
+\]</span></p>
+<p>である。座標軸を <span class="math inline">\(x_3\)</span> 軸まわりに <span class="math inline">\(45^\circ\)</span> 反時計回りに回して、<span class="math inline">\((x'_1,x'_2,x'_3)\)</span> を取る。</p>
 <ol type="1">
-<li>モール（Mohr）の応力円</li>
-<li>降伏応力</li>
-<li>真応力・真ひずみ</li>
-<li>加工硬化指数</li>
-<li>ミーゼス（von Mises）の降伏条件</li>
-<li>有限要素解析</li>
+<li>新しい座標系における応力テンソル <span class="math inline">\(\boldsymbol{\sigma}'\)</span> を求めよ。</li>
+<li>二次元応力状態に対するモール（Mohr）の応力円を説明し、主応力と最大面内せん断応力を円から読み取る方法を示せ。</li>
 </ol>
+<div id="fig-mech2-stress-rotation" class="quarto-float quarto-figure quarto-figure-center anchored" alt="x1軸を右、x2軸を上に置き、そこから反時計回り45度回転したx1プライム軸とx2プライム軸を色分けして示す。x3軸は紙面手前向き。">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mech2-stress-rotation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/材料力学II/stress-coordinate-rotation.svg" class="img-fluid figure-img" style="width:72.0%" alt="x1軸を右、x2軸を上に置き、そこから反時計回り45度回転したx1プライム軸とx2プライム軸を色分けして示す。x3軸は紙面手前向き。">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mech2-stress-rotation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;3: 主応力座標系から反時計回りに45度回転した座標系を示す模式図。
+</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">ノート</span>理論A2：同じ試験結果を「座標・変形段階・計算法」から読み分ける
+<span class="screen-reader-only">ノート</span>理論A2：ベクトルと同じ座標回転を、テンソルの両側へ作用させる
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>この問題は暗記語句の寄せ集めに見えますが、役割は三つに分かれます。モール円は<strong>面を回したときの応力</strong>、降伏・真応力・加工硬化・ミーゼス条件は<strong>弾性から塑性へ移る材料応答</strong>、有限要素解析は<strong>形の複雑な境界値問題を近似的に解く方法</strong>です。</p>
-<p><strong>モールの応力円</strong></p>
+<p>座標軸を回す<strong>受動変換</strong>では、新しい基底ベクトルを古い基底で表した方向余弦を行列の各行へ並べます。図 <a href="#fig-mech2-stress-rotation" class="quarto-xref">図&nbsp;3</a> の向きなら、</p>
+<p><span class="math display">\[
+\boldsymbol R
+=
+\begin{pmatrix}
+\cos\theta&amp;\sin\theta&amp;0\\
+-\sin\theta&amp;\cos\theta&amp;0\\
+0&amp;0&amp;1
+\end{pmatrix}.
+\]</span></p>
+<p>ベクトルの成分は <span class="math inline">\(\boldsymbol v'=\boldsymbol R\boldsymbol v\)</span>、二階テンソルの成分は</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol{\sigma}'
+=\boldsymbol R
+\boldsymbol{\sigma}
+\boldsymbol R^{\mathsf T}
+}
+\]</span></p>
+<p>と変換します。<span class="math inline">\(\boldsymbol R^{\mathsf T}=\boldsymbol R^{-1}\)</span> なので、トレース、行列式、主応力は座標を回しても変わりません。</p>
 <p>二次元応力状態</p>
 <p><span class="math display">\[
 \boldsymbol{\sigma}
@@ -2878,7 +3056,7 @@ window.Quarto = {
 \sigma_{12}&amp;\sigma_{22}
 \end{pmatrix}
 \]</span></p>
-<p>において、法線が <span class="math inline">\(x_1\)</span> 軸から <span class="math inline">\(\theta\)</span> 傾いた面の垂直応力 <span class="math inline">\(\sigma_n\)</span> とせん断応力 <span class="math inline">\(\tau_n\)</span> は</p>
+<p>について、法線を <span class="math inline">\(\theta\)</span> 回した面の垂直応力 <span class="math inline">\(\sigma_n\)</span> とせん断応力 <span class="math inline">\(\tau_n\)</span> は</p>
 <p><span class="math display">\[
 \begin{aligned}
 \sigma_n
@@ -2895,7 +3073,7 @@ window.Quarto = {
 \sigma_{12}\cos2\theta.
 \end{aligned}
 \]</span></p>
-<p>したがって、</p>
+<p><span class="math inline">\(2\theta\)</span> を消去すると、</p>
 <p><span class="math display">\[
 \left(
 \sigma_n-\frac{\sigma_{11}+\sigma_{22}}{2}
@@ -2907,21 +3085,645 @@ window.Quarto = {
 \right)^2
 +\sigma_{12}^2
 \]</span></p>
-<p>です。これは横軸 <span class="math inline">\(\sigma\)</span>、縦軸 <span class="math inline">\(\tau\)</span> 上の円です。中心と半径は</p>
+<p>を得ます。これがモール円です。中心と半径は</p>
 <p><span class="math display">\[
 C=\frac{\sigma_{11}+\sigma_{22}}{2},
 \qquad
 R=
 \sqrt{
-\left(\frac{\sigma_{11}-\sigma_{22}}{2}\right)^2
+\left(
+\frac{\sigma_{11}-\sigma_{22}}{2}
+\right)^2
 +\sigma_{12}^2
 }.
 \]</span></p>
-<p><span class="math inline">\(\tau=0\)</span> となる円と横軸の交点が主応力</p>
+<p>横軸との交点 <span class="math inline">\(C\pm R\)</span> が主応力、円の上下端における <span class="math inline">\(|\tau|=R\)</span> が最大面内せん断応力です。実空間で面を <span class="math inline">\(\theta\)</span> 回すと円上では <span class="math inline">\(2\theta\)</span> 動きます。教科書によって <span class="math inline">\(\tau\)</span> 軸の正方向が逆になるため、角度の進む向きは採用した符号規約と一緒に確認します。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ヒント</span>解答A2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><span class="math inline">\(\theta=45^\circ\)</span> では <span class="math inline">\(\cos\theta=\sin\theta=1/\sqrt2\)</span> なので、</p>
 <p><span class="math display">\[
-\sigma_1=C+R,\qquad \sigma_2=C-R
+\boldsymbol R
+=
+\frac{1}{\sqrt2}
+\begin{pmatrix}
+1&amp;1&amp;0\\
+-1&amp;1&amp;0\\
+0&amp;0&amp;\sqrt2
+\end{pmatrix}.
 \]</span></p>
-<p>であり、最大面内せん断応力の大きさは <span class="math inline">\(R\)</span> です。実空間で面を <span class="math inline">\(\theta\)</span> 回すと、モール円上では <span class="math inline">\(2\theta\)</span> 動くこと、教科書によって <span class="math inline">\(\tau\)</span> 軸の正方向が逆になることが典型的な注意点です。</p>
+<p>よって、</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol{\sigma}'
+=
+\boldsymbol R\boldsymbol{\sigma}\boldsymbol R^{\mathsf T}
+=
+\begin{pmatrix}
+\dfrac{\sigma_1+\sigma_2}{2}
+&amp;
+\dfrac{\sigma_2-\sigma_1}{2}
+&amp;0\\[3mm]
+\dfrac{\sigma_2-\sigma_1}{2}
+&amp;
+\dfrac{\sigma_1+\sigma_2}{2}
+&amp;0\\[2mm]
+0&amp;0&amp;\sigma_3
+\end{pmatrix}
+}.
+\]</span></p></li>
+<li><p>モール円の中心と半径は</p>
+<p><span class="math display">\[
+\boxed{
+C=\frac{\sigma_{11}+\sigma_{22}}{2},
+\qquad
+R=
+\sqrt{
+\left(
+\frac{\sigma_{11}-\sigma_{22}}{2}
+\right)^2+\sigma_{12}^2
+}
+}.
+\]</span></p>
+<p>したがって主応力と最大面内せん断応力は</p>
+<p><span class="math display">\[
+\boxed{
+\sigma_{1,2}=C\pm R,
+\qquad
+|\tau_{\max}|=R
+}.
+\]</span></p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="問題a3-変位勾配から求める微小ひずみと剛体回転" class="level4">
+<h4 class="anchored" data-anchor-id="問題a3-変位勾配から求める微小ひずみと剛体回転">問題A3 変位勾配から求める微小ひずみと剛体回転</h4>
+<p>座標と変位を基準長さで無次元化した二次元変位場</p>
+<p><span class="math display">\[
+u_1=k(x_1^2+3x_2),
+\qquad
+u_2=k(2x_1x_2-x_2^2),
+\qquad
+k=1.0\times10^{-4}
+\]</span></p>
+<p>を考える。点 <span class="math inline">\(\mathrm P(1,2)\)</span> における次の量を求めよ。</p>
+<ol type="1">
+<li>微小ひずみテンソル <span class="math inline">\(\boldsymbol{\epsilon}\)</span></li>
+<li>剛体回転テンソル <span class="math inline">\(\boldsymbol{\omega}\)</span></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ノート</span>理論A3：変位勾配を対称部分と反対称部分へ分ける
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>変位勾配を</p>
+<p><span class="math display">\[
+H_{ij}=\pdv{u_i}{x_j}
+\]</span></p>
+<p>と定義すると、微小変形では</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol{\epsilon}
+=\frac12
+\left(
+\boldsymbol H+\boldsymbol H^{\mathsf T}
+\right)
+},
+\qquad
+\boxed{
+\boldsymbol{\omega}
+=\frac12
+\left(
+\boldsymbol H-\boldsymbol H^{\mathsf T}
+\right)
+}.
+\]</span></p>
+<p>対称部分 <span class="math inline">\(\boldsymbol{\epsilon}\)</span> は長さと角度の変化、反対称部分 <span class="math inline">\(\boldsymbol{\omega}\)</span> は形を変えない局所的な剛体回転を表します。したがって、回転成分をひずみとして数えないために対称化が必要です。</p>
+<p>本問では</p>
+<p><span class="math display">\[
+\boldsymbol H
+=k
+\begin{pmatrix}
+2x_1&amp;3\\
+2x_2&amp;2x_1-2x_2
+\end{pmatrix}.
+\]</span></p>
+<p>座標を先に代入してから差分を取るのではなく、まず変位場を微分し、最後に評価点を代入します。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ヒント</span>解答A3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>対称部分と反対称部分は</p>
+<p><span class="math display">\[
+\boldsymbol{\epsilon}
+=\frac{k}{2}
+\begin{pmatrix}
+4x_1&amp;2x_2+3\\
+2x_2+3&amp;4x_1-4x_2
+\end{pmatrix},
+\]</span></p>
+<p><span class="math display">\[
+\boldsymbol{\omega}
+=\frac{k}{2}
+\begin{pmatrix}
+0&amp;3-2x_2\\
+2x_2-3&amp;0
+\end{pmatrix}.
+\]</span></p>
+<p><span class="math inline">\(\mathrm P(1,2)\)</span> と <span class="math inline">\(k=10^{-4}\)</span> を代入して、</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol{\epsilon}
+=10^{-4}
+\begin{pmatrix}
+2&amp;7/2\\
+7/2&amp;-2
+\end{pmatrix}
+},
+\qquad
+\boxed{
+\boldsymbol{\omega}
+=10^{-4}
+\begin{pmatrix}
+0&amp;-1/2\\
+1/2&amp;0
+\end{pmatrix}
+}.
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="問題a4-熱ひずみと拘束による熱応力" class="level4">
+<h4 class="anchored" data-anchor-id="問題a4-熱ひずみと拘束による熱応力">問題A4 熱ひずみと拘束による熱応力</h4>
+<p>線膨張係数 <span class="math inline">\(\alpha\)</span> の等方線形弾性体を、一様に <span class="math inline">\(\Delta T\)</span> だけ温度上昇させる。</p>
+<ol type="1">
+<li>物体が全方向へ自由に膨張できるとき、応力とひずみを求めよ。</li>
+<li><span class="math inline">\(x_1\)</span> 方向の伸びだけを完全に拘束し、<span class="math inline">\(x_2,x_3\)</span> 方向の表面は自由であるとき、<span class="math inline">\(\sigma_{11}\)</span> を求めよ。</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ノート</span>理論A4：全ひずみを弾性ひずみと熱ひずみに分ける
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>等方弾性体の熱ひずみを含む構成式は</p>
+<p><span class="math display">\[
+\boxed{
+\epsilon_{ij}
+=
+\frac{1+\nu}{E}\sigma_{ij}
+-\frac{\nu}{E}\sigma_{kk}\delta_{ij}
++\alpha\Delta T\,\delta_{ij}
+}.
+\]</span></p>
+<p>右辺の最初の二項が応力による弾性ひずみ、最後の項が自由熱膨張です。温度が上がっただけでは、拘束がなければ応力は生じません。熱応力は、熱膨張しようとする変形を境界条件が妨げたときに生じます。</p>
+<p><span class="math inline">\(x_1\)</span> 方向だけを拘束した場合の条件は</p>
+<p><span class="math display">\[
+\epsilon_{11}=0,
+\qquad
+\sigma_{22}=\sigma_{33}=0.
+\]</span></p>
+<p>「変形を拘束した方向」と「表面力がゼロの方向」を、ひずみ条件と応力条件へ正しく振り分けます。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ヒント</span>解答A4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>自由膨張では、</p>
+<p><span class="math display">\[
+\boxed{\boldsymbol{\sigma}=\boldsymbol 0},
+\qquad
+\boxed{
+\boldsymbol{\epsilon}
+=\alpha\Delta T\,\boldsymbol I
+}.
+\]</span></p>
+<p>すなわち <span class="math inline">\(\epsilon_{11}=\epsilon_{22}=\epsilon_{33}=\alpha\Delta T\)</span> で、せん断ひずみはゼロである。</p></li>
+<li><p><span class="math inline">\(\epsilon_{11}=0\)</span>、<span class="math inline">\(\sigma_{22}=\sigma_{33}=0\)</span> より、</p>
+<p><span class="math display">\[
+0
+=\frac{\sigma_{11}}{E}
++\alpha\Delta T.
+\]</span></p>
+<p>したがって、</p>
+<p><span class="math display">\[
+\boxed{\sigma_{11}=-E\alpha\Delta T}.
+\]</span></p>
+<p><span class="math inline">\(\Delta T&gt;0\)</span> なら圧縮応力である。なお、横方向は自由なので</p>
+<p><span class="math display">\[
+\epsilon_{22}=\epsilon_{33}
+=(1+\nu)\alpha\Delta T
+\]</span></p>
+<p>となる。</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="問題a5-平面ひずみの構成式" class="level4">
+<h4 class="anchored" data-anchor-id="問題a5-平面ひずみの構成式">問題A5 平面ひずみの構成式</h4>
+<p>等方線形弾性体が平面ひずみ状態</p>
+<p><span class="math display">\[
+\epsilon_{13}=\epsilon_{23}=\epsilon_{33}=0
+\]</span></p>
+<p>にあるとする。</p>
+<ol type="1">
+<li><p>有効定数</p>
+<p><span class="math display">\[
+E'=\frac{E}{1-\nu^2},
+\qquad
+\nu'=\frac{\nu}{1-\nu}
+\]</span></p>
+<p>を用いて、</p>
+<p><span class="math display">\[
+\epsilon_{11}
+=\frac{1}{E'}
+\left(
+\sigma_{11}-\nu'\sigma_{22}
+\right)
+\]</span></p>
+<p>を導け。</p></li>
+<li><p><span class="math inline">\(E=200\,\mathrm{GPa}\)</span>、<span class="math inline">\(\nu=0.3\)</span> の鋼材について、</p>
+<p><span class="math display">\[
+\epsilon_{11}=4.0\times10^{-4},
+\qquad
+\epsilon_{22}=1.0\times10^{-4}
+\]</span></p>
+<p>と測定された。<span class="math inline">\(\sigma_{11},\sigma_{22},\sigma_{33}\)</span> を求めよ。</p></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ノート</span>理論A5：平面ひずみでは面外応力が残る
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>三次元Hooke則の面外成分は</p>
+<p><span class="math display">\[
+\epsilon_{33}
+=\frac{1}{E}
+\left\{
+\sigma_{33}
+-\nu(\sigma_{11}+\sigma_{22})
+\right\}.
+\]</span></p>
+<p>平面ひずみでは <span class="math inline">\(\epsilon_{33}=0\)</span> なので、</p>
+<p><span class="math display">\[
+\boxed{
+\sigma_{33}
+=\nu(\sigma_{11}+\sigma_{22})
+}.
+\]</span></p>
+<p>つまり面外<strong>ひずみ</strong>はゼロですが、面外<strong>応力</strong>は一般にゼロではありません。これは薄板の自由表面で用いる平面応力条件 <span class="math inline">\(\sigma_{33}=0\)</span> との重要な違いです。</p>
+<p>この <span class="math inline">\(\sigma_{33}\)</span> を面内のHooke則へ戻すと、</p>
+<p><span class="math display">\[
+\epsilon_{11}
+=\frac{1-\nu^2}{E}
+\left(
+\sigma_{11}
+-\frac{\nu}{1-\nu}\sigma_{22}
+\right),
+\]</span></p>
+<p>となり、設問の <span class="math inline">\(E',\nu'\)</span> が得られます。</p>
+<p>測定ひずみから応力を直接求めるときは、逆関係</p>
+<p><span class="math display">\[
+\boxed{
+\begin{pmatrix}
+\sigma_{11}\\
+\sigma_{22}
+\end{pmatrix}
+=
+\frac{E}{(1+\nu)(1-2\nu)}
+\begin{pmatrix}
+1-\nu&amp;\nu\\
+\nu&amp;1-\nu
+\end{pmatrix}
+\begin{pmatrix}
+\epsilon_{11}\\
+\epsilon_{22}
+\end{pmatrix}
+}
+\]</span></p>
+<p>を使うと計算が短くなります。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ヒント</span>解答A5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><span class="math inline">\(\epsilon_{33}=0\)</span> から</p>
+<p><span class="math display">\[
+\sigma_{33}
+=\nu(\sigma_{11}+\sigma_{22})
+\]</span></p>
+<p>を得る。これを</p>
+<p><span class="math display">\[
+\epsilon_{11}
+=\frac{1}{E}
+\left\{
+\sigma_{11}
+-\nu(\sigma_{22}+\sigma_{33})
+\right\}
+\]</span></p>
+<p>へ代入すると、</p>
+<p><span class="math display">\[
+\boxed{
+\epsilon_{11}
+=
+\frac{1-\nu^2}{E}
+\left(
+\sigma_{11}
+-\frac{\nu}{1-\nu}\sigma_{22}
+\right)
+=
+\frac{1}{E'}
+\left(
+\sigma_{11}-\nu'\sigma_{22}
+\right)
+}.
+\]</span></p></li>
+<li><p><span class="math inline">\(E=2.00\times10^5\,\mathrm{MPa}\)</span> を用いると、</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sigma_{11}
+&amp;=
+\frac{2.00\times10^5}{(1.3)(0.4)}
+\left\{
+0.7(4.0\times10^{-4})
++0.3(1.0\times10^{-4})
+\right\}\\
+&amp;=119.2\ \mathrm{MPa},\\
+\sigma_{22}
+&amp;=
+\frac{2.00\times10^5}{(1.3)(0.4)}
+\left\{
+0.3(4.0\times10^{-4})
++0.7(1.0\times10^{-4})
+\right\}\\
+&amp;=73.1\ \mathrm{MPa}.
+\end{aligned}
+\]</span></p>
+<p>さらに、</p>
+<p><span class="math display">\[
+\sigma_{33}
+=0.3(\sigma_{11}+\sigma_{22})
+=57.7\ \mathrm{MPa}.
+\]</span></p>
+<p>よって、</p>
+<p><span class="math display">\[
+\boxed{
+\sigma_{11}=119.2\ \mathrm{MPa},
+\quad
+\sigma_{22}=73.1\ \mathrm{MPa},
+\quad
+\sigma_{33}=57.7\ \mathrm{MPa}
+}.
+\]</span></p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="問題a6-純せん断におけるミーゼス条件とトレスカ条件" class="level4">
+<h4 class="anchored" data-anchor-id="問題a6-純せん断におけるミーゼス条件とトレスカ条件">問題A6 純せん断におけるミーゼス条件とトレスカ条件</h4>
+<p>平面応力状態 <span class="math inline">\((\sigma_3=0)\)</span> において、主応力が</p>
+<p><span class="math display">\[
+\sigma_1=\tau,
+\qquad
+\sigma_2=-\tau,
+\qquad
+\sigma_3=0
+\]</span></p>
+<p>となる純せん断状態を考える。単軸引張の降伏応力を <span class="math inline">\(\sigma_{\mathrm y}\)</span> とする。</p>
+<ol type="1">
+<li>ミーゼス条件とトレスカ条件について、降伏時の <span class="math inline">\(|\tau|\)</span> をそれぞれ求めよ。</li>
+<li>ミーゼス条件が許す限界を基準として、トレスカ条件が何 <span class="math inline">\(\%\)</span> 保守的か求めよ。</li>
+</ol>
+<div id="fig-mech2-yield-loci" class="quarto-float quarto-figure quarto-figure-center anchored" alt="横軸を主応力sigma1、縦軸をsigma2として単軸降伏応力で規格化した平面。ミーゼスの楕円とトレスカの六角形、sigma2=-sigma1の純せん断経路、および両条件との交点を示す。">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mech2-yield-loci-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/材料力学II/mises-tresca-yield-loci.svg" class="img-fluid figure-img" style="width:82.0%" alt="横軸を主応力sigma1、縦軸をsigma2として単軸降伏応力で規格化した平面。ミーゼスの楕円とトレスカの六角形、sigma2=-sigma1の純せん断経路、および両条件との交点を示す。">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mech2-yield-loci-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;4: 平面応力空間におけるミーゼスの降伏楕円、トレスカの降伏六角形、純せん断経路を比較する図。
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ノート</span>理論A6：同じ単軸降伏応力で二つの多軸降伏条件を比較する
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>ミーゼス相当応力は主応力を用いて</p>
+<p><span class="math display">\[
+\sigma_{\mathrm{eq}}
+=
+\sqrt{
+\frac{
+(\sigma_1-\sigma_2)^2
++(\sigma_2-\sigma_3)^2
++(\sigma_3-\sigma_1)^2
+}{2}
+}
+\]</span></p>
+<p>と表され、<span class="math inline">\(\sigma_{\mathrm{eq}}=\sigma_{\mathrm y}\)</span> で降伏します。</p>
+<p>トレスカ条件は最大せん断応力が単軸降伏時と同じ値へ達したとき降伏すると考えます。主応力で書けば、</p>
+<p><span class="math display">\[
+\boxed{
+\max_{i,j}|\sigma_i-\sigma_j|
+=\sigma_{\mathrm y}
+}.
+\]</span></p>
+<p>平面応力の主応力平面では、ミーゼス条件は</p>
+<p><span class="math display">\[
+\sigma_1^2-\sigma_1\sigma_2+\sigma_2^2
+=\sigma_{\mathrm y}^2
+\]</span></p>
+<p>という楕円、トレスカ条件は</p>
+<p><span class="math display">\[
+\max
+\left(
+|\sigma_1|,
+|\sigma_2|,
+|\sigma_1-\sigma_2|
+\right)
+=\sigma_{\mathrm y}
+\]</span></p>
+<p>という六角形になります。図 <a href="#fig-mech2-yield-loci" class="quarto-xref">図&nbsp;4</a> の純せん断経路 <span class="math inline">\(\sigma_2=-\sigma_1\)</span> と各降伏曲線の交点が、求める <span class="math inline">\(|\tau|\)</span> です。</p>
+<p>「何 <span class="math inline">\(\%\)</span> 保守的か」は分母の取り方で数値が変わります。本問では「ミーゼス条件が許す限界からどれだけ低いか」を問うため、</p>
+<p><span class="math display">\[
+\frac{
+\tau_{\mathrm{Mises}}-\tau_{\mathrm{Tresca}}
+}{
+\tau_{\mathrm{Mises}}
+}\times100
+\]</span></p>
+<p>と定義します。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ヒント</span>解答A6
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>純せん断状態をミーゼス相当応力へ代入すると、</p>
+<p><span class="math display">\[
+\sigma_{\mathrm{eq}}
+=
+\sqrt{
+\frac{
+(2\tau)^2+(-\tau)^2+(-\tau)^2
+}{2}
+}
+=\sqrt3|\tau|.
+\]</span></p>
+<p>よって、</p>
+<p><span class="math display">\[
+\boxed{
+|\tau|_{\mathrm{Mises}}
+=\frac{\sigma_{\mathrm y}}{\sqrt3}
+\simeq0.577\sigma_{\mathrm y}
+}.
+\]</span></p>
+<p>トレスカ条件では最大主応力差が <span class="math inline">\(2|\tau|\)</span> なので、</p>
+<p><span class="math display">\[
+\boxed{
+|\tau|_{\mathrm{Tresca}}
+=\frac{\sigma_{\mathrm y}}{2}
+=0.500\sigma_{\mathrm y}
+}.
+\]</span></p></li>
+<li><p>ミーゼス条件を基準とした差は、</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{
+\tau_{\mathrm{Mises}}-\tau_{\mathrm{Tresca}}
+}{
+\tau_{\mathrm{Mises}}
+}\times100
+&amp;=
+\left(
+1-\frac{\sqrt3}{2}
+\right)100\\
+&amp;\simeq13.4\%.
+\end{aligned}
+\]</span></p>
+<p>したがって、</p>
+<p><span class="math display">\[
+\boxed{
+\text{トレスカ条件はミーゼス条件より約 }13.4\%\text{ 保守的}
+}.
+\]</span></p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="問題a7-塑性数値解析の基本用語" class="level4">
+<h4 class="anchored" data-anchor-id="問題a7-塑性数値解析の基本用語">問題A7 塑性・数値解析の基本用語</h4>
+<p>次の語句を、必要なら図や式を用いて説明せよ。</p>
+<ol type="1">
+<li>降伏応力</li>
+<li>真応力・真ひずみ</li>
+<li>加工硬化指数</li>
+<li>ミーゼス（von Mises）の降伏条件</li>
+<li>有限要素解析</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ノート</span>理論A7：変形段階と計算法の違いを読み分ける
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>降伏・真応力・加工硬化・ミーゼス条件は<strong>弾性から塑性へ移る材料応答</strong>、有限要素解析は<strong>形の複雑な境界値問題を近似的に解く方法</strong>です。用語を一文で定義したうえで、代表式と成立条件まで示すと、答案の意味が明確になります。</p>
 <p><strong>降伏応力</strong></p>
 <p>除荷しても永久ひずみが残る塑性変形が始まる応力を降伏応力 <span class="math inline">\(\sigma_{\mathrm y}\)</span> と呼びます。比例限度や弾性限度と厳密には同じではありません。明瞭な降伏点を示さない材料では、塑性ひずみ <span class="math inline">\(0.2\%\)</span> に相当する直線と応力–ひずみ曲線の交点、すなわち <span class="math inline">\(0.2\%\)</span> 耐力を用いるのが一般的です。</p>
 <p><strong>真応力・真ひずみ</strong></p>
@@ -2999,28 +3801,18 @@ s_{ij}=\sigma_{ij}-\sigma_{\mathrm m}\delta_{ij}.
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">ヒント</span>解答A2
+<span class="screen-reader-only">ヒント</span>解答A7
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><p><strong>モールの応力円</strong>は、任意の面の垂直応力とせん断応力を <span class="math inline">\((\sigma,\tau)\)</span> 平面上の円で表す方法である。中心と半径は</p>
-<p><span class="math display">\[
-C=\frac{\sigma_{11}+\sigma_{22}}{2},
-\qquad
-R=
-\sqrt{
-\left(\frac{\sigma_{11}-\sigma_{22}}{2}\right)^2+\sigma_{12}^2
-}.
-\]</span></p>
-<p>横軸との交点が主応力 <span class="math inline">\(\sigma_{1,2}=C\pm R\)</span>、半径が最大面内せん断応力である。実空間の角度 <span class="math inline">\(\theta\)</span> は円上で <span class="math inline">\(2\theta\)</span> に対応する。</p></li>
 <li><p><strong>降伏応力</strong>は、除荷後に永久ひずみが残る塑性変形の開始応力である。明瞭な降伏点がない材料では、通常は <span class="math inline">\(0.2\%\)</span> 耐力を用いる。</p></li>
 <li><p><strong>真応力・真ひずみ</strong>は瞬間断面積 <span class="math inline">\(A\)</span>、瞬間長さ <span class="math inline">\(l\)</span> を用いて</p>
 <p><span class="math display">\[
@@ -3065,15 +3857,135 @@ R=
 </div>
 </section>
 </section>
-<section id="第2部-梁のせん断力曲げモーメントたわみ" class="level2">
-<h2 class="anchored" data-anchor-id="第2部-梁のせん断力曲げモーメントたわみ">第2部 梁のせん断力・曲げモーメント・たわみ</h2>
-<section id="問題b1-先端荷重を受ける片持ち梁" class="level4">
-<h4 class="anchored" data-anchor-id="問題b1-先端荷重を受ける片持ち梁">問題B1 先端荷重を受ける片持ち梁</h4>
+<section id="第2部-構造の静定判定と梁の曲げ" class="level2">
+<h2 class="anchored" data-anchor-id="第2部-構造の静定判定と梁の曲げ">第2部 構造の静定判定と梁の曲げ</h2>
+<section id="問題b1-平面トラスの静定不静定" class="level4">
+<h4 class="anchored" data-anchor-id="問題b1-平面トラスの静定不静定">問題B1 平面トラスの静定・不静定</h4>
+<p>図 <a href="#fig-mech2-truss-determinacy" class="quarto-xref">図&nbsp;5</a> の4種類の平面トラスについて、静定か不静定かを判定し、不静定なら不静定次数を求めよ。対角材が交差していても、節点記号がない交差部は接合されていないものとする。</p>
+<div id="fig-mech2-truss-determinacy" class="quarto-float quarto-figure quarto-figure-center anchored" alt="四角形を基本とする四つの平面トラス。(a)は対角材一本で左ピン右ローラー、(b)は交差部を接合しない対角材二本で左ピン右ローラー、(c)は下辺なしで左右ピン、(d)は下辺なしで左ピン右固定。各図に部材数、節点数、反力数、不静定次数を示す。">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mech2-truss-determinacy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/材料力学II/truss-determinacy.svg" class="img-fluid figure-img" style="width:100.0%" alt="四角形を基本とする四つの平面トラス。(a)は対角材一本で左ピン右ローラー、(b)は交差部を接合しない対角材二本で左ピン右ローラー、(c)は下辺なしで左右ピン、(d)は下辺なしで左ピン右固定。各図に部材数、節点数、反力数、不静定次数を示す。">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mech2-truss-determinacy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;5: 部材配置と支持条件が異なる4種類の平面トラス。
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ノート</span>理論B1：未知力の数と節点のつり合い式の数を比較する
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>平面のピン接合トラスでは、各節点について <span class="math inline">\(x,y\)</span> 方向のつり合い式が2本あります。部材数を <span class="math inline">\(m\)</span>、節点数を <span class="math inline">\(n\)</span>、支点反力成分数を <span class="math inline">\(r\)</span> とすると、安定なトラスの静的不静定次数は</p>
+<p><span class="math display">\[
+\boxed{D_{\mathrm s}=m+r-2n}
+\]</span></p>
+<p>です。</p>
+<ul>
+<li><span class="math inline">\(D_{\mathrm s}=0\)</span>：静定</li>
+<li><span class="math inline">\(D_{\mathrm s}&gt;0\)</span>：<span class="math inline">\(D_{\mathrm s}\)</span> 次不静定</li>
+<li><span class="math inline">\(D_{\mathrm s}&lt;0\)</span>：一般に機構となり、不安定</li>
+</ul>
+<p>支持条件ごとの反力成分数は、平面問題ではピン支点が2、ローラー支点が1、固定端が3です。</p>
+<p>ただし <span class="math inline">\(D_{\mathrm s}=0\)</span> は、未知数と式の<strong>個数</strong>が一致することを示すだけです。全部材が一直線に並ぶなど、配置によって独立なつり合い式が不足する機構もあり得ます。そのため、部材数の判定に加えて幾何学的な安定性も確認します。</p>
+<p>図 (b) の二本の対角材は交差していますが、中央に節点がありません。したがって中央を節点として数えず、各対角材を1本ずつ数えます。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ヒント</span>解答B1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>各構造について数えると、</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>構造</th>
+<th style="text-align: right;">部材数 <span class="math inline">\(m\)</span></th>
+<th style="text-align: right;">節点数 <span class="math inline">\(n\)</span></th>
+<th style="text-align: right;">反力成分数 <span class="math inline">\(r\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(D_{\mathrm s}=m+r-2n\)</span></th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(a)</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td>静定</td>
+</tr>
+<tr class="even">
+<td>(b)</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td>1次不静定</td>
+</tr>
+<tr class="odd">
+<td>(c)</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+<td>静定</td>
+</tr>
+<tr class="even">
+<td>(d)</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">1</td>
+<td>1次不静定</td>
+</tr>
+</tbody>
+</table>
+<p>したがって、</p>
+<p><span class="math display">\[
+\boxed{
+\text{(a), (c) は静定、(b), (d) は1次不静定}
+}.
+\]</span></p>
+<p>いずれも図示された部材配置について機構を生じないことを併せて確認する。</p>
+</div>
+</div>
+</div>
+</section>
+<section id="問題b2-先端荷重を受ける片持ち梁" class="level4">
+<h4 class="anchored" data-anchor-id="問題b2-先端荷重を受ける片持ち梁">問題B2 先端荷重を受ける片持ち梁</h4>
 <p>長さ <span class="math inline">\(L\)</span>、断面二次モーメント <span class="math inline">\(I\)</span>、ヤング率 <span class="math inline">\(E\)</span> の片持ち梁がある。固定端を <span class="math inline">\(x=0\)</span>、自由端を <span class="math inline">\(x=L\)</span> とし、自由端へ下向きの集中荷重 <span class="math inline">\(P\)</span> を加える。</p>
 <ol type="1">
 <li>せん断力分布を描け。</li>
 <li>曲げモーメント分布を描け。</li>
 <li>先端のたわみ <span class="math inline">\(\delta\)</span> を求めよ。</li>
+<li>この式を、原子間力顕微鏡（AFM）のカンチレバーへ適用する。荷重方向の高さ <span class="math inline">\(h=5\,\mu\mathrm m\)</span>、幅 <span class="math inline">\(b=50\,\mu\mathrm m\)</span>、長さ <span class="math inline">\(L=200\,\mu\mathrm m\)</span>、ヤング率 <span class="math inline">\(E=200\,\mathrm{GPa}\)</span> の長方形断面梁の先端へ、下向き荷重 <span class="math inline">\(P=100\,\mu\mathrm N\)</span> を加えた。先端たわみを求めよ。</li>
 </ol>
 <div id="fig-mech2-cantilever-setup" class="quarto-float quarto-figure quarto-figure-center anchored" alt="左端を固定された水平な梁。右端に下向き集中荷重Pが作用し、梁長をL、固定端からの座標をxとする。">
 <figure class="quarto-float quarto-float-fig figure">
@@ -3081,21 +3993,31 @@ R=
 <img src="images/材料力学II/cantilever-problem.svg" class="img-fluid figure-img" style="width:92.0%" alt="左端を固定された水平な梁。右端に下向き集中荷重Pが作用し、梁長をL、固定端からの座標をxとする。">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mech2-cantilever-setup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-図&nbsp;2: 固定端を左、自由端を右に置き、自由端へ集中荷重Pを受ける長さLの片持ち梁の模式図。
+図&nbsp;6: 固定端を左、自由端を右に置き、自由端へ集中荷重Pを受ける長さLの片持ち梁の模式図。
+</figcaption>
+</figure>
+</div>
+<div id="fig-mech2-afm-cantilever" class="quarto-float quarto-figure quarto-figure-center anchored" alt="左端固定のAFMカンチレバー。長さ200マイクロメートル、自由端の下向き荷重100マイクロニュートンを示し、挿入断面図には荷重方向の高さ5マイクロメートル、幅50マイクロメートル、断面二次モーメントbh cubed over 12を示す。">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mech2-afm-cantilever-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/材料力学II/afm-cantilever.svg" class="img-fluid figure-img" style="width:92.0%" alt="左端固定のAFMカンチレバー。長さ200マイクロメートル、自由端の下向き荷重100マイクロニュートンを示し、挿入断面図には荷重方向の高さ5マイクロメートル、幅50マイクロメートル、断面二次モーメントbh cubed over 12を示す。">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mech2-afm-cantilever-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;7: AFMカンチレバーの寸法と荷重方向、および長方形断面の幅と高さを示す模式図。
 </figcaption>
 </figure>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">ノート</span>理論B1：切断面のつり合いから内力を決め、曲率を二回積分する
+<span class="screen-reader-only">ノート</span>理論B2：切断面のつり合いから内力を決め、曲率を二回積分する
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>梁の途中 <span class="math inline">\(x\)</span> で切り、右側だけを取り出すと、外力は自由端の <span class="math inline">\(P\)</span> だけです。切断面に現れるせん断力 <span class="math inline">\(V\)</span> と曲げモーメント <span class="math inline">\(M\)</span> が、この力とモーメントを打ち消します。</p>
 <p>ここでは、上向き外力を正、梁を下に凸にする正曲げを正とします。下向き荷重 <span class="math inline">\(P\)</span> による片持ち梁の曲げは負なので、</p>
@@ -3128,26 +4050,32 @@ v(x)=\frac{Px^2(3L-x)}{6EI}
 \]</span></p>
 <p>となります。</p>
 <p>符号規約を変えれば <span class="math inline">\(V,M,v\)</span> の符号は変わりますが、大きさ、境界値、図形の形は変わりません。答案では採用した正方向を図へ書くことが大切です。</p>
+<p>長方形断面では、荷重による曲げ軸まわりの断面二次モーメントは</p>
+<p><span class="math display">\[
+I=\frac{bh^3}{12}
+\]</span></p>
+<p>です。3乗される <span class="math inline">\(h\)</span> は<strong>荷重方向の断面寸法</strong>です。幅と高さを取り違えると剛性を大きく誤るため、図 <a href="#fig-mech2-afm-cantilever" class="quarto-xref">図&nbsp;7</a> の断面と曲げ方向を先に確認します。</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">ヒント</span>解答B1
+<span class="screen-reader-only">ヒント</span>解答B2
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>上向き外力と正曲げを正とすると、</p>
+<p><strong>せん断力</strong>　上向き外力と正曲げを正とすると、</p>
 <p><span class="math display">\[
 \boxed{V(x)=-P}
 \]</span></p>
 <p>であり、全区間で一定の長方形となる。</p>
+<p><strong>曲げモーメント</strong></p>
 <p><span class="math display">\[
 \boxed{M(x)=-P(L-x)}
 \]</span></p>
@@ -3158,11 +4086,11 @@ v(x)=\frac{Px^2(3L-x)}{6EI}
 <img src="images/材料力学II/cantilever-vmd-solution.svg" class="img-fluid figure-img" style="width:100.0%" alt="上段は全区間でマイナスP一定のせん断力図、中段は固定端でマイナスPLから自由端でゼロへ直線的に変化する曲げモーメント図、下段は固定端で変位と傾きがゼロ、自由端で最大となる下向きたわみ曲線。">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mech2-cantilever-diagrams-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-図&nbsp;3: 片持ち梁のせん断力、曲げモーメント、正規化たわみを並べた図。
+図&nbsp;8: 片持ち梁のせん断力、曲げモーメント、正規化たわみを並べた図。
 </figcaption>
 </figure>
 </div>
-<p>下向きたわみを正とすれば、</p>
+<p><strong>たわみ</strong>　下向きたわみを正とすれば、</p>
 <p><span class="math display">\[
 v(x)=\frac{Px^2(3L-x)}{6EI}.
 \]</span></p>
@@ -3171,12 +4099,48 @@ v(x)=\frac{Px^2(3L-x)}{6EI}.
 \boxed{\delta=v(L)=\frac{PL^3}{3EI}}
 \]</span></p>
 <p>となり、向きは下向きである。</p>
+<p><strong>AFMカンチレバーへの適用</strong></p>
+<p>断面二次モーメントは</p>
+<p><span class="math display">\[
+\begin{aligned}
+I
+&amp;=\frac{bh^3}{12}\\
+&amp;=
+\frac{
+(50\times10^{-6})
+(5\times10^{-6})^3
+}{12}\\
+&amp;=5.2083\times10^{-22}\ \mathrm{m^4}.
+\end{aligned}
+\]</span></p>
+<p>よって、</p>
+<p><span class="math display">\[
+\begin{aligned}
+\delta
+&amp;=
+\frac{PL^3}{3EI}\\
+&amp;=
+\frac{
+(100\times10^{-6})
+(200\times10^{-6})^3
+}{
+3(200\times10^9)
+(5.2083\times10^{-22})
+}\\
+&amp;=2.56\times10^{-6}\ \mathrm m.
+\end{aligned}
+\]</span></p>
+<p>したがって、</p>
+<p><span class="math display">\[
+\boxed{\delta=2.56\,\mu\mathrm m}
+\]</span></p>
+<p>で、向きは荷重方向である。</p>
 </div>
 </div>
 </div>
 </section>
-<section id="問題b2-中央部に等分布荷重を受ける圧延ロール" class="level4">
-<h4 class="anchored" data-anchor-id="問題b2-中央部に等分布荷重を受ける圧延ロール">問題B2 中央部に等分布荷重を受ける圧延ロール</h4>
+<section id="問題b3-中央部に等分布荷重を受ける圧延ロール" class="level4">
+<h4 class="anchored" data-anchor-id="問題b3-中央部に等分布荷重を受ける圧延ロール">問題B3 中央部に等分布荷重を受ける圧延ロール</h4>
 <p>直径 <span class="math inline">\(d\)</span>、支点間長さ <span class="math inline">\(l\)</span>、ヤング率 <span class="math inline">\(E\)</span> の円柱形圧延ロールを、両端単純支持梁として近似する。ロール中央の幅 <span class="math inline">\(a\)</span> に、下向きの等分布線荷重 <span class="math inline">\(q\)</span> が作用する。</p>
 <ol type="1">
 <li><span class="math inline">\(y\)</span> 軸まわりの断面二次モーメント <span class="math inline">\(I\)</span> を求めよ。</li>
@@ -3191,21 +4155,21 @@ v(x)=\frac{Px^2(3L-x)}{6EI}.
 <img src="images/材料力学II/rolling-roll-problem.svg" class="img-fluid figure-img" style="width:96.0%" alt="長さlの水平梁を両端で単純支持し、中央の幅aに下向き等分布荷重qが作用する。荷重区間の左端をc=(l-a)/2、右端をe=(l+a)/2とする。">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mech2-rolling-setup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-図&nbsp;4: 両端を単純支持され、中央幅aに等分布線荷重qを受ける長さl、直径dのロールの梁モデル。
+図&nbsp;9: 両端を単純支持され、中央幅aに等分布線荷重qを受ける長さl、直径dのロールの梁モデル。
 </figcaption>
 </figure>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">ノート</span>理論B2：対称性で反力を決め、区間ごとに荷重を積み上げる
+<span class="screen-reader-only">ノート</span>理論B3：対称性で反力を決め、区間ごとに荷重を積み上げる
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>三次元の接触圧力は <span class="math inline">\(\mathrm{Pa}=\mathrm{N\,m^{-2}}\)</span> ですが、一次元梁へ入力する <span class="math inline">\(q\)</span> は単位長さ当たりの荷重 <span class="math inline">\(\mathrm{N\,m^{-1}}\)</span> です。元の接触圧力を <span class="math inline">\(p\)</span>、梁モデルへ集約する奥行き幅を <span class="math inline">\(w\)</span> とすれば <span class="math inline">\(q=pw\)</span> です。本問では <span class="math inline">\(q\)</span> を線荷重として扱います。</p>
 <p>円形断面の図心を通る直径軸まわりの断面二次モーメントは、</p>
@@ -3285,16 +4249,16 @@ M_{\max}=M\left(\frac{l}{2}\right)
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">ヒント</span>解答B2
+<span class="screen-reader-only">ヒント</span>解答B3
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p>円形断面より、</p>
@@ -3331,7 +4295,7 @@ M(x)=
 <img src="images/材料力学II/rolling-roll-vmd-solution.svg" class="img-fluid figure-img" style="width:100.0%" alt="上段は左右の無荷重区間で一定、中央荷重区間で直線的に減るせん断力図。中段は支点でゼロ、中央で最大となり、荷重区間で放物線となる曲げモーメント図。下段は左右対称で中央が最大の下向きたわみ模式曲線。">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mech2-rolling-diagrams-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-図&nbsp;5: 中央部等分布荷重を受けるロールのせん断力、曲げモーメント、正規化たわみを並べた図。
+図&nbsp;10: 中央部等分布荷重を受けるロールのせん断力、曲げモーメント、正規化たわみを並べた図。
 </figcaption>
 </figure>
 </div>
@@ -3370,12 +4334,12 @@ M(x)=
 <img src="images/材料力学II/screw-dislocation-geometry.svg" class="img-fluid figure-img" style="width:82.0%" alt="円柱の軸がx3方向のらせん転位。断面上にx1、x2、半径r、x1からx2への時計回り角θを示し、円柱軸と平行にバーガースベクトルbを示す。">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mech2-screw-setup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-図&nbsp;6: x3軸を転位線とし、x1からx2へ時計回りに測る角度θと、x3方向のバーガースベクトルbを示すらせん転位の模式図。
+図&nbsp;11: x3軸を転位線とし、x1からx2へ時計回りに測る角度θと、x3方向のバーガースベクトルbを示すらせん転位の模式図。
 </figcaption>
 </figure>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3384,10 +4348,10 @@ M(x)=
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>問いの正体</strong>は、「一周すると <span class="math inline">\(b\)</span> だけ進む」という幾何を変位場へ直し、その空間微分からひずみと応力を得ることです。</p>
-<p>図 <a href="#fig-mech2-screw-setup" class="quarto-xref">図&nbsp;6</a> に合わせ、<span class="math inline">\(x_1\)</span> から <span class="math inline">\(x_2\)</span> へ進む向きを正の <span class="math inline">\(\theta\)</span> とし、</p>
+<p>図 <a href="#fig-mech2-screw-setup" class="quarto-xref">図&nbsp;11</a> に合わせ、<span class="math inline">\(x_1\)</span> から <span class="math inline">\(x_2\)</span> へ進む向きを正の <span class="math inline">\(\theta\)</span> とし、</p>
 <p><span class="math display">\[
 x_1=r\cos\theta,
 \qquad
@@ -3456,7 +4420,7 @@ w(r)\,2\pi r\,\dd r
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -3465,7 +4429,7 @@ w(r)\,2\pi r\,\dd r
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math inline">\(r^2=x_1^2+x_2^2\)</span> とし、図の時計回りを正の <span class="math inline">\(\theta\)</span> として</p>
 <p><span class="math display">\[
@@ -3543,8 +4507,138 @@ w(r)=\frac{1}{2}\sigma_{ij}\epsilon_{ij}
 </div>
 </div>
 </section>
-<section id="問題c2-平行な2本の刃状転位に働く力" class="level4">
-<h4 class="anchored" data-anchor-id="問題c2-平行な2本の刃状転位に働く力">問題C2 平行な2本の刃状転位に働く力</h4>
+<section id="問題c2-平行ならせん転位の相互作用" class="level4">
+<h4 class="anchored" data-anchor-id="問題c2-平行ならせん転位の相互作用">問題C2 平行ならせん転位の相互作用</h4>
+<p>無限に長い2本の平行ならせん転位が、距離</p>
+<p><span class="math display">\[
+r=15\,\mathrm{nm}
+\]</span></p>
+<p>だけ離れている。両転位のバーガースベクトルは転位線と同じ向きで、大きさは</p>
+<p><span class="math display">\[
+b_{\mathrm I}=b_{\mathrm{II}}=0.25\,\mathrm{nm}
+\]</span></p>
+<p>である。材料の剛性率を <span class="math inline">\(\mu=45\,\mathrm{GPa}\)</span> とする。</p>
+<ol type="1">
+<li>一方の転位が他方へ及ぼす単位長さ当たりの力の大きさを求めよ。</li>
+<li>この力が引力か斥力かを、バーガースベクトルの符号とともに説明せよ。</li>
+</ol>
+<div id="fig-mech2-screw-pair" class="quarto-float quarto-figure quarto-figure-center anchored" alt="x1 x2断面上に、どちらもx3正方向を向くらせん転位を二つの点付き円で示す。間隔rを寸法線で示し、二つの転位には互いから遠ざかる外向きの力が作用する。">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mech2-screw-pair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/材料力学II/screw-dislocation-pair.svg" class="img-fluid figure-img" style="width:76.0%" alt="x1 x2断面上に、どちらもx3正方向を向くらせん転位を二つの点付き円で示す。間隔rを寸法線で示し、二つの転位には互いから遠ざかる外向きの力が作用する。">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mech2-screw-pair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;12: 同符号の平行ならせん転位二本と、両者を遠ざける向きの力を示す模式図。
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ノート</span>理論C2：一方のせん断応力場へ、もう一方の転位を置く
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>転位Iを原点、転位IIを <span class="math inline">\((x_1,x_2)=(r,0)\)</span> に置き、両転位線を <span class="math inline">\(+x_3\)</span> 方向とします。問題C1で求めたらせん転位の応力場より、転位IIの位置では</p>
+<p><span class="math display">\[
+\sigma_{23}^{\mathrm I}
+=\frac{\mu b_{\mathrm I}}{2\pi r},
+\qquad
+\sigma_{13}^{\mathrm I}=0.
+\]</span></p>
+<p>転位IIに働く単位長さ当たりの Peach–Koehler 力は</p>
+<p><span class="math display">\[
+\boldsymbol f
+=
+\left(
+\boldsymbol{\sigma}^{\mathrm I}
+\boldsymbol b_{\mathrm{II}}
+\right)
+\times
+\boldsymbol t_{\mathrm{II}}.
+\]</span></p>
+<p>ここで</p>
+<p><span class="math display">\[
+\boldsymbol b_{\mathrm{II}}
+=b_{\mathrm{II}}\boldsymbol e_3,
+\qquad
+\boldsymbol t_{\mathrm{II}}
+=\boldsymbol e_3
+\]</span></p>
+<p>なので、</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol f
+=
+\frac{\mu b_{\mathrm I}b_{\mathrm{II}}}{2\pi r}
+\boldsymbol e_1
+}.
+\]</span></p>
+<p><span class="math inline">\(b_{\mathrm I}b_{\mathrm{II}}&gt;0\)</span> なら、<span class="math inline">\(+x_1\)</span> 側にある転位IIへ <span class="math inline">\(+x_1\)</span> 向きの力が働くため、両転位は互いに遠ざかります。積が負なら力の向きが逆転します。</p>
+<p>したがって、力の大きさだけを書く場合は</p>
+<p><span class="math display">\[
+f
+=
+\frac{\mu|b_{\mathrm I}b_{\mathrm{II}}|}{2\pi r}
+\]</span></p>
+<p>とし、引力・斥力は <span class="math inline">\(b_{\mathrm I}b_{\mathrm{II}}\)</span> の符号から判定します。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ヒント</span>解答C2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>数値をSI単位へ直して、</p>
+<p><span class="math display">\[
+\begin{aligned}
+f
+&amp;=
+\frac{
+\mu b_{\mathrm I}b_{\mathrm{II}}
+}{2\pi r}\\
+&amp;=
+\frac{
+(45\times10^9)
+(0.25\times10^{-9})^2
+}{
+2\pi(15\times10^{-9})
+}\\
+&amp;=2.984\times10^{-2}\ \mathrm{N\,m^{-1}}.
+\end{aligned}
+\]</span></p>
+<p>よって、</p>
+<p><span class="math display">\[
+\boxed{
+f\simeq0.030\ \mathrm{N\,m^{-1}}
+}.
+\]</span></p></li>
+<li><p>本問では <span class="math inline">\(b_{\mathrm I}b_{\mathrm{II}}&gt;0\)</span> なので、力は各転位を互いから遠ざける向きに働く。</p>
+<p><span class="math display">\[
+\boxed{\text{同符号のらせん転位間には斥力が働く}}
+\]</span></p>
+<p>バーガースベクトルが異符号なら <span class="math inline">\(b_{\mathrm I}b_{\mathrm{II}}&lt;0\)</span> となり、力の向きが反転して引力となる。</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="問題c3-平行な2本の刃状転位に働く力" class="level4">
+<h4 class="anchored" data-anchor-id="問題c3-平行な2本の刃状転位に働く力">問題C3 平行な2本の刃状転位に働く力</h4>
 <p>互いに平行な刃状転位IとIIを考える。転位Iは原点に固定され、転位IIは <span class="math inline">\(x_2=d\)</span> の点線上を摩擦なく <span class="math inline">\(x_1\)</span> 方向へ滑るものとする。</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -3562,7 +4656,7 @@ w(r)=\frac{1}{2}\sigma_{ij}\epsilon_{ij}
 <img src="images/材料力学II/edge-dislocation-pair.svg" class="img-fluid figure-img" style="width:78.0%" alt="x1横軸、x2縦軸。転位Iは原点、転位IIはx2=dの点線上の座標x1=xにあり、転位線方向はx3、バーガースベクトルはx1方向。">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mech2-edge-pair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-図&nbsp;7: 原点の刃状転位Iと、x2=dの水平なすべり面上をx1方向へ移動する転位IIの模式図。
+図&nbsp;13: 原点の刃状転位Iと、x2=dの水平なすべり面上をx1方向へ移動する転位IIの模式図。
 </figcaption>
 </figure>
 </div>
@@ -3592,16 +4686,16 @@ D=\frac{\mu b_{\mathrm I}}{2\pi(1-\nu)}
 <li><span class="math inline">\(\boldsymbol F\)</span> の <span class="math inline">\(x_1\)</span> 方向成分 <span class="math inline">\(f_1\)</span> を <span class="math inline">\(x_1\)</span> の関数として図示し、2本の転位が安定して存在する位置を示せ。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">ノート</span>理論C2：応力そのものではなく、転位を滑らせる成分を取り出す
+<span class="screen-reader-only">ノート</span>理論C3：応力そのものではなく、転位を滑らせる成分を取り出す
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>転位線の長さが指定されていないため、<span class="math inline">\(\boldsymbol F\)</span> の単位長さ当たりの値を <span class="math inline">\(\boldsymbol f=\boldsymbol F/\ell\)</span> として求めます。応力場の中に置かれた転位が受ける Peach–Koehler 力は</p>
 <p><span class="math display">\[
@@ -3675,16 +4769,16 @@ d(3x^2+d^2)\\
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">ヒント</span>解答C2
+<span class="screen-reader-only">ヒント</span>解答C3
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div id="callout-26" class="callout-26-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>転位線の単位長さ当たりの Peach–Koehler 力は</p>
 <p><span class="math display">\[
@@ -3721,7 +4815,7 @@ f_1(x)
 <img src="images/材料力学II/edge-dislocation-force.svg" class="img-fluid figure-img" style="width:96.0%" alt="横軸x1/d、縦軸を規格化した滑り力。奇関数でx1/d=-1、0、1を横切る。同符号では0が安定で±1が不安定、異符号ではその逆。">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mech2-edge-force-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-図&nbsp;8: 刃状転位IIに働く無次元滑り力と、同符号・異符号それぞれの安定点を示すグラフ。
+図&nbsp;14: 刃状転位IIに働く無次元滑り力と、同符号・異符号それぞれの安定点を示すグラフ。
 </figcaption>
 </figure>
 </div>
@@ -3745,10 +4839,190 @@ x=-d,\qquad 0,\qquad d.
 </div>
 </section>
 </section>
-<section id="第4部-fcc結晶のすべりと多結晶" class="level2">
-<h2 class="anchored" data-anchor-id="第4部-fcc結晶のすべりと多結晶">第4部 FCC結晶のすべりと多結晶</h2>
-<section id="問題d1-123-引張における主すべり系とすべり線" class="level4">
-<h4 class="anchored" data-anchor-id="問題d1-123-引張における主すべり系とすべり線">問題D1 <span class="math inline">\([123]\)</span> 引張における主すべり系とすべり線</h4>
+<section id="第4部-結晶すべりと多結晶" class="level2">
+<h2 class="anchored" data-anchor-id="第4部-結晶すべりと多結晶">第4部 結晶すべりと多結晶</h2>
+<section id="問題d1-シュミット因子と臨界分解せん断応力" class="level4">
+<h4 class="anchored" data-anchor-id="問題d1-シュミット因子と臨界分解せん断応力">問題D1 シュミット因子と臨界分解せん断応力</h4>
+<p>単軸引張を受ける単結晶のすべりを考える。</p>
+<ol type="1">
+<li><p>BCC単結晶を <span class="math inline">\([100]\)</span> 方向へ引張り、すべり系 <span class="math inline">\((110)[1\bar11]\)</span> を考える。</p>
+<ol type="a">
+<li>このすべり系のシュミット因子を求めよ。</li>
+<li>単軸引張応力 <span class="math inline">\(150\,\mathrm{MPa}\)</span> で降伏したとき、臨界分解せん断応力 <span class="math inline">\(\tau_{\mathrm{CRSS}}\)</span> を求めよ。</li>
+</ol></li>
+<li><p>FCC単結晶を <span class="math inline">\([123]\)</span> 方向へ引張る。次の二つのすべり系についてシュミット因子の絶対値を求め、どちらが活動しやすいか判定せよ。</p>
+<ol type="a">
+<li><span class="math inline">\((111)[1\bar10]\)</span></li>
+<li><span class="math inline">\((\bar11\bar1)[10\bar1]\)</span></li>
+</ol></li>
+</ol>
+<div id="fig-mech2-schmid-geometry" class="quarto-float quarto-figure quarto-figure-center anchored" alt="半透明のすべり面に面内すべり方向dを描き、面法線nと引張軸Lを示す。引張軸と法線の角をphi、引張軸とすべり方向の角をlambdaと示す。">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mech2-schmid-geometry-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/材料力学II/schmid-factor-geometry.svg" class="img-fluid figure-img" style="width:78.0%" alt="半透明のすべり面に面内すべり方向dを描き、面法線nと引張軸Lを示す。引張軸と法線の角をphi、引張軸とすべり方向の角をlambdaと示す。">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mech2-schmid-geometry-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;15: 引張軸、すべり面法線、すべり方向、およびシュミット則で用いる二つの角を示す模式図。
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ノート</span>理論D1：面法線とすべり方向への射影を掛ける
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>単軸引張応力 <span class="math inline">\(\sigma\)</span> が、あるすべり系へ作る分解せん断応力は Schmid 則</p>
+<p><span class="math display">\[
+\boxed{
+\tau_{\mathrm R}
+=\sigma\cos\phi\cos\lambda
+=\sigma\widetilde m
+}
+\]</span></p>
+<p>で与えられます。<span class="math inline">\(\phi\)</span> は引張軸 <span class="math inline">\(\boldsymbol L\)</span> とすべり面法線 <span class="math inline">\(\boldsymbol n\)</span> の角、<span class="math inline">\(\lambda\)</span> は引張軸とすべり方向 <span class="math inline">\(\boldsymbol d\)</span> の角です。</p>
+<p>結晶指数をベクトルとして扱えば、</p>
+<p><span class="math display">\[
+\cos\phi
+=
+\frac{
+\boldsymbol L\vdot\boldsymbol n
+}{
+|\boldsymbol L||\boldsymbol n|
+},
+\qquad
+\cos\lambda
+=
+\frac{
+\boldsymbol L\vdot\boldsymbol d
+}{
+|\boldsymbol L||\boldsymbol d|
+}.
+\]</span></p>
+<p>符号付きシュミット因子 <span class="math inline">\(\widetilde m=\cos\phi\cos\lambda\)</span> の符号は、分解せん断応力の向きを表します。どのすべり系が先に活動するかを比較するときは</p>
+<p><span class="math display">\[
+\boxed{m=|\widetilde m|}
+\]</span></p>
+<p>を用います。面法線またはすべり方向の向きを反転すると符号は変わりますが、同じ物理的なすべり系です。</p>
+<p>計算前に、候補のすべり方向が本当にすべり面内にあることを</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol n\vdot\boldsymbol d=0
+}
+\]</span></p>
+<p>で確認します。</p>
+<p>結晶が塑性変形を始める条件は、最も有利なすべり系の <span class="math inline">\(|\tau_{\mathrm R}|\)</span> が材料固有の臨界分解せん断応力 <span class="math inline">\(\tau_{\mathrm{CRSS}}\)</span> に達することです。したがって降伏時には</p>
+<p><span class="math display">\[
+\boxed{
+\tau_{\mathrm{CRSS}}
+=\sigma_{\mathrm y}m_{\max}
+}.
+\]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ヒント</span>解答D1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-28" class="callout-28-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><span class="math inline">\((110)[1\bar11]\)</span> について、まず</p>
+<p><span class="math display">\[
+[110]\vdot[1\bar11]=1-1+0=0
+\]</span></p>
+<p>なので、方向は面内にある。引張軸を <span class="math inline">\(\boldsymbol L=[100]\)</span> とすると、</p>
+<p><span class="math display">\[
+\cos\phi
+=\frac{[100]\vdot[110]}{|[100]||[110]|}
+=\frac{1}{\sqrt2},
+\]</span></p>
+<p><span class="math display">\[
+\cos\lambda
+=\frac{[100]\vdot[1\bar11]}{|[100]||[1\bar11]|}
+=\frac{1}{\sqrt3}.
+\]</span></p>
+<p>よって、</p>
+<p><span class="math display">\[
+\boxed{
+m=\frac{1}{\sqrt6}\simeq0.408
+}.
+\]</span></p>
+<p>単軸引張応力 <span class="math inline">\(150\,\mathrm{MPa}\)</span> で降伏したから、</p>
+<p><span class="math display">\[
+\boxed{
+\tau_{\mathrm{CRSS}}
+=150\frac{1}{\sqrt6}
+=25\sqrt6
+\simeq61.2\ \mathrm{MPa}
+}.
+\]</span></p></li>
+<li><p>引張軸を <span class="math inline">\(\boldsymbol L=[123]\)</span> とする。二つの方向はいずれも</p>
+<p><span class="math display">\[
+[111]\vdot[1\bar10]=0,
+\qquad
+[\bar11\bar1]\vdot[10\bar1]=0
+\]</span></p>
+<p>を満たす。</p>
+<ol type="a">
+<li><span class="math inline">\((111)[1\bar10]\)</span> では、</li>
+</ol>
+<p><span class="math display">\[
+\widetilde m_a
+=
+\frac{6}{\sqrt{42}}
+\frac{-1}{\sqrt{28}}
+=-\frac{\sqrt6}{14},
+\]</span></p>
+<p>したがって</p>
+<p><span class="math display">\[
+\boxed{
+m_a=\frac{\sqrt6}{14}\simeq0.175
+}.
+\]</span></p>
+<ol start="2" type="a">
+<li><span class="math inline">\((\bar11\bar1)[10\bar1]\)</span> では、</li>
+</ol>
+<p><span class="math display">\[
+\widetilde m_b
+=
+\frac{-2}{\sqrt{42}}
+\frac{-2}{\sqrt{28}}
+=\frac{\sqrt6}{21},
+\]</span></p>
+<p>したがって</p>
+<p><span class="math display">\[
+\boxed{
+m_b=\frac{\sqrt6}{21}\simeq0.117
+}.
+\]</span></p>
+<p><span class="math inline">\(m_a&gt;m_b\)</span> なので、</p>
+<p><span class="math display">\[
+\boxed{
+\text{a. }(111)[1\bar10]\text{ の方が活動しやすい}
+}.
+\]</span></p>
+<p><span class="math inline">\(\widetilde m_a&lt;0\)</span> は分解せん断応力の向きが逆であることを示すだけで、活動しないことを意味しない。</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="問題d2-123-引張における主すべり系とすべり線" class="level4">
+<h4 class="anchored" data-anchor-id="問題d2-123-引張における主すべり系とすべり線">問題D2 <span class="math inline">\([123]\)</span> 引張における主すべり系とすべり線</h4>
 <p>FCC単結晶の試験片を <span class="math inline">\([123]\)</span> 方向へ引張る。FCCのすべり系を <span class="math inline">\(\{111\}\langle 1\bar10\rangle\)</span> とする。</p>
 <ol type="1">
 <li>シュミット因子が最大となる主すべり面と主すべり方向を求めよ。</li>
@@ -3761,21 +5035,21 @@ x=-d,\qquad 0,\qquad d.
 <img src="images/材料力学II/fcc-123-specimen.svg" class="img-fluid figure-img" style="width:72.0%" alt="単結晶の引張試験片。上下の引張軸は[123]、前面の観察面はバー301、表面上に主すべり面との交線としてすべり線が描かれる。">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mech2-fcc-specimen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-図&nbsp;9: 引張軸を[123]、観察面を(バー301)とする単結晶試験片、および観察面上のすべり線の模式図。
+図&nbsp;16: 引張軸を[123]、観察面を(バー301)とする単結晶試験片、および観察面上のすべり線の模式図。
 </figcaption>
 </figure>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">ノート</span>理論D1：面と方向を内積で選び、二平面の交線を外積で求める
+<span class="screen-reader-only">ノート</span>理論D2：全すべり系を比較し、二平面の交線を外積で求める
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div id="callout-29" class="callout-29-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>単軸引張応力 <span class="math inline">\(\sigma\)</span> がすべり系へ作る分解せん断応力は Schmid 則</p>
 <p><span class="math display">\[
@@ -3866,7 +5140,7 @@ m
 <img src="images/材料力学II/fcc-slip-trace.svg" class="img-fluid figure-img" style="width:78.0%" alt="観察面バー301を正面から見た図。縦の引張方向[123]と、斜めのすべり線[1バー23]のなす鋭角をθ約64.6度と示す。結晶方位関係を表す模式図。">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mech2-fcc-slip-trace-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-図&nbsp;10: 観察面上の引張方向と主すべり面の交線として現れるすべり線、および両者の角度を示す模式図。
+図&nbsp;17: 観察面上の引張方向と主すべり面の交線として現れるすべり線、および両者の角度を示す模式図。
 </figcaption>
 </figure>
 </div>
@@ -3876,16 +5150,16 @@ m
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">ヒント</span>解答D1
+<span class="screen-reader-only">ヒント</span>解答D2
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div id="callout-30" class="callout-30-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p>引張軸を <span class="math inline">\(\hat{\boldsymbol s}=[123]/\sqrt{14}\)</span> とし、</p>
@@ -3951,7 +5225,7 @@ m_{\max}
 <img src="images/材料力学II/single-polycrystal-stress-strain.svg" class="img-fluid figure-img" style="width:92.0%" alt="縦軸公称応力、横軸公称ひずみ。単結晶は低めの降伏後に加工硬化率が段階的に変わる線、多結晶は高めの降伏から滑らかに加工硬化する線。定量データではない。">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mech2-single-poly-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-図&nbsp;11: 単結晶と多結晶の典型的な公称応力ひずみ曲線を比較する模式図。
+図&nbsp;18: 単結晶と多結晶の典型的な公称応力ひずみ曲線を比較する模式図。
 </figcaption>
 </figure>
 </div>
@@ -3978,14 +5252,54 @@ m_{\max}
 </thead>
 <tbody>
 <tr class="odd">
+<td>面上の応力</td>
+<td><span class="math inline">\(\boldsymbol t=\boldsymbol{\sigma}^{\mathsf T}\boldsymbol n\)</span>、<span class="math inline">\(\sigma_n=\boldsymbol n\vdot\boldsymbol t\)</span></td>
+<td>応力ベクトル <span class="math inline">\(\boldsymbol t\)</span> と垂直応力 <span class="math inline">\(\sigma_n\)</span> を混同する</td>
+</tr>
+<tr class="even">
+<td>座標変換</td>
+<td><span class="math inline">\(\boldsymbol{\sigma}'=\boldsymbol R\boldsymbol{\sigma}\boldsymbol R^{\mathsf T}\)</span></td>
+<td>座標軸の回転と物体の回転を混同する</td>
+</tr>
+<tr class="odd">
+<td>変位勾配</td>
+<td><span class="math inline">\(\boldsymbol{\epsilon}=\operatorname{sym}\boldsymbol H\)</span>、<span class="math inline">\(\boldsymbol{\omega}=\operatorname{skw}\boldsymbol H\)</span></td>
+<td>先に評価点を代入する、回転をひずみに含める</td>
+</tr>
+<tr class="even">
 <td>等方弾性</td>
 <td><span class="math inline">\(\epsilon_{11}=\{\sigma_{11}-\nu(\sigma_{22}+\sigma_{33})\}/E\)</span>、<span class="math inline">\(E=2\mu(1+\nu)\)</span></td>
 <td><span class="math inline">\(\gamma_{12}=2\epsilon_{12}\)</span> を忘れる</td>
 </tr>
+<tr class="odd">
+<td>熱ひずみ</td>
+<td>自由膨張なら <span class="math inline">\(\boldsymbol{\sigma}=0\)</span>、<span class="math inline">\(\boldsymbol{\epsilon}=\alpha\Delta T\boldsymbol I\)</span></td>
+<td>温度変化だけで必ず熱応力が生じると考える</td>
+</tr>
 <tr class="even">
+<td>平面ひずみ</td>
+<td><span class="math inline">\(\epsilon_{33}=0\)</span>、<span class="math inline">\(\sigma_{33}=\nu(\sigma_{11}+\sigma_{22})\)</span></td>
+<td><span class="math inline">\(\sigma_{33}=0\)</span> と置く</td>
+</tr>
+<tr class="odd">
+<td>純せん断降伏</td>
+<td><span class="math inline">\(|\tau|_{\mathrm M}=\sigma_{\mathrm y}/\sqrt3\)</span>、<span class="math inline">\(|\tau|_{\mathrm T}=\sigma_{\mathrm y}/2\)</span></td>
+<td>保守率の分母を明記しない</td>
+</tr>
+<tr class="even">
+<td>平面トラス</td>
+<td><span class="math inline">\(D_{\mathrm s}=m+r-2n\)</span> と幾何学的安定性を確認</td>
+<td>交差するだけの部材を節点として数える</td>
+</tr>
+<tr class="odd">
 <td>片持ち梁</td>
 <td><span class="math inline">\(V=-P\)</span>、<span class="math inline">\(M=-P(L-x)\)</span>、<span class="math inline">\(\delta=PL^3/(3EI)\)</span></td>
 <td>符号規約を書かない</td>
+</tr>
+<tr class="even">
+<td>長方形断面梁</td>
+<td><span class="math inline">\(I=bh^3/12\)</span></td>
+<td>荷重方向の高さ <span class="math inline">\(h\)</span> と幅 <span class="math inline">\(b\)</span> を逆にする</td>
 </tr>
 <tr class="odd">
 <td>圧延ロール</td>
@@ -3998,14 +5312,19 @@ m_{\max}
 <td><span class="math inline">\(\theta\)</span> と <span class="math inline">\(b\)</span> の符号、局所密度と積分値</td>
 </tr>
 <tr class="odd">
+<td>らせん転位対</td>
+<td><span class="math inline">\(f=\mu|b_{\mathrm I}b_{\mathrm{II}}|/(2\pi r)\)</span></td>
+<td>同符号は斥力、異符号は引力</td>
+</tr>
+<tr class="even">
 <td>刃状転位対</td>
 <td><span class="math inline">\(\boldsymbol f=(\boldsymbol\sigma\boldsymbol b)\times\boldsymbol t\)</span></td>
 <td>力は単位長さ当たり、安定点は <span class="math inline">\(b_{\mathrm I}b_{\mathrm{II}}\)</span> 依存</td>
 </tr>
-<tr class="even">
-<td>FCCすべり</td>
-<td><span class="math inline">\(m=|\hat{\boldsymbol s}\vdot\hat{\boldsymbol n}|\,|\hat{\boldsymbol s}\vdot\hat{\boldsymbol d}|\)</span></td>
-<td>すべり方向が面内か確認しない</td>
+<tr class="odd">
+<td>結晶すべり</td>
+<td><span class="math inline">\(m=|\hat{\boldsymbol L}\vdot\hat{\boldsymbol n}|\,|\hat{\boldsymbol L}\vdot\hat{\boldsymbol d}|\)</span>、<span class="math inline">\(\tau_{\mathrm{CRSS}}=\sigma_{\mathrm y}m_{\max}\)</span></td>
+<td>すべり方向が面内か確認しない、符号付き <span class="math inline">\(m\)</span> の負を不活動とみなす</td>
 </tr>
 </tbody>
 </table>

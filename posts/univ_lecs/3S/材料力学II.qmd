@@ -2433,9 +2433,18 @@ $$
 
 | 話題 | 最小限覚える式・判断 | 典型的な落とし穴 |
 |---|---|---|
+| 面上の応力 | $\boldsymbol t=\boldsymbol{\sigma}^{\mathsf T}\boldsymbol n$、$\sigma_n=\boldsymbol n\vdot\boldsymbol t$ | 応力ベクトル $\boldsymbol t$ と垂直応力 $\sigma_n$ を混同する |
+| 座標変換 | $\boldsymbol{\sigma}'=\boldsymbol R\boldsymbol{\sigma}\boldsymbol R^{\mathsf T}$ | 座標軸の回転と物体の回転を混同する |
+| 変位勾配 | $\boldsymbol{\epsilon}=\operatorname{sym}\boldsymbol H$、$\boldsymbol{\omega}=\operatorname{skw}\boldsymbol H$ | 先に評価点を代入する、回転をひずみに含める |
 | 等方弾性 | $\epsilon_{11}=\{\sigma_{11}-\nu(\sigma_{22}+\sigma_{33})\}/E$、$E=2\mu(1+\nu)$ | $\gamma_{12}=2\epsilon_{12}$ を忘れる |
+| 熱ひずみ | 自由膨張なら $\boldsymbol{\sigma}=0$、$\boldsymbol{\epsilon}=\alpha\Delta T\boldsymbol I$ | 温度変化だけで必ず熱応力が生じると考える |
+| 平面ひずみ | $\epsilon_{33}=0$、$\sigma_{33}=\nu(\sigma_{11}+\sigma_{22})$ | $\sigma_{33}=0$ と置く |
+| 純せん断降伏 | $|\tau|_{\mathrm M}=\sigma_{\mathrm y}/\sqrt3$、$|\tau|_{\mathrm T}=\sigma_{\mathrm y}/2$ | 保守率の分母を明記しない |
+| 平面トラス | $D_{\mathrm s}=m+r-2n$ と幾何学的安定性を確認 | 交差するだけの部材を節点として数える |
 | 片持ち梁 | $V=-P$、$M=-P(L-x)$、$\delta=PL^3/(3EI)$ | 符号規約を書かない |
+| 長方形断面梁 | $I=bh^3/12$ | 荷重方向の高さ $h$ と幅 $b$ を逆にする |
 | 圧延ロール | $I=\pi d^4/64$、対称反力 $qa/2$ | 圧力と線荷重を混同する |
 | らせん転位 | $u_3=b\theta/(2\pi)$、$U/\ell=\mu b^2\ln(R/r_0)/(4\pi)$ | $\theta$ と $b$ の符号、局所密度と積分値 |
+| らせん転位対 | $f=\mu|b_{\mathrm I}b_{\mathrm{II}}|/(2\pi r)$ | 同符号は斥力、異符号は引力 |
 | 刃状転位対 | $\boldsymbol f=(\boldsymbol\sigma\boldsymbol b)\times\boldsymbol t$ | 力は単位長さ当たり、安定点は $b_{\mathrm I}b_{\mathrm{II}}$ 依存 |
-| FCCすべり | $m=|\hat{\boldsymbol s}\vdot\hat{\boldsymbol n}|\,|\hat{\boldsymbol s}\vdot\hat{\boldsymbol d}|$ | すべり方向が面内か確認しない |
+| 結晶すべり | $m=|\hat{\boldsymbol L}\vdot\hat{\boldsymbol n}|\,|\hat{\boldsymbol L}\vdot\hat{\boldsymbol d}|$、$\tau_{\mathrm{CRSS}}=\sigma_{\mathrm y}m_{\max}$ | すべり方向が面内か確認しない、符号付き $m$ の負を不活動とみなす |
