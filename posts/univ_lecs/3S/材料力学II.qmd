@@ -4,7 +4,7 @@ author: "Serika Yuzuki"
 lang: ja
 date: "2026-7-29"
 categories: [University, 2026]
-image: "images/材料力学II/cantilever-setup.svg"
+image: "images/材料力学II/cantilever-problem.svg"
 bibliography: ../../../bibliography.bib
 ---
 
@@ -28,7 +28,7 @@ $$
 3. $\sigma_{11},\sigma_{22},\sigma_{33}$ が同時に作用するとき、$\epsilon_{11}$ を求めよ。
 4. $\sigma_{12}=2\mu\epsilon_{12}$ を用い、$E,\nu,\mu$ の関係を示せ。
 
-![直交座標系に置かれた微小立方体と応力成分の向きを示す模式図。](images/材料力学II/stress-cube.svg){#fig-mech2-stress-cube fig-alt="x1、x2、x3軸に沿う立方体。各正の面には、面法線方向の垂直応力と面内二方向のせん断応力を矢印で示している。反対面にはつり合う逆向きの応力が作用する。" width="88%"}
+![直交座標系に置かれた微小立方体と応力成分の向きを示す模式図。](images/材料力学II/stress-cube-components.svg){#fig-mech2-stress-cube fig-alt="x1、x2、x3軸に沿う立方体。各正の面には、面法線方向の垂直応力と面内二方向のせん断応力を矢印で示している。反対面にはつり合う逆向きの応力が作用する。" width="88%"}
 
 ::: {.callout-note collapse="true"}
 ##### 理論A1：面の向きと力の向きを二つの添字で管理する
@@ -416,7 +416,7 @@ $$
 2. 曲げモーメント分布を描け。
 3. 自由端のたわみを求めよ。
 
-![固定端を左、自由端を右に置き、自由端へ集中荷重Pを受ける長さLの片持ち梁の模式図。](images/材料力学II/cantilever-setup.svg){#fig-mech2-cantilever-setup fig-alt="左端を固定された水平な梁。右端に下向き集中荷重Pが作用し、梁長をL、固定端からの座標をxとする。" width="92%"}
+![固定端を左、自由端を右に置き、自由端へ集中荷重Pを受ける長さLの片持ち梁の模式図。](images/材料力学II/cantilever-problem.svg){#fig-mech2-cantilever-setup fig-alt="左端を固定された水平な梁。右端に下向き集中荷重Pが作用し、梁長をL、固定端からの座標をxとする。" width="92%"}
 
 ::: {.callout-note collapse="true"}
 ##### 理論B1：切断面のつり合いから内力を決め、曲率を二回積分する
@@ -484,7 +484,7 @@ $$
 
 であり、$M(0)=-PL$、$M(L)=0$ の三角形となる。
 
-![片持ち梁のせん断力、曲げモーメント、正規化たわみを並べた解析式による図。](images/材料力学II/cantilever-diagrams.svg){#fig-mech2-cantilever-diagrams fig-alt="上段は全区間でマイナスP一定のせん断力図、中段は固定端でマイナスPLから自由端でゼロへ直線的に変化する曲げモーメント図、下段は固定端で変位と傾きがゼロ、自由端で最大となる下向きたわみ曲線。" width="100%"}
+![片持ち梁のせん断力、曲げモーメント、正規化たわみを並べた解析式による図。](images/材料力学II/cantilever-vmd-solution.svg){#fig-mech2-cantilever-diagrams fig-alt="上段は全区間でマイナスP一定のせん断力図、中段は固定端でマイナスPLから自由端でゼロへ直線的に変化する曲げモーメント図、下段は固定端で変位と傾きがゼロ、自由端で最大となる下向きたわみ曲線。" width="100%"}
 
 下向きたわみを正とすれば、
 
@@ -511,7 +511,7 @@ $$
 4. 最大たわみを求めよ。
 5. ロールのたわみを小さくする方法を述べよ。
 
-![両端を単純支持され、中央幅aに等分布線荷重qを受ける長さl、直径dのロールの梁モデル。](images/材料力学II/rolling-beam-setup.svg){#fig-mech2-rolling-setup fig-alt="長さlの水平梁を両端で単純支持し、中央の幅aに下向き等分布荷重qが作用する。荷重区間の左端をc=(l-a)/2、右端をe=(l+a)/2とする。" width="96%"}
+![両端を単純支持され、中央幅aに等分布線荷重qを受ける長さl、直径dのロールの梁モデル。](images/材料力学II/rolling-roll-problem.svg){#fig-mech2-rolling-setup fig-alt="長さlの水平梁を両端で単純支持し、中央の幅aに下向き等分布荷重qが作用する。荷重区間の左端をc=(l-a)/2、右端をe=(l+a)/2とする。" width="96%"}
 
 ::: {.callout-note collapse="true"}
 ##### 理論B2：対称性で反力を決め、区間ごとに荷重を積み上げる
@@ -647,7 +647,7 @@ $$
 
    中央の最大値は $M_{\max}=qa(2l-a)/8$ である。
 
-![中央部等分布荷重を受けるロールのせん断力、曲げモーメント、正規化たわみを並べた解析式による図。](images/材料力学II/rolling-beam-diagrams.svg){#fig-mech2-rolling-diagrams fig-alt="上段は左右の無荷重区間で一定、中央荷重区間で直線的に減るせん断力図。中段は支点でゼロ、中央で最大となり、荷重区間で放物線となる曲げモーメント図。下段は左右対称で中央が最大の下向きたわみ模式曲線。" width="100%"}
+![中央部等分布荷重を受けるロールのせん断力、曲げモーメント、正規化たわみを並べた解析式による図。](images/材料力学II/rolling-roll-vmd-solution.svg){#fig-mech2-rolling-diagrams fig-alt="上段は左右の無荷重区間で一定、中央荷重区間で直線的に減るせん断力図。中段は支点でゼロ、中央で最大となり、荷重区間で放物線となる曲げモーメント図。下段は左右対称で中央が最大の下向きたわみ模式曲線。" width="100%"}
 
 4. 最大たわみは中央に生じ、
 
@@ -676,7 +676,7 @@ $$
 2. 弾性応力の全成分 $\sigma_{ij}$ を求めよ。
 3. 単位体積当たりの弾性ひずみエネルギーを求めよ。ただし、転位芯半径 $r_0$ から外側半径 $R$ までの弾性変形を考える。
 
-![x3軸を転位線とし、x1からx2へ時計回りに測る角度θと、x3方向のバーガースベクトルbを示すらせん転位の模式図。](images/材料力学II/screw-dislocation-setup.svg){#fig-mech2-screw-setup fig-alt="円柱の軸がx3方向のらせん転位。断面上にx1、x2、半径r、x1からx2への時計回り角θを示し、円柱軸と平行にバーガースベクトルbを示す。" width="82%"}
+![x3軸を転位線とし、x1からx2へ時計回りに測る角度θと、x3方向のバーガースベクトルbを示すらせん転位の模式図。](images/材料力学II/screw-dislocation-geometry.svg){#fig-mech2-screw-setup fig-alt="円柱の軸がx3方向のらせん転位。断面上にx1、x2、半径r、x1からx2への時計回り角θを示し、円柱軸と平行にバーガースベクトルbを示す。" width="82%"}
 
 ::: {.callout-note collapse="true"}
 ##### 理論C1：一周で増える軸方向変位を角度に比例させる
@@ -878,7 +878,7 @@ $$
 \end{aligned}
 $$
 
-![原点の刃状転位Iと、x2=dの水平なすべり面上をx1方向へ移動する転位IIの模式図。](images/材料力学II/edge-dislocation-pair-setup.svg){#fig-mech2-edge-pair fig-alt="x1横軸、x2縦軸。転位Iは原点、転位IIはx2=dの点線上の座標x1=xにあり、転位線方向はx3、バーガースベクトルはx1方向。" width="78%"}
+![原点の刃状転位Iと、x2=dの水平なすべり面上をx1方向へ移動する転位IIの模式図。](images/材料力学II/edge-dislocation-pair.svg){#fig-mech2-edge-pair fig-alt="x1横軸、x2縦軸。転位Iは原点、転位IIはx2=dの点線上の座標x1=xにあり、転位線方向はx3、バーガースベクトルはx1方向。" width="78%"}
 
 転位Iのまわりの応力場を考える。$r^2=x_1^2+x_2^2$ とし、
 
@@ -1073,7 +1073,7 @@ FCC単結晶の試験片を $[123]$ 方向へ引張る。FCCのすべり系を $
 2. 試験中に $(\bar301)$ 面を観察したところ、すべり線が見えた。すべり線と引張方向のなす鋭角 $\theta$ を求めよ。
 3. 同じ形状の単結晶試験片と無配向多結晶試験片について、典型的な応力--ひずみ曲線の違いを説明せよ。
 
-![引張軸を[123]、観察面を(バー301)とする単結晶試験片、および観察面上のすべり線の模式図。](images/材料力学II/fcc-slip-specimen.svg){#fig-mech2-fcc-specimen fig-alt="単結晶の引張試験片。上下の引張軸は[123]、前面の観察面はバー301、表面上に主すべり面との交線としてすべり線が描かれる。" width="72%"}
+![引張軸を[123]、観察面を(バー301)とする単結晶試験片、および観察面上のすべり線の模式図。](images/材料力学II/fcc-123-specimen.svg){#fig-mech2-fcc-specimen fig-alt="単結晶の引張試験片。上下の引張軸は[123]、前面の観察面はバー301、表面上に主すべり面との交線としてすべり線が描かれる。" width="72%"}
 
 ::: {.callout-note collapse="true"}
 ##### 理論D1：面と方向を内積で選び、二平面の交線を外積で求める

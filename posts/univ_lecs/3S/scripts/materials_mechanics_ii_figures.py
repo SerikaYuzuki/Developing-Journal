@@ -15,7 +15,7 @@ os.environ.setdefault("MPLCONFIGDIR", "/private/tmp/codex-mpl-materials-mechanic
 
 import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib.patches import Arc, Circle, FancyArrowPatch, Polygon, Rectangle
+from matplotlib.patches import Arc, Circle, Ellipse, FancyArrowPatch, Polygon, Rectangle
 from scipy.interpolate import PchipInterpolator
 
 
@@ -182,7 +182,9 @@ def _projected_cube(
         ),
     }
 
-    draw_order = (3, 2, 1)
+    draw_order = tuple(
+        index for index in (3, 2, 1) if index != highlighted_face
+    ) + (highlighted_face,)
     base_colors = {1: "#e5edf2", 2: "#f1f5f7", 3: "#fafafa"}
     for index in draw_order:
         selected = index == highlighted_face
@@ -192,7 +194,7 @@ def _projected_cube(
             facecolor=PALE_GOLD if selected else base_colors[index],
             edgecolor=GOLD if selected else NAVY,
             linewidth=2.3 if selected else 1.6,
-            zorder=2 + index,
+            zorder=9 if selected else 2 + index,
         )
         ax.add_patch(polygon)
 
@@ -201,7 +203,7 @@ def _projected_cube(
     for direction_index in (1, 2, 3):
         vector = basis[direction_index]
         vector = vector / np.linalg.norm(vector)
-        endpoint = center + 0.78 * vector
+        endpoint = center + 0.60 * vector
         arrow(
             ax,
             tuple(center),
@@ -213,7 +215,7 @@ def _projected_cube(
         )
         text_offset = {
             1: np.array([0.16, 0.04]),
-            2: np.array([0.03, 0.16]),
+            2: np.array([0.03, 0.08]),
             3: np.array([-0.17, -0.10]),
         }[direction_index]
         ax.text(
@@ -429,6 +431,8 @@ def cantilever_solution() -> Path:
     )
 
     axes[0].plot(xi, shear, color=RED, lw=3.0)
+    axes[0].plot([0, 0], [0, -1], color=RED, lw=3.0)
+    axes[0].plot([1, 1], [-1, 0], color=RED, lw=3.0)
     axes[0].fill_between(xi, 0, shear, color=RED, alpha=0.15)
     _style_distribution_axis(axes[0], r"$V/P$")
     axes[0].set_ylim(-1.35, 0.30)
@@ -483,7 +487,7 @@ def cantilever_solution() -> Path:
         color=GRAY,
         fontsize=9,
     )
-    fig.tight_layout(rect=(0.04, 0.05, 0.98, 0.94))
+    fig.subplots_adjust(left=0.13, right=0.97, top=0.90, bottom=0.12, hspace=0.32)
     return finish(fig, "cantilever-vmd-solution.svg")
 
 
@@ -561,11 +565,12 @@ def rolling_roll_problem() -> Path:
     )
 
     circle_center = (0.99, 0.57)
-    radius = 0.13
+    radius_y = 0.13
     ax.add_patch(
-        Circle(
+        Ellipse(
             circle_center,
-            radius,
+            width=0.115,
+            height=2 * radius_y,
             facecolor=LIGHT,
             edgecolor=NAVY,
             linewidth=2.0,
@@ -573,8 +578,8 @@ def rolling_roll_problem() -> Path:
     )
     dimension(
         ax,
-        (circle_center[0], circle_center[1] - radius),
-        (circle_center[0], circle_center[1] + radius),
+        (circle_center[0], circle_center[1] - radius_y),
+        (circle_center[0], circle_center[1] + radius_y),
         r"$d$",
         color=BLUE,
         label_offset=(0.045, 0),
@@ -658,6 +663,8 @@ def rolling_roll_solution() -> Path:
     )
 
     axes[0].plot(xi, shear, color=RED, lw=3.0)
+    axes[0].plot([0, 0], [0, 0.5], color=RED, lw=3.0)
+    axes[0].plot([1, 1], [-0.5, 0], color=RED, lw=3.0)
     axes[0].fill_between(xi, 0, shear, color=RED, alpha=0.14)
     _style_distribution_axis(axes[0], r"$V/(qa)$")
     axes[0].set_ylim(-0.70, 0.70)
@@ -732,7 +739,7 @@ def rolling_roll_solution() -> Path:
         color=GRAY,
         fontsize=9,
     )
-    fig.tight_layout(rect=(0.04, 0.055, 0.98, 0.94))
+    fig.subplots_adjust(left=0.13, right=0.97, top=0.90, bottom=0.13, hspace=0.32)
     return finish(fig, "rolling-roll-vmd-solution.svg")
 
 
@@ -921,11 +928,11 @@ def edge_dislocation_pair() -> Path:
     )
     dimension(
         ax,
-        (0.36, 0),
-        (0.36, second[1]),
+        (-0.20, 0),
+        (-0.20, second[1]),
         r"$d$",
         color=BLUE,
-        label_offset=(0.08, 0),
+        label_offset=(-0.08, 0),
     )
     dimension(
         ax,
@@ -965,8 +972,8 @@ def edge_dislocation_pair() -> Path:
         fontsize=9.5,
     )
 
-    arrow(ax, (0.05, 0.52), (0.62, 0.52), color=BLUE, width=2.1, scale=12)
-    ax.text(0.34, 0.60, r"$\boldsymbol{b}_{I}\parallel+x_1$", color=BLUE, ha="center")
+    arrow(ax, (0.10, 0.38), (0.67, 0.38), color=BLUE, width=2.1, scale=12)
+    ax.text(0.38, 0.47, r"$\boldsymbol{b}_{I}\parallel+x_1$", color=BLUE, ha="center")
     arrow(
         ax,
         (1.70, 1.70),
@@ -1123,24 +1130,24 @@ def edge_dislocation_force() -> Path:
 def fcc_123_specimen() -> Path:
     """[123]引張と観察面(bar301)を示す試験片模式図。"""
 
-    fig, ax = plt.subplots(figsize=(8.2, 7.0))
+    fig, ax = plt.subplots(figsize=(12.0, 6.2))
     front = np.array(
         [
-            [2.25, 0.45],
-            [3.75, 0.45],
-            [3.70, 1.55],
-            [3.35, 2.05],
-            [3.35, 4.20],
-            [3.72, 4.70],
-            [3.78, 5.80],
-            [2.22, 5.80],
-            [2.28, 4.70],
-            [2.65, 4.20],
-            [2.65, 2.05],
-            [2.30, 1.55],
+            [1.10, 0.55],
+            [3.30, 0.55],
+            [3.24, 1.38],
+            [2.90, 1.82],
+            [2.90, 4.18],
+            [3.24, 4.62],
+            [3.30, 5.45],
+            [1.10, 5.45],
+            [1.16, 4.62],
+            [1.50, 4.18],
+            [1.50, 1.82],
+            [1.16, 1.38],
         ]
     )
-    offset = np.array([0.52, 0.33])
+    offset = np.array([0.36, 0.23])
     side_indices = [1, 2, 3, 4, 5, 6]
     side = np.vstack(
         [
@@ -1169,22 +1176,94 @@ def fcc_123_specimen() -> Path:
         )
     )
     ax.text(
-        3.0,
-        3.25,
+        2.20,
+        3.18,
         r"観察面 $(\bar{3}01)$",
         ha="center",
         color=BLUE,
         weight="bold",
-        fontsize=12,
+        fontsize=11,
         zorder=5,
     )
 
-    line_angle = math.radians(17)
-    center = np.array([3.0, 3.12])
+    arrow(ax, (2.20, 5.58), (2.20, 6.15), color=RED, width=2.8, scale=16)
+    arrow(ax, (2.20, 0.42), (2.20, -0.13), color=RED, width=2.8, scale=16)
+    ax.text(
+        2.42,
+        5.93,
+        r"引張軸 $[123]$",
+        color=RED,
+        weight="bold",
+        fontsize=11,
+        ha="left",
+    )
+    ax.text(
+        2.20,
+        0.90,
+        "単結晶試験片",
+        color=GRAY,
+        fontsize=9.5,
+        ha="center",
+    )
+
+    plane_left = 5.25
+    plane_bottom = 0.78
+    plane_width = 5.15
+    plane_height = 4.72
+    ax.add_patch(
+        Rectangle(
+            (plane_left, plane_bottom),
+            plane_width,
+            plane_height,
+            facecolor=PALE_BLUE,
+            edgecolor=BLUE,
+            linewidth=2.0,
+            zorder=1,
+        )
+    )
+    ax.text(
+        plane_left + 0.20,
+        plane_bottom + plane_height - 0.22,
+        r"観察面 $(\bar{3}01)$ を正面から見た模式図",
+        color=BLUE,
+        ha="left",
+        va="top",
+        weight="bold",
+        fontsize=11,
+    )
+
+    center = np.array([7.80, 3.03])
+    ax.plot(
+        [center[0], center[0]],
+        [plane_bottom + 0.42, plane_bottom + plane_height - 0.50],
+        color=RED,
+        lw=1.7,
+        linestyle="--",
+        zorder=3,
+    )
+    arrow(
+        ax,
+        (center[0], plane_bottom + plane_height - 0.88),
+        (center[0], plane_bottom + plane_height - 0.35),
+        color=RED,
+        width=2.4,
+        scale=13,
+    )
+    ax.text(
+        center[0] + 0.16,
+        plane_bottom + plane_height - 0.63,
+        r"$[123]$",
+        color=RED,
+        ha="left",
+        va="center",
+        weight="bold",
+    )
+
+    line_angle = math.radians(25.4)
     direction = np.array([math.cos(line_angle), math.sin(line_angle)])
     for offset_y in np.linspace(-0.18, 0.18, 5):
-        start = center + np.array([0, offset_y]) - 0.38 * direction
-        end = center + np.array([0, offset_y]) + 0.38 * direction
+        start = center + np.array([0, offset_y]) - 1.18 * direction
+        end = center + np.array([0, offset_y]) + 1.18 * direction
         ax.plot(
             [start[0], end[0]],
             [start[1], end[1]],
@@ -1193,67 +1272,61 @@ def fcc_123_specimen() -> Path:
             zorder=6,
         )
     ax.text(
-        3.52,
-        2.92,
-        "観察される\nすべり線",
+        center[0] + 1.32,
+        center[1] + 0.37,
+        "観察されるすべり線",
         color=PURPLE,
         fontsize=9.5,
         ha="left",
         va="center",
     )
 
-    arrow(ax, (3.0, 5.90), (3.0, 6.65), color=RED, width=3.0, scale=17)
-    arrow(ax, (3.0, 0.35), (3.0, -0.35), color=RED, width=3.0, scale=17)
-    ax.text(
-        3.16,
-        6.36,
-        r"引張軸 $[123]$",
-        color=RED,
-        weight="bold",
-        fontsize=12,
-        ha="left",
-    )
-
-    ax.plot([3.0, 3.0], [2.45, 3.84], color=RED, lw=1.4, linestyle="--", zorder=4)
     arc = Arc(
-        (3.0, 3.12),
-        1.12,
-        1.12,
+        tuple(center),
+        1.48,
+        1.48,
         angle=0,
-        theta1=17,
+        theta1=25.4,
         theta2=90,
         color=GOLD,
         lw=2.5,
         zorder=8,
     )
     ax.add_patch(arc)
-    ax.text(3.35, 3.58, r"$\theta$", color=GOLD, fontsize=15, weight="bold")
+    ax.text(
+        center[0] + 0.44,
+        center[1] + 0.63,
+        r"$\theta$",
+        color=GOLD,
+        fontsize=15,
+        weight="bold",
+    )
 
     ax.text(
-        3.0,
-        -0.63,
+        plane_left + plane_width / 2,
+        0.42,
         r"$[-3,0,1]\cdot[1,2,3]=0$ より、引張軸は観察面内にある。",
         ha="center",
         color=GRAY,
         fontsize=9.5,
     )
     ax.text(
-        3.0,
-        -0.95,
-        "試験片外形とすべり線は模式表示であり、結晶面の透視投影ではない。",
+        5.75,
+        -0.22,
+        "試験片外形とすべり線は模式表示。図から角度を測らず、結晶方位の内積で求める。",
         ha="center",
         color=GRAY,
         fontsize=9,
     )
-    ax.set(xlim=(1.50, 5.00), ylim=(-1.10, 6.88), aspect="equal")
+    ax.set(xlim=(0.45, 11.10), ylim=(-0.48, 6.38), aspect="equal")
     ax.axis("off")
     fig.suptitle(
         "FCC単結晶試験片の引張軸と観察面",
         fontsize=16,
         weight="bold",
-        y=0.98,
+        y=0.97,
     )
-    fig.tight_layout(rect=(0, 0, 1, 0.93))
+    fig.tight_layout(rect=(0, 0, 1, 0.91))
     return finish(fig, "fcc-123-specimen.svg")
 
 
