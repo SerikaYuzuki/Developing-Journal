@@ -812,11 +812,11 @@
     ]
   },
   {
-    "objectID": "posts/univ_lecs/3S/材料反応工学.html#速度論概要",
-    "href": "posts/univ_lecs/3S/材料反応工学.html#速度論概要",
+    "objectID": "posts/univ_lecs/3S/材料反応工学.html#反応機構から速度式を作る",
+    "href": "posts/univ_lecs/3S/材料反応工学.html#反応機構から速度式を作る",
     "title": "材料反応工学",
-    "section": "速度論概要",
-    "text": "速度論概要\n\n平衡状態 (Equilibrium State)\n平衡状態とは熱力学的に安定な状態、つまり自由エネルギーが最も低い状態のことを指す。これについての話は平衡論と呼ばれており、熱力学で中心的に扱われる。\n\n\n定常状態 (Steady State)\n定常状態とは、系内の物質量やエネルギーが時間とともに変化しない状態のことを指す。これは系内の物質量やエネルギーの収支が釣り合っている状態であり、系内の物質量やエネルギーの変化がないことを意味する。この講義では平衡状態、定常状態は独立して考えるらしい。\n数式的に書けば、\n(系への蓄積速度) = (系への流入速度) - (系からの流出速度) + (系内での生成速度) - (系内での消失速度)=0\n\\[\n\\pdv{C}{t}(x,t) = 0\n\\]\n\n\n速度過程\n初期状態から平衡状態に至るまでの過程を速度過程と呼ぶ。講義ではここの部分を重点的にやる予定らしい。",
+    "section": "反応機構から速度式を作る",
+    "text": "反応機構から速度式を作る\n\n問題1 観測された速度式から機構を考える\n反応\n\\[\n\\ce{A + B -&gt; AB}\n\\]\nの生成速度が、ある実験条件で\n\\[\nr_{\\ce{AB}}=k[\\ce{B}]^2\n\\]\nと観測された。この速度式と両立しうる素反応機構を一つ提案し、速度式を導け。ただし、速度式だけから機構が一意に決まるかについても述べよ。\nまた、総括反応\n\\[\n\\ce{2A + B -&gt; A2B}\n\\]\nの速度が\n\\[\nr=\\frac{K_1[\\ce{A}]^2[\\ce{B}]}{1+K_2[\\ce{A}]}\n\\]\nで表される場合について、この形と両立する中間体を含む反応機構を提案せよ。\n\n\n\n\n\n\nNote理論1：速度式は機構を絞り込む手がかり\n\n\n\n\n\n総括反応式の係数を、そのまま反応次数にしてはいけない。反応次数は実験で得られる量であり、素反応の連鎖、中間体への定常状態近似、ある成分の大過剰、表面被覆の飽和などで変わる。\n中間体 \\(I\\) に定常状態近似を使うときは、\n\\[\n\\dv{[I]}{t}=\\text{生成速度}-\\text{消費速度}\\simeq0\n\\]\nを立て、\\([I]\\) を観測可能な濃度で消去する。同じ速度式を与える機構は複数ありうるため、速度式だけで機構を証明することはできない。\n\n\n\n\n\n\n\n\n\nTip解答1\n\n\n\n\n\n一例として、\\(\\ce{B}\\) が活性種の生成にも関与し、後段で再生する機構\n\\[\n\\ce{B + B &lt;=&gt;[k_1][k_{-1}] B2^*},\\qquad\n\\ce{A + B2^* -&gt;[k_2] AB + B}\n\\]\nを考える。前段を速い平衡とすれば\n\\[\n[\\ce{B2^*}]=K[\\ce{B}]^2\n\\]\nであり、\n\\[\nr=k_2[\\ce{A}][\\ce{B2^*}]=k_2K[\\ce{A}][\\ce{B}]^2\n\\]\nとなる。\\(\\ce{A}\\) が大過剰で実験中ほぼ一定なら、\\(k=k_2K[\\ce{A}]\\) として \\(r=k[\\ce{B}]^2\\) が得られる。これは一例であり、速度式だけから機構は一意に決まらない。\n第2の反応では、中間体 \\(I=\\ce{AB}\\) を用いて\n\\[\n\\ce{A + B &lt;=&gt;[k_1][k_{-1}] I},\\qquad\n\\ce{A + I -&gt;[k_2] A2B}\n\\]\nと置ける。定常状態近似から\n\\[\n[I]=\\frac{k_1[\\ce{A}][\\ce{B}]}{k_{-1}+k_2[\\ce{A}]}\n\\]\nしたがって\n\\[\nr=k_2[\\ce{A}][I]\n=\\frac{k_1k_2[\\ce{A}]^2[\\ce{B}]}{k_{-1}+k_2[\\ce{A}]}\n=\\frac{(k_1k_2/k_{-1})[\\ce{A}]^2[\\ce{B}]}{1+(k_2/k_{-1})[\\ce{A}]}\n\\]\nとなり、与式と同じ形になる。\n\n\n\n\n\n問題2 単分子反応の圧力依存性\nモノシランの気相分解\n\\[\n\\ce{SiH4 -&gt; SiH2 + H2}\n\\]\nは見かけ上 \\(\\ce{SiH4}\\) に一次であるが、低圧になるほど見かけの速度定数が低下する。実際の反応を\n\\[\n\\ce{SiH4 + M &lt;=&gt;[k_1][k_{-1}] SiH4^* + M},\\qquad\n\\ce{SiH4^* -&gt;[k_2] SiH2 + H2}\n\\]\nとする。\n\nこの機構の名称を答えよ。\n\\(\\ce{SiH4^*}\\) に定常状態近似を適用し、\\(\\ce{SiH2}\\) の生成速度と見かけの一次速度定数を求めよ。\n低圧極限と高圧極限での反応次数を説明せよ。\n\nさらに、気体 \\(\\ce{A}\\) と \\(\\ce{B}\\) が同一表面へ競争吸着した後、吸着種同士が反応する場合の Langmuir–Hinshelwood 型速度式を、表面反応を律速段階として導け。定常状態近似と律速段階近似の違いも述べよ。\n\n\n\n\n\n\nNote理論2：衝突で活性化してから分解する\n\n\n\n\n\n低圧では第三体 \\(\\ce{M}\\) との衝突が少なく、分子が活性化されにくい。高圧では活性化衝突が十分に起こり、分解そのものが律速となる。この圧力による反応次数の移り変わりを falloff と呼ぶ。\n律速段階近似では、遅い段階以外は速い平衡にあるとみなす。一方、定常状態近似は中間体について生成速度と消費速度が釣り合うとみなすもので、前段が平衡にあるとは限らない。\n\n\n\n\n\n\n\n\n\nTip解答2\n\n\n\n\n\n\nLindemann–Hinshelwood 機構である。\n\\([\\ce{SiH4^*}]\\) の収支は\n\n\\[\n\\dv{[\\ce{SiH4^*}]}{t}\n=k_1[\\ce{SiH4}][\\ce{M}]\n-k_{-1}[\\ce{SiH4^*}][\\ce{M}]\n-k_2[\\ce{SiH4^*}]\\simeq0\n\\]\nである。したがって\n\\[\n[\\ce{SiH4^*}]\n=\\frac{k_1[\\ce{SiH4}][\\ce{M}]}{k_{-1}[\\ce{M}]+k_2}\n\\]\nより、\n\\[\nr_{\\ce{SiH2}}\n=\\frac{k_1k_2[\\ce{SiH4}][\\ce{M}]}{k_{-1}[\\ce{M}]+k_2}\n=k_{\\mathrm{obs}}[\\ce{SiH4}]\n\\]\n\\[\nk_{\\mathrm{obs}}\n=\\frac{k_1k_2[\\ce{M}]}{k_{-1}[\\ce{M}]+k_2},\\qquad\n\\frac{1}{k_{\\mathrm{obs}}}\n=\\frac{k_{-1}}{k_1k_2}+\\frac{1}{k_1[\\ce{M}]}\n\\]\nとなる。\n\n低圧では \\(k_2\\gg k_{-1}[\\ce{M}]\\) なので\n\n\\[\nr\\simeq k_1[\\ce{SiH4}][\\ce{M}]\n\\]\nとなり全体で二次、高圧では\n\\[\nr\\simeq \\frac{k_1k_2}{k_{-1}}[\\ce{SiH4}]\n\\]\nとなり一次である。\n競争吸着について、空席率を \\(\\theta_*\\) とすれば\n\\[\n\\theta_A=K_Ap_A\\theta_*,\\quad\n\\theta_B=K_Bp_B\\theta_*,\\quad\n\\theta_*+\\theta_A+\\theta_B=1\n\\]\nゆえに\n\\[\n\\theta_* =\\frac{1}{1+K_Ap_A+K_Bp_B}\n\\]\nである。表面反応 \\(\\ce{A(a)+B(a)-&gt;C}\\) を律速段階とすれば\n\\[\nr=k\\theta_A\\theta_B\n=\\frac{kK_AK_Bp_Ap_B}\n{(1+K_Ap_A+K_Bp_B)^2}\n\\]\nとなる。\n\n\n\n\n\n問題3 並列反応から速度定数を分ける\n不可逆な並列一次反応\n\\[\n\\ce{A -&gt;[k_1] R},\\qquad\n\\ce{A -&gt;[k_2] S}\n\\]\nを考える。初濃度を \\([\\ce{A}]_0\\) として \\([\\ce{A}](t)\\)、\\([\\ce{R}](t)\\)、\\([\\ce{S}](t)\\) を求めよ。また、濃度の時間変化から \\(k_1,k_2\\) を個別に決める方法を示せ。\n\n\n\n\n\n\nNote理論3：減少の速さと生成物比を分けて読む\n\n\n\n\n\n\\(\\ce{A}\\) の減少は2経路の和 \\(k_1+k_2\\) で決まる。一方、反応完了時の生成物比は分岐比 \\(k_1/k_2\\) を与える。この2つを組み合わせれば、各速度定数を分離できる。\n\n\n\n\n\n\n\n\n\nTip解答3\n\n\n\n\n\n\\[\n\\dv{[\\ce{A}]}{t}=-(k_1+k_2)[\\ce{A}]\n\\]\nより\n\\[\n[\\ce{A}]=[\\ce{A}]_0e^{-(k_1+k_2)t}\n\\]\nである。生成物について積分すると\n\\[\n[\\ce{R}]=\\frac{k_1}{k_1+k_2}[\\ce{A}]_0\n\\qty(1-e^{-(k_1+k_2)t})\n\\]\n\\[\n[\\ce{S}]=\\frac{k_2}{k_1+k_2}[\\ce{A}]_0\n\\qty(1-e^{-(k_1+k_2)t})\n\\]\nとなる。\\(\\ln([\\ce{A}]/[\\ce{A}]_0)\\) の傾きから \\(k_1+k_2\\)、反応完了時の比\n\\[\n\\frac{[\\ce{R}]_\\infty}{[\\ce{S}]_\\infty}=\\frac{k_1}{k_2}\n\\]\nを得れば、\\(k_1,k_2\\) を個別に決定できる。",
     "crumbs": [
       "Home",
       "Posts",
@@ -826,11 +826,11 @@
     ]
   },
   {
-    "objectID": "posts/univ_lecs/3S/材料反応工学.html#化学反応速度論",
-    "href": "posts/univ_lecs/3S/材料反応工学.html#化学反応速度論",
+    "objectID": "posts/univ_lecs/3S/材料反応工学.html#連鎖反応と重合",
+    "href": "posts/univ_lecs/3S/材料反応工学.html#連鎖反応と重合",
     "title": "材料反応工学",
-    "section": "化学反応速度論",
-    "text": "化学反応速度論\n\n化学反応速度\n化学反応速度とは、単位時間あたりに反応物質が反応する速さのことを指す。これは反応物質の濃度に依存するため、一般的には濃度の関数として表される。\n\\[\n-r_A = - \\dv{C_A}{t} = f(C_A, C_B, \\cdots)\n\\]\nここで考える反応装置とは回分反応器（バッチ式）で、これの特徴は、閉じた系であること、反応物質の濃度が空間的に均一であること、反応物質の濃度が時間的に変化することである。\n他にも、槽型反応器CSTR、管型流通式反応機などがある。CSTRは特に大量生産に向いているので、工業的によく使われる。\n\n\n\ncstr\n\n\nある均一反応を考えると、その反応速度は以下のように表される。\n\\[\n\\ce{aA + bB -&gt; cC + dD}\n\\]\nAの消失速度は\n\\[\n-r_A = \\frac{1}{V} \\dv{N_A}{t} \\; \\left[\\frac{\\text{mol}}{\\text{m}^3  \\cdot \\text{s}}\\right]\n\\]\nまた、次のような等式も当然成り立つ。\n\\[\n\\frac{r_A}{a}= \\frac{r_B}{b} = \\frac{r_C}{c} = \\frac{r_D}{d}\n\\]\n\n\n反応の種類\n\n単一反応\n\n\\[\n\\ce{A -&gt; B}\n\\]\n\\[\n\\ce{A + B -&gt; C + D}\n\\]\n\n複合反応\n\n\\[\n\\ce{A -&gt; B -&gt; C}\n\\]\n\n並行反応\n\n\\[\n\\ce{A -&gt; C}\n\\]\n\\[\n\\ce{A -&gt; D}\n\\]\n\n素反応\n\n\\[\n\\ce{A + B -&gt; C}\n\\]\n分解できる最小単位を素反応と呼ぶ。\n\n非素反応\n\n\\[\n\\ce{H2 + Br2 -&gt; 2HBr}\n\\]\n\\[\nr_{\\ce{HBr}} = \\frac{k_1[\\ce{H2}][\\ce{Br2}]^{\\frac{1}{2}}}{k_2 + \\frac{[\\ce{HBr}]}{[\\ce{Br2}]}}\n\\]\n\n\n反応速度式\n\\[\n-r_A=kC_A^aC_B^b \\cdots\n\\]\nここで、\\(k\\) は反応速度定数である。また、\\(a,b,\\cdots\\) は反応次数である。全体の反応次数は \\(a+b+\\cdots\\) である。また、反応次数は整数とは限らなし、 \\(0\\) であることもある。\n例として幾つかあげる。\n\n\\[\n\\ce{H2+I2 -&gt; 2HI}\n\\]\n\n\\[\nr = k[\\ce{H2}][\\ce{I2}]\n\\]\n\n\\[\n\\ce{CH3CHO -&gt; CH4 + CO}\n\\]\n\n\\[\nr = k[\\ce{CH3CHO}]^{3/2}\n\\]\n\n\\[\n\\ce{H2 + Br2 -&gt; 2HBr}\n\\]\n\n\\[\nr_{\\ce{HBr}} = \\frac{k_1[\\ce{H2}][\\ce{Br2}]^{\\frac{1}{2}}}{k_2 + \\frac{[\\ce{HBr}]}{[\\ce{Br2}]}}\n\\]\n以上のように、実験的に決定することとなる。\nこのような手順を繰り返してある一定の反応速度式を求めては繰り返す作業で、反応機構を求めることを反応機構解析と呼ぶ。\n\n\n定常状態近似\n\n正味の変化速度は各々の素反応での反応速度の総和で表される。\n反応中間体の変化量は \\(0\\) である。\n\nこのような近似を定常状態近似と呼ぶ。このような近似を用いて解析した結果を一つ例として出すと、\n\\[\n\\ce{H2 + Br2 -&gt; 2HBr}\n\\]\nこの反応の速度式は実験的に次のようになっている。\n\\[\nr_{\\ce{HBr}} = \\frac{k_1[\\ce{H2}][\\ce{Br2}]^{\\frac{1}{2}}}{k_2 + \\frac{[\\ce{HBr}]}{[\\ce{Br2}]}}\n\\]\nこの反応の素反応は次のようになっている。\n\n\\(\\ce{Br2 -&gt; 2Br^{\\ast}}\\)\n\\(\\ce{H2 + Br^{\\ast} -&gt; HBr + H^{\\ast}}\\)\n\\(\\ce{H^{\\ast} + Br2 -&gt; HBr + Br^{\\ast}}\\)\n\\(\\ce{H^{\\ast} + HBr -&gt; H2 + Br^{\\ast}}\\)\n\\(\\ce{Br^{\\ast} + Br^{\\ast} -&gt; Br2}\\)\n\nなので、\n\\[\n\\dv{[\\ce{HBr}]}{t} = k_2[\\ce{Br^{\\ast}}][\\ce{H2}] + k_3[\\ce{H^{\\ast}}][\\ce{Br2}] - k_4[\\ce{H^{\\ast}}][\\ce{HBr}]\n\\]\n\\[\n\\dv{[\\ce{Br^{\\ast}}]}{t} = k_1[\\ce{Br2}] - k_2[\\ce{Br^{\\ast}}][\\ce{H2}] + k_3[\\ce{H^{\\ast}}][\\ce{Br2}] + k_4[\\ce{H^{\\ast}}][\\ce{HBr}] - k_5[\\ce{Br^{\\ast}}]^2 =0\n\\]\n\\[\n\\dv{[\\ce{H^{\\ast}}]}{t} = k_2[\\ce{Br^{\\ast}}][\\ce{H2}] - k_3[\\ce{H^{\\ast}}][\\ce{Br2}] - k_4[\\ce{H^{\\ast}}][\\ce{HBr}] = 0\n\\]\nこの式をこねくり回すことによって、反応速度式を求めることができる。その内容は下二つの式の中間体濃度を消去することで求めることができる。\n次に反応機構の推察をしてみる。これは試験で出すらしい。\n\\[\n\\ce{2A + B -&gt; A2B}\n\\]\nこれの反応速度式が\n\\[\nr = \\frac{0.72[\\ce{A}]^2[\\ce{B}]}{1+2[\\ce{A}]}\n\\]\nとする。\nこの反応の素反応を、\n\n\n\n\\[\n\\ce{A + A + B &lt;=&gt; A2^{\\ast} + B &lt;=&gt;　A2B}\n\\]\nと考えて、反応速度式を求めると、おかしくなる。どうおかしくなるかは面倒なので具体的には書かない。めんどくさい\n\\[\n\\ce{A + A + B &lt;=&gt; AB + A &lt;=&gt;A2B}\n\\]\nにするとうまいこといく。\n\nLinndemann-Hinshelwood機構\n気相中での化学分解や異性化反応をモデル化で使われる。\n\\[\\ce{A -&gt; P}\\]\nこの一見一時反応見えるものが実は中間体の存在する反応だという反応機構だ。\n\\[\\ce{A + M &lt;=&gt; A^{*} + M}\\]\n\\[\\ce{A^{*} -&gt; P}\\]\nここで、 \\(\\ce{M}\\) は触媒や溶媒のことを指す。 \\(\\ce{A^{*}}\\) は中間体である。\nこの反応の速度式は次のように表される。\n\\[ k_1[\\ce{A}][\\ce{M}] = k_{-1}[\\ce{A^*}][\\ce{M}] + k_2[\\ce{A^*}] \\]\n\\[ \\Rightarrow \\quad [\\ce{A^*}] = \\dfrac{k_1[\\ce{A}][\\ce{M}]}{k_{-1}[\\ce{M}] + k_2} \\]\nで、全体の反応速度は \\(k_2 [\\ce{A^*}]\\) で表されるので、\n\\[\n\\dv{[\\ce{P}]}{t} = k_2 [\\ce{A^*}] = \\frac{k_1k_2[\\ce{A}][\\ce{M}]}{k_{-1}[\\ce{M}] + k_2}\n\\]\nこの式で、\\(k_{-1}[\\ce{M}] \\gtreqless k_2\\) によって一次反応なのか二次反応なのかが決まる。\nまた、見なしの反応速度定数を \\(k\\) とかにしたら、\n\\[\n\\begin{aligned}\nk[\\ce{A}] &= \\frac{k_1k_2[\\ce{A}][\\ce{M}]}{k_{-1}[\\ce{M}] + k_2} \\\\\n\\dfrac{1}{k} &= \\dfrac{k_{-1}}{k_1k_2} + \\dfrac{1}{k_2[\\ce{M}]}\n\\end{aligned}\n\\]\nここで、\n\\[\n\\begin{aligned}\np&=\\dfrac{n}{V}RT=[\\ce{M}]RT \\\\\n\\dfrac{1}{[\\ce{M}]} &\\propto \\dfrac{1}{p}\n\\end{aligned}\n\\]\nということから考えれば、\n\\[\n\\dfrac{1}{k} \\propto \\dfrac{1}{p}\n\\]\nこのように、反応速度定数は圧力に依存することがわかる。\n\n\n\n酵素反応\n酵素で反応が活性化される反応物を基質と呼ぶ。\n\\[\n\\ce{S -&gt;[\\symup{enzyme}] P}\n\\]\n反応速度は酵素濃度に比例し、また、基質濃度が高い時は、反応速度は基質濃度によらず一定である。\n反応速度式は次のような素反応で考えられるする。\n\\[\n\\ce{E + S &lt;=&gt;[k_1][k_2] ES -&gt;[k_3] E + P}\n\\]\n$ $ は酵素基質複合体と呼ばれる。\n\\[\n\\begin{aligned}\n\\dv{[\\ce{ES}]}{t} &= k_1[\\ce{E}][\\ce{S}] - k_2[\\ce{ES}] - k_3[\\ce{ES}] = 0\\\\\n\\ce{E_0} &= [\\ce{E}] + [\\ce{ES}] \\\\\n\\end{aligned}\n\\]\nここで、 $ $ を求めれば、酵素が優れているかどうかがわかる。ただし、 \\(\\ce{E}\\) は邪魔なので消してやると、\n\\[\n[\\ce{ES}] = \\frac{[\\ce{E_0}][\\ce{S}]}{\\frac{k_2+k_3}{k_1} + [\\ce{S}]} = \\frac{[\\ce{E_0}][\\ce{S}]}{k_m + [\\ce{S}]}\n\\]\nとなる。ここで、 \\(k_m = \\frac{k_2+k_3}{k_1}\\) とする。この式はミカエリス・メンテンの式と呼ばれ、 \\(k_m\\) はミカエリス定数と呼ばれる。優れている酵素ほど \\(k_m\\) が小さい。\n次に最大反応速度は\n\\[\nV_{\\max} = k_3[\\ce{E_0}]\n\\]\nなのは明らかである。そのように置いておくと、\n\\[\n\\dv{[\\ce{P}]}{t} = k_3[\\ce{ES}] = \\frac{V_{\\max}[\\ce{S}]}{k_m + [\\ce{S}] }\n\\]\nこの時、 \\(k_m\\) は反応速度の最大値の半分となる \\([\\ce{S}]\\) の値と同じなのは \\(k_m = [\\ce{S}]\\) 代入したらすぐわかる。なのでそこを基準点として考えて、\n\n\\([\\ce{S}] \\ll k_m\\) の時、 \\(\\dv{[\\ce{P}]}{t} = \\frac{V_{\\max}}{k_m}[\\ce{S}]\\) となる。\n\\([\\ce{S}] \\gg k_m\\) の時、 \\(\\dv{[\\ce{P}]}{t} = V_{\\max}\\) となる。\n\nまた、 \\(V_{\\max}\\) の中身を考えれば、 \\(\\dv{[\\ce{P}]}{t}\\) は常に \\([\\ce{E_0}]\\) に比例することがわかる。\n次に、 \\(k_m\\) の実験的な求め方だが、式を分母分子逆転させて考える。それで直線プロットする。\n\n\n重合反応\n\\[\n\\begin {aligned}\n\\ce{I &-&gt;[k_d] 2R^{.}}\\\\\n\\ce{R^{.} + M &-&gt;[k_i] M^{.}}\\\\\n\\ce{M^{.} + M &-&gt;[k_p] M^{.}}\\\\\n\\ce{2M^{.} &-&gt;[k_t] P}\\\\\n\\ce{M^{.} + S &-&gt;[k_{tr}] P + S^{.}}\n\\end{aligned}\n\\]\n重要なのは、 \\(\\ce{M}\\) はモノマーではあるが、２式以降の \\(\\ce{M^{.}}\\) はラジカルで、ただのモノマーじゃない。\nポリマーの生成速度はモノマーの減少速度に等しい。\n\\[\nR_p = \\dv{[\\ce{P}]}{t} = k_p[\\ce{M^{.}}][\\ce{M}]\n\\]\nそれからラジカルは定常状態にあると仮定するので、\n\\[\n\\begin{aligned}\n\\dv{[\\ce{M^{.}}]}{t} &= k_i[\\ce{R^{.}}][\\ce{M}] - k_t[\\ce{M^{.}}]^2 = 0\\\\\n\\dv{[\\ce{R}]}{t} &= 2fk_d[\\ce{I}] - k_i[\\ce{R^{.}}][\\ce{M}] = 0\n\\end{aligned}\n\\]\nこれを解くと、\n\\[\nR_p = \\sqrt{\\frac{2fk_d}{k_t}}k_p[\\ce{I}]^{1/2}[\\ce{M}]\n\\]\n動力学的鎖長は\n\\[\n\\nu = \\frac{\\text{単位時間に消えたモノマー分子}}{\\text{単位時間に生成されたポリマー分子}}=\\frac{R_p}{R_{tr}+R_t}\n\\]\nこれを計算すると、\n\\[\n\\begin{aligned}\n\\frac{1}{\\nu} &= \\frac{R_t}{R_p} + \\frac{R_{tr}}{R_p} \\\\\n&= \\frac{k_t[\\ce{M^{.}}]}{k_p[\\ce{M^{.}}][\\ce{M}]} + \\frac{k_{tr}[\\ce{M^{.}}][\\ce{S}]}{k_p[\\ce{M^{.}}][\\ce{M}]} \\\\\n&= \\frac{k_t}{k_p} + \\frac{k_{tr}[\\ce{S}]}{k_p[\\ce{M}]} \\\\\n&= \\frac{1}{\\nu_0} + C_{tr}\\frac{[\\ce{S}]}{[\\ce{M}]}\n\\end{aligned}\n\\]\nここで \\(\\nu_0\\) は溶媒がない時の動力学的鎖長で、 \\(C_{tr}\\) は \\(k_{tr}/k_p\\) で連載同定数と呼ばれる。\n\n\n反応速度と温度\n反応速度定数は温度に依存する。これはアレニウスの式で表される。\n\\[\nk = A\\exp\\left(-\\frac{E_a}{RT}\\right)\n\\]\nここで、 \\(A\\) は頻度因子、 \\(E_a\\) は活性化エネルギー、 \\(R\\) は気体定数、 \\(T\\) は温度である。\nこの式を対数変換すると、\n\\[\n\\ln k = \\ln A - \\frac{E_a}{RT}\n\\]\nこれの直線プロットをアレニウスプロットよ呼ぶ。\n\n\n積分法\n反応速度係数を求める方法の一つに積分法がある。\n\\[\n\\begin{aligned}\nr= - \\dv{C_A}{t} &= kf(C_A) \\\\\n-\\dv{C_A}{f(C_A)} &= kdt \\\\\n\\int_{C_{A0}}^{C_A} \\frac{dC_A}{f(C_A)} &= -kt\n\\end{aligned}\n\\]\n具体的には、\n\n一次反応\n\n\\[\n\\begin{aligned}\n\\int_{C_{A0}}^{C_A} \\frac{dC_A}{C_A} &= -kt\\\\\n\\ln \\frac{C_A}{C_{A0}} &= -kt\n\\end{aligned}\n\\]\n反応率\n\\[\nX=\\frac{C_{A0}-C_A}{C_{A0}}\n\\]\nを使って表すと\n\\[\n\\ln(1-X) = kt\n\\]\nとなる。ここで半減期がわかったとすると、\n\\[\nk = \\frac{\\ln 2}{t_{1/2}}\n\\]\nと、反応速度定数がわかる。\n\n二次反応\n\n同様にして積分すればいい。\n\\[\n\\begin{aligned}\n\\int_{C_{A0}}^{C_A} \\frac{dC_A}{C_A^2} &= -kt\\\\\n- \\frac{1}{C_A} + \\frac{1}{C_{A0}} &= -kt\\\\\n\\frac{1}{C_A} &= \\frac{1}{C_{A0}} + kt\n\\end{aligned}\n\\]\nで、半減期は\n\\[\nt_{1/2} = \\frac{1}{kC_{A0}}\n\\]\nになって、初期濃度に依存するようになる。\n\nn次反応\n\n\\[\n\\begin{aligned}\n\\int_{C_{A0}}^{C_A} \\frac{dC_A}{C_A^n} &= -kt\\\\\n\\frac{1}{(n-1)C_A^{n-1}} - \\frac{1}{(n-1)C_{A0}^{n-1}} &= kt\\\\\n\\frac{1}{C_A^{n-1}} &= \\frac{1}{C_{A0}^{n-1}} + (n-1)kt\n\\end{aligned}\n\\]\n\n0次反応\n\n\\[\n\\begin{aligned}\n\\int_{C_{A0}}^{C_A} dC_A &= -kt\\\\\nC_A - C_{A0} &= -kt\\\\\nC_A &= C_{A0} - kt\n\\end{aligned}\n\\]\n\n異種２分子反応\n\n\\[\n\\ce{A + B -&gt; X}\n\\]\n\\[\n\\begin{aligned}\n\\dv{[\\ce{A_0}] - [\\ce{X}]}{t} &= -k([\\ce{A_0}] - [\\ce{X}])([\\ce{B_0}] - [\\ce{X}]) \\\\\n\\dfrac{\\dd{} [\\ce{X}]}{([\\ce{A_0}] - [\\ce{X}])([\\ce{B_0}] - [\\ce{X}])} &= kdt \\\\\n\\ln \\frac{[\\ce{A_0}] - [\\ce{X}]}{[\\ce{B_0}] - [\\ce{X}]} &= kt\n\\end{aligned}\n\\]",
+    "section": "連鎖反応と重合",
+    "text": "連鎖反応と重合\n\n問題4 ラジカル重合と連鎖移動\nラジカル重合について、開始剤 \\(\\ce{I}\\) の分解、開始、成長、二分子停止を考える。\n\nラジカル濃度に定常状態近似を用い、重合速度 \\(R_p\\) を導け。\n連鎖移動剤 \\(\\ce{S}\\) を加えたとき、動力学的鎖長 \\(\\nu\\) が Mayo 式\n\n\\[\n\\frac{1}{\\nu}=\\frac{1}{\\nu_0}+C_{\\mathrm{tr}}\\frac{[\\ce{S}]}{[\\ce{M}]}\n\\]\nに従うことを示せ。 3. \\([\\ce{M}]=1.0\\ \\mathrm{mol\\,L^{-1}}\\) とし、\\(([\\ce{S}],\\nu)=(0.002,100),(0.004,100/3)\\) が得られた。\\(C_{\\mathrm{tr}}\\)、\\(\\nu_0\\)、\\([\\ce{S}]=0.006\\ \\mathrm{mol\\,L^{-1}}\\) のときの \\(\\nu\\) を求めよ。\n\n\n\n\n\n\nNote理論4：成長鎖の生成と消滅を釣り合わせる\n\n\n\n\n\n開始剤効率を \\(f\\)、開始剤分解速度定数を \\(k_d\\) とすると、ラジカル生成速度は \\(2fk_d[\\ce{I}]\\) である。二分子停止ではラジカルが一度に2個失われるため、消滅速度も係数2を伴う。この係数を反応速度定数の定義へ吸収する流儀もあるので、採用した定義を式とともに示す。\n\n\n\n\n\n\n\n\n\nTip解答4\n\n\n\n\n\n成長ラジカル濃度を \\([\\ce{P^.}]\\) とする。定常状態近似から\n\\[\n2fk_d[\\ce{I}]-2k_t[\\ce{P^.}]^2=0\n\\]\nしたがって\n\\[\n[\\ce{P^.}]=\\sqrt{\\frac{fk_d[\\ce{I}]}{k_t}}\n\\]\nであり、重合速度は\n\\[\nR_p=k_p[\\ce{M}][\\ce{P^.}]\n=k_p[\\ce{M}]\\sqrt{\\frac{fk_d[\\ce{I}]}{k_t}}\n\\]\nとなる。\n連鎖移動速度を \\(R_{\\mathrm{tr}}=k_{\\mathrm{tr}}[\\ce{S}][\\ce{P^.}]\\) とすれば、生成鎖数に停止と連鎖移動が寄与するので\n\\[\n\\frac{1}{\\nu}\n=\\frac{R_{\\mathrm{chain},0}+R_{\\mathrm{tr}}}{R_p}\n=\\frac{1}{\\nu_0}\n+\\frac{k_{\\mathrm{tr}}}{k_p}\\frac{[\\ce{S}]}{[\\ce{M}]}\n\\]\nである。よって \\(C_{\\mathrm{tr}}=k_{\\mathrm{tr}}/k_p\\) となる。\n2点を Mayo 式へ代入すると\n\\[\n0.01=\\frac1{\\nu_0}+0.002C_{\\mathrm{tr}},\\qquad\n0.03=\\frac1{\\nu_0}+0.004C_{\\mathrm{tr}}\n\\]\nより\n\\[\nC_{\\mathrm{tr}}=10,\\qquad \\frac1{\\nu_0}=-0.01\n\\]\nとなる。しかし \\(1/\\nu_0&lt;0\\) は物理的に不可能であり、与えられた2点は Mayo 式と整合しない。したがって \\([\\ce{S}]=0.006\\) に対する物理的な \\(\\nu\\) は、このデータからは決められない。形式的な外挿では \\(1/\\nu=0.05\\)、すなわち \\(\\nu=20\\) だが、物理的な推定値として採用してはいけない。",
     "crumbs": [
       "Home",
       "Posts",
@@ -840,11 +840,11 @@
     ]
   },
   {
-    "objectID": "posts/univ_lecs/3S/材料反応工学.html#後半戦-昔のやつ",
-    "href": "posts/univ_lecs/3S/材料反応工学.html#後半戦-昔のやつ",
+    "objectID": "posts/univ_lecs/3S/材料反応工学.html#表面への到達と吸着",
+    "href": "posts/univ_lecs/3S/材料反応工学.html#表面への到達と吸着",
     "title": "材料反応工学",
-    "section": "後半戦 (昔のやつ)",
-    "text": "後半戦 (昔のやつ)\n\n不均一反応\n不均一反応の速度表示には次のようなものがある\n\n\n\n\n\n\n\n\n\n記号\n定義\n単位\n意味\n\n\n\n\n\\(r_i\\)\n\\(-\\dfrac{1}{V}\\dfrac{d}{dt}n_i\\)\n\\(\\mathrm{mol \\cdot m^{-3} \\cdot s^{-1}}\\)\n単位時間あたりの体積反応量\n\n\n\\(r_i'\\)\n\\(-\\dfrac{1}{W}\\dfrac{d}{dt}n_i\\)\n\\(\\mathrm{mol \\cdot kg^{-1} \\cdot s^{-1}}\\)\n単位時間あたりの質量反応量\n\n\n\\(r_i''\\)\n\\(-\\dfrac{1}{S}\\dfrac{d}{dt}n_i\\)\n\\(\\mathrm{mol \\cdot m^{-2} \\cdot s^{-1}}\\)\n単位時間あたりの表面反応量\n\n\n\nこれらはすべて互換可能である。\n\\[\nr_i = \\dfrac{W}{V}r_i' = \\dfrac{S}{V}r_i''\n\\]\nここで、 \\(W\\) は質量、 \\(S\\) は表面積、 \\(V\\) は体積である。\n\n\n固液界面における反応\n\n\nコードはこちら\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n# プロファイルのxとy座標を設定\nx_vals = [0.0, 0.2, 0.4, 0.41, 0.6]\ny_vals = [1.0, 1.0, 0.6, 0.0, 0.0]  # Solid内部でC_A2=0\n\nx_vals1 = x_vals[:3]\ny_vals1 = y_vals[:3]\nx_vals2 = x_vals[2:4]\ny_vals2 = y_vals[2:4]\nx_vals3 = x_vals[3:]\ny_vals3 = y_vals[3:]\n\n# グローエフェクト設定\nn_lines = 10\ndiff_linewidth = 1.05\nalpha_value = 0.05\nneon_blue = '#00f0ff'\n\n# 図と軸のセットアップ\nfig, ax = plt.subplots(figsize=(6, 3))\nfig.patch.set_facecolor('#0f0f23')  # 背景\nax.set_facecolor('#1a1a2e')         # プロットエリア背景\n\n# グロー部分\nfor n in range(1, n_lines + 1):\n    lw = 2 + (diff_linewidth * n)\n    ax.plot(x_vals1, y_vals1, color=neon_blue, linewidth=lw, alpha=alpha_value, zorder=1)\n    ax.plot(x_vals2, y_vals2, color=neon_blue, linewidth=lw, alpha=alpha_value, zorder=1)\n    ax.plot(x_vals3, y_vals3, color=neon_blue, linewidth=lw, alpha=alpha_value, zorder=1)\n\n# メイン線\nax.plot(x_vals1, y_vals1, color=neon_blue, linewidth=2.5, zorder=2)\nax.plot(x_vals2, y_vals2, color=neon_blue, linewidth=2.5, zorder=2)\nax.plot(x_vals3, y_vals3, color=neon_blue, linewidth=2.5, zorder=2)\n\n# ラベル類\nlabel_color = '#39ff14'\nax.text(0.2, 1.05, r'$C_{A\\ell}$', fontsize=12, color=label_color)\nax.text(0.4, 0.62, r'$C_{AS}$', fontsize=12, color=label_color)\nax.text(0.42, 0.02, r'$C_{A2}=0$', fontsize=12, color=label_color)\nax.text(0.05, 1.05, 'Main body\\nof liquid', fontsize=10, color='#ff00ff')\nax.text(0.25, 0.9, 'Liquid film', fontsize=10, color='#ff00ff')\nax.text(0.45, 0.9, 'Solid', fontsize=10, color='#ff00ff')\n\n# Δx の矢印とラベル\nax.annotate('', xy=(0.2, 0.1), xytext=(0.4, 0.1),\n            arrowprops=dict(arrowstyle='&lt;-&gt;', color='#ff4500', linewidth=2))\nax.text(0.3, 0.12, r'$\\Delta x$', ha='center', fontsize=12, color='#ff4500')\n\n# 縦線（界面と固体開始点）\nax.axvline(x=0.2, color='#8888ff', linewidth=1, linestyle='--')\nax.axvline(x=0.4, color='#8888ff', linewidth=1, linestyle='--')\n\n# 軸非表示と範囲調整\nax.axis('off')\nax.set_xlim(0, 0.7)\nax.set_ylim(-0.1, 1.2)\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\n\nこのグラフで考える。縦軸は濃度で、横軸は位置である。\nInterfaceの部分では、Fickの法則による拡散が起きている。\n\\[\nr_i = -D\\frac{dC}{dx} = -D\\frac{C_{AS}-C_{AE}}{\\Delta x} = - k_{\\text{diff}}(C_{AS}-C_{AE})\n\\]\n次に、固体表面では、化学反応が起きている。定常状態なので、反応速度は等しいから、\n\\[\nr_i = k_{\\text{rxn}}C_{AS}\n\\]\nこれで、見なしの速度定数 \\(k\\) が \\(r_i = kC_{AE}\\) と定義されるので、\n\\[\n\\frac{1}{k} = \\frac{1}{k_{\\text{rxn}}} + \\frac{1}{k_{\\text{diff}}}\n\\]\nとなる。この式ってのは、どちらが律速になるのかというのを判断するのにかなり有効である。\nこのモデルでは固体内での拡散は考えていない。固体の中での濃度分布というのは、のちに語るThieleモジュールとか、Weisz-Prater基準とか (Section 1.3.9) って話題と関連がある。\n\n\n触媒反応(Langmuir-Hinshelwood)\n触媒（固体）表面上で起こる流体反応には、以下のような一連のステップがあり、最も遅いステップが律速段階（律速ステップ）となる。\n\n流体バルク中から固体外表面への移動（バルク拡散）\n外表面から細孔内表面までの孔内拡散\n反応物の固体表面への吸着\n固体表面上での化学反応\n生成物の表面からの脱着\n孔内から外表面への拡散（生成物の孔内拡散）\nバルクへの生成物輸送（バルク拡散）\n\nLangmuir-Hinshelwood式は3→5の部分をモデル化している。表面被覆率を \\(\\theta\\) とすると、3の部分からして、\n\\[\nr_{\\text{ads}} = k_{\\text{ads}}(1-\\theta)p\n\\]\nとなる。ここで、\\(p\\) は反応物の圧力である。これに合わせて、5の部分は\n\\[\nr_{\\text{des}} = k_{\\text{des}}\\theta\n\\]\nとなる。並行状態なので、\n\\[\nr = r_{\\text{ads}} = r_{\\text{des}}\n\\]\nとなる。これを解くと、\n\\[\n\\theta = \\frac{k_{\\text{ads}}p}{k_{\\text{des}} + k_{\\text{ads}}p}\n\\]\nとなる。ここで吸着平衡定数 \\(K_{\\text{ads}} = k_{\\text{ads}}/k_{\\text{des}}\\) を用いると、\n\\[\n\\theta = \\frac{K_{\\text{ads}}p}{1 + K_{\\text{ads}}p}\n\\]\nとなる。以下にグラフ化するが、\\(p\\) の代わりに濃度も同じことができる。\n\n\nコードはこちら\nimport plotly.graph_objects as go\nimport numpy as np\n\n# 濃度範囲\nC = np.linspace(0, 10, 200)\nK_values = [0.5, 1.0, 2.0]\ncolors = ['orange', 'tomato', 'crimson']\n\n# Langmuir吸着等温線（θ）\nfig_theta = go.Figure()\nfor K, color in zip(K_values, colors):\n    theta = (K * C) / (1 + K * C)\n    fig_theta.add_trace(go.Scatter(x=C, y=theta, mode='lines',\n                                   name=f'K = {K}', line=dict(color=color)))\nfig_theta.update_layout(title='Langmuir吸着等温線（被覆率 θ）',\n                        xaxis_title='濃度 C',\n                        yaxis_title='被覆率 θ',\n                        template='plotly_dark')\n\nfig_theta.show()\n\n\n                            \n                                            \n\n\n飽和吸着量を \\(q_m\\) とすると、\n\\[\n\\theta = \\frac{q}{q_m}\n\\]\nとなる。これを代入すると、\n\\[\n\\begin{aligned}\nq &= \\frac{K_{\\text{ads}}p}{1 + K_{\\text{ads}}p}q_m \\\\\n\\frac{1}{q} &= \\frac{1}{q_m} + \\frac{1}{K_{\\text{ads}}q_m} \\frac{1}{p}\n\\end{aligned}\n\\]\nとなる。これをLangmuirプロットと呼ばれる。\n\n\n解離吸着の場合のLangmuir-Hinshelwood式\n解離吸着の場合のLangmuir-Hinshelwood式は、次のように導出される。\n\\[\nr_{\\text{ads}} = k_{\\text{ads}}(1-\\theta)^2p\n\\]\nとなる。空いてる穴が二つ必要だから、２乗されている。ここで、\\(p\\) は反応物の圧力である。これに合わせて、5の部分は\n\\[\nr_{\\text{des}} = k_{\\text{des}}\\theta^2\n\\]\nとなる。これも同様に、塞がっている穴二つ必要だから、２乗されている。並行状態なので、\n\\[\nr = r_{\\text{ads}} = r_{\\text{des}}\n\\]\nとなる。これを解くと、\n\\[\n\\theta = \\frac{\\sqrt{k_{\\text{ads}}p}}{\\sqrt{k_{\\text{des}}} + \\sqrt{k_{\\text{ads}}p}} = \\frac{\\sqrt{{Kp}}}{\\sqrt{Kp} + 1}\n\\]\nとなる。\n\\[\n\\begin{aligned}\nK &= \\frac{k_{\\text{ads}}}{k_{\\text{des}}} \\\\\n&= \\frac{\\theta^2}{(1-\\theta)^2p}\n\\end{aligned}\n\\]\nっていうのが導出の仕方だけど、質量作用の法則を考えれば、\n\\[\nK = \\frac{[\\ce{AS}]^2}{[\\ce{A2}][\\ce{S}]^2}\n\\]\nとなる。ここで、 \\([\\ce{AS}]\\) は \\(\\theta\\) に比例して、 \\([\\ce{S}]\\) は \\(1-\\theta\\) に比例する。だから、\n\\[\nK = \\frac{\\theta^2}{(1-\\theta)^2p}\n\\]\nとなるという導き方が簡単だ。……導出過程で色々スキップはしてしまってるので解答では使わないように。\n\n\n２分子吸着の場合のLangmuir-Hinshelwood式\n\\[\n\\begin{aligned}\nr_{\\rm ads,A} &= k_{\\rm ads,A}\\,(1 - \\theta_A - \\theta_B)\\,p_A,\\\\\nr_{\\rm des,A} &= k_{\\rm des,A}\\,\\theta_A,\\\\\nr_{\\rm ads,B} &= k_{\\rm ads,B}\\,(1 - \\theta_A - \\theta_B)\\,p_B,\\\\\nr_{\\rm des,B} &= k_{\\rm des,B}\\,\\theta_B.\n\\end{aligned}\n\\]\nとなる。定常状態なので、\n\\[\n\\begin{aligned}\nr_{\\rm ads,A} &= r_{\\rm des,A} \\\\\nr_{\\rm ads,B} &= r_{\\rm des,B}\n\\end{aligned}\n\\]\nとなる。これを解くと、\n\\[\n\\begin{aligned}\n\\theta_A &= \\frac{K_A\\,p_A}{\\,1 + K_A\\,p_A + K_B\\,p_B\\,} \\\\\n\\theta_B &= \\frac{K_B\\,p_B}{\\,1 + K_A\\,p_A + K_B\\,p_B\\,}\n\\end{aligned}\n\\]\nとなる。\nこれについても、質量作用の法則で\n\\[\nK = \\frac{[\\ce{AS}]}{[\\ce{A}][\\ce{S}]}\n\\]\nとなる。ここで、 \\([\\ce{AS}]\\) は \\(\\theta_A\\) に比例して、 \\([\\ce{A}]\\) と \\([\\ce{S}]\\) は \\(1-\\theta_A-\\theta_B\\) に比例する。だから、\n\\[\nK_A = \\frac{\\theta_A}{(1-\\theta_A-\\theta_B)p_A}\n\\]\nとできるが……。まあ、式の確認に使おう。\n\n\n吸着エンタルピー\n\\[\nK = \\frac{\\theta}{(1 - \\theta)p}\n\\]\nとなる。ここで、対数をとって、\n\\[\n\\ln K = \\ln \\theta - \\ln (1 - \\theta) - \\ln p\n\\]\nとなる。これを \\(\\theta\\) 固定すると、\n\\[\n\\pdv{\\ln K}{T} + \\pdv{\\ln p}{T} = 0\n\\]\nとなる。ここで \\[\nK = \\exp \\qty(\\frac{-\\Delta G}{RT}) = \\exp \\qty(-\\frac{\\Delta H_{\\text{ads}}-T\\Delta S_{\\text{ads}}}{RT})\n\\]\nを代入すると、\n\\[\n\\begin{aligned}\n\\ln K &= -\\frac{\\Delta H_{\\text{ads}}}{RT} + \\frac{\\Delta S_{\\text{ads}}}{R} \\\\\n\\pdv{\\ln K}{T} &= \\frac{\\Delta H_{\\text{ads}}}{RT^2} \\\\\n\\pdv{\\ln p}{T} &= -\\frac{\\Delta H_{\\text{ads}}}{RT^2} \\\\\n\\pdv{\\ln p}{(1/T)} &= \\frac{\\Delta H_{\\text{ads}}}{R}\n\\end{aligned}\n\\]\nとなる。これによって、ある温度において被覆率が一定になるような圧力を実験的に求め、プロットすることによって、吸着エンタルピーを求めることができる。\n\n\nWigner-Polanyiの関係式\nここでは表面からの 脱離 について考えている。あと、講義資料と違って、1molあたりのエネルギーで考えているので、 \\(k_B\\) ではなく、\\(R\\) を使っている。\nとりあえず式としての形は\n\\[\n\\begin{aligned}\nr_{\\text{des}} &= - \\dv{\\theta}{t} = k \\theta^n \\\\\n&= \\nu_n \\theta^n \\exp \\qty(-\\frac{E_n}{RT})\n\\end{aligned}\n\\]\nとなる。ここで、\\(k\\) は速度定数で、\\(n\\) は反応次数で、\\(\\nu_n\\) は頻度因子である。\nこれの導出については、とりあえず質量作用の法則に従った形だということは覚えておけばいいのだが、 \\(\\nu_n\\) などについての詳しいことは、TSTなどの話に任せた方が良さそう。はっきり言って、講義内の資料で理解するのは不可能と思われる。\n\n\nTPDデータ\nTPDは、Temperature Programmed Desorptionの略で、温度を変化させることによって、吸着している分子が脱離する過程を観察する手法である。\nここでは、TPDデータによるRedhead法について話す。\n温度を一定速度 \\(\\beta=dT/dt\\) で上げるとき、\n\\[\nT(t) = T_0 + \\beta\\,t\n\\quad\\Longrightarrow\\quad\n\\frac{d\\theta}{dt}\n= \\beta\\,\\frac{d\\theta}{dT}\n\\]\n脱離速度 \\(r_{\\rm des}(T)\\) が最大をとる温度 \\(T_{\\rm max}\\) は\n\\[\n\\frac{d}{dT}\\bigl[r_{\\rm des}(T)\\bigr]_{T=T_{\\rm max}} = 0\n\\]\nでもとまる。\n$$\n\\[\\begin{aligned}\n-\\beta \\dv{\\theta}{T} &= \\nu \\theta \\exp\\!\\Bigl(-\\frac{E_{\\rm des}}{R\\,T}\\Bigr) \\\\\n\\dv{r_{\\rm des}}{T} &= \\dv{}{T} \\dv{\\theta}{t} = \\dv{}{T} \\beta \\dv{\\theta}{T} = \\beta \\dv[2]{\\theta}{T} \\\\\n\\beta \\dv[2]{\\theta}{T} &= -\\nu \\dv{\\theta}{T} \\exp\\!\\Bigl(-\\frac{E_{\\rm des}}{R\\,T}\\Bigr) - \\nu \\theta \\exp\\!\\Bigl(-\\frac{E_{\\rm des}}{R\\,T}\\Bigr) \\frac{E_{\\rm des}}{R\\,T^2} = 0 \\\\\n0 &= \\dv{\\theta}{T} + \\frac{E_{\\rm des}}{R\\,T^2}\\theta \\\\\n&=-\\frac{\\nu}{\\beta} \\theta \\exp\\!\\Bigl(-\\frac{E_{\\rm des}}{R\\,T}\\Bigr) + \\frac{E_{\\rm des}}{R\\,T^2}\\theta \\\\\n\\frac{E_{\\rm des}}{R\\,T^2}&= \\frac{\\nu}{\\beta}\\exp\\!\\Bigl(-\\frac{E_{\\rm des}}{R\\,T}\\Bigr) \\\\\n\n\\end{aligned}\\]\n$$\n対数を取るとと以下の関係が得られる：\n\\[\n2\\ln T_{\\rm max} - \\ln \\beta = \\ln \\frac{E_{\\rm des}}{R \\nu} + \\frac{E_{\\rm des}}{R\\,T_{\\rm max}}\n\\tag{★}\n\\]\n\n\nThieleモジュール\n触媒が多孔質構造を持つとき、反応物は細孔内に拡散してから反応する。この時の触媒内部の反応物濃度を定量的に解析する。\n細孔内の濃度について考える。\n\n\nコードはこちら\nimport plotly.graph_objects as go\nimport numpy as np\n\n# x 軸（相対距離）\nx = np.linspace(0, 1, 200)\n\n# スライダーに使う mL 値のリスト\nmL_values = np.linspace(0.1, 10, 100)\n\n# 初期値\nmL_init = 2\nC_init = np.exp(-mL_init * x)\nC_avg_init = np.trapezoid(C_init, x)\n\n# フィギュア作成\nfig = go.Figure(\n    data=[\n        go.Scatter(x=x, y=C_init, mode='lines', name='Concentration Profile', line=dict(color='deepskyblue', width=3)),\n        go.Scatter(x=[0, 1], y=[C_avg_init, C_avg_init], mode='lines', name='Average', line=dict(color='deepskyblue', dash='dash'))\n    ],\n    layout=go.Layout(\n        title='Concentration Profile in Catalyst Pore (Interactive mL)',\n        xaxis_title='x / L',\n        yaxis_title='C_A / C_AS',\n        template='plotly_white',\n        updatemenus=[{\n            \"type\": \"buttons\",\n            \"buttons\": [\n                {\"label\": \"Play\", \"method\": \"animate\", \"args\": [None, {\"frame\": {\"duration\": 50, \"redraw\": True}, \"fromcurrent\": True}]},\n                {\"label\": \"Pause\", \"method\": \"animate\", \"args\": [[None], {\"frame\": {\"duration\": 0, \"redraw\": False}, \"mode\": \"immediate\"}]}\n            ]\n        }],\n        sliders=[{\n            \"steps\": [{\n                \"args\": [[f\"{mL:.2f}\"], {\"frame\": {\"duration\": 0, \"redraw\": True}, \"mode\": \"immediate\"}],\n                \"label\": f\"{mL:.2f}\",\n                \"method\": \"animate\"\n            } for mL in mL_values],\n            \"currentvalue\": {\"prefix\": \"mL = \"},\n            \"pad\": {\"t\": 50}\n        }]\n    )\n)\n\n# フレームの追加\nfig.frames = [\n    go.Frame(\n        data=[\n            go.Scatter(x=x, y=np.exp(-mL * x)),\n            go.Scatter(x=[0, 1], y=[np.trapezoid(np.exp(-mL * x), x)] * 2)\n        ],\n        name=f\"{mL:.2f}\"\n    ) for mL in mL_values\n]\n\nfig.show()\n\n\n                            \n                                            \n\n\nここで、微細な部分 \\(\\Delta x\\) を考える。この部分では、\n\\[\n\\dv{N_A}{t}_{\\text{in}} - \\dv{N_A}{t}_{\\text{out}} = \\dv{N_A}{t}_{\\text{rxn}}\n\\]\nとなる。ここで、左辺はフィックの拡散、右辺は表面における反応速度で、それぞれを式にして表すと次の通り。ただし単位は、単位長さあたりの変化率であることに注意。\n\\[\n\\dv{N_A}{t}_{\\text{in}} = -D \\pi r^2 \\frac{\\Delta C_A}{\\Delta x}\n\\]\n\\[\n\\dv{N_A}{t}_{\\text{out}} = -D \\pi r^2 \\frac{\\Delta C_A'}{\\Delta x}\n\\]\n\\[\n\\dv{N_A}{t}_{\\text{rxn}} = - \\frac{1}{S} \\dv{N_A}{t} \\times 2\\pi r \\Delta x = - k'' C_A \\times 2\\pi r \\Delta x\n\\]\nこれらを代入すると、\n\\[\n\\begin{aligned}\n- (D \\pi r^2 \\frac{\\Delta C_A}{\\Delta x} - D \\pi r^2 \\frac{\\Delta C_A'}{\\Delta x} ) &= - k'' C_A \\times 2\\pi r \\Delta x \\\\\nD \\dv[2]{C_A}{x} &= k''' C_A\n\\end{aligned}\n\\]\nとなる。ここで反応速度定数は表面積ベースから体積ベースに変換した。これをこのままだと扱いにくいというか、個別個別で全部やるのが面倒くさいので、無次元化する。\n\\[\n\\begin{aligned}\nC &= \\frac{C_A}{C_{AS}} \\\\\n\\chi &= \\frac{x}{L}\n\\end{aligned}\n\\]\nとすると、\n\\[\n\\begin{aligned}\n\\dv[2]{C}{\\chi} &= L^2\\frac{k'''}{D} C = M_T^2 C\n\\end{aligned}\n\\]\nとなる。ここで、\\(M_T\\) はThieleモジュールと呼ばれる。\n\\[\nM_T = L \\sqrt{\\frac{k'''}{D}}\n\\]\nこの微分方程式を解いて図解したのが上の図。具体的な \\(k'''\\) の中身については追いかけるのが面倒なので放置するが、その大きさによって律速がどっちなのかがわかる。\n\n\n\n\\(M_T\\)\n律速\n\n\n\n\n\\(\\gg 1\\)\n拡散律速\n\n\n\\(\\ll 1\\)\n反応律速\n\n\n\n次に、先ほどの微分方程式の解は、\n\\[\nC = \\frac{\\cosh M_T(1 - \\chi)}{\\cosh M_T}\n\\]\nとなる。で、この平均というのは\n\\[\n\\int_0^1 C \\dd{\\chi} = \\frac{\\tanh M_T}{M_T} = \\mathscr{E}\n\\]\nとなって、これを有効性係数と呼んでいる。つまり、これが高ければ高いほど、反応率は高いというわけだ。これを式にまとめると、\n\\[\n-r_A = k''' C_{AS} \\mathscr{E}\n\\]\nとなる。\n\n\nコードはこちら\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# Thieleモジュールの範囲\nM_T = np.linspace(0.1, 100, 300)\n\n# 有効性係数 ε = tanh(M_T)/M_T\nepsilon = np.tanh(M_T) / M_T\n\n# プロット\nfig, ax = plt.subplots(figsize=(7, 4))\nax.plot(M_T, epsilon, label=r'$\\varepsilon = \\tanh(M_T)/M_T$', color='cyan')\n\n# 理想直線 ε = 1/M_T（拡散律速時の漸近直線）\nax.plot(M_T, 1 / M_T, '--', color='orange', label=r'$\\varepsilon = 1/M_T$ (asymptotic)')\n\n# 軸設定\nax.set_xscale('log')\nax.set_yscale('log')\nax.set_xlabel(r'Thiele modulus $M_T$', fontsize=12)\nax.set_ylabel(r'Effectiveness factor $\\varepsilon$', fontsize=12)\nax.set_title('Effectiveness Factor vs Thiele Modulus', fontsize=14)\nax.grid(True, which=\"both\", ls=\"--\", linewidth=0.5)\nax.legend()\n\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\n\nここで、\n\\[\nM_W = M_T^2 \\mathscr{E} = \\frac{L^2(-r_A)}{C_{AS} \\mathscr{D}}\n\\]\nというWeiszモジュールを導入する。これは分母が拡散速度のフィックの法則の式になっていて、分子が反応速度になっている。つまり、この式を見ることによって、拡散律速かどうかの実験チェックができる。\nなぜこの式を使うかというと、この式の右辺は実験のみで計測が可能なところ。これによって \\(M_T\\) の評価なども可能である。",
+    "section": "表面への到達と吸着",
+    "text": "表面への到達と吸着\n\n問題5 表面原子数と単分子層形成時間\n面心立方格子をもつ Pt の格子定数を \\(a=0.40\\ \\mathrm{nm}\\) とする。\n\nPt(100) 面の表面原子密度を \\(\\mathrm{cm^{-2}}\\) で求めよ。\n圧力 \\(p=1.33\\times10^{-4}\\ \\mathrm{Pa}\\)、温度 \\(T=300\\ \\mathrm{K}\\) の分子気体を導入する。分子量を28、付着確率を1として、Hertz–Knudsen式から単分子層を形成する時間を求めよ。\n\n\n\n\n\n\n\nNote理論5：面の原子数を数え、気体の到達流束で割る\n\n\n\n\n\nFCC(100) 面の表面単位胞には、四隅の原子 \\(4\\times1/4\\) と面心原子1個の計2個が含まれる。気体分子の一方向流束は\n\\[\nZ=\\frac{p}{\\sqrt{2\\pi m k_BT}}\n\\]\nである。\\(m\\) は分子1個の質量であり、分子量に原子質量単位 \\(m_u\\) を掛ける。\n\n\n\n\n\n\n\n\n\nTip解答5\n\n\n\n\n\n\\[\nN_s=\\frac{2}{a^2}\n=\\frac{2}{(0.40\\times10^{-7}\\ \\mathrm{cm})^2}\n=1.25\\times10^{15}\\ \\mathrm{cm^{-2}}\n\\]\nである。分子質量は\n\\[\nm=28\\times1.6605\\times10^{-27}\n=4.65\\times10^{-26}\\ \\mathrm{kg}\n\\]\nなので、\n\\[\nZ=\\frac{1.33\\times10^{-4}}\n{\\sqrt{2\\pi(4.65\\times10^{-26})(1.3806\\times10^{-23})(300)}}\n=3.58\\times10^{14}\\ \\mathrm{cm^{-2}s^{-1}}\n\\]\nとなる。よって単分子層形成時間は\n\\[\nt=\\frac{N_s}{Z}=3.50\\ \\mathrm{s}\n\\]\nであり、数秒で表面全体へ分子が到達する。\n\n\n\n\n\n問題6 競争吸着の Langmuir 等温式\n2種類の分子 \\(\\ce{A},\\ce{B}\\) が同じ種類の吸着サイトへ競争吸着する。各吸着は非解離吸着で、吸着種間相互作用は無視できるとする。被覆率 \\(\\theta_A,\\theta_B\\) を導け。また、\\(K_Ap_A\\) を増加させたとき、\\(K_Bp_B\\) の大きさが \\(\\theta_A\\) に与える影響を説明せよ。\n\n\n\n\n\n\nNote理論6：全サイトの帳簿を閉じる\n\n\n\n\n\n空席率は \\(1-\\theta_A-\\theta_B\\) である。吸着速度と脱離速度を等置し、最後にサイト保存則を使えばよい。問題2の Langmuir–Hinshelwood 式は、この被覆率を表面反応速度へ代入したものである。\n\n\n\n\n\n\n\n\n\nTip解答6\n\n\n\n\n\n平衡条件は\n\\[\nk_{a,A}p_A(1-\\theta_A-\\theta_B)=k_{d,A}\\theta_A\n\\]\n\\[\nk_{a,B}p_B(1-\\theta_A-\\theta_B)=k_{d,B}\\theta_B\n\\]\nである。\\(K_i=k_{a,i}/k_{d,i}\\) と置けば\n\\[\n\\boxed{\\theta_A=\\frac{K_Ap_A}{1+K_Ap_A+K_Bp_B}},\\qquad\n\\boxed{\\theta_B=\\frac{K_Bp_B}{1+K_Ap_A+K_Bp_B}}\n\\]\nとなる。\\(K_Bp_B\\) が大きいほど \\(\\ce{B}\\) がサイトを占有するため、同じ \\(K_Ap_A\\) に対する \\(\\theta_A\\) は小さくなる。\n\n\n\n\n\n問題7 昇温脱離スペクトル\nWigner–Polanyi 型脱離速度式\n\\[\nr_{\\mathrm{des}}=-\\dv{\\theta}{t}\n=\\nu_n\\theta^n\\exp\\qty(-\\frac{E_{\\mathrm{des}}}{RT})\n\\]\nに従い、一定昇温速度 \\(\\beta=\\dv{T}{t}\\) で加熱する。\n\n0次脱離では、脱離速度が温度とともに増加した後、突然0になる理由を説明せよ。\n1次脱離では山形のピークが現れる理由を、\\(\\theta\\) と指数因子の温度依存性から説明せよ。\n\n\n\n\n\n\n\nNote理論7：温度は速度を上げ、脱離は在庫を減らす\n\n\n\n\n\nArrhenius因子は昇温とともに増える。一方、脱離が進むほど被覆率は減る。反応次数により、速度が被覆率へ依存するかどうかが異なる。\n\n\n\n\n\n\n\n\n\nTip解答7\n\n\n\n\n\n0次では\n\\[\nr_{\\mathrm{des}}=\\nu_0\\exp\\qty(-\\frac{E_{\\mathrm{des}}}{RT})\n\\]\nであり、\\(\\theta&gt;0\\) の間は被覆率に依存せず温度とともに増加する。しかし吸着種を使い切って \\(\\theta=0\\) になると、それ以上脱離できないため速度は突然0になる。\n1次では\n\\[\nr_{\\mathrm{des}}=\\nu_1\\theta\n\\exp\\qty(-\\frac{E_{\\mathrm{des}}}{RT})\n\\]\nである。低温側では指数因子の増加が支配して速度が上がるが、高温側では脱離による \\(\\theta\\) の減少が支配して速度が下がる。その競合によりピークが生じる。\n\n\n\n\n\n問題8 被覆率に依存する吸着と負の見かけ活性化エネルギー\n\n反応物が発熱的に吸着した後、表面反応を経て生成物になる。温度上昇に伴って総括反応速度が低下しうる理由を、見かけの活性化エネルギーに着目して説明せよ。\nRoginsky–Zeldovich 型の吸着・脱離速度\n\n\\[\nv_a=k_ap\\exp(-\\alpha\\theta),\\qquad\nv_d=k_d\\exp(\\beta\\theta)\n\\]\nが平衡にあるとき、被覆率 \\(\\theta\\) を求めよ。ただし \\(\\alpha,\\beta\\) は定数とする。\n\n\n\n\n\n\nNote理論8：温度上昇が吸着量を減らすことがある\n\n\n\n\n\n表面反応そのものは温度上昇で速くなっても、発熱吸着の平衡定数は温度上昇で小さくなる。速度が「表面反応速度定数×被覆率」で決まる場合、被覆率低下の効果が勝てば総括速度は低下する。\n\n\n\n\n\n\n\n\n\nTip解答8\n\n\n\n\n\n吸着平衡を経て表面反応する場合、模式的に\n\\[\nr\\propto K_AK_Bk_s p_Ap_B\n\\]\nである。\\(K_i\\propto\\exp(-\\Delta H_{\\mathrm{ads},i}/RT)\\)、\\(k_s\\propto\\exp(-E_s/RT)\\) と書けば、見かけの活性化エネルギーは\n\\[\nE_{\\mathrm{app}}=E_s+\\Delta H_{\\mathrm{ads},A}\n+\\Delta H_{\\mathrm{ads},B}\n\\]\nとなる。吸着は発熱的なので \\(\\Delta H_{\\mathrm{ads},i}&lt;0\\) であり、その絶対値の和が \\(E_s\\) より大きければ \\(E_{\\mathrm{app}}&lt;0\\) となる。このとき温度上昇で被覆率が大きく減り、総括速度は低下する。\n平衡条件 \\(v_a=v_d\\) から\n\\[\nk_ap\\exp(-\\alpha\\theta)=k_d\\exp(\\beta\\theta)\n\\]\nしたがって\n\\[\n\\boxed{\\theta=\\frac{1}{\\alpha+\\beta}\n\\ln\\qty(\\frac{k_a}{k_d}p)}\n\\]",
     "crumbs": [
       "Home",
       "Posts",
@@ -854,11 +854,11 @@
     ]
   },
   {
-    "objectID": "posts/univ_lecs/3S/材料反応工学.html#後半戦今のやつ",
-    "href": "posts/univ_lecs/3S/材料反応工学.html#後半戦今のやつ",
+    "objectID": "posts/univ_lecs/3S/材料反応工学.html#表面反応と物質移動",
+    "href": "posts/univ_lecs/3S/材料反応工学.html#表面反応と物質移動",
     "title": "材料反応工学",
-    "section": "後半戦(今のやつ)",
-    "text": "後半戦(今のやつ)\n\n速度分布関数\n速度分布関数は以下の通り。\n\\[\nf(v_x) = \\qty(\\frac{m}{2\\pi k_B T})^{1/2} \\exp \\qty(-\\frac{m}{2k_B T} v_x^2)\n\\]\nこれを用いて、速度の平均値は以下の通り。\n\\[\n\\begin{aligned}\n\\bar{v}_x &= \\int_0^\\infty v_x f(v_x) \\dd{v_x} \\\\\n&= \\qty(\\frac{m}{2\\pi k_B T})^{1/2} \\int_0^\\infty v_x \\exp \\qty(-\\frac{m}{2k_B T} v_x^2) \\dd{v_x} \\\\\n&= \\qty(\\frac{m}{2\\pi k_B T})^{1/2} \\frac{k_B T}{m} \\\\\n&= \\sqrt{\\frac{k_B T}{2\\pi m}}\n\\end{aligned}\n\\]\nこれらを３次元に拡張すると、\n\\[\n\\begin{aligned}\nf(v_x, v_y, v_z)\\dd{v_x}\\dd{v_y}\\dd{v_z} &= \\qty(\\frac{m}{2\\pi k_B T})^{3/2} \\exp \\qty(-\\frac{m}{2k_B T} (v_x^2 + v_y^2 + v_z^2)) \\dd{v_x}\\dd{v_y}\\dd{v_z} \\\\\n&= \\qty(\\frac{m}{2\\pi k_B T})^{3/2} \\exp \\qty(-\\frac{m}{2k_B T} v^2) \\dd{v_x}\\dd{v_y}\\dd{v_z} \\\\\n&= \\qty(\\frac{m}{2\\pi k_B T})^{3/2} 4\\pi v^2 \\exp \\qty(-\\frac{m}{2k_B T} v^2) \\dd{v}\n\\end{aligned}\n\\]\nとなる。ここで重要なのは、速度分布の変換で\n\\[\n\\begin{aligned}\n\\dd{v_x}\\dd{v_y}\\dd{v_z} &= v^2 \\sin \\theta \\dd{v} \\dd{\\theta} \\dd{\\phi} \\\\\nf(v)\\dd{v} &= \\int_0^{2\\pi} \\int_0^\\pi \\int_0^\\infty f(v_x, v_y, v_z) v^2 \\sin \\theta \\dd{v} \\dd{\\theta} \\dd{\\phi} \\\\\n&= 4\\pi v^2 f(v_x, v_y, v_z) \\dd{v}\n\\end{aligned}\n\\]\nとなること。座標変換を挟んでいるので注意。これを用いて、速度の平均値は以下の通り。\n\\[\n\\begin{aligned}\n\\bar{v}_x &= \\int_0^\\infty v f(v) \\dd{v} \\\\\n&= \\int_0^\\infty v \\qty(\\frac{m}{2\\pi k_B T})^{3/2} 4\\pi v^2 \\exp \\qty(-\\frac{m}{2k_B T} v^2) \\dd{v} \\\\\n&= \\qty(\\frac{m}{2\\pi k_B T})^{3/2} 4\\pi \\int_0^\\infty v^3 \\exp \\qty(-\\frac{m}{2k_B T} v^2) \\dd{v} \\\\\n&= \\qty(\\frac{m}{2\\pi k_B T})^{3/2} 4\\pi \\frac{1}{2} \\sqrt{\\frac{2k_B T}{m}} \\\\\n&= \\sqrt{\\frac{8k_B T}{\\pi m}} = 4 \\bar{v}_x\n\\end{aligned}\n\\]\nとなる。これは、速度の平均値が \\(4\\) 倍になっている。3倍になっていないのは、速度分布ってのには大きさだけじゃなく、向きというものも含まれるから。\n矢印をランダムに空間内に並べると考えてみて欲しい。\n矢印の \\(x\\) 成分だけ測るなら、向きで半分は捨てるし、投影は短くなる。この“取りこぼし”と“大きさの重みづけ”のサヤ合わせが、“ただ３倍”ではなく“ちょうど４倍”を生んでいる。\n逆に、 \\(x\\) 方向だけ矢印の長さを測るなら、そもそも折り畳まれた状態での測定になるから、元に戻すと \\(4\\) 倍になる。\n\n\nHertz-Knudsen式\nここで、Hertz-Knudsen式を導出する。気体の数密度を \\(N\\) とすると、\n\\[\nz = \\bar{v}_x N\n\\]\nここで、気体方程式を使うと\n\\[\nN = \\frac{N_An}{V} = \\frac{p}{k_B T}\n\\]\nとなる。これを代入すると、\n\\[\nz = \\bar{v}_x \\frac{p}{k_B T} = \\frac{p}{\\sqrt{2\\pi m k_B T}}\n\\]",
+    "section": "表面反応と物質移動",
+    "text": "表面反応と物質移動\n\n問題9 炭素粒子の燃焼と律速段階\n直径 \\(1.0\\ \\mathrm{cm}\\) の炭素球を、\\(800\\ ^\\circ\\mathrm{C}\\)、\\(1.0\\times10^5\\ \\mathrm{Pa}\\) の静止空気中に置く。酸素モル分率は0.21、酸素分子が表面へ衝突したとき反応する確率は \\(5.0\\times10^{-2}\\)、酸素の拡散係数は \\(D=2.0\\times10^{-5}\\ \\mathrm{m^2s^{-1}}\\) とする。\\(R=8.314\\ \\mathrm{J\\,mol^{-1}K^{-1}}\\)、\\(M_{\\ce{O2}}=0.032\\ \\mathrm{kg\\,mol^{-1}}\\) を用いよ。\n\n衝突流束から表面反応速度定数 \\(k_s\\) を求めよ。\n外部物質移動係数と比較し、表面反応律速か拡散律速か判定せよ。\n初期の \\(\\ce{CO2}\\) 生成速度を求めよ。\n酸素濃度を21%から30%へ増やしたときの生成速度を求めよ。\n粒子周りに流れを与えたとき、生成速度がどう変わるか説明せよ。\n\n\n\n\n\n\n\nNote理論9：直列抵抗として表面と拡散を比べる\n\n\n\n\n\n酸素のモル衝突流束は\n\\[\nZ=\\frac{p_{\\ce{O2}}}{\\sqrt{2\\pi M_{\\ce{O2}}RT}}\n\\]\nである。反応確率を \\(s\\) とすれば反応流束は \\(sZ=k_sc_s\\)。静止流体中の孤立球への定常拡散では \\(k_m=D/r\\) であり、総括係数は\n\\[\n\\frac1K=\\frac1{k_m}+\\frac1{k_s}\n\\]\nとなる。\n\n\n\n\n\n\n\n\n\nTip解答9\n\n\n\n\n\n\\(T=1073.15\\ \\mathrm{K}\\)、半径 \\(r=5.0\\times10^{-3}\\ \\mathrm{m}\\) である。衝突流束を \\(c=p/(RT)\\) で割ると\n\\[\nk_s=s\\sqrt{\\frac{RT}{2\\pi M}}\n=0.05\\sqrt{\\frac{8.314\\times1073.15}{2\\pi\\times0.032}}\n=10.5\\ \\mathrm{m\\,s^{-1}}\n\\]\nとなる。一方、\n\\[\nk_m=\\frac{D}{r}=4.0\\times10^{-3}\\ \\mathrm{m\\,s^{-1}}\n\\]\nであり、\\(k_m\\ll k_s\\) なので外部拡散律速である。総括係数は \\(K=3.998\\times10^{-3}\\ \\mathrm{m\\,s^{-1}}\\)。\n\\[\nc_{\\ce{O2}}=\\frac{0.21\\times10^5}{8.314\\times1073.15}\n=2.35\\ \\mathrm{mol\\,m^{-3}}\n\\]\n表面積 \\(4\\pi r^2=3.14\\times10^{-4}\\ \\mathrm{m^2}\\) より\n\\[\n\\dot n_{\\ce{CO2}}=4\\pi r^2Kc_{\\ce{O2}}\n=2.96\\times10^{-6}\\ \\mathrm{mol\\,s^{-1}}\n\\]\nである。酸素30%では濃度に比例し\n\\[\n\\dot n'=\\dot n\\frac{0.30}{0.21}\n=4.23\\times10^{-6}\\ \\mathrm{mol\\,s^{-1}}\n\\]\nとなる。流れを与えると境膜が薄くなり \\(k_m\\) が増えるため生成速度は増加し、最終的には表面反応が支配する上限へ近づく。\n\n\n\n\n\n問題10 液固反応の総括速度\n液相中の \\(\\ce{A}\\) が固体 \\(\\ce{B}\\) の表面で\n\\[\n\\ce{A(l) + B(s) -&gt; S}\n\\]\nと反応する。液相本体の濃度を \\(C_A\\)、液固間物質移動係数を \\(k_l\\)、一次表面反応速度定数を \\(k''\\) とする。\\(\\ce{A}\\) の消失速度を求め、各極限での律速段階を述べよ。\n\n\n\n\n\n\nNote理論10：界面濃度を消去する\n\n\n\n\n\n定常状態では、液相本体から界面へ届く速度と、界面で消費される速度が等しい。界面濃度 \\(C_{A,s}\\) を一度導入し、最後に消去する。\n\n\n\n\n\n\n\n\n\nTip解答10\n\n\n\n\n\n\\[\nr=k_l(C_A-C_{A,s})=k''C_{A,s}\n\\]\nより\n\\[\nC_{A,s}=\\frac{k_l}{k_l+k''}C_A\n\\]\nしたがって\n\\[\n\\boxed{r=\\frac{k_lk''}{k_l+k''}C_A},\\qquad\n\\frac1K=\\frac1{k_l}+\\frac1{k''}\n\\]\nである。\\(k_l\\ll k''\\) なら物質移動律速、\\(k''\\ll k_l\\) なら表面反応律速となる。\n\n\n\n\n\n問題11 触媒粒子内拡散と Thiele modulus\n一次反応を伴う多孔質触媒粒子について、代表長さ \\(L\\)、反応速度定数 \\(k\\)、有効拡散係数 \\(D_{\\mathrm{eff}}\\) から\n\\[\n\\phi=L\\sqrt{\\frac{k}{D_{\\mathrm{eff}}}}\n\\]\nを定義する。内部拡散の影響を小さくする条件が \\(\\phi&lt;0.4\\) と与えられたとき、許容される最大代表長さを示し、この条件の物理的意味を説明せよ。\n\n\n\n\n\n\nNote理論11：反応時間と拡散時間を比べる\n\n\n\n\n\n\\(L^2/D_{\\mathrm{eff}}\\) は粒子内を拡散する代表時間、\\(1/k\\) は反応の代表時間である。\\(\\phi^2=kL^2/D_{\\mathrm{eff}}\\) は、その比を表す。\n\n\n\n\n\n\n\n\n\nTip解答11\n\n\n\n\n\n\\[\n\\boxed{L&lt;0.4\\sqrt{\\frac{D_{\\mathrm{eff}}}{k}}}\n\\]\nである。\\(\\phi\\ll1\\) では拡散が反応より十分速く、粒子内部まで濃度がほぼ均一なので反応律速となる。\\(\\phi\\gg1\\) では表面近傍で反応物が消費され、粒子内部を有効利用できず内部拡散律速となる。\n\n\n\n\n\n問題12 反応を伴う吸収\n気体成分 \\(\\ce{A}\\) が液相へ吸収される。物理吸収だけの場合と、吸収後に液相中で不可逆反応により消費される場合を比較し、吸収速度がどのように変化するか説明せよ。ただし気相側条件と界面平衡は同じとする。\n\n\n\n\n\n\nNote理論12：液相反応が濃度勾配を保つ\n\n\n\n\n\nFickの法則では流束は濃度勾配に比例する。液相へ入った成分が反応で消費されれば、界面から液相本体へ向かう濃度勾配が大きく保たれる。\n\n\n\n\n\n\n\n\n\nTip解答12\n\n\n\n\n\n物理吸収だけでは液相中に \\(\\ce{A}\\) が蓄積し、界面と液相本体の濃度差が次第に小さくなる。反応を伴う場合は溶解した \\(\\ce{A}\\) が消費されるため液相本体濃度が低く保たれ、濃度勾配と吸収流束が大きくなる。したがって反応吸収速度は物理吸収速度以上となる。反応が十分速い極限では、速度は反応そのものではなく気液物質移動に支配される。",
     "crumbs": [
       "Home",
       "Posts",
@@ -868,53 +868,11 @@
     ]
   },
   {
-    "objectID": "posts/univ_lecs/3S/材料反応工学.html#後半戦",
-    "href": "posts/univ_lecs/3S/材料反応工学.html#後半戦",
+    "objectID": "posts/univ_lecs/3S/材料反応工学.html#公式の見取り図",
+    "href": "posts/univ_lecs/3S/材料反応工学.html#公式の見取り図",
     "title": "材料反応工学",
-    "section": "後半戦",
-    "text": "後半戦",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Univ Lecs",
-      "3S",
-      "材料反応工学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3S/材料反応工学.html#年度",
-    "href": "posts/univ_lecs/3S/材料反応工学.html#年度",
-    "title": "材料反応工学",
-    "section": "2012年度",
-    "text": "2012年度\n\n問1\n反応速度式の導出方法について、以下の設問に答えよ。\nモノシラン（\\(\\ce{SiH4}\\)）の気相分解反応は見かけ上、モノシラン濃度に一次の反応である：\n\\[\\ce{SiH4 -&gt; SiH2 + H2}\\]\nこの反応の速度定数を \\(k\\) とすると、\\(k\\) は圧力が低くなるとその値が低下することが知られている。\nこれは、上記の反応が実際には以下のように2段階の素反応に分かれているためと考えられる：\n\\[\\ce{SiH4 + M &lt;=&gt; SiH4^{*} + M}\\] \\[\\ce{SiH4^{*} -&gt; SiH2 + H2}\\]\n\n設問\n\n上記のように、単分子分解反応の速度定数が圧力依存性を示す反応機構を一般的になんと呼ぶか答えよ。\n上記の反応機構に基づき、定常状態近似を用いて、\\(\\ce{SiH2}\\) 生成速度の圧力依存性を示す速度式を導出せよ。\n表面反応速度式として、Langmuir–Hinshelwood 型の速度式がよく知られている。律速段階近似を用いて Langmuir–Hinshelwood 型の速度式を導出せよ。その際に、定常状態近似と律速段階近似の違いを明確にせよ。\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n先ほど述べた (Section 1.2.4.1) の反応機構。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\nLindemann-Hinshelwood機構\n中間体 \\(\\ce{SiH4^*}\\) に対して定常状態近似を適用\n\n\\[ k_1[\\ce{SiH4}][\\ce{M}] = k_{-1}[\\ce{SiH4^*}][\\ce{M}] + k_2[\\ce{SiH4^*}] \\]\n\\[ \\Rightarrow \\quad [\\ce{SiH4^*}] = \\dfrac{k_1[\\ce{SiH4}]}{k_{-1} + \\dfrac{k_2}{[\\ce{M}]}} \\]\nここで、\\([\\ce{SH2}]\\) の生成速度は \\(k_2[\\ce{SiH4^*}]\\) で表されるので、全体の生成速度は\n\\[\n\\dv{[\\ce{SiH2}]}{t} = k_2[\\ce{SiH4^*}] = \\frac{k_1k_2[\\ce{SiH4}]}{k_{-1} + \\dfrac{k_2}{[\\ce{M}]}}\n\\]\nここでみなしの反応速度定数を \\(k\\) とすると、\n\\[\n\\begin{aligned}\nk[\\ce{SiH4}] &= \\frac{k_1k_2[\\ce{SiH4}]}{k_{-1} + \\dfrac{k_2}{[\\ce{M}]}} \\\\\n\\dfrac{1}{k} &= \\dfrac{k_{-1}}{k_1k_2} + \\dfrac{k_1}{[\\ce{M}]}\n\\end{aligned}\n\\]\nになるので、\\(\\frac{1}{k} \\propto \\frac{1}{p}\\) となる。\n\n何を書けばいいのかわからない。\n\n2種類の分子が競争的に吸着するのとき、\\(A, B\\) の吸着に関する平衡は下のようになる。ただし \\(\\theta\\) は吸着率を表す。 \\[\nK_{\\mathrm{A}}=\\frac{[\\mathrm{M}]_0 \\theta_{\\mathrm{A}}}{p_{\\mathrm{A}}[\\mathrm{M}]_0\\left(1-\\theta_{\\mathrm{A}}-\\theta_{\\mathrm{B}}\\right)}, \\quad K_{\\mathrm{B}}=\\frac{[\\mathrm{M}]_0 \\theta_{\\mathrm{B}}}{p_{\\mathrm{B}}[\\mathrm{M}]_0\\left(1-\\theta_{\\mathrm{A}}-\\theta_{\\mathrm{B}}\\right)}\n\\]\nすると、\n\\[\n\\frac{d[\\mathrm{C}]}{d t}=k \\theta_{\\mathrm{A}} \\theta_{\\mathrm{B}}=k \\frac{\\left(p_{\\mathrm{A}} K_{\\mathrm{A}}\\right)\\left(p_{\\mathrm{B}} K_{\\mathrm{B}}\\right)}{\\left(1+p_{\\mathrm{A}} K_{\\mathrm{A}}+p_{\\mathrm{B}} K_{\\mathrm{B}}\\right)^2}\n\\]\n\n\n\n\n\n\n問2\n炭素粒子の燃焼反応に関連して、以下の設問に答えよ。\n\n設問\n\n直径 \\(1\\ \\mathrm{cm}\\) の炭素粒子を \\(800\\ ^\\circ \\mathrm{C}\\)、\\(1\\ \\mathrm{気圧}\\) に保持した電気炉（雰囲気は空気）に入れたところ、燃焼し始めた。この温度での炭素表面に入射する酸素分子の反応確率（\\(\\ce{C + O2 -&gt; CO2}\\) の反応が起こる確率）は \\(5.0 \\times 10^{-2}\\) であるという。この温度における表面反応速度定数を求めよ。ただし、空気中の酸素の濃度は \\(21\\%\\)、酸素分子の分子量は \\(32\\)、気体定数 \\(R = 8.314\\ \\mathrm{J/mol \\cdot K}\\)、\\(1\\ \\mathrm{気圧} = 1.0 \\times 10^5\\ \\mathrm{Pa}\\) である。\n上記の反応は表面反応律速となるか、それとも拡散律速となるか、判断せよ。なお、\\(800\\ ^\\circ \\mathrm{C}\\) における酸素の拡散係数を \\(2.0 \\times 10^{-5}\\ \\mathrm{m^2/sec}\\) とする。\n2の条件において、二酸化炭素の発生速度を計算せよ。なお、燃焼による炭素粒子径の減少は考えずに、初期生成速度（炭素粒子の直径 \\(1\\ \\mathrm{cm}\\) のときの速度）を計算すればよい。\n電気炉内に酸素を供給し、電気炉内の酸素濃度を \\(21\\%\\) から \\(30\\%\\) に増大させた。このとき、上記の二酸化炭素発生速度はどのように変化するか答えよ。\n電気炉内に空気を供給し、炭素粒子の周りに流れを発生させた。このとき、流れによって炭素粒子およびその周りの空気の温度に変化はないものとする。二酸化炭素発生速度が流れの速度によってどのように変化するか記述せよ。\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\nThis is an example of a callout with a title.",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Univ Lecs",
-      "3S",
-      "材料反応工学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3S/材料反応工学.html#模擬試験",
-    "href": "posts/univ_lecs/3S/材料反応工学.html#模擬試験",
-    "title": "材料反応工学",
-    "section": "模擬試験",
-    "text": "模擬試験\n\n[1] 反応機構の推測\n以下の反応が観測されている：\n\\[\n\\ce{A + B -&gt; AB}, \\quad r_{AB} = k[\\mathrm{B}]^2\n\\]\nこのとき、反応機構として考えられるステップ反応を提案し、その妥当性を説明せよ。\nまた、次のような反応式の場合についても考えよ。\n\\[\n\\begin{aligned}\n&\\ce { 2A + B -&gt; A2B} \\\\\n&r = \\frac{K_1[\\ce{A}]^2[\\ce{B}]}{1+K_2[\\ce{A}]}\n\\end{aligned}\n\\]\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n確か講義内で言ってたはず。とりあえず大事で大事で大事なのは、中間体に定常状態仮定を当てはめること。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\nまず最初の式の場合は、\n\\[\n\\begin{aligned}\n\\ce{B + B -&gt; B2} \\quad &r_1 = k_1[\\ce{B}]^2 \\\\\n\\ce{2A + B2 -&gt; 2AB} \\quad &r_3 = k_3[\\ce{A}]^2[\\ce{B2}] \\\\\n\\end{aligned}\n\\]\nとなる。で、ここからの導き方なのだけど、2つ通り方法があって、まずはlaw of mass actionを使う方法。\n\\[\n\\begin{aligned}\nK &= \\frac{[\\ce{B2}]}{[\\ce{B}]^2} \\\\\nr_{\\mathrm{total}} &= k_2[\\ce{A}]^2[\\ce{B2}] \\\\\n&= Kk_1[\\ce{B}]^2[\\ce{A}]^2\n\\end{aligned}\n\\]\nここで、 \\([\\ce{A}]\\) が充分量存在するとすると、定数となって導かれる。\n次に、定常状態仮定を使う方法。多分こっちの方を聞きたがってそう。\n\\[\n\\begin{aligned}\n\\dv{[\\ce{B2}]}{t} &= k_1[\\ce{B}]^2 -k_2[\\ce{B2}] - k_3[\\ce{A}]^2[\\ce{B2}] + k_4[\\ce{AB}]^2 = 0\\\\\n[\\ce{B2}] &= \\frac{k_1[\\ce{B}]^2 + k_4[\\ce{AB}]^2}{k_2 + k_3[\\ce{A}]^2} \\\\\nr_{\\mathrm{total}} &= k_2[\\ce{A}]^2[\\ce{B2}] \\\\\n&= \\frac{k_1k_2[\\ce{A}]^2[\\ce{B}]^2 + k_1k_4[\\ce{A}]^2[\\ce{AB}]^2}{k_2 + k_3[\\ce{A}]^2}\n\\end{aligned}\n\\]\nここで \\(k_4=0\\) を仮定、つまり下の反応が可逆ではないとすれば一応は形はあって、さらに \\(k_2 = 0\\) を仮定すれば、さらに良い形で式が出る。\n次に二つ目の問題は講義でも出たもの。Michaelis–Mentenモデルだ。中間体に定常状態仮定を当てはめることを考える。\n\\[\n\\begin{aligned}\n\\ce{A + B -&gt; AB} \\quad &r_1 = k_1[\\ce{A}][\\ce{B}] \\\\\n\\ce{A + AB -&gt; A2B} \\quad &r_3 = k_3[\\ce{A}][\\ce{AB}] \\\\\n\\end{aligned}\n\\]\nこれから、\n\\[\n\\begin{aligned}\n\\dv{[\\ce{AB}]}{t} &= k_1[\\ce{A}][\\ce{B}] - k_2[\\ce{A}][\\ce{AB}] - k_3[\\ce{A}][\\ce{AB}] + k_4[\\ce{A2B}] = 0\\\\\n[\\ce{AB}] &= \\frac{k_1[\\ce{A}][\\ce{B}] + k_4[\\ce{A2B}]}{k_2 + k_3[\\ce{A}]} \\\\\nr_{\\mathrm{total}} &= k_3[\\ce{A}][\\ce{AB}] - k_4[\\ce{A2B}] \\\\\n&= \\frac{k_1k_3[\\ce{A}]^2[\\ce{B}] + k_2k_4[\\ce{A2B}]}{k_2 + k_3[\\ce{A}]}\n\\end{aligned}\n\\]\nここで \\(k_4=0\\) を仮定、つまり下の反応が可逆ではないとすれば考える式と同じになる。\n\n\n\n\n\n[2] 重合反応に関する問題\n\n(1) 重合速度の導出\nモノマー M と開始剤 S から重合体 P が生成する開環重合反応において、初期段階での重合速度式を導出せよ。\n\n\n(2) 鎖長と濃度の関係\n熱力学的鎖長の逆数が \\([S]/[M]\\) に比例することを示せ。ただし、[S] は連鎖移動剤濃度、[M] はモノマー濃度とする。\n\n\n(3) 計算問題\nラジカル重合において、モノマー濃度 \\([\\mathrm{M}] = 1.0\\ \\mathrm{mol/L}\\) に固定し、 開始剤とは別に連鎖移動剤 S を加えて重合を行ったところ、以下のような結果が得られた。\n\n\n\n\\([\\mathrm{S}] \\ \\mathrm{M}\\)\n\\(\\nu\\)\n\n\n\n\n0.002\n100\n\n\n0.004\n100/3\n\n\n\nこのとき、連鎖移動定数 \\(C_{tr}\\) を求めよ。また、 \\([\\ce{S}] = 0.006\\ \\mathrm{M}\\) のときの \\(\\nu\\) を求めよ。\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n式を導き出す際に必要な知識は次のとおり。\n\n開始反応、連鎖開始、連鎖成長、連鎖停止、連鎖移動反応\nポリマーの生成速度は、 \\(\\ce{P+R^.-&gt;P^.}\\) の反応速度に等しい\n\n\nは、まあ学生が作れる程度の問題だとこんなもの。\n\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n\n\n\\[\n\\begin {aligned}\n\\ce{I &-&gt;[k_d] 2R^{.}}\\\\\n\\ce{R^{.} + M &-&gt;[k_i] M^{.}}\\\\\n\\ce{M^{.} + M &-&gt;[k_p] M^{.}}\\\\\n\\ce{2M^{.} &-&gt;[k_t] P}\\\\\n\\ce{M^{.} + S &-&gt;[k_{tr}] P + S^{.}}\n\\end{aligned}\n\\]\n重要なのは、 \\(\\ce{M}\\) はモノマーではあるが、２式以降の \\(\\ce{M^{.}}\\) はラジカルで、ただのモノマーじゃない。\nまず、ラジカルに定常状態仮定を当てはめると、\n\\[\n\\begin{aligned}\n\\dv{[\\ce{R^.}]}{t} &= 2fk_d[\\ce{I}] - k_i[\\ce{R^.}][\\ce{M}] = 0 \\\\\n\\dv{[\\ce{M^.}]}{t} &= k_i[\\ce{R^.}][\\ce{M}] - k_t[\\ce{M^.}]^2 = 0 \\\\\n[\\ce{R^.}] &= \\frac{2fk_d[\\ce{I}]}{k_i[\\ce{M}]} \\\\\n[\\ce{M^.}] &= \\sqrt{\\frac{k_i}{k_t}[\\ce{R^.}][\\ce{M}]} \\\\\n&= \\sqrt{\\frac{2fk_d}{k_t} [\\ce{I}]} \\\\\n\\end{aligned}\n\\]\n次に、連鎖成長速度はモノマー減少速度の \\(\\ce{M+R^.-&gt;M^.}\\) の反応速度に等しいので、\n\\[\n\\begin{aligned}\nr &= k_p [\\ce{M^.}][\\ce{M}] \\\\\n&= k_p \\sqrt{\\frac{2fk_d}{k_t} [\\ce{I}]} \\ce{[M]} \\\\\n\\end{aligned}\n\\]\n\n\n\n動力学的な鎖の長さは、鎖に使われたモノマーの数/ポリマーの数で考えられるので、\n\\[\n\\begin{aligned}\n\\nu &= \\frac{\\text{単位時間に消えたモノマー分子}}{\\text{単位時間に生成されたポリマー分子}} \\\\\n&= \\frac{R_p}{R_{tr}+R_t}\\\\\n\\frac{1}{\\nu} &= \\frac{R_t}{R_p} + \\frac{R_{tr}}{R_p} \\\\\n&= \\frac{k_t[\\ce{M^{.}}]}{k_p[\\ce{M^{.}}][\\ce{M}]} + \\frac{k_{tr}[\\ce{M^{.}}][\\ce{S}]}{k_p[\\ce{M^{.}}][\\ce{M}]} \\\\\n&= \\frac{k_t}{k_p} + \\frac{k_{tr}[\\ce{S}]}{k_p[\\ce{M}]} \\\\\n&= \\frac{1}{\\nu_0} + C_{tr}\\frac{[\\ce{S}]}{[\\ce{M}]}\n\\end{aligned}\n\\]\nここで、\\(C_tr\\) は連鎖移動定数と呼ばれる。\n\n\n\n代入すれば、 \\(C_{tr} = 2.5, \\nu = 50\\) となる。\n\n\n\n\n\n\n[3] 平衡反応と速度定数\n以下の平衡反応を考える：\n\n\\(\\ce{A -&gt; R}\\)（反応速度定数 \\(k_1\\)）\n\\(\\ce{A -&gt; S}\\)（反応速度定数 \\(k_2\\)）\n\nこれらの反応における正味の生成速度と平衡時の濃度関係を示す図を描き \\(k_1, k_2\\) の求め方を確かめよ。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\(\\ce{A}\\) の量についての微分方程式は次のとおり。\n\\[\n\\begin{aligned}\n\\dv{[\\ce{A}]}{t} &= - (k_1 + k_2)[\\ce{A}] \\\\\n[\\ce{A}] &= [\\ce{A}]_0 \\exp\\qty{-(k_1 + k_2)t}\n\\end{aligned}\n\\]\nここで、 \\(\\ce{R}\\) の生成量は、\n\\[\n\\begin{aligned}\n\\dv{[\\ce{R}]}{t} &= k_1[\\ce{A}] \\\\\n[\\ce{R}] &= \\int_0^t k_1[\\ce{A}]_0 \\exp\\qty{-(k_1 + k_2)t} \\dd t \\\\\n&= \\frac{k_1[\\ce{A}]_0}{k_1 + k_2} \\qty{1 - \\exp\\qty{-(k_1 + k_2)t}}\n\\end{aligned}\n\\]\n\\(\\ce{S}\\) の生成量も同様にして、\n\\[\n[\\ce{S}] = \\frac{k_2[\\ce{A}]_0}{k_1 + k_2} \\qty{1 - \\exp\\qty{-(k_1 + k_2)t}}\n\\]\nこれらは以下のようにグラフにできて、\n\n\nコードはこちら\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\n# 初期濃度と速度定数\nA0 = 1.0  # mol/L\nk1 = 0.1  # s^-1\nk2 = 0.05  # s^-1\nk_total = k1 + k2\n\n# 時間範囲\nt = np.linspace(0, 100, 500)\n\n# 濃度の時間変化\nA_t = A0 * np.exp(-k_total * t)\nR_t = (k1 / k_total) * A0 * (1 - np.exp(-k_total * t))\nS_t = (k2 / k_total) * A0 * (1 - np.exp(-k_total * t))\n\n# グラフの描画\nplt.figure(figsize=(10, 6))\nplt.plot(t, A_t, label='[A] (mol/L)')\nplt.plot(t, R_t, label='[R] (mol/L)')\nplt.plot(t, S_t, label='[S] (mol/L)')\nplt.xlabel('Time (s)')\nplt.ylabel('Concentration (mol/L)')\nplt.title('R, S Density')\nplt.legend()\nplt.grid(True)\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\n\n\\[\n\\begin{aligned}\n[\\ce{R}]_\\infty &= \\frac{k_1[\\ce{A}]_0}{k_1 + k_2} \\\\\n[\\ce{S}]_\\infty &= \\frac{k_2[\\ce{A}]_0}{k_1 + k_2} \\\\\n\\frac{k_1}{k_2} &= \\frac{[\\ce{R}]_\\infty}{[\\ce{S}]_\\infty}\n\\end{aligned}\n\\]\nこの比がグラフから読み取れる。また、 \\([\\ce{A}]\\) の傾きから \\(k_1+k_2\\) がわかる。\n\n\n\n\n\n[4] 固体表面との反応速度\n以下の反応を考える：\n\\[\n\\ce{A(l) + B(s) -&gt; S}\n\\]\nこのとき、A の消失速度 \\(r(\\mathrm{A})\\) を以下の変数を用いて表せ：\n\n\\(k_l\\)：液-固間の物質移動速度定数\n\\(k''\\)：表面反応速度定数\n\\(C_A\\)：液中のAの濃度\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n拡散段階では、\n\\[\nr_\\mathrm{diff} = k_l ([\\ce{A}] - [\\ce{A}]_s)\n\\]\nここで、 \\([\\ce{A}]_s\\) は表面の濃度である。\n表面反応段階では、\n\\[\nr_\\mathrm{surf} = k'' [\\ce{A}]_s\n\\]\nこれに対して、 \\(r_\\mathrm{diff} = r_\\mathrm{surf}\\) となる定常状態仮定をする。\n\\[\n\\begin{aligned}\n[\\ce{A}]_s &= \\frac{k_l [\\ce{A}]}{k_l + k''} \\\\\nr_\\mathrm{total} &= \\frac{k_l k'' [\\ce{A}]}{k_l + k''}\n\\]\n\n\n\n\n\n[5] 拡散と触媒粒子サイズの関係\n拡散律速を避けるためには、触媒粒子の最大半径 \\(L\\) に関して、以下の式が成り立つ。\n\\[\n\\frac{L \\sqrt{k}}{\\sqrt{D}} &lt; 0.4\n\\]\nこの条件の物理的意味を述べ、速度律速段階の変化について説明せよ。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\nSection 1.3.9 で詳しく書いてあるのだが、正直講義資料では何も言われていないので……\n計算すれば、 \\(40 \\mu \\mathrm{m}\\) 以下で反応律速になる。\n\n\n\n\n\n[6] 拡散速度と吸収の比較\nまた、吸収が物理的プロセスのみである場合と、吸収後に化学反応を伴う場合で、拡散速度にどのような違いが出るかを論じなさい。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n化学反応を伴う場合、吸収後の反応により濃度勾配が大きくなり、それによって拡散速度が促進される。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Univ Lecs",
-      "3S",
-      "材料反応工学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3S/材料反応工学.html#後半戦確認テスト",
-    "href": "posts/univ_lecs/3S/材料反応工学.html#後半戦確認テスト",
-    "title": "材料反応工学",
-    "section": "後半戦確認テスト",
-    "text": "後半戦確認テスト\n\n1回目\n\n問１\n面心立方格子をもつ Pt の格子定数 \\(a = 0.4\\ \\mathrm{nm}\\) としたとき、\n\\((100)\\) 面の 1 cm⁻² あたりに含まれる Pt 原子の個数を求めよ。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n単位格子表面には、手前の1/4が4つ、真ん中の1があるとして、合計2個の原子があるとする。\n\\[\nN_s = \\frac{2}{a^2} = 1.25 \\times 10^{19} \\mathrm{m^{-2}}\n\\]\nこれを1 cm²について考えると、\n\\[\nN_s = \\frac{2}{a^2} \\times 10^{-15} \\mathrm{m^2}\n\\]\n\n\n\n\n\n問２\nHertz–Knudsen の式から、数秒以内に全ての Pt 原子に分子が吸着することを示せ。\n以下の条件を用いること：\n- 圧力 \\(p = 1.33\\times10^{-4}\\ \\mathrm{Pa}\\)\n- 分子質量 \\(m = 28\\) （\\(N_2\\) または CO）\n- 温度 \\(T = 300\\ \\mathrm{K}\\)\n- ボルツマン定数 \\(k_B = 1.38\\times10^{-23}\\ \\mathrm{J\\,K^{-1}}\\)\n\n\n\n\n\n\nNote理論\n\n\n\n\n\nHertz-Knudsen式は、Section 1.4.2 で述べた通り。\n\\[\nz = \\frac{p}{\\sqrt{2\\pi m k_B T}}\n\\]\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\[\nz = 3.8 \\times 10^{14} \\mathrm{cm^{-2}s^{-1}}\n\\]\nなので、\n\\[\nr = \\frac{N_s}{z} = 3.3 \\mathrm{s}\n\\]\nとなる。\n\n\n\n\n\n\n2回目\n\n問１\n2種類の分子が表面吸着する場合の吸着等温式を導け。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\[\n\\begin{aligned}\nk_a^A(1 -\\theta_A - \\theta_B)[\\ce{A}] &= k_d^A \\theta_A \\\\\nk_a^B(1 -\\theta_A - \\theta_B)[\\ce{B}] &= k_d^B \\theta_B \\\\\nK^A[\\ce{A}] \\triangleq \\frac{k_a^A}{k_d^A} &= \\frac{\\theta_A}{1 -\\theta_A - \\theta_B} \\\\\nK^B[\\ce{B}] \\triangleq \\frac{k_a^B}{k_d^B} &= \\frac{\\theta_B}{1 -\\theta_A - \\theta_B} \\\\\n\\frac{K^A[\\ce{A}]}{K^B[\\ce{B}]} &= \\frac{\\theta_A}{\\theta_B} \\\\\n\\theta_A &= \\frac{K^A[\\ce{A}]}{1 + K^A[\\ce{A}] + K^B[\\ce{B}]} \\\\\n\\theta_B &= \\frac{K^B[\\ce{B}]}{1 + K^A[\\ce{A}] + K^B[\\ce{B}]} \\\\\n\\end{aligned}\n\\]\nここで、 \\(\\theta_A, \\theta_B\\) はそれぞれA, Bの表面被覆率である。\n\n\nコードはこちら\nimport numpy as np\nimport plotly.graph_objs as go\n\n# K^A[A] の範囲（x軸）\nx = np.linspace(0, 20, 500)\n\n# 吸着率 θ_A の定義\ntheta_A_case1 = x / (x + 2)    # K^B[B] = 1\ntheta_A_case2 = x / (x + 11)   # K^B[B] = 10\n\n# グラフ描画\nfig = go.Figure()\n\nfig.add_trace(go.Scatter(\n    x=x, y=theta_A_case1,\n    mode='lines',\n    name='K^B[B] = 1'\n))\n\nfig.add_trace(go.Scatter(\n    x=x, y=theta_A_case2,\n    mode='lines',\n    name='K^B[B] = 10'\n))\n\nfig.update_layout(\n    title='θ_A と K^A[A] の関係（競合吸着）',\n    xaxis_title='K^A [A]',\n    yaxis_title='θ_A',\n    legend_title='条件',\n    yaxis=dict(range=[0, 1]),\n    font=dict(family=\"Arial\", size=16)  # 日本語化はブラウザ依存\n)\n\nfig.show()\n\n\n                            \n                                            \n\n\n\n\n\n\n\n\n3回目\n\n問１\n０次反応では昇温とともに脱離量が指数関数的に増加し、あるところで突然0となる。この振る舞いをする理由を Wigner-Polanyi の関係式を用いて説明せよ。\n\n\n\n\n\n\nNote理論\n\n\n\n\n\nWigner-Polanyiの関係式は、Section 1.3.7 で述べた通り。\n\\[\n\\begin{aligned}\nr_{\\text{des}} &= - \\dv{\\theta}{t} = k \\theta^n \\\\\n&= \\nu_n \\theta^n \\exp \\qty(-\\frac{E_n}{RT})\n\\end{aligned}\n\\]\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n0次反応では、\\(n=0\\) となる。このとき、\n\\[\nr_{\\text{des}} = -\\dv{\\theta}{t} = \\nu_0 \\exp \\qty(-\\frac{E_0}{RT})\n\\]\nとなる。ここで昇温処理をしているので、\n\\[\n\\dv{\\theta}{t} = \\beta \\dv{\\theta}{T}\n\\]\nとなる。これを代入すると、\n\\[\n-\\beta \\dv{\\theta}{T} = \\nu_0 \\exp \\qty(-\\frac{E_0}{RT})\n\\]\nとなる。これを積分すると、\n\\[\n\\theta_0 - \\theta(T) = \\frac{\\nu_0}{\\beta} \\int_{T_0}^{T_1} \\exp \\qty(-\\frac{E_0}{RT}) \\dd{T}\n\\]\nとなる。これは、昇温とともに指数関数的に脱離が増えることを示しているが、 \\(\\theta(T) = 0\\) となるところで、被覆物質がなくなり、つまり脱離が止まることを示している。\n\n\n\n\n\n問２\n一次反応では、昇温と共に脱離量が山形のピークを形成する。 このように振舞う理由を Wigner–Polanyi 型速度式の \\(\\theta\\) と \\(\\exp\\bigl(-E/(k_B T)\\bigr)\\) の温度依存性から説明せよ。\n\n\n\n\n\n\nNote理論\n\n\n\n\n\nSection 1.3.8 で述べた通り。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n0次については吸着が有限のため、離脱料がある程度以上増えると離脱が止まる。\n1次については、一度指数関数的に増加するも、次第に小さくなる。\n\n\n\n\n\n\n4回目\n\n問1\nある種の反応では温度上昇に伴って反応の速度が低下することが観測される。この理由について見かけの活性化エネルギーに着目してエネルギーダイアグラムを使って説明せよ。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n見かけ上の活性化エネルギーが負になり、温度が上がるにつれて反応速度が遅くなる。\n\n\n\n\n\n問2\nRoginsky-Zeldovich 型吸着等温式は以下の様に書かれる：\n吸着： \\[\nv_a = k_a p_a \\exp(-\\alpha \\theta)\n\\]\n脱離： \\[\nv_d = k_d \\exp(\\beta \\theta)\n\\]\nここで \\(\\alpha\\), \\(\\beta\\) は定数である。\n吸着と脱離が平衡のときの被覆率 \\(\\theta\\) を求めよ。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\nイコールで結ぶだけで、\n\\[\n\\theta = \\frac{1}{\\alpha + \\beta}\\ln K p_a\n\\]\n\n\n\n\n\n\n5回目\n眠気のため、答えだけ。\n\\(\\ce{CO}\\) 酸化反応では、\\(\\ce{O2}\\) の解離吸着が律速段階となることが多く、\\(\\ce{O2}\\) の表面供給が重要である。\\(\\ce{CO}/\\ce{O2}\\) 比が大きくなると、\\(\\ce{CO}\\) が表面を占有して \\(\\ce{O2}\\) の吸着・解離が妨げられる。その結果、\\(\\ce{CO2}\\) 生成反応が進行するにはより高温が必要となり、反応の活性温度が高温側にシフトする。",
+    "section": "公式の見取り図",
+    "text": "公式の見取り図\n\n\n\n現象\n代表式\n見抜くべき比較\n\n\n\n\n中間体\n\\(\\dv{[I]}{t}\\simeq0\\)\n生成速度と消費速度\n\n\n競争吸着\n\\(\\theta_i=K_ip_i/(1+\\sum K_jp_j)\\)\n空席と各吸着種\n\n\n気体衝突\n\\(Z=p/\\sqrt{2\\pi mk_BT}\\)\n到達流束と表面サイト数\n\n\n外部物質移動＋表面反応\n\\(1/K=1/k_m+1/k_s\\)\n小さい速度係数が律速\n\n\n粒子内拡散\n\\(\\phi=L\\sqrt{k/D_{\\mathrm{eff}}}\\)\n拡散時間と反応時間",
     "crumbs": [
       "Home",
       "Posts",
@@ -1657,68 +1615,81 @@
     ]
   },
   {
-    "objectID": "posts/tech/StartUsingCodex.html",
-    "href": "posts/tech/StartUsingCodex.html",
-    "title": "Codexを使い始めた件",
+    "objectID": "posts/tech/SwiftPackageError.html",
+    "href": "posts/tech/SwiftPackageError.html",
+    "title": "Swift Packageの読み込みエラー",
     "section": "",
-    "text": "今までありがたくCursorを使わせてもらってたんだけど、Codexが使えるようになったので、使い始めた。",
+    "text": "ビルドした瞬間にUnable to find module dependency: ’ModuleName’って出てビルドに失敗するけど、失敗したって確定するとこのエラーコードが消える",
     "crumbs": [
       "Home",
       "Posts",
       "Tech",
-      "Codexを使い始めた件"
+      "Swift Packageの読み込みエラー"
     ]
   },
   {
-    "objectID": "posts/tech/StartUsingCodex.html#codexとは",
-    "href": "posts/tech/StartUsingCodex.html#codexとは",
-    "title": "Codexを使い始めた件",
-    "section": "Codexとは",
-    "text": "Codexとは\nCodexなんだけど、Copilot Chatの使いやすくなって、色々と勝手にやってくれるやつって感じ。ChatGPT Plusに入ってたら色々リミットがなくなってるみたいだ。\nそもそも、ChatGPT Plusのリミット自体もよくわからん感じで、数週間単位で引き上げられたり、こっそり減ってたりするので、特に気にせず、使い続けてる。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "Codexを使い始めた件"
-    ]
-  },
-  {
-    "objectID": "posts/tech/StartUsingCodex.html#使った結果",
-    "href": "posts/tech/StartUsingCodex.html#使った結果",
-    "title": "Codexを使い始めた件",
-    "section": "使った結果",
-    "text": "使った結果\nこのページってページは完全にCodexにコマンドを投げて勝手に作らせた。そりゃあこのご時世、ページ作成のバイトが供給過多になるわけだわ。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "Codexを使い始めた件"
-    ]
-  },
-  {
-    "objectID": "posts/tech/QuartoRenderSingle.html",
-    "href": "posts/tech/QuartoRenderSingle.html",
-    "title": "Quartoで単一ファイルにレンダリングする方法",
+    "objectID": "posts/tech/SwiftPackageError.html#エラー内容",
+    "href": "posts/tech/SwiftPackageError.html#エラー内容",
+    "title": "Swift Packageの読み込みエラー",
     "section": "",
-    "text": "当たり前の話かもしれないけど、今更だがQuartoで単一ファイルにレンダリングする方法を知ったのでメモ。\nこれをすれば、単一ファイルだけをレンダリングして、navbarやsidebarのリストも同時に更新される。どうやら都度index.qmdは同時に更新されて、それにつられてnavbarやsidebarも更新されるようだ。",
+    "text": "ビルドした瞬間にUnable to find module dependency: ’ModuleName’って出てビルドに失敗するけど、失敗したって確定するとこのエラーコードが消える",
     "crumbs": [
       "Home",
       "Posts",
       "Tech",
-      "Quartoで単一ファイルにレンダリングする方法"
+      "Swift Packageの読み込みエラー"
     ]
   },
   {
-    "objectID": "posts/tech/QuartoRenderSingle.html#方法",
-    "href": "posts/tech/QuartoRenderSingle.html#方法",
-    "title": "Quartoで単一ファイルにレンダリングする方法",
-    "section": "方法",
-    "text": "方法\nquarto render hoo.qmd\nこれだけ。なんで今までずーっと全プロジェクトをレンダーしてたんだ俺は……。\nあと、Previewでも同じことができるので、ファイルを作るたびにPreviewをすれば十分だ。\n言うまでもないだろうがPreviewのHot Keyは⌘+⇧+Kね。",
+    "objectID": "posts/tech/SwiftPackageError.html#解決方法",
+    "href": "posts/tech/SwiftPackageError.html#解決方法",
+    "title": "Swift Packageの読み込みエラー",
+    "section": "解決方法",
+    "text": "解決方法\nXcode → Project → Targets: Novel → General → Frameworks, Libraries, and Embedded Content にちゃんとパッケージが入ってるのを確認する。\nどうやらパッケージを追加するだけじゃ依存関係に自動で入らないこともあるらしい。",
     "crumbs": [
       "Home",
       "Posts",
       "Tech",
-      "Quartoで単一ファイルにレンダリングする方法"
+      "Swift Packageの読み込みエラー"
+    ]
+  },
+  {
+    "objectID": "posts/tech/SetUpNewDebianServer.html",
+    "href": "posts/tech/SetUpNewDebianServer.html",
+    "title": "Debianサーバーを立てた話",
+    "section": "",
+    "text": "ubuntu serverがなぜかインストールできなくてDebianを入れた話",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "Debianサーバーを立てた話"
+    ]
+  },
+  {
+    "objectID": "posts/tech/SetUpNewDebianServer.html#概要",
+    "href": "posts/tech/SetUpNewDebianServer.html#概要",
+    "title": "Debianサーバーを立てた話",
+    "section": "",
+    "text": "ubuntu serverがなぜかインストールできなくてDebianを入れた話",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "Debianサーバーを立てた話"
+    ]
+  },
+  {
+    "objectID": "posts/tech/SetUpNewDebianServer.html#手順",
+    "href": "posts/tech/SetUpNewDebianServer.html#手順",
+    "title": "Debianサーバーを立てた話",
+    "section": "手順",
+    "text": "手順\napt install -y sudo curl wget nano net-tools iproute2 \\\n    git passwd",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "Debianサーバーを立てた話"
     ]
   },
   {
@@ -2147,81 +2118,276 @@
     ]
   },
   {
-    "objectID": "posts/tech/SetUpNewDebianServer.html",
-    "href": "posts/tech/SetUpNewDebianServer.html",
-    "title": "Debianサーバーを立てた話",
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html",
+    "title": "ふみにわ開発記",
     "section": "",
-    "text": "ubuntu serverがなぜかインストールできなくてDebianを入れた話",
+    "text": "2026年8月9日時点の開発記録。\nmainはPR #65まで反映済み。AI関連の一部は現在の作業ブランチ上にあり、実際のCodex／OpenRouter接続や公開用ビルドは未完成である。\n「日本語で小説を書くための、静かで使いやすいmacOSアプリを作りたい」\nふみにわ（FUMINIWA）は、そんな比較的素朴な目標から始まった。\nところが、実際に開発を進めると、問題は「本文を入力できるか」では終わらなかった。\n日本語IMEを壊さず扱えるか。\n自動保存は、本当に作者を守っているか。\n開けない原稿を、空の新規作品に見せかけていないか。\n便利そうな未実装機能を、あたかも使えるように表示していないか。\nAIを接続したとき、古い校正結果を別の原稿へ誤適用しないか。\n開発が進むほど、目指すものは「機能の多い小説エディタ」から、「原稿を安心して預けられる道具」へ変わっていった。\nこれは、その過程で何を作り、何を間違え、何を捨て、これからどこへ進もうとしているのかをまとめた記録である。",
     "crumbs": [
       "Home",
       "Posts",
       "Tech",
-      "Debianサーバーを立てた話"
+      "ふみにわ開発記"
     ]
   },
   {
-    "objectID": "posts/tech/SetUpNewDebianServer.html#概要",
-    "href": "posts/tech/SetUpNewDebianServer.html#概要",
-    "title": "Debianサーバーを立てた話",
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#最初に決めたのは機能ではなく境界だった",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#最初に決めたのは機能ではなく境界だった",
+    "title": "ふみにわ開発記",
+    "section": "最初に決めたのは、機能ではなく境界だった",
+    "text": "最初に決めたのは、機能ではなく境界だった\n開発初期に最も重視したのは、画面の見た目や機能数ではなく、あとから壊れにくい構造だった。\nアプリ全体のUIにはSwiftUIを使う。ただし、本文エディタにはSwiftUIのTextEditorを使わず、AppKitのNSTextViewとTextKit 2を採用した。\n理由は日本語IMEである。\nSwiftUIの状態更新と本文を素朴な双方向Bindingで結ぶと、IME変換中に外側から文字列が書き戻され、入力が巻き戻ることがある。そのため、編集中の本文の正はNSTextView側に置き、モデルから本文を流し込むのは話を切り替えたときだけ、という「テキスト所有権ルール」を最初に定めた。\n保存形式には、単一の巨大なJSONではなく、フォルダパッケージ形式の.novelpkgを採用した。\n本文、メモ、添付資料、メタデータを分けて保持し、本文ファイル名には並び順ではなくUUIDを使う。章や話を並べ替えても、ファイルを一斉にリネームしなくて済むからだ。\n章順と話順は配列だけを正とし、別のorderフィールドは持たない。二つの順序情報を持てば、いつか必ず食い違う。\nこの頃から、ふみにわの設計には一つの傾向があった。\n「便利そうな情報を増やす」よりも、「正が二つ存在する状態を作らない」ことを優先していた。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ふみにわ開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#機能は驚くほど速く増えていった",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#機能は驚くほど速く増えていった",
+    "title": "ふみにわ開発記",
+    "section": "機能は、驚くほど速く増えていった",
+    "text": "機能は、驚くほど速く増えていった\n基盤を作ったあと、開発はかなり速い速度で進んだ。\n章と話の管理、本文編集、自動字下げ、検索、文字数表示、話メモ、キャラクター管理、登場箇所へのジャンプ、プロットカード、伏線管理、資料添付、世界観ノート、スナップショット保存と復元。\nさらに、作品の新規作成、既存作品を開く、別名保存、Finder表示、TXT／Markdown／EPUB 3への書き出しまで実装した。\nPhase 0からPhase 5までを通して、「小説を書くために必要そうな機能」は急速に揃っていった。\nしかし、ここで最初の大きな認識違いが見えてきた。\n機能が揃っていることと、製品として信頼できることは別だった。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ふみにわ開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#一度完成させたuiをいったん捨てた",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#一度完成させたuiをいったん捨てた",
+    "title": "ふみにわ開発記",
+    "section": "一度完成させたUIを、いったん捨てた",
+    "text": "一度完成させたUIを、いったん捨てた\nUIでも大きな手戻りがあった。\n最初の刷新では、画面を「執筆」「キャラクター」「プロット」の3モードに分けた。キャラクターはシート形式、プロットは章レーン式のカードボードにし、それぞれを広い画面で扱えるようにした。\nこのUIは、実装としては完成した。\nそれでも、使い方を見直すと問題があった。\n小説を書いている最中には、本文だけでなく、章構造、人物、プロット、資料を行き来する。モードを切り替えるたびに、今どこを書いているのかという文脈が途切れてしまう。\nそこで、完成済みの3モード制を捨て、Project Sidebar、Outline、Editorを中心とするWorkbenchへ作り直した。\nところが、これで終わりではなかった。\nOutlineを統一しようとした修正では、意図していたmacOSらしい透過感とは反対に、画面全体を不透明で重い方向へ寄せてしまった。操作の整合性は上がったが、見た目の方向が違っていた。\nそのため、Glass UI、入力余白、2列／3列構成、ツールバー配置、章と話の階層、作品情報画面などを何度も再設計した。\nこの過程で学んだのは、「完成したコードを残すこと」よりも、「違う方向へ進んだと認めること」の方が重要だということだった。\nUIの作り直しは失敗の隠蔽ではない。実際に使った結果、理解が更新された証拠でもある。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ふみにわ開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#日本語入力は仕様書どおりには動かなかった",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#日本語入力は仕様書どおりには動かなかった",
+    "title": "ふみにわ開発記",
+    "section": "日本語入力は、仕様書どおりには動かなかった",
+    "text": "日本語入力は、仕様書どおりには動かなかった\n自動字下げにも、象徴的な失敗があった。\n当初は、行頭に全角スペースがある状態で「を入力したら、そのスペースを削除するルールを用意していた。直接入力では動作した。\nしかし、日本語IMEから「を入力すると動かなかった。\n原因は、IME変換中の安全を守るために置いたIMEGuardPluginだった。変換中は後続処理へ介入させない設計が正しく働き、字下げ解除の処理まで止めていたのである。\nつまり、個々の機能はそれぞれ正しくても、組み合わせると期待した動作にならなかった。\n修正では、IME変換中には触らない原則を維持したまま、変換確定後のtextDidChangeで行頭スペースを取り除く処理を追加した。もちろん、Undoで元に戻せる通常の編集経路を通している。\n傍点記法でも変更があった。\n最初に採用した《《対象文字列》》は特定の投稿サイトでは使えるが、他の主要サービスでは通用しない。そこで、1文字ずつ｜字《・》へ変換する方式へ変更した。\nこうした問題は、デモでは目立ちにくい。\nしかし、日本語で毎日何千文字も書く道具では、こういう細部が製品の本体になる。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ふみにわ開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#出力へ進む直前にロードマップを止めた",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#出力へ進む直前にロードマップを止めた",
+    "title": "ふみにわ開発記",
+    "section": "出力へ進む直前に、ロードマップを止めた",
+    "text": "出力へ進む直前に、ロードマップを止めた\nWorkbenchが完成した時点では、次にTXTやEPUBなどの書き出し機能へ進む予定だった。\nだが、プロジェクト全体を見直した結果、その順番は危険だと判断した。\n当時は、保存に失敗しても利用者が気づきにくく、新規作成、作品を開く、別名保存といった通常のファイル操作も十分に揃っていなかった。\nそこで、出力の前にPhase 4.5という安定化フェーズを挿入した。\n保存状態を「未保存」「保存中」「保存済み」「保存失敗」として表示し、失敗時には再試行できるようにした。作品切り替えでは、候補作品の読み込みと現在作品の保存が両方成功してから状態を入れ替えるようにした。\nスナップショット復元では、復元前の現在状態を先に別スナップショットへ退避するようにした。復元が失敗しても、現在の作品を維持するためである。\n保存処理そのものにも競合が見つかった。\n保存中に新しい変更が入ったとき、古い実装では変更が保存されていないのに成功が返る隙間があった。保存要求をrevision単位で直列化し、dirtyな変更がなくなるまで保存担当が処理を続ける形へ修正した。\nテスト環境の追加も一度では成功しなかった。\n最初のNovelAppTestsは、XcodeGen側のscheme、TEST_HOST、BUNDLE_LOADERが不足して失敗した。その後はSwiftFormatのimport順でもローカルチェックが止まった。コードを直したあと、設計文書に削除済みのAppModeが残るという文書ドリフトも起きた。\nこの経験から、ふみにわでは設計書やDecision Logを単なる説明資料ではなく、実装と同時に更新する成果物として扱うようになった。\n性能については、先回りして保存形式を書き換えることを避けた。\n1MBの本文、100MBの添付、20個のスナップショットを持つ代表パッケージで測定したところ、APFS上の保存時間は当時約0.039秒だった。想像で最適化するのではなく、予算を超えてから直す方針を選んだ。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ふみにわ開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#macos専用からmacosファーストへ",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#macos専用からmacosファーストへ",
+    "title": "ふみにわ開発記",
+    "section": "macOS専用から、macOSファーストへ",
+    "text": "macOS専用から、macOSファーストへ\n途中で、Windows版も視野に入れる方針が加わった。\nただし、SwiftUIやAppKitのコードをWindowsへ無理に共有することはしない。\n共有するのは.novelpkgのschema、UUIDや順序の意味、入出力fixture、保存トランザクションの考え方である。Windows側はWinUI 3とC#／.NETで、同じ契約を別実装する。\nUIまで共通化すれば、各OSのIME、Undo、ファイル操作、デザイン慣習を損なう。\nコードを共有することより、同じ原稿を安全に往復できることを優先した。\nもっとも、これはWindows版が完成したという意味ではない。現在は、言語非依存schemaとgolden fixtureを固定するW0が未完了であり、実装はその次である。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ふみにわ開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#商業化監査で製品の中心が変わった",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#商業化監査で製品の中心が変わった",
+    "title": "ふみにわ開発記",
+    "section": "商業化監査で、製品の中心が変わった",
+    "text": "商業化監査で、製品の中心が変わった\n一度、ふみにわを「他人へ渡せる製品」として徹底的に監査した。\nそこで見つかった重大な問題は、派手な新機能の不足ではなかった。\n起動直後に編集可能な仮の作品を表示していたため、利用者が入力した本文を、遅れて読み込まれた前回作品が上書きする可能性があった。\n作品の読み込みに失敗したとき、空の新規作品へ黙ってfallbackする経路があった。\n本文ファイルの読み込み失敗や不正なUTF-8を、空文字へ変換して処理を続ける箇所もあった。\nさらに、外部変更、孤児化した本文、署名や公証、AppIcon、アクセシビリティ、未接続AIの常設表示など、多数の問題が見つかった。\nこの監査を境に、製品の中心価値は次のように整理された。\n\n昨日の続きを、昨日の場所から始められること。\nそして異常が起きたとき、黙って空にせず、救出可能な状態で止まること。\n\nふみにわにとって、信用は機能数ではなく、失敗時の振る舞いに宿っていた。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ふみにわ開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#開けないを正直に表示する",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#開けないを正直に表示する",
+    "title": "ふみにわ開発記",
+    "section": "「開けない」を正直に表示する",
+    "text": "「開けない」を正直に表示する\n起動処理はLoading、Ready、Recoveryの三状態へ分離した。\n作品を安全に読み込めるまで、編集可能なWorkbenchを表示しない。前回作品やFinderから指定された作品を開けなかった場合も、新規作品へ自動fallbackしない。\n代わりにRecovery画面で止まり、再試行、Finderで表示、別作品を選択、明示的な新規作成を提示する。\n本文が読めないなら、空文字として開かない。\n執筆アプリでは、「開けません」と伝える方が、「空で開けました」と装うよりはるかに安全だからだ。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ふみにわ開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#mainactorだけでは原稿を守れなかった",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#mainactorだけでは原稿を守れなかった",
+    "title": "ふみにわ開発記",
+    "section": "@MainActorだけでは、原稿を守れなかった",
+    "text": "@MainActorだけでは、原稿を守れなかった\n作品ライフサイクルのレビューでは、さらに厄介な競合が見つかった。\nSwiftの@MainActorを使えば、状態は一度に一つずつ変更されるように見える。しかし、ファイルI/Oのawait中には別の操作が入り込める。\n作品Aのスナップショット復元を待っている間に、Finderから作品Bを開く。すると、復元処理が再開したあと、動的に読み直した保存先へAのスナップショットを書き戻し、Bを壊す可能性があった。\n起動処理でも、遅い初回読み込みが、あとからFinderで開いた作品を古い作品へ巻き戻す競合があった。\n対策では、作品操作全体をFIFOのgateで直列化し、各操作が呼び出された時点の作品ID、URL、世代をsession tokenとして固定した。\n待機中に作品が変わった操作は、保存層へ触る前に拒否する。\n作品切り替え前には、日本語IMEの未確定文字を旧作品へ確定して保存する。終了要求後は新しい作品操作を受け付けない。lockの取得順も固定した。\nここで重要だったのは、「同時に触らない」だけでは足りないということだった。\n「その操作が、どの作品に対して始まったのか」まで固定しなければならなかった。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ふみにわ開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#改名は文字列置換ではなかった",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#改名は文字列置換ではなかった",
+    "title": "ふみにわ開発記",
+    "section": "改名は、文字列置換ではなかった",
+    "text": "改名は、文字列置換ではなかった\n製品名は、NovelWriterから「ふみにわ／FUMINIWA」へ変更した。\nだが、改名を画面上の文字列置換として行えば、既存作品や設定を壊す。\n旧bundle domainに保存されていた最近開いた作品やエディタ設定は、対象をallowlistで限定して一度だけ移行する。新しい値がすでにある場合は上書きせず、旧作品や旧フォルダも移動・削除しない。\n.novelpkgの内部形式、NovelKitなどのドメイン名、toolbarの永続IDも互換資産として維持した。\nこの改名の直後には、別の分かりにくい問題も起きた。\nXcodeが古いNovelWriter.xcodeprojを開き、すでに削除されたNovelWriterApp.swiftを参照していた。現在のFUMINIWA.xcodeprojはビルドできるのに、アプリ全体が壊れたように見えた。\n原因はコードではなく、古い生成物だった。\n現在は、XcodeGenの共通スクリプトから現行projectを生成し、旧projectを退避するようにしている。\n生成物を正として扱わない、という原則が実際の障害として現れた例だった。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ふみにわ開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#使えないaiを先に見せない",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#使えないaiを先に見せない",
+    "title": "ふみにわ開発記",
+    "section": "使えないAIを、先に見せない",
+    "text": "使えないAIを、先に見せない\nかつてのWorkbenchには、下部にAI Assistant Panelがあった。\nまだproviderも通信処理も存在しないのに、入力欄やAI状態、ショートカットだけが置かれていた。\n見栄えとしては未来を感じさせる。しかし、利用者から見れば「使える機能」に見える。さらに、本文が外部へ送られるのかもしれないという不安だけを生む。\nそこで、未実装AIの入口を通常版からすべて撤去した。\nこの判断は「Product Truth」として明文化した。\n実在する機能だけをUIへ出す。\nまだできないことを、雰囲気で先に見せない。\nAIを再び表示するには、送信範囲、送信先、保持情報、明示確認、取消、失敗時の挙動、差分、適用確認まで成立していなければならない。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ふみにわ開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#aiは接続より先に誤適用を防ぐ",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#aiは接続より先に誤適用を防ぐ",
+    "title": "ふみにわ開発記",
+    "section": "AIは、接続より先に誤適用を防ぐ",
+    "text": "AIは、接続より先に誤適用を防ぐ\n現在のAI実装は、選択範囲の校正案だけに絞っている。\n利用者が明示的に選択した本文だけを対象にし、作品名、章名、人物、プロット、ローカルファイルを暗黙に追加しない。\n送信前には、実際に送るpromptとresponse schemaをそのままpreviewする。確認後に内容やproviderが変わった場合は、確認を無効にする。同じ確認から送信できるのは一度だけである。\n結果は自動適用しない。原文との差分を表示し、利用者が明示的にApplyしたときだけ、EditorKitの正規編集経路で1回のUndo単位として置換する。\n通信中に作品、話、エディタ、選択範囲、原文のどれかが変わった場合、その結果はstaleとして適用を拒否する。同じ文字列を別の場所から検索して、勝手に結び直すこともしない。\n現在は、この一連の流れをfake providerで検証している。\n通常版のFUMINIWAと、個人実験用のFUMINIWAExperimentalは別target、別bundle ID、別保存rootに分けた。通常版にはNovelAI、AI UI、provider依存、sidecar artifactをbuild graphの段階で含めない。\nこれは、設定で隠しているだけではない。\n通常版には、そもそもAIの実行経路を入れないという分離である。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ふみにわ開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#codexをつなぐ前に見つかった都合の悪い現実",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#codexをつなぐ前に見つかった都合の悪い現実",
+    "title": "ふみにわ開発記",
+    "section": "Codexをつなぐ前に見つかった、都合の悪い現実",
+    "text": "Codexをつなぐ前に見つかった、都合の悪い現実\n実providerの第一候補はCodex TypeScript SDKである。\nしかし、Swiftから直接使えるSDKではないため、Node sidecarを介して接続する必要がある。\nさらに調査時点では、期待していたtool完全無効化、ephemeral thread、上流のoutput token capなどを、公開API上で保証できなかった。\nFUMINIWA側で結果をmemory onlyにしても、providerやSDK側に履歴やartifactが残らないとは限らない。\nローカルでbyte数や実行時間を制限しても、それは上流の料金上限ではない。\nそのため、存在しない保証をUI上で「無効」「保存なし」「上限あり」と補うことはしない。確認できないものは、未保証として表示する。\n次に必要なのは、単に通信を成功させることではない。\nSDK、CLI、Nodeのversion・path・hash固定、専用の空cwdとCODEX_HOME、親environmentを継承しないallowlist、Keychain、OSレベルのファイル隔離、cancel／timeout後のprocess tree回収、orphan processが残らないこと、local artifactの実測が必要になる。\nここまで成立して初めて、個人用Experimental UIへ実Codex adapterを接続できる。\nその後、OpenRouterを独立したHTTP adapterとして同じUIへ追加する予定である。Codexが失敗したからOpenRouterへ自動で切り替える、といったfallbackは行わない。\n送信先が変わるなら、利用者もそれを知り、新しいpreviewを確認しなければならない。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ふみにわ開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#現在地とこれから",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#現在地とこれから",
+    "title": "ふみにわ開発記",
+    "section": "現在地と、これから",
+    "text": "現在地と、これから\nふみにわには現在、macOS上で小説を書くための主要機能が一通り揃っている。\n日本語IME対応の本文エディタ、章と話の管理、自動保存、検索、スナップショット、人物、プロット、伏線、資料、世界観ノート、TXT／Markdown／EPUB書き出しまで動作する。\n一方で、一般公開できる状態とは考えていない。\n今後は、個人用AIと公開Releaseを別トラックとして進める。\n個人用AIでは、Codex sidecarの固定protocolと隔離feasibilityを先に実証し、その後に実adapterを共通UIへ接続する。続いてOpenRouter adapterを追加する。\n公開Releaseでは、まずPackage Validatorを作る。重複ID、不正参照、symlink、巨大パッケージ、孤児化した本文を検出し、元作品を直接書き換えず、修復コピーとして救出できるようにする。\nその次に、Finderでの移動や削除、同期サービス、別プロセスによる外部変更を検出するConflict Gateへ進む。\nさらにAppIcon、Developer ID署名、公証、更新機構、別MacでのGatekeeper検証、VoiceOver、Light／Dark、Reduce Transparency、長文・大量データの実機QAが残っている。\nWindows版はW0のschemaとgolden fixtureから始める。PDFとiOS／iPadOSも未実装である。\nできていないことを、できたことのようには書かない。\nそれ自体が、現在のふみにわにとって重要な製品要件になっている。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ふみにわ開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#この開発で学んだこと",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#この開発で学んだこと",
+    "title": "ふみにわ開発記",
+    "section": "この開発で学んだこと",
+    "text": "この開発で学んだこと\n一連の開発を振り返ると、重要だったのは成功した実装より、途中で前提を捨てられたことだった。\n\n完成したUIでも、使い方に合わなければ作り直す\n保存成功だけでなく、失敗、取消、競合、復旧を先に設計する\n画面の見た目だけでなく、実際の状態遷移を検証する\n@MainActorや自動保存という言葉だけで、安全だと思い込まない\nAIは接続できることより、何を送り、どこへ適用するかを固定する\n未実装機能や未確認の保証をUIで補わない\n測定せずに最適化しない\n設計文書も、コードと一緒に更新される実装成果物として扱う\n\nふみにわは、まだ完成していない。\nしかし、目標は以前より明確になった。\n派手な機能を最速で増やすことではない。作者の文章を勝手に消さず、勝手に送り、勝手に書き換えず、異常時には正直に止まること。\n小説を書く人が、道具の都合を意識せず物語へ戻れること。\nその当たり前を積み上げて、「書けるアプリ」から「原稿を預けられるアプリ」へ進んでいく。\nそれが、現在のふみにわが目指している場所である。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ふみにわ開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/QuartoRenderSingle.html",
+    "href": "posts/tech/QuartoRenderSingle.html",
+    "title": "Quartoで単一ファイルにレンダリングする方法",
     "section": "",
-    "text": "ubuntu serverがなぜかインストールできなくてDebianを入れた話",
+    "text": "当たり前の話かもしれないけど、今更だがQuartoで単一ファイルにレンダリングする方法を知ったのでメモ。\nこれをすれば、単一ファイルだけをレンダリングして、navbarやsidebarのリストも同時に更新される。どうやら都度index.qmdは同時に更新されて、それにつられてnavbarやsidebarも更新されるようだ。",
     "crumbs": [
       "Home",
       "Posts",
       "Tech",
-      "Debianサーバーを立てた話"
+      "Quartoで単一ファイルにレンダリングする方法"
     ]
   },
   {
-    "objectID": "posts/tech/SetUpNewDebianServer.html#手順",
-    "href": "posts/tech/SetUpNewDebianServer.html#手順",
-    "title": "Debianサーバーを立てた話",
-    "section": "手順",
-    "text": "手順\napt install -y sudo curl wget nano net-tools iproute2 \\\n    git passwd",
+    "objectID": "posts/tech/QuartoRenderSingle.html#方法",
+    "href": "posts/tech/QuartoRenderSingle.html#方法",
+    "title": "Quartoで単一ファイルにレンダリングする方法",
+    "section": "方法",
+    "text": "方法\nquarto render hoo.qmd\nこれだけ。なんで今までずーっと全プロジェクトをレンダーしてたんだ俺は……。\nあと、Previewでも同じことができるので、ファイルを作るたびにPreviewをすれば十分だ。\n言うまでもないだろうがPreviewのHot Keyは⌘+⇧+Kね。",
     "crumbs": [
       "Home",
       "Posts",
       "Tech",
-      "Debianサーバーを立てた話"
+      "Quartoで単一ファイルにレンダリングする方法"
     ]
   },
   {
-    "objectID": "posts/tech/SwiftPackageError.html",
-    "href": "posts/tech/SwiftPackageError.html",
-    "title": "Swift Packageの読み込みエラー",
+    "objectID": "posts/tech/StartUsingCodex.html",
+    "href": "posts/tech/StartUsingCodex.html",
+    "title": "Codexを使い始めた件",
     "section": "",
-    "text": "ビルドした瞬間にUnable to find module dependency: ’ModuleName’って出てビルドに失敗するけど、失敗したって確定するとこのエラーコードが消える",
+    "text": "今までありがたくCursorを使わせてもらってたんだけど、Codexが使えるようになったので、使い始めた。",
     "crumbs": [
       "Home",
       "Posts",
       "Tech",
-      "Swift Packageの読み込みエラー"
+      "Codexを使い始めた件"
     ]
   },
   {
-    "objectID": "posts/tech/SwiftPackageError.html#エラー内容",
-    "href": "posts/tech/SwiftPackageError.html#エラー内容",
-    "title": "Swift Packageの読み込みエラー",
-    "section": "",
-    "text": "ビルドした瞬間にUnable to find module dependency: ’ModuleName’って出てビルドに失敗するけど、失敗したって確定するとこのエラーコードが消える",
+    "objectID": "posts/tech/StartUsingCodex.html#codexとは",
+    "href": "posts/tech/StartUsingCodex.html#codexとは",
+    "title": "Codexを使い始めた件",
+    "section": "Codexとは",
+    "text": "Codexとは\nCodexなんだけど、Copilot Chatの使いやすくなって、色々と勝手にやってくれるやつって感じ。ChatGPT Plusに入ってたら色々リミットがなくなってるみたいだ。\nそもそも、ChatGPT Plusのリミット自体もよくわからん感じで、数週間単位で引き上げられたり、こっそり減ってたりするので、特に気にせず、使い続けてる。",
     "crumbs": [
       "Home",
       "Posts",
       "Tech",
-      "Swift Packageの読み込みエラー"
+      "Codexを使い始めた件"
     ]
   },
   {
-    "objectID": "posts/tech/SwiftPackageError.html#解決方法",
-    "href": "posts/tech/SwiftPackageError.html#解決方法",
-    "title": "Swift Packageの読み込みエラー",
-    "section": "解決方法",
-    "text": "解決方法\nXcode → Project → Targets: Novel → General → Frameworks, Libraries, and Embedded Content にちゃんとパッケージが入ってるのを確認する。\nどうやらパッケージを追加するだけじゃ依存関係に自動で入らないこともあるらしい。",
+    "objectID": "posts/tech/StartUsingCodex.html#使った結果",
+    "href": "posts/tech/StartUsingCodex.html#使った結果",
+    "title": "Codexを使い始めた件",
+    "section": "使った結果",
+    "text": "使った結果\nこのページってページは完全にCodexにコマンドを投げて勝手に作らせた。そりゃあこのご時世、ページ作成のバイトが供給過多になるわけだわ。",
     "crumbs": [
       "Home",
       "Posts",
       "Tech",
-      "Swift Packageの読み込みエラー"
+      "Codexを使い始めた件"
     ]
   },
   {
@@ -3088,11 +3254,11 @@
     ]
   },
   {
-    "objectID": "posts/univ_lecs/3S/固体物性学.html#結晶格子",
-    "href": "posts/univ_lecs/3S/固体物性学.html#結晶格子",
+    "objectID": "posts/univ_lecs/3S/固体物性学.html#結晶格子と逆格子",
+    "href": "posts/univ_lecs/3S/固体物性学.html#結晶格子と逆格子",
     "title": "固体物性学",
-    "section": "結晶格子",
-    "text": "結晶格子\n\n結晶とは\n\n結晶とは、原子や分子が規則的に並んだ固体のことである。\n理想的な結晶、現実の結晶、多結晶、非晶質(アモルファス)の4つの種類がある。\n\n講義ではまず２次元Latticeについて考える。\n\n\n基本単位胞\n\n結晶構造を記述するための基本単位胞とは、結晶構造の最小単位であり、その結晶構造を無限に繰り返すことで全体の結晶構造が構築される。\n基本単位胞の取り方は無限にあるが、最も簡単なものを選ぶといいらしい。\n基本単位胞内の任意の点を格子点と呼んでいる。ただし、全ての別の単位胞に対して同じ位置として考える。バラバラに選ぶものではない。\n格子点同士を最短で結ぶベクトルを基本並進ベクトルと呼ぶ。\n\n\n\nコードはこちら\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n# Define the lattice vectors\na1 = np.array([1, 0])\na2 = np.array([0, 1])\n\n# Generate a grid of lattice points\nx = np.arange(-2, 3)\ny = np.arange(-2, 3)\nX, Y = np.meshgrid(x, y)\n\n# Plot the lattice points\nplt.figure(figsize=(6, 6))\nplt.scatter(X, Y, color='blue')\n\n# Plot the lattice vectors\nplt.quiver(0, 0, a1[0], a1[1], angles='xy', scale_units='xy', scale=1, color='red')\nplt.quiver(0, 0, a2[0], a2[1], angles='xy', scale_units='xy', scale=1, color='green')\n\n# Set the aspect ratio and limits\nplt.gca().set_aspect('equal', adjustable='box')\nplt.xlim(-2.5, 2.5)\nplt.ylim(-2.5, 2.5)\n\n# Add labels\nplt.text(a1[0], a1[1], 'a1', fontsize=12, ha='right')\nplt.text(a2[0], a2[1], 'a2', fontsize=12, va='bottom')\n\nplt.show()\n\n\n\n\n\n\n\n\n\n\nすると、任意の格子点は \\(\\symbfit{R} = n_1 \\symbfit{a}_1 + n_2 \\symbfit{a}_2\\) と表すことができる。\n\n\n\n３次元結晶格子\n３次元結晶格子は、２次元結晶格子の拡張である。並進ベクトルの性質はそれほど変わらない。３次元格子は１４種類のブラベ格子に分類される。並進ベクトルを基底ベクトルで表すなんてこともする。 - 体心立方格子 \\[\n\\begin{aligned}\n\\symbfit{a}_1 &= \\frac{a}{2} ( \\symbfit{e}_x + \\symbfit{e}_y + \\symbfit{e}_z ) \\\\\n\\symbfit{a}_2 &= \\frac{a}{2} ( -\\symbfit{e}_x + \\symbfit{e}_y + \\symbfit{e}_z ) \\\\\n\\symbfit{a}_3 &= \\frac{a}{2} ( \\symbfit{e}_x - \\symbfit{e}_y + \\symbfit{e}_z ) \\\\\n\\end{aligned}\n\\]\n\n面心立方格子 \\[\n\\begin{aligned}\n\\symbfit{a}_1 &= \\frac{a}{2} ( \\symbfit{e}_x + \\symbfit{e}_y ) \\\\\n\\symbfit{a}_2 &= \\frac{a}{2} ( \\symbfit{e}_y + \\symbfit{e}_z ) \\\\\n\\symbfit{a}_3 &= \\frac{a}{2} ( \\symbfit{e}_z + \\symbfit{e}_x ) \\\\\n\\end{aligned}\n\\]\n基本単位胞では面倒なことがあるので、慣用単位砲で考えることもある。その一例として、ウィグナー・ツァイト胞がある。ウィグナーサイツ胞とは、ある格子点と、その周りの格子点との間の垂直二等分面で囲まれた領域における最小のセル（胞）のことである。\n\n\n\nコードはこちら\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom matplotlib.patches import Rectangle\n\n# Define the lattice vectors\na1 = np.array([1, 0])\na2 = np.array([0, 1])\n\n# Generate a grid of lattice points\nx = np.arange(-2, 3)\ny = np.arange(-2, 3)\nX, Y = np.meshgrid(x, y)\n\n# Plot the lattice points\nplt.figure(figsize=(6, 6))\nplt.scatter(X, Y, color='blue')\n\n# Plot the lattice vectors\nplt.quiver(0, 0, a1[0], a1[1], angles='xy', scale_units='xy', scale=1, color='red')\nplt.quiver(0, 0, a2[0], a2[1], angles='xy', scale_units='xy', scale=1, color='green')\n\n# Draw the Wigner-Seitz cell\nrectangle = Rectangle((-0.5, -0.5), 1, 1, edgecolor='black', facecolor='none')\nplt.gca().add_patch(rectangle)\n\n# Set the aspect ratio and limits\nplt.gca().set_aspect('equal', adjustable='box')\nplt.xlim(-2.5, 2.5)\nplt.ylim(-2.5, 2.5)\n\n# Add labels\nplt.text(a1[0], a1[1], 'a1', fontsize=12, ha='right')\nplt.text(a2[0], a2[1], 'a2', fontsize=12, va='bottom')\n\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\nコードはこちら\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom matplotlib.patches import RegularPolygon\n\n# Define the lattice vectors\na1 = np.array([1, 0])\na2 = np.array([1/2, np.sqrt(3)/2])\n\n# Generate a grid of lattice points\nx = np.arange(-2, 3)\ny = np.arange(-2, 3)\nX, Y = np.meshgrid(x, y)\n\n# Generate the hexagonal lattice points\nX_hex = X + Y/2\nY_hex = Y * np.sqrt(3)/2\n\n# Plot the lattice points\nplt.figure(figsize=(6, 6))\nplt.scatter(X_hex, Y_hex, color='blue')\n\n# Plot the lattice vectors\nplt.quiver(0, 0, a1[0], a1[1], angles='xy', scale_units='xy', scale=1, color='red')\nplt.quiver(0, 0, a2[0], a2[1], angles='xy', scale_units='xy', scale=1, color='green')\n\n# Draw the Wigner-Seitz cell\npolygon = RegularPolygon((0, 0), 6, radius=1/np.sqrt(3), edgecolor='black', facecolor='none')\nplt.gca().add_patch(polygon)\n\n# Set the aspect ratio and limits\nplt.gca().set_aspect('equal', adjustable='box')\nplt.xlim(-2.5, 2.5)\nplt.ylim(-2.5, 2.5)\n\n# Add labels\nplt.text(a1[0], a1[1], 'a1', fontsize=12, ha='right')\nplt.text(a2[0], a2[1], 'a2', fontsize=12, va='bottom')\n\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\n逆格子\n周期性のある関数を一つ考える。\n\\[\nf(x) = f(x+n\\lambda)\n\\]\nこの時、\n\\[\nf(x)=\\sum_{n=-\\infty}^{\\infty} c_n \\exp \\left(\\frac{2 \\pi i n x}{\\lambda}\\right) = \\sum_{n=-\\infty}^{\\infty} c_n \\exp \\left(iG_n x\\right)\n\\]\nただしフーリエ係数は, \\[\nc_n=\\frac{1}{\\lambda} \\int_0^\\lambda f(x) \\exp \\left(-iG_n x\\right) \\dd x\n\\]\nここで、 \\(G_n = 2\\pi n / \\lambda\\) となり、離散的な値を持つ。この時の \\((G_n)\\) を逆格子ベクトルと呼ぶ。逆格子スペクトルは、要するに \\(G_n\\) を横軸にして、どの端数が一番強く現れているのかを、 \\(c_n\\) 高さで表しているだけなのだ。\nこれを立体に拡張させる。\n\\[\nf(\\symbfit{X})=\\sum_{n=-\\infty}^{\\infty} c_n \\exp \\left(i\\symbfit{G_n} \\cdot (\\symbfit{r}+\\symbfit{R})\\right)\n\\]\nここで、 \\(\\symbfit{R}\\) は関数が一周して帰ってくる値。\n\\[\n\\symbfit{G_n} \\cdot \\symbfit{R} = 2\\pi N\n\\]\nというのは次からわかる。\n\\[\n\\begin{aligned}\n\\symbfit{G_n} \\cdot \\symbfit{a}_1 &= 2\\pi n_1 \\\\\n\\symbfit{G_n} \\cdot \\symbfit{a}_2 &= 2\\pi n_2 \\\\\n\\symbfit{G_n} \\cdot \\symbfit{a}_3 &= 2\\pi n_3 \\\\\n\\end{aligned}\n\\]\nこの理由は、要するに波が一周して戻るから。数式で表せば、\\(f(\\symbfit{r}+\\symbfit{R})=(\\symbfit{r})\\) で導ける。\nここで次のようなベクトルを考える。\n\\[\n\\symbfit{G_n} = n_1 \\symbfit{b}_1 + n_2 \\symbfit{b}_2 + n_3 \\symbfit{b}_3\n\\]\nこれで、\n\\[\n\\symbfit{a_i} \\cdot \\symbfit{b}_j = 2\\pi \\delta_{ij}\n\\]\nとすれば、\n\\[\n\\symbfit{G_n} \\cdot \\symbfit{a_i} = 2\\pi n_i\n\\]\nになる。これを逆格子ベクトルと呼ぶ。\n\\[\n\\begin{aligned}\n\\symbfit{b}_1 &= 2\\pi \\frac{\\symbfit{a}_2 \\times \\symbfit{a}_3}{\\symbfit{a}_1 \\cdot (\\symbfit{a}_2 \\times \\symbfit{a}_3)} \\\\\n\\symbfit{b}_2 &= 2\\pi \\frac{\\symbfit{a}_3 \\times \\symbfit{a}_1}{\\symbfit{a}_2 \\cdot (\\symbfit{a}_3 \\times \\symbfit{a}_1)} \\\\\n\\symbfit{b}_3 &= 2\\pi \\frac{\\symbfit{a}_1 \\times \\symbfit{a}_2}{\\symbfit{a}_3 \\cdot (\\symbfit{a}_1 \\times \\symbfit{a}_2)} \\\\\n\\end{aligned}\n\\]\nとなる。これが何がありがたいかというと、空間内の任意の周期性のある物理量をフーリエ変換することで、逆格子空間における格子点の位置に一つ一つ何かしらの強さの値を置くことで見ることができることかもしれない。つまり、フーリエ変換の長さが短くなるほどに、それを表すのに必要な逆空間の格子点は減るということかな？　ここら辺が何の役に立つのかわからんのは、後からわかる感じの説明の仕方をしてるから。\n例として二次元単純結晶について考えると、\n\\[\n\\begin{aligned}\n\\symbfit{a}_1 &= a \\symbfit{e}_x \\\\\n\\symbfit{a}_2 &= b \\symbfit{e}_y \\\\\n\\end{aligned}\n\\]\nこれの逆格子ベクトルは、\n\\[\n\\begin{aligned}\n\\symbfit{b}_1 &= \\frac{2\\pi}{a} \\symbfit{e}_y \\\\\n\\symbfit{b}_2 &= \\frac{2\\pi}{b} \\symbfit{e}_x \\\\\n\\end{aligned}\n\\]\nなので、\n\\[\n\\begin{aligned}\nk_x \\in \\left[ -\\frac{\\pi}{a}, \\frac{\\pi}{a} \\right] \\\\\nk_y \\in \\left[ -\\frac{\\pi}{b}, \\frac{\\pi}{b} \\right] \\\\\n\\end{aligned}\n\\]\nがBrillouin Zoneとなる。つまり、逆空間内のWigner-Seitz cellになる。\n\n\nブリルアンゾーン\n一次元の場合、結晶間隔を \\(a\\) とすると、\n\\[\n-\\frac{\\pi}{a} \\leq k \\leq \\frac{\\pi}{a}\n\\]\nこれをブリルアンゾーンと呼ぶ。これは逆格子ベクトルの範囲を表している。これも何でやってるかはわからん。\n\n\n結晶によるX線回折\nこの話は先ほどの議論とは類似はするが話が違う気がする。\n考えを乱さないためにここには書かないし、教科書に板書がそのままある。\nちょっとした話だが、要するに、ラウエ関数\n\\[\n\\frac{\\sin ^2 \\left(\\pi N \\symbfit{r}\\cdot \\symbfit{K}_x \\right)}{\\sin ^2 \\left(\\pi \\symbfit{r}\\cdot \\symbfit{K}_x \\right)}\n\\]\nを考えた時に、 \\(N\\) というのは、どれだけ原子数をスキップしてX線が強め合うのかで、このグラフは \\(\\symbfit{a}\\cdot \\symbfit{K}_x\\) が整数の時に最強になって、ゆえにそれをラウエ条件と呼んでいて、\n\\[\n\\begin{aligned}\n\\symbfit{r}\\cdot \\symbfit{K}_x = h \\\\\n\\symbfit{r}\\cdot \\symbfit{K}_y = k \\\\\n\\symbfit{r}\\cdot \\symbfit{K}_z = l \\\\\n\\end{aligned}\n\\]\nとかってなって、上と途中と同じ理屈でやってるだけで、議論は最初から同じではない。\nX線回折になると、単位胞子の中身だけを考えれば、その原子分子の位置がわかるということになる。だから、ブリルアンゾーンの中だけを考えれば、波長のより短いところにあるというふうに見れる場所の原子の場所がわかる。それ以上の波長の場所にあるのは、つまり、繰り返されたものだけだと言える。\n\n\n結合\n結合エネルギーとは、結晶を引き剥がして無限遠に持っていくのに必要なエネルギー。\n\n共有結合\n水素の原子軌道を考える。\n\\[\n\\hat{H} = -\\frac{\\hbar^2}{2me} \\nabla - \\frac{e^2}{4\\pi\\epsilon_0 r_1} - \\frac{e^2}{4\\pi\\epsilon_0 r_2} + \\frac{e^2}{4\\pi\\epsilon_0 R}\n\\]\nこの軌道方程式を解く。式がかなり面倒なので、次のような前提で解くことになる。\n\n\\(\\phi\\) は二つの波動関数 \\(\\phi_1\\) と \\(\\phi_2\\) の線形結合で表せる\n\\(\\phi_1\\) と \\(\\phi_2\\) はそれぞれ、二つの陽子が片方だけ存在する時に表される電子の波動関数である\n\nこれがLCAO法と呼ばれる。\n\\[\n\\hat{H} (c_1\\phi_1 + c_2\\phi_2) = E(c_1\\phi_1 + c_2\\phi_2)\n\\]\n左から \\(\\phi_1^*\\) とかけて積分すると\n\\[\n\\begin{aligned}\nH_{11} c_1 + H_{12} c_2 &= Ec_1 + S_{12}Ec_2 \\\\\nH_{21} c_1 + H_{22} c_2 &= S_{21}Ec_1 + Ec_2 \\\\\n\\end{aligned}\n\\]\nこれを整理すると、\n\\[\n\\begin{pmatrix}\nH_{11} - E & H_{12} - S_{12} \\\\\nH_{21} S_{21} & H_{22} - E \\\\\n\\end{pmatrix}\n\\begin{pmatrix}\nc_1 \\\\\nc_2 \\\\\n\\end{pmatrix}\n=\n\\begin{pmatrix}\n0 \\\\\n0 \\\\\n\\end{pmatrix}\n\\]\nこの非自明な解があるのは、行列式がゼロになる時である。\n\\[\n\\begin{vmatrix}\nH_{11} - E & H_{12} -ES_{12} \\\\\nH_{21}- ES_{21} & H_{22} - E \\\\\n\\end{vmatrix}\n= 0\n\\]\n\\(S_{12} = S_{21}, H_{12}=H_{21}, H_{11}=H_{22}\\) であることを考えると、\n\\[\n(H_{11} - E)^2 - (H_{12} - SE) = 0\n\\]\nとなって以下の解が出てくる\n\\[\n\\begin{aligned}\nE_+ = \\frac{H_{11} + H_{12}}{1+S} \\\\\nE_- = \\frac{H_{11} - H_{12}}{1-S} \\\\\n\\phi_+ = \\frac{\\phi_1 + \\phi_2}{\\sqrt{2(1+S)}} \\\\\n\\phi_- = \\frac{\\phi_1 - \\phi_2}{\\sqrt{2(1-S)}} \\\\\n\\end{aligned}\n\\]\n\nダイヤモンドの共有結合\n\\[\n\\begin{aligned}\n\\phi_1 &= \\frac{1}{2} (\\xi_{2s} - \\xi_{2p_x} - \\xi_{2p_y} - \\xi_{2p_z}) \\\\\n\\phi_2 &= \\frac{1}{2} (\\xi_{2s} 2 \\xi_{2p_x} + \\xi_{2p_y} + \\xi_{2p_z}) \\\\\n\\phi_3 &= \\frac{1}{2} (\\xi_{2s} + \\xi_{2p_x} - \\xi_{2p_y} - \\xi_{2p_z}) \\\\\n\\phi_4 &= \\frac{1}{2} (\\xi_{2s} - \\xi_{2p_x} + \\xi_{2p_y} - \\xi_{2p_z}) \\\\\n\\end{aligned}\n\\]\nところが、\\(sp3\\) 混成軌道への昇位にかかるエネルギーは \\(7.4 \\symup{eV}\\) もかかるが、結合エネルギーが \\(7.3 \\symup{eV}\\) もあるので、安定している。\n\n\n\n\nイオン結合\n\\(i\\) 番目のイオンにかかるイオン間のクーロン相互作用によるエネルギーは\n\\[\n\\begin{aligned}\nE_i &= -\\frac{e^2}{4\\pi\\epsilon_0} \\sum_{j \\neq i} \\frac{Z_i Z_j}{r_{ij}}\\\\\n&= M \\times \\frac{Z_i Z_j e^2}{4 \\pi \\epsilon d}\n\\end{aligned}\n\\]\nここで \\(M\\) はマーデルング定数という。",
+    "section": "結晶格子と逆格子",
+    "text": "結晶格子と逆格子\n\n問題A1 実格子、ウィグナー・ザイツ胞、逆格子\n\n2次元単純直方格子 \\((a\\ne b)\\) と2次元六方格子について、格子点と基本並進ベクトルを図示し、ウィグナー・ザイツ胞を書き入れよ。\n3次元六方格子の基本並進ベクトルを\n\\[\n\\begin{aligned}\n\\boldsymbol a_1&=\\frac{\\sqrt3a}{2}\\boldsymbol e_x-\\frac a2\\boldsymbol e_y,\\\\\n\\boldsymbol a_2&=\\frac{\\sqrt3a}{2}\\boldsymbol e_x+\\frac a2\\boldsymbol e_y,\\\\\n\\boldsymbol a_3&=c\\boldsymbol e_z\n\\end{aligned}\n\\]\nとする。逆格子基本ベクトルを求め、\\(xy\\) 面内の実格子点と逆格子点の配列を図示せよ。\n面心立方格子の基本並進ベクトルを\n\\[\n\\boldsymbol a_1=\\frac a2(\\boldsymbol e_y+\\boldsymbol e_z),\\quad\n\\boldsymbol a_2=\\frac a2(\\boldsymbol e_x+\\boldsymbol e_z),\\quad\n\\boldsymbol a_3=\\frac a2(\\boldsymbol e_x+\\boldsymbol e_y)\n\\]\nとする。逆格子基本ベクトルを求め、逆格子のブラベ格子名と慣用単位胞の一辺を答えよ。\n\n\n\n\n\n\n\nNote理論A1：実空間の周期を波数空間へ写す\n\n\n\n\n\n結晶格子は、基本並進ベクトル \\(\\boldsymbol a_i\\) の整数倍\n\\[\n\\boldsymbol R=n_1\\boldsymbol a_1+n_2\\boldsymbol a_2+n_3\\boldsymbol a_3\n\\]\nで生成される点の集合である。ウィグナー・ザイツ胞は、ある格子点から他のどの格子点よりも近い領域であり、近接格子点との垂直二等分線または面で囲まれる。\n逆格子基本ベクトル \\(\\boldsymbol b_i\\) は\n\\[\n\\boldsymbol a_i\\cdot\\boldsymbol b_j=2\\pi\\delta_{ij}\n\\]\nを満たす。具体的には、実格子の原始胞体積を\n\\[\n\\Omega=\\boldsymbol a_1\\cdot\n(\\boldsymbol a_2\\times\\boldsymbol a_3)\n\\]\nとして、\n\\[\n\\begin{aligned}\n\\boldsymbol b_1&=2\\pi\n\\frac{\\boldsymbol a_2\\times\\boldsymbol a_3}{\\Omega},\\\\\n\\boldsymbol b_2&=2\\pi\n\\frac{\\boldsymbol a_3\\times\\boldsymbol a_1}{\\Omega},\\\\\n\\boldsymbol b_3&=2\\pi\n\\frac{\\boldsymbol a_1\\times\\boldsymbol a_2}{\\Omega}\n\\end{aligned}\n\\]\nで求められる。\n逆格子は単なる作図上の道具ではない。実格子と同じ周期をもつ平面波は\n\\[\ne^{i\\boldsymbol G\\cdot(\\boldsymbol r+\\boldsymbol R)}\n=e^{i\\boldsymbol G\\cdot\\boldsymbol r}\n\\]\nを満たすため、\n\\[\n\\boldsymbol G\\cdot\\boldsymbol R=2\\pi m\n\\]\nとなる。この条件を満たす \\(\\boldsymbol G\\) の集合が逆格子であり、回折とバンド理論の共通言語になる。\n\n\n\n\n\n\n\n\n\nTip解答A1\n\n\n\n\n\n\n模範図は次のとおりである。矢印が基本並進ベクトル、実線がウィグナー・ザイツ胞を表す。\n\n\n\n\n\n\n\n\n\nFigure 1: 2次元格子と六方格子の実格子・逆格子\n\n\n\n\n\n\n\\(\\Omega=\\sqrt3a^2c/2\\) であるから、\n\\[\n\\boxed{\n\\begin{aligned}\n\\boldsymbol b_1&=\\frac{2\\pi}{a}\n\\left(\\frac1{\\sqrt3}\\boldsymbol e_x-\\boldsymbol e_y\\right),\\\\\n\\boldsymbol b_2&=\\frac{2\\pi}{a}\n\\left(\\frac1{\\sqrt3}\\boldsymbol e_x+\\boldsymbol e_y\\right),\\\\\n\\boldsymbol b_3&=\\frac{2\\pi}{c}\\boldsymbol e_z\n\\end{aligned}}\n\\]\nとなる。\\(xy\\) 面では、実格子も逆格子も三角格子であるが、向きと尺度が異なる。\n面心立方格子に対して、\n\\[\n\\boxed{\n\\begin{aligned}\n\\boldsymbol b_1&=\\frac{2\\pi}{a}\n(-\\boldsymbol e_x+\\boldsymbol e_y+\\boldsymbol e_z),\\\\\n\\boldsymbol b_2&=\\frac{2\\pi}{a}\n(\\boldsymbol e_x-\\boldsymbol e_y+\\boldsymbol e_z),\\\\\n\\boldsymbol b_3&=\\frac{2\\pi}{a}\n(\\boldsymbol e_x+\\boldsymbol e_y-\\boldsymbol e_z)\n\\end{aligned}}\n\\]\nである。これは体心立方格子の原始ベクトルなので、\n\\[\n\\boxed{\\text{FCCの逆格子は、慣用単位胞の一辺が }4\\pi/a\n\\text{ のBCC}}\n\\]",
     "crumbs": [
       "Home",
       "Posts",
@@ -3102,11 +3268,11 @@
     ]
   },
   {
-    "objectID": "posts/univ_lecs/3S/固体物性学.html#自由電子論",
-    "href": "posts/univ_lecs/3S/固体物性学.html#自由電子論",
+    "objectID": "posts/univ_lecs/3S/固体物性学.html#格子振動",
+    "href": "posts/univ_lecs/3S/固体物性学.html#格子振動",
     "title": "固体物性学",
-    "section": "自由電子論",
-    "text": "自由電子論\n\n箱型ポテンシャルの復習\n箱型ポテンシャルの中にある電子のエネルギー分布を考える。\n\\[\n\\begin{aligned}\n\\psi_{\\symbfit{k}}(\\symbfit{r}) &= \\frac{1}{\\sqrt{V}} \\exp(i \\symbfit{k} \\cdot \\symbfit{r}) \\\\\nE_{\\symbfit{k}} &= \\frac{\\hbar^2 k^2}{2m} \\\\\n\\symbfit{k} &= \\frac{2\\pi}{L} (n_x, n_y, n_z)\n\\end{aligned}\n\\]\nここら辺は復習。忘れたら、\n\\[\n\\begin{aligned}\n\\hat{H}\\psi_{\\symbfit{k}}(\\symbfit{r}) &= E_{\\symbfit{k}} \\psi_{\\symbfit{k}}(\\symbfit{r}) \\\\\n-\\frac{\\hbar^2}{2m} \\nabla^2 \\psi_{\\symbfit{k}}(\\symbfit{r}) &= E_{\\symbfit{k}} \\psi_{\\symbfit{k}}(\\symbfit{r}) \\\\\n\\end{aligned}\n\\]\nこれを変数分離で解けばいい。\n\n\n状態密度・フェルミエネルギー\n波数 \\(\\symbfit{k}\\) が　\\(k_i = \\frac{2\\pi}{L} n_i\\) であることを考えた時、要するに \\((2\\pi/L)^3\\) ごとに一個の状態があるから、体積あたりの状態数は \\(1/(2\\pi/L)^3\\) になる。\n次に、状態密度 \\(D(E)\\) を導入する。こいつは、エネルギー \\(E\\) の時の状態の数 \\(N\\) の \\(E\\) 微分だ。別の分野だと数を時間で微分してその増減を見たりするんだが、こいつは数をエネルギーで微分して、その増減を見てるわけ。\n\\(D(E)\\dd E\\) ってのは \\(E \\sim E+\\dd E\\) の間にある状態の数の密度ってわけで、 \\(E\\) の状態下での波数 \\(k\\) の球の体積を考えて、電子スピンの自由度2をかけてやって\n\\[\nD(E)\\dd E = 2 \\times 4\\pi k^2 \\dd k \\times \\frac{1}{(2\\pi/L)^3}\n\\]\nここで、\n\\[\n\\dd k = \\frac{1}{2} \\sqrt{\\frac{2m_e}{\\hbar^2E}} \\dd E\n\\]\nだから、状態密度ってのは、\n\\[\nD(E) = \\frac{L^3}{2\\pi^2} \\left( \\frac{2m_e}{\\hbar^2} \\right)^{3/2} \\sqrt{E}\n\\]\nとなる。\nフェルミエネルギーってのは、ある状態の数 \\(N\\) になるようなエネルギーのことだから、\n\\[\n\\begin{aligned}\n\\int _0^{E_F} D(E) \\dd E &\\triangleq N \\\\\nE_F &= \\frac{\\hbar^2}{2m_e} \\left( \\frac{3\\pi^2 N}{L^3} \\right)^{2/3} \\\\\n\\end{aligned}\n\\]\n今までのはめんどくさい方の考え方。別の導き方で考える。\n要するに \\(N\\) ってのは、 \\(\\symbfit{k}\\) の空間の球体体積を考えればいい。球体内の状態の数なんだから、体積あたりの状態数と電子スピンの自由度2をかけてやればいい。\n\\[\n\\begin{aligned}\nN(E) &= 2 \\frac{4\\pi}{3} k^3 \\frac{L^3}{(2\\pi)^3} = \\frac{V}{3\\pi^2} \\qty(\\frac{2m_eE}{\\hbar^2})^{3/2} \\\\\nD(E) &= \\frac{dN}{dE} = \\frac{L^3}{2\\pi^2} \\left( \\frac{2m_e}{\\hbar^2} \\right)^{3/2} \\sqrt{E} \\\\\n\\end{aligned}\n\\]",
+    "section": "格子振動",
+    "text": "格子振動\n\n問題B1 1次元格子の分散関係\n質量 \\(M\\) の同種原子が間隔 \\(a\\) で並び、最近接原子間をばね定数 \\(K\\) のばねが結ぶ1次元結晶を考える。\\(j\\) 番目の原子の平衡位置からの変位を \\(u_j\\) とする。\n\n\n\n\n\n\n\n\nFigure 2: 同種原子からなる1次元格子の模式図\n\n\n\n\n\n\n\\(j\\) 番目の原子の古典的運動方程式を書け。\n\\(u_j=Ae^{i(kja-\\omega t)}\\) を仮定して分散関係を導き、第一ブリュアンゾーン内で図示せよ。\n単位胞内に質量 \\(M_1,M_2\\) の異なる2原子がある場合の分散関係の概略を図示し、現れるモードを説明せよ。\n\n\n\n\n\n\n\nNote理論B1：結晶中の波は波長によって振動数が変わる\n\n\n\n\n\n原子 \\(j\\) が右の原子より右へ大きく変位すれば、右のばねは原子 \\(j\\) を左へ引く。左右のばねの復元力を足すと\n\\[\nF_j=K(u_{j+1}-u_j)+K(u_{j-1}-u_j)\n\\]\nとなる。\n平面波を代入すると、隣の原子との位相差は \\(ka\\) である。\n\\[\nu_{j\\pm1}=u_je^{\\pm ika}\n\\]\nしたがって、運動方程式は各 \\(j\\) に共通の代数方程式になる。格子では \\(k\\) と \\(k+2\\pi/a\\) が同じ原子上の位相を与えるため、独立な範囲は第一ブリュアンゾーン\n\\[\n-\\frac{\\pi}{a}\\le k\\le\\frac{\\pi}{a}\n\\]\nでよい。\n二原子格子では、各単位胞に二つの自由度があるため、各 \\(k\\) について二つの固有振動が生じる。低周波側は長波長極限で二原子が同位相に動く音響モード、高周波側は逆位相に動く光学モードである。\n\n\n\n\n\n\n\n\n\nTip解答B1\n\n\n\n\n\n\n\\[\n\\boxed{\nM\\dv[2]{u_j}{t}\n=K(u_{j+1}+u_{j-1}-2u_j)\n}\n\\]\n平面波を代入すると、\n\\[\n-M\\omega^2u_j\n=K(e^{ika}+e^{-ika}-2)u_j\n\\]\nなので、\n\\[\n\\boxed{\n\\omega^2(k)=\\frac{4K}{M}\\sin^2\\left(\\frac{ka}{2}\\right),\n\\qquad\n\\omega(k)=2\\sqrt{\\frac KM}\n\\abs{\\sin\\left(\\frac{ka}{2}\\right)}\n}.\n\\]\n二原子格子では、\n\\[\n\\boxed{\n\\omega_\\pm^2(k)=\n\\frac{K(M_1+M_2)}{M_1M_2}\n\\left[\n1\\pm\n\\sqrt{\n1-\\frac{4M_1M_2}{(M_1+M_2)^2}\n\\sin^2\\left(\\frac{ka}{2}\\right)}\n\\right]\n}\n\\]\nとなる。\\(-\\) が音響分枝、\\(+\\) が光学分枝である。\n\n\n\n\n\n\n\n\n\nFigure 3: 単原子格子と二原子格子の分散関係\n\n\n\n\n\n音響分枝は \\(k\\to0\\) で \\(\\omega\\to0\\) となり、連続体の音波へつながる。光学分枝は \\(k=0\\) でも有限の \\(\\omega\\) をもち、異種イオン結晶では逆位相運動が電気双極子を変化させるため赤外光と結合できる。",
     "crumbs": [
       "Home",
       "Posts",
@@ -3116,11 +3282,11 @@
     ]
   },
   {
-    "objectID": "posts/univ_lecs/3S/固体物性学.html#sec-band-theory",
-    "href": "posts/univ_lecs/3S/固体物性学.html#sec-band-theory",
+    "objectID": "posts/univ_lecs/3S/固体物性学.html#自由電子",
+    "href": "posts/univ_lecs/3S/固体物性学.html#自由電子",
     "title": "固体物性学",
-    "section": "バンド理論",
-    "text": "バンド理論\n詳しくは教科書 矢口裕之 (2017) を参照。ここでは大まかに理論を追うだけにする。\nまず、ブロッホの定理。これは、繰り返し単位がある結晶内での波動関数が、\n\\[\n\\psi_{\\symbfit{k}}(\\symbfit{r} + \\symbfit{R}) = \\psi_{\\symbfit{k}}(\\symbfit{r}) \\exp(i \\symbfit{k} \\cdot \\symbfit{R})\n\\]\nと表せるという定理。つまりは、繰り返し単位が存在するって話。\n次に、そんな繰り返し単位がある結晶内での波動関数というのは、繰り返し単位である基本単位胞の位置からくる位置ベクトル \\(\\symbfit{R}_n\\) と、その単位胞内に存在する原子による位置ベクトル \\(\\symbfit{r}_j\\) を用いて、\n\\[\n\\phi(\\symbfit{r}) = \\sum_{\\symbfit{R}_n} \\sum_j \\sum_\\mu c_{j \\mu} \\exp \\qty{i \\symbfit{k}\\cdot (\\symbfit{R}_n + \\symbfit{r}_j)} \\phi_{j \\mu}(\\symbfit{r} - \\symbfit{R}_n - \\symbfit{r}_j)\n\\]\nと表せる。ここで \\(\\mu\\) は原子の軌道関数の指定に使われる。例えば \\(1s, \\ 2s, \\ 2p_x, \\ 2p_y, \\ 2p_z\\) など。つまり、 \\(n\\) 個目の単位胞の \\(j\\) 番目の原子の \\(\\mu\\) 番目の軌道関数による波動関数を \\(\\phi_{j \\mu}(\\symbfit{r} - \\symbfit{R}_n - \\symbfit{r}_j)\\) として、それぞれの軌道関数による波動関数を \\(c_{j \\mu}\\) の重みをつけて、線型結合で表しているだけ。\nこれが満たすべき波動方程式は、\n\\[\n\\hat{H} \\phi(\\symbfit{r}) - E \\phi(\\symbfit{r}) = 0\n\\]\nこれを左辺から \\(\\exp \\qty{ - i \\symbfit{k}\\cdot (\\symbfit{R}_n + \\symbfit{r}_j)} \\phi_{j \\mu}^{\\ast}(\\symbfit{r} - \\symbfit{R}_{n'} - \\symbfit{r}_{j'})\\) とかけて解析をしていく。\n\\[\n\\sum_{\\symbfit{R}_n} \\sum_j \\sum_\\mu c_{j \\mu} \\exp \\qty{i \\symbfit{k}\\cdot (\\symbfit{R}_n + \\symbfit{r}_j - \\symbfit{R}_{n'} - \\symbfit{r}_{j'})} \\qty( \\bra{n'j'\\mu'} \\hat{H} \\ket{n j \\mu} - E \\bra{n'j'\\mu'} \\ket{n j \\mu} ) = 0\n\\]\nこれで、色々とモデル化をして考えていくわけだ。その具体例については、過去問に掲載する。",
+    "section": "自由電子",
+    "text": "自由電子\n\n問題C1 3次元自由電子の状態密度とフェルミエネルギー\n一辺 \\(L\\) の立方体中に \\(N\\) 個の自由電子がある。自由電子のエネルギーを\n\\[\n\\varepsilon=\\frac{\\hbar^2k^2}{2m_e}\n\\]\nとする。\n\nスピン縮退を含む状態密度が\n\\[\nD(\\varepsilon)\n=\\frac{L^3}{2\\pi^2}\n\\left(\\frac{2m_e}{\\hbar^2}\\right)^{3/2}\n\\sqrt{\\varepsilon}\n\\]\nとなることを示せ。\n\\(T=0\\) におけるフェルミエネルギー \\(\\varepsilon_F\\) を \\(N\\) の関数として求めよ。\n\n\n\n\n\n\n\nNote理論C1：波数空間の状態を球の体積で数える\n\n\n\n\n\n周期境界条件を課すと、\\(k\\) 空間では各状態が各方向に \\(2\\pi/L\\) 間隔で並ぶ。1状態が占める体積は \\((2\\pi/L)^3\\) である。\n大きさが \\(k\\) 以下の波数ベクトルは球内にあり、スピンの2重縮退を含めると\n\\[\n\\mathcal N(k)\n=2\\frac{(4\\pi/3)k^3}{(2\\pi/L)^3}\n=\\frac{L^3k^3}{3\\pi^2}\n\\]\nとなる。状態密度は、累積状態数をエネルギーで微分したもの\n\\[\nD(\\varepsilon)=\\dv{\\mathcal N}{\\varepsilon}\n\\]\nである。\n\\(T=0\\) では、電子は低い準位からフェルミエネルギーまで詰まるため、\n\\[\nN=\\int_0^{\\varepsilon_F}D(\\varepsilon)\\dd\\varepsilon\n\\]\nが電子数条件になる。\n\n\n\n\n\n\n\n\n\nTip解答C1\n\n\n\n\n\n\n\\(k=\\sqrt{2m_e\\varepsilon}/\\hbar\\) を\n\\[\n\\mathcal N(\\varepsilon)\n=\\frac{L^3}{3\\pi^2}\n\\left(\\frac{2m_e\\varepsilon}{\\hbar^2}\\right)^{3/2}\n\\]\nに代入し、\\(\\varepsilon\\) で微分すれば、\n\\[\n\\boxed{\nD(\\varepsilon)\n=\\frac{L^3}{2\\pi^2}\n\\left(\\frac{2m_e}{\\hbar^2}\\right)^{3/2}\n\\sqrt{\\varepsilon}\n}\n\\]\n\\[\nN=\\int_0^{\\varepsilon_F}D(\\varepsilon)\\dd\\varepsilon\n=\\frac{L^3}{3\\pi^2}\n\\left(\\frac{2m_e\\varepsilon_F}{\\hbar^2}\\right)^{3/2}\n\\]\nより、\n\\[\n\\boxed{\n\\varepsilon_F\n=\\frac{\\hbar^2}{2m_e}\n\\left(\\frac{3\\pi^2N}{L^3}\\right)^{2/3}\n}\n\\]",
     "crumbs": [
       "Home",
       "Posts",
@@ -3130,11 +3296,11 @@
     ]
   },
   {
-    "objectID": "posts/univ_lecs/3S/固体物性学.html#年度",
-    "href": "posts/univ_lecs/3S/固体物性学.html#年度",
+    "objectID": "posts/univ_lecs/3S/固体物性学.html#電子のバンド構造",
+    "href": "posts/univ_lecs/3S/固体物性学.html#電子のバンド構造",
     "title": "固体物性学",
-    "section": "2018年度",
-    "text": "2018年度\n\n問1\n結晶格子と逆格子について、以下の問いに答えよ。\n\n(a)\n2次元単純直方格子（a ≠ b）と2次元六方格子のそれぞれについて、格子点と基本並進ベクトルを図示せよ。また、それらの図にウィグナー・ザイツ胞を書き入れよ。\n\n\n\n\n\n\nNote理論\n\n\n\n\n\nウィグナーサイツ胞とは、ある格子点と、その周りの格子点との間の垂直二等分面で囲まれた領域における最小のセル（胞）のことである。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n\nコードはこちら\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom matplotlib.patches import Rectangle\n\n# Define the lattice vectors\na1 = np.array([1, 0])\na2 = np.array([0, 1])\n\n# Generate a grid of lattice points\nx = np.arange(-2, 3)\ny = np.arange(-2, 3)\nX, Y = np.meshgrid(x, y)\n\n# Plot the lattice points\nplt.figure(figsize=(6, 6))\nplt.scatter(X, Y, color='blue')\n\n# Plot the lattice vectors\nplt.quiver(0, 0, a1[0], a1[1], angles='xy', scale_units='xy', scale=1, color='red')\nplt.quiver(0, 0, a2[0], a2[1], angles='xy', scale_units='xy', scale=1, color='green')\n\n# Draw the Wigner-Seitz cell\nrectangle = Rectangle((-0.5, -0.5), 1, 1, edgecolor='black', facecolor='none')\nplt.gca().add_patch(rectangle)\n\n# Set the aspect ratio and limits\nplt.gca().set_aspect('equal', adjustable='box')\nplt.xlim(-2.5, 2.5)\nplt.ylim(-2.5, 2.5)\n\n# Add labels\nplt.text(a1[0], a1[1], 'a1', fontsize=12, ha='right')\nplt.text(a2[0], a2[1], 'a2', fontsize=12, va='bottom')\n\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\nコードはこちら\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom matplotlib.patches import RegularPolygon\n\n# Define the lattice vectors\na1 = np.array([1, 0])\na2 = np.array([1/2, np.sqrt(3)/2])\n\n# Generate a grid of lattice points\nx = np.arange(-2, 3)\ny = np.arange(-2, 3)\nX, Y = np.meshgrid(x, y)\n\n# Generate the hexagonal lattice points\nX_hex = X + Y/2\nY_hex = Y * np.sqrt(3)/2\n\n# Plot the lattice points\nplt.figure(figsize=(6, 6))\nplt.scatter(X_hex, Y_hex, color='blue')\n\n# Plot the lattice vectors\nplt.quiver(0, 0, a1[0], a1[1], angles='xy', scale_units='xy', scale=1, color='red')\nplt.quiver(0, 0, a2[0], a2[1], angles='xy', scale_units='xy', scale=1, color='green')\n\n# Draw the Wigner-Seitz cell\npolygon = RegularPolygon((0, 0), 6, radius=1/np.sqrt(3), edgecolor='black', facecolor='none')\nplt.gca().add_patch(polygon)\n\n# Set the aspect ratio and limits\nplt.gca().set_aspect('equal', adjustable='box')\nplt.xlim(-2.5, 2.5)\nplt.ylim(-2.5, 2.5)\n\n# Add labels\nplt.text(a1[0], a1[1], 'a1', fontsize=12, ha='right')\nplt.text(a2[0], a2[1], 'a2', fontsize=12, va='bottom')\n\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n(b)\n3次元六方格子の逆格子点を求めよ。なお、六方格子の基本並進ベクトルは\n\\[\n\\begin{aligned}\n\\symbfit{a}_1 &= \\frac{\\sqrt{3}a}{2} \\symbfit{e}_x - \\frac{a}{2} \\symbfit{e}_y, \\\\\n\\symbfit{a}_2 &= \\frac{\\sqrt{3}a}{2} \\symbfit{e}_x + \\frac{a}{2} \\symbfit{e}_y, \\\\\n\\symbfit{a}_3 &= c \\symbfit{e}_z\n\\end{aligned}\n\\]\nで与えられるとせよ。また、xy面内での格子点と逆格子点の配列をそれぞれ図示せよ。\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n三次元六方格子の逆格子点の求め方は次のとおり。\n\\[\n\\symbfit{b_i} = 2\\pi \\frac{\\symbfit{a_j} \\times \\symbfit{a_k}}{\\symbfit{a_i} \\cdot (\\symbfit{a_j} \\times \\symbfit{a_k})}\n\\]\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\[\n\\begin{aligned}\n\\symbfit{b}_1 &= \\frac{2\\pi}{a} \\left( \\frac{1}{\\sqrt{3}} \\symbfit{e}_x - \\symbfit{e}_y \\right), \\\\\n\\symbfit{b}_2 &= \\frac{2\\pi}{a} \\left( \\frac{1}{\\sqrt{3}} \\symbfit{e}_x + \\symbfit{e}_y \\right), \\\\\n\\symbfit{b}_3 &= \\frac{2\\pi}{c} \\symbfit{e}_z\n\\end{aligned}\n\\]\n\n\nコードはこちら\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# Define the lattice vectors\na1 = np.array([np.sqrt(3)/2, -1/2])\na2 = np.array([np.sqrt(3)/2, 1/2])\n\n# Define the reciprocal lattice vectors\nb1 = np.array([2 * np.pi / np.sqrt(3), -2 * np.pi])\nb2 = np.array([2 * np.pi / np.sqrt(3), 2 * np.pi])\n\n# Generate a grid of lattice points\nx = np.arange(-40, 40)\ny = np.arange(-40, 40)\nX, Y = np.meshgrid(x, y)\n\n# Convert the grid to lattice coordinates\nX_lat = X*a1[0] + Y*a2[0]\nY_lat = X*a1[1] + Y*a2[1]\n\n# Convert the grid to reciprocal lattice coordinates\nX_rec = X*b1[0] + Y*b2[0]\nY_rec = X*b1[1] + Y*b2[1]\n\n# Plot the lattice points\nplt.figure(figsize=(12, 12))\nplt.scatter(X_lat, Y_lat, color='blue', label='Lattice points')\n\n# Plot the reciprocal lattice points\nplt.scatter(X_rec, Y_rec, color='red', label='Reciprocal lattice points')\n\n# Set the aspect ratio and limits\nplt.gca().set_aspect('equal', adjustable='box')\nplt.xlim(-10, 10)\nplt.ylim(-10, 10)\n\n# Add a legend\nplt.legend()\n\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n問2\n下図に示すような1種類の原子からなる1次元結晶の格子振動を考えよう。\n\n\n(a)\n\\(j\\) 番目の原子の（古典的）運動方程式を書き下せ。\n\n\n(b)\n\\(u_j = A \\exp(ikja) \\exp(-i\\omega t)\\) という解を仮定して、上の運動方程式から分散関係を導出せよ。また、その分散関係をブリュアンゾーンの中で図示せよ。\n\n\n(c)\n1次元結晶の単位胞内に異なる2つの原子がある場合の分散関係の概略を図示し、そこに現れるモードについて知るところを述べよ。\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n一次元のブリルアンゾーンの話だけど、これについては定義 (Section 1.1.4) に立ち戻って、 \\(aG_n = 2\\pi n\\) になるような \\(G_n\\) の並びを考えれば、ブリルアンゾーンは \\([-\\pi/a, \\pi/a]\\) になる。\n2種類の原子がある場合はおそらく途中式は必要ないので、ここに少しだけまとめる。2種類の原子の質量をそれぞれ \\(M_1, M_2\\) とし、バネ定数を \\(K\\) とすると、運動方程式に次の値を代入する。\n\\[u_j = U e^{i(kja - \\omega t)} \\]\n\\[ v_j = V e^{i(kja + ka/2 - \\omega t)} \\]\n代入して得られた式に \\(U,V\\) の非自明解条件を求めると、\n\\[\n\\begin{aligned}\n\\omega^2(k) &= \\frac{K(M_1 + M_2)}{M_1 M_2} \\left[\n1 \\pm \\sqrt{1 - \\frac{4 M_1 M_2}{(M_1 + M_2)^2} \\sin^2\\left( \\frac{ka}{2} \\right)}\n\\right] \\\\\n&= \\frac{K}{\\mu} \\left[ 1 \\pm \\sqrt{1-4\\frac{\\mu}{M}\\sin^2\\left( \\frac{ka}{2} \\right)} \\right]\n\\end{aligned}\n\\]\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n普通に運動方程式を立てる。\n\\[\n\\begin{aligned}\nm\\ddot{x_j} &= -K(x_j - x_{j-1}) + K(x_{j+1} - x_j) \\\\\n&= - K(2x_j -x_{j+1} - x_{j-1})\n\\end{aligned}\n\\]\nここで、\\(A\\) は振幅、\\(k\\) は波数、\\(a\\) は格子定数に注意して、\n\\[\nx_j(t) = A e^{i(kja - \\omega t)}\n\\]\nを代入すると、\n\\[\nm\\omega^2 = 2K(1 - \\cos(ka))\n\\]\n\n\nコードはこちら\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# パラメータ設定\nm = 1.0  # 質量\nK = 1.0  # バネ定数\na = 1.0  # 格子定数\n\n# ブリルアンゾーン内のk\nk = np.linspace(-np.pi/a, np.pi/a, 1000)\nomega = np.sqrt(2*K/m * (1 - np.cos(k*a)))\n\n# グラフ描画\nplt.figure(figsize=(6, 6))\nplt.plot(k, omega)\n\n# 軸ラベルにLaTeX表記を使用\nplt.xlabel(r\"$k$ (wave number)\")\nplt.ylabel(r\"$\\omega$ (angular frequency)\")\nplt.title(\"Dispersion relation in the first Brillouin zone\")\n\n# 軸の目盛りを数式で表す\nplt.xticks(\n    ticks=[-np.pi/a, -np.pi/(2*a), 0, np.pi/(2*a), np.pi/a],\n    labels=[r\"$-\\frac{\\pi}{a}$\", r\"$-\\frac{\\pi}{2a}$\", r\"$0$\", r\"$\\frac{\\pi}{2a}$\", r\"$\\frac{\\pi}{a}$\"]\n)\nplt.yticks(\n    ticks=[0, np.sqrt(4*K/m)],\n    labels=[r\"$0$\", r\"$\\sqrt{\\frac{4K}{M}}$\"]\n)\n\nplt.grid(True)\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\n\n(c)の方については、\n\\[\n\\begin{aligned}\n\\omega^2(k) = \\frac{K(M_1 + M_2)}{M_1 M_2} \\left[\n1 \\pm \\sqrt{1 - \\frac{4 M_1 M_2}{(M_1 + M_2)^2} \\sin^2\\left( \\frac{ka}{2} \\right)}\n\\right]\n\\end{aligned}\n\\]\nとなる。\n\n\nコードはこちら\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# パラメータ設定\nM1 = 1.0\nM2 = 2.0\nK = 1.0\na = 1.0\n\n# 波数ベクトル（ブリルアンゾーン内）\nk = np.linspace(-np.pi/a, np.pi/a, 1000)\n\n# 定数計算\nA = K * (M1 + M2) / (M1 * M2)\nB = 4 * M1 * M2 / (M1 + M2)**2\nsin_term = np.sin(k * a / 2)**2\n\n# 分散関係（アコースティック・オプティカルモード）\nomega_sq_plus = A * (1 + np.sqrt(1 - B * sin_term))\nomega_sq_minus = A * (1 - np.sqrt(1 - B * sin_term))\n\nomega_plus = np.sqrt(np.real(omega_sq_plus))\nomega_minus = np.sqrt(np.real(omega_sq_minus))\n\n# グラフ描画\nplt.figure(figsize=(6, 6))\nplt.plot(k, omega_plus, label=\"Optical mode\", linewidth=2)\nplt.plot(k, omega_minus, label=\"Acoustic mode\", linewidth=2)\n\n# 軸ラベルにLaTeX表記を使用\nplt.xlabel(r\"$k$ (wave number)\")\nplt.ylabel(r\"$\\omega$ (angular frequency)\")\nplt.title(\"Dispersion relation (diatomic 1D lattice)\")\n\n# 軸の目盛り（対称に数式で）\nplt.xticks(\n    ticks=[-np.pi/a, -np.pi/(2*a), 0, np.pi/(2*a), np.pi/a],\n    labels=[r\"$-\\frac{\\pi}{a}$\", r\"$-\\frac{\\pi}{2a}$\", r\"$0$\", r\"$\\frac{\\pi}{2a}$\", r\"$\\frac{\\pi}{a}$\"]\n)\n\n# 最大振動数の目安\nomega_max = np.max(omega_plus)\nplt.yticks(\n    ticks=[0, omega_max],\n    labels=[r\"$0$\", r\"$\\omega_{\\mathrm{max}}$\"]\n)\n\nplt.legend()\nplt.grid(True)\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n問3\n固体中の電子に関して以下の問いに答えよ。\n\n(a)\n1辺の長さ \\(L\\) の立方体中の \\(N\\) 個の自由電子を考えよう。\n\n\ni.\n自由電子モデルでは、エネルギー \\(E\\) と波数 \\(k\\) の関係により状態密度が\n\\[\nD(E) = \\frac{L^3}{2\\pi^2} \\left( \\frac{2m_e}{\\hbar^2} \\right)^{3/2} \\sqrt{E}\n\\]\nで与えられることを示せ。\n\n\nii.\nフェルミエネルギー \\(E_F\\) を電子数 \\(N\\) の関数として与えよ。状態密度を使って計算すること。\n\n\n\n(b)\n格子定数 \\(a\\) で（1種類の原子）からなる1次元結晶を考える。2つの原子軌道（1s, 2s）のみを考慮すると、強結合近似では\n\\[\n\\sum_n \\sum_{\\mu = 1s, 2s} c_{\\mu} e^{ika(n - n')} \\left( \\langle n'\\mu' | \\hat{H} | n\\mu \\rangle - E \\langle n'\\mu' | n\\mu \\rangle \\right) = 0\n\\]\nが成り立つ（ここで \\(n\\) は単位胞の番号である）。最近接原子の同種原子軌道間の相互作用以外を無視でき、\n\\[\n\\langle n'\\mu' | \\hat{H} | n\\mu \\rangle =\n\\begin{cases}\nE_{1s} & (n = n',\\ \\mu = \\mu' = 1s) \\\\\nE_{2s} & (n = n',\\ \\mu = \\mu' = 2s) \\\\\nt_{1s} & (n = n' \\pm 1,\\ \\mu = \\mu' = 1s) \\\\\nt_{2s} & (n = n' \\pm 1,\\ \\mu = \\mu' = 2s) \\\\\n0 & \\text{(それ以外)}\n\\end{cases}\n\\]\n\\[\n\\langle n'\\mu' | n\\mu \\rangle =\n\\begin{cases}\n1 & (n = n',\\ \\mu = \\mu') \\\\\n0 & \\text{(それ以外)}\n\\end{cases}\n\\]\nであるとしてバンド分散を求めよ。さらに、このバンド分散の概形を、\\(t_{1s} &gt; 0,\\ t_{2s} &lt; 0\\) としてブリュアンゾーン内で描け。\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n(a)は Section 1.2.2 ここら辺を読めばいい。一応軽くまとめる。\n波数空間で、 \\((2\\pi/L)^3\\) ごとに一個の状態があるから、体積あたりの状態数は \\(1/(2\\pi/L)^3\\) になる。\n次に波数空間の球体を考えて\n\\[\n\\frac{4\\pi}{3} k^3 = \\frac{4\\pi}{3} \\left( \\frac{2m_e}{\\hbar^2} E \\right)^{3/2}\n\\]\nこれに密度と、電子スピンの自由度2をかけてやって\n\\[\nN(E) = \\frac{L^3}{3\\pi^2} \\left( \\frac{2m_e E}{\\hbar^2} \\right)^{3/2}\n\\]\nこれを微分してやると、状態密度が出てくる。この密度をフェルミエネルギーまで積分したら状態数 \\(N\\) になるのは定義。\n\nについては、Section 1.3 で軽くまとめた。実際に問題を解く際に気をつけるべきは、\\(\\sum\\) しているのは、 \\(n,\\ \\mu\\) だけであって、 \\(n',\\ \\mu'\\) はその都度代入して考えているところ。実際に手を動かせばわかるはず。\n\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n\n\n\n\n\\[\n\\begin{aligned}\nD(E)\\dd E &= 2 \\times 4\\pi k^2 \\dd k \\times \\frac{1}{(2\\pi/L)^3} \\\\\n&= \\frac{L^3}{2\\pi^2} \\left( \\frac{2m_e}{\\hbar^2} \\right)^{3/2} \\sqrt{E} \\dd E\n\\end{aligned}\n\\]\n\n\n\n\n\n\\[\n\\begin{aligned}\n\\int _0^{E_F} D(E) \\dd E &\\triangleq N \\\\\nE_F &= \\frac{\\hbar^2}{2m_e} \\left( \\frac{3\\pi^2 N}{L^3} \\right)^{2/3} \\\\\n\\end{aligned}\n\\]\n\n\n\n\\(\\mu = \\mathrm{1s}\\) の場合、\n\\[\n\\begin{aligned}\n\\mathcal{E}_{\\mathrm{1s}} &= E_{\\mathrm{1s}} + 2t_{\\mathrm{1s}} \\cos(ka) \\\\\n\\mathcal{E}_{\\mathrm{2s}} &= E_{\\mathrm{2s}} + 2t_{\\mathrm{2s}} \\cos(ka) \\\\\n\\end{aligned}\n\\]\nここで、 \\(n'\\) は最近接原子の単位胞の番号。\n\n\nコードはこちら\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# パラメータの設定（必要に応じて変更してください）\na = 1.0       # 格子定数\nE1s = 0.0     # 1s 軌道のオンサイトエネルギー\nt1s = 1.0     # 1s 軌道のホッピング積分 (t1s &gt; 0)\nE2s = 1.0     # 2s 軌道のオンサイトエネルギー\nt2s = -0.5    # 2s 軌道のホッピング積分 (t2s &lt; 0)\n\n# k の範囲を第一ブリュアンゾーン内で設定\nk = np.linspace(-np.pi/a, np.pi/a, 400)\n\n# バンド分散を計算\nE_1s = E1s + 2 * t1s * np.cos(k * a)\nE_2s = E2s + 2 * t2s * np.cos(k * a)\n\n# プロット\nplt.figure()\nplt.plot(k * a, E_1s, label='1s')\nplt.plot(k * a, E_2s, label='2s')\nplt.xlabel('ka')\nplt.ylabel('E')\nplt.title('Band dispersion of 1D crystal')\nplt.legend()\nplt.grid(True)\nplt.show()",
+    "section": "電子のバンド構造",
+    "text": "電子のバンド構造\n\n問題D1 強結合近似による1s・2sバンド\n格子定数 \\(a\\) の同種原子からなる1次元結晶を考える。各原子の1s、2s軌道のみを用い、軌道間の重なりを無視する。オンサイトエネルギーを \\(E_{1s},E_{2s}\\)、同種軌道間の最近接ホッピング積分を \\(t_{1s},t_{2s}\\) とする。\n各軌道から生じるバンド分散を求め、\\(t_{1s}&gt;0,\\ t_{2s}&lt;0\\) として第一ブリュアンゾーン内に概形を描け。\n\n\n\n\n\n\nNote理論D1：孤立原子準位が原子数だけ分裂してバンドになる\n\n\n\n\n\n結晶中では、ある原子上の軌道から隣の原子上の同種軌道へ電子が移る振幅がホッピング積分 \\(t\\) である。ブロッホ和を作ると、右隣と左隣から\n\\[\nte^{ika}+te^{-ika}=2t\\cos ka\n\\]\nが加わる。\n1sと2sの異種軌道間相互作用を無視しているので、二つのバンドは別々に解ける。\\(t\\) の符号が変わると、\\(k=0\\) とブリュアンゾーン端のどちらがバンド下端になるかが逆転する。\n\n\n\n\n\n\n\n\n\nTip解答D1\n\n\n\n\n\n各軌道 \\(\\mu=1s,2s\\) について、\n\\[\n(E_\\mu-E)c_\\mu\n+t_\\mu e^{ika}c_\\mu\n+t_\\mu e^{-ika}c_\\mu=0\n\\]\nだから、\n\\[\n\\boxed{\n\\begin{aligned}\n\\mathcal E_{1s}(k)&=E_{1s}+2t_{1s}\\cos ka,\\\\\n\\mathcal E_{2s}(k)&=E_{2s}+2t_{2s}\\cos ka.\n\\end{aligned}\n}\n\\]\n\n\n\n\n\n\n\n\nFigure 4: 1次元結晶の1s・2s強結合バンド\n\n\n\n\n\n\\(t_{1s}&gt;0\\) なので1sバンドは \\(k=0\\) で最大、\\(k=\\pm\\pi/a\\) で最小となる。\\(t_{2s}&lt;0\\) の2sバンドはその逆である。\n\n\n\n\n\n問題D2 周期ポテンシャルによるバンドギャップ\n1次元周期ポテンシャル\n\\[\nV(x)=V_1\\cos\\left(\\frac{2\\pi x}{a}\\right)\n\\]\n中の電子を考える。ブリュアンゾーン端 \\(k=\\pi/a\\) でブラッグ反射によってできる二つの定在波を\n\\[\n\\begin{aligned}\n\\phi_+(x)&=\\sqrt{\\frac2a}\\cos\\left(\\frac{\\pi x}{a}\\right),\\\\\n\\phi_-(x)&=i\\sqrt{\\frac2a}\\sin\\left(\\frac{\\pi x}{a}\\right)\n\\end{aligned}\n\\]\nとする。これらは \\(0\\le x\\le a\\) で規格化されている。\n\n\\(|\\phi_+|^2\\) と \\(|\\phi_-|^2\\) を求め、\\(V(x)\\) とともに図示せよ。\n二つの状態のエネルギー期待値の差を求めよ。\nこの結果から、周期ポテンシャルがバンドギャップを作る機構を説明せよ。\n\n\n\n\n\n\n\nNote理論D2：同じ運動エネルギーをもつ波が異なる場所へ局在する\n\n\n\n\n\n自由電子では、\\(k=\\pi/a\\) と \\(k=-\\pi/a\\) の状態は同じ運動エネルギーをもつ。周期ポテンシャルは波数差 \\(2\\pi/a\\) の二状態を結合し、和と差の定在波を作る。\n二つの定在波の運動エネルギー期待値は同じである。一方、確率密度の山がポテンシャルの山に重なるか谷に重なるかが異なるため、ポテンシャルエネルギー期待値が分裂する。この縮退の分裂がゾーン境界のバンドギャップになる。\n\n\n\n\n\n\n\n\n\nTip解答D2\n\n\n\n\n\n\n\\[\n\\boxed{\n|\\phi_+|^2=\\frac2a\\cos^2\\left(\\frac{\\pi x}{a}\\right),\\qquad\n|\\phi_-|^2=\\frac2a\\sin^2\\left(\\frac{\\pi x}{a}\\right)\n}\n\\]\n\n\n\n\n\n\n\n\n\nFigure 5: ゾーン境界の定在波確率密度と周期ポテンシャル\n\n\n\n\n\n\n運動エネルギー期待値は相殺される。ポテンシャル項について、\n\\[\n\\begin{aligned}\n\\expval{V}_+\n&=\\int_0^a\\frac2a\\cos^2\\left(\\frac{\\pi x}{a}\\right)\nV_1\\cos\\left(\\frac{2\\pi x}{a}\\right)\\dd x\n=\\frac{V_1}{2},\\\\\n\\expval{V}_-\n&=\\int_0^a\\frac2a\\sin^2\\left(\\frac{\\pi x}{a}\\right)\nV_1\\cos\\left(\\frac{2\\pi x}{a}\\right)\\dd x\n=-\\frac{V_1}{2}.\n\\end{aligned}\n\\]\nしたがって、\n\\[\n\\boxed{\\expval{H}_+-\\expval{H}_-=V_1}\n\\]\nであり、ギャップの大きさは \\(|V_1|\\) である。\n\\(\\phi_+\\) と \\(\\phi_-\\) は同じ運動エネルギーをもつが、電子密度が周期ポテンシャルの山と谷のどちらに集中するかが異なる。その結果、ゾーン境界で縮退が解け、二つのエネルギーの間に許されない領域、すなわちバンドギャップが生じる。\n\n\n\n\n\n\n問題D3 GaAsの有効質量と電気伝導\nGaAs のブラベ格子は面心立方格子で、慣用単位胞の格子定数は \\(a=0.57\\ \\mathrm{nm}\\) である。伝導帯下端の \\(\\Gamma\\) 点近傍を、規格化波数 \\(\\xi\\) により\n\\[\n\\boldsymbol k=\\frac{2\\pi}{a}(\\xi,0,0)\n\\]\nと表す。バンド図から得た二次関数フィットを\n\\[\n\\mathcal E(\\xi)=1.5+75\\xi^2\\quad[\\mathrm{eV}]\n\\]\nとする。\n\n\n\n\n\n\n\n\nFigure 6: GaAs伝導帯下端の二次関数フィット\n\n\n\n\n\n\n電子の有効質量を求め、電子の静止質量 \\(m_e=9.1\\times10^{-31}\\ \\mathrm{kg}\\) と比較せよ。\\(\\hbar=1.1\\times10^{-34}\\ \\mathrm{J\\,s}\\)、\\(e=1.6\\times10^{-19}\\ \\mathrm{C}\\) を用いてよい。\n多くの半導体で電子有効質量が金属の自由電子質量より小さくなりうる理由と、それでも半導体の電気伝導度が金属より著しく小さい理由を、「自由電子」「状態密度」「フェルミ準位」「移動度」を用いて説明せよ。\n\n\n\n\n\n\n\nNote理論D3：バンドの曲率を電子の慣性として読む\n\n\n\n\n\n外力 \\(\\boldsymbol F\\) を受けた結晶中の電子は\n\\[\n\\hbar\\dv{\\boldsymbol k}{t}=\\boldsymbol F\n\\]\nに従う。群速度\n\\[\nv=\\frac1\\hbar\\dv{\\mathcal E}{k}\n\\]\nを時間微分すると、1次元では\n\\[\n\\dv{v}{t}\n=\\frac1{\\hbar^2}\\dv[2]{\\mathcal E}{k}F\n\\]\nとなる。ニュートン形式 \\(F=m^*\\dv*{v}{t}\\) と比較して、\n\\[\n\\boxed{\n\\frac1{m^*}=\\frac1{\\hbar^2}\\dv[2]{\\mathcal E}{k}\n}\n\\]\nを得る。曲率が大きいバンドほど、同じ力で速度が変わりやすく、有効質量は小さい。\n電気伝導度は単純化すると\n\\[\n\\sigma=ne\\mu,\\qquad\n\\mu=\\frac{e\\tau}{m^*}\n\\]\nである。有効質量が小さいほど移動度 \\(\\mu\\) は大きくなりやすいが、伝導度にはキャリア密度 \\(n\\) も掛かる。\n\n\n\n\n\n\n\n\n\nTip解答D3\n\n\n\n\n\n\n\\[\n\\mathcal E-\\mathcal E_c\n=75e\\left(\\frac{ak}{2\\pi}\\right)^2\n\\]\nなので、\n\\[\n\\dv[2]{\\mathcal E}{k}\n=2(75e)\\left(\\frac{a}{2\\pi}\\right)^2.\n\\]\nよって、\n\\[\nm^*\n=\\frac{\\hbar^2(2\\pi/a)^2}{2(75e)}\n=6.13\\times10^{-32}\\ \\mathrm{kg}.\n\\]\nしたがって、\n\\[\n\\boxed{m^*\\simeq0.067\\,m_e}\n\\]\n金属を自由電子模型でみると、フェルミ準位がバンド内にあり、その近傍に有限の状態密度と多数の占有電子がある。半導体の伝導帯下端は曲率が大きい場合が多く、\\(m^*\\) が小さいため、散乱時間が同程度なら電子の移動度は高くなりうる。\nしかし、真性半導体のフェルミ準位はバンドギャップ内にあり、熱励起されて伝導帯を占める電子数が少ない。伝導帯の状態密度も有効質量が小さいほど小さくなる。したがって、移動度が高くてもキャリア密度 \\(n\\) が金属より圧倒的に小さく、\n\\[\n\\boxed{\\sigma=ne\\mu}\n\\]\nは金属より著しく小さくなる。",
     "crumbs": [
       "Home",
       "Posts",
@@ -3144,25 +3310,11 @@
     ]
   },
   {
-    "objectID": "posts/univ_lecs/3S/固体物性学.html#年度-1",
-    "href": "posts/univ_lecs/3S/固体物性学.html#年度-1",
+    "objectID": "posts/univ_lecs/3S/固体物性学.html#まとめ",
+    "href": "posts/univ_lecs/3S/固体物性学.html#まとめ",
     "title": "固体物性学",
-    "section": "2019年度",
-    "text": "2019年度\n\n問3(b)\n周期ポテンシャル\n\\[\nV(x) = V_1 \\cos\\!\\Bigl(\\frac{2\\pi}{a}x\\Bigr)\n\\]\nで電子の振る舞いを考える。ブリュアンゾーン端 (\\(k = \\pi/a\\)) で電子波 \\(\\exp(ikx)\\) はブラッグ反射され、その結果 \\(\\exp(i k x)\\) と \\(\\exp(-i k x)\\) が重畳した 2 種類の定在波が形成される。\n波動関数：\n\\[\n\\phi_+(x)\n= \\frac{1}{\\sqrt{2a}}\\Bigl\\{e^{i\\frac{\\pi}{a}x}+e^{-i\\frac{\\pi}{a}x}\\Bigr\\}\n= \\sqrt{\\frac{2}{a}}\\cos\\!\\Bigl(\\frac{\\pi}{a}x\\Bigr)\n\\]\n\\[\n\\phi_-(x)\n= \\frac{1}{\\sqrt{2a}}\\Bigl\\{e^{i\\frac{\\pi}{a}x}-e^{-i\\frac{\\pi}{a}x}\\Bigr\\}\n= i\\,\\sqrt{\\frac{2}{a}}\\sin\\!\\Bigl(\\frac{\\pi}{a}x\\Bigr)\n\\]\n（これらの波動関数は単位胞 \\(0 \\le x \\le a\\) の範囲で規格化されている。）\n\ni.\n\\(|\\phi_+(x)|^2\\) と \\(|\\phi_-(x)|^2\\) を求め、\\(V(x)\\) とともに図示せよ。\n\n\nii.\n2つの状態 \\(\\phi_+(x)\\) と \\(\\phi_-(x)\\) のエネルギー期待値の差を計算せよ。\n&gt; ※ これらは固有関数ではないので固有エネルギーを求めようとしてはいけない。\n&gt; また、個々の状態の期待値を計算するより、期待値の差を直接計算する方がやさしい。\n\n\niii.\n以上の結果に基づき、結晶のエネルギーバンド構造形成のメカニズムを論ぜよ。\n\n\n\n\n\n\nNote理論\n\n\n\n\n\nやることは基本的な波動関数の操作。ただ、固有関数、固有エネルギーじゃないのに、色々と議論を進めるせいで混乱する可能性がある。これは詳しくは書かないが、近侍として扱っていると思っておけば良さそうだ。\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n単純計算すれば、 \\[\n\\begin{aligned}\n|\\phi_+(x)|^2 &= \\frac{2}{a} \\cos^2\\!\\Bigl(\\frac{\\pi}{a}x\\Bigr) \\\\\n|\\phi_-(x)|^2 &= \\frac{2}{a} \\sin^2\\!\\Bigl(\\frac{\\pi}{a}x\\Bigr) \\\\\n\\end{aligned}\n\\]\n\n\n\nコードはこちら\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# パラメータ設定\na = 1.0\nV1 = 1.0\n\n# x座標\nx = np.linspace(0, a, 500)\n\n# 確率密度とポテンシャル\nphi_plus_sq = (1/a)*(1 + np.cos(2*np.pi*x/a))\nphi_minus_sq = (1/a)*(1 - np.cos(2*np.pi*x/a))\nV = V1 * np.cos(2*np.pi*x/a)\n\n# プロット\nplt.figure()\nplt.plot(x, phi_plus_sq, label=r'$|\\phi_+(x)|^2$')\nplt.plot(x, phi_minus_sq, label=r'$|\\phi_-(x)|^2$')\nplt.plot(x, V, label=r'$V(x)$')\nplt.xlabel('x')\nplt.ylabel('Probability density / Potential')\nplt.title('|\\u03C6_+|^2, |\\u03C6_-|^2 and V(x)')\nplt.legend()\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\\[\n\\hat{H}\\phi_{\\pm}(x) = E_0 \\phi_{\\pm}(x)\n\\] を満たすことから、次のような計算が可能である。 \\[\n\\begin{aligned}\n\\Delta E &= \\bra{\\phi_+(x)} \\hat{H} \\ket{\\phi_+(x)} - \\bra{\\phi_-(x)} \\hat{H} \\ket{\\phi_-(x)} \\\\\n&= V(x)\\qty{\\bra{\\phi_+^{\\ast}(x)}\\ket{\\phi_+(x)} - \\bra{\\phi_-^{\\ast}(x)}\\ket{\\phi_-(x)}} \\\\\n&= \\int_0^a V(x) \\qty{\\frac{2}{a}\\cos^2 \\frac{\\pi}{a}x - \\frac{2}{a}\\sin^2 \\frac{\\pi}{a}x} \\dd x \\\\\n&= \\frac{2V_1}{a} \\int_0^a \\cos^2 \\frac{2\\pi}{a}x \\dd x \\\\\n&= V_1\n\\end{aligned}\n\\]\n\\(\\phi_+\\) ではポテンシャルが高い場所での電子存在確率が高くなり、電子エネルギーが高く、 \\(\\phi_-\\) ではポテンシャルが低い場所での電子存在確率が高くなり、電子エネルギーが低くなる。このようにポテンシャルの周期性がバンドギャップの原因となる。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Univ Lecs",
-      "3S",
-      "固体物性学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3S/固体物性学.html#年度-2",
-    "href": "posts/univ_lecs/3S/固体物性学.html#年度-2",
-    "title": "固体物性学",
-    "section": "2021年度",
-    "text": "2021年度\n\n問3(b)\n下に示した右図は GaAs（閃亜鉛鉱構造、ブラベ格子は面心立方格子、慣用単位胞の格子定数 \\(a = 0.57\\,\\mathrm{nm}\\)）の価電子帯と伝導帯近傍のバンド構造である。\n赤色の一点鎖線は、下から4番目のバンドの \\(k=0\\) 付近での二次関数フィッティングである。\n\ni. 逆格子点の導出\n一辺の長さ \\(a\\) の立方体を慣用単位胞とする面心立方格子の基本並進ベクトルは次の通りとする。\n\\[\n\\mathbf{a}_1 = \\frac{a}{2}\\,\\mathbf{e}_y + \\frac{a}{2}\\,\\mathbf{e}_z,\\quad\n\\mathbf{a}_2 = \\frac{a}{2}\\,\\mathbf{e}_x + \\frac{a}{2}\\,\\mathbf{e}_z,\\quad\n\\mathbf{a}_3 = \\frac{a}{2}\\,\\mathbf{e}_x + \\frac{a}{2}\\,\\mathbf{e}_y.\n\\]\n\nこれらから逆格子ベクトル \\(\\mathbf{b}_i\\) を求めよ。\n\n得られた逆格子点の配列のブラベ格子の名称と、その慣用単位胞の一辺の長さを答えよ。\n\n\n\nii. 電子の有効質量\nGaAs の電子の有効質量を計算し，電子の静止質量と比較せよ。\n計算の過程も明示すること。\n\n\niii. 有効質量と電気伝導度の比較\n以下の語句を必ず用いて説明せよ：\n- 自由電子\n- 状態密度\n- フェルミ準位\n- 移動度\n\nなぜ多くの半導体の電子有効質量が金属に比べて小さくなるのか\n\nなぜ金属に比べて半導体の電気伝導度が著しく小さいのか\n\n\n\n\n\n\n\nNote理論\n\n\n\n\n\n\nこの式を使えばいい。 \\[\n\\begin{aligned}\nE(k) &= \\frac{\\hbar^2}{2m} k^2 \\\\\n\\frac{1}{m^*} &= \\frac{1}{\\hbar^2}\\frac{d^2E(k)}{dk^2}\n\\end{aligned}\n\\]\n\n\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n\\[\n\\begin{aligned}\n\\symbfit{b}_1 &= \\frac{2\\pi}{a}\\bigl(-\\symbfit{e}_x + \\symbfit{e}_y + \\symbfit{e}_z\\bigr),\\\\\n\\symbfit{b}_2 &= \\frac{2\\pi}{a}\\bigl(\\symbfit{e}_x - \\symbfit{e}_y + \\symbfit{e}_z\\bigr),\\\\\n\\symbfit{b}_3 &= \\frac{2\\pi}{a}\\bigl(\\symbfit{e}_x + \\symbfit{e}_y - \\symbfit{e}_z\\bigr).\n\\end{aligned}\n\\] これは一辺 \\(4\\pi/a\\) のBCCである。\n\\[\nE = \\alpha k^2\n\\] とすると、 \\[\nm = \\frac{\\hbar^2}{2\\alpha}\n\\] となる。グラフの形状が読み取りづらいので、続きは各自で解かれたし。\n\n\n\n\n半導体の伝導帯では，原子間の反強結合性軌道からなるバンドのバンド曲率が大きくなるため。\n半導体ではフェルミ準位がバンドギャップ内に位置し、伝導帯中の電子濃度が小さいため、電気伝導度が小さい。",
+    "section": "まとめ",
+    "text": "まとめ\n\n実格子の並進周期は、\\(\\boldsymbol a_i\\cdot\\boldsymbol b_j=2\\pi\\delta_{ij}\\) によって逆格子へ移る。\n格子振動では、単位胞内の自由度の数だけ分散分枝が生じる。\n自由電子の状態密度は \\(k\\) 空間の状態数を数えて導き、フェルミエネルギーは電子数条件から決まる。\n強結合近似では原子軌道準位がコサイン型バンドへ広がる。\nほぼ自由な電子では、ゾーン端のブラッグ反射が縮退を解き、バンドギャップを作る。\nバンド曲率は有効質量を、フェルミ準位と状態密度はキャリア数を決める。",
     "crumbs": [
       "Home",
       "Posts",
@@ -3757,354 +3909,6 @@
       "収容所配布用",
       "数学",
       "過去問演習"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3S/材料反応工学.html#反応機構から速度式を作る",
-    "href": "posts/univ_lecs/3S/材料反応工学.html#反応機構から速度式を作る",
-    "title": "材料反応工学",
-    "section": "反応機構から速度式を作る",
-    "text": "反応機構から速度式を作る\n\n問題1 観測された速度式から機構を考える\n反応\n\\[\n\\ce{A + B -&gt; AB}\n\\]\nの生成速度が、ある実験条件で\n\\[\nr_{\\ce{AB}}=k[\\ce{B}]^2\n\\]\nと観測された。この速度式と両立しうる素反応機構を一つ提案し、速度式を導け。ただし、速度式だけから機構が一意に決まるかについても述べよ。\nまた、総括反応\n\\[\n\\ce{2A + B -&gt; A2B}\n\\]\nの速度が\n\\[\nr=\\frac{K_1[\\ce{A}]^2[\\ce{B}]}{1+K_2[\\ce{A}]}\n\\]\nで表される場合について、この形と両立する中間体を含む反応機構を提案せよ。\n\n\n\n\n\n\nNote理論1：速度式は機構を絞り込む手がかり\n\n\n\n\n\n総括反応式の係数を、そのまま反応次数にしてはいけない。反応次数は実験で得られる量であり、素反応の連鎖、中間体への定常状態近似、ある成分の大過剰、表面被覆の飽和などで変わる。\n中間体 \\(I\\) に定常状態近似を使うときは、\n\\[\n\\dv{[I]}{t}=\\text{生成速度}-\\text{消費速度}\\simeq0\n\\]\nを立て、\\([I]\\) を観測可能な濃度で消去する。同じ速度式を与える機構は複数ありうるため、速度式だけで機構を証明することはできない。\n\n\n\n\n\n\n\n\n\nTip解答1\n\n\n\n\n\n一例として、\\(\\ce{B}\\) が活性種の生成にも関与し、後段で再生する機構\n\\[\n\\ce{B + B &lt;=&gt;[k_1][k_{-1}] B2^*},\\qquad\n\\ce{A + B2^* -&gt;[k_2] AB + B}\n\\]\nを考える。前段を速い平衡とすれば\n\\[\n[\\ce{B2^*}]=K[\\ce{B}]^2\n\\]\nであり、\n\\[\nr=k_2[\\ce{A}][\\ce{B2^*}]=k_2K[\\ce{A}][\\ce{B}]^2\n\\]\nとなる。\\(\\ce{A}\\) が大過剰で実験中ほぼ一定なら、\\(k=k_2K[\\ce{A}]\\) として \\(r=k[\\ce{B}]^2\\) が得られる。これは一例であり、速度式だけから機構は一意に決まらない。\n第2の反応では、中間体 \\(I=\\ce{AB}\\) を用いて\n\\[\n\\ce{A + B &lt;=&gt;[k_1][k_{-1}] I},\\qquad\n\\ce{A + I -&gt;[k_2] A2B}\n\\]\nと置ける。定常状態近似から\n\\[\n[I]=\\frac{k_1[\\ce{A}][\\ce{B}]}{k_{-1}+k_2[\\ce{A}]}\n\\]\nしたがって\n\\[\nr=k_2[\\ce{A}][I]\n=\\frac{k_1k_2[\\ce{A}]^2[\\ce{B}]}{k_{-1}+k_2[\\ce{A}]}\n=\\frac{(k_1k_2/k_{-1})[\\ce{A}]^2[\\ce{B}]}{1+(k_2/k_{-1})[\\ce{A}]}\n\\]\nとなり、与式と同じ形になる。\n\n\n\n\n\n問題2 単分子反応の圧力依存性\nモノシランの気相分解\n\\[\n\\ce{SiH4 -&gt; SiH2 + H2}\n\\]\nは見かけ上 \\(\\ce{SiH4}\\) に一次であるが、低圧になるほど見かけの速度定数が低下する。実際の反応を\n\\[\n\\ce{SiH4 + M &lt;=&gt;[k_1][k_{-1}] SiH4^* + M},\\qquad\n\\ce{SiH4^* -&gt;[k_2] SiH2 + H2}\n\\]\nとする。\n\nこの機構の名称を答えよ。\n\\(\\ce{SiH4^*}\\) に定常状態近似を適用し、\\(\\ce{SiH2}\\) の生成速度と見かけの一次速度定数を求めよ。\n低圧極限と高圧極限での反応次数を説明せよ。\n\nさらに、気体 \\(\\ce{A}\\) と \\(\\ce{B}\\) が同一表面へ競争吸着した後、吸着種同士が反応する場合の Langmuir–Hinshelwood 型速度式を、表面反応を律速段階として導け。定常状態近似と律速段階近似の違いも述べよ。\n\n\n\n\n\n\nNote理論2：衝突で活性化してから分解する\n\n\n\n\n\n低圧では第三体 \\(\\ce{M}\\) との衝突が少なく、分子が活性化されにくい。高圧では活性化衝突が十分に起こり、分解そのものが律速となる。この圧力による反応次数の移り変わりを falloff と呼ぶ。\n律速段階近似では、遅い段階以外は速い平衡にあるとみなす。一方、定常状態近似は中間体について生成速度と消費速度が釣り合うとみなすもので、前段が平衡にあるとは限らない。\n\n\n\n\n\n\n\n\n\nTip解答2\n\n\n\n\n\n\nLindemann–Hinshelwood 機構である。\n\\([\\ce{SiH4^*}]\\) の収支は\n\n\\[\n\\dv{[\\ce{SiH4^*}]}{t}\n=k_1[\\ce{SiH4}][\\ce{M}]\n-k_{-1}[\\ce{SiH4^*}][\\ce{M}]\n-k_2[\\ce{SiH4^*}]\\simeq0\n\\]\nである。したがって\n\\[\n[\\ce{SiH4^*}]\n=\\frac{k_1[\\ce{SiH4}][\\ce{M}]}{k_{-1}[\\ce{M}]+k_2}\n\\]\nより、\n\\[\nr_{\\ce{SiH2}}\n=\\frac{k_1k_2[\\ce{SiH4}][\\ce{M}]}{k_{-1}[\\ce{M}]+k_2}\n=k_{\\mathrm{obs}}[\\ce{SiH4}]\n\\]\n\\[\nk_{\\mathrm{obs}}\n=\\frac{k_1k_2[\\ce{M}]}{k_{-1}[\\ce{M}]+k_2},\\qquad\n\\frac{1}{k_{\\mathrm{obs}}}\n=\\frac{k_{-1}}{k_1k_2}+\\frac{1}{k_1[\\ce{M}]}\n\\]\nとなる。\n\n低圧では \\(k_2\\gg k_{-1}[\\ce{M}]\\) なので\n\n\\[\nr\\simeq k_1[\\ce{SiH4}][\\ce{M}]\n\\]\nとなり全体で二次、高圧では\n\\[\nr\\simeq \\frac{k_1k_2}{k_{-1}}[\\ce{SiH4}]\n\\]\nとなり一次である。\n競争吸着について、空席率を \\(\\theta_*\\) とすれば\n\\[\n\\theta_A=K_Ap_A\\theta_*,\\quad\n\\theta_B=K_Bp_B\\theta_*,\\quad\n\\theta_*+\\theta_A+\\theta_B=1\n\\]\nゆえに\n\\[\n\\theta_* =\\frac{1}{1+K_Ap_A+K_Bp_B}\n\\]\nである。表面反応 \\(\\ce{A(a)+B(a)-&gt;C}\\) を律速段階とすれば\n\\[\nr=k\\theta_A\\theta_B\n=\\frac{kK_AK_Bp_Ap_B}\n{(1+K_Ap_A+K_Bp_B)^2}\n\\]\nとなる。\n\n\n\n\n\n問題3 並列反応から速度定数を分ける\n不可逆な並列一次反応\n\\[\n\\ce{A -&gt;[k_1] R},\\qquad\n\\ce{A -&gt;[k_2] S}\n\\]\nを考える。初濃度を \\([\\ce{A}]_0\\) として \\([\\ce{A}](t)\\)、\\([\\ce{R}](t)\\)、\\([\\ce{S}](t)\\) を求めよ。また、濃度の時間変化から \\(k_1,k_2\\) を個別に決める方法を示せ。\n\n\n\n\n\n\nNote理論3：減少の速さと生成物比を分けて読む\n\n\n\n\n\n\\(\\ce{A}\\) の減少は2経路の和 \\(k_1+k_2\\) で決まる。一方、反応完了時の生成物比は分岐比 \\(k_1/k_2\\) を与える。この2つを組み合わせれば、各速度定数を分離できる。\n\n\n\n\n\n\n\n\n\nTip解答3\n\n\n\n\n\n\\[\n\\dv{[\\ce{A}]}{t}=-(k_1+k_2)[\\ce{A}]\n\\]\nより\n\\[\n[\\ce{A}]=[\\ce{A}]_0e^{-(k_1+k_2)t}\n\\]\nである。生成物について積分すると\n\\[\n[\\ce{R}]=\\frac{k_1}{k_1+k_2}[\\ce{A}]_0\n\\qty(1-e^{-(k_1+k_2)t})\n\\]\n\\[\n[\\ce{S}]=\\frac{k_2}{k_1+k_2}[\\ce{A}]_0\n\\qty(1-e^{-(k_1+k_2)t})\n\\]\nとなる。\\(\\ln([\\ce{A}]/[\\ce{A}]_0)\\) の傾きから \\(k_1+k_2\\)、反応完了時の比\n\\[\n\\frac{[\\ce{R}]_\\infty}{[\\ce{S}]_\\infty}=\\frac{k_1}{k_2}\n\\]\nを得れば、\\(k_1,k_2\\) を個別に決定できる。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Univ Lecs",
-      "3S",
-      "材料反応工学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3S/材料反応工学.html#連鎖反応と重合",
-    "href": "posts/univ_lecs/3S/材料反応工学.html#連鎖反応と重合",
-    "title": "材料反応工学",
-    "section": "連鎖反応と重合",
-    "text": "連鎖反応と重合\n\n問題4 ラジカル重合と連鎖移動\nラジカル重合について、開始剤 \\(\\ce{I}\\) の分解、開始、成長、二分子停止を考える。\n\nラジカル濃度に定常状態近似を用い、重合速度 \\(R_p\\) を導け。\n連鎖移動剤 \\(\\ce{S}\\) を加えたとき、動力学的鎖長 \\(\\nu\\) が Mayo 式\n\n\\[\n\\frac{1}{\\nu}=\\frac{1}{\\nu_0}+C_{\\mathrm{tr}}\\frac{[\\ce{S}]}{[\\ce{M}]}\n\\]\nに従うことを示せ。 3. \\([\\ce{M}]=1.0\\ \\mathrm{mol\\,L^{-1}}\\) とし、\\(([\\ce{S}],\\nu)=(0.002,100),(0.004,100/3)\\) が得られた。\\(C_{\\mathrm{tr}}\\)、\\(\\nu_0\\)、\\([\\ce{S}]=0.006\\ \\mathrm{mol\\,L^{-1}}\\) のときの \\(\\nu\\) を求めよ。\n\n\n\n\n\n\nNote理論4：成長鎖の生成と消滅を釣り合わせる\n\n\n\n\n\n開始剤効率を \\(f\\)、開始剤分解速度定数を \\(k_d\\) とすると、ラジカル生成速度は \\(2fk_d[\\ce{I}]\\) である。二分子停止ではラジカルが一度に2個失われるため、消滅速度も係数2を伴う。この係数を反応速度定数の定義へ吸収する流儀もあるので、採用した定義を式とともに示す。\n\n\n\n\n\n\n\n\n\nTip解答4\n\n\n\n\n\n成長ラジカル濃度を \\([\\ce{P^.}]\\) とする。定常状態近似から\n\\[\n2fk_d[\\ce{I}]-2k_t[\\ce{P^.}]^2=0\n\\]\nしたがって\n\\[\n[\\ce{P^.}]=\\sqrt{\\frac{fk_d[\\ce{I}]}{k_t}}\n\\]\nであり、重合速度は\n\\[\nR_p=k_p[\\ce{M}][\\ce{P^.}]\n=k_p[\\ce{M}]\\sqrt{\\frac{fk_d[\\ce{I}]}{k_t}}\n\\]\nとなる。\n連鎖移動速度を \\(R_{\\mathrm{tr}}=k_{\\mathrm{tr}}[\\ce{S}][\\ce{P^.}]\\) とすれば、生成鎖数に停止と連鎖移動が寄与するので\n\\[\n\\frac{1}{\\nu}\n=\\frac{R_{\\mathrm{chain},0}+R_{\\mathrm{tr}}}{R_p}\n=\\frac{1}{\\nu_0}\n+\\frac{k_{\\mathrm{tr}}}{k_p}\\frac{[\\ce{S}]}{[\\ce{M}]}\n\\]\nである。よって \\(C_{\\mathrm{tr}}=k_{\\mathrm{tr}}/k_p\\) となる。\n2点を Mayo 式へ代入すると\n\\[\n0.01=\\frac1{\\nu_0}+0.002C_{\\mathrm{tr}},\\qquad\n0.03=\\frac1{\\nu_0}+0.004C_{\\mathrm{tr}}\n\\]\nより\n\\[\nC_{\\mathrm{tr}}=10,\\qquad \\frac1{\\nu_0}=-0.01\n\\]\nとなる。しかし \\(1/\\nu_0&lt;0\\) は物理的に不可能であり、与えられた2点は Mayo 式と整合しない。したがって \\([\\ce{S}]=0.006\\) に対する物理的な \\(\\nu\\) は、このデータからは決められない。形式的な外挿では \\(1/\\nu=0.05\\)、すなわち \\(\\nu=20\\) だが、物理的な推定値として採用してはいけない。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Univ Lecs",
-      "3S",
-      "材料反応工学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3S/材料反応工学.html#表面への到達と吸着",
-    "href": "posts/univ_lecs/3S/材料反応工学.html#表面への到達と吸着",
-    "title": "材料反応工学",
-    "section": "表面への到達と吸着",
-    "text": "表面への到達と吸着\n\n問題5 表面原子数と単分子層形成時間\n面心立方格子をもつ Pt の格子定数を \\(a=0.40\\ \\mathrm{nm}\\) とする。\n\nPt(100) 面の表面原子密度を \\(\\mathrm{cm^{-2}}\\) で求めよ。\n圧力 \\(p=1.33\\times10^{-4}\\ \\mathrm{Pa}\\)、温度 \\(T=300\\ \\mathrm{K}\\) の分子気体を導入する。分子量を28、付着確率を1として、Hertz–Knudsen式から単分子層を形成する時間を求めよ。\n\n\n\n\n\n\n\nNote理論5：面の原子数を数え、気体の到達流束で割る\n\n\n\n\n\nFCC(100) 面の表面単位胞には、四隅の原子 \\(4\\times1/4\\) と面心原子1個の計2個が含まれる。気体分子の一方向流束は\n\\[\nZ=\\frac{p}{\\sqrt{2\\pi m k_BT}}\n\\]\nである。\\(m\\) は分子1個の質量であり、分子量に原子質量単位 \\(m_u\\) を掛ける。\n\n\n\n\n\n\n\n\n\nTip解答5\n\n\n\n\n\n\\[\nN_s=\\frac{2}{a^2}\n=\\frac{2}{(0.40\\times10^{-7}\\ \\mathrm{cm})^2}\n=1.25\\times10^{15}\\ \\mathrm{cm^{-2}}\n\\]\nである。分子質量は\n\\[\nm=28\\times1.6605\\times10^{-27}\n=4.65\\times10^{-26}\\ \\mathrm{kg}\n\\]\nなので、\n\\[\nZ=\\frac{1.33\\times10^{-4}}\n{\\sqrt{2\\pi(4.65\\times10^{-26})(1.3806\\times10^{-23})(300)}}\n=3.82\\times10^{14}\\ \\mathrm{cm^{-2}s^{-1}}\n\\]\nとなる。よって単分子層形成時間は\n\\[\nt=\\frac{N_s}{Z}=3.27\\ \\mathrm{s}\n\\]\nであり、数秒で表面全体へ分子が到達する。\n\n\n\n\n\n問題6 競争吸着の Langmuir 等温式\n2種類の分子 \\(\\ce{A},\\ce{B}\\) が同じ種類の吸着サイトへ競争吸着する。各吸着は非解離吸着で、吸着種間相互作用は無視できるとする。被覆率 \\(\\theta_A,\\theta_B\\) を導け。また、\\(K_Ap_A\\) を増加させたとき、\\(K_Bp_B\\) の大きさが \\(\\theta_A\\) に与える影響を説明せよ。\n\n\n\n\n\n\nNote理論6：全サイトの帳簿を閉じる\n\n\n\n\n\n空席率は \\(1-\\theta_A-\\theta_B\\) である。吸着速度と脱離速度を等置し、最後にサイト保存則を使えばよい。問題2の Langmuir–Hinshelwood 式は、この被覆率を表面反応速度へ代入したものである。\n\n\n\n\n\n\n\n\n\nTip解答6\n\n\n\n\n\n平衡条件は\n\\[\nk_{a,A}p_A(1-\\theta_A-\\theta_B)=k_{d,A}\\theta_A\n\\]\n\\[\nk_{a,B}p_B(1-\\theta_A-\\theta_B)=k_{d,B}\\theta_B\n\\]\nである。\\(K_i=k_{a,i}/k_{d,i}\\) と置けば\n\\[\n\\boxed{\\theta_A=\\frac{K_Ap_A}{1+K_Ap_A+K_Bp_B}},\\qquad\n\\boxed{\\theta_B=\\frac{K_Bp_B}{1+K_Ap_A+K_Bp_B}}\n\\]\nとなる。\\(K_Bp_B\\) が大きいほど \\(\\ce{B}\\) がサイトを占有するため、同じ \\(K_Ap_A\\) に対する \\(\\theta_A\\) は小さくなる。\n\n\n\n\n\n問題7 昇温脱離スペクトル\nWigner–Polanyi 型脱離速度式\n\\[\nr_{\\mathrm{des}}=-\\dv{\\theta}{t}\n=\\nu_n\\theta^n\\exp\\qty(-\\frac{E_{\\mathrm{des}}}{RT})\n\\]\nに従い、一定昇温速度 \\(\\beta=\\dv{T}{t}\\) で加熱する。\n\n0次脱離では、脱離速度が温度とともに増加した後、突然0になる理由を説明せよ。\n1次脱離では山形のピークが現れる理由を、\\(\\theta\\) と指数因子の温度依存性から説明せよ。\n\n\n\n\n\n\n\nNote理論7：温度は速度を上げ、脱離は在庫を減らす\n\n\n\n\n\nArrhenius因子は昇温とともに増える。一方、脱離が進むほど被覆率は減る。反応次数により、速度が被覆率へ依存するかどうかが異なる。\n\n\n\n\n\n\n\n\n\nTip解答7\n\n\n\n\n\n0次では\n\\[\nr_{\\mathrm{des}}=\\nu_0\\exp\\qty(-\\frac{E_{\\mathrm{des}}}{RT})\n\\]\nであり、\\(\\theta&gt;0\\) の間は被覆率に依存せず温度とともに増加する。しかし吸着種を使い切って \\(\\theta=0\\) になると、それ以上脱離できないため速度は突然0になる。\n1次では\n\\[\nr_{\\mathrm{des}}=\\nu_1\\theta\n\\exp\\qty(-\\frac{E_{\\mathrm{des}}}{RT})\n\\]\nである。低温側では指数因子の増加が支配して速度が上がるが、高温側では脱離による \\(\\theta\\) の減少が支配して速度が下がる。その競合によりピークが生じる。\n\n\n\n\n\n問題8 被覆率に依存する吸着と負の見かけ活性化エネルギー\n\n反応物が発熱的に吸着した後、表面反応を経て生成物になる。温度上昇に伴って総括反応速度が低下しうる理由を、見かけの活性化エネルギーに着目して説明せよ。\nRoginsky–Zeldovich 型の吸着・脱離速度\n\n\\[\nv_a=k_ap\\exp(-\\alpha\\theta),\\qquad\nv_d=k_d\\exp(\\beta\\theta)\n\\]\nが平衡にあるとき、被覆率 \\(\\theta\\) を求めよ。ただし \\(\\alpha,\\beta\\) は定数とする。\n\n\n\n\n\n\nNote理論8：温度上昇が吸着量を減らすことがある\n\n\n\n\n\n表面反応そのものは温度上昇で速くなっても、発熱吸着の平衡定数は温度上昇で小さくなる。速度が「表面反応速度定数×被覆率」で決まる場合、被覆率低下の効果が勝てば総括速度は低下する。\n\n\n\n\n\n\n\n\n\nTip解答8\n\n\n\n\n\n吸着平衡を経て表面反応する場合、模式的に\n\\[\nr\\propto K_AK_Bk_s p_Ap_B\n\\]\nである。\\(K_i\\propto\\exp(-\\Delta H_{\\mathrm{ads},i}/RT)\\)、\\(k_s\\propto\\exp(-E_s/RT)\\) と書けば、見かけの活性化エネルギーは\n\\[\nE_{\\mathrm{app}}=E_s+\\Delta H_{\\mathrm{ads},A}\n+\\Delta H_{\\mathrm{ads},B}\n\\]\nとなる。吸着は発熱的なので \\(\\Delta H_{\\mathrm{ads},i}&lt;0\\) であり、その絶対値の和が \\(E_s\\) より大きければ \\(E_{\\mathrm{app}}&lt;0\\) となる。このとき温度上昇で被覆率が大きく減り、総括速度は低下する。\n平衡条件 \\(v_a=v_d\\) から\n\\[\nk_ap\\exp(-\\alpha\\theta)=k_d\\exp(\\beta\\theta)\n\\]\nしたがって\n\\[\n\\boxed{\\theta=\\frac{1}{\\alpha+\\beta}\n\\ln\\qty(\\frac{k_a}{k_d}p)}\n\\]",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Univ Lecs",
-      "3S",
-      "材料反応工学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3S/材料反応工学.html#表面反応と物質移動",
-    "href": "posts/univ_lecs/3S/材料反応工学.html#表面反応と物質移動",
-    "title": "材料反応工学",
-    "section": "表面反応と物質移動",
-    "text": "表面反応と物質移動\n\n問題9 炭素粒子の燃焼と律速段階\n直径 \\(1.0\\ \\mathrm{cm}\\) の炭素球を、\\(800\\ ^\\circ\\mathrm{C}\\)、\\(1.0\\times10^5\\ \\mathrm{Pa}\\) の静止空気中に置く。酸素モル分率は0.21、酸素分子が表面へ衝突したとき反応する確率は \\(5.0\\times10^{-2}\\)、酸素の拡散係数は \\(D=2.0\\times10^{-5}\\ \\mathrm{m^2s^{-1}}\\) とする。\\(R=8.314\\ \\mathrm{J\\,mol^{-1}K^{-1}}\\)、\\(M_{\\ce{O2}}=0.032\\ \\mathrm{kg\\,mol^{-1}}\\) を用いよ。\n\n衝突流束から表面反応速度定数 \\(k_s\\) を求めよ。\n外部物質移動係数と比較し、表面反応律速か拡散律速か判定せよ。\n初期の \\(\\ce{CO2}\\) 生成速度を求めよ。\n酸素濃度を21%から30%へ増やしたときの生成速度を求めよ。\n粒子周りに流れを与えたとき、生成速度がどう変わるか説明せよ。\n\n\n\n\n\n\n\nNote理論9：直列抵抗として表面と拡散を比べる\n\n\n\n\n\n酸素のモル衝突流束は\n\\[\nZ=\\frac{p_{\\ce{O2}}}{\\sqrt{2\\pi M_{\\ce{O2}}RT}}\n\\]\nである。反応確率を \\(s\\) とすれば反応流束は \\(sZ=k_sc_s\\)。静止流体中の孤立球への定常拡散では \\(k_m=D/r\\) であり、総括係数は\n\\[\n\\frac1K=\\frac1{k_m}+\\frac1{k_s}\n\\]\nとなる。\n\n\n\n\n\n\n\n\n\nTip解答9\n\n\n\n\n\n\\(T=1073.15\\ \\mathrm{K}\\)、半径 \\(r=5.0\\times10^{-3}\\ \\mathrm{m}\\) である。衝突流束を \\(c=p/(RT)\\) で割ると\n\\[\nk_s=s\\sqrt{\\frac{RT}{2\\pi M}}\n=0.05\\sqrt{\\frac{8.314\\times1073.15}{2\\pi\\times0.032}}\n=10.5\\ \\mathrm{m\\,s^{-1}}\n\\]\nとなる。一方、\n\\[\nk_m=\\frac{D}{r}=4.0\\times10^{-3}\\ \\mathrm{m\\,s^{-1}}\n\\]\nであり、\\(k_m\\ll k_s\\) なので外部拡散律速である。総括係数は \\(K=3.998\\times10^{-3}\\ \\mathrm{m\\,s^{-1}}\\)。\n\\[\nc_{\\ce{O2}}=\\frac{0.21\\times10^5}{8.314\\times1073.15}\n=2.35\\ \\mathrm{mol\\,m^{-3}}\n\\]\n表面積 \\(4\\pi r^2=3.14\\times10^{-4}\\ \\mathrm{m^2}\\) より\n\\[\n\\dot n_{\\ce{CO2}}=4\\pi r^2Kc_{\\ce{O2}}\n=2.96\\times10^{-6}\\ \\mathrm{mol\\,s^{-1}}\n\\]\nである。酸素30%では濃度に比例し\n\\[\n\\dot n'=\\dot n\\frac{0.30}{0.21}\n=4.23\\times10^{-6}\\ \\mathrm{mol\\,s^{-1}}\n\\]\nとなる。流れを与えると境膜が薄くなり \\(k_m\\) が増えるため生成速度は増加し、最終的には表面反応が支配する上限へ近づく。\n\n\n\n\n\n問題10 液固反応の総括速度\n液相中の \\(\\ce{A}\\) が固体 \\(\\ce{B}\\) の表面で\n\\[\n\\ce{A(l) + B(s) -&gt; S}\n\\]\nと反応する。液相本体の濃度を \\(C_A\\)、液固間物質移動係数を \\(k_l\\)、一次表面反応速度定数を \\(k''\\) とする。\\(\\ce{A}\\) の消失速度を求め、各極限での律速段階を述べよ。\n\n\n\n\n\n\nNote理論10：界面濃度を消去する\n\n\n\n\n\n定常状態では、液相本体から界面へ届く速度と、界面で消費される速度が等しい。界面濃度 \\(C_{A,s}\\) を一度導入し、最後に消去する。\n\n\n\n\n\n\n\n\n\nTip解答10\n\n\n\n\n\n\\[\nr=k_l(C_A-C_{A,s})=k''C_{A,s}\n\\]\nより\n\\[\nC_{A,s}=\\frac{k_l}{k_l+k''}C_A\n\\]\nしたがって\n\\[\n\\boxed{r=\\frac{k_lk''}{k_l+k''}C_A},\\qquad\n\\frac1K=\\frac1{k_l}+\\frac1{k''}\n\\]\nである。\\(k_l\\ll k''\\) なら物質移動律速、\\(k''\\ll k_l\\) なら表面反応律速となる。\n\n\n\n\n\n問題11 触媒粒子内拡散と Thiele modulus\n一次反応を伴う多孔質触媒粒子について、代表長さ \\(L\\)、反応速度定数 \\(k\\)、有効拡散係数 \\(D_{\\mathrm{eff}}\\) から\n\\[\n\\phi=L\\sqrt{\\frac{k}{D_{\\mathrm{eff}}}}\n\\]\nを定義する。内部拡散の影響を小さくする条件が \\(\\phi&lt;0.4\\) と与えられたとき、許容される最大代表長さを示し、この条件の物理的意味を説明せよ。\n\n\n\n\n\n\nNote理論11：反応時間と拡散時間を比べる\n\n\n\n\n\n\\(L^2/D_{\\mathrm{eff}}\\) は粒子内を拡散する代表時間、\\(1/k\\) は反応の代表時間である。\\(\\phi^2=kL^2/D_{\\mathrm{eff}}\\) は、その比を表す。\n\n\n\n\n\n\n\n\n\nTip解答11\n\n\n\n\n\n\\[\n\\boxed{L&lt;0.4\\sqrt{\\frac{D_{\\mathrm{eff}}}{k}}}\n\\]\nである。\\(\\phi\\ll1\\) では拡散が反応より十分速く、粒子内部まで濃度がほぼ均一なので反応律速となる。\\(\\phi\\gg1\\) では表面近傍で反応物が消費され、粒子内部を有効利用できず内部拡散律速となる。\n\n\n\n\n\n問題12 反応を伴う吸収\n気体成分 \\(\\ce{A}\\) が液相へ吸収される。物理吸収だけの場合と、吸収後に液相中で不可逆反応により消費される場合を比較し、吸収速度がどのように変化するか説明せよ。ただし気相側条件と界面平衡は同じとする。\n\n\n\n\n\n\nNote理論12：液相反応が濃度勾配を保つ\n\n\n\n\n\nFickの法則では流束は濃度勾配に比例する。液相へ入った成分が反応で消費されれば、界面から液相本体へ向かう濃度勾配が大きく保たれる。\n\n\n\n\n\n\n\n\n\nTip解答12\n\n\n\n\n\n物理吸収だけでは液相中に \\(\\ce{A}\\) が蓄積し、界面と液相本体の濃度差が次第に小さくなる。反応を伴う場合は溶解した \\(\\ce{A}\\) が消費されるため液相本体濃度が低く保たれ、濃度勾配と吸収流束が大きくなる。したがって反応吸収速度は物理吸収速度以上となる。反応が十分速い極限では、速度は反応そのものではなく気液物質移動に支配される。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Univ Lecs",
-      "3S",
-      "材料反応工学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3S/材料反応工学.html#公式の見取り図",
-    "href": "posts/univ_lecs/3S/材料反応工学.html#公式の見取り図",
-    "title": "材料反応工学",
-    "section": "公式の見取り図",
-    "text": "公式の見取り図\n\n\n\n現象\n代表式\n見抜くべき比較\n\n\n\n\n中間体\n\\(\\dv{[I]}{t}\\simeq0\\)\n生成速度と消費速度\n\n\n競争吸着\n\\(\\theta_i=K_ip_i/(1+\\sum K_jp_j)\\)\n空席と各吸着種\n\n\n気体衝突\n\\(Z=p/\\sqrt{2\\pi mk_BT}\\)\n到達流束と表面サイト数\n\n\n外部物質移動＋表面反応\n\\(1/K=1/k_m+1/k_s\\)\n小さい速度係数が律速\n\n\n粒子内拡散\n\\(\\phi=L\\sqrt{k/D_{\\mathrm{eff}}}\\)\n拡散時間と反応時間",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Univ Lecs",
-      "3S",
-      "材料反応工学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3S/固体物性学.html#結晶格子と逆格子",
-    "href": "posts/univ_lecs/3S/固体物性学.html#結晶格子と逆格子",
-    "title": "固体物性学",
-    "section": "結晶格子と逆格子",
-    "text": "結晶格子と逆格子\n\n問題A1 実格子、ウィグナー・ザイツ胞、逆格子\n\n2次元単純直方格子 \\((a\\ne b)\\) と2次元六方格子について、格子点と基本並進ベクトルを図示し、ウィグナー・ザイツ胞を書き入れよ。\n3次元六方格子の基本並進ベクトルを\n\\[\n\\begin{aligned}\n\\boldsymbol a_1&=\\frac{\\sqrt3a}{2}\\boldsymbol e_x-\\frac a2\\boldsymbol e_y,\\\\\n\\boldsymbol a_2&=\\frac{\\sqrt3a}{2}\\boldsymbol e_x+\\frac a2\\boldsymbol e_y,\\\\\n\\boldsymbol a_3&=c\\boldsymbol e_z\n\\end{aligned}\n\\]\nとする。逆格子基本ベクトルを求め、\\(xy\\) 面内の実格子点と逆格子点の配列を図示せよ。\n面心立方格子の基本並進ベクトルを\n\\[\n\\boldsymbol a_1=\\frac a2(\\boldsymbol e_y+\\boldsymbol e_z),\\quad\n\\boldsymbol a_2=\\frac a2(\\boldsymbol e_x+\\boldsymbol e_z),\\quad\n\\boldsymbol a_3=\\frac a2(\\boldsymbol e_x+\\boldsymbol e_y)\n\\]\nとする。逆格子基本ベクトルを求め、逆格子のブラベ格子名と慣用単位胞の一辺を答えよ。\n\n\n\n\n\n\n\nNote理論A1：実空間の周期を波数空間へ写す\n\n\n\n\n\n結晶格子は、基本並進ベクトル \\(\\boldsymbol a_i\\) の整数倍\n\\[\n\\boldsymbol R=n_1\\boldsymbol a_1+n_2\\boldsymbol a_2+n_3\\boldsymbol a_3\n\\]\nで生成される点の集合である。ウィグナー・ザイツ胞は、ある格子点から他のどの格子点よりも近い領域であり、近接格子点との垂直二等分線または面で囲まれる。\n逆格子基本ベクトル \\(\\boldsymbol b_i\\) は\n\\[\n\\boldsymbol a_i\\cdot\\boldsymbol b_j=2\\pi\\delta_{ij}\n\\]\nを満たす。具体的には、実格子の原始胞体積を\n\\[\n\\Omega=\\boldsymbol a_1\\cdot\n(\\boldsymbol a_2\\times\\boldsymbol a_3)\n\\]\nとして、\n\\[\n\\begin{aligned}\n\\boldsymbol b_1&=2\\pi\n\\frac{\\boldsymbol a_2\\times\\boldsymbol a_3}{\\Omega},\\\\\n\\boldsymbol b_2&=2\\pi\n\\frac{\\boldsymbol a_3\\times\\boldsymbol a_1}{\\Omega},\\\\\n\\boldsymbol b_3&=2\\pi\n\\frac{\\boldsymbol a_1\\times\\boldsymbol a_2}{\\Omega}\n\\end{aligned}\n\\]\nで求められる。\n逆格子は単なる作図上の道具ではない。実格子と同じ周期をもつ平面波は\n\\[\ne^{i\\boldsymbol G\\cdot(\\boldsymbol r+\\boldsymbol R)}\n=e^{i\\boldsymbol G\\cdot\\boldsymbol r}\n\\]\nを満たすため、\n\\[\n\\boldsymbol G\\cdot\\boldsymbol R=2\\pi m\n\\]\nとなる。この条件を満たす \\(\\boldsymbol G\\) の集合が逆格子であり、回折とバンド理論の共通言語になる。\n\n\n\n\n\n\n\n\n\nTip解答A1\n\n\n\n\n\n\n模範図は次のとおりである。矢印が基本並進ベクトル、実線がウィグナー・ザイツ胞を表す。\n\n\n\n\n\n\n\n\n\nFigure 1: 2次元格子と六方格子の実格子・逆格子\n\n\n\n\n\n\n\\(\\Omega=\\sqrt3a^2c/2\\) であるから、\n\\[\n\\boxed{\n\\begin{aligned}\n\\boldsymbol b_1&=\\frac{2\\pi}{a}\n\\left(\\frac1{\\sqrt3}\\boldsymbol e_x-\\boldsymbol e_y\\right),\\\\\n\\boldsymbol b_2&=\\frac{2\\pi}{a}\n\\left(\\frac1{\\sqrt3}\\boldsymbol e_x+\\boldsymbol e_y\\right),\\\\\n\\boldsymbol b_3&=\\frac{2\\pi}{c}\\boldsymbol e_z\n\\end{aligned}}\n\\]\nとなる。\\(xy\\) 面では、実格子も逆格子も三角格子であるが、向きと尺度が異なる。\n面心立方格子に対して、\n\\[\n\\boxed{\n\\begin{aligned}\n\\boldsymbol b_1&=\\frac{2\\pi}{a}\n(-\\boldsymbol e_x+\\boldsymbol e_y+\\boldsymbol e_z),\\\\\n\\boldsymbol b_2&=\\frac{2\\pi}{a}\n(\\boldsymbol e_x-\\boldsymbol e_y+\\boldsymbol e_z),\\\\\n\\boldsymbol b_3&=\\frac{2\\pi}{a}\n(\\boldsymbol e_x+\\boldsymbol e_y-\\boldsymbol e_z)\n\\end{aligned}}\n\\]\nである。これは体心立方格子の原始ベクトルなので、\n\\[\n\\boxed{\\text{FCCの逆格子は、慣用単位胞の一辺が }4\\pi/a\n\\text{ のBCC}}\n\\]",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Univ Lecs",
-      "3S",
-      "固体物性学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3S/固体物性学.html#格子振動",
-    "href": "posts/univ_lecs/3S/固体物性学.html#格子振動",
-    "title": "固体物性学",
-    "section": "格子振動",
-    "text": "格子振動\n\n問題B1 1次元格子の分散関係\n質量 \\(M\\) の同種原子が間隔 \\(a\\) で並び、最近接原子間をばね定数 \\(K\\) のばねが結ぶ1次元結晶を考える。\\(j\\) 番目の原子の平衡位置からの変位を \\(u_j\\) とする。\n\n\n\n\n\n\n\n\nFigure 2: 同種原子からなる1次元格子の模式図\n\n\n\n\n\n\n\\(j\\) 番目の原子の古典的運動方程式を書け。\n\\(u_j=Ae^{i(kja-\\omega t)}\\) を仮定して分散関係を導き、第一ブリュアンゾーン内で図示せよ。\n単位胞内に質量 \\(M_1,M_2\\) の異なる2原子がある場合の分散関係の概略を図示し、現れるモードを説明せよ。\n\n\n\n\n\n\n\nNote理論B1：結晶中の波は波長によって振動数が変わる\n\n\n\n\n\n原子 \\(j\\) が右の原子より右へ大きく変位すれば、右のばねは原子 \\(j\\) を左へ引く。左右のばねの復元力を足すと\n\\[\nF_j=K(u_{j+1}-u_j)+K(u_{j-1}-u_j)\n\\]\nとなる。\n平面波を代入すると、隣の原子との位相差は \\(ka\\) である。\n\\[\nu_{j\\pm1}=u_je^{\\pm ika}\n\\]\nしたがって、運動方程式は各 \\(j\\) に共通の代数方程式になる。格子では \\(k\\) と \\(k+2\\pi/a\\) が同じ原子上の位相を与えるため、独立な範囲は第一ブリュアンゾーン\n\\[\n-\\frac{\\pi}{a}\\le k\\le\\frac{\\pi}{a}\n\\]\nでよい。\n二原子格子では、各単位胞に二つの自由度があるため、各 \\(k\\) について二つの固有振動が生じる。低周波側は長波長極限で二原子が同位相に動く音響モード、高周波側は逆位相に動く光学モードである。\n\n\n\n\n\n\n\n\n\nTip解答B1\n\n\n\n\n\n\n\\[\n\\boxed{\nM\\dv[2]{u_j}{t}\n=K(u_{j+1}+u_{j-1}-2u_j)\n}\n\\]\n平面波を代入すると、\n\\[\n-M\\omega^2u_j\n=K(e^{ika}+e^{-ika}-2)u_j\n\\]\nなので、\n\\[\n\\boxed{\n\\omega^2(k)=\\frac{4K}{M}\\sin^2\\left(\\frac{ka}{2}\\right),\n\\qquad\n\\omega(k)=2\\sqrt{\\frac KM}\n\\abs{\\sin\\left(\\frac{ka}{2}\\right)}\n}.\n\\]\n二原子格子では、\n\\[\n\\boxed{\n\\omega_\\pm^2(k)=\n\\frac{K(M_1+M_2)}{M_1M_2}\n\\left[\n1\\pm\n\\sqrt{\n1-\\frac{4M_1M_2}{(M_1+M_2)^2}\n\\sin^2\\left(\\frac{ka}{2}\\right)}\n\\right]\n}\n\\]\nとなる。\\(-\\) が音響分枝、\\(+\\) が光学分枝である。\n\n\n\n\n\n\n\n\n\nFigure 3: 単原子格子と二原子格子の分散関係\n\n\n\n\n\n音響分枝は \\(k\\to0\\) で \\(\\omega\\to0\\) となり、連続体の音波へつながる。光学分枝は \\(k=0\\) でも有限の \\(\\omega\\) をもち、異種イオン結晶では逆位相運動が電気双極子を変化させるため赤外光と結合できる。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Univ Lecs",
-      "3S",
-      "固体物性学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3S/固体物性学.html#自由電子",
-    "href": "posts/univ_lecs/3S/固体物性学.html#自由電子",
-    "title": "固体物性学",
-    "section": "自由電子",
-    "text": "自由電子\n\n問題C1 3次元自由電子の状態密度とフェルミエネルギー\n一辺 \\(L\\) の立方体中に \\(N\\) 個の自由電子がある。自由電子のエネルギーを\n\\[\n\\varepsilon=\\frac{\\hbar^2k^2}{2m_e}\n\\]\nとする。\n\nスピン縮退を含む状態密度が\n\\[\nD(\\varepsilon)\n=\\frac{L^3}{2\\pi^2}\n\\left(\\frac{2m_e}{\\hbar^2}\\right)^{3/2}\n\\sqrt{\\varepsilon}\n\\]\nとなることを示せ。\n\\(T=0\\) におけるフェルミエネルギー \\(\\varepsilon_F\\) を \\(N\\) の関数として求めよ。\n\n\n\n\n\n\n\nNote理論C1：波数空間の状態を球の体積で数える\n\n\n\n\n\n周期境界条件を課すと、\\(k\\) 空間では各状態が各方向に \\(2\\pi/L\\) 間隔で並ぶ。1状態が占める体積は \\((2\\pi/L)^3\\) である。\n大きさが \\(k\\) 以下の波数ベクトルは球内にあり、スピンの2重縮退を含めると\n\\[\n\\mathcal N(k)\n=2\\frac{(4\\pi/3)k^3}{(2\\pi/L)^3}\n=\\frac{L^3k^3}{3\\pi^2}\n\\]\nとなる。状態密度は、累積状態数をエネルギーで微分したもの\n\\[\nD(\\varepsilon)=\\dv{\\mathcal N}{\\varepsilon}\n\\]\nである。\n\\(T=0\\) では、電子は低い準位からフェルミエネルギーまで詰まるため、\n\\[\nN=\\int_0^{\\varepsilon_F}D(\\varepsilon)\\dd\\varepsilon\n\\]\nが電子数条件になる。\n\n\n\n\n\n\n\n\n\nTip解答C1\n\n\n\n\n\n\n\\(k=\\sqrt{2m_e\\varepsilon}/\\hbar\\) を\n\\[\n\\mathcal N(\\varepsilon)\n=\\frac{L^3}{3\\pi^2}\n\\left(\\frac{2m_e\\varepsilon}{\\hbar^2}\\right)^{3/2}\n\\]\nに代入し、\\(\\varepsilon\\) で微分すれば、\n\\[\n\\boxed{\nD(\\varepsilon)\n=\\frac{L^3}{2\\pi^2}\n\\left(\\frac{2m_e}{\\hbar^2}\\right)^{3/2}\n\\sqrt{\\varepsilon}\n}\n\\]\n\\[\nN=\\int_0^{\\varepsilon_F}D(\\varepsilon)\\dd\\varepsilon\n=\\frac{L^3}{3\\pi^2}\n\\left(\\frac{2m_e\\varepsilon_F}{\\hbar^2}\\right)^{3/2}\n\\]\nより、\n\\[\n\\boxed{\n\\varepsilon_F\n=\\frac{\\hbar^2}{2m_e}\n\\left(\\frac{3\\pi^2N}{L^3}\\right)^{2/3}\n}\n\\]",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Univ Lecs",
-      "3S",
-      "固体物性学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3S/固体物性学.html#電子のバンド構造",
-    "href": "posts/univ_lecs/3S/固体物性学.html#電子のバンド構造",
-    "title": "固体物性学",
-    "section": "電子のバンド構造",
-    "text": "電子のバンド構造\n\n問題D1 強結合近似による1s・2sバンド\n格子定数 \\(a\\) の同種原子からなる1次元結晶を考える。各原子の1s、2s軌道のみを用い、軌道間の重なりを無視する。オンサイトエネルギーを \\(E_{1s},E_{2s}\\)、同種軌道間の最近接ホッピング積分を \\(t_{1s},t_{2s}\\) とする。\n各軌道から生じるバンド分散を求め、\\(t_{1s}&gt;0,\\ t_{2s}&lt;0\\) として第一ブリュアンゾーン内に概形を描け。\n\n\n\n\n\n\nNote理論D1：孤立原子準位が原子数だけ分裂してバンドになる\n\n\n\n\n\n結晶中では、ある原子上の軌道から隣の原子上の同種軌道へ電子が移る振幅がホッピング積分 \\(t\\) である。ブロッホ和を作ると、右隣と左隣から\n\\[\nte^{ika}+te^{-ika}=2t\\cos ka\n\\]\nが加わる。\n1sと2sの異種軌道間相互作用を無視しているので、二つのバンドは別々に解ける。\\(t\\) の符号が変わると、\\(k=0\\) とブリュアンゾーン端のどちらがバンド下端になるかが逆転する。\n\n\n\n\n\n\n\n\n\nTip解答D1\n\n\n\n\n\n各軌道 \\(\\mu=1s,2s\\) について、\n\\[\n(E_\\mu-E)c_\\mu\n+t_\\mu e^{ika}c_\\mu\n+t_\\mu e^{-ika}c_\\mu=0\n\\]\nだから、\n\\[\n\\boxed{\n\\begin{aligned}\n\\mathcal E_{1s}(k)&=E_{1s}+2t_{1s}\\cos ka,\\\\\n\\mathcal E_{2s}(k)&=E_{2s}+2t_{2s}\\cos ka.\n\\end{aligned}\n}\n\\]\n\n\n\n\n\n\n\n\nFigure 4: 1次元結晶の1s・2s強結合バンド\n\n\n\n\n\n\\(t_{1s}&gt;0\\) なので1sバンドは \\(k=0\\) で最大、\\(k=\\pm\\pi/a\\) で最小となる。\\(t_{2s}&lt;0\\) の2sバンドはその逆である。\n\n\n\n\n\n問題D2 周期ポテンシャルによるバンドギャップ\n1次元周期ポテンシャル\n\\[\nV(x)=V_1\\cos\\left(\\frac{2\\pi x}{a}\\right)\n\\]\n中の電子を考える。ブリュアンゾーン端 \\(k=\\pi/a\\) でブラッグ反射によってできる二つの定在波を\n\\[\n\\begin{aligned}\n\\phi_+(x)&=\\sqrt{\\frac2a}\\cos\\left(\\frac{\\pi x}{a}\\right),\\\\\n\\phi_-(x)&=i\\sqrt{\\frac2a}\\sin\\left(\\frac{\\pi x}{a}\\right)\n\\end{aligned}\n\\]\nとする。これらは \\(0\\le x\\le a\\) で規格化されている。\n\n\\(|\\phi_+|^2\\) と \\(|\\phi_-|^2\\) を求め、\\(V(x)\\) とともに図示せよ。\n二つの状態のエネルギー期待値の差を求めよ。\nこの結果から、周期ポテンシャルがバンドギャップを作る機構を説明せよ。\n\n\n\n\n\n\n\nNote理論D2：同じ運動エネルギーをもつ波が異なる場所へ局在する\n\n\n\n\n\n自由電子では、\\(k=\\pi/a\\) と \\(k=-\\pi/a\\) の状態は同じ運動エネルギーをもつ。周期ポテンシャルは波数差 \\(2\\pi/a\\) の二状態を結合し、和と差の定在波を作る。\n二つの定在波の運動エネルギー期待値は同じである。一方、確率密度の山がポテンシャルの山に重なるか谷に重なるかが異なるため、ポテンシャルエネルギー期待値が分裂する。この縮退の分裂がゾーン境界のバンドギャップになる。\n\n\n\n\n\n\n\n\n\nTip解答D2\n\n\n\n\n\n\n\\[\n\\boxed{\n|\\phi_+|^2=\\frac2a\\cos^2\\left(\\frac{\\pi x}{a}\\right),\\qquad\n|\\phi_-|^2=\\frac2a\\sin^2\\left(\\frac{\\pi x}{a}\\right)\n}\n\\]\n\n\n\n\n\n\n\n\n\nFigure 5: ゾーン境界の定在波確率密度と周期ポテンシャル\n\n\n\n\n\n\n運動エネルギー期待値は相殺される。ポテンシャル項について、\n\\[\n\\begin{aligned}\n\\expval{V}_+\n&=\\int_0^a\\frac2a\\cos^2\\left(\\frac{\\pi x}{a}\\right)\nV_1\\cos\\left(\\frac{2\\pi x}{a}\\right)\\dd x\n=\\frac{V_1}{2},\\\\\n\\expval{V}_-\n&=\\int_0^a\\frac2a\\sin^2\\left(\\frac{\\pi x}{a}\\right)\nV_1\\cos\\left(\\frac{2\\pi x}{a}\\right)\\dd x\n=-\\frac{V_1}{2}.\n\\end{aligned}\n\\]\nしたがって、\n\\[\n\\boxed{\\expval{H}_+-\\expval{H}_-=V_1}\n\\]\nであり、ギャップの大きさは \\(|V_1|\\) である。\n\\(\\phi_+\\) と \\(\\phi_-\\) は同じ運動エネルギーをもつが、電子密度が周期ポテンシャルの山と谷のどちらに集中するかが異なる。その結果、ゾーン境界で縮退が解け、二つのエネルギーの間に許されない領域、すなわちバンドギャップが生じる。\n\n\n\n\n\n\n問題D3 GaAsの有効質量と電気伝導\nGaAs のブラベ格子は面心立方格子で、慣用単位胞の格子定数は \\(a=0.57\\ \\mathrm{nm}\\) である。伝導帯下端の \\(\\Gamma\\) 点近傍を、規格化波数 \\(\\xi\\) により\n\\[\n\\boldsymbol k=\\frac{2\\pi}{a}(\\xi,0,0)\n\\]\nと表す。バンド図から得た二次関数フィットを\n\\[\n\\mathcal E(\\xi)=1.5+75\\xi^2\\quad[\\mathrm{eV}]\n\\]\nとする。\n\n\n\n\n\n\n\n\nFigure 6: GaAs伝導帯下端の二次関数フィット\n\n\n\n\n\n\n電子の有効質量を求め、電子の静止質量 \\(m_e=9.1\\times10^{-31}\\ \\mathrm{kg}\\) と比較せよ。\\(\\hbar=1.1\\times10^{-34}\\ \\mathrm{J\\,s}\\)、\\(e=1.6\\times10^{-19}\\ \\mathrm{C}\\) を用いてよい。\n多くの半導体で電子有効質量が金属の自由電子質量より小さくなりうる理由と、それでも半導体の電気伝導度が金属より著しく小さい理由を、「自由電子」「状態密度」「フェルミ準位」「移動度」を用いて説明せよ。\n\n\n\n\n\n\n\nNote理論D3：バンドの曲率を電子の慣性として読む\n\n\n\n\n\n外力 \\(\\boldsymbol F\\) を受けた結晶中の電子は\n\\[\n\\hbar\\dv{\\boldsymbol k}{t}=\\boldsymbol F\n\\]\nに従う。群速度\n\\[\nv=\\frac1\\hbar\\dv{\\mathcal E}{k}\n\\]\nを時間微分すると、1次元では\n\\[\n\\dv{v}{t}\n=\\frac1{\\hbar^2}\\dv[2]{\\mathcal E}{k}F\n\\]\nとなる。ニュートン形式 \\(F=m^*\\dv*{v}{t}\\) と比較して、\n\\[\n\\boxed{\n\\frac1{m^*}=\\frac1{\\hbar^2}\\dv[2]{\\mathcal E}{k}\n}\n\\]\nを得る。曲率が大きいバンドほど、同じ力で速度が変わりやすく、有効質量は小さい。\n電気伝導度は単純化すると\n\\[\n\\sigma=ne\\mu,\\qquad\n\\mu=\\frac{e\\tau}{m^*}\n\\]\nである。有効質量が小さいほど移動度 \\(\\mu\\) は大きくなりやすいが、伝導度にはキャリア密度 \\(n\\) も掛かる。\n\n\n\n\n\n\n\n\n\nTip解答D3\n\n\n\n\n\n\n\\[\n\\mathcal E-\\mathcal E_c\n=75e\\left(\\frac{ak}{2\\pi}\\right)^2\n\\]\nなので、\n\\[\n\\dv[2]{\\mathcal E}{k}\n=2(75e)\\left(\\frac{a}{2\\pi}\\right)^2.\n\\]\nよって、\n\\[\nm^*\n=\\frac{\\hbar^2(2\\pi/a)^2}{2(75e)}\n=6.13\\times10^{-32}\\ \\mathrm{kg}.\n\\]\nしたがって、\n\\[\n\\boxed{m^*\\simeq0.067\\,m_e}\n\\]\n金属を自由電子模型でみると、フェルミ準位がバンド内にあり、その近傍に有限の状態密度と多数の占有電子がある。半導体の伝導帯下端は曲率が大きい場合が多く、\\(m^*\\) が小さいため、散乱時間が同程度なら電子の移動度は高くなりうる。\nしかし、真性半導体のフェルミ準位はバンドギャップ内にあり、熱励起されて伝導帯を占める電子数が少ない。伝導帯の状態密度も有効質量が小さいほど小さくなる。したがって、移動度が高くてもキャリア密度 \\(n\\) が金属より圧倒的に小さく、\n\\[\n\\boxed{\\sigma=ne\\mu}\n\\]\nは金属より著しく小さくなる。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Univ Lecs",
-      "3S",
-      "固体物性学"
-    ]
-  },
-  {
-    "objectID": "posts/univ_lecs/3S/固体物性学.html#まとめ",
-    "href": "posts/univ_lecs/3S/固体物性学.html#まとめ",
-    "title": "固体物性学",
-    "section": "まとめ",
-    "text": "まとめ\n\n実格子の並進周期は、\\(\\boldsymbol a_i\\cdot\\boldsymbol b_j=2\\pi\\delta_{ij}\\) によって逆格子へ移る。\n格子振動では、単位胞内の自由度の数だけ分散分枝が生じる。\n自由電子の状態密度は \\(k\\) 空間の状態数を数えて導き、フェルミエネルギーは電子数条件から決まる。\n強結合近似では原子軌道準位がコサイン型バンドへ広がる。\nほぼ自由な電子では、ゾーン端のブラッグ反射が縮退を解き、バンドギャップを作る。\nバンド曲率は有効質量を、フェルミ準位と状態密度はキャリア数を決める。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Univ Lecs",
-      "3S",
-      "固体物性学"
-    ]
-  },
-  {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html",
-    "title": "ふみにわ開発記",
-    "section": "",
-    "text": "2026年8月9日時点の開発記録。\nmainはPR #65まで反映済み。AI関連の一部は現在の作業ブランチ上にあり、実際のCodex／OpenRouter接続や公開用ビルドは未完成である。\n「日本語で小説を書くための、静かで使いやすいmacOSアプリを作りたい」\nふみにわ（FUMINIWA）は、そんな比較的素朴な目標から始まった。\nところが、実際に開発を進めると、問題は「本文を入力できるか」では終わらなかった。\n日本語IMEを壊さず扱えるか。\n自動保存は、本当に作者を守っているか。\n開けない原稿を、空の新規作品に見せかけていないか。\n便利そうな未実装機能を、あたかも使えるように表示していないか。\nAIを接続したとき、古い校正結果を別の原稿へ誤適用しないか。\n開発が進むほど、目指すものは「機能の多い小説エディタ」から、「原稿を安心して預けられる道具」へ変わっていった。\nこれは、その過程で何を作り、何を間違え、何を捨て、これからどこへ進もうとしているのかをまとめた記録である。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ふみにわ開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#最初に決めたのは機能ではなく境界だった",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#最初に決めたのは機能ではなく境界だった",
-    "title": "ふみにわ開発記",
-    "section": "最初に決めたのは、機能ではなく境界だった",
-    "text": "最初に決めたのは、機能ではなく境界だった\n開発初期に最も重視したのは、画面の見た目や機能数ではなく、あとから壊れにくい構造だった。\nアプリ全体のUIにはSwiftUIを使う。ただし、本文エディタにはSwiftUIのTextEditorを使わず、AppKitのNSTextViewとTextKit 2を採用した。\n理由は日本語IMEである。\nSwiftUIの状態更新と本文を素朴な双方向Bindingで結ぶと、IME変換中に外側から文字列が書き戻され、入力が巻き戻ることがある。そのため、編集中の本文の正はNSTextView側に置き、モデルから本文を流し込むのは話を切り替えたときだけ、という「テキスト所有権ルール」を最初に定めた。\n保存形式には、単一の巨大なJSONではなく、フォルダパッケージ形式の.novelpkgを採用した。\n本文、メモ、添付資料、メタデータを分けて保持し、本文ファイル名には並び順ではなくUUIDを使う。章や話を並べ替えても、ファイルを一斉にリネームしなくて済むからだ。\n章順と話順は配列だけを正とし、別のorderフィールドは持たない。二つの順序情報を持てば、いつか必ず食い違う。\nこの頃から、ふみにわの設計には一つの傾向があった。\n「便利そうな情報を増やす」よりも、「正が二つ存在する状態を作らない」ことを優先していた。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ふみにわ開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#機能は驚くほど速く増えていった",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#機能は驚くほど速く増えていった",
-    "title": "ふみにわ開発記",
-    "section": "機能は、驚くほど速く増えていった",
-    "text": "機能は、驚くほど速く増えていった\n基盤を作ったあと、開発はかなり速い速度で進んだ。\n章と話の管理、本文編集、自動字下げ、検索、文字数表示、話メモ、キャラクター管理、登場箇所へのジャンプ、プロットカード、伏線管理、資料添付、世界観ノート、スナップショット保存と復元。\nさらに、作品の新規作成、既存作品を開く、別名保存、Finder表示、TXT／Markdown／EPUB 3への書き出しまで実装した。\nPhase 0からPhase 5までを通して、「小説を書くために必要そうな機能」は急速に揃っていった。\nしかし、ここで最初の大きな認識違いが見えてきた。\n機能が揃っていることと、製品として信頼できることは別だった。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ふみにわ開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#一度完成させたuiをいったん捨てた",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#一度完成させたuiをいったん捨てた",
-    "title": "ふみにわ開発記",
-    "section": "一度完成させたUIを、いったん捨てた",
-    "text": "一度完成させたUIを、いったん捨てた\nUIでも大きな手戻りがあった。\n最初の刷新では、画面を「執筆」「キャラクター」「プロット」の3モードに分けた。キャラクターはシート形式、プロットは章レーン式のカードボードにし、それぞれを広い画面で扱えるようにした。\nこのUIは、実装としては完成した。\nそれでも、使い方を見直すと問題があった。\n小説を書いている最中には、本文だけでなく、章構造、人物、プロット、資料を行き来する。モードを切り替えるたびに、今どこを書いているのかという文脈が途切れてしまう。\nそこで、完成済みの3モード制を捨て、Project Sidebar、Outline、Editorを中心とするWorkbenchへ作り直した。\nところが、これで終わりではなかった。\nOutlineを統一しようとした修正では、意図していたmacOSらしい透過感とは反対に、画面全体を不透明で重い方向へ寄せてしまった。操作の整合性は上がったが、見た目の方向が違っていた。\nそのため、Glass UI、入力余白、2列／3列構成、ツールバー配置、章と話の階層、作品情報画面などを何度も再設計した。\nこの過程で学んだのは、「完成したコードを残すこと」よりも、「違う方向へ進んだと認めること」の方が重要だということだった。\nUIの作り直しは失敗の隠蔽ではない。実際に使った結果、理解が更新された証拠でもある。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ふみにわ開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#日本語入力は仕様書どおりには動かなかった",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#日本語入力は仕様書どおりには動かなかった",
-    "title": "ふみにわ開発記",
-    "section": "日本語入力は、仕様書どおりには動かなかった",
-    "text": "日本語入力は、仕様書どおりには動かなかった\n自動字下げにも、象徴的な失敗があった。\n当初は、行頭に全角スペースがある状態で「を入力したら、そのスペースを削除するルールを用意していた。直接入力では動作した。\nしかし、日本語IMEから「を入力すると動かなかった。\n原因は、IME変換中の安全を守るために置いたIMEGuardPluginだった。変換中は後続処理へ介入させない設計が正しく働き、字下げ解除の処理まで止めていたのである。\nつまり、個々の機能はそれぞれ正しくても、組み合わせると期待した動作にならなかった。\n修正では、IME変換中には触らない原則を維持したまま、変換確定後のtextDidChangeで行頭スペースを取り除く処理を追加した。もちろん、Undoで元に戻せる通常の編集経路を通している。\n傍点記法でも変更があった。\n最初に採用した《《対象文字列》》は特定の投稿サイトでは使えるが、他の主要サービスでは通用しない。そこで、1文字ずつ｜字《・》へ変換する方式へ変更した。\nこうした問題は、デモでは目立ちにくい。\nしかし、日本語で毎日何千文字も書く道具では、こういう細部が製品の本体になる。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ふみにわ開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#出力へ進む直前にロードマップを止めた",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#出力へ進む直前にロードマップを止めた",
-    "title": "ふみにわ開発記",
-    "section": "出力へ進む直前に、ロードマップを止めた",
-    "text": "出力へ進む直前に、ロードマップを止めた\nWorkbenchが完成した時点では、次にTXTやEPUBなどの書き出し機能へ進む予定だった。\nだが、プロジェクト全体を見直した結果、その順番は危険だと判断した。\n当時は、保存に失敗しても利用者が気づきにくく、新規作成、作品を開く、別名保存といった通常のファイル操作も十分に揃っていなかった。\nそこで、出力の前にPhase 4.5という安定化フェーズを挿入した。\n保存状態を「未保存」「保存中」「保存済み」「保存失敗」として表示し、失敗時には再試行できるようにした。作品切り替えでは、候補作品の読み込みと現在作品の保存が両方成功してから状態を入れ替えるようにした。\nスナップショット復元では、復元前の現在状態を先に別スナップショットへ退避するようにした。復元が失敗しても、現在の作品を維持するためである。\n保存処理そのものにも競合が見つかった。\n保存中に新しい変更が入ったとき、古い実装では変更が保存されていないのに成功が返る隙間があった。保存要求をrevision単位で直列化し、dirtyな変更がなくなるまで保存担当が処理を続ける形へ修正した。\nテスト環境の追加も一度では成功しなかった。\n最初のNovelAppTestsは、XcodeGen側のscheme、TEST_HOST、BUNDLE_LOADERが不足して失敗した。その後はSwiftFormatのimport順でもローカルチェックが止まった。コードを直したあと、設計文書に削除済みのAppModeが残るという文書ドリフトも起きた。\nこの経験から、ふみにわでは設計書やDecision Logを単なる説明資料ではなく、実装と同時に更新する成果物として扱うようになった。\n性能については、先回りして保存形式を書き換えることを避けた。\n1MBの本文、100MBの添付、20個のスナップショットを持つ代表パッケージで測定したところ、APFS上の保存時間は当時約0.039秒だった。想像で最適化するのではなく、予算を超えてから直す方針を選んだ。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ふみにわ開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#macos専用からmacosファーストへ",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#macos専用からmacosファーストへ",
-    "title": "ふみにわ開発記",
-    "section": "macOS専用から、macOSファーストへ",
-    "text": "macOS専用から、macOSファーストへ\n途中で、Windows版も視野に入れる方針が加わった。\nただし、SwiftUIやAppKitのコードをWindowsへ無理に共有することはしない。\n共有するのは.novelpkgのschema、UUIDや順序の意味、入出力fixture、保存トランザクションの考え方である。Windows側はWinUI 3とC#／.NETで、同じ契約を別実装する。\nUIまで共通化すれば、各OSのIME、Undo、ファイル操作、デザイン慣習を損なう。\nコードを共有することより、同じ原稿を安全に往復できることを優先した。\nもっとも、これはWindows版が完成したという意味ではない。現在は、言語非依存schemaとgolden fixtureを固定するW0が未完了であり、実装はその次である。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ふみにわ開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#商業化監査で製品の中心が変わった",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#商業化監査で製品の中心が変わった",
-    "title": "ふみにわ開発記",
-    "section": "商業化監査で、製品の中心が変わった",
-    "text": "商業化監査で、製品の中心が変わった\n一度、ふみにわを「他人へ渡せる製品」として徹底的に監査した。\nそこで見つかった重大な問題は、派手な新機能の不足ではなかった。\n起動直後に編集可能な仮の作品を表示していたため、利用者が入力した本文を、遅れて読み込まれた前回作品が上書きする可能性があった。\n作品の読み込みに失敗したとき、空の新規作品へ黙ってfallbackする経路があった。\n本文ファイルの読み込み失敗や不正なUTF-8を、空文字へ変換して処理を続ける箇所もあった。\nさらに、外部変更、孤児化した本文、署名や公証、AppIcon、アクセシビリティ、未接続AIの常設表示など、多数の問題が見つかった。\nこの監査を境に、製品の中心価値は次のように整理された。\n\n昨日の続きを、昨日の場所から始められること。\nそして異常が起きたとき、黙って空にせず、救出可能な状態で止まること。\n\nふみにわにとって、信用は機能数ではなく、失敗時の振る舞いに宿っていた。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ふみにわ開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#開けないを正直に表示する",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#開けないを正直に表示する",
-    "title": "ふみにわ開発記",
-    "section": "「開けない」を正直に表示する",
-    "text": "「開けない」を正直に表示する\n起動処理はLoading、Ready、Recoveryの三状態へ分離した。\n作品を安全に読み込めるまで、編集可能なWorkbenchを表示しない。前回作品やFinderから指定された作品を開けなかった場合も、新規作品へ自動fallbackしない。\n代わりにRecovery画面で止まり、再試行、Finderで表示、別作品を選択、明示的な新規作成を提示する。\n本文が読めないなら、空文字として開かない。\n執筆アプリでは、「開けません」と伝える方が、「空で開けました」と装うよりはるかに安全だからだ。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ふみにわ開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#mainactorだけでは原稿を守れなかった",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#mainactorだけでは原稿を守れなかった",
-    "title": "ふみにわ開発記",
-    "section": "@MainActorだけでは、原稿を守れなかった",
-    "text": "@MainActorだけでは、原稿を守れなかった\n作品ライフサイクルのレビューでは、さらに厄介な競合が見つかった。\nSwiftの@MainActorを使えば、状態は一度に一つずつ変更されるように見える。しかし、ファイルI/Oのawait中には別の操作が入り込める。\n作品Aのスナップショット復元を待っている間に、Finderから作品Bを開く。すると、復元処理が再開したあと、動的に読み直した保存先へAのスナップショットを書き戻し、Bを壊す可能性があった。\n起動処理でも、遅い初回読み込みが、あとからFinderで開いた作品を古い作品へ巻き戻す競合があった。\n対策では、作品操作全体をFIFOのgateで直列化し、各操作が呼び出された時点の作品ID、URL、世代をsession tokenとして固定した。\n待機中に作品が変わった操作は、保存層へ触る前に拒否する。\n作品切り替え前には、日本語IMEの未確定文字を旧作品へ確定して保存する。終了要求後は新しい作品操作を受け付けない。lockの取得順も固定した。\nここで重要だったのは、「同時に触らない」だけでは足りないということだった。\n「その操作が、どの作品に対して始まったのか」まで固定しなければならなかった。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ふみにわ開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#改名は文字列置換ではなかった",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#改名は文字列置換ではなかった",
-    "title": "ふみにわ開発記",
-    "section": "改名は、文字列置換ではなかった",
-    "text": "改名は、文字列置換ではなかった\n製品名は、NovelWriterから「ふみにわ／FUMINIWA」へ変更した。\nだが、改名を画面上の文字列置換として行えば、既存作品や設定を壊す。\n旧bundle domainに保存されていた最近開いた作品やエディタ設定は、対象をallowlistで限定して一度だけ移行する。新しい値がすでにある場合は上書きせず、旧作品や旧フォルダも移動・削除しない。\n.novelpkgの内部形式、NovelKitなどのドメイン名、toolbarの永続IDも互換資産として維持した。\nこの改名の直後には、別の分かりにくい問題も起きた。\nXcodeが古いNovelWriter.xcodeprojを開き、すでに削除されたNovelWriterApp.swiftを参照していた。現在のFUMINIWA.xcodeprojはビルドできるのに、アプリ全体が壊れたように見えた。\n原因はコードではなく、古い生成物だった。\n現在は、XcodeGenの共通スクリプトから現行projectを生成し、旧projectを退避するようにしている。\n生成物を正として扱わない、という原則が実際の障害として現れた例だった。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ふみにわ開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#使えないaiを先に見せない",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#使えないaiを先に見せない",
-    "title": "ふみにわ開発記",
-    "section": "使えないAIを、先に見せない",
-    "text": "使えないAIを、先に見せない\nかつてのWorkbenchには、下部にAI Assistant Panelがあった。\nまだproviderも通信処理も存在しないのに、入力欄やAI状態、ショートカットだけが置かれていた。\n見栄えとしては未来を感じさせる。しかし、利用者から見れば「使える機能」に見える。さらに、本文が外部へ送られるのかもしれないという不安だけを生む。\nそこで、未実装AIの入口を通常版からすべて撤去した。\nこの判断は「Product Truth」として明文化した。\n実在する機能だけをUIへ出す。\nまだできないことを、雰囲気で先に見せない。\nAIを再び表示するには、送信範囲、送信先、保持情報、明示確認、取消、失敗時の挙動、差分、適用確認まで成立していなければならない。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ふみにわ開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#aiは接続より先に誤適用を防ぐ",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#aiは接続より先に誤適用を防ぐ",
-    "title": "ふみにわ開発記",
-    "section": "AIは、接続より先に誤適用を防ぐ",
-    "text": "AIは、接続より先に誤適用を防ぐ\n現在のAI実装は、選択範囲の校正案だけに絞っている。\n利用者が明示的に選択した本文だけを対象にし、作品名、章名、人物、プロット、ローカルファイルを暗黙に追加しない。\n送信前には、実際に送るpromptとresponse schemaをそのままpreviewする。確認後に内容やproviderが変わった場合は、確認を無効にする。同じ確認から送信できるのは一度だけである。\n結果は自動適用しない。原文との差分を表示し、利用者が明示的にApplyしたときだけ、EditorKitの正規編集経路で1回のUndo単位として置換する。\n通信中に作品、話、エディタ、選択範囲、原文のどれかが変わった場合、その結果はstaleとして適用を拒否する。同じ文字列を別の場所から検索して、勝手に結び直すこともしない。\n現在は、この一連の流れをfake providerで検証している。\n通常版のFUMINIWAと、個人実験用のFUMINIWAExperimentalは別target、別bundle ID、別保存rootに分けた。通常版にはNovelAI、AI UI、provider依存、sidecar artifactをbuild graphの段階で含めない。\nこれは、設定で隠しているだけではない。\n通常版には、そもそもAIの実行経路を入れないという分離である。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ふみにわ開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#codexをつなぐ前に見つかった都合の悪い現実",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#codexをつなぐ前に見つかった都合の悪い現実",
-    "title": "ふみにわ開発記",
-    "section": "Codexをつなぐ前に見つかった、都合の悪い現実",
-    "text": "Codexをつなぐ前に見つかった、都合の悪い現実\n実providerの第一候補はCodex TypeScript SDKである。\nしかし、Swiftから直接使えるSDKではないため、Node sidecarを介して接続する必要がある。\nさらに調査時点では、期待していたtool完全無効化、ephemeral thread、上流のoutput token capなどを、公開API上で保証できなかった。\nFUMINIWA側で結果をmemory onlyにしても、providerやSDK側に履歴やartifactが残らないとは限らない。\nローカルでbyte数や実行時間を制限しても、それは上流の料金上限ではない。\nそのため、存在しない保証をUI上で「無効」「保存なし」「上限あり」と補うことはしない。確認できないものは、未保証として表示する。\n次に必要なのは、単に通信を成功させることではない。\nSDK、CLI、Nodeのversion・path・hash固定、専用の空cwdとCODEX_HOME、親environmentを継承しないallowlist、Keychain、OSレベルのファイル隔離、cancel／timeout後のprocess tree回収、orphan processが残らないこと、local artifactの実測が必要になる。\nここまで成立して初めて、個人用Experimental UIへ実Codex adapterを接続できる。\nその後、OpenRouterを独立したHTTP adapterとして同じUIへ追加する予定である。Codexが失敗したからOpenRouterへ自動で切り替える、といったfallbackは行わない。\n送信先が変わるなら、利用者もそれを知り、新しいpreviewを確認しなければならない。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ふみにわ開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#現在地とこれから",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#現在地とこれから",
-    "title": "ふみにわ開発記",
-    "section": "現在地と、これから",
-    "text": "現在地と、これから\nふみにわには現在、macOS上で小説を書くための主要機能が一通り揃っている。\n日本語IME対応の本文エディタ、章と話の管理、自動保存、検索、スナップショット、人物、プロット、伏線、資料、世界観ノート、TXT／Markdown／EPUB書き出しまで動作する。\n一方で、一般公開できる状態とは考えていない。\n今後は、個人用AIと公開Releaseを別トラックとして進める。\n個人用AIでは、Codex sidecarの固定protocolと隔離feasibilityを先に実証し、その後に実adapterを共通UIへ接続する。続いてOpenRouter adapterを追加する。\n公開Releaseでは、まずPackage Validatorを作る。重複ID、不正参照、symlink、巨大パッケージ、孤児化した本文を検出し、元作品を直接書き換えず、修復コピーとして救出できるようにする。\nその次に、Finderでの移動や削除、同期サービス、別プロセスによる外部変更を検出するConflict Gateへ進む。\nさらにAppIcon、Developer ID署名、公証、更新機構、別MacでのGatekeeper検証、VoiceOver、Light／Dark、Reduce Transparency、長文・大量データの実機QAが残っている。\nWindows版はW0のschemaとgolden fixtureから始める。PDFとiOS／iPadOSも未実装である。\nできていないことを、できたことのようには書かない。\nそれ自体が、現在のふみにわにとって重要な製品要件になっている。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ふみにわ開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#この開発で学んだこと",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#この開発で学んだこと",
-    "title": "ふみにわ開発記",
-    "section": "この開発で学んだこと",
-    "text": "この開発で学んだこと\n一連の開発を振り返ると、重要だったのは成功した実装より、途中で前提を捨てられたことだった。\n\n完成したUIでも、使い方に合わなければ作り直す\n保存成功だけでなく、失敗、取消、競合、復旧を先に設計する\n画面の見た目だけでなく、実際の状態遷移を検証する\n@MainActorや自動保存という言葉だけで、安全だと思い込まない\nAIは接続できることより、何を送り、どこへ適用するかを固定する\n未実装機能や未確認の保証をUIで補わない\n測定せずに最適化しない\n設計文書も、コードと一緒に更新される実装成果物として扱う\n\nふみにわは、まだ完成していない。\nしかし、目標は以前より明確になった。\n派手な機能を最速で増やすことではない。作者の文章を勝手に消さず、勝手に送り、勝手に書き換えず、異常時には正直に止まること。\n小説を書く人が、道具の都合を意識せず物語へ戻れること。\nその当たり前を積み上げて、「書けるアプリ」から「原稿を預けられるアプリ」へ進んでいく。\nそれが、現在のふみにわが目指している場所である。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ふみにわ開発記"
     ]
   }
 ]
