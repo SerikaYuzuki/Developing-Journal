@@ -10,7 +10,6 @@
 | --- | --- |
 | `posts/tech/` | 技術メモ・Tips |
 | `posts/at_coder/` | 競技プログラミング（AtCoder） |
-| `posts/卒業論文/` | 卒業論文関連 |
 | `posts/ue5_aura_courses/`, `posts/ue5_project/` | Unreal Engine 5 |
 | `posts/report/` | レポート（PDF 出力あり。`_metadata.yml` で lualatex 設定） |
 | `posts/play_ground/` | 試作・実験 |

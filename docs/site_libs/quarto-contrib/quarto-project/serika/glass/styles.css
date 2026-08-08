@@ -75,6 +75,75 @@
     display: none !important;
   }
 
+  /* Keep the custom TOC rail toggle visible left of the constellation button. */
+  .pj-toc-toggle {
+    display: inline-flex !important;
+  }
+
+  .navbar-brand-container {
+    display: flex !important;
+    align-items: center;
+    gap: 0.15rem;
+    flex-shrink: 0;
+  }
+
+  .navbar .quarto-navbar-tools {
+    display: flex !important;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 0.1rem;
+  }
+
+  /* Match hit target for TOC / constellation / light-dark tools. */
+  .navbar .quarto-navbar-tools > :is(
+    .pj-toc-toggle,
+    .pj-network-toggle,
+    .quarto-color-scheme-toggle,
+    .quarto-navigation-tool
+  ) {
+    appearance: none;
+    box-sizing: border-box;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 2.25rem;
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+    min-width: 2.25rem !important;
+    min-height: 2.25rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: inherit;
+    font-size: 1.05rem;
+    line-height: 1;
+    background: transparent;
+    border: 0;
+    border-radius: 999px;
+    text-decoration: none !important;
+  }
+
+  .navbar .quarto-navbar-tools > :is(
+    .pj-toc-toggle,
+    .pj-network-toggle,
+    .quarto-color-scheme-toggle,
+    .quarto-navigation-tool
+  ):hover {
+    color: var(--gl-cat0, var(--obs-accent));
+    background: var(--mobile-sidebar-cat-color, color-mix(in srgb, var(--obs-accent, #9b87ff) 12%, transparent));
+  }
+
+  .navbar .quarto-navbar-tools > .quarto-color-scheme-toggle .bi,
+  .navbar .quarto-navbar-tools > .pj-toc-toggle .bi,
+  .navbar .quarto-navbar-tools > .pj-network-toggle .bi {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.1rem;
+    height: 1.1rem;
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
   #quarto-margin-sidebar #TOC {
     opacity: 1 !important;
     pointer-events: auto !important;
@@ -127,26 +196,41 @@ div.sourceCode pre.sourceCode {
 main.content,
 .page-columns .content {
   font-size: 1rem;
-  line-height: 1.65;
+  line-height: 1.68;
 }
 .page-columns .content > :is(p, ul, ol, blockquote, .callout, table, .table, .table-responsive) {
-  max-width: 76ch;
+  max-width: var(--pj-reading-width, 76ch);
 }
-.page-columns .content > p { margin-block: .8rem 1rem; }
+.page-columns .content > p { margin-block: 0.72rem 0.95rem; }
+.page-columns .content > :is(ul, ol) { margin-block: 0.65rem 0.95rem; padding-inline-start: 1.35rem; }
+.page-columns .content > :is(ul, ol) li + li { margin-top: 0.28rem; }
 .page-columns .content :is(h1, h2, h3, h4, h5, h6) {
-  line-height: 1.2;
+  line-height: 1.22;
   scroll-margin-top: calc(var(--pj-floating-navbar-clearance) + 1rem);
 }
-.page-columns .content :is(h2, h3, h4) { margin-top: 1.8em; }
-.quarto-title-block .title { font-size: clamp(2rem, 3.4vw, 2.45rem) !important; line-height: 1.15; }
+.page-columns .content :is(h2, h3, h4) { margin-top: 1.55em; margin-bottom: 0.55em; }
+.quarto-title-block .title { font-size: clamp(1.95rem, 3.2vw, 2.4rem) !important; line-height: 1.15; }
 
 .callout { position: relative; }
+.callout .callout-toggle {
+  transition: transform 200ms cubic-bezier(.22, .61, .36, 1);
+}
 .callout.pj-callout-pulse {
   animation: pj-callout-pulse 420ms var(--pj-layout-ease, ease-out);
+}
+.callout.pj-callout-pulse .callout-icon-container .callout-icon {
+  animation: pj-callout-icon-flash 420ms var(--pj-layout-ease, ease-out);
 }
 @keyframes pj-callout-pulse {
   0%, 100% { box-shadow: none; }
   45% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--callout-accent, var(--gl-cat0)) 18%, transparent); }
+}
+@keyframes pj-callout-icon-flash {
+  0%, 100% { filter: none; transform: scale(1); }
+  40% {
+    filter: drop-shadow(0 0 8px color-mix(in srgb, var(--callout-accent, var(--gl-cat0)) 55%, transparent));
+    transform: scale(1.08);
+  }
 }
 
 .code-copy-button {
@@ -216,8 +300,8 @@ body.pj-theme-transition {
 
 @media (max-width: 991.98px) {
   body { overflow-x: hidden; }
-  .page-columns .content { padding-inline: 1rem !important; }
-  .quarto-title-block { border-radius: 20px; }
+  /* Edge-to-edge reading on narrow screens; only notch/safe-area remains. */
+  .page-columns .content { padding-inline: 0 !important; }
   .page-columns .content > :is(p, ul, ol, blockquote, .callout, table, .table, .table-responsive) { max-width: none; }
   /* Pandoc can emit a table without Quarto's optional responsive wrapper.
      Keep that table readable with an inline scroller instead of letting it
@@ -231,8 +315,10 @@ body.pj-theme-transition {
 
 @media (prefers-reduced-motion: reduce) {
   .callout.pj-callout-pulse,
+  .callout.pj-callout-pulse .callout-icon-container .callout-icon,
   .pj-anchor-target { animation: none !important; }
   .code-copy-button,
+  .callout .callout-toggle,
   body { transition: none !important; }
 }
 
@@ -257,10 +343,21 @@ body.pj-theme-transition {
     width: calc(100% - 48px) !important;
     max-width: 1380px !important;
     margin-inline: auto !important;
+    /* Same rail tracks from tablet up so open sidebar/TOC never cover prose. */
+    grid-template-columns:
+      [screen-start screen-start-inset] 0px
+      [page-start] var(--pj-frame-edge)
+      [page-start-inset body-start-outset] var(--pj-rail-width)
+      [body-start] var(--pj-rail-gutter)
+      [body-content-start] minmax(0, 1fr)
+      [body-content-end] var(--pj-rail-gutter)
+      [body-end body-end-outset] var(--pj-rail-width)
+      [page-end-inset] var(--pj-frame-edge)
+      [page-end screen-end-inset screen-end] 0px !important;
   }
 
   /* The article spans the frame. Sidebars remain in their Quarto tracks and
-     sit above the article while their reserved inline space is animated. */
+     sit above the reserved padding while that padding is animated. */
   #quarto-content.page-columns > .content,
   #quarto-content.page-columns .content {
     grid-column: 1 / -1 !important;
@@ -282,6 +379,13 @@ body.pj-theme-transition {
   #quarto-margin-sidebar {
     z-index: 20 !important;
     min-width: var(--pj-rail-width);
+    max-width: var(--pj-rail-width);
+    background: transparent !important;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    box-shadow: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
     transition:
       opacity var(--pj-layout-duration) var(--pj-layout-ease),
       transform var(--pj-layout-duration) var(--pj-layout-ease),
@@ -290,7 +394,7 @@ body.pj-theme-transition {
   }
 
   /* Quarto's compiled selector assigns both rails z-index: 1 with two IDs.
-     Match that specificity so overlay rails never fall behind article glass. */
+     Match that specificity so rails stay above the article padding zone. */
   #quarto-content.page-columns #quarto-sidebar,
   #quarto-content.page-columns #quarto-margin-sidebar {
     z-index: 20 !important;
@@ -312,53 +416,6 @@ body.pj-theme-transition {
     pointer-events: none;
     visibility: hidden;
     transition-delay: 0s, 0s, var(--pj-layout-duration);
-  }
-
-  /* At tablet widths rails overlay the article instead of narrowing it. */
-  @media (max-width: 1279.98px) {
-    #quarto-content.page-columns > .content,
-    #quarto-content.page-columns .content {
-      padding-inline: var(--pj-frame-edge);
-    }
-    #quarto-sidebar,
-    #quarto-margin-sidebar {
-      position: fixed !important;
-      inset-block-start: var(--pj-floating-navbar-clearance) !important;
-      inset-block-end: var(--pj-frame-edge) !important;
-      width: var(--pj-rail-width) !important;
-      max-width: calc(100vw - (2 * var(--pj-frame-edge))) !important;
-      height: auto !important;
-      overflow-y: auto;
-      box-sizing: border-box;
-      background: var(--mobile-sidebar-bg);
-      -webkit-backdrop-filter: blur(18px) saturate(150%);
-      backdrop-filter: blur(18px) saturate(150%);
-      border-radius: 0 var(--glass-radius, 18px) var(--glass-radius, 18px) 0;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, .18);
-    }
-    #quarto-sidebar { inset-inline-start: var(--pj-frame-edge) !important; inset-inline-end: auto !important; }
-    #quarto-margin-sidebar {
-      inset-inline-start: auto !important;
-      inset-inline-end: var(--pj-frame-edge) !important;
-      border-radius: var(--glass-radius, 18px) 0 0 var(--glass-radius, 18px);
-    }
-  }
-
-  /* The explicit grid is used only where the full frame has enough room for
-     both rails. Equal tracks keep the left and right gaps truly symmetric. */
-  @media (min-width: 1280px) {
-    #quarto-content.page-columns {
-      grid-template-columns:
-        [screen-start screen-start-inset] 0px
-        [page-start] var(--pj-frame-edge)
-        [page-start-inset body-start-outset] var(--pj-rail-width)
-        [body-start] var(--pj-rail-gutter)
-        [body-content-start] minmax(0, 1fr)
-        [body-content-end] var(--pj-rail-gutter)
-        [body-end body-end-outset] var(--pj-rail-width)
-        [page-end-inset] var(--pj-frame-edge)
-        [page-end screen-end-inset screen-end] 0px !important;
-    }
   }
 }
 
@@ -805,6 +862,9 @@ body.pj-drawer-active { overflow: hidden; }
 
 /* --- Card --- */
 .gl-card {
+  --pj-card-star-opacity: 0.58;
+  --pj-card-orbit-spin: 0deg;
+  --pj-card-twinkle: 1;
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -817,7 +877,10 @@ body.pj-drawer-active { overflow: hidden; }
   box-shadow: var(--obs-shadow-float), inset 0 1px 0 var(--obs-border-highlight);
   border-radius: var(--obs-radius-lg);
   padding: 2rem 2.25rem 1.75rem;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.28s cubic-bezier(.22, .61, .36, 1),
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -831,11 +894,15 @@ body.pj-drawer-active { overflow: hidden; }
 }
 .gl-card::before {
   inset: 0;
-  opacity: 0.58;
+  opacity: var(--pj-card-star-opacity);
   background:
-    radial-gradient(circle at var(--pj-card-star-x, 82%) var(--pj-card-star-y, 24%), color-mix(in srgb, var(--obs-accent-cyan) 22%, transparent) 0 2px, transparent 3px),
+    radial-gradient(circle at var(--pj-card-star-x, 82%) var(--pj-card-star-y, 24%), color-mix(in srgb, var(--obs-accent-cyan) 28%, transparent) 0 1.6px, transparent 2.4px),
+    radial-gradient(circle at calc(var(--pj-card-star-x, 82%) - 18%) calc(var(--pj-card-star-y, 24%) + 22%), color-mix(in srgb, var(--obs-accent-magenta) 20%, transparent) 0 1.2px, transparent 2px),
+    radial-gradient(circle at calc(var(--pj-card-orbit-x, 78%) + 8%) calc(var(--pj-card-orbit-y, 35%) - 12%), color-mix(in srgb, var(--obs-accent) 18%, transparent) 0 1px, transparent 1.8px),
     radial-gradient(circle at var(--pj-card-orbit-x, 78%) var(--pj-card-orbit-y, 35%), transparent 0 3.2rem, color-mix(in srgb, var(--obs-accent) 15%, transparent) 3.25rem 3.32rem, transparent 3.38rem),
     linear-gradient(var(--pj-card-angle, 132deg), transparent 58%, color-mix(in srgb, var(--obs-accent-magenta) 8%, transparent));
+  transition: opacity 0.35s ease, filter 0.35s ease;
+  filter: brightness(var(--pj-card-twinkle));
 }
 .gl-card::after {
   width: 11rem;
@@ -843,8 +910,9 @@ body.pj-drawer-active { overflow: hidden; }
   inset: var(--pj-card-inset, -4.8rem -2.7rem auto auto);
   border: 1px solid color-mix(in srgb, var(--obs-accent-cyan) 14%, transparent);
   border-radius: var(--pj-card-radius, 50%);
-  transform: rotate(var(--pj-card-rotate, 0deg));
+  transform: rotate(calc(var(--pj-card-rotate, 0deg) + var(--pj-card-orbit-spin)));
   box-shadow: 0 0 0 2.2rem color-mix(in srgb, var(--obs-accent) 2.5%, transparent);
+  transition: transform 0.55s cubic-bezier(.22, .61, .36, 1), border-color 0.35s ease, box-shadow 0.35s ease;
 }
 .gl-card-wrap:nth-child(6n + 2) .gl-card { --pj-card-star-x: 18%; --pj-card-star-y: 76%; --pj-card-orbit-x: 22%; --pj-card-orbit-y: 70%; --pj-card-angle: 28deg; --pj-card-inset: auto auto -5rem -3rem; }
 .gl-card-wrap:nth-child(6n + 3) .gl-card { --pj-card-star-x: 68%; --pj-card-star-y: 18%; --pj-card-orbit-x: 73%; --pj-card-orbit-y: 28%; --pj-card-angle: 205deg; --pj-card-radius: 18%; --pj-card-rotate: 24deg; }
@@ -857,8 +925,48 @@ body.pj-drawer-active { overflow: hidden; }
   pointer-events: none;
 }
 .gl-card:hover {
+  --pj-card-star-opacity: 0.92;
+  --pj-card-orbit-spin: 18deg;
+  --pj-card-twinkle: 1.35;
   transform: translateY(-4px);
-  box-shadow: var(--obs-shadow-float), 0 0 0 1px color-mix(in srgb, var(--obs-accent) 16%, transparent), inset 0 1px 0 var(--obs-border-highlight);
+  border-color: color-mix(in srgb, var(--obs-accent) 28%, var(--obs-border));
+  box-shadow:
+    var(--obs-shadow-float),
+    0 0 0 1px color-mix(in srgb, var(--obs-accent) 16%, transparent),
+    0 0 28px color-mix(in srgb, var(--obs-accent-cyan) 12%, transparent),
+    inset 0 1px 0 var(--obs-border-highlight);
+}
+.gl-card:hover::before {
+  animation: pj-card-twinkle 1.1s ease-in-out 1;
+}
+.gl-card:hover::after {
+  border-color: color-mix(in srgb, var(--obs-accent-cyan) 32%, transparent);
+  box-shadow: 0 0 0 2.2rem color-mix(in srgb, var(--obs-accent) 5%, transparent);
+}
+@keyframes pj-card-twinkle {
+  0%, 100% { filter: brightness(1.35); }
+  35% { filter: brightness(1.85); }
+  60% { filter: brightness(1.15); }
+}
+@media (hover: none) {
+  .gl-card:hover {
+    --pj-card-orbit-spin: 0deg;
+    --pj-card-twinkle: 1;
+    transform: none;
+  }
+  .gl-card:hover::before { animation: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gl-card,
+  .gl-card::before,
+  .gl-card::after {
+    transition: none !important;
+  }
+  .gl-card:hover {
+    --pj-card-orbit-spin: 0deg;
+    transform: none;
+  }
+  .gl-card:hover::before { animation: none; }
 }
 
 /* --- Eyebrow pill --- */
@@ -973,28 +1081,30 @@ body.pj-drawer-active { overflow: hidden; }
 }
 .gl-cat-pill {
   display: inline-block;
-  background: var(--gl-card-bg-subtle);
-  border: 1px solid var(--gl-card-border-dim);
+  background: color-mix(in srgb, var(--gl-cat-color, var(--gl-cat0)) 10%, var(--gl-card-bg-subtle));
+  border: 1px solid color-mix(in srgb, var(--gl-cat-color, var(--gl-cat0)) 22%, var(--gl-card-border-dim));
   border-radius: 999px;
   padding: 3px 11px;
   font-size: 0.72rem;
   font-weight: 600;
+  color: color-mix(in srgb, var(--gl-cat-color, var(--gl-cat0)) 55%, var(--gl-text-color));
   border-bottom: none !important;
   text-decoration: none !important;
   position: relative;
   z-index: 3;
   pointer-events: auto;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 .gl-cat-pill:hover {
-  background: var(--gl-card-bg);
+  background: color-mix(in srgb, var(--gl-cat-color, var(--gl-cat0)) 18%, var(--gl-card-bg));
+  border-color: color-mix(in srgb, var(--gl-cat-color, var(--gl-cat0)) 40%, transparent);
   transform: translateY(-1px);
 }
-.gl-cat-pill[data-gl-cat="0"] { color: var(--gl-cat0); border-color: color-mix(in srgb, var(--gl-cat0) 28%, transparent); }
-.gl-cat-pill[data-gl-cat="1"] { color: var(--gl-cat1); border-color: color-mix(in srgb, var(--gl-cat1) 28%, transparent); }
-.gl-cat-pill[data-gl-cat="2"] { color: var(--gl-cat2); border-color: color-mix(in srgb, var(--gl-cat2) 28%, transparent); }
-.gl-cat-pill[data-gl-cat="3"] { color: var(--gl-cat3); border-color: color-mix(in srgb, var(--gl-cat3) 28%, transparent); }
-.gl-cat-pill[data-gl-cat="4"] { color: var(--gl-cat4); border-color: color-mix(in srgb, var(--gl-cat4) 28%, transparent); }
+.gl-cat-pill[data-gl-cat="0"] { --gl-cat-color: var(--gl-cat0); }
+.gl-cat-pill[data-gl-cat="1"] { --gl-cat-color: var(--gl-cat1); }
+.gl-cat-pill[data-gl-cat="2"] { --gl-cat-color: var(--gl-cat2); }
+.gl-cat-pill[data-gl-cat="3"] { --gl-cat-color: var(--gl-cat3); }
+.gl-cat-pill[data-gl-cat="4"] { --gl-cat-color: var(--gl-cat4); }
 .gl-hidden-listing-value {
   display: none;
 }
@@ -1525,7 +1635,7 @@ body::after {
 /* Theory and solution cards keep their inner text on opaque surfaces. */
 .callout.pj-theory-card,
 .callout.pj-solution-card {
-  border-left-width: 2px !important;
+  border-left-width: 1px !important;
   box-shadow: none !important;
 }
 
@@ -1641,6 +1751,10 @@ body::after {
   box-shadow: var(--obs-shadow-soft), inset 0 1px 0 var(--obs-border-highlight);
   -webkit-backdrop-filter: blur(var(--obs-blur-sm)) saturate(150%);
   backdrop-filter: blur(var(--obs-blur-sm)) saturate(150%);
+  transition:
+    border-color 260ms var(--obs-ease, ease),
+    box-shadow 260ms var(--obs-ease, ease),
+    transform 260ms var(--obs-ease, ease);
 }
 
 .pj-reading-orbit {
@@ -1676,7 +1790,7 @@ body::after {
   stroke-dasharray: 94.2478 94.2478;
   stroke-dashoffset: 94.2478;
   filter: drop-shadow(0 0 2px color-mix(in srgb, var(--obs-accent-cyan) 65%, transparent));
-  transition: stroke-dashoffset 100ms linear;
+  transition: stroke-dashoffset 100ms linear, stroke 220ms ease;
 }
 
 .pj-reading-copy {
@@ -1690,6 +1804,17 @@ body::after {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.pj-reading-copy.pj-reading-label-swap .pj-reading-chapter,
+.pj-reading-copy.pj-reading-label-swap .pj-reading-heading {
+  animation: pj-reading-label-swap 280ms var(--obs-ease, ease) both;
+}
+
+@keyframes pj-reading-label-swap {
+  0% { opacity: 0; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 .pj-reading-chapter {
@@ -1717,12 +1842,12 @@ body::after {
   #quarto-margin-sidebar {
     box-sizing: border-box;
     padding: 0.75rem !important;
-    background: transparent;
+    background: transparent !important;
     border: 0 !important;
-    border-radius: 0;
-    box-shadow: none;
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
   }
 
   #quarto-margin-sidebar {
@@ -1828,6 +1953,32 @@ body::after {
     text-shadow: none;
   }
 
+  #TOC .pj-toc-scroll-region {
+    position: relative;
+  }
+
+  #TOC .pj-toc-marker {
+    position: absolute;
+    left: 0.15rem;
+    top: 0;
+    width: 3px;
+    height: 1.2rem;
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--obs-accent-cyan), var(--obs-accent));
+    box-shadow: 0 0 10px color-mix(in srgb, var(--obs-accent-cyan) 45%, transparent);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      transform 280ms cubic-bezier(.22, .61, .36, 1),
+      height 280ms cubic-bezier(.22, .61, .36, 1),
+      opacity 180ms ease;
+    will-change: transform, height;
+  }
+
+  #TOC .pj-toc-marker.pj-toc-marker-ready {
+    opacity: 1;
+  }
+
   #TOC .nav-link.pj-toc-visible-current {
     color: color-mix(in srgb, var(--obs-accent-cyan) 48%, var(--obs-text)) !important;
     background: color-mix(in srgb, var(--obs-accent-cyan) 7%, transparent);
@@ -1836,23 +1987,31 @@ body::after {
   }
 
   #TOC .nav-link.pj-toc-visible-current::before {
-    content: "";
-    position: absolute;
-    inset: 0.18rem auto 0.18rem -0.45rem;
-    width: 3px;
-    border-radius: 999px;
-    background: var(--obs-accent-cyan);
+    content: none;
   }
 
   #TOC::after { content: none; }
 }
 
 #pj-reading-status.pj-reading-complete {
+  border-color: color-mix(in srgb, var(--obs-accent-cyan) 45%, var(--obs-border));
   animation: pj-reading-complete 1.1s var(--obs-ease) both;
 }
 
+#pj-reading-status.pj-reading-complete .pj-reading-orbit-progress {
+  stroke: var(--obs-accent-magenta);
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--obs-accent-magenta) 55%, transparent));
+}
+
 @keyframes pj-reading-complete {
-  45% { box-shadow: 0 0 0 5px color-mix(in srgb, var(--obs-accent-cyan) 14%, transparent), var(--obs-shadow-soft); }
+  0%, 100% { transform: scale(1); }
+  35% { transform: scale(1.03); }
+  45% {
+    box-shadow:
+      0 0 0 5px color-mix(in srgb, var(--obs-accent-cyan) 14%, transparent),
+      0 0 24px color-mix(in srgb, var(--obs-accent-magenta) 18%, transparent),
+      var(--obs-shadow-soft);
+  }
 }
 
 /* Glass fallbacks and stronger contrast preferences. */
@@ -1918,18 +2077,21 @@ body::after {
     transform: none;
   }
   #quarto-content.page-columns {
+    width: 100% !important;
+    max-width: none !important;
+    margin-inline: 0 !important;
     grid-template-columns:
-      [screen-start] max(0.75rem, env(safe-area-inset-left))
+      [screen-start] env(safe-area-inset-left, 0px)
       [screen-start-inset page-start page-start-inset body-start-outset body-start body-content-start]
       minmax(0, 1fr)
       [body-content-end body-end body-end-outset page-end-inset page-end screen-end-inset]
-      max(0.75rem, env(safe-area-inset-right))
+      env(safe-area-inset-right, 0px)
       [screen-end] !important;
   }
   #quarto-document-content.content {
     width: 100%;
     margin-inline: 0;
-    padding: 0.75rem 0.25rem 4.5rem !important;
+    padding: 0.75rem 0 4.5rem !important;
   }
   #quarto-document-content.content::before {
     inset-inline: 0;
@@ -1937,8 +2099,15 @@ body::after {
   }
   #title-block-header.pj-observatory-hero {
     min-height: 0;
-    padding: 1.15rem 1.4rem !important;
-    border-radius: var(--obs-radius-md) !important;
+    padding: 1.15rem 1rem !important;
+    border-radius: 0 !important;
+    border-inline: 0 !important;
+    max-width: none;
+    margin-inline: 0 !important;
+  }
+  .quarto-title-block {
+    border-radius: 0;
+    margin-inline: 0;
   }
   .pj-observatory-hero .title { font-size: clamp(2.15rem, 11vw, 3.4rem) !important; }
   .pj-observatory-hero .description { display: none; }
@@ -1952,6 +2121,30 @@ body::after {
     right: 0.5rem;
     bottom: 0.5rem;
     width: calc(100vw - 1rem);
+  }
+
+  /* Keep a small readable inset for prose without page-level gutters. */
+  #quarto-document-content.content > section,
+  #quarto-document-content.content > p,
+  #quarto-document-content.content > ul,
+  #quarto-document-content.content > ol,
+  #quarto-document-content.content > #quarto-appendix,
+  .quarto-listing-container-custom {
+    max-width: none;
+    margin-inline: 0;
+    padding-inline: 0.5rem;
+    box-sizing: border-box;
+  }
+  #quarto-document-content.content > :is(div.sourceCode, table, .table, .table-responsive, figure, .figure) {
+    margin-inline: 0;
+    max-width: none;
+  }
+  #quarto-document-content.content > :is(.callout, .panel-tabset) {
+    margin-inline: 0.5rem;
+  }
+  #quarto-document-content.content > :is(div.sourceCode) {
+    margin-inline: 0;
+    border-radius: 0;
   }
 
   /* WebKit may promote every momentum-scrolling equation to a separate
@@ -1985,7 +2178,9 @@ body::after {
   .pj-title-chroma,
   .pj-observatory-hero .subtitle,
   .pj-chapter > h2,
-  #pj-reading-status.pj-reading-complete {
+  #pj-reading-status.pj-reading-complete,
+  .pj-reading-copy.pj-reading-label-swap .pj-reading-chapter,
+  .pj-reading-copy.pj-reading-label-swap .pj-reading-heading {
     animation: none !important;
     transition: none !important;
   }
@@ -1993,6 +2188,7 @@ body::after {
   .pj-chapter > h2 { opacity: 1; transform: none; }
   .pj-reading-progress-bar { transition: none; }
   .pj-reading-orbit-progress { transition: none; }
+  #TOC .pj-toc-marker { transition: none !important; }
 }
 /* Text-selection AI action */
 .serika-selection-ai { position: absolute; z-index: 1080; display: none; font-family: inherit; }
