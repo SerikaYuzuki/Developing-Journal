@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Serika Yuzuki">
-<meta name="dcterms.date" content="2025-09-05">
+<meta name="dcterms.date" content="2023-10-17">
 
-<title>Swift Packageの読み込みエラー – 芹香のブログ 気軽にコメント残してね！</title>
+<title>競プロ典型90 01〜05 – 芹香のブログ 気軽にコメント残してね！</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -1976,7 +2011,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/tech/ENovelEpubConverter.html">Tech</a></li><li class="breadcrumb-item"><a href="../../posts/tech/SwiftPackageError.html">Swift Packageの読み込みエラー</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/at_coder/cargo_compete.html">At Coder</a></li><li class="breadcrumb-item"><a href="../../posts/at_coder/typical90-01-05.html">競プロ典型90 01〜05</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -2019,13 +2054,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">At Coder</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/at_coder/cargo_compete.html" class="sidebar-item-text sidebar-link">
@@ -2034,7 +2069,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/at_coder/typical90-01-05.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/at_coder/typical90-01-05.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">競プロ典型90 01〜05</span></a>
   </div>
 </li>
@@ -2054,13 +2089,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Tech</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/tech/ENovelEpubConverter.html" class="sidebar-item-text sidebar-link">
@@ -2105,7 +2140,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/tech/SwiftPackageError.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../posts/tech/SwiftPackageError.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Swift Packageの読み込みエラー</span></a>
   </div>
 </li>
@@ -2461,8 +2496,36 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#エラー内容" id="toc-エラー内容" class="nav-link active" data-scroll-target="#エラー内容">エラー内容</a></li>
-  <li><a href="#解決方法" id="toc-解決方法" class="nav-link" data-scroll-target="#解決方法">解決方法</a></li>
+  <li><a href="#typical90-01" id="toc-typical90-01" class="nav-link active" data-scroll-target="#typical90-01">typical90-01</a>
+  <ul class="collapse">
+  <li><a href="#概要" id="toc-概要" class="nav-link" data-scroll-target="#概要">概要</a></li>
+  <li><a href="#発見" id="toc-発見" class="nav-link" data-scroll-target="#発見">発見</a></li>
+  <li><a href="#問題点" id="toc-問題点" class="nav-link" data-scroll-target="#問題点">問題点</a></li>
+  </ul></li>
+  <li><a href="#typical90-02" id="toc-typical90-02" class="nav-link" data-scroll-target="#typical90-02">typical90-02</a>
+  <ul class="collapse">
+  <li><a href="#概要-1" id="toc-概要-1" class="nav-link" data-scroll-target="#概要-1">概要</a></li>
+  <li><a href="#発見-1" id="toc-発見-1" class="nav-link" data-scroll-target="#発見-1">発見</a></li>
+  <li><a href="#問題点-1" id="toc-問題点-1" class="nav-link" data-scroll-target="#問題点-1">問題点</a></li>
+  </ul></li>
+  <li><a href="#typical90-03" id="toc-typical90-03" class="nav-link" data-scroll-target="#typical90-03">typical90-03</a>
+  <ul class="collapse">
+  <li><a href="#概要-2" id="toc-概要-2" class="nav-link" data-scroll-target="#概要-2">概要</a></li>
+  <li><a href="#発見-2" id="toc-発見-2" class="nav-link" data-scroll-target="#発見-2">発見</a></li>
+  <li><a href="#問題点-2" id="toc-問題点-2" class="nav-link" data-scroll-target="#問題点-2">問題点</a></li>
+  </ul></li>
+  <li><a href="#typical90-04" id="toc-typical90-04" class="nav-link" data-scroll-target="#typical90-04">typical90-04</a>
+  <ul class="collapse">
+  <li><a href="#概要-3" id="toc-概要-3" class="nav-link" data-scroll-target="#概要-3">概要</a></li>
+  <li><a href="#発見-3" id="toc-発見-3" class="nav-link" data-scroll-target="#発見-3">発見</a></li>
+  <li><a href="#問題点-3" id="toc-問題点-3" class="nav-link" data-scroll-target="#問題点-3">問題点</a></li>
+  </ul></li>
+  <li><a href="#typical90-05" id="toc-typical90-05" class="nav-link" data-scroll-target="#typical90-05">typical90-05</a>
+  <ul class="collapse">
+  <li><a href="#概要-4" id="toc-概要-4" class="nav-link" data-scroll-target="#概要-4">概要</a></li>
+  <li><a href="#発見-4" id="toc-発見-4" class="nav-link" data-scroll-target="#発見-4">発見</a></li>
+  <li><a href="#問題点-4" id="toc-問題点-4" class="nav-link" data-scroll-target="#問題点-4">問題点</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -2470,13 +2533,12 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/tech/ENovelEpubConverter.html">Tech</a></li><li class="breadcrumb-item"><a href="../../posts/tech/SwiftPackageError.html">Swift Packageの読み込みエラー</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/at_coder/cargo_compete.html">At Coder</a></li><li class="breadcrumb-item"><a href="../../posts/at_coder/typical90-01-05.html">競プロ典型90 01〜05</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Swift Packageの読み込みエラー</h1>
+<h1 class="title">競プロ典型90 01〜05</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">programming</div>
-    <div class="quarto-category">2025</div>
-    <div class="quarto-category">swift</div>
+    <div class="quarto-category">AtCoder</div>
+    <div class="quarto-category">Programming</div>
   </div>
   </div>
 
@@ -2494,7 +2556,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 5, 2025</p>
+      <p class="date">October 17, 2023</p>
     </div>
   </div>
   
@@ -2506,16 +2568,601 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="エラー内容" class="level2">
-<h2 class="anchored" data-anchor-id="エラー内容">エラー内容</h2>
-<p>ビルドした瞬間にUnable to find module dependency: ’ModuleName’って出てビルドに失敗するけど、失敗したって確定するとこのエラーコードが消える</p>
+<section id="typical90-01" class="level2">
+<h2 class="anchored" data-anchor-id="typical90-01">typical90-01</h2>
+<p><a href="https://atcoder.jp/contests/typical90/tasks/typical90_a">問題リンク</a></p>
+<section id="概要" class="level3">
+<h3 class="anchored" data-anchor-id="概要">概要</h3>
+<p>Learnt Binary Search.</p>
 </section>
-<section id="解決方法" class="level2">
-<h2 class="anchored" data-anchor-id="解決方法">解決方法</h2>
-<p>Xcode → Project → Targets: Novel → General → Frameworks, Libraries, and Embedded Content にちゃんとパッケージが入ってるのを確認する。</p>
-<p>どうやらパッケージを追加するだけじゃ依存関係に自動で入らないこともあるらしい。</p>
+<section id="発見" class="level3">
+<h3 class="anchored" data-anchor-id="発見">発見</h3>
+<section id="binary-search" class="level4">
+<h4 class="anchored" data-anchor-id="binary-search">Binary Search</h4>
+<p>Searching 0..n is O(n) but searching by binary is O(log n). This makes very big difference.</p>
+</section>
+</section>
+<section id="問題点" class="level3">
+<h3 class="anchored" data-anchor-id="問題点">問題点</h3>
+</section>
+</section>
+<section id="typical90-02" class="level2">
+<h2 class="anchored" data-anchor-id="typical90-02">typical90-02</h2>
+<section id="概要-1" class="level3">
+<h3 class="anchored" data-anchor-id="概要-1">概要</h3>
+<p><a href="https://atcoder.jp/contests/typical90/tasks/typical90_b">問題リンク</a></p>
+<p>(())などをランダムウォークのように考えると、常に＋の部分にいて、最終的には必ず0に戻ってくることがわかる。</p>
+<p>効率のいい回答だったのは、回帰関数で解いているところ。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">proconio::</span>input<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">input!</span> <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        n <span class="op">:</span> <span class="dt">i32</span><span class="op">,</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">1</span> <span class="op">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> cs <span class="op">=</span> <span class="dt">Vec</span><span class="pp">::</span>new()<span class="op">;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> answer <span class="op">=</span> <span class="dt">Vec</span><span class="pp">::</span>new()<span class="op">;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> left <span class="op">=</span> n <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> right <span class="op">=</span> n <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    recursive(<span class="op">&amp;</span><span class="kw">mut</span> cs<span class="op">,</span> <span class="op">&amp;</span><span class="kw">mut</span> left<span class="op">,</span> <span class="op">&amp;</span><span class="kw">mut</span> right<span class="op">,</span> <span class="op">&amp;</span><span class="kw">mut</span> answer)<span class="op">;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>answer<span class="op">.</span>len() <span class="op">{</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> answer[i])<span class="op">;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> recursive(cs<span class="op">:</span> <span class="op">&amp;</span><span class="kw">mut</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">char</span><span class="op">&gt;,</span> left<span class="op">:</span> <span class="op">&amp;</span><span class="kw">mut</span> <span class="dt">i32</span><span class="op">,</span> right<span class="op">:</span> <span class="op">&amp;</span><span class="kw">mut</span> <span class="dt">i32</span><span class="op">,</span> answer<span class="op">:</span> <span class="op">&amp;</span><span class="kw">mut</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;</span>) <span class="op">{</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">*</span>left <span class="op">==</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> <span class="op">*</span>right <span class="op">==</span> <span class="dv">0</span> <span class="op">{</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        answer<span class="op">.</span>push(cs<span class="op">.</span>iter()<span class="op">.</span>collect())<span class="op">;</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">*</span>left <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">{</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="op">*</span>left <span class="op">-=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        cs<span class="op">.</span>push(<span class="ch">'('</span>)<span class="op">;</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        recursive(cs<span class="op">,</span> left<span class="op">,</span> right<span class="op">,</span> answer)<span class="op">;</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        cs<span class="op">.</span>pop()<span class="op">;</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="op">*</span>left <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">*</span>right <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> <span class="op">*</span>left <span class="op">&lt;</span> <span class="op">*</span>right <span class="op">{</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        <span class="op">*</span>right <span class="op">-=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        cs<span class="op">.</span>push(<span class="ch">')'</span>)<span class="op">;</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>        recursive(cs<span class="op">,</span> left<span class="op">,</span> right<span class="op">,</span> answer)<span class="op">;</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        cs<span class="op">.</span>pop()<span class="op">;</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>        <span class="op">*</span>right <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>発想としては、00001111,00010111,…のような二進数を作っていくことを考えていくところ。で、0の数を超えないように1をappendしていくわけだ。辞書式に並べていくわけだから、最初に0を入れて、後で1を入れれば、自ずと辞書式に並べられる。</p>
+</section>
+<section id="発見-1" class="level3">
+<h3 class="anchored" data-anchor-id="発見-1">発見</h3>
+<section id="string-str-vecの相互変換" class="level4">
+<h4 class="anchored" data-anchor-id="string-str-vecの相互変換">String Str Vec<char>の相互変換</char></h4>
+<section id="str-と-string-の違い" class="level5">
+<h5 class="anchored" data-anchor-id="str-と-string-の違い">str と String の違い</h5>
+<ul>
+<li>str is a “String” slice.
+<ul>
+<li>Slice is a pointer to a block of memory.</li>
+<li>Slice is immutable.</li>
+<li>If you make a string via “string” then it is &amp;str.</li>
+</ul></li>
+<li>String is type of “String”.
+<ul>
+<li>String is a heap-allocated string. It is growable, mutable like vec and UTF-8 encoded.</li>
+</ul></li>
+</ul>
+</section>
+<section id="string---str" class="level5">
+<h5 class="anchored" data-anchor-id="string---str">String -&gt; str</h5>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> s<span class="op">:</span> <span class="dt">String</span> <span class="op">=</span> <span class="st">"abc"</span><span class="op">.</span>to_string()<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> ss<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span> <span class="op">=</span> <span class="op">&amp;</span>s<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> <span class="op">&amp;</span>ss)<span class="op">;</span> <span class="co">// → abc</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="char---string" class="level5">
+<h5 class="anchored" data-anchor-id="char---string">char -&gt; String</h5>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> c<span class="op">:</span> <span class="dt">char</span> <span class="op">=</span> <span class="ch">'a'</span><span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> cs<span class="op">:</span> <span class="dt">String</span> <span class="op">=</span> c<span class="op">.</span>to_string()<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> <span class="op">&amp;</span>cs)<span class="op">;</span> <span class="co">// → a</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="vec---string" class="level5">
+<h5 class="anchored" data-anchor-id="vec---string">Vec<char> -&gt; String</char></h5>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> cs<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">char</span><span class="op">&gt;</span> <span class="op">=</span> <span class="pp">vec!</span>[<span class="ch">'a'</span><span class="op">,</span> <span class="ch">'b'</span><span class="op">,</span> <span class="ch">'c'</span>]<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> s<span class="op">:</span> <span class="dt">String</span> <span class="op">=</span> cs<span class="op">.</span>iter()<span class="op">.</span>collect()<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> <span class="op">&amp;</span>s)<span class="op">;</span> <span class="co">// → abc</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="string---vec" class="level5">
+<h5 class="anchored" data-anchor-id="string---vec">String -&gt; Vec<char></char></h5>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> s<span class="op">:</span> <span class="dt">String</span> <span class="op">=</span> <span class="st">"abc"</span><span class="op">.</span>to_string()<span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> cs<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">char</span><span class="op">&gt;</span> <span class="op">=</span> s<span class="op">.</span>chars()<span class="op">.</span>collect()<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> <span class="op">&amp;</span>cs)<span class="op">;</span> <span class="co">// → ['a', 'b', 'c']</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="binaryの話" class="level4">
+<h4 class="anchored" data-anchor-id="binaryの話">Binaryの話。</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="dv">13</span><span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// bが2進数に変換という意味。020は0を20桁まで入れるという意味。</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> s <span class="op">=</span> <span class="pp">format!</span>(<span class="st">"{:020b}"</span><span class="op">,</span> x)<span class="op">;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> s)<span class="op">;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="問題点-1" class="level3">
+<h3 class="anchored" data-anchor-id="問題点-1">問題点</h3>
+<section id="next_permutation" class="level4">
+<h4 class="anchored" data-anchor-id="next_permutation">next_permutation??</h4>
+<p><a href="https://atcoder.jp/contests/typical90/editorial/3212">ユーザー解説</a>の内容が理解できなかった。</p>
+<p>next_permutationなんとかって言ってたけど、意味がわからんかった。</p>
+</section>
+</section>
+</section>
+<section id="typical90-03" class="level2">
+<h2 class="anchored" data-anchor-id="typical90-03">typical90-03</h2>
+<p><a href="https://atcoder.jp/contests/typical90/tasks/typical90_c">問題リンク</a></p>
+<section id="概要-2" class="level3">
+<h3 class="anchored" data-anchor-id="概要-2">概要</h3>
+<p>DFSを使って解く問題。この問題は、グラフを与えられて、そのグラフの中で最も長い経路を求めれば、その端と端を結んでしまえば求めるサークルができる。</p>
+<p>何よりも苦戦したのは<strong>問題文をちゃんと読めてなかった</strong>こと。問題文をちゃんと読めていれば、もっと早く解けたはず。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">proconio::</span>input<span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">input!</span> <span class="op">{</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        n<span class="op">:</span> <span class="dt">usize</span><span class="op">,</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        data<span class="op">:</span> [[<span class="dt">usize</span><span class="op">;</span> <span class="dv">2</span>]<span class="op">;</span> n<span class="op">-</span><span class="dv">1</span>]<span class="op">,</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> graph <span class="op">=</span> <span class="pp">vec!</span>[<span class="pp">vec!</span>[]<span class="op">;</span> n]<span class="op">;</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> datum <span class="kw">in</span> data <span class="op">{</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        graph[datum[<span class="dv">0</span>]<span class="op">-</span><span class="dv">1</span>]<span class="op">.</span>push(datum[<span class="dv">1</span>]<span class="op">-</span><span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        graph[datum[<span class="dv">1</span>]<span class="op">-</span><span class="dv">1</span>]<span class="op">.</span>push(datum[<span class="dv">0</span>]<span class="op">-</span><span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> dist_from_0 <span class="op">=</span> solve(graph<span class="op">.</span>clone()<span class="op">,</span> <span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> max_index <span class="op">=</span> dist_from_0<span class="op">.</span>iter()<span class="op">.</span>enumerate()<span class="op">.</span>max_by_key(<span class="op">|</span>x<span class="op">|</span> x<span class="op">.</span><span class="dv">1</span>)<span class="op">.</span>unwrap()<span class="op">.</span><span class="dv">0</span><span class="op">;</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> dist_from_max <span class="op">=</span> solve(graph<span class="op">.</span>clone()<span class="op">,</span> max_index)<span class="op">;</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> dist_from_max<span class="op">.</span>iter()<span class="op">.</span>max()<span class="op">.</span>unwrap() <span class="op">+</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> solve(graph<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">usize</span><span class="op">&gt;&gt;,</span>start<span class="op">:</span> <span class="dt">usize</span>) <span class="op">-&gt;</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">isize</span><span class="op">&gt;{</span>    </span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> stack <span class="op">=</span> <span class="pp">vec!</span>[(start<span class="op">,</span> <span class="dv">0</span>)]<span class="op">;</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> dist <span class="op">=</span> <span class="pp">vec!</span>[<span class="op">-</span><span class="dv">1</span><span class="op">;</span> graph<span class="op">.</span>len()]<span class="op">;</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    dist[start] <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="kw">let</span> <span class="cn">Some</span>((node<span class="op">,</span> depth)) <span class="op">=</span> stack<span class="op">.</span>pop() <span class="op">{</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">&amp;</span>next <span class="kw">in</span> <span class="op">&amp;</span>graph[node] <span class="op">{</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> dist[next] <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span> <span class="op">{</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>                <span class="cf">continue</span><span class="op">;</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>            dist[next] <span class="op">=</span> depth <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>            stack<span class="op">.</span>push((next<span class="op">,</span> depth <span class="op">+</span> <span class="dv">1</span>))<span class="op">;</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dist<span class="op">;</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="発見-2" class="level3">
+<h3 class="anchored" data-anchor-id="発見-2">発見</h3>
+<section id="複数のループをするときに使う" class="level4">
+<h4 class="anchored" data-anchor-id="複数のループをするときに使う">複数のループをするときに使う</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Iterate over the coordinates of a 4 x 4 x 4 grid</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">// from (0, 0, 0), (0, 0, 1), .., (0, 1, 0), (0, 1, 1), .. etc until (3, 3, 3)</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i<span class="op">,</span> j<span class="op">,</span> k) <span class="kw">in</span> <span class="pp">iproduct!</span>(<span class="dv">0</span><span class="op">..</span><span class="dv">4</span><span class="op">,</span> <span class="dv">0</span><span class="op">..</span><span class="dv">4</span><span class="op">,</span> <span class="dv">0</span><span class="op">..</span><span class="dv">4</span>) <span class="op">{</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>   <span class="co">// ..</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="dfsのコードの書き方" class="level4">
+<h4 class="anchored" data-anchor-id="dfsのコードの書き方">DFSのコードの書き方</h4>
+<p>グラフをとりあえず</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">usize</span><span class="op">&gt;&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>で表現する。</p>
+<p>次に、探索の仕方として、stackを用意して、そこに今現時点の(Node,Depth)を入れておく。そして、stackが空になるまで、stackからtupleを抜き取って行って、次のNodeを探索していく。つまり、stackはいわばNodeにDepthのステッカーを貼っているようなものであり、次に進めれば剥がすということを繰り返している。</p>
+<p>最終的に剥がすことができなかったtupleだけがstuckに積み重なっていくわけである。</p>
+</section>
+<section id="find-max-value-index" class="level4">
+<h4 class="anchored" data-anchor-id="find-max-value-index">Find Max Value Index</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> max_index <span class="op">=</span> data<span class="op">.</span>iter()<span class="op">.</span>enumerate()<span class="op">.</span>max_by_key(<span class="op">|</span>x<span class="op">|</span> x<span class="op">.</span><span class="dv">1</span>)<span class="op">.</span>unwrap()<span class="op">.</span><span class="dv">0</span><span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>とかける。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">|</span>x<span class="op">|</span> x<span class="op">.</span><span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>というのはClosureといって、||に挟まれた引数から後ろの数を返す関数のことである。</p>
+</section>
+</section>
+<section id="問題点-2" class="level3">
+<h3 class="anchored" data-anchor-id="問題点-2">問題点</h3>
+</section>
+</section>
+<section id="typical90-04" class="level2">
+<h2 class="anchored" data-anchor-id="typical90-04">typical90-04</h2>
+<p><a href="https://atcoder.jp/contests/typical90/tasks/typical90_d">問題リンク</a></p>
+<section id="概要-3" class="level3">
+<h3 class="anchored" data-anchor-id="概要-3">概要</h3>
+<p>簡単な問題。</p>
+<p>前処理をした方が良い、くらいしか話すことがない。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">itertools::</span>iproduct<span class="op">;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">nalgebra::</span>DMatrix<span class="op">;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">proconio::</span>input<span class="op">;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">input!</span> <span class="op">{</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        h<span class="op">:</span> <span class="dt">usize</span><span class="op">,</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        w<span class="op">:</span> <span class="dt">usize</span><span class="op">,</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        b<span class="op">:</span> [<span class="dt">usize</span><span class="op">;</span> w <span class="op">*</span> h]<span class="op">,</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> mat <span class="op">=</span> <span class="pp">DMatrix::</span>from_row_slice(h<span class="op">,</span> w<span class="op">,</span> <span class="op">&amp;</span>b)<span class="op">;</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> row_sum <span class="op">=</span> mat<span class="op">.</span>clone()<span class="op">.</span>row_sum()<span class="op">;</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> col_sum <span class="op">=</span> mat<span class="op">.</span>clone()<span class="op">.</span>column_sum()<span class="op">;</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>w <span class="op">{</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> tmp <span class="op">=</span> row_sum[j] <span class="op">+</span> col_sum[<span class="dv">0</span>] <span class="op">-</span> mat[(<span class="dv">0</span><span class="op">,</span> j)]<span class="op">;</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> j <span class="op">==</span> <span class="dv">0</span> <span class="op">{</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>            <span class="pp">print!</span>(<span class="st">"{}"</span><span class="op">,</span> tmp)<span class="op">;</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>            <span class="pp">print!</span>(<span class="st">" {}"</span><span class="op">,</span> tmp)<span class="op">;</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i<span class="op">,</span> j) <span class="kw">in</span> <span class="pp">iproduct!</span>(<span class="dv">1</span><span class="op">..</span>h<span class="op">,</span> <span class="dv">0</span><span class="op">..</span>w) <span class="op">{</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> tmp <span class="op">=</span> row_sum[j] <span class="op">+</span> col_sum[i] <span class="op">-</span> mat[(i<span class="op">,</span> j)]<span class="op">;</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> j <span class="op">==</span> <span class="dv">0</span> <span class="op">{</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>            <span class="pp">print!</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">{}"</span><span class="op">,</span> tmp)<span class="op">;</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>            <span class="pp">print!</span>(<span class="st">" {}"</span><span class="op">,</span> tmp)<span class="op">;</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="発見-3" class="level3">
+<h3 class="anchored" data-anchor-id="発見-3">発見</h3>
+<section id="nalgebraの使い方" class="level4">
+<h4 class="anchored" data-anchor-id="nalgebraの使い方">nalgebraの使い方</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">nalgebra::</span>DMatrix<span class="op">;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> mat <span class="op">=</span> <span class="pp">DMatrix::</span>from_row_slice(<span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="op">&amp;</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span>])<span class="op">;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">assert_eq!</span>(mat[(<span class="dv">0</span><span class="op">,</span> <span class="dv">0</span>)]<span class="op">,</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">assert_eq!</span>(mat[(<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>)]<span class="op">,</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> mat_zero <span class="op">=</span> <span class="pp">DMatrix::</span>zeros(<span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>)<span class="op">;</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="pp">assert_eq!</span>(mat_zero[(<span class="dv">0</span><span class="op">,</span> <span class="dv">0</span>)]<span class="op">,</span> <span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> elm <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> mat_elm <span class="op">=</span> <span class="pp">DMatrix::</span>from_element(<span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> elm)<span class="op">;</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="pp">assert_eq!</span>(mat_elm[(<span class="dv">0</span><span class="op">,</span> <span class="dv">0</span>)]<span class="op">,</span> elm)<span class="op">;</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> mat_vec <span class="op">=</span> <span class="pp">DMatrix::</span>from_vec(<span class="dv">4</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="pp">vec!</span>[<span class="dv">1.0</span><span class="op">,</span> <span class="dv">0.0</span><span class="op">,</span> <span class="dv">0.0</span><span class="op">,</span> <span class="dv">0.0</span><span class="op">,</span> <span class="dv">0.0</span><span class="op">,</span> <span class="dv">1.0</span><span class="op">,</span> <span class="dv">0.0</span><span class="op">,</span> <span class="dv">0.0</span><span class="op">,</span> <span class="dv">0.0</span><span class="op">,</span> <span class="dv">0.0</span><span class="op">,</span> <span class="dv">1.0</span><span class="op">,</span> <span class="dv">0.0</span>])<span class="op">;</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="pp">assert_eq!</span>(mat_vec[(<span class="dv">0</span><span class="op">,</span> <span class="dv">0</span>)]<span class="op">,</span> <span class="dv">1.0</span>)<span class="op">;</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> mat_macro <span class="op">=</span> <span class="pp">matrix!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>                <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">;</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>                <span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">9</span>]<span class="op">;</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    <span class="pp">assert_eq!</span>(mat_macro[(<span class="dv">2</span><span class="op">,</span> <span class="dv">1</span>)]<span class="op">,</span> <span class="dv">8</span>)<span class="op">;</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="問題点-3" class="level3">
+<h3 class="anchored" data-anchor-id="問題点-3">問題点</h3>
+</section>
+</section>
+<section id="typical90-05" class="level2">
+<h2 class="anchored" data-anchor-id="typical90-05">typical90-05</h2>
+<p><a href="https://atcoder.jp/contests/typical90/tasks/typical90_e">問題リンク</a></p>
+<section id="概要-4" class="level3">
+<h3 class="anchored" data-anchor-id="概要-4">概要</h3>
+<p>解き切ってない。問題はアルゴリズムというよりかは、行列などの扱いや変数の大きさなどのようだ。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">//いつかリベンジ！！</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>env<span class="op">;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">nalgebra::</span>DMatrix<span class="op">;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">proconio::</span>input<span class="op">;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">//env::set_var("RUST_BACKTRACE", "full");</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="pp">input!</span> <span class="op">{</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        numbers_length<span class="op">:</span> <span class="dt">usize</span><span class="op">,</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        devider<span class="op">:</span> <span class="dt">usize</span><span class="op">,</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>        digits<span class="op">:</span> <span class="dt">usize</span><span class="op">,</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>        numbers<span class="op">:</span> [<span class="dt">usize</span><span class="op">;</span> digits]<span class="op">,</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 340282366920938463463374607431768211455</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 19318074092350443561</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 11710352956716025284</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">// for debug18446744073709551615</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">// let numbers_length: usize = 111;</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">// let devider : usize = 29;</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">// let digits: usize = 6;</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">// let numbers : Vec&lt;usize&gt;= vec![1,2,3,5,6,7,9];</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> modular <span class="op">:</span> <span class="dt">u128</span> <span class="op">=</span> <span class="dv">1000000007</span><span class="op">;</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> rem_vec <span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">usize</span><span class="op">&gt;</span> <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span>]<span class="op">;</span></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> begin_index <span class="op">:</span> <span class="dt">usize</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> end_index <span class="op">:</span> <span class="dt">usize</span><span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> loop_len <span class="op">:</span> <span class="dt">usize</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>devider <span class="op">{</span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> tmp_rem <span class="op">=</span> (rem_vec<span class="op">.</span>last()<span class="op">.</span>unwrap() <span class="op">*</span> <span class="dv">10</span> ) <span class="op">%</span> devider<span class="op">;</span></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> rem_vec<span class="op">.</span>binary_search(<span class="op">&amp;</span>tmp_rem)<span class="op">.</span>is_ok() <span class="op">{</span></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>            begin_index <span class="op">=</span> rem_vec<span class="op">.</span>binary_search(<span class="op">&amp;</span>tmp_rem)<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>            end_index <span class="op">=</span> rem_vec<span class="op">.</span>len()<span class="op">;</span></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>            loop_len <span class="op">=</span> end_index <span class="op">-</span> begin_index<span class="op">;</span></span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>        rem_vec<span class="op">.</span>push( tmp_rem )<span class="op">;</span></span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> (non_looped_side<span class="op">,</span> looped_side) <span class="op">=</span> rem_vec<span class="op">.</span>split_at(begin_index)<span class="op">;</span></span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>    <span class="co">// looped_rem[i][j] i*10^j-th % devider</span></span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> looped_rem <span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">usize</span><span class="op">&gt;&gt;</span> <span class="op">=</span> <span class="dt">Vec</span><span class="pp">::</span>new()<span class="op">;</span></span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> non_looped_rem <span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">usize</span><span class="op">&gt;&gt;</span> <span class="op">=</span> <span class="dt">Vec</span><span class="pp">::</span>new()<span class="op">;</span></span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> num <span class="kw">in</span> numbers <span class="op">{</span></span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> <span class="kw">mut</span> tmp_looped_rem <span class="op">=</span> <span class="pp">vec!</span>[]<span class="op">;</span></span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> <span class="kw">mut</span> tmp_nonlooped_rem <span class="op">=</span> <span class="pp">vec!</span>[]<span class="op">;</span></span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> looped_side <span class="op">{</span></span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a>            tmp_looped_rem<span class="op">.</span>push( (i <span class="op">*</span> num) <span class="op">%</span> devider )<span class="op">;</span></span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a>        looped_rem<span class="op">.</span>push(tmp_looped_rem)<span class="op">;</span></span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> non_looped_side <span class="op">{</span></span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a>            tmp_nonlooped_rem<span class="op">.</span>push( (i <span class="op">*</span> num) <span class="op">%</span> devider )<span class="op">;</span></span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a>        non_looped_rem<span class="op">.</span>push(tmp_nonlooped_rem)<span class="op">;</span></span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> beginning_vec <span class="op">:</span> DMatrix<span class="op">&lt;</span><span class="dt">u128</span><span class="op">&gt;</span> <span class="op">=</span> <span class="pp">DMatrix::</span>from_vec( devider<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="pp">vec!</span>[<span class="dv">0</span><span class="op">;</span> devider])<span class="op">;</span></span>
+<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a>    beginning_vec[(<span class="dv">0</span><span class="op">,</span><span class="dv">0</span>)] <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a>    <span class="co">// container[i][j] means how many numbers remain i in j-th digit in the loop</span></span>
+<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> looped_container <span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span>DMatrix<span class="op">&lt;</span><span class="dt">u128</span><span class="op">&gt;&gt;</span> <span class="op">=</span> <span class="dt">Vec</span><span class="pp">::</span>new()<span class="op">;</span></span>
+<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> jndex <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>looped_rem[<span class="dv">0</span>]<span class="op">.</span>len() <span class="op">{</span></span>
+<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> <span class="kw">mut</span> vec_tmp_0 <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">0</span> <span class="kw">as</span> <span class="dt">u128</span><span class="op">;</span> devider]<span class="op">;</span></span>
+<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> index <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>digits <span class="op">{</span></span>
+<span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a>            vec_tmp_0[looped_rem[index][jndex]] <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a>        looped_container<span class="op">.</span>push(generate_calc_matrix(vec_tmp_0))<span class="op">;</span></span>
+<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a>    <span class="co">// container[i][j] means how many numbers remain i in j-th digit in the non-loop</span></span>
+<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> non_looped_container <span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span>DMatrix<span class="op">&lt;</span><span class="dt">u128</span><span class="op">&gt;&gt;</span> <span class="op">=</span> <span class="dt">Vec</span><span class="pp">::</span>new()<span class="op">;</span></span>
+<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> non_looped_rem<span class="op">.</span>len() <span class="op">!=</span> <span class="dv">0</span> <span class="op">{</span></span>
+<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> jndex <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>non_looped_rem[<span class="dv">0</span>]<span class="op">.</span>len() <span class="op">{</span></span>
+<span id="cb14-85"><a href="#cb14-85" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> <span class="kw">mut</span> vec_tmp_0 <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">0</span> <span class="kw">as</span> <span class="dt">u128</span><span class="op">;</span> devider]<span class="op">;</span></span>
+<span id="cb14-86"><a href="#cb14-86" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> index <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>digits <span class="op">{</span></span>
+<span id="cb14-87"><a href="#cb14-87" aria-hidden="true" tabindex="-1"></a>                vec_tmp_0[non_looped_rem[index][jndex]] <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb14-89"><a href="#cb14-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-90"><a href="#cb14-90" aria-hidden="true" tabindex="-1"></a>            non_looped_container<span class="op">.</span>push(generate_calc_matrix(vec_tmp_0))<span class="op">;</span></span>
+<span id="cb14-91"><a href="#cb14-91" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb14-92"><a href="#cb14-92" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-93"><a href="#cb14-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-94"><a href="#cb14-94" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> ans <span class="op">=</span> calc_mat(non_looped_container<span class="op">.</span>clone()<span class="op">,</span> looped_container<span class="op">.</span>clone()<span class="op">,</span> beginning_vec<span class="op">.</span>clone()<span class="op">,</span> numbers_length<span class="op">,</span> modular)<span class="op">;</span></span>
+<span id="cb14-95"><a href="#cb14-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-96"><a href="#cb14-96" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> ans <span class="op">%</span> modular <span class="kw">as</span> <span class="dt">u128</span>)<span class="op">;</span></span>
+<span id="cb14-97"><a href="#cb14-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-98"><a href="#cb14-98" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb14-99"><a href="#cb14-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-100"><a href="#cb14-100" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> calc_mat(non_looped_container <span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span>DMatrix<span class="op">&lt;</span><span class="dt">u128</span><span class="op">&gt;&gt;,</span> looped_container <span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span>DMatrix<span class="op">&lt;</span><span class="dt">u128</span><span class="op">&gt;&gt;,</span> beginning_vec <span class="op">:</span> DMatrix<span class="op">&lt;</span><span class="dt">u128</span><span class="op">&gt;,</span> number_length <span class="op">:</span> <span class="dt">usize</span><span class="op">,</span> modular<span class="op">:</span> <span class="dt">u128</span>) <span class="op">-&gt;</span> <span class="dt">u128</span> <span class="op">{</span></span>
+<span id="cb14-101"><a href="#cb14-101" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> non_looped_container<span class="op">.</span>len() <span class="op">!=</span> <span class="dv">0</span> <span class="op">{</span></span>
+<span id="cb14-102"><a href="#cb14-102" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> non_looped_container<span class="op">.</span>len() <span class="op">&gt;=</span> number_length <span class="op">{</span></span>
+<span id="cb14-103"><a href="#cb14-103" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> <span class="kw">mut</span> tmp_mat <span class="op">=</span> non_looped_container[<span class="dv">0</span>]<span class="op">.</span>clone()<span class="op">;</span></span>
+<span id="cb14-104"><a href="#cb14-104" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="dv">1</span><span class="op">..</span>number_length <span class="op">{</span></span>
+<span id="cb14-105"><a href="#cb14-105" aria-hidden="true" tabindex="-1"></a>                tmp_mat <span class="op">=</span> <span class="op">&amp;</span>non_looped_container[i] <span class="op">*</span> <span class="op">&amp;</span>tmp_mat<span class="op">;</span></span>
+<span id="cb14-106"><a href="#cb14-106" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> j <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>tmp_mat<span class="op">.</span>nrows() <span class="op">{</span></span>
+<span id="cb14-107"><a href="#cb14-107" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">for</span> k <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>tmp_mat<span class="op">.</span>ncols() <span class="op">{</span></span>
+<span id="cb14-108"><a href="#cb14-108" aria-hidden="true" tabindex="-1"></a>                        tmp_mat[(j<span class="op">,</span>k)] <span class="op">%=</span> modular <span class="kw">as</span> <span class="dt">u128</span><span class="op">;</span></span>
+<span id="cb14-109"><a href="#cb14-109" aria-hidden="true" tabindex="-1"></a>                    <span class="op">}</span></span>
+<span id="cb14-110"><a href="#cb14-110" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb14-111"><a href="#cb14-111" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb14-112"><a href="#cb14-112" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> ans <span class="op">=</span> tmp_mat <span class="op">*</span> beginning_vec<span class="op">;</span></span>
+<span id="cb14-113"><a href="#cb14-113" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> ans_u <span class="op">=</span> ans[(<span class="dv">0</span><span class="op">,</span><span class="dv">0</span>)]<span class="op">;</span></span>
+<span id="cb14-114"><a href="#cb14-114" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> ans_u<span class="op">;</span></span>
+<span id="cb14-115"><a href="#cb14-115" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb14-116"><a href="#cb14-116" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb14-117"><a href="#cb14-117" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> <span class="kw">mut</span> nl_tmp_mat <span class="op">=</span> non_looped_container[<span class="dv">0</span>]<span class="op">.</span>clone()<span class="op">;</span></span>
+<span id="cb14-118"><a href="#cb14-118" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="dv">1</span><span class="op">..</span>non_looped_container<span class="op">.</span>len() <span class="op">{</span></span>
+<span id="cb14-119"><a href="#cb14-119" aria-hidden="true" tabindex="-1"></a>                nl_tmp_mat <span class="op">=</span> <span class="op">&amp;</span>non_looped_container[i] <span class="op">*</span> <span class="op">&amp;</span>nl_tmp_mat<span class="op">;</span></span>
+<span id="cb14-120"><a href="#cb14-120" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> j <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>nl_tmp_mat<span class="op">.</span>nrows() <span class="op">{</span></span>
+<span id="cb14-121"><a href="#cb14-121" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">for</span> k <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>nl_tmp_mat<span class="op">.</span>ncols() <span class="op">{</span></span>
+<span id="cb14-122"><a href="#cb14-122" aria-hidden="true" tabindex="-1"></a>                        nl_tmp_mat[(j<span class="op">,</span>k)] <span class="op">%=</span> modular<span class="op">;</span></span>
+<span id="cb14-123"><a href="#cb14-123" aria-hidden="true" tabindex="-1"></a>                    <span class="op">}</span></span>
+<span id="cb14-124"><a href="#cb14-124" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb14-125"><a href="#cb14-125" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb14-126"><a href="#cb14-126" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> <span class="kw">mut</span> new_beginning_vec <span class="op">=</span> nl_tmp_mat <span class="op">*</span> beginning_vec<span class="op">;</span></span>
+<span id="cb14-127"><a href="#cb14-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-128"><a href="#cb14-128" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> loop_number <span class="op">=</span> number_length <span class="op">-</span> non_looped_container<span class="op">.</span>len()<span class="op">;</span></span>
+<span id="cb14-129"><a href="#cb14-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-130"><a href="#cb14-130" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> ans <span class="op">=</span> calc_looped(looped_container<span class="op">,</span> new_beginning_vec<span class="op">,</span> loop_number<span class="op">,</span> modular)<span class="op">;</span></span>
+<span id="cb14-131"><a href="#cb14-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-132"><a href="#cb14-132" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> ans_u <span class="op">=</span> ans[(<span class="dv">0</span><span class="op">,</span><span class="dv">0</span>)]<span class="op">;</span></span>
+<span id="cb14-133"><a href="#cb14-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-134"><a href="#cb14-134" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> ans_u<span class="op">;</span></span>
+<span id="cb14-135"><a href="#cb14-135" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb14-136"><a href="#cb14-136" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb14-137"><a href="#cb14-137" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> ans <span class="op">=</span> calc_looped(looped_container<span class="op">,</span> beginning_vec<span class="op">,</span> number_length<span class="op">,</span> modular)<span class="op">;</span></span>
+<span id="cb14-138"><a href="#cb14-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-139"><a href="#cb14-139" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> ans_u <span class="op">=</span> ans[(<span class="dv">0</span><span class="op">,</span><span class="dv">0</span>)]<span class="op">;</span></span>
+<span id="cb14-140"><a href="#cb14-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-141"><a href="#cb14-141" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ans_u<span class="op">;</span></span>
+<span id="cb14-142"><a href="#cb14-142" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-143"><a href="#cb14-143" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb14-144"><a href="#cb14-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-145"><a href="#cb14-145" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> calc_looped (looped_container <span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span>DMatrix<span class="op">&lt;</span><span class="dt">u128</span><span class="op">&gt;&gt;,</span> beginning_vec <span class="op">:</span> DMatrix<span class="op">&lt;</span><span class="dt">u128</span><span class="op">&gt;,</span> number_length <span class="op">:</span> <span class="dt">usize</span><span class="op">,</span> modular <span class="op">:</span> <span class="dt">u128</span>) <span class="op">-&gt;</span> DMatrix<span class="op">&lt;</span><span class="dt">u128</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb14-146"><a href="#cb14-146" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> looped_container<span class="op">.</span>len() <span class="op">&gt;=</span> number_length <span class="op">{</span></span>
+<span id="cb14-147"><a href="#cb14-147" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> <span class="kw">mut</span> tmp_mat <span class="op">=</span> looped_container[<span class="dv">1</span>]<span class="op">.</span>clone()<span class="op">;</span></span>
+<span id="cb14-148"><a href="#cb14-148" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="dv">2</span><span class="op">..</span>number_length <span class="op">{</span></span>
+<span id="cb14-149"><a href="#cb14-149" aria-hidden="true" tabindex="-1"></a>            tmp_mat <span class="op">=</span> <span class="op">&amp;</span>looped_container[i] <span class="op">*</span> <span class="op">&amp;</span>tmp_mat<span class="op">;</span></span>
+<span id="cb14-150"><a href="#cb14-150" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>tmp_mat<span class="op">.</span>nrows() <span class="op">{</span></span>
+<span id="cb14-151"><a href="#cb14-151" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> k <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>tmp_mat<span class="op">.</span>ncols() <span class="op">{</span></span>
+<span id="cb14-152"><a href="#cb14-152" aria-hidden="true" tabindex="-1"></a>                    tmp_mat[(j<span class="op">,</span>k)] <span class="op">%=</span> modular<span class="op">;</span></span>
+<span id="cb14-153"><a href="#cb14-153" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb14-154"><a href="#cb14-154" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb14-155"><a href="#cb14-155" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb14-156"><a href="#cb14-156" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> tmp_mat <span class="op">*</span> beginning_vec<span class="op">;</span></span>
+<span id="cb14-157"><a href="#cb14-157" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-158"><a href="#cb14-158" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb14-159"><a href="#cb14-159" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> <span class="kw">mut</span> tmp_mat_one_loop <span class="op">=</span> looped_container[<span class="dv">0</span>]<span class="op">.</span>clone()<span class="op">;</span></span>
+<span id="cb14-160"><a href="#cb14-160" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="dv">1</span><span class="op">..</span>looped_container<span class="op">.</span>len() <span class="op">{</span></span>
+<span id="cb14-161"><a href="#cb14-161" aria-hidden="true" tabindex="-1"></a>            tmp_mat_one_loop <span class="op">=</span> <span class="op">&amp;</span>looped_container[i] <span class="op">*</span> <span class="op">&amp;</span>tmp_mat_one_loop<span class="op">;</span></span>
+<span id="cb14-162"><a href="#cb14-162" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>tmp_mat_one_loop<span class="op">.</span>nrows() <span class="op">{</span></span>
+<span id="cb14-163"><a href="#cb14-163" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> k <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>tmp_mat_one_loop<span class="op">.</span>ncols() <span class="op">{</span></span>
+<span id="cb14-164"><a href="#cb14-164" aria-hidden="true" tabindex="-1"></a>                    tmp_mat_one_loop[(j<span class="op">,</span>k)] <span class="op">%=</span> modular<span class="op">;</span></span>
+<span id="cb14-165"><a href="#cb14-165" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb14-166"><a href="#cb14-166" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb14-167"><a href="#cb14-167" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb14-168"><a href="#cb14-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-169"><a href="#cb14-169" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> loop_number <span class="op">=</span> number_length <span class="op">/</span> looped_container<span class="op">.</span>len()<span class="op">;</span></span>
+<span id="cb14-170"><a href="#cb14-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-171"><a href="#cb14-171" aria-hidden="true" tabindex="-1"></a>        <span class="co">// １回のループでできる行列はできたので、あとはloop_number回のループを行う</span></span>
+<span id="cb14-172"><a href="#cb14-172" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> <span class="kw">mut</span> ans <span class="op">=</span> calc_power(tmp_mat_one_loop<span class="op">,</span> loop_number<span class="op">,</span> modular)<span class="op">;</span></span>
+<span id="cb14-173"><a href="#cb14-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-174"><a href="#cb14-174" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> loop_number_remain <span class="op">=</span> number_length <span class="op">%</span> looped_container<span class="op">.</span>len()<span class="op">;</span></span>
+<span id="cb14-175"><a href="#cb14-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-176"><a href="#cb14-176" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> loop_number_remain <span class="op">!=</span> <span class="dv">0</span> <span class="op">{</span></span>
+<span id="cb14-177"><a href="#cb14-177" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> <span class="kw">mut</span> tmp_mat <span class="op">=</span> looped_container[<span class="dv">0</span>]<span class="op">.</span>clone()<span class="op">;</span></span>
+<span id="cb14-178"><a href="#cb14-178" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="dv">1</span><span class="op">..</span>loop_number_remain <span class="op">{</span></span>
+<span id="cb14-179"><a href="#cb14-179" aria-hidden="true" tabindex="-1"></a>                tmp_mat <span class="op">=</span> <span class="op">&amp;</span>looped_container[i] <span class="op">*</span> <span class="op">&amp;</span>tmp_mat<span class="op">;</span></span>
+<span id="cb14-180"><a href="#cb14-180" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> j <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>tmp_mat<span class="op">.</span>nrows() <span class="op">{</span></span>
+<span id="cb14-181"><a href="#cb14-181" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">for</span> k <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>tmp_mat<span class="op">.</span>ncols() <span class="op">{</span></span>
+<span id="cb14-182"><a href="#cb14-182" aria-hidden="true" tabindex="-1"></a>                        tmp_mat[(j<span class="op">,</span>k)] <span class="op">%=</span> modular<span class="op">;</span></span>
+<span id="cb14-183"><a href="#cb14-183" aria-hidden="true" tabindex="-1"></a>                    <span class="op">}</span></span>
+<span id="cb14-184"><a href="#cb14-184" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb14-185"><a href="#cb14-185" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb14-186"><a href="#cb14-186" aria-hidden="true" tabindex="-1"></a>            ans <span class="op">=</span> tmp_mat <span class="op">*</span> ans<span class="op">;</span></span>
+<span id="cb14-187"><a href="#cb14-187" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb14-188"><a href="#cb14-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-189"><a href="#cb14-189" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>ans<span class="op">.</span>nrows() <span class="op">{</span></span>
+<span id="cb14-190"><a href="#cb14-190" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> k <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>ans<span class="op">.</span>ncols() <span class="op">{</span></span>
+<span id="cb14-191"><a href="#cb14-191" aria-hidden="true" tabindex="-1"></a>                ans[(j<span class="op">,</span>k)] <span class="op">%=</span> modular<span class="op">;</span></span>
+<span id="cb14-192"><a href="#cb14-192" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb14-193"><a href="#cb14-193" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb14-194"><a href="#cb14-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-195"><a href="#cb14-195" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ans <span class="op">*</span> beginning_vec<span class="op">;</span></span>
+<span id="cb14-196"><a href="#cb14-196" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-197"><a href="#cb14-197" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb14-198"><a href="#cb14-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-199"><a href="#cb14-199" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> calc_power (mat<span class="op">:</span> DMatrix<span class="op">&lt;</span><span class="dt">u128</span><span class="op">&gt;,</span> power <span class="op">:</span> <span class="dt">usize</span><span class="op">,</span> modular <span class="op">:</span> <span class="dt">u128</span>) <span class="op">-&gt;</span> DMatrix<span class="op">&lt;</span><span class="dt">u128</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb14-200"><a href="#cb14-200" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> binary <span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">usize</span><span class="op">&gt;</span> <span class="op">=</span> <span class="pp">format!</span>(<span class="st">"{:b}"</span><span class="op">,</span> power)<span class="op">.</span>chars()<span class="op">.</span>map(<span class="op">|</span>c<span class="op">|</span> c<span class="op">.</span>to_digit(<span class="dv">10</span>)<span class="op">.</span>unwrap() <span class="kw">as</span> <span class="dt">usize</span>)<span class="op">.</span>collect()<span class="op">;</span></span>
+<span id="cb14-201"><a href="#cb14-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-202"><a href="#cb14-202" aria-hidden="true" tabindex="-1"></a>    binary<span class="op">.</span>reverse()<span class="op">;</span></span>
+<span id="cb14-203"><a href="#cb14-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-204"><a href="#cb14-204" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> ans_mat <span class="op">=</span> <span class="pp">DMatrix::</span>from_element(mat<span class="op">.</span>nrows()<span class="op">,</span> mat<span class="op">.</span>ncols()<span class="op">,</span> <span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb14-205"><a href="#cb14-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-206"><a href="#cb14-206" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>binary<span class="op">.</span>len() <span class="op">{</span></span>
+<span id="cb14-207"><a href="#cb14-207" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> binary[i] <span class="op">==</span> <span class="dv">0</span> <span class="op">{</span></span>
+<span id="cb14-208"><a href="#cb14-208" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span><span class="op">;</span></span>
+<span id="cb14-209"><a href="#cb14-209" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb14-210"><a href="#cb14-210" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> ans_mat <span class="op">==</span> <span class="pp">DMatrix::</span>from_element(mat<span class="op">.</span>nrows()<span class="op">,</span> mat<span class="op">.</span>ncols()<span class="op">,</span> <span class="dv">0</span>) <span class="op">{</span></span>
+<span id="cb14-211"><a href="#cb14-211" aria-hidden="true" tabindex="-1"></a>                ans_mat <span class="op">=</span> calc_binary_power(mat<span class="op">.</span>clone()<span class="op">,</span> i<span class="op">,</span> modular)<span class="op">;</span></span>
+<span id="cb14-212"><a href="#cb14-212" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb14-213"><a href="#cb14-213" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb14-214"><a href="#cb14-214" aria-hidden="true" tabindex="-1"></a>                ans_mat <span class="op">=</span> ans_mat <span class="op">*</span> calc_binary_power(mat<span class="op">.</span>clone()<span class="op">,</span> i<span class="op">,</span> modular)<span class="op">;</span></span>
+<span id="cb14-215"><a href="#cb14-215" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> j <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>ans_mat<span class="op">.</span>nrows() <span class="op">{</span></span>
+<span id="cb14-216"><a href="#cb14-216" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">for</span> k <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>ans_mat<span class="op">.</span>ncols() <span class="op">{</span></span>
+<span id="cb14-217"><a href="#cb14-217" aria-hidden="true" tabindex="-1"></a>                        ans_mat[(j<span class="op">,</span>k)] <span class="op">%=</span> modular<span class="op">;</span></span>
+<span id="cb14-218"><a href="#cb14-218" aria-hidden="true" tabindex="-1"></a>                    <span class="op">}</span></span>
+<span id="cb14-219"><a href="#cb14-219" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb14-220"><a href="#cb14-220" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb14-221"><a href="#cb14-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-222"><a href="#cb14-222" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb14-223"><a href="#cb14-223" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-224"><a href="#cb14-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-225"><a href="#cb14-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-226"><a href="#cb14-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-227"><a href="#cb14-227" aria-hidden="true" tabindex="-1"></a>    ans_mat</span>
+<span id="cb14-228"><a href="#cb14-228" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb14-229"><a href="#cb14-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-230"><a href="#cb14-230" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> calc_binary_power (mat<span class="op">:</span> DMatrix<span class="op">&lt;</span><span class="dt">u128</span><span class="op">&gt;,</span> power_size<span class="op">:</span> <span class="dt">usize</span><span class="op">,</span> modular <span class="op">:</span> <span class="dt">u128</span>) <span class="op">-&gt;</span> DMatrix<span class="op">&lt;</span><span class="dt">u128</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb14-231"><a href="#cb14-231" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> ans_mat <span class="op">=</span> <span class="pp">DMatrix::</span>from_element(mat<span class="op">.</span>nrows()<span class="op">,</span> mat<span class="op">.</span>ncols()<span class="op">,</span> <span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb14-232"><a href="#cb14-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-233"><a href="#cb14-233" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> power_size <span class="op">==</span> <span class="dv">0</span> <span class="op">{</span></span>
+<span id="cb14-234"><a href="#cb14-234" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> mat<span class="op">;</span></span>
+<span id="cb14-235"><a href="#cb14-235" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-236"><a href="#cb14-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-237"><a href="#cb14-237" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="dv">1</span><span class="op">..</span>power_size<span class="op">+</span><span class="dv">1</span> <span class="op">{</span></span>
+<span id="cb14-238"><a href="#cb14-238" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">==</span> <span class="dv">1</span> <span class="op">{</span></span>
+<span id="cb14-239"><a href="#cb14-239" aria-hidden="true" tabindex="-1"></a>            ans_mat <span class="op">=</span> <span class="op">&amp;</span>mat <span class="op">*</span> <span class="op">&amp;</span>mat<span class="op">;</span></span>
+<span id="cb14-240"><a href="#cb14-240" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb14-241"><a href="#cb14-241" aria-hidden="true" tabindex="-1"></a>            ans_mat <span class="op">=</span> <span class="op">&amp;</span>ans_mat <span class="op">*</span> <span class="op">&amp;</span>ans_mat<span class="op">;</span></span>
+<span id="cb14-242"><a href="#cb14-242" aria-hidden="true" tabindex="-1"></a>            <span class="co">// alith</span></span>
+<span id="cb14-243"><a href="#cb14-243" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>ans_mat<span class="op">.</span>nrows() <span class="op">{</span></span>
+<span id="cb14-244"><a href="#cb14-244" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> k <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>ans_mat<span class="op">.</span>ncols() <span class="op">{</span></span>
+<span id="cb14-245"><a href="#cb14-245" aria-hidden="true" tabindex="-1"></a>                    ans_mat[(j<span class="op">,</span>k)] <span class="op">%=</span> modular<span class="op">;</span></span>
+<span id="cb14-246"><a href="#cb14-246" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb14-247"><a href="#cb14-247" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb14-248"><a href="#cb14-248" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb14-249"><a href="#cb14-249" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-250"><a href="#cb14-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-251"><a href="#cb14-251" aria-hidden="true" tabindex="-1"></a>    ans_mat</span>
+<span id="cb14-252"><a href="#cb14-252" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb14-253"><a href="#cb14-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-254"><a href="#cb14-254" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> generate_calc_matrix(rem_vec <span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">u128</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> DMatrix<span class="op">&lt;</span><span class="dt">u128</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb14-255"><a href="#cb14-255" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> tmp_bm <span class="op">=</span> <span class="pp">vec!</span>[]<span class="op">;</span></span>
+<span id="cb14-256"><a href="#cb14-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-257"><a href="#cb14-257" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> size <span class="op">=</span> rem_vec<span class="op">.</span>len()<span class="op">;</span></span>
+<span id="cb14-258"><a href="#cb14-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-259"><a href="#cb14-259" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> index <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span>size <span class="op">{</span></span>
+<span id="cb14-260"><a href="#cb14-260" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> <span class="kw">mut</span> tmp_left <span class="op">=</span> rem_vec[<span class="dv">0</span><span class="op">..</span>index<span class="op">+</span><span class="dv">1</span>]<span class="op">.</span>to_vec()<span class="op">;</span></span>
+<span id="cb14-261"><a href="#cb14-261" aria-hidden="true" tabindex="-1"></a>        tmp_left<span class="op">.</span>reverse()<span class="op">;</span></span>
+<span id="cb14-262"><a href="#cb14-262" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> <span class="kw">mut</span> tmp_right <span class="op">=</span> rem_vec[index<span class="op">+</span><span class="dv">1</span><span class="op">..</span>size]<span class="op">.</span>to_vec()<span class="op">;</span></span>
+<span id="cb14-263"><a href="#cb14-263" aria-hidden="true" tabindex="-1"></a>        tmp_right<span class="op">.</span>reverse()<span class="op">;</span></span>
+<span id="cb14-264"><a href="#cb14-264" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> <span class="kw">mut</span> tmp_vec <span class="op">=</span> tmp_left<span class="op">;</span></span>
+<span id="cb14-265"><a href="#cb14-265" aria-hidden="true" tabindex="-1"></a>        tmp_vec<span class="op">.</span>append(<span class="op">&amp;</span><span class="kw">mut</span> tmp_right)<span class="op">;</span></span>
+<span id="cb14-266"><a href="#cb14-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-267"><a href="#cb14-267" aria-hidden="true" tabindex="-1"></a>        tmp_bm<span class="op">.</span>append(<span class="op">&amp;</span><span class="kw">mut</span> tmp_vec)<span class="op">;</span></span>
+<span id="cb14-268"><a href="#cb14-268" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-269"><a href="#cb14-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-270"><a href="#cb14-270" aria-hidden="true" tabindex="-1"></a>    <span class="pp">DMatrix::</span>from_vec(size<span class="op">,</span> size<span class="op">,</span> tmp_bm)</span>
+<span id="cb14-271"><a href="#cb14-271" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="発見-4" class="level3">
+<h3 class="anchored" data-anchor-id="発見-4">発見</h3>
+<section id="vecの中身を探すとき" class="level4">
+<h4 class="anchored" data-anchor-id="vecの中身を探すとき">Vecの中身を探すとき</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> vec <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">5</span>]<span class="op">;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> res1 <span class="op">=</span> vec<span class="op">.</span>binary_search(<span class="op">&amp;</span><span class="dv">2</span>)<span class="op">.</span>is_ok()<span class="op">;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="pp">assert_eq!</span>(res1<span class="op">,</span> <span class="cn">false</span>)<span class="op">;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> res2 <span class="op">=</span> vec<span class="op">.</span>binary_search(<span class="op">&amp;</span><span class="dv">3</span>)<span class="op">.</span>is_ok()<span class="op">;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="pp">assert_eq!</span>(res2<span class="op">,</span> <span class="cn">true</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="問題点-4" class="level3">
+<h3 class="anchored" data-anchor-id="問題点-4">問題点</h3>
+<section id="usize" class="level4">
+<h4 class="anchored" data-anchor-id="usize">usize</h4>
+<p>rustのusizeは基本64bitなので、大きすぎる値を考える時には向いていない。</p>
+</section>
+<section id="高速フーリエ変換" class="level4">
+<h4 class="anchored" data-anchor-id="高速フーリエ変換">高速フーリエ変換</h4>
+<p>やってなかったので、後々詳細を調べる。</p>
 
 
+</section>
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->

@@ -1,0 +1,471 @@
+---
+title: "競プロ典型90 06〜10"
+author: "Serika Yuzuki"
+date: "2023-11-25"
+categories: [AtCoder, Programming]
+image: "images/thumbnail.webp"
+execute:
+  freeze: true
+---
+
+## typical90-06
+
+[問題リンク](https://atcoder.jp/contests/typical90/tasks/typical90_f)
+
+### 概要
+
+失敗した解き方
+
+コメントの中でやった通りのやり方。これだと計算量が $k^{n}$ になってしまうためにデカいテストデータでは通らなかった。
+
+```rust
+use proconio::input;
+
+fn main() {
+    input! {
+        n: usize,
+        k: usize,
+        s: String,
+    }
+
+    let vec_str = s.chars().into_iter().collect::<Vec<char>>();
+    let mut vec_str_to_usize = vec_str
+        .clone()
+        .into_iter()
+        .map(|c| c.to_digit(36).unwrap() as usize)
+        .collect::<Vec<usize>>();
+
+    // 例えば、n=7, k=3, s=abcdefgの場合、
+    // 0,1,2,3,4=n-k の中から最大のものを選んで、で残ったやつから i,i+1,...,n-k+1=3 の中から最大のものを選ぶ。
+    // これから続けて、
+
+    let mut ans = vec![];
+
+    // let first_index = find_biggest_index(vec_str_to_usize.clone(), 0, n - k);
+    // ans.push(vec_str[first_index]);
+    // let second_index = find_biggest_index(vec_str_to_usize.clone(), first_index + 1, n - k + 1);
+
+    let mut now_index = 0;
+    for i in 0..k {
+        if i == 0 {
+            now_index = find_smallest_index(vec_str_to_usize.clone(), 0, n - k);
+        } else {
+            now_index = find_smallest_index(vec_str_to_usize.clone(), now_index + 1, n - k + i);
+        }
+        ans.push(vec_str[now_index]);
+    }
+
+    println!("{}", ans.into_iter().collect::<String>());
+}
+
+fn find_smallest_index(
+    vec_str_to_usize: Vec<usize>,
+    start_index: usize,
+    end_index: usize,
+) -> usize {
+    let mut min = 36;
+    let mut index = 0;
+
+    for i in start_index..end_index + 1 {
+        if min > vec_str_to_usize[i as usize] {
+            min = vec_str_to_usize[i as usize];
+            index = i;
+        }
+    }
+
+    index
+}
+```
+
+なので別の方法を考える。
+
+$N$ の長さの文字列の中から一番でかいアルファベットを探して、それが $N-K$ 番目より前にあればOK。その値を上から順に並べていく。これだと計算量は $NK$ になる。けどまだダメ。
+
+```rust
+fn find_smallest_index(vec_str_to_usize: Vec<usize>, limit_index: usize) -> usize {
+    for (i, j) in iproduct!(11..36, 0..limit_index) {
+        if vec_str_to_usize[j] == i {
+            return j;
+        }
+    }
+    0
+}
+```
+
+ここで問題となるのが、 $\symscr{O}(10^8)$ がおおよそ実行時間が2秒であることを考慮すると、 $NK$ だとダメだということ。なので $N$ か $K$ を $1$ にするような方法を考えたとき、Stringを整理して、 $N$ 回の計算を終えたらすぐに $K$ 回の計算をすれば終わるようなデータベースを準備すればいい。これだと計算量は $N+K$ になるので、解決できる。
+
+```rust
+use proconio::input;
+
+fn main() {
+    input! {
+        n: usize,
+        k: usize,
+        s: String,
+    }
+
+    let vec_str = s.chars().into_iter().collect::<Vec<char>>();
+    let mut vec_str_to_usize = vec_str
+        .clone()
+        .into_iter()
+        .map(|c| c.to_digit(36).unwrap() as usize - 10)
+        .collect::<Vec<usize>>();
+
+    let mut ans = vec![];
+
+    let r = generate_r(vec_str_to_usize.clone());
+
+    let mut position = -1;
+
+    for i in 0..k {
+        for j in 0..26 {
+            let tmp = r[(position + 1) as usize][j];
+            if tmp != -1 && n - tmp as usize >= k - i {
+                ans.push(char::from_digit((j + 10) as u32, 36).unwrap());
+                position = tmp as isize;
+                break;
+            }
+        }
+    }
+
+    println!("{}", ans.into_iter().collect::<String>());
+}
+
+// r[i][j]がi桁目の数より右側にjが出現する最小のインデックスを返す
+
+fn generate_r(vec_str_to_usize: Vec<usize>) -> Vec<Vec<isize>> {
+    let mut r: Vec<Vec<isize>> = vec![vec![-1; 26]; vec_str_to_usize.len() + 1];
+
+    for i in (0..vec_str_to_usize.len()).rev() {
+        for j in 0..26 {
+            if vec_str_to_usize[i] == j {
+                r[i][j] = i as isize;
+            } else {
+                r[i][j] = r[i + 1][j];
+            }
+        }
+    }
+
+    r
+}
+```
+
+困難は分割せよっていう話があるが、これは困難を積集合として分割してはならないという教訓を与えてくれた。
+
+### 発見
+
+#### 実行時間の目安
+
+$\symscr{O}(10^8)$ がおおよそ実行時間が2秒である。これが大体どのコンテストでもリミッターになってるらしい。
+
+#### 問題
+
+### 問題点
+
+## typical90-07
+
+### 概要
+
+[問題リンク](https://atcoder.jp/contests/typical90/tasks/typical90_g)
+
+とりあえずBinary Searchすればいい。そうすれば計算量は $\symscr{O}(Q\ln N)$ になる。 $\ln$ じゃなくて $\log_{2}$ だろうがという文句に対しては、定数倍してるだけだろうがという返答を投げつけますね。
+
+```rust
+use std::cmp;
+
+use proconio::input;
+
+fn main() {
+    input! {
+        n: usize,
+        mut a: [usize; n],
+        q: usize,
+        b: [usize; q],
+    }
+
+    a.sort();
+
+    for i in b.clone() {
+        let ans = cmp::min(
+            (a[(cmp::min(a.len() as isize - 1, binary_search(&a, i) as isize)) as usize] as isize
+                - i as isize)
+                .abs(),
+            (a[(cmp::max(0, binary_search(&a, i) as isize - 1)) as usize] as isize - i as isize)
+                .abs(),
+        );
+        println!("{}", ans);
+    }
+}
+
+fn binary_search(a: &[usize], b: usize) -> usize {
+    let mut left = 0;
+    let mut right = a.len();
+
+    while left < right {
+        let mid = (left + right) / 2;
+        if a[mid] == b {
+            return mid;
+        } else if a[mid] < b {
+            left = mid + 1;
+        } else {
+            right = mid;
+        }
+    }
+
+    left
+}
+```
+
+見たらわかると思いますが、マジで競プロにRustは合わないっすね。真剣にNimに移行することを考えるレベルで。
+
+でも、私みたいな頑固なやつは何があってもRustを使い続けようとするんだろうなぁ。
+
+### 発見
+
+#### 問題
+
+### 問題点
+
+## typical90-08
+
+### 概要
+
+[問題リンク](https://atcoder.jp/contests/typical90/tasks/typical90_h)
+
+計算量の問題で、おそらく多項式時間に収めないといけない。故に数え上げをやるのではなく、漸化式を数値的に解くことになる。
+
+$$
+A_i =
+\begin{pmatrix}
+a_{i,0}\; &: \; a\\
+a_{i,1}\; &: \; at\\
+a_{i,2}\; &: \; atc\\
+a_{i,3}\; &: \; atco\\
+a_{i,4}\; &: \; atcod\\
+a_{i,5}\; &: \; atcode\\
+a_{i,6}\; &: \; atcoder\\
+\end{pmatrix}
+$$
+
+こんな行列を考えて、それの目的になる項を求めていく。漸化式は次のようなルールに従う。
+
+$$
+a_{i+1,k} = 
+\begin{cases}
+a_{i,k} &\text{$k$番目の文字じゃなかったら}\\
+a_{i,k} + a_{i,k-1}　&\text{$k$番目の文字だったら}
+\end{cases}
+$$
+
+コードに落とし込めば次のようになる。
+
+```rust
+use proconio::input;
+
+fn main() {
+    input! {
+        n: usize,
+        s: String,
+    }
+    let modular = 1_000_000_007;
+
+    let vec_str = s.chars().collect::<Vec<char>>();
+
+    let mut ans = vec![0; 7];
+
+    for i in vec_str {
+        match i {
+            'a' => ans[0] = (ans[0] + 1) % modular,
+            't' => ans[1] = (ans[1] + ans[0]) % modular,
+            'c' => ans[2] = (ans[2] + ans[1]) % modular,
+            'o' => ans[3] = (ans[3] + ans[2]) % modular,
+            'd' => ans[4] = (ans[4] + ans[3]) % modular,
+            'e' => ans[5] = (ans[5] + ans[4]) % modular,
+            'r' => ans[6] = (ans[6] + ans[5]) % modular,
+            _ => (),
+        }
+    }
+
+    println!("{}", ans[6] % 1_000_000_007);
+}
+```
+
+こうかなり慣れてきたのか、30分ちょっとで解き切れるようになった。
+
+### 発見
+
+#### 計算時にModularをかけておく。
+
+でなければ、オーバーフローして変な値になる。普通はコンパイルエラーが起きるのだが、この場合は起きなかった。おそらくある程度複雑なプログラムには対応できないのだろう。
+
+#### 問題
+
+### 問題点
+
+## typical90-09
+
+### 概要
+
+[問題リンク](https://atcoder.jp/contests/typical90/tasks/typical90_i)
+
+数学の問題じゃ。
+
+とりあえず全探索でもギリギリ大丈夫そう。10^10程度だし。いや、でもむずいか？　やってないのでわかんない。
+
+この問題は $P_i,\; P_j$ を固定して最大角となる $P_k$ を探すことになる。幾何的性質で、 $P_j$ を始点として考えてアーム $P_jP_k$ が最もアーム $P_iP_j$ に近づく時の $k$ を考えればいいわけで、そのような $k$ は $P_j$ を始点として考えたアームの偏角をソートすれば見つかる。
+
+具体的なコードは次のとおり。
+
+```rust
+use num::complex::Complex;
+use proconio::input;
+
+fn main() {
+    input! {
+        n: usize,
+        a: [[usize; 2]; n],
+    }
+
+    let mut ans = vec![];
+
+    for j in 0..n {
+
+        // Storage は P_j からのその他への点への偏角を格納する
+        let mut storage = vec![];
+
+        for i in 0..n {
+
+            // 同じ点を選んだ時はスキップ
+            if i == j {
+                continue;
+            }
+
+            // 偏角の計算
+            let tmp = Complex::new(a[i][0] as f64, a[i][1] as f64)
+                - Complex::new(a[j][0] as f64, a[j][1] as f64);
+            storage.push(tmp.arg().to_degrees());
+        }
+
+        // 偏角をソート
+        storage.sort_by(|a, b| a.partial_cmp(b).unwrap());
+
+        // P_j, P_i を固定して、作られる角度の最大を探す部分
+        for i in 0..n - 1 {
+
+            // P_j, P_i から作られる角度の反対側に伸びる方向の偏角を計算
+            let mut opp_angle = storage[i] + 180.;
+            if opp_angle >= 180. {
+                opp_angle -= 360.;
+            }
+
+            // 二分探索で偏角の反対側にある点を探す
+            let mut left = 0;
+            let mut right = n - 2;
+            while right - left > 1 {
+                let mid = (left + right) / 2;
+                if storage[mid] <= opp_angle {
+                    left = mid;
+                } else {
+                    right = mid;
+                }
+            }
+
+            // より大きい偏角を採用
+            let mut tmp_left = storage[i] - storage[left];
+            let mut tmp_right = storage[right] - storage[i];
+            if tmp_left <= 0. {
+                tmp_left += 360.;
+            }
+            if tmp_right <= 0. {
+                tmp_right += 360.;
+            }
+            if tmp_left >= 180. {
+                tmp_left = 360. - tmp_left;
+            }
+            if tmp_right >= 180. {
+                tmp_right = 360. - tmp_right;
+            }
+            ans.push(tmp_left.max(tmp_right));
+        }
+    }
+
+    println!(
+        "{}",
+        // P_j, P_i を固定した時の最大の角度を格納した配列の最大値を出力
+        ans.iter().max_by(|a, b| a.partial_cmp(b).unwrap()).unwrap()
+    );
+}
+```
+
+綺麗なコードを書いて載せるなんてやりたいけど、そこまで習熟度があるわけじゃないので、勘弁願いたい。
+
+### 発見
+
+#### f64のソート
+
+`sort_by`を使えば楽。
+
+```rust
+fn main() {
+    let mut tmp = vec![19.0, 12.9, 1.2];
+    tmp.sort_by(|a, b| a.partial_cmp(b).unwrap());
+    assert_eq!(tmp, [1.2, 12.9, 19.0]);
+}
+```
+
+これをそのまま関数にした `sort_floats` っていう関数もあるけど、nightly-onlyなので使えないかもしれない。
+
+## typical90-10
+
+### 概要
+
+[問題リンク](https://atcoder.jp/contests/typical90/tasks/typical90_j)
+
+累積和って言うらしい。知らんくても思いつくだろう。要するにいちいち計算するんじゃなくて、一気にまとめておいて後から計算するって話。
+
+```rust
+use proconio::input;
+
+fn main() {
+    input! {
+        n: usize,
+        cp: [[usize; 2]; n],
+        q: usize,
+        lr: [[usize; 2]; q],
+    }
+
+    // storageは累積和を格納する
+    // つまり、storage[i][0]はC_i番目の出席番号までの１組の期末点数の合計
+    let mut storage = vec![];
+
+    let mut tmp = vec![0,0];
+
+    for i in 0..n {
+        if cp[i][0] == 1 {
+            tmp[0] += cp[i][1];
+        } else {
+            tmp[1] += cp[i][1];
+        }
+        storage.push(tmp.clone());
+    }
+
+    for i in 0..q {
+        let l = lr[i][0] - 1;
+        let r = lr[i][1] - 1;
+
+        let mut ans = vec![0,0];
+        if l > 0 {
+            ans[0] = storage[r][0] - storage[l-1][0];
+            ans[1] = storage[r][1] - storage[l-1][1];
+        } else {
+            ans[0] = storage[r][0];
+            ans[1] = storage[r][1];
+        }
+
+        println!("{} {}", ans[0], ans[1]);
+    }
+
+}
+
+```
+

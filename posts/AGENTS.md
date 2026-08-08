@@ -10,11 +10,9 @@
 | --- | --- |
 | `posts/tech/` | 技術メモ・Tips |
 | `posts/at_coder/` | 競技プログラミング（AtCoder） |
-| `posts/ue5_aura_courses/`, `posts/ue5_project/` | Unreal Engine 5 |
 | `posts/report/` | レポート（PDF 出力あり。`_metadata.yml` で lualatex 設定） |
-| `posts/play_ground/` | 試作・実験 |
 
-新しいテーマなら新規サブディレクトリを作ってよい。多くのディレクトリに `template.qmd` があるので、それを複製して書き始めるのが基本。
+新しいテーマなら新規サブディレクトリを作ってよい。既存記事の frontmatter と本文構成を参考にして書き始める。
 
 ## Frontmatter 規約
 
@@ -40,14 +38,6 @@ image: "images/thumbnail.webp"   # サムネイル（外部 URL でも可）
 - 見出しは `##` から始める（`#` はタイトルが担うため本文では使わない）。
 - コードは fenced code block（```` ```bash ````など）。サイト設定で `code-fold`（「コードはこちら」で折りたたみ）・コピー機能が有効。
 - 数式・化学式を使う記事（特に `report/`）は `physics` / `mhchem` パッケージが `_metadata.yml` で読み込まれる。
-
-## テンプレートから始める
-
-```bash
-cp posts/play_ground/template.qmd posts/<category>/<new-post>.qmd
-```
-
-テンプレートには `<!-- TODO: Title, Date を変更したのちにこのコメントを消してください -->` が入っている。編集後に TODO コメントを消すこと。
 
 ## レンダー
 

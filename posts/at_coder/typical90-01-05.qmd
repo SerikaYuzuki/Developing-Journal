@@ -1,0 +1,632 @@
+---
+title: "競プロ典型90 01〜05"
+author: "Serika Yuzuki"
+date: "2023-10-17"
+categories: [AtCoder, Programming]
+image: "images/thumbnail.webp"
+execute:
+  freeze: true
+---
+
+## typical90-01
+
+[問題リンク](https://atcoder.jp/contests/typical90/tasks/typical90_a)
+
+### 概要
+
+Learnt Binary Search.
+
+### 発見
+
+#### Binary Search
+
+Searching 0..n is O(n) but searching by binary is O(log n).
+This makes very big difference.
+
+### 問題点
+
+## typical90-02
+
+### 概要
+
+[問題リンク](https://atcoder.jp/contests/typical90/tasks/typical90_b)
+
+(())などをランダムウォークのように考えると、常に＋の部分にいて、最終的には必ず0に戻ってくることがわかる。
+
+効率のいい回答だったのは、回帰関数で解いているところ。
+
+``` rust
+use proconio::input;
+
+fn main() {
+    input! {
+        n : i32,
+    }
+
+    if n % 2 == 1 {
+        return;
+    }
+
+    let mut cs = Vec::new();
+    let mut answer = Vec::new();
+    let mut left = n / 2;
+    let mut right = n / 2;
+
+    recursive(&mut cs, &mut left, &mut right, &mut answer);
+
+    for i in 0..answer.len() {
+        println!("{}", answer[i]);
+    }
+}
+
+fn recursive(cs: &mut Vec<char>, left: &mut i32, right: &mut i32, answer: &mut Vec<String>) {
+    if *left == 0 && *right == 0 {
+        answer.push(cs.iter().collect());
+        return;
+    }
+
+    if *left > 0 {
+        *left -= 1;
+        cs.push('(');
+        recursive(cs, left, right, answer);
+        cs.pop();
+        *left += 1;
+    }
+
+    if *right > 0 && *left < *right {
+        *right -= 1;
+        cs.push(')');
+        recursive(cs, left, right, answer);
+        cs.pop();
+        *right += 1;
+    }
+}
+```
+
+発想としては、00001111,00010111,...のような二進数を作っていくことを考えていくところ。で、0の数を超えないように1をappendしていくわけだ。辞書式に並べていくわけだから、最初に0を入れて、後で1を入れれば、自ずと辞書式に並べられる。
+
+### 発見
+
+#### String Str Vec<char>の相互変換
+
+##### str と String の違い
+
+-   str is a "String" slice.
+    -   Slice is a pointer to a block of memory.
+    -   Slice is immutable.
+    -   If you make a string via "string" then it is &str.
+-   String is type of "String".
+    -   String is a heap-allocated string. It is growable, mutable like vec and UTF-8 encoded.
+
+##### String -\> str
+
+``` rust
+    let s: String = "abc".to_string();
+    let ss: &str = &s;
+    println!("{}", &ss); // → abc
+```
+
+##### char -\> String
+
+``` rust
+    let c: char = 'a';
+    let cs: String = c.to_string();
+    println!("{}", &cs); // → a
+```
+
+##### Vec<char> -\> String
+
+``` rust
+    let cs: Vec<char> = vec!['a', 'b', 'c'];
+    let s: String = cs.iter().collect();
+    println!("{}", &s); // → abc
+```
+
+##### String -\> Vec<char>
+
+``` rust
+    let s: String = "abc".to_string();
+    let cs: Vec<char> = s.chars().collect();
+    println!("{:?}", &cs); // → ['a', 'b', 'c']
+```
+
+#### Binaryの話。
+
+``` rust
+fn main() {
+    let x = 13;
+
+    // bが2進数に変換という意味。020は0を20桁まで入れるという意味。
+    let s = format!("{:020b}", x);
+
+    println!("{}", s);
+}
+```
+
+### 問題点
+
+#### next_permutation??
+
+[ユーザー解説](https://atcoder.jp/contests/typical90/editorial/3212)の内容が理解できなかった。
+
+next_permutationなんとかって言ってたけど、意味がわからんかった。
+
+## typical90-03
+
+[問題リンク](https://atcoder.jp/contests/typical90/tasks/typical90_c)
+
+### 概要
+
+DFSを使って解く問題。この問題は、グラフを与えられて、そのグラフの中で最も長い経路を求めれば、その端と端を結んでしまえば求めるサークルができる。
+
+何よりも苦戦したのは**問題文をちゃんと読めてなかった**こと。問題文をちゃんと読めていれば、もっと早く解けたはず。
+
+```rust
+use proconio::input;
+
+fn main() {
+    input! {
+        n: usize,
+        data: [[usize; 2]; n-1],
+    }
+    
+    let mut graph = vec![vec![]; n];
+
+    for datum in data {
+        graph[datum[0]-1].push(datum[1]-1);
+        graph[datum[1]-1].push(datum[0]-1);
+    }
+
+    let dist_from_0 = solve(graph.clone(), 0);
+    
+    let max_index = dist_from_0.iter().enumerate().max_by_key(|x| x.1).unwrap().0;
+    
+    let dist_from_max = solve(graph.clone(), max_index);
+    
+    println!("{}", dist_from_max.iter().max().unwrap() + 1);
+}
+
+fn solve(graph: Vec<Vec<usize>>,start: usize) -> Vec<isize>{    
+    let mut stack = vec![(start, 0)];
+    let mut dist = vec![-1; graph.len()];
+    dist[start] = 0;
+    
+    while let Some((node, depth)) = stack.pop() {
+        for &next in &graph[node] {
+            if dist[next] != -1 {
+                continue;
+            }
+            dist[next] = depth + 1;
+            stack.push((next, depth + 1));
+        }
+    }
+    
+    return dist;
+}
+```
+
+
+### 発見
+
+#### 複数のループをするときに使う
+
+```rust
+// Iterate over the coordinates of a 4 x 4 x 4 grid
+// from (0, 0, 0), (0, 0, 1), .., (0, 1, 0), (0, 1, 1), .. etc until (3, 3, 3)
+for (i, j, k) in iproduct!(0..4, 0..4, 0..4) {
+   // ..
+}
+```
+
+#### DFSのコードの書き方
+
+グラフをとりあえず
+```rust
+Vec<Vec<usize>>
+```
+で表現する。
+
+次に、探索の仕方として、stackを用意して、そこに今現時点の(Node,Depth)を入れておく。そして、stackが空になるまで、stackからtupleを抜き取って行って、次のNodeを探索していく。つまり、stackはいわばNodeにDepthのステッカーを貼っているようなものであり、次に進めれば剥がすということを繰り返している。
+
+最終的に剥がすことができなかったtupleだけがstuckに積み重なっていくわけである。
+
+#### Find Max Value Index
+
+```rust
+let max_index = data.iter().enumerate().max_by_key(|x| x.1).unwrap().0;
+```
+とかける。
+```rust
+|x| x.1
+```
+というのはClosureといって、||に挟まれた引数から後ろの数を返す関数のことである。
+
+### 問題点
+
+## typical90-04
+
+[問題リンク](https://atcoder.jp/contests/typical90/tasks/typical90_d)
+
+### 概要
+
+簡単な問題。
+
+前処理をした方が良い、くらいしか話すことがない。
+
+```rust
+use itertools::iproduct;
+use nalgebra::DMatrix;
+use proconio::input;
+
+fn main() {
+    input! {
+        h: usize,
+        w: usize,
+        b: [usize; w * h],
+    }
+    
+    let mat = DMatrix::from_row_slice(h, w, &b);
+    
+    let row_sum = mat.clone().row_sum();
+    let col_sum = mat.clone().column_sum();
+    
+    for j in 0..w {
+        let tmp = row_sum[j] + col_sum[0] - mat[(0, j)];
+
+        if j == 0 {
+            print!("{}", tmp);
+        } else {
+            print!(" {}", tmp);
+        }
+    }
+
+    for (i, j) in iproduct!(1..h, 0..w) {
+        let tmp = row_sum[j] + col_sum[i] - mat[(i, j)];
+        
+        if j == 0 {
+            print!("\n{}", tmp);
+        } else {
+            print!(" {}", tmp);
+        }
+    }
+    
+}
+```
+
+
+### 発見
+
+#### nalgebraの使い方
+
+```rust
+use nalgebra::DMatrix;
+
+fn main() {
+    let mat = DMatrix::from_row_slice(2, 3, &[1, 2, 3, 4, 5, 6]);
+    assert_eq!(mat[(0, 0)], 1);
+    assert_eq!(mat[(0, 1)], 2);
+
+    let mat_zero = DMatrix::zeros(2, 3);
+    assert_eq!(mat_zero[(0, 0)], 0);
+
+    let elm = 10;
+    let mat_elm = DMatrix::from_element(2, 3, elm);
+    assert_eq!(mat_elm[(0, 0)], elm);
+
+    let mat_vec = DMatrix::from_vec(4, 3, vec![1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0]);
+    assert_eq!(mat_vec[(0, 0)], 1.0);
+
+    let mat_macro = matrix![1, 2, 3;
+                4, 5, 6;
+                7, 8, 9];
+    assert_eq!(mat_macro[(2, 1)], 8);
+}
+```
+
+### 問題点
+
+## typical90-05
+
+[問題リンク](https://atcoder.jp/contests/typical90/tasks/typical90_e)
+
+### 概要
+
+解き切ってない。問題はアルゴリズムというよりかは、行列などの扱いや変数の大きさなどのようだ。
+
+```rust
+//いつかリベンジ！！
+
+use std::env;
+use nalgebra::DMatrix;
+use proconio::input;
+
+fn main() {
+    //env::set_var("RUST_BACKTRACE", "full");
+    input! {
+        numbers_length: usize,
+        devider: usize,
+        digits: usize,
+        numbers: [usize; digits],
+    }
+
+    // 340282366920938463463374607431768211455
+    // 19318074092350443561
+    // 11710352956716025284
+
+    // for debug18446744073709551615
+
+    // let numbers_length: usize = 111;
+    // let devider : usize = 29;
+    // let digits: usize = 6;
+    // let numbers : Vec<usize>= vec![1,2,3,5,6,7,9];
+
+    let modular : u128 = 1000000007;
+
+    let mut rem_vec : Vec<usize> = vec![1];
+    let mut begin_index : usize = 0;
+    let mut end_index : usize= 0;
+    let mut loop_len : usize = 0;
+
+    for i in 0..devider {
+        let tmp_rem = (rem_vec.last().unwrap() * 10 ) % devider;
+        if rem_vec.binary_search(&tmp_rem).is_ok() {
+            begin_index = rem_vec.binary_search(&tmp_rem).unwrap();
+            end_index = rem_vec.len();
+            loop_len = end_index - begin_index;
+            break;
+        }
+        rem_vec.push( tmp_rem );
+    }
+
+    let (non_looped_side, looped_side) = rem_vec.split_at(begin_index);
+
+    // looped_rem[i][j] i*10^j-th % devider
+    let mut looped_rem : Vec<Vec<usize>> = Vec::new();
+    let mut non_looped_rem : Vec<Vec<usize>> = Vec::new();
+
+    for num in numbers {
+        let mut tmp_looped_rem = vec![];
+        let mut tmp_nonlooped_rem = vec![];
+        for i in looped_side {
+            tmp_looped_rem.push( (i * num) % devider );
+        }
+        looped_rem.push(tmp_looped_rem);
+        for i in non_looped_side {
+            tmp_nonlooped_rem.push( (i * num) % devider );
+        }
+        non_looped_rem.push(tmp_nonlooped_rem);
+    }
+
+    let mut beginning_vec : DMatrix<u128> = DMatrix::from_vec( devider, 1, vec![0; devider]);
+    beginning_vec[(0,0)] = 1;
+
+    // container[i][j] means how many numbers remain i in j-th digit in the loop
+    let mut looped_container : Vec<DMatrix<u128>> = Vec::new();
+
+    for jndex in 0..looped_rem[0].len() {
+        let mut vec_tmp_0 = vec![0 as u128; devider];
+
+        for index in 0..digits {
+            vec_tmp_0[looped_rem[index][jndex]] += 1;
+        }
+
+        looped_container.push(generate_calc_matrix(vec_tmp_0));
+    }
+
+    // container[i][j] means how many numbers remain i in j-th digit in the non-loop
+    let mut non_looped_container : Vec<DMatrix<u128>> = Vec::new();
+
+    if non_looped_rem.len() != 0 {
+        for jndex in 0..non_looped_rem[0].len() {
+            let mut vec_tmp_0 = vec![0 as u128; devider];
+            for index in 0..digits {
+                vec_tmp_0[non_looped_rem[index][jndex]] += 1;
+            }
+
+            non_looped_container.push(generate_calc_matrix(vec_tmp_0));
+        }
+    }
+
+    let ans = calc_mat(non_looped_container.clone(), looped_container.clone(), beginning_vec.clone(), numbers_length, modular);
+
+    println!("{}", ans % modular as u128);
+
+}
+
+fn calc_mat(non_looped_container : Vec<DMatrix<u128>>, looped_container : Vec<DMatrix<u128>>, beginning_vec : DMatrix<u128>, number_length : usize, modular: u128) -> u128 {
+    if non_looped_container.len() != 0 {
+        if non_looped_container.len() >= number_length {
+            let mut tmp_mat = non_looped_container[0].clone();
+            for i in 1..number_length {
+                tmp_mat = &non_looped_container[i] * &tmp_mat;
+                for j in 0..tmp_mat.nrows() {
+                    for k in 0..tmp_mat.ncols() {
+                        tmp_mat[(j,k)] %= modular as u128;
+                    }
+                }
+            }
+            let ans = tmp_mat * beginning_vec;
+            let ans_u = ans[(0,0)];
+            return ans_u;
+        }
+        else {
+            let mut nl_tmp_mat = non_looped_container[0].clone();
+            for i in 1..non_looped_container.len() {
+                nl_tmp_mat = &non_looped_container[i] * &nl_tmp_mat;
+                for j in 0..nl_tmp_mat.nrows() {
+                    for k in 0..nl_tmp_mat.ncols() {
+                        nl_tmp_mat[(j,k)] %= modular;
+                    }
+                }
+            }
+            let mut new_beginning_vec = nl_tmp_mat * beginning_vec;
+
+            let loop_number = number_length - non_looped_container.len();
+
+            let ans = calc_looped(looped_container, new_beginning_vec, loop_number, modular);
+
+            let ans_u = ans[(0,0)];
+
+            return ans_u;
+        }
+    } else {
+        let ans = calc_looped(looped_container, beginning_vec, number_length, modular);
+
+        let ans_u = ans[(0,0)];
+
+        return ans_u;
+    }
+}
+
+fn calc_looped (looped_container : Vec<DMatrix<u128>>, beginning_vec : DMatrix<u128>, number_length : usize, modular : u128) -> DMatrix<u128> {
+    if looped_container.len() >= number_length {
+        let mut tmp_mat = looped_container[1].clone();
+        for i in 2..number_length {
+            tmp_mat = &looped_container[i] * &tmp_mat;
+            for j in 0..tmp_mat.nrows() {
+                for k in 0..tmp_mat.ncols() {
+                    tmp_mat[(j,k)] %= modular;
+                }
+            }
+        }
+        return tmp_mat * beginning_vec;
+    }
+    else {
+        let mut tmp_mat_one_loop = looped_container[0].clone();
+        for i in 1..looped_container.len() {
+            tmp_mat_one_loop = &looped_container[i] * &tmp_mat_one_loop;
+            for j in 0..tmp_mat_one_loop.nrows() {
+                for k in 0..tmp_mat_one_loop.ncols() {
+                    tmp_mat_one_loop[(j,k)] %= modular;
+                }
+            }
+        }
+
+        let loop_number = number_length / looped_container.len();
+
+        // １回のループでできる行列はできたので、あとはloop_number回のループを行う
+        let mut ans = calc_power(tmp_mat_one_loop, loop_number, modular);
+
+        let loop_number_remain = number_length % looped_container.len();
+
+        if loop_number_remain != 0 {
+            let mut tmp_mat = looped_container[0].clone();
+            for i in 1..loop_number_remain {
+                tmp_mat = &looped_container[i] * &tmp_mat;
+                for j in 0..tmp_mat.nrows() {
+                    for k in 0..tmp_mat.ncols() {
+                        tmp_mat[(j,k)] %= modular;
+                    }
+                }
+            }
+            ans = tmp_mat * ans;
+        }
+
+        for j in 0..ans.nrows() {
+            for k in 0..ans.ncols() {
+                ans[(j,k)] %= modular;
+            }
+        }
+
+        return ans * beginning_vec;
+    }
+}
+
+fn calc_power (mat: DMatrix<u128>, power : usize, modular : u128) -> DMatrix<u128> {
+    let mut binary : Vec<usize> = format!("{:b}", power).chars().map(|c| c.to_digit(10).unwrap() as usize).collect();
+
+    binary.reverse();
+
+    let mut ans_mat = DMatrix::from_element(mat.nrows(), mat.ncols(), 0);
+
+    for i in 0..binary.len() {
+        if binary[i] == 0 {
+            continue;
+        } else {
+            if ans_mat == DMatrix::from_element(mat.nrows(), mat.ncols(), 0) {
+                ans_mat = calc_binary_power(mat.clone(), i, modular);
+            }
+            else {
+                ans_mat = ans_mat * calc_binary_power(mat.clone(), i, modular);
+                for j in 0..ans_mat.nrows() {
+                    for k in 0..ans_mat.ncols() {
+                        ans_mat[(j,k)] %= modular;
+                    }
+                }
+            }
+
+        }
+    }
+
+
+
+    ans_mat
+}
+
+fn calc_binary_power (mat: DMatrix<u128>, power_size: usize, modular : u128) -> DMatrix<u128> {
+    let mut ans_mat = DMatrix::from_element(mat.nrows(), mat.ncols(), 0);
+
+    if power_size == 0 {
+        return mat;
+    }
+
+    for i in 1..power_size+1 {
+        if i == 1 {
+            ans_mat = &mat * &mat;
+        } else {
+            ans_mat = &ans_mat * &ans_mat;
+            // alith
+            for j in 0..ans_mat.nrows() {
+                for k in 0..ans_mat.ncols() {
+                    ans_mat[(j,k)] %= modular;
+                }
+            }
+        }
+    }
+
+    ans_mat
+}
+
+fn generate_calc_matrix(rem_vec : Vec<u128>) -> DMatrix<u128> {
+    let mut tmp_bm = vec![];
+
+    let size = rem_vec.len();
+
+    for index in 0..size {
+        let mut tmp_left = rem_vec[0..index+1].to_vec();
+        tmp_left.reverse();
+        let mut tmp_right = rem_vec[index+1..size].to_vec();
+        tmp_right.reverse();
+        let mut tmp_vec = tmp_left;
+        tmp_vec.append(&mut tmp_right);
+
+        tmp_bm.append(&mut tmp_vec);
+    }
+
+    DMatrix::from_vec(size, size, tmp_bm)
+}
+
+```
+
+### 発見
+
+#### Vecの中身を探すとき
+
+```rust
+let vec = vec![1,3,5];
+let res1 = vec.binary_search(&2).is_ok();
+assert_eq!(res1, false);
+let res2 = vec.binary_search(&3).is_ok();
+assert_eq!(res2, true);
+```
+
+### 問題点
+
+#### usize
+
+rustのusizeは基本64bitなので、大きすぎる値を考える時には向いていない。
+
+#### 高速フーリエ変換
+
+やってなかったので、後々詳細を調べる。
+
