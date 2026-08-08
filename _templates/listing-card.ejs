@@ -24,25 +24,17 @@ function attr(s) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
 }
-function b64(s) {
-  return btoa(toStr(s));
-}
-function categoryData(cats) {
-  return b64(encodeURIComponent(cats.join(',')));
-}
 function categoryHash(cat) {
   return '#category=' + encodeURIComponent(cat);
 }
-function readingTimeSort(rt) {
-  var m = toStr(rt).match(/\d+/);
-  return m ? m[0] : '';
-}
-function dateSort(d) {
-  if (!d) return '';
-  var t = new Date(d).getTime();
-  return isNaN(t) ? toStr(d) : t;
-}
 function catColorIdx(cat) { return strHash(cat) % 5; }
+function encodeCategory(cat) {
+  // Prefer Quarto's helper so filter/hash encoding stays in sync with metadataAttrs.
+  if (typeof utils !== 'undefined' && utils && typeof utils.b64encode === 'function') {
+    return utils.b64encode(cat);
+  }
+  return btoa(encodeURIComponent(toStr(cat)));
+}
 var AVATAR_GRADIENTS = [
   'linear-gradient(135deg,#7c5cff,#2fb583)',
   'linear-gradient(135deg,#3c8fcf,#7c5cff)',
@@ -68,9 +60,8 @@ if (cat0) eyebrowParts.push(cat0.toUpperCase());
 if (rtText) eyebrowParts.push(rtText);
 var eyebrow = eyebrowParts.join(' · ');
 var categoriesText = cats.join(' ');
-var categoriesEncoded = categoryData(cats);
 %>
-<div class="gl-card-wrap" data-index="<%- i %>" data-categories="<%- categoriesEncoded %>" data-listing-date-sort="<%- dateSort(item.date) %>" data-listing-reading-time-sort="<%- readingTimeSort(rt) %>">
+<div class="gl-card-wrap" <%= metadataAttrs(item) %>>
 <article class="gl-card">
 <div class="gl-card-cover-wrap"><a href="<%- item.path %>" class="gl-card-link gl-card-cover" aria-label="<%- attr(item.title) %>"></a></div>
 <% if (eyebrow) { %>
@@ -88,7 +79,7 @@ var categoriesEncoded = categoryData(cats);
 <div class="gl-meta-col"><div class="gl-meta-lbl">PUBLISHED</div><div class="gl-meta-val listing-date"><%- fmtDate(item.date) %></div></div>
 <% } %>
 <% if (cats.length > 0) { %>
-<div class="gl-meta-col"><div class="gl-meta-lbl">CATEGORIES</div><div class="gl-cats listing-categories"><% cats.forEach(function(cat){ %><a class="gl-cat-pill" data-gl-cat="<%- catColorIdx(cat) %>" href="<%- categoryHash(cat) %>" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('<%- b64(encodeURIComponent(cat)) %>'); return false; }"><%- cat %></a><% }); %></div></div>
+<div class="gl-meta-col"><div class="gl-meta-lbl">CATEGORIES</div><div class="gl-cats listing-categories"><% cats.forEach(function(cat){ %><a class="gl-cat-pill" data-gl-cat="<%- catColorIdx(cat) %>" data-category="<%- encodeCategory(cat) %>" href="<%- categoryHash(cat) %>"><%- cat %></a><% }); %></div></div>
 <% } %>
 <div class="listing-reading-time gl-hidden-listing-value"><%- rtText %></div>
 <div class="gl-hidden-listing-value"><%- categoriesText %></div>
