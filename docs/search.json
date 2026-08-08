@@ -1762,117 +1762,276 @@
     ]
   },
   {
-    "objectID": "posts/at_coder/typical90-11.html",
-    "href": "posts/at_coder/typical90-11.html",
-    "title": "typical90-11",
+    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html",
+    "href": "posts/tech/ADHDManagerDevelopmentLog.html",
+    "title": "ADHDManager開発記",
     "section": "",
-    "text": "問題リンク\nDPの問題です。慣れたものだね。\nuse itertools::iproduct;\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        mut dcs: [(usize, usize, usize); n],\n    }\n\n    // 締切日を降順にソート\n    dcs.sort_by(|a, b| a.0.cmp(&b.0).then(a.1.cmp(&b.1)).then(b.2.cmp(&a.2)));\n\n    // dp[i][j]: i問題目まで考えて、それまでの合計仕事日数がjの時の、報酬の最大値\n    let mut dp = vec![vec![0; 5001]; n + 1];\n\n    for (i, j) in iproduct!(0..n, 0..5001) {\n        // i問題目を解く場合\n        if j + dcs[i].1 &lt;= dcs[i].0 {\n            dp[i + 1][j + dcs[i].1] = dp[i + 1][j + dcs[i].1].max(dp[i][j] + dcs[i].2);\n        }\n        // i問題目を解かない場合\n        dp[i + 1][j] = dp[i + 1][j].max(dp[i][j]);\n    }\n\n    println!(\"{}\", dp[n].iter().max().unwrap());\n\n}",
+    "text": "タスク管理アプリは、ときどきタスクを減らすどころか、「タスクをきれいに管理する」という新しい仕事を増やしてしまう。\nProjectを作る。期限を決める。優先順位を付ける。分類する。今日やるものを選ぶ。そして、もっと良い選び方がある気がして、また並べ直す。\nADHDManagerは、そうした「管理のための管理」を減らすために始まった。しかし開発の初期には、まさにProjectとTaskを管理する、ごく普通のタスク管理アプリに近い姿をしていた。\nそこから設計を何度も壊し、AIの役割を疑い、同期や通知の失敗に向き合い、商業化を前に立ち止まった。最終的に見つかった中心価値は、タスクをたくさん管理できることでも、AIが賢いことでもない。\nこの記事は、その考えにたどり着くまでの記録である。成功した機能だけでなく、途中で捨てた前提、実際に起きた障害、テストでは証明できなかったこと、そして現在も残っている課題までを書いていく。",
     "crumbs": [
       "Home",
       "Posts",
-      "At Coder",
-      "typical90-11"
+      "Tech",
+      "ADHDManager開発記"
     ]
   },
   {
-    "objectID": "posts/at_coder/typical90-11.html#概要",
-    "href": "posts/at_coder/typical90-11.html#概要",
-    "title": "typical90-11",
+    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#出発点aiが次にやることを選んでくれたら",
+    "href": "posts/tech/ADHDManagerDevelopmentLog.html#出発点aiが次にやることを選んでくれたら",
+    "title": "ADHDManager開発記",
+    "section": "出発点——AIが「次にやること」を選んでくれたら",
+    "text": "出発点——AIが「次にやること」を選んでくれたら\n最初の発想は単純だった。\n締め切りなどの外圧がないと動き出しにくい時、目の前に一つだけ「今はこれ」と出してくれるアプリがあれば、選ぶところで消耗せずに済むのではないか。\n2026年5月末に始まった最初の実装へ、Project、Task、AI推薦UIが加わった。OpenRouter経由でAIを使い、期限、重要度、使える時間、場所などを見て、取り組むTaskを選ぶ。コードが大きくなると、一つのファイルに集まっていた型を役割ごとのファイルへ分割した。\n技術的には、順当にアプリらしくなっていった。ただし、ここには早くも矛盾があった。\n「選べなくて困っている人」を助けたいのに、最初にProjectを作らせ、Taskを所属させ、いくつもの属性を入力させていた。迷いを減らすアプリが、使い始める前に新しい判断を要求していたのである。\n当時の実装が無駄だったわけではない。Taskの永続化、AI通信、推薦ロジック、iOS/macOSで共有できる基礎は、その後も残った。しかし、動く実装と、目的に合うプロダクトは別物だった。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ADHDManager開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#最初の大きな方向転換管理ではなく選択を終わらせる",
+    "href": "posts/tech/ADHDManagerDevelopmentLog.html#最初の大きな方向転換管理ではなく選択を終わらせる",
+    "title": "ADHDManager開発記",
+    "section": "最初の大きな方向転換——「管理」ではなく「選択を終わらせる」",
+    "text": "最初の大きな方向転換——「管理」ではなく「選択を終わらせる」\n2026年7月、プロジェクト全体を目的から見直した。\nそこで言語化されたのが、ADHDManagerはplannerではなく、むしろanti-plannerだという考えだった。工程をきれいに計画するのではなく、比較を終わらせて、一件に固定する。その後の進め方は本人へ返す。\n中核体験は、次の流れへ変わった。\n\n現在の条件に合うTaskを一件だけ見せる。\nユーザーが「これをやる」と決める。\nその一件を固定し、AIの遅い応答や同期更新が来ても勝手に差し替えない。\nユーザーはアプリの外を含め、自分のやり方で進める。\n戻って「終わった」「ここで切り上げる」「手放す」のどれかを選ぶ。\n\nここで重要だったのは、「完了」だけを成功にしなかったことだ。\n途中まで進んで区切ることも、今は合わないと手放すこともある。それを失敗や連続記録の途切れとして扱えば、アプリを開くこと自体が新しい圧力になる。そこで「今は無理」は推薦を改善するための情報にし、「ここで切り上げる」はTaskを残したまま現在の選択だけを終える操作にした。\n同時にmacOS対応も進めた。単にiPhone画面を広げるのではなく、推薦ロジックや選択状態は共有し、NavigationSplitViewやキーボード操作など、画面の殻だけをプラットフォームへ合わせる方針を採った。\nこの段階で、製品の軸は「AI付きToDo」から、選択状態を守るアプリへ移った。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ADHDManager開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#実際に壊れていたもの動く画面の裏で信頼が欠けていた",
+    "href": "posts/tech/ADHDManagerDevelopmentLog.html#実際に壊れていたもの動く画面の裏で信頼が欠けていた",
+    "title": "ADHDManager開発記",
+    "section": "実際に壊れていたもの——動く画面の裏で、信頼が欠けていた",
+    "text": "実際に壊れていたもの——動く画面の裏で、信頼が欠けていた\n方向性を変えた後、UIを細かく見直すと、推薦精度より先に直すべき問題がいくつも見つかった。\n\nAI処理中に画面を閉じても、遅れて返った結果がTaskを追加し得た。\n一覧の「開始」と、推薦画面の「これをやる」が別の状態遷移だった。\nAIが誤認した期限や重要度を、追加後に十分修正できなかった。\n誤完了や誤削除を取り消す境界が弱かった。\n「今やる」画面にProject名、選択元、条件調整などが並び、決定後もアプリが退いていなかった。\n\nさらに、macOSレビュー用ビルドを起動した時、既存のSwiftDataストアを現行のデータ形式（schema）として開けず、Cannot use staged migration with an unknown model versionでアプリが終了した。\n一番の問題は、移行に失敗したことそのものではない。保存領域を開けない時にfatalErrorへ進み、既存データを持つユーザーへ復旧手段を見せられなかったことだった。\nこの経験から、保存失敗を「例外」ではなく、製品が扱うべき状態に変えた。起動をloading / ready / recoveryRequiredへ分け、読めないデータを黙って削除・初期化せず、再試行や診断、バックアップの導線を出す。PreviewやGUIレビューには明示的な一時ストアを使い、実データから隔離する。\nこの時に得た教訓は明快だった。\n\n信頼性は、正常系が速く動くことではない。失敗した時に、入力や既存データを勝手に失わないことで作られる。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ADHDManager開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#projectを消すただしデータは消さない",
+    "href": "posts/tech/ADHDManagerDevelopmentLog.html#projectを消すただしデータは消さない",
+    "title": "ADHDManager開発記",
+    "section": "Projectを消す。ただし、データは消さない",
+    "text": "Projectを消す。ただし、データは消さない\n次に行ったのは、初期設計の中心だったProject管理を製品から外すことだった。\nProject一覧、Project詳細、Project作成、Taskの所属先選択を通常導線から削除し、Taskを一つのフラットな集合として扱う。主要画面の共通+から、タイトルだけですぐ追加できるようにした。詳細は、必要になった時だけ後から開く。\nこれは見た目の整理ではない。「整理してから登録する」を、「まず捕まえてから必要なら整える」へ反転させる変更だった。\nただし、ここで過去のProjectデータまで消すと、正しい思想のために既存ユーザーのデータを犠牲にすることになる。そこでProjectItemとTaskItem.projectは、V1/V2ストアを読み続ける互換層として残した。新規TaskはProjectを持たないが、既存Projectとの関連を自動で外したり、名前を変えたり、削除したりしない。\n古い構造を物理的に消すことと、製品体験から退場させることを分けたのである。\n移行テストには、出荷済みschemaを再現するFrozen V2 fixtureを固定し、都合よく作り直さないルールも設けた。新しい設計へ進みながら、古いデータを開けることを同じくらい重く扱った。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ADHDManager開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#aiを主役から降ろす",
+    "href": "posts/tech/ADHDManagerDevelopmentLog.html#aiを主役から降ろす",
+    "title": "ADHDManager開発記",
+    "section": "AIを主役から降ろす",
+    "text": "AIを主役から降ろす\nAIは便利だった。貼り付けた文章や写真からTask案を作り、複数科目の試験日程表なら科目ごとのTaskへ変換できる。「詰まった」時には、長い手順ではなく、再開のための一動作だけを返せる。\n一方で、AIを中心へ置くほど、プロダクトは不安定になった。\nOpenRouterではAI提供元の振り分けに互換性問題が起きた。構造化応答が長さ上限で切れる場合もあった。推薦では、通信処理が45秒待てる設計なのに、画面側は1.5秒で端末内推薦へ切り替えており、「AIが返事をしない」ように見える待ち時間のずれも見つかった。待ち時間を8秒へ揃え、空応答・不正応答・timeoutでは安全に端末内選択へ戻すようにした。\n画像入力でも、単に「AIなら読める」とは考えなかった。画像を縮小し、サイズ上限を設け、端末内OCRの原文を保存し、AIが原文を消したり言い換えたりできないようにした。複数Task化は、独立した予定が明示された場合だけ最大8件まで許可し、一つの仕事を勝手に手順へ分解することは拒否した。\nこうしてAIの役割は、次第に限定されていった。\n\n中心の推薦は、まず即時で決定的な端末内ロジックを使う。\nAIは、文章や画像の整理、曖昧な日付の抽出、詰まった時の一手を得意領域とする。\nAIが使えなくても、追加、選択、固定、完了という中核体験は止めない。\n外部送信は同意した機能だけにし、送る内容を画面上で説明する。\n\n現在の作業ツリーでは、利用可能なら端末内のApple Intelligenceを先に使い、それで足りない時だけ、同意済みのOpenRouterへ進む段階的な構成も試している。ただし、これはまだ開発中であり、出荷済みの完成機能ではない。\nAIを減らしたのではない。AIが失敗しても製品の約束が壊れない位置まで、主役から降ろした。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ADHDManager開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#同期通知widgetビルド成功では証明できないもの",
+    "href": "posts/tech/ADHDManagerDevelopmentLog.html#同期通知widgetビルド成功では証明できないもの",
+    "title": "ADHDManager開発記",
+    "section": "同期、通知、Widget——ビルド成功では証明できないもの",
+    "text": "同期、通知、Widget——ビルド成功では証明できないもの\nApple Developer Program登録後、iPhoneとMacのTask、選択中の一件、推薦抑制をprivate CloudKitで同期するPhaseへ進んだ。日本語の日時表示や所要時間編集も整え、既存TaskをAIで編集・拡張する機能、Taskと独立したReminder、現在の一件を表示するWidgetを追加した。\nここでも、小さく見える不具合が設計の弱点を教えてくれた。\nWidget側の互換型は読み取りにしか使わないのにCodableへしていたため、Encodable適合がなくビルドエラーになった。必要なのはDecodableだけだった。さらに、最初のWidget実装は表示データを正しく作れても、時間が過ぎた時に「次のReminder」へ進まなかった。アプリを開き直さない限り表示が古いままだったので、将来のReminder境界を更新予定へ積み、アプリ内表示も定期更新するように直した。\nそして、ここには今も越えていない境界がある。\nxcodebuildが成功しても、App GroupsやWidgetKitの権限設定、通知許可、deep link、実機上のCloudKit競合までは証明できない。署名、provisioning、2台の実機、CloudKit本番schema、通知権限の拒否や取消しは、それぞれ別に確認しなければならない。\n「テストが通った」と「ユーザーの端末で信頼できる」は、同じ言葉ではなかった。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ADHDManager開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#楽しさを足すただし義務にはしない",
+    "href": "posts/tech/ADHDManagerDevelopmentLog.html#楽しさを足すただし義務にはしない",
+    "title": "ADHDManager開発記",
+    "section": "楽しさを足す。ただし、義務にはしない",
+    "text": "楽しさを足す。ただし、義務にはしない\nタスクを終えた瞬間に、ほんの短い光や触覚が返ってくる。その程度の楽しさは、操作の手応えになる。\nそこでFocus SparkというPlay layerを追加した。完了だけでなく、「ここで切り上げる」「手放す」にも肯定的な反応を返す。点数、streak、通貨、ランキング、未達ペナルティは作らない。遊びのための永続データも増やさない。\n最初の実装レビューでは、Dynamic Typeを大きくした時に48ptの装飾が終了文へ重なる懸念が見つかった。また、「遊びの演出をOFF」という設定が今やる画面だけに効き、Quick Addや一覧のspring、glow、hapticには残るという、設定名と実効範囲のずれもあった。\nそのため、Reduce Motionを含む共通gateを作り、装飾を主要操作の唯一の状態表現にせず、設定OFFをアプリ全体へ適用した。\n楽しさを足す作業で学んだのは、派手さではなく一貫性だった。小さな演出ほど、「消したい人が確実に消せる」「見えなくても操作結果が分かる」という約束が重要になる。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ADHDManager開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#商業化監査作れていることと売れることの間",
+    "href": "posts/tech/ADHDManagerDevelopmentLog.html#商業化監査作れていることと売れることの間",
+    "title": "ADHDManager開発記",
+    "section": "商業化監査——作れていることと、売れることの間",
+    "text": "商業化監査——作れていることと、売れることの間\n2026年7月19日、実装を止めて、商業化の観点からプロダクト全体を監査した。コード、UI、CloudKit、通知、AI送信、Privacy、Accessibility、価格、Support、App Store運用までを横断し、結果は約2,500行のレポートになった。\nそこで見えたのは、「機能が足りない」よりも、「信頼の説明と失敗時の回復が足りない」という問題だった。\n\n通常のQuick Addと、外部AIへ送る入力の境界が分かりにくい。\n同期中、未ログイン、offline、errorの違いが利用者に見えない。\n通知登録に失敗しても、成功したように見える経路がある。\nportableなExport、Restore、全データ削除の契約が弱い。\nオンボーディングがなく、初回に何を入力すれば価値を試せるか伝わらない。\nPrivacy Policy、Support、配布方式、公開名、App Store上の表現が未決定である。\nCloudKit本番schema、2端末競合、実機Accessibility、signed archiveは未証明である。\n\nテストでは249件中248件が成功し、Unit test bundleは通った。一方、Quick AddのUIテストが1件失敗した。ただし証明できたのは、テストがkeyboard focusを確認せずにtypeTextしようとしたことまでだった。製品のautofocusが壊れているのか、テストの前提が間違っているのかは切り分けられていない。\nこの失敗は象徴的だった。数字をきれいにするために製品側かテスト側を適当に直すのではなく、何が証明され、何がまだ分からないかを分ける必要がある。\n監査の結論は、機能競争へ進むことではなかった。\n\n最初に売るべきものはAIではない。「もう選び直さなくていい」という安心である。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ADHDManager開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#今取り組んでいることtrust-repair",
+    "href": "posts/tech/ADHDManagerDevelopmentLog.html#今取り組んでいることtrust-repair",
+    "title": "ADHDManager開発記",
+    "section": "今取り組んでいること——Trust repair",
+    "text": "今取り組んでいること——Trust repair\n監査後の現在は、商用機能を増やす前に、中心体験と信頼を修復する作業へ戻っている。\n作業ツリー上では、次の改善を進めている。\n\nQuick Addを、まずタイトルだけ端末内へ保存する入口に戻す。\n文章・写真のAI整理を別の明示操作へ分け、生成結果を確認してから追加する。\n「今やる」の条件を折りたたみ、5分・15分・25分・60分から選べるようにする。\n一覧から任意のTaskを「今やる」に指定できるようにする。\n選択中のTaskからメモや詳細を開けるようにする。\nオンボーディングで、一件を追加して固定する価値を短く説明する。\n同期状態、通知失敗、JSON書き出し、全データ削除を利用者へ見せる。\n外部AIの同意と送信内容を明確にし、ZDR（データ保持を許可しない経路指定）を安全側の既定へ寄せる。\n端末内AI、OpenRouter、固定の代替ヒントを段階的に使う。\n\nただし、この一覧は「完成した機能一覧」ではない。未コミットの開発中変更を含み、実機、CloudKit、通知、Accessibility、Release archiveの検証はこれからである。\nここまでの開発で、完成度を誤認させる言い方そのものが信頼を損なうと分かった。だから現在地も、実装済み、検証済み、未確認を分けて扱う。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ADHDManager開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#何に失敗し何を学んだか",
+    "href": "posts/tech/ADHDManagerDevelopmentLog.html#何に失敗し何を学んだか",
+    "title": "ADHDManager開発記",
+    "section": "何に失敗し、何を学んだか",
+    "text": "何に失敗し、何を学んだか\n振り返ると、大きな失敗はクラッシュやビルドエラーだけではない。目的と手段を取り違えた瞬間にあった。\n\n1. 「AIで選ぶ」を目的にしてしまった\nAIは手段なのに、AIが返るまで待つUIや、モデル設定が中心になりかけた。必要だったのは賢い推薦ではなく、迷いを短く終わらせることだった。\n\n\n2. 一般的なTask managerの常識を持ち込んだ\nProject、階層、分類、豊富な属性は便利だが、このプロダクトでは開始前の判断を増やした。高機能であるほど目的に近づくとは限らなかった。\n\n\n3. 正常系の成功を、信頼性と呼んだ\nBuild成功は、migration、entitlement、通知許可、同期競合、署名を保証しない。テスト成功も、実機の利用旅程やAccessibilityを自動的には証明しない。\n\n\n4. 失敗を見えなくすれば、体験が滑らかになると思った\nAI fallback、通知登録、CloudKit同期を静かに処理しすぎると、利用者には「何が起きたか分からない」状態が残る。滑らかさと不透明さは違う。\n\n\n5. 設定の言葉と、実際の範囲がずれた\nPlay layerのOFF、AI送信の同意、「端末内」という表示など、小さな文言のずれが製品全体の信用へ影響した。設定は実装詳細ではなく、利用者との契約だった。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ADHDManager開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#これから機能を増やす前に仮説を証明する",
+    "href": "posts/tech/ADHDManagerDevelopmentLog.html#これから機能を増やす前に仮説を証明する",
+    "title": "ADHDManager開発記",
+    "section": "これから——機能を増やす前に、仮説を証明する",
+    "text": "これから——機能を増やす前に、仮説を証明する\n今後の優先順位は、すでにかなりはっきりしている。\nまず、誰のどの瞬間を助けるのかを、実際の利用者調査で確かめる。想定しているのは、タスクを持っているのに比較で止まり、必要な時だけ短く一件へ絞りたい人だ。ADHDの人全員に同じ解決策が効くとは仮定しない。\n次に、端末内だけでも中心の流れが成立する状態を完成させる。追加し、一件へ固定し、終えるか区切るか手放し、必要な時だけ戻ってくる。AIなしでもここが速く、安心して使えることが先である。\nその上で、次を公開前の合格条件として証明する。\n\nstable Xcodeでのsigned archiveとTestFlight相当の動作\nCloudKit本番schema、2台の実機、競合と復旧\n通知、Widget、deep link、App Groupsの実機確認\nVoiceOver、Voice Control、Larger Text、Reduce Motionでの主要操作完遂\nExport、Restore、Deleteと、Privacy・Supportの運用\n外部AIへ送る内容、同意、ZDR、失敗時fallbackの一致\nUIテストのfocus問題を含む、主要stateの再現可能な検証\n\n収益化は、現時点では「無期限で使えるlocal core＋買い切りPro」が最初の仮説である。継続原価のあるmanaged AI subscriptionは、localや端末内AIより明確に価値が高く、品質、Privacy、費用、Supportが成立すると分かってから判断する。\n最適化したいのは、滞在時間でも、入力Task数でも、連続利用日数でもない。\n迷って止まった時、一件を決めるまでの時間が短くなったか。決まった後、アプリを閉じて実際の行動へ戻れたか。\nこの二つを、プロダクトの成長より先に測りたい。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ADHDManager開発記"
+    ]
+  },
+  {
+    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#おわりに作らないものがプロダクトを形にする",
+    "href": "posts/tech/ADHDManagerDevelopmentLog.html#おわりに作らないものがプロダクトを形にする",
+    "title": "ADHDManager開発記",
+    "section": "おわりに——作らないものが、プロダクトを形にする",
+    "text": "おわりに——作らないものが、プロダクトを形にする\nADHDManagerの開発は、機能を積み上げる歴史であると同時に、作らないものを決める歴史でもあった。\nProjectを通常導線から外した。サブタスクや依存関係を作らなかった。AIを必須にしなかった。streakや罰を入れなかった。決定後の画面から、理由や候補や技術情報を退かせた。\n残ったのは、とても小さな約束である。\n\n一度に見せるのは一件だけ。 決めた一件は、勝手に変えない。 終わっても、区切っても、手放しても責めない。 必要な時だけ現れ、決まった後は退く。\n\nまだ、商用リリースの準備が整ったとは言えない。名前、配布、同期、Privacy、Support、実機品質、そして本当に人の役に立つかという検証が残っている。\nそれでも、何を作るかより先に、何を守るかは見えてきた。\nADHDManagerが目指しているのは、人生を管理することではない。次の一歩を選ぶための摩擦を、ほんの少しだけ減らすことである。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "Tech",
+      "ADHDManager開発記"
+    ]
+  },
+  {
+    "objectID": "posts/at_coder/typical90-06-10.html",
+    "href": "posts/at_coder/typical90-06-10.html",
+    "title": "競プロ典型90 06〜10",
     "section": "",
-    "text": "問題リンク\nDPの問題です。慣れたものだね。\nuse itertools::iproduct;\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        mut dcs: [(usize, usize, usize); n],\n    }\n\n    // 締切日を降順にソート\n    dcs.sort_by(|a, b| a.0.cmp(&b.0).then(a.1.cmp(&b.1)).then(b.2.cmp(&a.2)));\n\n    // dp[i][j]: i問題目まで考えて、それまでの合計仕事日数がjの時の、報酬の最大値\n    let mut dp = vec![vec![0; 5001]; n + 1];\n\n    for (i, j) in iproduct!(0..n, 0..5001) {\n        // i問題目を解く場合\n        if j + dcs[i].1 &lt;= dcs[i].0 {\n            dp[i + 1][j + dcs[i].1] = dp[i + 1][j + dcs[i].1].max(dp[i][j] + dcs[i].2);\n        }\n        // i問題目を解かない場合\n        dp[i + 1][j] = dp[i + 1][j].max(dp[i][j]);\n    }\n\n    println!(\"{}\", dp[n].iter().max().unwrap());\n\n}",
+    "text": "問題リンク\n\n\n失敗した解き方\nコメントの中でやった通りのやり方。これだと計算量が \\(k^{n}\\) になってしまうためにデカいテストデータでは通らなかった。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        k: usize,\n        s: String,\n    }\n\n    let vec_str = s.chars().into_iter().collect::&lt;Vec&lt;char&gt;&gt;();\n    let mut vec_str_to_usize = vec_str\n        .clone()\n        .into_iter()\n        .map(|c| c.to_digit(36).unwrap() as usize)\n        .collect::&lt;Vec&lt;usize&gt;&gt;();\n\n    // 例えば、n=7, k=3, s=abcdefgの場合、\n    // 0,1,2,3,4=n-k の中から最大のものを選んで、で残ったやつから i,i+1,...,n-k+1=3 の中から最大のものを選ぶ。\n    // これから続けて、\n\n    let mut ans = vec![];\n\n    // let first_index = find_biggest_index(vec_str_to_usize.clone(), 0, n - k);\n    // ans.push(vec_str[first_index]);\n    // let second_index = find_biggest_index(vec_str_to_usize.clone(), first_index + 1, n - k + 1);\n\n    let mut now_index = 0;\n    for i in 0..k {\n        if i == 0 {\n            now_index = find_smallest_index(vec_str_to_usize.clone(), 0, n - k);\n        } else {\n            now_index = find_smallest_index(vec_str_to_usize.clone(), now_index + 1, n - k + i);\n        }\n        ans.push(vec_str[now_index]);\n    }\n\n    println!(\"{}\", ans.into_iter().collect::&lt;String&gt;());\n}\n\nfn find_smallest_index(\n    vec_str_to_usize: Vec&lt;usize&gt;,\n    start_index: usize,\n    end_index: usize,\n) -&gt; usize {\n    let mut min = 36;\n    let mut index = 0;\n\n    for i in start_index..end_index + 1 {\n        if min &gt; vec_str_to_usize[i as usize] {\n            min = vec_str_to_usize[i as usize];\n            index = i;\n        }\n    }\n\n    index\n}\nなので別の方法を考える。\n\\(N\\) の長さの文字列の中から一番でかいアルファベットを探して、それが \\(N-K\\) 番目より前にあればOK。その値を上から順に並べていく。これだと計算量は \\(NK\\) になる。けどまだダメ。\nfn find_smallest_index(vec_str_to_usize: Vec&lt;usize&gt;, limit_index: usize) -&gt; usize {\n    for (i, j) in iproduct!(11..36, 0..limit_index) {\n        if vec_str_to_usize[j] == i {\n            return j;\n        }\n    }\n    0\n}\nここで問題となるのが、 \\(\\symscr{O}(10^8)\\) がおおよそ実行時間が2秒であることを考慮すると、 \\(NK\\) だとダメだということ。なので \\(N\\) か \\(K\\) を \\(1\\) にするような方法を考えたとき、Stringを整理して、 \\(N\\) 回の計算を終えたらすぐに \\(K\\) 回の計算をすれば終わるようなデータベースを準備すればいい。これだと計算量は \\(N+K\\) になるので、解決できる。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        k: usize,\n        s: String,\n    }\n\n    let vec_str = s.chars().into_iter().collect::&lt;Vec&lt;char&gt;&gt;();\n    let mut vec_str_to_usize = vec_str\n        .clone()\n        .into_iter()\n        .map(|c| c.to_digit(36).unwrap() as usize - 10)\n        .collect::&lt;Vec&lt;usize&gt;&gt;();\n\n    let mut ans = vec![];\n\n    let r = generate_r(vec_str_to_usize.clone());\n\n    let mut position = -1;\n\n    for i in 0..k {\n        for j in 0..26 {\n            let tmp = r[(position + 1) as usize][j];\n            if tmp != -1 && n - tmp as usize &gt;= k - i {\n                ans.push(char::from_digit((j + 10) as u32, 36).unwrap());\n                position = tmp as isize;\n                break;\n            }\n        }\n    }\n\n    println!(\"{}\", ans.into_iter().collect::&lt;String&gt;());\n}\n\n// r[i][j]がi桁目の数より右側にjが出現する最小のインデックスを返す\n\nfn generate_r(vec_str_to_usize: Vec&lt;usize&gt;) -&gt; Vec&lt;Vec&lt;isize&gt;&gt; {\n    let mut r: Vec&lt;Vec&lt;isize&gt;&gt; = vec![vec![-1; 26]; vec_str_to_usize.len() + 1];\n\n    for i in (0..vec_str_to_usize.len()).rev() {\n        for j in 0..26 {\n            if vec_str_to_usize[i] == j {\n                r[i][j] = i as isize;\n            } else {\n                r[i][j] = r[i + 1][j];\n            }\n        }\n    }\n\n    r\n}\n困難は分割せよっていう話があるが、これは困難を積集合として分割してはならないという教訓を与えてくれた。\n\n\n\n\n\n\\(\\symscr{O}(10^8)\\) がおおよそ実行時間が2秒である。これが大体どのコンテストでもリミッターになってるらしい。",
     "crumbs": [
       "Home",
       "Posts",
       "At Coder",
-      "typical90-11"
+      "競プロ典型90 06〜10"
     ]
   },
   {
-    "objectID": "posts/at_coder/typical90-01-05.html",
-    "href": "posts/at_coder/typical90-01-05.html",
-    "title": "競プロ典型90 01〜05",
+    "objectID": "posts/at_coder/typical90-06-10.html#typical90-06",
+    "href": "posts/at_coder/typical90-06-10.html#typical90-06",
+    "title": "競プロ典型90 06〜10",
     "section": "",
-    "text": "問題リンク\n\n\nLearnt Binary Search.\n\n\n\n\n\nSearching 0..n is O(n) but searching by binary is O(log n). This makes very big difference.",
+    "text": "問題リンク\n\n\n失敗した解き方\nコメントの中でやった通りのやり方。これだと計算量が \\(k^{n}\\) になってしまうためにデカいテストデータでは通らなかった。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        k: usize,\n        s: String,\n    }\n\n    let vec_str = s.chars().into_iter().collect::&lt;Vec&lt;char&gt;&gt;();\n    let mut vec_str_to_usize = vec_str\n        .clone()\n        .into_iter()\n        .map(|c| c.to_digit(36).unwrap() as usize)\n        .collect::&lt;Vec&lt;usize&gt;&gt;();\n\n    // 例えば、n=7, k=3, s=abcdefgの場合、\n    // 0,1,2,3,4=n-k の中から最大のものを選んで、で残ったやつから i,i+1,...,n-k+1=3 の中から最大のものを選ぶ。\n    // これから続けて、\n\n    let mut ans = vec![];\n\n    // let first_index = find_biggest_index(vec_str_to_usize.clone(), 0, n - k);\n    // ans.push(vec_str[first_index]);\n    // let second_index = find_biggest_index(vec_str_to_usize.clone(), first_index + 1, n - k + 1);\n\n    let mut now_index = 0;\n    for i in 0..k {\n        if i == 0 {\n            now_index = find_smallest_index(vec_str_to_usize.clone(), 0, n - k);\n        } else {\n            now_index = find_smallest_index(vec_str_to_usize.clone(), now_index + 1, n - k + i);\n        }\n        ans.push(vec_str[now_index]);\n    }\n\n    println!(\"{}\", ans.into_iter().collect::&lt;String&gt;());\n}\n\nfn find_smallest_index(\n    vec_str_to_usize: Vec&lt;usize&gt;,\n    start_index: usize,\n    end_index: usize,\n) -&gt; usize {\n    let mut min = 36;\n    let mut index = 0;\n\n    for i in start_index..end_index + 1 {\n        if min &gt; vec_str_to_usize[i as usize] {\n            min = vec_str_to_usize[i as usize];\n            index = i;\n        }\n    }\n\n    index\n}\nなので別の方法を考える。\n\\(N\\) の長さの文字列の中から一番でかいアルファベットを探して、それが \\(N-K\\) 番目より前にあればOK。その値を上から順に並べていく。これだと計算量は \\(NK\\) になる。けどまだダメ。\nfn find_smallest_index(vec_str_to_usize: Vec&lt;usize&gt;, limit_index: usize) -&gt; usize {\n    for (i, j) in iproduct!(11..36, 0..limit_index) {\n        if vec_str_to_usize[j] == i {\n            return j;\n        }\n    }\n    0\n}\nここで問題となるのが、 \\(\\symscr{O}(10^8)\\) がおおよそ実行時間が2秒であることを考慮すると、 \\(NK\\) だとダメだということ。なので \\(N\\) か \\(K\\) を \\(1\\) にするような方法を考えたとき、Stringを整理して、 \\(N\\) 回の計算を終えたらすぐに \\(K\\) 回の計算をすれば終わるようなデータベースを準備すればいい。これだと計算量は \\(N+K\\) になるので、解決できる。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        k: usize,\n        s: String,\n    }\n\n    let vec_str = s.chars().into_iter().collect::&lt;Vec&lt;char&gt;&gt;();\n    let mut vec_str_to_usize = vec_str\n        .clone()\n        .into_iter()\n        .map(|c| c.to_digit(36).unwrap() as usize - 10)\n        .collect::&lt;Vec&lt;usize&gt;&gt;();\n\n    let mut ans = vec![];\n\n    let r = generate_r(vec_str_to_usize.clone());\n\n    let mut position = -1;\n\n    for i in 0..k {\n        for j in 0..26 {\n            let tmp = r[(position + 1) as usize][j];\n            if tmp != -1 && n - tmp as usize &gt;= k - i {\n                ans.push(char::from_digit((j + 10) as u32, 36).unwrap());\n                position = tmp as isize;\n                break;\n            }\n        }\n    }\n\n    println!(\"{}\", ans.into_iter().collect::&lt;String&gt;());\n}\n\n// r[i][j]がi桁目の数より右側にjが出現する最小のインデックスを返す\n\nfn generate_r(vec_str_to_usize: Vec&lt;usize&gt;) -&gt; Vec&lt;Vec&lt;isize&gt;&gt; {\n    let mut r: Vec&lt;Vec&lt;isize&gt;&gt; = vec![vec![-1; 26]; vec_str_to_usize.len() + 1];\n\n    for i in (0..vec_str_to_usize.len()).rev() {\n        for j in 0..26 {\n            if vec_str_to_usize[i] == j {\n                r[i][j] = i as isize;\n            } else {\n                r[i][j] = r[i + 1][j];\n            }\n        }\n    }\n\n    r\n}\n困難は分割せよっていう話があるが、これは困難を積集合として分割してはならないという教訓を与えてくれた。\n\n\n\n\n\n\\(\\symscr{O}(10^8)\\) がおおよそ実行時間が2秒である。これが大体どのコンテストでもリミッターになってるらしい。",
     "crumbs": [
       "Home",
       "Posts",
       "At Coder",
-      "競プロ典型90 01〜05"
+      "競プロ典型90 06〜10"
     ]
   },
   {
-    "objectID": "posts/at_coder/typical90-01-05.html#typical90-01",
-    "href": "posts/at_coder/typical90-01-05.html#typical90-01",
-    "title": "競プロ典型90 01〜05",
+    "objectID": "posts/at_coder/typical90-06-10.html#typical90-07",
+    "href": "posts/at_coder/typical90-06-10.html#typical90-07",
+    "title": "競プロ典型90 06〜10",
+    "section": "typical90-07",
+    "text": "typical90-07\n\n概要\n問題リンク\nとりあえずBinary Searchすればいい。そうすれば計算量は \\(\\symscr{O}(Q\\ln N)\\) になる。 \\(\\ln\\) じゃなくて \\(\\log_{2}\\) だろうがという文句に対しては、定数倍してるだけだろうがという返答を投げつけますね。\nuse std::cmp;\n\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        mut a: [usize; n],\n        q: usize,\n        b: [usize; q],\n    }\n\n    a.sort();\n\n    for i in b.clone() {\n        let ans = cmp::min(\n            (a[(cmp::min(a.len() as isize - 1, binary_search(&a, i) as isize)) as usize] as isize\n                - i as isize)\n                .abs(),\n            (a[(cmp::max(0, binary_search(&a, i) as isize - 1)) as usize] as isize - i as isize)\n                .abs(),\n        );\n        println!(\"{}\", ans);\n    }\n}\n\nfn binary_search(a: &[usize], b: usize) -&gt; usize {\n    let mut left = 0;\n    let mut right = a.len();\n\n    while left &lt; right {\n        let mid = (left + right) / 2;\n        if a[mid] == b {\n            return mid;\n        } else if a[mid] &lt; b {\n            left = mid + 1;\n        } else {\n            right = mid;\n        }\n    }\n\n    left\n}\n見たらわかると思いますが、マジで競プロにRustは合わないっすね。真剣にNimに移行することを考えるレベルで。\nでも、私みたいな頑固なやつは何があってもRustを使い続けようとするんだろうなぁ。\n\n\n発見\n\n問題\n\n\n\n問題点",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "At Coder",
+      "競プロ典型90 06〜10"
+    ]
+  },
+  {
+    "objectID": "posts/at_coder/typical90-06-10.html#typical90-08",
+    "href": "posts/at_coder/typical90-06-10.html#typical90-08",
+    "title": "競プロ典型90 06〜10",
+    "section": "typical90-08",
+    "text": "typical90-08\n\n概要\n問題リンク\n計算量の問題で、おそらく多項式時間に収めないといけない。故に数え上げをやるのではなく、漸化式を数値的に解くことになる。\n\\[\nA_i =\n\\begin{pmatrix}\na_{i,0}\\; &: \\; a\\\\\na_{i,1}\\; &: \\; at\\\\\na_{i,2}\\; &: \\; atc\\\\\na_{i,3}\\; &: \\; atco\\\\\na_{i,4}\\; &: \\; atcod\\\\\na_{i,5}\\; &: \\; atcode\\\\\na_{i,6}\\; &: \\; atcoder\\\\\n\\end{pmatrix}\n\\]\nこんな行列を考えて、それの目的になる項を求めていく。漸化式は次のようなルールに従う。\n\\[\na_{i+1,k} =\n\\begin{cases}\na_{i,k} &\\text{$k$番目の文字じゃなかったら}\\\\\na_{i,k} + a_{i,k-1}　&\\text{$k$番目の文字だったら}\n\\end{cases}\n\\]\nコードに落とし込めば次のようになる。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        s: String,\n    }\n    let modular = 1_000_000_007;\n\n    let vec_str = s.chars().collect::&lt;Vec&lt;char&gt;&gt;();\n\n    let mut ans = vec![0; 7];\n\n    for i in vec_str {\n        match i {\n            'a' =&gt; ans[0] = (ans[0] + 1) % modular,\n            't' =&gt; ans[1] = (ans[1] + ans[0]) % modular,\n            'c' =&gt; ans[2] = (ans[2] + ans[1]) % modular,\n            'o' =&gt; ans[3] = (ans[3] + ans[2]) % modular,\n            'd' =&gt; ans[4] = (ans[4] + ans[3]) % modular,\n            'e' =&gt; ans[5] = (ans[5] + ans[4]) % modular,\n            'r' =&gt; ans[6] = (ans[6] + ans[5]) % modular,\n            _ =&gt; (),\n        }\n    }\n\n    println!(\"{}\", ans[6] % 1_000_000_007);\n}\nこうかなり慣れてきたのか、30分ちょっとで解き切れるようになった。\n\n\n発見\n\n計算時にModularをかけておく。\nでなければ、オーバーフローして変な値になる。普通はコンパイルエラーが起きるのだが、この場合は起きなかった。おそらくある程度複雑なプログラムには対応できないのだろう。\n\n\n問題\n\n\n\n問題点",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "At Coder",
+      "競プロ典型90 06〜10"
+    ]
+  },
+  {
+    "objectID": "posts/at_coder/typical90-06-10.html#typical90-09",
+    "href": "posts/at_coder/typical90-06-10.html#typical90-09",
+    "title": "競プロ典型90 06〜10",
+    "section": "typical90-09",
+    "text": "typical90-09\n\n概要\n問題リンク\n数学の問題じゃ。\nとりあえず全探索でもギリギリ大丈夫そう。10^10程度だし。いや、でもむずいか？　やってないのでわかんない。\nこの問題は \\(P_i,\\; P_j\\) を固定して最大角となる \\(P_k\\) を探すことになる。幾何的性質で、 \\(P_j\\) を始点として考えてアーム \\(P_jP_k\\) が最もアーム \\(P_iP_j\\) に近づく時の \\(k\\) を考えればいいわけで、そのような \\(k\\) は \\(P_j\\) を始点として考えたアームの偏角をソートすれば見つかる。\n具体的なコードは次のとおり。\nuse num::complex::Complex;\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        a: [[usize; 2]; n],\n    }\n\n    let mut ans = vec![];\n\n    for j in 0..n {\n\n        // Storage は P_j からのその他への点への偏角を格納する\n        let mut storage = vec![];\n\n        for i in 0..n {\n\n            // 同じ点を選んだ時はスキップ\n            if i == j {\n                continue;\n            }\n\n            // 偏角の計算\n            let tmp = Complex::new(a[i][0] as f64, a[i][1] as f64)\n                - Complex::new(a[j][0] as f64, a[j][1] as f64);\n            storage.push(tmp.arg().to_degrees());\n        }\n\n        // 偏角をソート\n        storage.sort_by(|a, b| a.partial_cmp(b).unwrap());\n\n        // P_j, P_i を固定して、作られる角度の最大を探す部分\n        for i in 0..n - 1 {\n\n            // P_j, P_i から作られる角度の反対側に伸びる方向の偏角を計算\n            let mut opp_angle = storage[i] + 180.;\n            if opp_angle &gt;= 180. {\n                opp_angle -= 360.;\n            }\n\n            // 二分探索で偏角の反対側にある点を探す\n            let mut left = 0;\n            let mut right = n - 2;\n            while right - left &gt; 1 {\n                let mid = (left + right) / 2;\n                if storage[mid] &lt;= opp_angle {\n                    left = mid;\n                } else {\n                    right = mid;\n                }\n            }\n\n            // より大きい偏角を採用\n            let mut tmp_left = storage[i] - storage[left];\n            let mut tmp_right = storage[right] - storage[i];\n            if tmp_left &lt;= 0. {\n                tmp_left += 360.;\n            }\n            if tmp_right &lt;= 0. {\n                tmp_right += 360.;\n            }\n            if tmp_left &gt;= 180. {\n                tmp_left = 360. - tmp_left;\n            }\n            if tmp_right &gt;= 180. {\n                tmp_right = 360. - tmp_right;\n            }\n            ans.push(tmp_left.max(tmp_right));\n        }\n    }\n\n    println!(\n        \"{}\",\n        // P_j, P_i を固定した時の最大の角度を格納した配列の最大値を出力\n        ans.iter().max_by(|a, b| a.partial_cmp(b).unwrap()).unwrap()\n    );\n}\n綺麗なコードを書いて載せるなんてやりたいけど、そこまで習熟度があるわけじゃないので、勘弁願いたい。\n\n\n発見\n\nf64のソート\nsort_byを使えば楽。\nfn main() {\n    let mut tmp = vec![19.0, 12.9, 1.2];\n    tmp.sort_by(|a, b| a.partial_cmp(b).unwrap());\n    assert_eq!(tmp, [1.2, 12.9, 19.0]);\n}\nこれをそのまま関数にした sort_floats っていう関数もあるけど、nightly-onlyなので使えないかもしれない。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "At Coder",
+      "競プロ典型90 06〜10"
+    ]
+  },
+  {
+    "objectID": "posts/at_coder/typical90-06-10.html#typical90-10",
+    "href": "posts/at_coder/typical90-06-10.html#typical90-10",
+    "title": "競プロ典型90 06〜10",
+    "section": "typical90-10",
+    "text": "typical90-10\n\n概要\n問題リンク\n累積和って言うらしい。知らんくても思いつくだろう。要するにいちいち計算するんじゃなくて、一気にまとめておいて後から計算するって話。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        cp: [[usize; 2]; n],\n        q: usize,\n        lr: [[usize; 2]; q],\n    }\n\n    // storageは累積和を格納する\n    // つまり、storage[i][0]はC_i番目の出席番号までの１組の期末点数の合計\n    let mut storage = vec![];\n\n    let mut tmp = vec![0,0];\n\n    for i in 0..n {\n        if cp[i][0] == 1 {\n            tmp[0] += cp[i][1];\n        } else {\n            tmp[1] += cp[i][1];\n        }\n        storage.push(tmp.clone());\n    }\n\n    for i in 0..q {\n        let l = lr[i][0] - 1;\n        let r = lr[i][1] - 1;\n\n        let mut ans = vec![0,0];\n        if l &gt; 0 {\n            ans[0] = storage[r][0] - storage[l-1][0];\n            ans[1] = storage[r][1] - storage[l-1][1];\n        } else {\n            ans[0] = storage[r][0];\n            ans[1] = storage[r][1];\n        }\n\n        println!(\"{} {}\", ans[0], ans[1]);\n    }\n\n}",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "At Coder",
+      "競プロ典型90 06〜10"
+    ]
+  },
+  {
+    "objectID": "posts/at_coder/cargo_compete.html",
+    "href": "posts/at_coder/cargo_compete.html",
+    "title": "Cargo Compete",
     "section": "",
-    "text": "問題リンク\n\n\nLearnt Binary Search.\n\n\n\n\n\nSearching 0..n is O(n) but searching by binary is O(log n). This makes very big difference.",
+    "text": "cargo install cargo-compete\ncargo compete init atcoder\ncargo compete new typical90\n\n\n\ncd typical90\ncargo compete test 001\ncargo compete submit 001 --no-watch",
     "crumbs": [
       "Home",
       "Posts",
       "At Coder",
-      "競プロ典型90 01〜05"
+      "Cargo Compete"
     ]
   },
   {
-    "objectID": "posts/at_coder/typical90-01-05.html#typical90-02",
-    "href": "posts/at_coder/typical90-01-05.html#typical90-02",
-    "title": "競プロ典型90 01〜05",
-    "section": "typical90-02",
-    "text": "typical90-02\n\n概要\n問題リンク\n(())などをランダムウォークのように考えると、常に＋の部分にいて、最終的には必ず0に戻ってくることがわかる。\n効率のいい回答だったのは、回帰関数で解いているところ。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n : i32,\n    }\n\n    if n % 2 == 1 {\n        return;\n    }\n\n    let mut cs = Vec::new();\n    let mut answer = Vec::new();\n    let mut left = n / 2;\n    let mut right = n / 2;\n\n    recursive(&mut cs, &mut left, &mut right, &mut answer);\n\n    for i in 0..answer.len() {\n        println!(\"{}\", answer[i]);\n    }\n}\n\nfn recursive(cs: &mut Vec&lt;char&gt;, left: &mut i32, right: &mut i32, answer: &mut Vec&lt;String&gt;) {\n    if *left == 0 && *right == 0 {\n        answer.push(cs.iter().collect());\n        return;\n    }\n\n    if *left &gt; 0 {\n        *left -= 1;\n        cs.push('(');\n        recursive(cs, left, right, answer);\n        cs.pop();\n        *left += 1;\n    }\n\n    if *right &gt; 0 && *left &lt; *right {\n        *right -= 1;\n        cs.push(')');\n        recursive(cs, left, right, answer);\n        cs.pop();\n        *right += 1;\n    }\n}\n発想としては、00001111,00010111,…のような二進数を作っていくことを考えていくところ。で、0の数を超えないように1をappendしていくわけだ。辞書式に並べていくわけだから、最初に0を入れて、後で1を入れれば、自ずと辞書式に並べられる。\n\n\n発見\n\nString Str Vecの相互変換\n\nstr と String の違い\n\nstr is a “String” slice.\n\nSlice is a pointer to a block of memory.\nSlice is immutable.\nIf you make a string via “string” then it is &str.\n\nString is type of “String”.\n\nString is a heap-allocated string. It is growable, mutable like vec and UTF-8 encoded.\n\n\n\n\nString -&gt; str\n    let s: String = \"abc\".to_string();\n    let ss: &str = &s;\n    println!(\"{}\", &ss); // → abc\n\n\nchar -&gt; String\n    let c: char = 'a';\n    let cs: String = c.to_string();\n    println!(\"{}\", &cs); // → a\n\n\nVec -&gt; String\n    let cs: Vec&lt;char&gt; = vec!['a', 'b', 'c'];\n    let s: String = cs.iter().collect();\n    println!(\"{}\", &s); // → abc\n\n\nString -&gt; Vec\n    let s: String = \"abc\".to_string();\n    let cs: Vec&lt;char&gt; = s.chars().collect();\n    println!(\"{:?}\", &cs); // → ['a', 'b', 'c']\n\n\n\nBinaryの話。\nfn main() {\n    let x = 13;\n\n    // bが2進数に変換という意味。020は0を20桁まで入れるという意味。\n    let s = format!(\"{:020b}\", x);\n\n    println!(\"{}\", s);\n}\n\n\n\n問題点\n\nnext_permutation??\nユーザー解説の内容が理解できなかった。\nnext_permutationなんとかって言ってたけど、意味がわからんかった。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "At Coder",
-      "競プロ典型90 01〜05"
-    ]
-  },
-  {
-    "objectID": "posts/at_coder/typical90-01-05.html#typical90-03",
-    "href": "posts/at_coder/typical90-01-05.html#typical90-03",
-    "title": "競プロ典型90 01〜05",
-    "section": "typical90-03",
-    "text": "typical90-03\n問題リンク\n\n概要\nDFSを使って解く問題。この問題は、グラフを与えられて、そのグラフの中で最も長い経路を求めれば、その端と端を結んでしまえば求めるサークルができる。\n何よりも苦戦したのは問題文をちゃんと読めてなかったこと。問題文をちゃんと読めていれば、もっと早く解けたはず。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        data: [[usize; 2]; n-1],\n    }\n    \n    let mut graph = vec![vec![]; n];\n\n    for datum in data {\n        graph[datum[0]-1].push(datum[1]-1);\n        graph[datum[1]-1].push(datum[0]-1);\n    }\n\n    let dist_from_0 = solve(graph.clone(), 0);\n    \n    let max_index = dist_from_0.iter().enumerate().max_by_key(|x| x.1).unwrap().0;\n    \n    let dist_from_max = solve(graph.clone(), max_index);\n    \n    println!(\"{}\", dist_from_max.iter().max().unwrap() + 1);\n}\n\nfn solve(graph: Vec&lt;Vec&lt;usize&gt;&gt;,start: usize) -&gt; Vec&lt;isize&gt;{    \n    let mut stack = vec![(start, 0)];\n    let mut dist = vec![-1; graph.len()];\n    dist[start] = 0;\n    \n    while let Some((node, depth)) = stack.pop() {\n        for &next in &graph[node] {\n            if dist[next] != -1 {\n                continue;\n            }\n            dist[next] = depth + 1;\n            stack.push((next, depth + 1));\n        }\n    }\n    \n    return dist;\n}\n\n\n発見\n\n複数のループをするときに使う\n// Iterate over the coordinates of a 4 x 4 x 4 grid\n// from (0, 0, 0), (0, 0, 1), .., (0, 1, 0), (0, 1, 1), .. etc until (3, 3, 3)\nfor (i, j, k) in iproduct!(0..4, 0..4, 0..4) {\n   // ..\n}\n\n\nDFSのコードの書き方\nグラフをとりあえず\nVec&lt;Vec&lt;usize&gt;&gt;\nで表現する。\n次に、探索の仕方として、stackを用意して、そこに今現時点の(Node,Depth)を入れておく。そして、stackが空になるまで、stackからtupleを抜き取って行って、次のNodeを探索していく。つまり、stackはいわばNodeにDepthのステッカーを貼っているようなものであり、次に進めれば剥がすということを繰り返している。\n最終的に剥がすことができなかったtupleだけがstuckに積み重なっていくわけである。\n\n\nFind Max Value Index\nlet max_index = data.iter().enumerate().max_by_key(|x| x.1).unwrap().0;\nとかける。\n|x| x.1\nというのはClosureといって、||に挟まれた引数から後ろの数を返す関数のことである。\n\n\n\n問題点",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "At Coder",
-      "競プロ典型90 01〜05"
-    ]
-  },
-  {
-    "objectID": "posts/at_coder/typical90-01-05.html#typical90-04",
-    "href": "posts/at_coder/typical90-01-05.html#typical90-04",
-    "title": "競プロ典型90 01〜05",
-    "section": "typical90-04",
-    "text": "typical90-04\n問題リンク\n\n概要\n簡単な問題。\n前処理をした方が良い、くらいしか話すことがない。\nuse itertools::iproduct;\nuse nalgebra::DMatrix;\nuse proconio::input;\n\nfn main() {\n    input! {\n        h: usize,\n        w: usize,\n        b: [usize; w * h],\n    }\n    \n    let mat = DMatrix::from_row_slice(h, w, &b);\n    \n    let row_sum = mat.clone().row_sum();\n    let col_sum = mat.clone().column_sum();\n    \n    for j in 0..w {\n        let tmp = row_sum[j] + col_sum[0] - mat[(0, j)];\n\n        if j == 0 {\n            print!(\"{}\", tmp);\n        } else {\n            print!(\" {}\", tmp);\n        }\n    }\n\n    for (i, j) in iproduct!(1..h, 0..w) {\n        let tmp = row_sum[j] + col_sum[i] - mat[(i, j)];\n        \n        if j == 0 {\n            print!(\"\\n{}\", tmp);\n        } else {\n            print!(\" {}\", tmp);\n        }\n    }\n    \n}\n\n\n発見\n\nnalgebraの使い方\nuse nalgebra::DMatrix;\n\nfn main() {\n    let mat = DMatrix::from_row_slice(2, 3, &[1, 2, 3, 4, 5, 6]);\n    assert_eq!(mat[(0, 0)], 1);\n    assert_eq!(mat[(0, 1)], 2);\n\n    let mat_zero = DMatrix::zeros(2, 3);\n    assert_eq!(mat_zero[(0, 0)], 0);\n\n    let elm = 10;\n    let mat_elm = DMatrix::from_element(2, 3, elm);\n    assert_eq!(mat_elm[(0, 0)], elm);\n\n    let mat_vec = DMatrix::from_vec(4, 3, vec![1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0]);\n    assert_eq!(mat_vec[(0, 0)], 1.0);\n\n    let mat_macro = matrix![1, 2, 3;\n                4, 5, 6;\n                7, 8, 9];\n    assert_eq!(mat_macro[(2, 1)], 8);\n}\n\n\n\n問題点",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "At Coder",
-      "競プロ典型90 01〜05"
-    ]
-  },
-  {
-    "objectID": "posts/at_coder/typical90-01-05.html#typical90-05",
-    "href": "posts/at_coder/typical90-01-05.html#typical90-05",
-    "title": "競プロ典型90 01〜05",
-    "section": "typical90-05",
-    "text": "typical90-05\n問題リンク\n\n概要\n解き切ってない。問題はアルゴリズムというよりかは、行列などの扱いや変数の大きさなどのようだ。\n//いつかリベンジ！！\n\nuse std::env;\nuse nalgebra::DMatrix;\nuse proconio::input;\n\nfn main() {\n    //env::set_var(\"RUST_BACKTRACE\", \"full\");\n    input! {\n        numbers_length: usize,\n        devider: usize,\n        digits: usize,\n        numbers: [usize; digits],\n    }\n\n    // 340282366920938463463374607431768211455\n    // 19318074092350443561\n    // 11710352956716025284\n\n    // for debug18446744073709551615\n\n    // let numbers_length: usize = 111;\n    // let devider : usize = 29;\n    // let digits: usize = 6;\n    // let numbers : Vec&lt;usize&gt;= vec![1,2,3,5,6,7,9];\n\n    let modular : u128 = 1000000007;\n\n    let mut rem_vec : Vec&lt;usize&gt; = vec![1];\n    let mut begin_index : usize = 0;\n    let mut end_index : usize= 0;\n    let mut loop_len : usize = 0;\n\n    for i in 0..devider {\n        let tmp_rem = (rem_vec.last().unwrap() * 10 ) % devider;\n        if rem_vec.binary_search(&tmp_rem).is_ok() {\n            begin_index = rem_vec.binary_search(&tmp_rem).unwrap();\n            end_index = rem_vec.len();\n            loop_len = end_index - begin_index;\n            break;\n        }\n        rem_vec.push( tmp_rem );\n    }\n\n    let (non_looped_side, looped_side) = rem_vec.split_at(begin_index);\n\n    // looped_rem[i][j] i*10^j-th % devider\n    let mut looped_rem : Vec&lt;Vec&lt;usize&gt;&gt; = Vec::new();\n    let mut non_looped_rem : Vec&lt;Vec&lt;usize&gt;&gt; = Vec::new();\n\n    for num in numbers {\n        let mut tmp_looped_rem = vec![];\n        let mut tmp_nonlooped_rem = vec![];\n        for i in looped_side {\n            tmp_looped_rem.push( (i * num) % devider );\n        }\n        looped_rem.push(tmp_looped_rem);\n        for i in non_looped_side {\n            tmp_nonlooped_rem.push( (i * num) % devider );\n        }\n        non_looped_rem.push(tmp_nonlooped_rem);\n    }\n\n    let mut beginning_vec : DMatrix&lt;u128&gt; = DMatrix::from_vec( devider, 1, vec![0; devider]);\n    beginning_vec[(0,0)] = 1;\n\n    // container[i][j] means how many numbers remain i in j-th digit in the loop\n    let mut looped_container : Vec&lt;DMatrix&lt;u128&gt;&gt; = Vec::new();\n\n    for jndex in 0..looped_rem[0].len() {\n        let mut vec_tmp_0 = vec![0 as u128; devider];\n\n        for index in 0..digits {\n            vec_tmp_0[looped_rem[index][jndex]] += 1;\n        }\n\n        looped_container.push(generate_calc_matrix(vec_tmp_0));\n    }\n\n    // container[i][j] means how many numbers remain i in j-th digit in the non-loop\n    let mut non_looped_container : Vec&lt;DMatrix&lt;u128&gt;&gt; = Vec::new();\n\n    if non_looped_rem.len() != 0 {\n        for jndex in 0..non_looped_rem[0].len() {\n            let mut vec_tmp_0 = vec![0 as u128; devider];\n            for index in 0..digits {\n                vec_tmp_0[non_looped_rem[index][jndex]] += 1;\n            }\n\n            non_looped_container.push(generate_calc_matrix(vec_tmp_0));\n        }\n    }\n\n    let ans = calc_mat(non_looped_container.clone(), looped_container.clone(), beginning_vec.clone(), numbers_length, modular);\n\n    println!(\"{}\", ans % modular as u128);\n\n}\n\nfn calc_mat(non_looped_container : Vec&lt;DMatrix&lt;u128&gt;&gt;, looped_container : Vec&lt;DMatrix&lt;u128&gt;&gt;, beginning_vec : DMatrix&lt;u128&gt;, number_length : usize, modular: u128) -&gt; u128 {\n    if non_looped_container.len() != 0 {\n        if non_looped_container.len() &gt;= number_length {\n            let mut tmp_mat = non_looped_container[0].clone();\n            for i in 1..number_length {\n                tmp_mat = &non_looped_container[i] * &tmp_mat;\n                for j in 0..tmp_mat.nrows() {\n                    for k in 0..tmp_mat.ncols() {\n                        tmp_mat[(j,k)] %= modular as u128;\n                    }\n                }\n            }\n            let ans = tmp_mat * beginning_vec;\n            let ans_u = ans[(0,0)];\n            return ans_u;\n        }\n        else {\n            let mut nl_tmp_mat = non_looped_container[0].clone();\n            for i in 1..non_looped_container.len() {\n                nl_tmp_mat = &non_looped_container[i] * &nl_tmp_mat;\n                for j in 0..nl_tmp_mat.nrows() {\n                    for k in 0..nl_tmp_mat.ncols() {\n                        nl_tmp_mat[(j,k)] %= modular;\n                    }\n                }\n            }\n            let mut new_beginning_vec = nl_tmp_mat * beginning_vec;\n\n            let loop_number = number_length - non_looped_container.len();\n\n            let ans = calc_looped(looped_container, new_beginning_vec, loop_number, modular);\n\n            let ans_u = ans[(0,0)];\n\n            return ans_u;\n        }\n    } else {\n        let ans = calc_looped(looped_container, beginning_vec, number_length, modular);\n\n        let ans_u = ans[(0,0)];\n\n        return ans_u;\n    }\n}\n\nfn calc_looped (looped_container : Vec&lt;DMatrix&lt;u128&gt;&gt;, beginning_vec : DMatrix&lt;u128&gt;, number_length : usize, modular : u128) -&gt; DMatrix&lt;u128&gt; {\n    if looped_container.len() &gt;= number_length {\n        let mut tmp_mat = looped_container[1].clone();\n        for i in 2..number_length {\n            tmp_mat = &looped_container[i] * &tmp_mat;\n            for j in 0..tmp_mat.nrows() {\n                for k in 0..tmp_mat.ncols() {\n                    tmp_mat[(j,k)] %= modular;\n                }\n            }\n        }\n        return tmp_mat * beginning_vec;\n    }\n    else {\n        let mut tmp_mat_one_loop = looped_container[0].clone();\n        for i in 1..looped_container.len() {\n            tmp_mat_one_loop = &looped_container[i] * &tmp_mat_one_loop;\n            for j in 0..tmp_mat_one_loop.nrows() {\n                for k in 0..tmp_mat_one_loop.ncols() {\n                    tmp_mat_one_loop[(j,k)] %= modular;\n                }\n            }\n        }\n\n        let loop_number = number_length / looped_container.len();\n\n        // １回のループでできる行列はできたので、あとはloop_number回のループを行う\n        let mut ans = calc_power(tmp_mat_one_loop, loop_number, modular);\n\n        let loop_number_remain = number_length % looped_container.len();\n\n        if loop_number_remain != 0 {\n            let mut tmp_mat = looped_container[0].clone();\n            for i in 1..loop_number_remain {\n                tmp_mat = &looped_container[i] * &tmp_mat;\n                for j in 0..tmp_mat.nrows() {\n                    for k in 0..tmp_mat.ncols() {\n                        tmp_mat[(j,k)] %= modular;\n                    }\n                }\n            }\n            ans = tmp_mat * ans;\n        }\n\n        for j in 0..ans.nrows() {\n            for k in 0..ans.ncols() {\n                ans[(j,k)] %= modular;\n            }\n        }\n\n        return ans * beginning_vec;\n    }\n}\n\nfn calc_power (mat: DMatrix&lt;u128&gt;, power : usize, modular : u128) -&gt; DMatrix&lt;u128&gt; {\n    let mut binary : Vec&lt;usize&gt; = format!(\"{:b}\", power).chars().map(|c| c.to_digit(10).unwrap() as usize).collect();\n\n    binary.reverse();\n\n    let mut ans_mat = DMatrix::from_element(mat.nrows(), mat.ncols(), 0);\n\n    for i in 0..binary.len() {\n        if binary[i] == 0 {\n            continue;\n        } else {\n            if ans_mat == DMatrix::from_element(mat.nrows(), mat.ncols(), 0) {\n                ans_mat = calc_binary_power(mat.clone(), i, modular);\n            }\n            else {\n                ans_mat = ans_mat * calc_binary_power(mat.clone(), i, modular);\n                for j in 0..ans_mat.nrows() {\n                    for k in 0..ans_mat.ncols() {\n                        ans_mat[(j,k)] %= modular;\n                    }\n                }\n            }\n\n        }\n    }\n\n\n\n    ans_mat\n}\n\nfn calc_binary_power (mat: DMatrix&lt;u128&gt;, power_size: usize, modular : u128) -&gt; DMatrix&lt;u128&gt; {\n    let mut ans_mat = DMatrix::from_element(mat.nrows(), mat.ncols(), 0);\n\n    if power_size == 0 {\n        return mat;\n    }\n\n    for i in 1..power_size+1 {\n        if i == 1 {\n            ans_mat = &mat * &mat;\n        } else {\n            ans_mat = &ans_mat * &ans_mat;\n            // alith\n            for j in 0..ans_mat.nrows() {\n                for k in 0..ans_mat.ncols() {\n                    ans_mat[(j,k)] %= modular;\n                }\n            }\n        }\n    }\n\n    ans_mat\n}\n\nfn generate_calc_matrix(rem_vec : Vec&lt;u128&gt;) -&gt; DMatrix&lt;u128&gt; {\n    let mut tmp_bm = vec![];\n\n    let size = rem_vec.len();\n\n    for index in 0..size {\n        let mut tmp_left = rem_vec[0..index+1].to_vec();\n        tmp_left.reverse();\n        let mut tmp_right = rem_vec[index+1..size].to_vec();\n        tmp_right.reverse();\n        let mut tmp_vec = tmp_left;\n        tmp_vec.append(&mut tmp_right);\n\n        tmp_bm.append(&mut tmp_vec);\n    }\n\n    DMatrix::from_vec(size, size, tmp_bm)\n}\n\n\n発見\n\nVecの中身を探すとき\nlet vec = vec![1,3,5];\nlet res1 = vec.binary_search(&2).is_ok();\nassert_eq!(res1, false);\nlet res2 = vec.binary_search(&3).is_ok();\nassert_eq!(res2, true);\n\n\n\n問題点\n\nusize\nrustのusizeは基本64bitなので、大きすぎる値を考える時には向いていない。\n\n\n高速フーリエ変換\nやってなかったので、後々詳細を調べる。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "At Coder",
-      "競プロ典型90 01〜05"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Serika’s Blog",
+    "objectID": "posts/at_coder/cargo_compete.html#プロジェクトの設定の仕方",
+    "href": "posts/at_coder/cargo_compete.html#プロジェクトの設定の仕方",
+    "title": "Cargo Compete",
     "section": "",
-    "text": "こっちは秘密基地\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Author\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Categories\n      \n      \n        Description\n      \n      \n        Reading Time (Low to High)\n      \n      \n        Reading Time (High to Low)\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nふみにわ開発記\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nAug 9, 2026\n\n\n\n\nCATEGORIES\n\n\nprogramming2026swiftnovel\n\n\n\n1 MIN READ\n\n\nprogramming 2026 swift novel\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 17 MIN READ\n\n\n材料力学II\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJul 29, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n17 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 5 MIN READ\n\n\n金属材料学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJul 24, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n5 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 31 MIN READ\n\n\n半導体物性学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJul 23, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n31 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 15 MIN READ\n\n\n数学2F\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJun 8, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n15 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 7 MIN READ\n\n\n工学基礎演習\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 5, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n7 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nPOGRAMMING · 1 MIN READ\n\n\nAttention Is All You Needを読む話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nFeb 6, 2026\n\n\n\n\nCATEGORIES\n\n\npogramming2026AI\n\n\n\n1 MIN READ\n\n\npogramming 2026 AI\n\n\n\n\n\n\n\n\n\n\nPOGRAMMING · 8 MIN READ\n\n\nBuild a Large Language Model from Scratchを読む話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nFeb 6, 2026\n\n\n\n\nCATEGORIES\n\n\npogramming2026AI\n\n\n\n8 MIN READ\n\n\npogramming 2026 AI\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 11 MIN READ\n\n\n信頼性学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJan 5, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n11 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 14 MIN READ\n\n\n数学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJan 5, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n14 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nDockerでMisskeyを立てる\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 13, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025\n\n\n\n1 MIN READ\n\n\nprogramming 2025\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nNordとTailscaleで自宅サーバーを安全に公開する\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 11, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025\n\n\n\n1 MIN READ\n\n\nprogramming 2025\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nDebianサーバーを立てた話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 8, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025server\n\n\n\n1 MIN READ\n\n\nprogramming 2025 server\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 3 MIN READ\n\n\nTime Machine ServerをSambaで作った話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 7, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025swift\n\n\n\n3 MIN READ\n\n\nprogramming 2025 swift\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nミスって/boot/efiを消した話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 7, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025swift\n\n\n\n1 MIN READ\n\n\nprogramming 2025 swift\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nQuartoで単一ファイルにレンダリングする方法\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 5, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025\n\n\n\n1 MIN READ\n\n\nprogramming 2025\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nCodexを使い始めた件\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 5, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025\n\n\n\n1 MIN READ\n\n\nprogramming 2025\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nSwift Packageの読み込みエラー\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 5, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025swift\n\n\n\n1 MIN READ\n\n\nprogramming 2025 swift\n\n\n\n\n\n\n\n\n\n\nHOMESERVER · 1 MIN READ\n\n\nLinkwardenにブックマーク管理を任せる\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nMay 13, 2025\n\n\n\n\nCATEGORIES\n\n\nhomeserverprogramming2025\n\n\n\n1 MIN READ\n\n\nhomeserver programming 2025\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\n生産プロセス\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 17, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024\n\n\n\n3 MIN READ\n\n\nUniversity 2024\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 6 MIN READ\n\n\nデバイス材料工学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 2, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024\n\n\n\n6 MIN READ\n\n\nUniversity 2024\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 4 MIN READ\n\n\n材料統計力学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nNov 29, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversitystatistical-mechanicsthermodynamics2024\n\n\n\n4 MIN READ\n\n\nUniversity statistical-mechanics thermodynamics 2024\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\n材料反応工学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nNov 29, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024KineticsSurface Science\n\n\n\n3 MIN READ\n\n\nUniversity 2024 Kinetics Surface Science\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\nセラミックノート\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024\n\n\n\n3 MIN READ\n\n\nUniversity 2024\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 8 MIN READ\n\n\n高分子ノート\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024\n\n\n\n8 MIN READ\n\n\nUniversity 2024\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 11 MIN READ\n\n\n材料電気化学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 8, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024材料工学電気化学\n\n\n\n11 MIN READ\n\n\nUniversity 2024 材料工学 電気化学\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 4 MIN READ\n\n\n組織生成論\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 8, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversityphase-transformationsolidificationkinetics2024\n\n\n\n4 MIN READ\n\n\nUniversity phase-transformation solidification kinetics 2024\n\n\n\n\n\n\n\n\n\n\nMATH · 1 MIN READ\n\n\n過去問演習\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 6, 2024\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n1 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 8 MIN READ\n\n\n固体物性学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 5, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024材料工学固体物理\n\n\n\n8 MIN READ\n\n\nUniversity 2024 材料工学 固体物理\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\n材料強度学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 5, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversitymechanicsdislocationfracture2024\n\n\n\n3 MIN READ\n\n\nUniversity mechanics dislocation fracture 2024\n\n\n\n\n\n\n\n\n\n\nMATH · 2 MIN READ\n\n\n数学A\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n2 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nMATH · 2 MIN READ\n\n\n数学B\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n2 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nMATH · 3 MIN READ\n\n\n数学II\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n3 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nMATH · 3 MIN READ\n\n\n数学III\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n3 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nATCODER · 1 MIN READ\n\n\ntypical90-11\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nNov 30, 2023\n\n\n\n\nCATEGORIES\n\n\nAtCoderProgramming\n\n\n\n1 MIN READ\n\n\nAtCoder Programming\n\n\n\n\n\n\n\n\n\n\nATCODER · 14 MIN READ\n\n\n競プロ典型90 06〜10\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nNov 25, 2023\n\n\n\n\nCATEGORIES\n\n\nAtCoderProgramming\n\n\n\n14 MIN READ\n\n\nAtCoder Programming\n\n\n\n\n\n\n\n\n\n\nATCODER · 20 MIN READ\n\n\n競プロ典型90 01〜05\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 17, 2023\n\n\n\n\nCATEGORIES\n\n\nAtCoderProgramming\n\n\n\n20 MIN READ\n\n\nAtCoder Programming\n\n\n\n\n\n\n\n\n\n\nMATH · 8 MIN READ\n\n\n数学I\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n8 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nMATH · 2 MIN READ\n\n\n物理\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n2 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 1 MIN READ\n\n\n統計力学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2023\n\n\n\n\nCATEGORIES\n\n\nUniversity2023\n\n\n\n1 MIN READ\n\n\nUniversity 2023\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 1 MIN READ\n\n\n材料相平衡論\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2023\n\n\n\n\nCATEGORIES\n\n\nUniversity2023\n\n\n\n1 MIN READ\n\n\nUniversity 2023\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\n材料速度論\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2023\n\n\n\n\nCATEGORIES\n\n\nUniversitydiffusionkinetics2023\n\n\n\n3 MIN READ\n\n\nUniversity diffusion kinetics 2023\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 5 MIN READ\n\n\n材料量子力学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2023\n\n\n\n\nCATEGORIES\n\n\nUniversityquantum-mechanicsmaterials-science2023\n\n\n\n5 MIN READ\n\n\nUniversity quantum-mechanics materials-science 2023\n\n\n\n\n\n\n\n\n\n\nATCODER · 1 MIN READ\n\n\nCargo Compete\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 9, 2023\n\n\n\n\nCATEGORIES\n\n\nAtCoderProgramming\n\n\n\n1 MIN READ\n\n\nAtCoder Programming\n\n\n\n\n\nNo matching items\n\n  \n\n Back to top",
+    "text": "cargo install cargo-compete\ncargo compete init atcoder\ncargo compete new typical90\n\n\n\ncd typical90\ncargo compete test 001\ncargo compete submit 001 --no-watch",
     "crumbs": [
-      "Home"
+      "Home",
+      "Posts",
+      "At Coder",
+      "Cargo Compete"
     ]
   },
   {
@@ -1986,107 +2145,117 @@
     ]
   },
   {
-    "objectID": "posts/at_coder/cargo_compete.html",
-    "href": "posts/at_coder/cargo_compete.html",
-    "title": "Cargo Compete",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Serika’s Blog",
     "section": "",
-    "text": "cargo install cargo-compete\ncargo compete init atcoder\ncargo compete new typical90\n\n\n\ncd typical90\ncargo compete test 001\ncargo compete submit 001 --no-watch",
+    "text": "こっちは秘密基地\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Author\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Categories\n      \n      \n        Description\n      \n      \n        Reading Time (Low to High)\n      \n      \n        Reading Time (High to Low)\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nADHDManager開発記\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nAug 9, 2026\n\n\n\n\nCATEGORIES\n\n\nprogramming2026swiftproductivity\n\n\n\n1 MIN READ\n\n\nprogramming 2026 swift productivity\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nふみにわ開発記\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nAug 9, 2026\n\n\n\n\nCATEGORIES\n\n\nprogramming2026swiftnovel\n\n\n\n1 MIN READ\n\n\nprogramming 2026 swift novel\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 17 MIN READ\n\n\n材料力学II\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJul 29, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n17 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 5 MIN READ\n\n\n金属材料学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJul 24, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n5 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 31 MIN READ\n\n\n半導体物性学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJul 23, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n31 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 15 MIN READ\n\n\n数学2F\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJun 8, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n15 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 7 MIN READ\n\n\n工学基礎演習\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 5, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n7 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nPOGRAMMING · 1 MIN READ\n\n\nAttention Is All You Needを読む話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nFeb 6, 2026\n\n\n\n\nCATEGORIES\n\n\npogramming2026AI\n\n\n\n1 MIN READ\n\n\npogramming 2026 AI\n\n\n\n\n\n\n\n\n\n\nPOGRAMMING · 8 MIN READ\n\n\nBuild a Large Language Model from Scratchを読む話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nFeb 6, 2026\n\n\n\n\nCATEGORIES\n\n\npogramming2026AI\n\n\n\n8 MIN READ\n\n\npogramming 2026 AI\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 11 MIN READ\n\n\n信頼性学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJan 5, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n11 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 14 MIN READ\n\n\n数学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJan 5, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n14 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nDockerでMisskeyを立てる\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 13, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025\n\n\n\n1 MIN READ\n\n\nprogramming 2025\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nNordとTailscaleで自宅サーバーを安全に公開する\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 11, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025\n\n\n\n1 MIN READ\n\n\nprogramming 2025\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nDebianサーバーを立てた話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 8, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025server\n\n\n\n1 MIN READ\n\n\nprogramming 2025 server\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 3 MIN READ\n\n\nTime Machine ServerをSambaで作った話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 7, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025swift\n\n\n\n3 MIN READ\n\n\nprogramming 2025 swift\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nミスって/boot/efiを消した話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 7, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025swift\n\n\n\n1 MIN READ\n\n\nprogramming 2025 swift\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nQuartoで単一ファイルにレンダリングする方法\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 5, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025\n\n\n\n1 MIN READ\n\n\nprogramming 2025\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nCodexを使い始めた件\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 5, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025\n\n\n\n1 MIN READ\n\n\nprogramming 2025\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nSwift Packageの読み込みエラー\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 5, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025swift\n\n\n\n1 MIN READ\n\n\nprogramming 2025 swift\n\n\n\n\n\n\n\n\n\n\nHOMESERVER · 1 MIN READ\n\n\nLinkwardenにブックマーク管理を任せる\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nMay 13, 2025\n\n\n\n\nCATEGORIES\n\n\nhomeserverprogramming2025\n\n\n\n1 MIN READ\n\n\nhomeserver programming 2025\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\n生産プロセス\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 17, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024\n\n\n\n3 MIN READ\n\n\nUniversity 2024\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 6 MIN READ\n\n\nデバイス材料工学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 2, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024\n\n\n\n6 MIN READ\n\n\nUniversity 2024\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 4 MIN READ\n\n\n材料統計力学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nNov 29, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversitystatistical-mechanicsthermodynamics2024\n\n\n\n4 MIN READ\n\n\nUniversity statistical-mechanics thermodynamics 2024\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\n材料反応工学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nNov 29, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024KineticsSurface Science\n\n\n\n3 MIN READ\n\n\nUniversity 2024 Kinetics Surface Science\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\nセラミックノート\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024\n\n\n\n3 MIN READ\n\n\nUniversity 2024\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 8 MIN READ\n\n\n高分子ノート\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024\n\n\n\n8 MIN READ\n\n\nUniversity 2024\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 11 MIN READ\n\n\n材料電気化学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 8, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024材料工学電気化学\n\n\n\n11 MIN READ\n\n\nUniversity 2024 材料工学 電気化学\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 4 MIN READ\n\n\n組織生成論\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 8, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversityphase-transformationsolidificationkinetics2024\n\n\n\n4 MIN READ\n\n\nUniversity phase-transformation solidification kinetics 2024\n\n\n\n\n\n\n\n\n\n\nMATH · 1 MIN READ\n\n\n過去問演習\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 6, 2024\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n1 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 8 MIN READ\n\n\n固体物性学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 5, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024材料工学固体物理\n\n\n\n8 MIN READ\n\n\nUniversity 2024 材料工学 固体物理\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\n材料強度学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 5, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversitymechanicsdislocationfracture2024\n\n\n\n3 MIN READ\n\n\nUniversity mechanics dislocation fracture 2024\n\n\n\n\n\n\n\n\n\n\nMATH · 2 MIN READ\n\n\n数学A\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n2 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nMATH · 2 MIN READ\n\n\n数学B\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n2 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nMATH · 3 MIN READ\n\n\n数学II\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n3 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nMATH · 3 MIN READ\n\n\n数学III\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n3 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nATCODER · 1 MIN READ\n\n\ntypical90-11\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nNov 30, 2023\n\n\n\n\nCATEGORIES\n\n\nAtCoderProgramming\n\n\n\n1 MIN READ\n\n\nAtCoder Programming\n\n\n\n\n\n\n\n\n\n\nATCODER · 14 MIN READ\n\n\n競プロ典型90 06〜10\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nNov 25, 2023\n\n\n\n\nCATEGORIES\n\n\nAtCoderProgramming\n\n\n\n14 MIN READ\n\n\nAtCoder Programming\n\n\n\n\n\n\n\n\n\n\nATCODER · 20 MIN READ\n\n\n競プロ典型90 01〜05\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 17, 2023\n\n\n\n\nCATEGORIES\n\n\nAtCoderProgramming\n\n\n\n20 MIN READ\n\n\nAtCoder Programming\n\n\n\n\n\n\n\n\n\n\nMATH · 8 MIN READ\n\n\n数学I\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n8 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nMATH · 2 MIN READ\n\n\n物理\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n2 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 1 MIN READ\n\n\n統計力学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2023\n\n\n\n\nCATEGORIES\n\n\nUniversity2023\n\n\n\n1 MIN READ\n\n\nUniversity 2023\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 1 MIN READ\n\n\n材料相平衡論\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2023\n\n\n\n\nCATEGORIES\n\n\nUniversity2023\n\n\n\n1 MIN READ\n\n\nUniversity 2023\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\n材料速度論\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2023\n\n\n\n\nCATEGORIES\n\n\nUniversitydiffusionkinetics2023\n\n\n\n3 MIN READ\n\n\nUniversity diffusion kinetics 2023\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 5 MIN READ\n\n\n材料量子力学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2023\n\n\n\n\nCATEGORIES\n\n\nUniversityquantum-mechanicsmaterials-science2023\n\n\n\n5 MIN READ\n\n\nUniversity quantum-mechanics materials-science 2023\n\n\n\n\n\n\n\n\n\n\nATCODER · 1 MIN READ\n\n\nCargo Compete\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 9, 2023\n\n\n\n\nCATEGORIES\n\n\nAtCoderProgramming\n\n\n\n1 MIN READ\n\n\nAtCoder Programming\n\n\n\n\n\nNo matching items\n\n  \n\n Back to top",
     "crumbs": [
-      "Home",
-      "Posts",
-      "At Coder",
-      "Cargo Compete"
+      "Home"
     ]
   },
   {
-    "objectID": "posts/at_coder/cargo_compete.html#プロジェクトの設定の仕方",
-    "href": "posts/at_coder/cargo_compete.html#プロジェクトの設定の仕方",
-    "title": "Cargo Compete",
+    "objectID": "posts/at_coder/typical90-01-05.html",
+    "href": "posts/at_coder/typical90-01-05.html",
+    "title": "競プロ典型90 01〜05",
     "section": "",
-    "text": "cargo install cargo-compete\ncargo compete init atcoder\ncargo compete new typical90\n\n\n\ncd typical90\ncargo compete test 001\ncargo compete submit 001 --no-watch",
+    "text": "問題リンク\n\n\nLearnt Binary Search.\n\n\n\n\n\nSearching 0..n is O(n) but searching by binary is O(log n). This makes very big difference.",
     "crumbs": [
       "Home",
       "Posts",
       "At Coder",
-      "Cargo Compete"
+      "競プロ典型90 01〜05"
     ]
   },
   {
-    "objectID": "posts/at_coder/typical90-06-10.html",
-    "href": "posts/at_coder/typical90-06-10.html",
-    "title": "競プロ典型90 06〜10",
+    "objectID": "posts/at_coder/typical90-01-05.html#typical90-01",
+    "href": "posts/at_coder/typical90-01-05.html#typical90-01",
+    "title": "競プロ典型90 01〜05",
     "section": "",
-    "text": "問題リンク\n\n\n失敗した解き方\nコメントの中でやった通りのやり方。これだと計算量が \\(k^{n}\\) になってしまうためにデカいテストデータでは通らなかった。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        k: usize,\n        s: String,\n    }\n\n    let vec_str = s.chars().into_iter().collect::&lt;Vec&lt;char&gt;&gt;();\n    let mut vec_str_to_usize = vec_str\n        .clone()\n        .into_iter()\n        .map(|c| c.to_digit(36).unwrap() as usize)\n        .collect::&lt;Vec&lt;usize&gt;&gt;();\n\n    // 例えば、n=7, k=3, s=abcdefgの場合、\n    // 0,1,2,3,4=n-k の中から最大のものを選んで、で残ったやつから i,i+1,...,n-k+1=3 の中から最大のものを選ぶ。\n    // これから続けて、\n\n    let mut ans = vec![];\n\n    // let first_index = find_biggest_index(vec_str_to_usize.clone(), 0, n - k);\n    // ans.push(vec_str[first_index]);\n    // let second_index = find_biggest_index(vec_str_to_usize.clone(), first_index + 1, n - k + 1);\n\n    let mut now_index = 0;\n    for i in 0..k {\n        if i == 0 {\n            now_index = find_smallest_index(vec_str_to_usize.clone(), 0, n - k);\n        } else {\n            now_index = find_smallest_index(vec_str_to_usize.clone(), now_index + 1, n - k + i);\n        }\n        ans.push(vec_str[now_index]);\n    }\n\n    println!(\"{}\", ans.into_iter().collect::&lt;String&gt;());\n}\n\nfn find_smallest_index(\n    vec_str_to_usize: Vec&lt;usize&gt;,\n    start_index: usize,\n    end_index: usize,\n) -&gt; usize {\n    let mut min = 36;\n    let mut index = 0;\n\n    for i in start_index..end_index + 1 {\n        if min &gt; vec_str_to_usize[i as usize] {\n            min = vec_str_to_usize[i as usize];\n            index = i;\n        }\n    }\n\n    index\n}\nなので別の方法を考える。\n\\(N\\) の長さの文字列の中から一番でかいアルファベットを探して、それが \\(N-K\\) 番目より前にあればOK。その値を上から順に並べていく。これだと計算量は \\(NK\\) になる。けどまだダメ。\nfn find_smallest_index(vec_str_to_usize: Vec&lt;usize&gt;, limit_index: usize) -&gt; usize {\n    for (i, j) in iproduct!(11..36, 0..limit_index) {\n        if vec_str_to_usize[j] == i {\n            return j;\n        }\n    }\n    0\n}\nここで問題となるのが、 \\(\\symscr{O}(10^8)\\) がおおよそ実行時間が2秒であることを考慮すると、 \\(NK\\) だとダメだということ。なので \\(N\\) か \\(K\\) を \\(1\\) にするような方法を考えたとき、Stringを整理して、 \\(N\\) 回の計算を終えたらすぐに \\(K\\) 回の計算をすれば終わるようなデータベースを準備すればいい。これだと計算量は \\(N+K\\) になるので、解決できる。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        k: usize,\n        s: String,\n    }\n\n    let vec_str = s.chars().into_iter().collect::&lt;Vec&lt;char&gt;&gt;();\n    let mut vec_str_to_usize = vec_str\n        .clone()\n        .into_iter()\n        .map(|c| c.to_digit(36).unwrap() as usize - 10)\n        .collect::&lt;Vec&lt;usize&gt;&gt;();\n\n    let mut ans = vec![];\n\n    let r = generate_r(vec_str_to_usize.clone());\n\n    let mut position = -1;\n\n    for i in 0..k {\n        for j in 0..26 {\n            let tmp = r[(position + 1) as usize][j];\n            if tmp != -1 && n - tmp as usize &gt;= k - i {\n                ans.push(char::from_digit((j + 10) as u32, 36).unwrap());\n                position = tmp as isize;\n                break;\n            }\n        }\n    }\n\n    println!(\"{}\", ans.into_iter().collect::&lt;String&gt;());\n}\n\n// r[i][j]がi桁目の数より右側にjが出現する最小のインデックスを返す\n\nfn generate_r(vec_str_to_usize: Vec&lt;usize&gt;) -&gt; Vec&lt;Vec&lt;isize&gt;&gt; {\n    let mut r: Vec&lt;Vec&lt;isize&gt;&gt; = vec![vec![-1; 26]; vec_str_to_usize.len() + 1];\n\n    for i in (0..vec_str_to_usize.len()).rev() {\n        for j in 0..26 {\n            if vec_str_to_usize[i] == j {\n                r[i][j] = i as isize;\n            } else {\n                r[i][j] = r[i + 1][j];\n            }\n        }\n    }\n\n    r\n}\n困難は分割せよっていう話があるが、これは困難を積集合として分割してはならないという教訓を与えてくれた。\n\n\n\n\n\n\\(\\symscr{O}(10^8)\\) がおおよそ実行時間が2秒である。これが大体どのコンテストでもリミッターになってるらしい。",
+    "text": "問題リンク\n\n\nLearnt Binary Search.\n\n\n\n\n\nSearching 0..n is O(n) but searching by binary is O(log n). This makes very big difference.",
     "crumbs": [
       "Home",
       "Posts",
       "At Coder",
-      "競プロ典型90 06〜10"
+      "競プロ典型90 01〜05"
     ]
   },
   {
-    "objectID": "posts/at_coder/typical90-06-10.html#typical90-06",
-    "href": "posts/at_coder/typical90-06-10.html#typical90-06",
-    "title": "競プロ典型90 06〜10",
+    "objectID": "posts/at_coder/typical90-01-05.html#typical90-02",
+    "href": "posts/at_coder/typical90-01-05.html#typical90-02",
+    "title": "競プロ典型90 01〜05",
+    "section": "typical90-02",
+    "text": "typical90-02\n\n概要\n問題リンク\n(())などをランダムウォークのように考えると、常に＋の部分にいて、最終的には必ず0に戻ってくることがわかる。\n効率のいい回答だったのは、回帰関数で解いているところ。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n : i32,\n    }\n\n    if n % 2 == 1 {\n        return;\n    }\n\n    let mut cs = Vec::new();\n    let mut answer = Vec::new();\n    let mut left = n / 2;\n    let mut right = n / 2;\n\n    recursive(&mut cs, &mut left, &mut right, &mut answer);\n\n    for i in 0..answer.len() {\n        println!(\"{}\", answer[i]);\n    }\n}\n\nfn recursive(cs: &mut Vec&lt;char&gt;, left: &mut i32, right: &mut i32, answer: &mut Vec&lt;String&gt;) {\n    if *left == 0 && *right == 0 {\n        answer.push(cs.iter().collect());\n        return;\n    }\n\n    if *left &gt; 0 {\n        *left -= 1;\n        cs.push('(');\n        recursive(cs, left, right, answer);\n        cs.pop();\n        *left += 1;\n    }\n\n    if *right &gt; 0 && *left &lt; *right {\n        *right -= 1;\n        cs.push(')');\n        recursive(cs, left, right, answer);\n        cs.pop();\n        *right += 1;\n    }\n}\n発想としては、00001111,00010111,…のような二進数を作っていくことを考えていくところ。で、0の数を超えないように1をappendしていくわけだ。辞書式に並べていくわけだから、最初に0を入れて、後で1を入れれば、自ずと辞書式に並べられる。\n\n\n発見\n\nString Str Vecの相互変換\n\nstr と String の違い\n\nstr is a “String” slice.\n\nSlice is a pointer to a block of memory.\nSlice is immutable.\nIf you make a string via “string” then it is &str.\n\nString is type of “String”.\n\nString is a heap-allocated string. It is growable, mutable like vec and UTF-8 encoded.\n\n\n\n\nString -&gt; str\n    let s: String = \"abc\".to_string();\n    let ss: &str = &s;\n    println!(\"{}\", &ss); // → abc\n\n\nchar -&gt; String\n    let c: char = 'a';\n    let cs: String = c.to_string();\n    println!(\"{}\", &cs); // → a\n\n\nVec -&gt; String\n    let cs: Vec&lt;char&gt; = vec!['a', 'b', 'c'];\n    let s: String = cs.iter().collect();\n    println!(\"{}\", &s); // → abc\n\n\nString -&gt; Vec\n    let s: String = \"abc\".to_string();\n    let cs: Vec&lt;char&gt; = s.chars().collect();\n    println!(\"{:?}\", &cs); // → ['a', 'b', 'c']\n\n\n\nBinaryの話。\nfn main() {\n    let x = 13;\n\n    // bが2進数に変換という意味。020は0を20桁まで入れるという意味。\n    let s = format!(\"{:020b}\", x);\n\n    println!(\"{}\", s);\n}\n\n\n\n問題点\n\nnext_permutation??\nユーザー解説の内容が理解できなかった。\nnext_permutationなんとかって言ってたけど、意味がわからんかった。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "At Coder",
+      "競プロ典型90 01〜05"
+    ]
+  },
+  {
+    "objectID": "posts/at_coder/typical90-01-05.html#typical90-03",
+    "href": "posts/at_coder/typical90-01-05.html#typical90-03",
+    "title": "競プロ典型90 01〜05",
+    "section": "typical90-03",
+    "text": "typical90-03\n問題リンク\n\n概要\nDFSを使って解く問題。この問題は、グラフを与えられて、そのグラフの中で最も長い経路を求めれば、その端と端を結んでしまえば求めるサークルができる。\n何よりも苦戦したのは問題文をちゃんと読めてなかったこと。問題文をちゃんと読めていれば、もっと早く解けたはず。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        data: [[usize; 2]; n-1],\n    }\n    \n    let mut graph = vec![vec![]; n];\n\n    for datum in data {\n        graph[datum[0]-1].push(datum[1]-1);\n        graph[datum[1]-1].push(datum[0]-1);\n    }\n\n    let dist_from_0 = solve(graph.clone(), 0);\n    \n    let max_index = dist_from_0.iter().enumerate().max_by_key(|x| x.1).unwrap().0;\n    \n    let dist_from_max = solve(graph.clone(), max_index);\n    \n    println!(\"{}\", dist_from_max.iter().max().unwrap() + 1);\n}\n\nfn solve(graph: Vec&lt;Vec&lt;usize&gt;&gt;,start: usize) -&gt; Vec&lt;isize&gt;{    \n    let mut stack = vec![(start, 0)];\n    let mut dist = vec![-1; graph.len()];\n    dist[start] = 0;\n    \n    while let Some((node, depth)) = stack.pop() {\n        for &next in &graph[node] {\n            if dist[next] != -1 {\n                continue;\n            }\n            dist[next] = depth + 1;\n            stack.push((next, depth + 1));\n        }\n    }\n    \n    return dist;\n}\n\n\n発見\n\n複数のループをするときに使う\n// Iterate over the coordinates of a 4 x 4 x 4 grid\n// from (0, 0, 0), (0, 0, 1), .., (0, 1, 0), (0, 1, 1), .. etc until (3, 3, 3)\nfor (i, j, k) in iproduct!(0..4, 0..4, 0..4) {\n   // ..\n}\n\n\nDFSのコードの書き方\nグラフをとりあえず\nVec&lt;Vec&lt;usize&gt;&gt;\nで表現する。\n次に、探索の仕方として、stackを用意して、そこに今現時点の(Node,Depth)を入れておく。そして、stackが空になるまで、stackからtupleを抜き取って行って、次のNodeを探索していく。つまり、stackはいわばNodeにDepthのステッカーを貼っているようなものであり、次に進めれば剥がすということを繰り返している。\n最終的に剥がすことができなかったtupleだけがstuckに積み重なっていくわけである。\n\n\nFind Max Value Index\nlet max_index = data.iter().enumerate().max_by_key(|x| x.1).unwrap().0;\nとかける。\n|x| x.1\nというのはClosureといって、||に挟まれた引数から後ろの数を返す関数のことである。\n\n\n\n問題点",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "At Coder",
+      "競プロ典型90 01〜05"
+    ]
+  },
+  {
+    "objectID": "posts/at_coder/typical90-01-05.html#typical90-04",
+    "href": "posts/at_coder/typical90-01-05.html#typical90-04",
+    "title": "競プロ典型90 01〜05",
+    "section": "typical90-04",
+    "text": "typical90-04\n問題リンク\n\n概要\n簡単な問題。\n前処理をした方が良い、くらいしか話すことがない。\nuse itertools::iproduct;\nuse nalgebra::DMatrix;\nuse proconio::input;\n\nfn main() {\n    input! {\n        h: usize,\n        w: usize,\n        b: [usize; w * h],\n    }\n    \n    let mat = DMatrix::from_row_slice(h, w, &b);\n    \n    let row_sum = mat.clone().row_sum();\n    let col_sum = mat.clone().column_sum();\n    \n    for j in 0..w {\n        let tmp = row_sum[j] + col_sum[0] - mat[(0, j)];\n\n        if j == 0 {\n            print!(\"{}\", tmp);\n        } else {\n            print!(\" {}\", tmp);\n        }\n    }\n\n    for (i, j) in iproduct!(1..h, 0..w) {\n        let tmp = row_sum[j] + col_sum[i] - mat[(i, j)];\n        \n        if j == 0 {\n            print!(\"\\n{}\", tmp);\n        } else {\n            print!(\" {}\", tmp);\n        }\n    }\n    \n}\n\n\n発見\n\nnalgebraの使い方\nuse nalgebra::DMatrix;\n\nfn main() {\n    let mat = DMatrix::from_row_slice(2, 3, &[1, 2, 3, 4, 5, 6]);\n    assert_eq!(mat[(0, 0)], 1);\n    assert_eq!(mat[(0, 1)], 2);\n\n    let mat_zero = DMatrix::zeros(2, 3);\n    assert_eq!(mat_zero[(0, 0)], 0);\n\n    let elm = 10;\n    let mat_elm = DMatrix::from_element(2, 3, elm);\n    assert_eq!(mat_elm[(0, 0)], elm);\n\n    let mat_vec = DMatrix::from_vec(4, 3, vec![1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0]);\n    assert_eq!(mat_vec[(0, 0)], 1.0);\n\n    let mat_macro = matrix![1, 2, 3;\n                4, 5, 6;\n                7, 8, 9];\n    assert_eq!(mat_macro[(2, 1)], 8);\n}\n\n\n\n問題点",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "At Coder",
+      "競プロ典型90 01〜05"
+    ]
+  },
+  {
+    "objectID": "posts/at_coder/typical90-01-05.html#typical90-05",
+    "href": "posts/at_coder/typical90-01-05.html#typical90-05",
+    "title": "競プロ典型90 01〜05",
+    "section": "typical90-05",
+    "text": "typical90-05\n問題リンク\n\n概要\n解き切ってない。問題はアルゴリズムというよりかは、行列などの扱いや変数の大きさなどのようだ。\n//いつかリベンジ！！\n\nuse std::env;\nuse nalgebra::DMatrix;\nuse proconio::input;\n\nfn main() {\n    //env::set_var(\"RUST_BACKTRACE\", \"full\");\n    input! {\n        numbers_length: usize,\n        devider: usize,\n        digits: usize,\n        numbers: [usize; digits],\n    }\n\n    // 340282366920938463463374607431768211455\n    // 19318074092350443561\n    // 11710352956716025284\n\n    // for debug18446744073709551615\n\n    // let numbers_length: usize = 111;\n    // let devider : usize = 29;\n    // let digits: usize = 6;\n    // let numbers : Vec&lt;usize&gt;= vec![1,2,3,5,6,7,9];\n\n    let modular : u128 = 1000000007;\n\n    let mut rem_vec : Vec&lt;usize&gt; = vec![1];\n    let mut begin_index : usize = 0;\n    let mut end_index : usize= 0;\n    let mut loop_len : usize = 0;\n\n    for i in 0..devider {\n        let tmp_rem = (rem_vec.last().unwrap() * 10 ) % devider;\n        if rem_vec.binary_search(&tmp_rem).is_ok() {\n            begin_index = rem_vec.binary_search(&tmp_rem).unwrap();\n            end_index = rem_vec.len();\n            loop_len = end_index - begin_index;\n            break;\n        }\n        rem_vec.push( tmp_rem );\n    }\n\n    let (non_looped_side, looped_side) = rem_vec.split_at(begin_index);\n\n    // looped_rem[i][j] i*10^j-th % devider\n    let mut looped_rem : Vec&lt;Vec&lt;usize&gt;&gt; = Vec::new();\n    let mut non_looped_rem : Vec&lt;Vec&lt;usize&gt;&gt; = Vec::new();\n\n    for num in numbers {\n        let mut tmp_looped_rem = vec![];\n        let mut tmp_nonlooped_rem = vec![];\n        for i in looped_side {\n            tmp_looped_rem.push( (i * num) % devider );\n        }\n        looped_rem.push(tmp_looped_rem);\n        for i in non_looped_side {\n            tmp_nonlooped_rem.push( (i * num) % devider );\n        }\n        non_looped_rem.push(tmp_nonlooped_rem);\n    }\n\n    let mut beginning_vec : DMatrix&lt;u128&gt; = DMatrix::from_vec( devider, 1, vec![0; devider]);\n    beginning_vec[(0,0)] = 1;\n\n    // container[i][j] means how many numbers remain i in j-th digit in the loop\n    let mut looped_container : Vec&lt;DMatrix&lt;u128&gt;&gt; = Vec::new();\n\n    for jndex in 0..looped_rem[0].len() {\n        let mut vec_tmp_0 = vec![0 as u128; devider];\n\n        for index in 0..digits {\n            vec_tmp_0[looped_rem[index][jndex]] += 1;\n        }\n\n        looped_container.push(generate_calc_matrix(vec_tmp_0));\n    }\n\n    // container[i][j] means how many numbers remain i in j-th digit in the non-loop\n    let mut non_looped_container : Vec&lt;DMatrix&lt;u128&gt;&gt; = Vec::new();\n\n    if non_looped_rem.len() != 0 {\n        for jndex in 0..non_looped_rem[0].len() {\n            let mut vec_tmp_0 = vec![0 as u128; devider];\n            for index in 0..digits {\n                vec_tmp_0[non_looped_rem[index][jndex]] += 1;\n            }\n\n            non_looped_container.push(generate_calc_matrix(vec_tmp_0));\n        }\n    }\n\n    let ans = calc_mat(non_looped_container.clone(), looped_container.clone(), beginning_vec.clone(), numbers_length, modular);\n\n    println!(\"{}\", ans % modular as u128);\n\n}\n\nfn calc_mat(non_looped_container : Vec&lt;DMatrix&lt;u128&gt;&gt;, looped_container : Vec&lt;DMatrix&lt;u128&gt;&gt;, beginning_vec : DMatrix&lt;u128&gt;, number_length : usize, modular: u128) -&gt; u128 {\n    if non_looped_container.len() != 0 {\n        if non_looped_container.len() &gt;= number_length {\n            let mut tmp_mat = non_looped_container[0].clone();\n            for i in 1..number_length {\n                tmp_mat = &non_looped_container[i] * &tmp_mat;\n                for j in 0..tmp_mat.nrows() {\n                    for k in 0..tmp_mat.ncols() {\n                        tmp_mat[(j,k)] %= modular as u128;\n                    }\n                }\n            }\n            let ans = tmp_mat * beginning_vec;\n            let ans_u = ans[(0,0)];\n            return ans_u;\n        }\n        else {\n            let mut nl_tmp_mat = non_looped_container[0].clone();\n            for i in 1..non_looped_container.len() {\n                nl_tmp_mat = &non_looped_container[i] * &nl_tmp_mat;\n                for j in 0..nl_tmp_mat.nrows() {\n                    for k in 0..nl_tmp_mat.ncols() {\n                        nl_tmp_mat[(j,k)] %= modular;\n                    }\n                }\n            }\n            let mut new_beginning_vec = nl_tmp_mat * beginning_vec;\n\n            let loop_number = number_length - non_looped_container.len();\n\n            let ans = calc_looped(looped_container, new_beginning_vec, loop_number, modular);\n\n            let ans_u = ans[(0,0)];\n\n            return ans_u;\n        }\n    } else {\n        let ans = calc_looped(looped_container, beginning_vec, number_length, modular);\n\n        let ans_u = ans[(0,0)];\n\n        return ans_u;\n    }\n}\n\nfn calc_looped (looped_container : Vec&lt;DMatrix&lt;u128&gt;&gt;, beginning_vec : DMatrix&lt;u128&gt;, number_length : usize, modular : u128) -&gt; DMatrix&lt;u128&gt; {\n    if looped_container.len() &gt;= number_length {\n        let mut tmp_mat = looped_container[1].clone();\n        for i in 2..number_length {\n            tmp_mat = &looped_container[i] * &tmp_mat;\n            for j in 0..tmp_mat.nrows() {\n                for k in 0..tmp_mat.ncols() {\n                    tmp_mat[(j,k)] %= modular;\n                }\n            }\n        }\n        return tmp_mat * beginning_vec;\n    }\n    else {\n        let mut tmp_mat_one_loop = looped_container[0].clone();\n        for i in 1..looped_container.len() {\n            tmp_mat_one_loop = &looped_container[i] * &tmp_mat_one_loop;\n            for j in 0..tmp_mat_one_loop.nrows() {\n                for k in 0..tmp_mat_one_loop.ncols() {\n                    tmp_mat_one_loop[(j,k)] %= modular;\n                }\n            }\n        }\n\n        let loop_number = number_length / looped_container.len();\n\n        // １回のループでできる行列はできたので、あとはloop_number回のループを行う\n        let mut ans = calc_power(tmp_mat_one_loop, loop_number, modular);\n\n        let loop_number_remain = number_length % looped_container.len();\n\n        if loop_number_remain != 0 {\n            let mut tmp_mat = looped_container[0].clone();\n            for i in 1..loop_number_remain {\n                tmp_mat = &looped_container[i] * &tmp_mat;\n                for j in 0..tmp_mat.nrows() {\n                    for k in 0..tmp_mat.ncols() {\n                        tmp_mat[(j,k)] %= modular;\n                    }\n                }\n            }\n            ans = tmp_mat * ans;\n        }\n\n        for j in 0..ans.nrows() {\n            for k in 0..ans.ncols() {\n                ans[(j,k)] %= modular;\n            }\n        }\n\n        return ans * beginning_vec;\n    }\n}\n\nfn calc_power (mat: DMatrix&lt;u128&gt;, power : usize, modular : u128) -&gt; DMatrix&lt;u128&gt; {\n    let mut binary : Vec&lt;usize&gt; = format!(\"{:b}\", power).chars().map(|c| c.to_digit(10).unwrap() as usize).collect();\n\n    binary.reverse();\n\n    let mut ans_mat = DMatrix::from_element(mat.nrows(), mat.ncols(), 0);\n\n    for i in 0..binary.len() {\n        if binary[i] == 0 {\n            continue;\n        } else {\n            if ans_mat == DMatrix::from_element(mat.nrows(), mat.ncols(), 0) {\n                ans_mat = calc_binary_power(mat.clone(), i, modular);\n            }\n            else {\n                ans_mat = ans_mat * calc_binary_power(mat.clone(), i, modular);\n                for j in 0..ans_mat.nrows() {\n                    for k in 0..ans_mat.ncols() {\n                        ans_mat[(j,k)] %= modular;\n                    }\n                }\n            }\n\n        }\n    }\n\n\n\n    ans_mat\n}\n\nfn calc_binary_power (mat: DMatrix&lt;u128&gt;, power_size: usize, modular : u128) -&gt; DMatrix&lt;u128&gt; {\n    let mut ans_mat = DMatrix::from_element(mat.nrows(), mat.ncols(), 0);\n\n    if power_size == 0 {\n        return mat;\n    }\n\n    for i in 1..power_size+1 {\n        if i == 1 {\n            ans_mat = &mat * &mat;\n        } else {\n            ans_mat = &ans_mat * &ans_mat;\n            // alith\n            for j in 0..ans_mat.nrows() {\n                for k in 0..ans_mat.ncols() {\n                    ans_mat[(j,k)] %= modular;\n                }\n            }\n        }\n    }\n\n    ans_mat\n}\n\nfn generate_calc_matrix(rem_vec : Vec&lt;u128&gt;) -&gt; DMatrix&lt;u128&gt; {\n    let mut tmp_bm = vec![];\n\n    let size = rem_vec.len();\n\n    for index in 0..size {\n        let mut tmp_left = rem_vec[0..index+1].to_vec();\n        tmp_left.reverse();\n        let mut tmp_right = rem_vec[index+1..size].to_vec();\n        tmp_right.reverse();\n        let mut tmp_vec = tmp_left;\n        tmp_vec.append(&mut tmp_right);\n\n        tmp_bm.append(&mut tmp_vec);\n    }\n\n    DMatrix::from_vec(size, size, tmp_bm)\n}\n\n\n発見\n\nVecの中身を探すとき\nlet vec = vec![1,3,5];\nlet res1 = vec.binary_search(&2).is_ok();\nassert_eq!(res1, false);\nlet res2 = vec.binary_search(&3).is_ok();\nassert_eq!(res2, true);\n\n\n\n問題点\n\nusize\nrustのusizeは基本64bitなので、大きすぎる値を考える時には向いていない。\n\n\n高速フーリエ変換\nやってなかったので、後々詳細を調べる。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "At Coder",
+      "競プロ典型90 01〜05"
+    ]
+  },
+  {
+    "objectID": "posts/at_coder/typical90-11.html",
+    "href": "posts/at_coder/typical90-11.html",
+    "title": "typical90-11",
     "section": "",
-    "text": "問題リンク\n\n\n失敗した解き方\nコメントの中でやった通りのやり方。これだと計算量が \\(k^{n}\\) になってしまうためにデカいテストデータでは通らなかった。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        k: usize,\n        s: String,\n    }\n\n    let vec_str = s.chars().into_iter().collect::&lt;Vec&lt;char&gt;&gt;();\n    let mut vec_str_to_usize = vec_str\n        .clone()\n        .into_iter()\n        .map(|c| c.to_digit(36).unwrap() as usize)\n        .collect::&lt;Vec&lt;usize&gt;&gt;();\n\n    // 例えば、n=7, k=3, s=abcdefgの場合、\n    // 0,1,2,3,4=n-k の中から最大のものを選んで、で残ったやつから i,i+1,...,n-k+1=3 の中から最大のものを選ぶ。\n    // これから続けて、\n\n    let mut ans = vec![];\n\n    // let first_index = find_biggest_index(vec_str_to_usize.clone(), 0, n - k);\n    // ans.push(vec_str[first_index]);\n    // let second_index = find_biggest_index(vec_str_to_usize.clone(), first_index + 1, n - k + 1);\n\n    let mut now_index = 0;\n    for i in 0..k {\n        if i == 0 {\n            now_index = find_smallest_index(vec_str_to_usize.clone(), 0, n - k);\n        } else {\n            now_index = find_smallest_index(vec_str_to_usize.clone(), now_index + 1, n - k + i);\n        }\n        ans.push(vec_str[now_index]);\n    }\n\n    println!(\"{}\", ans.into_iter().collect::&lt;String&gt;());\n}\n\nfn find_smallest_index(\n    vec_str_to_usize: Vec&lt;usize&gt;,\n    start_index: usize,\n    end_index: usize,\n) -&gt; usize {\n    let mut min = 36;\n    let mut index = 0;\n\n    for i in start_index..end_index + 1 {\n        if min &gt; vec_str_to_usize[i as usize] {\n            min = vec_str_to_usize[i as usize];\n            index = i;\n        }\n    }\n\n    index\n}\nなので別の方法を考える。\n\\(N\\) の長さの文字列の中から一番でかいアルファベットを探して、それが \\(N-K\\) 番目より前にあればOK。その値を上から順に並べていく。これだと計算量は \\(NK\\) になる。けどまだダメ。\nfn find_smallest_index(vec_str_to_usize: Vec&lt;usize&gt;, limit_index: usize) -&gt; usize {\n    for (i, j) in iproduct!(11..36, 0..limit_index) {\n        if vec_str_to_usize[j] == i {\n            return j;\n        }\n    }\n    0\n}\nここで問題となるのが、 \\(\\symscr{O}(10^8)\\) がおおよそ実行時間が2秒であることを考慮すると、 \\(NK\\) だとダメだということ。なので \\(N\\) か \\(K\\) を \\(1\\) にするような方法を考えたとき、Stringを整理して、 \\(N\\) 回の計算を終えたらすぐに \\(K\\) 回の計算をすれば終わるようなデータベースを準備すればいい。これだと計算量は \\(N+K\\) になるので、解決できる。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        k: usize,\n        s: String,\n    }\n\n    let vec_str = s.chars().into_iter().collect::&lt;Vec&lt;char&gt;&gt;();\n    let mut vec_str_to_usize = vec_str\n        .clone()\n        .into_iter()\n        .map(|c| c.to_digit(36).unwrap() as usize - 10)\n        .collect::&lt;Vec&lt;usize&gt;&gt;();\n\n    let mut ans = vec![];\n\n    let r = generate_r(vec_str_to_usize.clone());\n\n    let mut position = -1;\n\n    for i in 0..k {\n        for j in 0..26 {\n            let tmp = r[(position + 1) as usize][j];\n            if tmp != -1 && n - tmp as usize &gt;= k - i {\n                ans.push(char::from_digit((j + 10) as u32, 36).unwrap());\n                position = tmp as isize;\n                break;\n            }\n        }\n    }\n\n    println!(\"{}\", ans.into_iter().collect::&lt;String&gt;());\n}\n\n// r[i][j]がi桁目の数より右側にjが出現する最小のインデックスを返す\n\nfn generate_r(vec_str_to_usize: Vec&lt;usize&gt;) -&gt; Vec&lt;Vec&lt;isize&gt;&gt; {\n    let mut r: Vec&lt;Vec&lt;isize&gt;&gt; = vec![vec![-1; 26]; vec_str_to_usize.len() + 1];\n\n    for i in (0..vec_str_to_usize.len()).rev() {\n        for j in 0..26 {\n            if vec_str_to_usize[i] == j {\n                r[i][j] = i as isize;\n            } else {\n                r[i][j] = r[i + 1][j];\n            }\n        }\n    }\n\n    r\n}\n困難は分割せよっていう話があるが、これは困難を積集合として分割してはならないという教訓を与えてくれた。\n\n\n\n\n\n\\(\\symscr{O}(10^8)\\) がおおよそ実行時間が2秒である。これが大体どのコンテストでもリミッターになってるらしい。",
+    "text": "問題リンク\nDPの問題です。慣れたものだね。\nuse itertools::iproduct;\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        mut dcs: [(usize, usize, usize); n],\n    }\n\n    // 締切日を降順にソート\n    dcs.sort_by(|a, b| a.0.cmp(&b.0).then(a.1.cmp(&b.1)).then(b.2.cmp(&a.2)));\n\n    // dp[i][j]: i問題目まで考えて、それまでの合計仕事日数がjの時の、報酬の最大値\n    let mut dp = vec![vec![0; 5001]; n + 1];\n\n    for (i, j) in iproduct!(0..n, 0..5001) {\n        // i問題目を解く場合\n        if j + dcs[i].1 &lt;= dcs[i].0 {\n            dp[i + 1][j + dcs[i].1] = dp[i + 1][j + dcs[i].1].max(dp[i][j] + dcs[i].2);\n        }\n        // i問題目を解かない場合\n        dp[i + 1][j] = dp[i + 1][j].max(dp[i][j]);\n    }\n\n    println!(\"{}\", dp[n].iter().max().unwrap());\n\n}",
     "crumbs": [
       "Home",
       "Posts",
       "At Coder",
-      "競プロ典型90 06〜10"
+      "typical90-11"
     ]
   },
   {
-    "objectID": "posts/at_coder/typical90-06-10.html#typical90-07",
-    "href": "posts/at_coder/typical90-06-10.html#typical90-07",
-    "title": "競プロ典型90 06〜10",
-    "section": "typical90-07",
-    "text": "typical90-07\n\n概要\n問題リンク\nとりあえずBinary Searchすればいい。そうすれば計算量は \\(\\symscr{O}(Q\\ln N)\\) になる。 \\(\\ln\\) じゃなくて \\(\\log_{2}\\) だろうがという文句に対しては、定数倍してるだけだろうがという返答を投げつけますね。\nuse std::cmp;\n\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        mut a: [usize; n],\n        q: usize,\n        b: [usize; q],\n    }\n\n    a.sort();\n\n    for i in b.clone() {\n        let ans = cmp::min(\n            (a[(cmp::min(a.len() as isize - 1, binary_search(&a, i) as isize)) as usize] as isize\n                - i as isize)\n                .abs(),\n            (a[(cmp::max(0, binary_search(&a, i) as isize - 1)) as usize] as isize - i as isize)\n                .abs(),\n        );\n        println!(\"{}\", ans);\n    }\n}\n\nfn binary_search(a: &[usize], b: usize) -&gt; usize {\n    let mut left = 0;\n    let mut right = a.len();\n\n    while left &lt; right {\n        let mid = (left + right) / 2;\n        if a[mid] == b {\n            return mid;\n        } else if a[mid] &lt; b {\n            left = mid + 1;\n        } else {\n            right = mid;\n        }\n    }\n\n    left\n}\n見たらわかると思いますが、マジで競プロにRustは合わないっすね。真剣にNimに移行することを考えるレベルで。\nでも、私みたいな頑固なやつは何があってもRustを使い続けようとするんだろうなぁ。\n\n\n発見\n\n問題\n\n\n\n問題点",
+    "objectID": "posts/at_coder/typical90-11.html#概要",
+    "href": "posts/at_coder/typical90-11.html#概要",
+    "title": "typical90-11",
+    "section": "",
+    "text": "問題リンク\nDPの問題です。慣れたものだね。\nuse itertools::iproduct;\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        mut dcs: [(usize, usize, usize); n],\n    }\n\n    // 締切日を降順にソート\n    dcs.sort_by(|a, b| a.0.cmp(&b.0).then(a.1.cmp(&b.1)).then(b.2.cmp(&a.2)));\n\n    // dp[i][j]: i問題目まで考えて、それまでの合計仕事日数がjの時の、報酬の最大値\n    let mut dp = vec![vec![0; 5001]; n + 1];\n\n    for (i, j) in iproduct!(0..n, 0..5001) {\n        // i問題目を解く場合\n        if j + dcs[i].1 &lt;= dcs[i].0 {\n            dp[i + 1][j + dcs[i].1] = dp[i + 1][j + dcs[i].1].max(dp[i][j] + dcs[i].2);\n        }\n        // i問題目を解かない場合\n        dp[i + 1][j] = dp[i + 1][j].max(dp[i][j]);\n    }\n\n    println!(\"{}\", dp[n].iter().max().unwrap());\n\n}",
     "crumbs": [
       "Home",
       "Posts",
       "At Coder",
-      "競プロ典型90 06〜10"
-    ]
-  },
-  {
-    "objectID": "posts/at_coder/typical90-06-10.html#typical90-08",
-    "href": "posts/at_coder/typical90-06-10.html#typical90-08",
-    "title": "競プロ典型90 06〜10",
-    "section": "typical90-08",
-    "text": "typical90-08\n\n概要\n問題リンク\n計算量の問題で、おそらく多項式時間に収めないといけない。故に数え上げをやるのではなく、漸化式を数値的に解くことになる。\n\\[\nA_i =\n\\begin{pmatrix}\na_{i,0}\\; &: \\; a\\\\\na_{i,1}\\; &: \\; at\\\\\na_{i,2}\\; &: \\; atc\\\\\na_{i,3}\\; &: \\; atco\\\\\na_{i,4}\\; &: \\; atcod\\\\\na_{i,5}\\; &: \\; atcode\\\\\na_{i,6}\\; &: \\; atcoder\\\\\n\\end{pmatrix}\n\\]\nこんな行列を考えて、それの目的になる項を求めていく。漸化式は次のようなルールに従う。\n\\[\na_{i+1,k} =\n\\begin{cases}\na_{i,k} &\\text{$k$番目の文字じゃなかったら}\\\\\na_{i,k} + a_{i,k-1}　&\\text{$k$番目の文字だったら}\n\\end{cases}\n\\]\nコードに落とし込めば次のようになる。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        s: String,\n    }\n    let modular = 1_000_000_007;\n\n    let vec_str = s.chars().collect::&lt;Vec&lt;char&gt;&gt;();\n\n    let mut ans = vec![0; 7];\n\n    for i in vec_str {\n        match i {\n            'a' =&gt; ans[0] = (ans[0] + 1) % modular,\n            't' =&gt; ans[1] = (ans[1] + ans[0]) % modular,\n            'c' =&gt; ans[2] = (ans[2] + ans[1]) % modular,\n            'o' =&gt; ans[3] = (ans[3] + ans[2]) % modular,\n            'd' =&gt; ans[4] = (ans[4] + ans[3]) % modular,\n            'e' =&gt; ans[5] = (ans[5] + ans[4]) % modular,\n            'r' =&gt; ans[6] = (ans[6] + ans[5]) % modular,\n            _ =&gt; (),\n        }\n    }\n\n    println!(\"{}\", ans[6] % 1_000_000_007);\n}\nこうかなり慣れてきたのか、30分ちょっとで解き切れるようになった。\n\n\n発見\n\n計算時にModularをかけておく。\nでなければ、オーバーフローして変な値になる。普通はコンパイルエラーが起きるのだが、この場合は起きなかった。おそらくある程度複雑なプログラムには対応できないのだろう。\n\n\n問題\n\n\n\n問題点",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "At Coder",
-      "競プロ典型90 06〜10"
-    ]
-  },
-  {
-    "objectID": "posts/at_coder/typical90-06-10.html#typical90-09",
-    "href": "posts/at_coder/typical90-06-10.html#typical90-09",
-    "title": "競プロ典型90 06〜10",
-    "section": "typical90-09",
-    "text": "typical90-09\n\n概要\n問題リンク\n数学の問題じゃ。\nとりあえず全探索でもギリギリ大丈夫そう。10^10程度だし。いや、でもむずいか？　やってないのでわかんない。\nこの問題は \\(P_i,\\; P_j\\) を固定して最大角となる \\(P_k\\) を探すことになる。幾何的性質で、 \\(P_j\\) を始点として考えてアーム \\(P_jP_k\\) が最もアーム \\(P_iP_j\\) に近づく時の \\(k\\) を考えればいいわけで、そのような \\(k\\) は \\(P_j\\) を始点として考えたアームの偏角をソートすれば見つかる。\n具体的なコードは次のとおり。\nuse num::complex::Complex;\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        a: [[usize; 2]; n],\n    }\n\n    let mut ans = vec![];\n\n    for j in 0..n {\n\n        // Storage は P_j からのその他への点への偏角を格納する\n        let mut storage = vec![];\n\n        for i in 0..n {\n\n            // 同じ点を選んだ時はスキップ\n            if i == j {\n                continue;\n            }\n\n            // 偏角の計算\n            let tmp = Complex::new(a[i][0] as f64, a[i][1] as f64)\n                - Complex::new(a[j][0] as f64, a[j][1] as f64);\n            storage.push(tmp.arg().to_degrees());\n        }\n\n        // 偏角をソート\n        storage.sort_by(|a, b| a.partial_cmp(b).unwrap());\n\n        // P_j, P_i を固定して、作られる角度の最大を探す部分\n        for i in 0..n - 1 {\n\n            // P_j, P_i から作られる角度の反対側に伸びる方向の偏角を計算\n            let mut opp_angle = storage[i] + 180.;\n            if opp_angle &gt;= 180. {\n                opp_angle -= 360.;\n            }\n\n            // 二分探索で偏角の反対側にある点を探す\n            let mut left = 0;\n            let mut right = n - 2;\n            while right - left &gt; 1 {\n                let mid = (left + right) / 2;\n                if storage[mid] &lt;= opp_angle {\n                    left = mid;\n                } else {\n                    right = mid;\n                }\n            }\n\n            // より大きい偏角を採用\n            let mut tmp_left = storage[i] - storage[left];\n            let mut tmp_right = storage[right] - storage[i];\n            if tmp_left &lt;= 0. {\n                tmp_left += 360.;\n            }\n            if tmp_right &lt;= 0. {\n                tmp_right += 360.;\n            }\n            if tmp_left &gt;= 180. {\n                tmp_left = 360. - tmp_left;\n            }\n            if tmp_right &gt;= 180. {\n                tmp_right = 360. - tmp_right;\n            }\n            ans.push(tmp_left.max(tmp_right));\n        }\n    }\n\n    println!(\n        \"{}\",\n        // P_j, P_i を固定した時の最大の角度を格納した配列の最大値を出力\n        ans.iter().max_by(|a, b| a.partial_cmp(b).unwrap()).unwrap()\n    );\n}\n綺麗なコードを書いて載せるなんてやりたいけど、そこまで習熟度があるわけじゃないので、勘弁願いたい。\n\n\n発見\n\nf64のソート\nsort_byを使えば楽。\nfn main() {\n    let mut tmp = vec![19.0, 12.9, 1.2];\n    tmp.sort_by(|a, b| a.partial_cmp(b).unwrap());\n    assert_eq!(tmp, [1.2, 12.9, 19.0]);\n}\nこれをそのまま関数にした sort_floats っていう関数もあるけど、nightly-onlyなので使えないかもしれない。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "At Coder",
-      "競プロ典型90 06〜10"
-    ]
-  },
-  {
-    "objectID": "posts/at_coder/typical90-06-10.html#typical90-10",
-    "href": "posts/at_coder/typical90-06-10.html#typical90-10",
-    "title": "競プロ典型90 06〜10",
-    "section": "typical90-10",
-    "text": "typical90-10\n\n概要\n問題リンク\n累積和って言うらしい。知らんくても思いつくだろう。要するにいちいち計算するんじゃなくて、一気にまとめておいて後から計算するって話。\nuse proconio::input;\n\nfn main() {\n    input! {\n        n: usize,\n        cp: [[usize; 2]; n],\n        q: usize,\n        lr: [[usize; 2]; q],\n    }\n\n    // storageは累積和を格納する\n    // つまり、storage[i][0]はC_i番目の出席番号までの１組の期末点数の合計\n    let mut storage = vec![];\n\n    let mut tmp = vec![0,0];\n\n    for i in 0..n {\n        if cp[i][0] == 1 {\n            tmp[0] += cp[i][1];\n        } else {\n            tmp[1] += cp[i][1];\n        }\n        storage.push(tmp.clone());\n    }\n\n    for i in 0..q {\n        let l = lr[i][0] - 1;\n        let r = lr[i][1] - 1;\n\n        let mut ans = vec![0,0];\n        if l &gt; 0 {\n            ans[0] = storage[r][0] - storage[l-1][0];\n            ans[1] = storage[r][1] - storage[l-1][1];\n        } else {\n            ans[0] = storage[r][0];\n            ans[1] = storage[r][1];\n        }\n\n        println!(\"{} {}\", ans[0], ans[1]);\n    }\n\n}",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "At Coder",
-      "競プロ典型90 06〜10"
+      "typical90-11"
     ]
   },
   {
