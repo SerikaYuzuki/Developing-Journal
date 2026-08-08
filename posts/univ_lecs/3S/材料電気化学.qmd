@@ -278,7 +278,395 @@ $$
 となる。
 :::
 
-#### 問題C2 帯電した導体球の表面電位
+#### 問題C2 イオン移動度と酢酸の電離
+
+1. 無限希釈におけるイオンモル伝導率が次のように与えられている。
+
+   | イオン | $\lambda_i^\infty\ [10^{-4}\ \mathrm{S\,m^2\,mol^{-1}}]$ |
+   |---|---:|
+   | $\ce{K+}$ | 73.5 |
+   | $\ce{Ca^{2+}}$ | 119 |
+   | $\ce{Cl-}$ | 76.35 |
+   | $\ce{SO4^{2-}}$ | 160 |
+
+   各イオンの移動度を求めよ。
+
+2. $\ce{HCl}$、$\ce{NaCl}$、$\ce{CH3COONa}$ の無限希釈モル伝導率は、それぞれ $426.3,126.4,91.0\ \mathrm{S\,cm^2\,mol^{-1}}$ である。酢酸の無限希釈モル伝導率を求めよ。
+3. $0.020\ \mathrm{mol\,L^{-1}}$ の酢酸水溶液の導電率が $2.31\times10^{-4}\ \mathrm{S\,cm^{-1}}$ であった。電離度 $\alpha$ と酸解離定数 $K_\mathrm{a}$ を求めよ。
+4. $\Delta_\mathrm{f}G^\circ(\ce{CH3COOH})=-396.46\ \mathrm{kJ\,mol^{-1}}$、$\Delta_\mathrm{f}G^\circ(\ce{H+})=0$ として、$\ce{CH3COO-}$ の標準生成ギブズエネルギーを求めよ。
+
+::: {.callout-note collapse="true"}
+##### 理論C2：電気伝導をイオンごとに分ける
+
+弱い電場 $E$ のもとで、イオン $i$ の平均移動速度 $v_i$ は
+
+$$
+v_i=u_iE
+$$
+
+と書ける。この比例係数 $u_i$ がイオン移動度である。イオンの電荷数の絶対値を $|z_i|$ とすると、無限希釈イオンモル伝導率との関係は
+
+$$
+\lambda_i^\infty=|z_i|Fu_i
+$$
+
+なので、
+
+$$
+u_i=\frac{\lambda_i^\infty}{|z_i|F}
+$$
+
+である。表の $10^{-4}$ を落とさず、SI単位へ直して代入する。
+
+無限希釈ではイオン間相互作用が無視でき、電解質のモル伝導率は構成イオンの寄与の和になる。これがコールラウシュのイオン独立移動則である。酢酸については、測定可能な強電解質の組合せから
+
+$$
+\Lambda^\infty_{\ce{CH3COOH}}
+=\Lambda^\infty_{\ce{HCl}}
++\Lambda^\infty_{\ce{CH3COONa}}
+-\Lambda^\infty_{\ce{NaCl}}
+$$
+
+を作れる。
+
+濃度 $c$ を $\mathrm{mol\,L^{-1}}$、導電率 $\kappa$ を $\mathrm{S\,cm^{-1}}$ とすると、モル伝導率は
+
+$$
+\Lambda=\frac{1000\kappa}{c}
+\quad [\mathrm{S\,cm^2\,mol^{-1}}]
+$$
+
+である。弱電解質では、電離した割合にほぼ比例して電気を運ぶので
+
+$$
+\alpha=\frac{\Lambda}{\Lambda^\infty}
+$$
+
+となる。酢酸を $\ce{HA <=> H+ + A-}$ と書けば、オストワルトの希釈律から
+
+$$
+K_\mathrm{a}=\frac{c\alpha^2}{1-\alpha}
+$$
+
+を得る。
+
+さらに、標準反応ギブズエネルギーと平衡定数の関係
+
+$$
+\Delta_\mathrm{r}G^\circ=-RT\ln K_\mathrm{a}
+$$
+
+および
+
+$$
+\Delta_\mathrm{r}G^\circ
+=\Delta_\mathrm{f}G^\circ(\ce{H+})
++\Delta_\mathrm{f}G^\circ(\ce{CH3COO-})
+-\Delta_\mathrm{f}G^\circ(\ce{CH3COOH})
+$$
+
+を組み合わせれば、酢酸イオンの標準生成ギブズエネルギーが求まる。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答C2
+
+1. $u_i=\lambda_i^\infty/(|z_i|F)$ より、
+
+   $$
+   \begin{aligned}
+   u_{\ce{K+}}&=7.62\times10^{-8}\ \mathrm{m^2\,V^{-1}\,s^{-1}},\\
+   u_{\ce{Ca^{2+}}}&=6.17\times10^{-8}\ \mathrm{m^2\,V^{-1}\,s^{-1}},\\
+   u_{\ce{Cl-}}&=7.91\times10^{-8}\ \mathrm{m^2\,V^{-1}\,s^{-1}},\\
+   u_{\ce{SO4^{2-}}}&=8.29\times10^{-8}\ \mathrm{m^2\,V^{-1}\,s^{-1}}.
+   \end{aligned}
+   $$
+
+2. 
+
+   $$
+   \Lambda^\infty_{\ce{CH3COOH}}
+   =426.3+91.0-126.4
+   =\boxed{390.9\ \mathrm{S\,cm^2\,mol^{-1}}}.
+   $$
+
+3. 
+
+   $$
+   \Lambda=\frac{1000(2.31\times10^{-4})}{0.020}
+   =11.55\ \mathrm{S\,cm^2\,mol^{-1}}
+   $$
+
+   なので、
+
+   $$
+   \alpha=\frac{11.55}{390.9}=2.95\times10^{-2}.
+   $$
+
+   $$
+   K_\mathrm{a}
+   =\frac{0.020(2.95\times10^{-2})^2}{1-2.95\times10^{-2}}
+   =1.80\times10^{-5}\ \mathrm{mol\,L^{-1}}.
+   $$
+
+   よって、
+
+   $$
+   \boxed{\alpha=0.0295,\qquad
+   K_\mathrm{a}=1.80\times10^{-5}\ \mathrm{mol\,L^{-1}}}
+   $$
+
+4. 
+
+   $$
+   \Delta_\mathrm{r}G^\circ
+   =-RT\ln K_\mathrm{a}
+   =27.1\ \mathrm{kJ\,mol^{-1}}
+   $$
+
+   であるから、
+
+   $$
+   \Delta_\mathrm{f}G^\circ(\ce{CH3COO-})
+   =27.1-396.46
+   =\boxed{-369.4\ \mathrm{kJ\,mol^{-1}}}.
+   $$
+:::
+
+#### 問題C3 酢酸の電気伝導度滴定
+
+酢酸水溶液を $\ce{NaOH}$ 水溶液で電気伝導度滴定する。滴定量に対する全導電率の変化を描き、$\ce{H+}$、$\ce{Na+}$、$\ce{CH3COO-}$、$\ce{OH-}$ の寄与を示せ。
+
+::: {.callout-note collapse="true"}
+##### 理論C3：当量点の前後で増えるイオンを数える
+
+酢酸は弱酸なので、滴定前の $\ce{H+}$ 濃度は小さい。$\ce{NaOH}$ を加えると
+
+$$
+\ce{CH3COOH + OH- -> CH3COO- + H2O}
+$$
+
+が進み、当量点までは $\ce{Na+}$ と $\ce{CH3COO-}$ がほぼ同量ずつ増える。したがって、導電率は緩やかに増加する。
+
+当量点を越えると、加えた $\ce{OH-}$ が過剰として残る。$\ce{OH-}$ のイオンモル伝導率は大きいため、当量点後の傾きは大きくなる。二つの直線部分の交点が当量点の目安である。
+
+この模式図は平衡計算による厳密曲線ではなく、各イオンの増減と傾きの変化を示すものである。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答C3
+
+```{python}
+#| echo: false
+#| label: fig-acetic-conductometric-titration
+#| fig-cap: "酢酸をNaOHで滴定したときの導電率寄与の模式図"
+#| fig-alt: "横軸は当量点で規格化したNaOH添加量、縦軸は相対導電率。Naイオンと酢酸イオンの寄与は当量点まで増加し、当量点後は水酸化物イオンの寄与が急増する。全導電率は当量点を境に傾きが大きくなる。"
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, 1.6, 400)
+na = 0.75 * x
+acetate = 0.45 * np.minimum(x, 1.0)
+hydrogen = 0.10 * np.maximum(1.0 - x, 0.0) ** 2
+hydroxide = 2.2 * np.maximum(x - 1.0, 0.0)
+total = na + acetate + hydrogen + hydroxide
+
+fig, ax = plt.subplots(figsize=(7.2, 4.6))
+ax.plot(x, total, color="black", linewidth=2.8, label="total")
+ax.plot(x, na, linestyle="--", linewidth=1.8, label=r"$\mathrm{Na^+}$")
+ax.plot(x, acetate, linestyle="-.", linewidth=1.8, label=r"$\mathrm{CH_3COO^-}$")
+ax.plot(x, hydroxide, linestyle=":", linewidth=2.2, label=r"$\mathrm{OH^-}$")
+ax.plot(x, hydrogen, linewidth=1.4, label=r"$\mathrm{H^+}$")
+ax.axvline(1.0, color="gray", linewidth=1.2)
+ax.text(1.02, 0.08, "equivalence", rotation=90, va="bottom")
+ax.set_xlabel("added NaOH / equivalence amount")
+ax.set_ylabel("relative conductivity")
+ax.set_xlim(0, 1.6)
+ax.set_ylim(bottom=0)
+ax.legend(frameon=False, ncol=2)
+ax.spines[["top", "right"]].set_visible(False)
+plt.tight_layout()
+```
+
+当量点までは $\ce{Na+}$ と $\ce{CH3COO-}$ の生成により導電率が緩やかに増加し、当量点後は過剰な $\ce{OH-}$ の寄与により急増する。したがって、全導電率の二つの傾きの交点が当量点となる。
+:::
+
+#### 問題C4 イオン強度、デバイ長、平均活量係数
+
+1. $0.10\ \mathrm{mol\,L^{-1}}$ の $\ce{NaCl}$ と $0.010\ \mathrm{mol\,L^{-1}}$ の $\ce{Al2(SO4)3}$ を含む水溶液について、全イオン強度と $\ce{NaCl}$ の分担割合を求めよ。両電解質は完全電離するとする。
+2. $25\ ^\circ\mathrm{C}$ の $\ce{CaCl2}$ 水溶液について、濃度が $0.0010$ および $0.010\ \mathrm{mol\,L^{-1}}$ のときのイオン強度とデバイ長を求めよ。水の比誘電率を $78.5$ とする。
+3. デバイ―ヒュッケルの極限則を用い、$5.0\times10^{-3}\ \mathrm{mol\,L^{-1}}$ の $\ce{KCl}$ と $1.0\times10^{-3}\ \mathrm{mol\,L^{-1}}$ の $\ce{CaCl2}$ の平均活量係数を求めよ。
+
+::: {.callout-note collapse="true"}
+##### 理論C4：濃度ではなく電荷の二乗で重みづける
+
+イオン強度は
+
+$$
+I=\frac12\sum_i c_iz_i^2
+$$
+
+で定義される。式量濃度ではなく、電離後の各イオン濃度 $c_i$ を用いる。電荷数が二乗で効くため、多価イオンは低濃度でも大きく寄与する。
+
+イオン雰囲気による電場の遮蔽距離がデバイ長 $\lambda_\mathrm{D}$ である。数密度を用いた式は
+
+$$
+\lambda_\mathrm{D}
+=\sqrt{
+\frac{\varepsilon_0\varepsilon_\mathrm{r}k_\mathrm{B}T}
+{2e^2N_\mathrm{A}(1000I)}
+}
+$$
+
+である。ここで $I$ は $\mathrm{mol\,L^{-1}}$ であり、$1000I$ によって $\mathrm{mol\,m^{-3}}$ へ直している。$25\ ^\circ\mathrm{C}$ の水では
+
+$$
+\lambda_\mathrm{D}\ [\mathrm{nm}]
+\simeq\frac{0.304}{\sqrt{I\ [\mathrm{mol\,L^{-1}}]}}
+$$
+
+と書ける。
+
+$25\ ^\circ\mathrm{C}$ の水溶液に対するデバイ―ヒュッケルの極限則は
+
+$$
+\log_{10}\gamma_i=-0.509z_i^2\sqrt I
+$$
+
+である。電解質 $\ce{M}_{\nu_+}\ce{X}_{\nu_-}$ の平均活量係数は
+
+$$
+\gamma_\pm
+=\left(\gamma_+^{\nu_+}\gamma_-^{\nu_-}\right)^{1/(\nu_++\nu_-)}
+$$
+
+で定義する。この極限則は十分に希薄な溶液にだけ適用できる。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答C4
+
+1. 
+
+   $$
+   I_{\ce{NaCl}}=\frac12(0.10+0.10)=0.10\ \mathrm{mol\,L^{-1}}
+   $$
+
+   である。$\ce{Al2(SO4)3}$ は $0.020\ \mathrm{mol\,L^{-1}}$ の $\ce{Al^{3+}}$ と $0.030\ \mathrm{mol\,L^{-1}}$ の $\ce{SO4^{2-}}$ を生じるので、
+
+   $$
+   I_{\ce{Al2(SO4)3}}
+   =\frac12\left(0.020\times3^2+0.030\times2^2\right)
+   =0.15\ \mathrm{mol\,L^{-1}}.
+   $$
+
+   よって、
+
+   $$
+   \boxed{I=0.25\ \mathrm{mol\,L^{-1}},\qquad
+   \text{$\ce{NaCl}$ の分担}=40\%}
+   $$
+
+2. $\ce{CaCl2}$ の式量濃度を $c$ とすれば
+
+   $$
+   I=\frac12(4c+2c)=3c.
+   $$
+
+   したがって、
+
+   $$
+   \begin{array}{c|c|c}
+   c\ [\mathrm{mol\,L^{-1}}] & I\ [\mathrm{mol\,L^{-1}}] &
+   \lambda_\mathrm{D}\ [\mathrm{nm}]\\ \hline
+   0.0010 & 0.0030 & 5.55\\
+   0.010 & 0.030 & 1.76
+   \end{array}
+   $$
+
+3. $\ce{KCl}$ では $I=0.0050$ かつ $|z_+|=|z_-|=1$ なので、
+
+   $$
+   \boxed{\gamma_\pm(\ce{KCl})=10^{-0.509\sqrt{0.0050}}=0.920}.
+   $$
+
+   $\ce{CaCl2}$ では $I=0.0030$ であり、
+
+   $$
+   \log_{10}\gamma_\pm
+   =\frac{-0.509\sqrt I(2^2+2\times1^2)}{3}
+   =-1.018\sqrt I.
+   $$
+
+   よって、
+
+   $$
+   \boxed{\gamma_\pm(\ce{CaCl2})=0.880}.
+   $$
+:::
+
+#### 問題C5 ボルンの溶媒和エネルギー
+
+$25\ ^\circ\mathrm{C}$ の水の比誘電率を $78.54$ とする。ボルン式を
+
+$$
+\Delta G_\mathrm{solv}^\circ
+=-\frac{z^2}{r_i\ [\mathrm{pm}]}
+\times C\quad[\mathrm{kJ\,mol^{-1}}]
+$$
+
+と書いたときの定数 $C$ を求めよ。さらに、$r_{\ce{Cl-}}=181\ \mathrm{pm}$、$r_{\ce{I-}}=220\ \mathrm{pm}$ として、それぞれの $\Delta G_\mathrm{solv}^\circ$ を求めよ。
+
+::: {.callout-note collapse="true"}
+##### 理論C5：誘電体が電荷の自己エネルギーを下げる
+
+半径 $r_i$、電荷 $ze$ の球を真空から比誘電率 $\varepsilon_\mathrm{r}$ の連続誘電体へ移すボルンモデルでは、
+
+$$
+\Delta G_\mathrm{solv}^\circ
+=-\frac{N_\mathrm{A}z^2e^2}{8\pi\varepsilon_0r_i}
+\left(1-\frac1{\varepsilon_\mathrm{r}}\right)
+$$
+
+となる。溶媒の分極によって電荷の静電エネルギーが下がるため、符号は負である。$r_i$ が小さく、$|z|$ が大きいほど絶対値は大きい。
+
+このモデルは溶媒を一様な連続体とみなすため、分子レベルの水和構造や特異的相互作用は表さない。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答C5
+
+$$
+C
+=\frac{N_\mathrm{A}e^2}{8\pi\varepsilon_0}
+\left(1-\frac1{78.54}\right)
+\times\frac{10^{12}\ \mathrm{pm/m}}{10^3\ \mathrm{J/kJ}}
+=6.86\times10^4.
+$$
+
+したがって、
+
+$$
+\boxed{
+\Delta G_\mathrm{solv}^\circ
+=-\frac{6.86\times10^4z^2}{r_i\ [\mathrm{pm}]}
+\ \mathrm{kJ\,mol^{-1}}
+}
+$$
+
+である。両イオンは $z=-1$ なので、
+
+$$
+\boxed{
+\Delta G_\mathrm{solv}^\circ(\ce{Cl-})=-379\ \mathrm{kJ\,mol^{-1}},
+\qquad
+\Delta G_\mathrm{solv}^\circ(\ce{I-})=-312\ \mathrm{kJ\,mol^{-1}}
+}
+$$
+:::
+
+#### 問題C6 帯電した導体球の表面電位
 
 半径 $1.0\ \mathrm{cm}$ の導体球に、$1.0\times10^{-13}\ \mathrm{mol}$ の過剰電子がある。導体球は真空中にあり、無限遠の電位を $0\ \mathrm{V}$ とする。真空の誘電率を
 
@@ -289,7 +677,7 @@ $$
 として、球表面の電位を求めよ。
 
 ::: {.callout-note collapse="true"}
-##### 理論C2：電荷量と符号を分けて考える
+##### 理論C6：電荷量と符号を分けて考える
 
 電子 $1\ \mathrm{mol}$ の電荷は $-F$ なので、過剰電子の物質量を $n_e$ とすれば導体球の全電荷は
 
@@ -310,7 +698,7 @@ $$
 :::
 
 ::: {.callout-tip collapse="true"}
-##### 解答C2
+##### 解答C6
 
 導体球の電荷は
 
