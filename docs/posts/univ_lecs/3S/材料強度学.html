@@ -2660,29 +2660,10 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#材料強度学" id="toc-材料強度学" class="nav-link active" data-scroll-target="#材料強度学">材料強度学</a>
-  <ul class="collapse">
-  <li><a href="#講義の概要" id="toc-講義の概要" class="nav-link" data-scroll-target="#講義の概要">講義の概要</a></li>
-  <li><a href="#第一講" id="toc-第一講" class="nav-link" data-scroll-target="#第一講">第一講</a>
-  <ul class="collapse">
-  <li><a href="#hookes-law" id="toc-hookes-law" class="nav-link" data-scroll-target="#hookes-law">Hooke’s Law</a></li>
-  <li><a href="#脆性破壊と延性破壊" id="toc-脆性破壊と延性破壊" class="nav-link" data-scroll-target="#脆性破壊と延性破壊">脆性破壊と延性破壊</a></li>
-  <li><a href="#理想強度" id="toc-理想強度" class="nav-link" data-scroll-target="#理想強度">理想強度</a></li>
-  </ul></li>
-  <li><a href="#第２講" id="toc-第２講" class="nav-link" data-scroll-target="#第２講">第２講</a>
-  <ul class="collapse">
-  <li><a href="#滑り面と滑り方向滑り系について" id="toc-滑り面と滑り方向滑り系について" class="nav-link" data-scroll-target="#滑り面と滑り方向滑り系について">滑り面と滑り方向、滑り系について</a></li>
-  <li><a href="#crss" id="toc-crss" class="nav-link" data-scroll-target="#crss">CRSS</a></li>
-  </ul></li>
-  <li><a href="#第３講" id="toc-第３講" class="nav-link" data-scroll-target="#第３講">第３講</a>
-  <ul class="collapse">
-  <li><a href="#理論剪断強度" id="toc-理論剪断強度" class="nav-link" data-scroll-target="#理論剪断強度">理論剪断強度</a></li>
-  </ul></li>
-  <li><a href="#過去問" id="toc-過去問" class="nav-link" data-scroll-target="#過去問">過去問</a>
-  <ul class="collapse">
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">2008</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#結晶方位とすべり" id="toc-結晶方位とすべり" class="nav-link active" data-scroll-target="#結晶方位とすべり">結晶方位とすべり</a></li>
+  <li><a href="#転位の弾性場" id="toc-転位の弾性場" class="nav-link" data-scroll-target="#転位の弾性場">転位の弾性場</a></li>
+  <li><a href="#き裂と破壊" id="toc-き裂と破壊" class="nav-link" data-scroll-target="#き裂と破壊">き裂と破壊</a></li>
+  <li><a href="#粒界" id="toc-粒界" class="nav-link" data-scroll-target="#粒界">粒界</a></li>
   </ul>
 </nav>
     </div>
@@ -2695,6 +2676,9 @@ window.Quarto = {
 <h1 class="title">材料強度学</h1>
   <div class="quarto-categories">
     <div class="quarto-category">University</div>
+    <div class="quarto-category">mechanics</div>
+    <div class="quarto-category">dislocation</div>
+    <div class="quarto-category">fracture</div>
     <div class="quarto-category">2024</div>
   </div>
   </div>
@@ -2725,302 +2709,488 @@ window.Quarto = {
 </header>
 
 
-<p><span class="math display">\[ \require{physics}
+<p><span class="math display">\[
+\require{physics}
 \require{mhchem}
+\require{ams}
 \]</span></p>
-<section id="材料強度学" class="level1">
-<h1>材料強度学</h1>
-<section id="講義の概要" class="level2">
-<h2 class="anchored" data-anchor-id="講義の概要">講義の概要</h2>
-<ul>
-<li>出席は取らない</li>
-</ul>
-</section>
-<section id="第一講" class="level2">
-<h2 class="anchored" data-anchor-id="第一講">第一講</h2>
-<section id="hookes-law" class="level3">
-<h3 class="anchored" data-anchor-id="hookes-law">Hooke’s Law</h3>
-<p><span class="math display">\[ \pdv{\sigma}{\epsilon} = E \]</span></p>
-<p>応力は歪の小さい範囲では歪に比例する。比例係数はヤング率。当たり前の話。</p>
-<p><img src="images/強度学/1.png" class="img-fluid"></p>
-<p>点Aから手を離すと、フックの直線とそんなに変わらない傾きで点Bに行く。OBのことを塑性変形と読んでいる。このことを yield phenomenon pointと呼んでいるらしい。</p>
-<p><img src="images/強度学/2.png" class="img-fluid"></p>
-<p>この状態は continuous yieldingと呼ばれている。このヤング率は測定が難しいので、歪の0.2%とすることが多いらしい。</p>
-</section>
-<section id="脆性破壊と延性破壊" class="level3">
-<h3 class="anchored" data-anchor-id="脆性破壊と延性破壊">脆性破壊と延性破壊</h3>
-<p>脆性破壊は、急激に破壊が進むこと。延性破壊は、ゆっくりと破壊が進むこと。</p>
-<p><img src="images/強度学/3.png" class="img-fluid"></p>
-<p>靱性は、破壊エネルギーのこと。延性破壊が起こる材料は靱性が高い。</p>
-<p><span class="math display">\[ \text{靱性} = \int \sigma \dd \epsilon \]</span></p>
-</section>
-<section id="理想強度" class="level3">
-<h3 class="anchored" data-anchor-id="理想強度">理想強度</h3>
-<p><img src="images/強度学/5.png" class="img-fluid"></p>
-<p>このもっこりを正弦関数で近似して、</p>
-<p><img src="images/強度学/6.png" class="img-fluid"></p>
-<p><span class="math display">\[ \sigma \cong \sigma_c \sin \left(\frac{2\pi(a-a_0)}{\lambda}\right) \]</span></p>
-<p>ここで、一時近似すると、</p>
-<p><span class="math display">\[ \sigma \cong \sigma_c \frac{2\pi(a-a_0)}{\lambda} \]</span></p>
-<p>フックの法則では</p>
-<p><span class="math display">\[ \sigma = E \epsilon = E \frac{a-a_0}{a_0}\]</span></p>
-<p><span class="math display">\[ \sigma_c = \frac{E\lambda}{2\pi a_0}\]</span></p>
-<p>ここで <span class="math inline">\(\lambda\)</span> を求めないといけないが、これは、実験的に劈開試験を行うことで求めることができる。表面エネルギーを <span class="math inline">\(\gamma\)</span> にすると、面が二つある事を考えて、</p>
-<p><span class="math display">\[ 2\gamma = \int_{a_0}^{\infty} \sigma \dd a = \int_{a_0}^{\infty} \sigma_c \sin \left(\frac{2\pi(a-a_0)}{\lambda}\right) \dd a = \sigma_c \frac{\lambda}{\pi} \]</span></p>
-<p>ここで注意なのは、もっこりは一つなので、それで近似する。</p>
-<p>ここにフックの法則の方の式を代入すると、</p>
-<p><span class="math display">\[ 2\gamma = \frac{\sigma_c}{\pi} \frac{2\pi a_0 \sigma_c}{E} = \frac{2\sigma_c^2 a_0}{E} \]</span></p>
-<p><span class="math display">\[ \sigma_c = \sqrt{\frac{\gamma E}{a_0}} \]</span></p>
-<p>実際の破壊強度は <span class="math inline">\(\sigma_c\)</span> の 10%~1%程度で あることが知られている。このモデルでは欠陥の影響が考慮されていない。現実の材料では、ミリ～ミクロンサイズの空隙から、熱力学的平衡状態において存在する格子欠陥まで、さまざまな欠陥が含まれており、それゆえ破壊強度が理想強度を大きく下回ると考えられる。</p>
-</section>
-</section>
-<section id="第２講" class="level2">
-<h2 class="anchored" data-anchor-id="第２講">第２講</h2>
-<section id="滑り面と滑り方向滑り系について" class="level3">
-<h3 class="anchored" data-anchor-id="滑り面と滑り方向滑り系について">滑り面と滑り方向、滑り系について</h3>
-<p>これらを表すのにミラー指数が使われる。</p>
-<ul>
-<li>滑り面 <img src="images/強度学/7.png" class="img-fluid"> <span class="math display">\[
-(h\; k\; l) = (\frac{1}{x_1} \; \frac{1}{y_1} \; \frac{1}{z_1})
-\]</span> のように定義するので、このようになる。要するに、逆数を考えればいい。また面同士の角度は、内積を取ることで求めることができる。 <span class="math display">\[
-\cos \phi = \frac{h_1h_2 + k_1k_2 + l_1l_2}{\sqrt{h_1^2 + k_1^2 + l_1^2} \sqrt{h_2^2 + k_2^2 + l_2^2}}
-\]</span> また、面のことは <span class="math inline">\((h\; k\; l)\)</span> と表し、等価な面は <span class="math inline">\({h\; k\; l}\)</span> と表す。</li>
-<li>滑り方向 方向については単純に方向のベクトルを考えればいい。</li>
-<li>滑り系 先ほどの二つの値をかけあわせてできるもの。</li>
-</ul>
-</section>
-<section id="crss" class="level3">
-<h3 class="anchored" data-anchor-id="crss">CRSS</h3>
-<p>CRSS とは Critical Resolved Shear Stress の略で、これは、ある方向に対しての応力のこと。これは、Schmid’s Law によって求めることができる。</p>
+<p>この記事では、結晶の向きから塑性変形を予測し、転位の弾性場を経て、き裂と粒界が強度を決めるところまでを問題でつなげます。</p>
+<section id="結晶方位とすべり" class="level2">
+<h2 class="anchored" data-anchor-id="結晶方位とすべり">結晶方位とすべり</h2>
+<section id="sec-strength-schmid" class="level4">
+<h4 class="anchored" data-anchor-id="sec-strength-schmid">問題A1 Schmid則と臨界分解せん断応力</h4>
+<p>断面積 <span class="math inline">\(S\)</span> の単結晶丸棒に引張力 <span class="math inline">\(F\)</span> を負荷する。引張方向とすべり面法線のなす角を <span class="math inline">\(\phi\)</span>、引張方向とすべり方向のなす角を <span class="math inline">\(\lambda\)</span> とする。</p>
+<ol type="1">
+<li>すべり系に作用する分解せん断応力 <span class="math inline">\(\tau\)</span> を、<span class="math inline">\(S,F,\phi,\lambda\)</span> の関数として導け。</li>
+<li>臨界分解せん断応力とSchmid因子について述べよ。</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論A1：外力をすべり面・すべり方向へ投影する
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、棒を引っ張る力のうち、実際に結晶面を滑らせる成分だけを二回の射影で取り出すことです。</p>
+<p>棒の公称引張応力は</p>
 <p><span class="math display">\[
-\tau = \frac{F}{S} \cos \phi \cos \lambda
+\sigma=\frac{F}{S}
 \]</span></p>
-<p>ここで次の項はシュミット因子と呼ばれる</p>
+<p>です。引張軸に垂直な断面積 <span class="math inline">\(S\)</span> は、すべり面の面積 <span class="math inline">\(A\)</span> を引張軸へ投影した面積なので、</p>
 <p><span class="math display">\[
-\cos \phi \cos \lambda
+S=A\cos\phi,
+\qquad
+A=\frac{S}{\cos\phi}
 \]</span></p>
-<p>これは、ある方向に対しての応力を表す。この値が大きいほど、その方向に対しての応力が大きいことを示す。</p>
-<p>次に、CRSSの温度依存性の式は次のように示される。</p>
+<p>となります。一方、引張力のすべり方向成分は <span class="math inline">\(F\cos\lambda\)</span> です。したがって、すべり面上の分解せん断応力は</p>
 <p><span class="math display">\[
-\tau = \tau_0 \exp \left(-\frac{Q}{kT}\right)
+\tau
+=\frac{F\cos\lambda}{A}
+=\frac{F}{S}\cos\phi\cos\lambda
 \]</span></p>
-<p>また、CRSSは結晶構造によっても変わり、シュミット因子の値を等高線的にプロットすることがある。</p>
-<p><img src="images/強度学/8.png" class="img-fluid"></p>
-<p>この時の三角形はステレオ投影図である。</p>
-<ul>
-<li>ステレオ投影図</li>
-</ul>
-<p><img src="images/強度学/9.png" class="img-fluid"> <img src="images/強度学/10.png" class="img-fluid"></p>
-<p>この代表的な三角形を標準ステレオ三角形と呼ぶ。この３つのベクトルを使って、任意のベクトルを線型結合的に表しているみたいだ。</p>
-<ul>
-<li>２次滑り</li>
-</ul>
-<p><img src="images/強度学/11.png" class="img-fluid"></p>
-<p>ある程度以上引っ張り変形させると、２次滑りが起こる。これの模式的なずが上のようなものである。</p>
+<p>となります。</p>
+<p><span class="math display">\[
+m=\cos\phi\cos\lambda
+\]</span></p>
+<p>を<strong>Schmid因子</strong>と呼びます。<span class="math inline">\(m\)</span> は材料定数ではなく、引張軸とすべり系の相対方位だけで決まる幾何学量です。一方、すべりが始まるために必要な分解せん断応力 <span class="math inline">\(\tau_{\mathrm{CRSS}}\)</span> は、材料、温度、組織、ひずみ速度などで決まります。</p>
+<p>複数のすべり系があるときは、一般に <span class="math inline">\(\abs{m}\)</span> が大きく、かつ <span class="math inline">\(\tau_{\mathrm{CRSS}}\)</span> が小さい系から活動します。<span class="math inline">\(m\)</span> の符号はせん断方向を表すので、活動しやすさの比較には絶対値を使います。</p>
+<p>Schmid因子の結晶指数による計算法と符号の扱いは、<a href="../../../posts/univ_lecs/3S/材料力学II.html#sec-mech2-schmid">材料力学IIの問題D1</a>で詳しく扱っています。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答A1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>すべり面の面積を <span class="math inline">\(A\)</span> とすると、その引張軸への投影が <span class="math inline">\(S\)</span> なので</p>
+<p><span class="math display">\[
+A=\frac{S}{\cos\phi}.
+\]</span></p>
+<p>引張力のすべり方向成分は <span class="math inline">\(F\cos\lambda\)</span> である。よって、</p>
+<p><span class="math display">\[
+\boxed{
+\tau
+=\frac{F\cos\lambda}{A}
+=\frac{F}{S}\cos\phi\cos\lambda
+}
+\]</span></p>
+<p>となる。Schmid因子は</p>
+<p><span class="math display">\[
+\boxed{m=\cos\phi\cos\lambda}
+\]</span></p>
+<p>であり、単軸応力のうち指定したすべり系をせん断する割合を表す方位因子である。すべりは</p>
+<p><span class="math display">\[
+\boxed{\abs{m\sigma}=\tau_{\mathrm{CRSS}}}
+\]</span></p>
+<p>を満たしたときに始まる。</p>
+</div>
+</div>
+</div>
 </section>
 </section>
-<section id="第３講" class="level2">
-<h2 class="anchored" data-anchor-id="第３講">第３講</h2>
-<section id="理論剪断強度" class="level3">
-<h3 class="anchored" data-anchor-id="理論剪断強度">理論剪断強度</h3>
-<p><img src="images/強度学/12.png" class="img-fluid"></p>
-<p>このような近似で、臨界剪断応力は次のように示される。</p>
+<section id="転位の弾性場" class="level2">
+<h2 class="anchored" data-anchor-id="転位の弾性場">転位の弾性場</h2>
+<section id="sec-strength-edge-stress" class="level4">
+<h4 class="anchored" data-anchor-id="sec-strength-edge-stress">問題B1 刃状転位まわりの引張・圧縮応力</h4>
+<p>転位線が <span class="math inline">\(z\)</span> 軸、Burgers vectorが <span class="math inline">\(+x\)</span> 方向の刃状転位を考える。等方弾性体中の応力場が</p>
 <p><span class="math display">\[
-\tau = \tau_{max} \sin \frac{2\pi x}{b} \approx \frac{2\pi x \tau_{max}}{b}
-\]</span></p>
-<p>これに対して、フックの法則から</p>
-<p><span class="math display">\[
-\tau = G \frac{x}{a}
+\sigma_{xx}
+=-\frac{Gb}{2\pi(1-\nu)}
+\frac{y(3x^2+y^2)}{(x^2+y^2)^2},
 \]</span></p>
 <p><span class="math display">\[
-\tau_{max} = \frac{Gb}{2\pi a}
+\sigma_{yy}
+=\frac{Gb}{2\pi(1-\nu)}
+\frac{y(x^2-y^2)}{(x^2+y^2)^2}
 \]</span></p>
-<p>ここで、<span class="math inline">\(\tau_{max}\)</span> は理論剪断強度と呼ばれる。</p>
-<p><span class="math display">\[
-\tau = \frac{Gb}{2\pi a} \sin \frac{2\pi x}{b}
-\]</span></p>
-<p>となる。</p>
-</section>
-</section>
-<section id="過去問" class="level2">
-<h2 class="anchored" data-anchor-id="過去問">過去問</h2>
-<section id="section" class="level3">
-<h3 class="anchored" data-anchor-id="section">2008</h3>
-<section id="問1" class="level4">
-<h4 class="anchored" data-anchor-id="問1">問1</h4>
-<p>刃状転位およびらせん転位を図示して、転位線とそのバーガースベクトルの関係について記せ</p>
-<section id="dislocations" class="level5">
-<h5 class="anchored" data-anchor-id="dislocations">Dislocations</h5>
-<p>Dislocations are a type of defect in a crystal structure. They are areas where the atoms are out of position in the crystal structure. Dislocations are divided into two basic types: edge dislocations and screw dislocations.</p>
-<p><img src="images/強度学/4.png" class="img-fluid"></p>
-<section id="edge-dislocations" class="level6">
-<h6 class="anchored" data-anchor-id="edge-dislocations">Edge Dislocations</h6>
-<p>Edge dislocations are caused by the termination of a plane of atoms in the middle of a crystal. In such a case, an extra half-plane of atoms is introduced.</p>
-<p>The vector that is perpendicular to the dislocation line and points in the direction where the extra half-plane of atoms was inserted is called the Burgers vector.</p>
-</section>
-<section id="screw-dislocations" class="level6">
-<h6 class="anchored" data-anchor-id="screw-dislocations">Screw Dislocations</h6>
-<p>Screw dislocations are a bit more difficult to visualize. They are formed by a shear stress that is applied to the crystal structure.</p>
-<p>The Burgers vector is parallel to the dislocation line for a screw dislocation.</p>
-<p>In both types of dislocations, the magnitude of the Burgers vector is equal to the lattice parameter, <span class="math inline">\(a\)</span>.</p>
-</section>
-</section>
-<section id="解答" class="level5">
-<h5 class="anchored" data-anchor-id="解答">解答</h5>
-<p>螺旋転移では、転位線とバーガースベクトルは平行である。一方、刃状転位では、転位線とバーガースベクトルは直交する。</p>
-</section>
-</section>
-<section id="問２" class="level4">
-<h4 class="anchored" data-anchor-id="問２">問２</h4>
-<p>断面積 <span class="math inline">\(S\)</span> の単結晶の丸棒に引っ張り力 <span class="math inline">\(F\)</span> を負荷した場合を考える。この時、引っ張り方向と滑り面の方線のなす角度を <span class="math inline">\(\phi\)</span> 引っ張り方向と滑り方向のなす角度を <span class="math inline">\(\lambda\)</span> とした場合、臨界剪断応力 <span class="math inline">\(\tau_0\)</span> を <span class="math inline">\(S,F,\phi,\lambda\)</span> の関数として導け。またシュミット因子についてのべよ。</p>
-<section id="解答-1" class="level5">
-<h5 class="anchored" data-anchor-id="解答-1">解答</h5>
-<section id="critical-shear-stress-and-schmids-law" class="level6">
-<h6 class="anchored" data-anchor-id="critical-shear-stress-and-schmids-law">Critical Shear Stress and Schmid’s Law</h6>
-<p>When a single crystal rod with a cross-sectional area <span class="math inline">\(S\)</span> is subjected to a tensile force <span class="math inline">\(F\)</span>, the critical resolved shear stress <span class="math inline">\(\tau_0\)</span> is given by Schmid’s Law:</p>
-<p><span class="math display">\[\tau_0 = \frac{F}{S} \cdot \cos(\phi) \cdot \cos(\lambda)\]</span></p>
-<p>where <span class="math inline">\(\phi\)</span> is the angle between the tensile direction and the normal to the slip plane, and <span class="math inline">\(\lambda\)</span> is the angle between the tensile direction and the slip direction.</p>
-<p>The term <span class="math inline">\(\cos(\phi) \cdot \cos(\lambda)\)</span> is known as the Schmid factor. It represents the resolved shear stress on a particular slip system. The slip system with the highest Schmid factor will be the first to undergo plastic deformation when the material is subjected to a stress. The Schmid factor is a measure of the component of the applied stress that can contribute to dislocation motion along a slip plane in a specific direction.</p>
-</section>
-</section>
-</section>
-<section id="問３" class="level4">
-<h4 class="anchored" data-anchor-id="問３">問３</h4>
-<p><img src="images/強度学/15.png" class="img-fluid"></p>
-<p>刃状転位の応力場は <span class="math inline">\(\sigma_{xx} = -\frac{Gb}{2\pi(1-\nu)}\frac{y(3x^2+y^2)}{(x^2+y^2)^2}, \sigma_{yy} = \frac{Gb}{2\pi(1-\nu)}\frac{(x^2-y^2)}{(x^2+y^2)^2}\)</span> で与えられる。ここで、<span class="math inline">\(G\)</span> はせん断弾性率、<span class="math inline">\(b\)</span> はバーガースベクトル、<span class="math inline">\(\nu\)</span> はポアソン比である。これより刃状転位周囲の引っ張り、圧縮の応力分布を図示せよ。</p>
-<div id="49934686" class="cell" data-execution_count="1">
+<p>で与えられる。ここで <span class="math inline">\(G\)</span> は剛性率、<span class="math inline">\(b\)</span> はBurgers vectorの大きさ、<span class="math inline">\(\nu\)</span> はPoisson比である。刃状転位周囲の引張・圧縮応力分布を図示せよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論B1：余分な半原子面が上下を非対称にする
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、式の符号が空間のどこで変わるかを読み、転位芯の上側と下側で圧縮・引張が反転することを図にする問題です。</p>
+<p>刃状転位は、結晶の途中で終端する余分な半原子面の縁に相当します。余分な半原子面がある側では原子間隔が押し縮められ、その反対側では引き伸ばされます。この上下非対称性が、両式の分子にある <span class="math inline">\(y\)</span> に現れています。</p>
+<p><span class="math inline">\(b&gt;0\)</span> とすれば、<span class="math inline">\(\sigma_{xx}\)</span> は <span class="math inline">\(y&gt;0\)</span> で常に負、<span class="math inline">\(y&lt;0\)</span> で常に正です。引張応力を正、圧縮応力を負と取ると、転位芯の上側は <span class="math inline">\(x\)</span> 方向の圧縮、下側は引張になります。</p>
+<p><span class="math inline">\(\sigma_{yy}\)</span> は <span class="math inline">\(y=0\)</span> に加え、<span class="math inline">\(x=\pm y\)</span> でも符号が変わります。そのため、<span class="math inline">\(\sigma_{xx}\)</span> より細かい扇形の引張・圧縮領域ができます。</p>
+<p>どちらも遠方では概ね <span class="math inline">\(Gb/r\)</span> に比例して減衰します。一方、<span class="math inline">\(r=\sqrt{x^2+y^2}=0\)</span> では連続体弾性論の式が発散します。実際の転位芯では原子配列が大きく乱れるため、芯半径より内側へこの式を適用してはいけません。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答B1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(Gb/[2\pi(1-\nu)]\)</span> で規格化した応力分布を描くと、次のようになる。白い円内は転位芯として連続体式を適用しない領域である。</p>
+<div id="cell-fig-edge-dislocation-stress" class="cell" data-execution_count="1">
 <details class="code-fold">
-<summary>コードはこちら</summary>
+<summary>作図コード</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Constants</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Shear modulus</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Burgers vector</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>nu <span class="op">=</span> <span class="fl">0.3</span>  <span class="co"># Poisson's ratio</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Grid of x, y points</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">100</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">100</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.colors <span class="im">import</span> TwoSlopeNorm</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>axis <span class="op">=</span> np.linspace(<span class="op">-</span><span class="fl">2.0</span>, <span class="fl">2.0</span>, <span class="dv">501</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(axis, axis)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>R2 <span class="op">=</span> X<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> Y<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>core <span class="op">=</span> R2 <span class="op">&lt;</span> <span class="fl">0.10</span><span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> np.errstate(divide<span class="op">=</span><span class="st">"ignore"</span>, invalid<span class="op">=</span><span class="st">"ignore"</span>):</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    sigma_xx <span class="op">=</span> <span class="op">-</span>Y <span class="op">*</span> (<span class="dv">3</span> <span class="op">*</span> X<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> Y<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> R2<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    sigma_yy <span class="op">=</span> Y <span class="op">*</span> (X<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> Y<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> R2<span class="op">**</span><span class="dv">2</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Stress fields</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>sigma_xx <span class="op">=</span> <span class="op">-</span>G<span class="op">*</span>b<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>nu)) <span class="op">*</span> Y<span class="op">*</span>(<span class="dv">3</span><span class="op">*</span>X<span class="op">**</span><span class="dv">2</span><span class="op">+</span>Y<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (X<span class="op">**</span><span class="dv">2</span><span class="op">+</span>Y<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>sigma_yy <span class="op">=</span> G<span class="op">*</span>b<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>nu)) <span class="op">*</span> (X<span class="op">**</span><span class="dv">2</span><span class="op">-</span>Y<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (X<span class="op">**</span><span class="dv">2</span><span class="op">+</span>Y<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>sigma_xx[core] <span class="op">=</span> np.nan</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>sigma_yy[core] <span class="op">=</span> np.nan</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>limit <span class="op">=</span> <span class="fl">2.5</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>levels <span class="op">=</span> np.linspace(<span class="op">-</span>limit, limit, <span class="dv">41</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>norm <span class="op">=</span> TwoSlopeNorm(vmin<span class="op">=-</span>limit, vcenter<span class="op">=</span><span class="dv">0</span>, vmax<span class="op">=</span>limit)</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># sigma_xx</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> ax[<span class="dv">0</span>].contourf(X, Y, sigma_xx, levels<span class="op">=</span><span class="dv">20</span>, cmap<span class="op">=</span><span class="st">'RdBu_r'</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>fig.colorbar(c, ax<span class="op">=</span>ax[<span class="dv">0</span>])</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="st">'$</span><span class="er">\</span><span class="st">sigma_</span><span class="sc">{xx}</span><span class="st">$'</span>)</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># sigma_yy</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> ax[<span class="dv">1</span>].contourf(X, Y, sigma_yy, levels<span class="op">=</span><span class="dv">20</span>, cmap<span class="op">=</span><span class="st">'RdBu_r'</span>)</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>fig.colorbar(c, ax<span class="op">=</span>ax[<span class="dv">1</span>])</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_title(<span class="st">'$</span><span class="er">\</span><span class="st">sigma_</span><span class="sc">{yy}</span><span class="st">$'</span>)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="fl">9.2</span>, <span class="fl">4.0</span>), sharex<span class="op">=</span><span class="va">True</span>, sharey<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, field, title <span class="kw">in</span> <span class="bu">zip</span>(</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    axes,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    (sigma_xx, sigma_yy),</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    (<span class="vs">r"</span><span class="dv">$\s</span><span class="vs">igma_{xx}</span><span class="dv">$</span><span class="vs">"</span>, <span class="vs">r"</span><span class="dv">$\s</span><span class="vs">igma_{yy}</span><span class="dv">$</span><span class="vs">"</span>),</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    contour <span class="op">=</span> ax.contourf(</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        X,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        Y,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        np.clip(field, <span class="op">-</span>limit, limit),</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        levels<span class="op">=</span>levels,</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        cmap<span class="op">=</span><span class="st">"RdBu_r"</span>,</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        norm<span class="op">=</span>norm,</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        extend<span class="op">=</span><span class="st">"both"</span>,</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    ax.add_patch(plt.Circle((<span class="dv">0</span>, <span class="dv">0</span>), <span class="fl">0.10</span>, color<span class="op">=</span><span class="st">"white"</span>, ec<span class="op">=</span><span class="st">"black"</span>, lw<span class="op">=</span><span class="fl">0.9</span>))</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    ax.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"0.35"</span>, lw<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    ax.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"0.35"</span>, lw<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="vs">r"</span><span class="dv">$</span><span class="vs">x</span><span class="dv">$</span><span class="vs">"</span>, ylabel<span class="op">=</span><span class="vs">r"</span><span class="dv">$</span><span class="vs">y</span><span class="dv">$</span><span class="vs">"</span>, title<span class="op">=</span>title, aspect<span class="op">=</span><span class="st">"equal"</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>fig.colorbar(contour, ax<span class="op">=</span>axes, shrink<span class="op">=</span><span class="fl">0.88</span>, label<span class="op">=</span><span class="st">"normalized stress"</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stderr">
-<pre><code>&lt;&gt;:24: SyntaxWarning: invalid escape sequence '\s'
-&lt;&gt;:29: SyntaxWarning: invalid escape sequence '\s'
-&lt;&gt;:24: SyntaxWarning: invalid escape sequence '\s'
-&lt;&gt;:29: SyntaxWarning: invalid escape sequence '\s'
-/var/folders/sp/v7dq4s5n03scr606k81g7tqw0000gn/T/ipykernel_48227/1480925135.py:24: SyntaxWarning: invalid escape sequence '\s'
-  ax[0].set_title('$\sigma_{xx}$')
-/var/folders/sp/v7dq4s5n03scr606k81g7tqw0000gn/T/ipykernel_48227/1480925135.py:29: SyntaxWarning: invalid escape sequence '\s'
-  ax[1].set_title('$\sigma_{yy}$')</code></pre>
-</div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="材料強度学_files/figure-html/cell-2-output-2.png" width="969" height="505" class="figure-img"></p>
+<div id="fig-edge-dislocation-stress" class="quarto-float quarto-figure quarto-figure-center anchored" alt="左のsigma xxは転位芯の上側が圧縮、下側が引張である。右のsigma yyはy=0とxイコールプラスマイナスyで符号が変わり、扇形の引張圧縮領域を作る。">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-edge-dislocation-stress-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="材料強度学_files/figure-html/fig-edge-dislocation-stress-output-1.png" alt="左のsigma xxは転位芯の上側が圧縮、下側が引張である。右のsigma yyはy=0とxイコールプラスマイナスyで符号が変わり、扇形の引張圧縮領域を作る。" width="751" height="329" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-edge-dislocation-stress-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: 刃状転位の規格化応力分布。赤を引張、青を圧縮とし、転位芯近傍は白抜きにした模式図。
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
+<p><span class="math inline">\(b&gt;0\)</span> のとき、<span class="math inline">\(\sigma_{xx}\)</span> は <span class="math inline">\(y&gt;0\)</span> で圧縮、<span class="math inline">\(y&lt;0\)</span> で引張となる。<span class="math inline">\(\sigma_{yy}\)</span> は <span class="math inline">\(y=0\)</span> と <span class="math inline">\(x=\pm y\)</span> を境に符号が変わる。</p>
+</div>
+</div>
+</div>
 </section>
-<section id="問４" class="level4">
-<h4 class="anchored" data-anchor-id="問４">問４</h4>
-<p><img src="images/強度学/16.png" class="img-fluid"></p>
-<p>ひずみエネルギーは半径<span class="math inline">\(r\)</span> の場所で円筒一周で剪断応力が</p>
+<section id="sec-strength-screw-energy" class="level4">
+<h4 class="anchored" data-anchor-id="sec-strength-screw-energy">問題B2 らせん転位のひずみエネルギー</h4>
+<p><span class="math inline">\(G\)</span> を剛性率、<span class="math inline">\(b\)</span> をBurgers vectorの大きさ、<span class="math inline">\(\rho\)</span> を転位線からの距離、<span class="math inline">\(r_0\)</span> を転位芯半径とする。長さ1の円柱の中心にらせん転位があると考え、半径 <span class="math inline">\(r_0\)</span> から外半径 <span class="math inline">\(r\)</span> までに蓄えられる弾性ひずみエネルギーが</p>
 <p><span class="math display">\[
-\tau = \frac{Gb}{2\pi r} = G\gamma
+E=\frac{Gb^2}{4\pi}\ln\left(\frac{r}{r_0}\right)
 \]</span></p>
-<p>なので、面積あたりのひずみエネルギーは</p>
+<p>となることを示せ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論B2：局所エネルギー密度を円筒殻について足す
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、転位から遠ざかるほど弱くなるせん断変形を、同心円状の薄い殻ごとに積分することです。</p>
+<p>らせん転位のまわりでは、半径 <span class="math inline">\(\rho\)</span> の円を一周すると軸方向変位が <span class="math inline">\(b\)</span> だけずれます。したがって、せん断ひずみとせん断応力は</p>
 <p><span class="math display">\[
-e = \int_{0}^{\gamma} \tau \dd \gamma = \frac{1}{2}G\gamma^2
+\gamma(\rho)=\frac{b}{2\pi\rho},
+\qquad
+\tau(\rho)=G\gamma(\rho)
 \]</span></p>
-<p>これは、歪が線形に変化するときのひずみエネルギーと一致する。</p>
+<p>です。線形弾性体のひずみエネルギー密度は</p>
 <p><span class="math display">\[
-E = \int_{r_0}^{r} e2\pi r \dd r = \frac{Gb^3}{4\pi}\ln \frac{r}{r_0}
+w(\rho)
+=\int_0^\gamma \tau\dd\gamma
+=\frac12G\gamma^2
 \]</span></p>
+<p>となります。</p>
+<p>半径 <span class="math inline">\(\rho\)</span>、厚さ <span class="math inline">\(\dd\rho\)</span>、長さ1の円筒殻の体積は <span class="math inline">\(2\pi\rho\dd\rho\)</span> です。したがって、単位長さ当たりのエネルギーは <span class="math inline">\(w(\rho)\)</span> にこの体積を掛け、<span class="math inline">\(r_0\)</span> から <span class="math inline">\(r\)</span> まで積分して求めます。</p>
+<p>内側の切断半径 <span class="math inline">\(r_0\)</span> は、連続体弾性論を適用できない転位芯を除くために必要です。外側にも結晶粒径や転位間隔などの切断長さが必要で、転位のエネルギーは周囲の組織寸法にも依存します。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答B2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>半径 <span class="math inline">\(\rho\)</span> におけるせん断ひずみ、応力、エネルギー密度は</p>
+<p><span class="math display">\[
+\gamma=\frac{b}{2\pi\rho},
+\qquad
+\tau=G\gamma,
+\qquad
+w=\frac12G\gamma^2
+=\frac{Gb^2}{8\pi^2\rho^2}
+\]</span></p>
+<p>である。長さ1、厚さ <span class="math inline">\(\dd\rho\)</span> の円筒殻の体積は <span class="math inline">\(2\pi\rho\dd\rho\)</span> なので、</p>
+<p><span class="math display">\[
+\begin{aligned}
+E
+&amp;=\int_{r_0}^{r}w(\rho)2\pi\rho\dd\rho\\
+&amp;=\int_{r_0}^{r}
+\frac{Gb^2}{4\pi}\frac{\dd\rho}{\rho}\\
+&amp;=\boxed{
+\frac{Gb^2}{4\pi}
+\ln\left(\frac{r}{r_0}\right)
+}.
+\end{aligned}
+\]</span></p>
+<p>これは転位の<strong>単位長さ当たり</strong>の弾性ひずみエネルギーであり、単位は <span class="math inline">\(\mathrm{J\,m^{-1}}\)</span> である。</p>
+</div>
+</div>
+</div>
 </section>
-<section id="問５" class="level4">
-<h4 class="anchored" data-anchor-id="問５">問５</h4>
-<p><img src="images/強度学/13.png" class="img-fluid"></p>
 </section>
-<section id="問６" class="level4">
-<h4 class="anchored" data-anchor-id="問６">問６</h4>
-<p>表面エネルギーは、劈開にかかった仕事の合計なので、正弦近似によって、</p>
+<section id="き裂と破壊" class="level2">
+<h2 class="anchored" data-anchor-id="き裂と破壊">き裂と破壊</h2>
+<section id="sec-strength-griffith" class="level4">
+<h4 class="anchored" data-anchor-id="sec-strength-griffith">問題C1 Griffithのき裂進展条件</h4>
+<p>無限板へ引張応力 <span class="math inline">\(\sigma\)</span> を印加したところ、応力軸と垂直な長軸をもつ、長さ <span class="math inline">\(2c\)</span> の楕円状き裂が生じた。き裂によって解放される弾性エネルギーと、新しい表面を作るために必要な表面エネルギーが、単位板厚当たり</p>
 <p><span class="math display">\[
-2\gamma_s = \int^{\lambda/2}_{0} \sigma_c \sin \frac{2\pi x}{\lambda} \dd x = \frac{2\sigma_c^2 a_0}{E}
+W_{\mathrm{el}}=\frac{\pi\sigma^2c^2}{E},
+\qquad
+W_{\mathrm{s}}=4c\gamma_{mathrm{s}}
 \]</span></p>
-<p>次に、正弦近似とフックの法則を用いて、</p>
+<p>で表されるとする。ここで、<span class="math inline">\(E\)</span> はYoung率、<span class="math inline">\(\gamma_{\mathrm{s}}\)</span> は単位面積当たりの表面エネルギーである。Griffithのき裂進展条件を導け。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論C1：き裂が解放するエネルギーと表面を作る費用を比べる
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、き裂が伸びることで得られる弾性エネルギーの減少が、新しい破面を作る費用を上回るかを判定することです。</p>
+<p>き裂が長くなると、き裂周囲の応力が緩和され、材料中に蓄えられていた弾性エネルギーが解放されます。これは全エネルギーを下げる効果なので <span class="math inline">\(-W_{\mathrm{el}}\)</span> と数えます。一方、き裂の上下に新しい二面を作るには表面エネルギー <span class="math inline">\(W_{\mathrm{s}}\)</span> が必要です。</p>
+<p>したがって、き裂導入による全エネルギー変化は</p>
 <p><span class="math display">\[
-\sigma = \sigma_c \sin \frac{2\pi x}{\lambda} = G \frac{x}{a_0}
+\Delta W(c)
+=-\frac{\pi\sigma^2c^2}{E}
++4c\gamma_{\mathrm{s}}
 \]</span></p>
-<p>これらを合わせて波長を消せば</p>
+<p>です。小さいき裂では表面形成の費用が支配的ですが、弾性エネルギーの解放は <span class="math inline">\(c^2\)</span> に比例するため、十分長いき裂では伸びる方がエネルギー的に有利になります。</p>
+<p>臨界点は <span class="math inline">\(\dv*{\Delta W}{c}=0\)</span> で求めます。この点を超えると <span class="math inline">\(\dv*{\Delta W}{c}&lt;0\)</span> となり、き裂が伸びるほど全エネルギーが下がるため不安定進展します。</p>
+<p>ここでは問題で与えられた <span class="math inline">\(E\)</span> を使います。平面ひずみ条件では、より一般に <span class="math inline">\(E\)</span> を <span class="math inline">\(E/(1-\nu^2)\)</span> に置き換えた有効弾性率を用います。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答C1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>き裂導入による単位板厚当たりの全エネルギー変化は</p>
 <p><span class="math display">\[
-\sigma_c = \sqrt{\frac{\gamma_s E}{a_0}}
+\Delta W
+=-W_{\mathrm{el}}+W_{\mathrm{s}}
+=-\frac{\pi\sigma^2c^2}{E}+4c\gamma_{\mathrm{s}}
 \]</span></p>
+<p>である。臨界条件は</p>
+<p><span class="math display">\[
+\dv{\Delta W}{c}
+=-\frac{2\pi\sigma^2c}{E}+4\gamma_{\mathrm{s}}=0
+\]</span></p>
+<p>なので、</p>
+<p><span class="math display">\[
+\boxed{
+\sigma_{\mathrm{c}}
+=\sqrt{\frac{2E\gamma_{\mathrm{s}}}{\pi c}}
+}
+\]</span></p>
+<p>を得る。<span class="math inline">\(\sigma&gt;\sigma_{\mathrm{c}}\)</span>、または同じ応力で <span class="math inline">\(c\)</span> が臨界長さを超えると、き裂は不安定に進展する。</p>
+</div>
+</div>
+</div>
 </section>
-<section id="問７" class="level4">
-<h4 class="anchored" data-anchor-id="問７">問７</h4>
-<p><img src="images/強度学/17.png" class="img-fluid"></p>
+<section id="sec-strength-theoretical-shear" class="level4">
+<h4 class="anchored" data-anchor-id="sec-strength-theoretical-shear">問題C2 結晶の理論せん断強度</h4>
+<p>金属結晶のすべり面間隔を <span class="math inline">\(a\)</span>、すべり方向の原子間隔を <span class="math inline">\(b\)</span> とする。原子面を相対変位 <span class="math inline">\(x\)</span> だけずらしたときのせん断応力が、周期 <span class="math inline">\(b\)</span> の正弦関数で近似できるものとする。剛性率を <span class="math inline">\(G\)</span> として、結晶の理論せん断強度を導け。また、得られた理論値が実験値よりはるかに大きい理由を説明せよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論C2：完全結晶を一斉に滑らせる仮定が強度を過大評価する
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、原子配列の周期性と小ひずみのHooke則を、変位 <span class="math inline">\(x=0\)</span> での傾きが一致するようにつなぐことです。</p>
+<p>原子面を格子間隔 <span class="math inline">\(b\)</span> だけずらすと、元と等価な配置へ戻ります。そのため、せん断応力を</p>
 <p><span class="math display">\[
-\Delta W = -W_{sl} + W_s
+\tau(x)=\tau_{\mathrm{th}}\sin\left(\frac{2\pi x}{b}\right)
 \]</span></p>
-<p>で、臨界成長条件は</p>
+<p>と近似できます。小さな <span class="math inline">\(x\)</span> では <span class="math inline">\(\sin u\simeq u\)</span> なので、</p>
 <p><span class="math display">\[
-\dv{\Delta W}{c} = 0
+\tau(x)\simeq
+\tau_{\mathrm{th}}\frac{2\pi x}{b}.
 \]</span></p>
-<p>これを解いてやると、</p>
+<p>一方、せん断ひずみは <span class="math inline">\(\gamma=x/a\)</span> であり、Hooke則から</p>
 <p><span class="math display">\[
-\sigma_c = \sqrt{\frac{2\gamma_s E}{\pi c}}
+\tau=G\gamma=G\frac{x}{a}
 \]</span></p>
+<p>です。二式の <span class="math inline">\(x=0\)</span> 近傍の傾きを合わせると、正弦波の最大値 <span class="math inline">\(\tau_{\mathrm{th}}\)</span> が求まります。</p>
+<p>このモデルは、すべり面上のすべての原子結合を同時に組み替える<strong>完全結晶</strong>を仮定しています。実結晶では転位が局所的に移動し、少数の結合を順番に組み替えるため、はるかに小さい応力ですべりが進みます。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答C2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>せん断応力を</p>
+<p><span class="math display">\[
+\tau(x)=\tau_{\mathrm{th}}
+\sin\left(\frac{2\pi x}{b}\right)
+\]</span></p>
+<p>と置く。<span class="math inline">\(x\ll b\)</span> では</p>
+<p><span class="math display">\[
+\tau(x)\simeq
+\tau_{\mathrm{th}}\frac{2\pi x}{b}.
+\]</span></p>
+<p>Hooke則 <span class="math inline">\(\tau=Gx/a\)</span> と傾きを比較すると、</p>
+<p><span class="math display">\[
+\boxed{
+\tau_{\mathrm{th}}=\frac{Gb}{2\pi a}
+}
+\]</span></p>
+<p>を得る。<span class="math inline">\(a\simeq b\)</span> なら <span class="math inline">\(\tau_{\mathrm{th}}\simeq G/(2\pi)\)</span> である。</p>
+<p>実結晶では転位の移動により、すべり面全体ではなく転位芯近傍の結合だけが順次組み替わる。このため、実測降伏せん断応力は完全結晶を仮定した理論値よりはるかに小さい。</p>
+</div>
+</div>
+</div>
 </section>
-<section id="問８" class="level4">
-<h4 class="anchored" data-anchor-id="問８">問８</h4>
-<p>略</p>
 </section>
-<section id="問９" class="level4">
-<h4 class="anchored" data-anchor-id="問９">問９</h4>
-<p><img src="images/強度学/18.png" class="img-fluid"></p>
-<p>剪断応力を正弦近似すると、</p>
+<section id="粒界" class="level2">
+<h2 class="anchored" data-anchor-id="粒界">粒界</h2>
+<section id="sec-strength-grain-boundaries" class="level4">
+<h4 class="anchored" data-anchor-id="sec-strength-grain-boundaries">問題D1 粒界の種類と構造</h4>
+<p>粒界の種類と、その原子構造について記せ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論D1：隣り合う結晶粒の方位差で境界構造が変わる
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、二つの結晶粒の相対方位差が小さいときは粒界を転位列として説明でき、大きくなるとその描像が使えなくなることです。</p>
+<p>粒界は、結晶方位の異なる二つの結晶粒の境界です。代表的には、回転軸と粒界面の関係から<strong>傾角粒界</strong>と<strong>ねじれ粒界</strong>に分類できます。</p>
+<ul>
+<li>傾角粒界：二つの結晶が、粒界面内の軸のまわりに相対回転した境界</li>
+<li>ねじれ粒界：二つの結晶が、粒界面法線のまわりに相対回転した境界</li>
+</ul>
+<p>方位差 <span class="math inline">\(\theta\)</span> が小さい<strong>低角粒界</strong>は、規則的に並んだ転位列として表せます。単純な小角傾角粒界では、転位間隔を <span class="math inline">\(D\)</span> とすると</p>
 <p><span class="math display">\[
-\tau = \sigma_c \sin \frac{2\pi x}{b}
+D\simeq\frac{b}{\theta}
 \]</span></p>
-<p>ここで、フックの法則から</p>
+<p>です。方位差が大きくなるほど転位間隔は狭くなり、転位芯同士が重なるようになるため、独立な転位列としての記述はできなくなります。この領域を<strong>高角粒界</strong>と呼びます。低角・高角の境は材料や目的によりますが、約 <span class="math inline">\(15^\circ\)</span> がよく使われる目安です。</p>
+<p>高角粒界は完全な非晶質層ではありません。対応粒界など、比較的規則的で低エネルギーな原子配列をもつ特殊粒界もあります。粒界構造は方位差だけでなく、回転軸、粒界面、偏析元素にも依存します。</p>
+<p>粒界が転位運動と降伏応力へ及ぼす影響は、<a href="../../../posts/univ_lecs/3S/金属材料学.html#sec-metal-hall-petch">金属材料学の問題A3</a>で扱っています。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答D1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>粒界は、隣接する結晶粒の相対方位と粒界面によって分類される。代表例は、粒界面内の軸まわりの回転でできる<strong>傾角粒界</strong>と、粒界面法線まわりの回転でできる<strong>ねじれ粒界</strong>である。</p>
+<p>方位差が小さい低角粒界は、刃状転位またはらせん転位が周期的に並んだ転位列として記述できる。小角傾角粒界では</p>
 <p><span class="math display">\[
-\tau = G \frac{x}{a}
+D\simeq\frac{b}{\theta}
 \]</span></p>
-<p>これら二つの式から、</p>
-<p><span class="math display">\[
-\sigma_c = \frac{Gb}{2\pi a}
-\]</span></p>
-<p>これが実験値と大きく違うのは、実際には、原子が一気にすべるのではなく、転位(dislocation)を介して順番にすべっているから</p>
-</section>
-<section id="問１０" class="level4">
-<h4 class="anchored" data-anchor-id="問１０">問１０</h4>
-<p><img src="images/強度学/19.png" class="img-fluid"></p>
-<p>2つの結晶粒の相対方位関係により粒界が分類される。相対方位が15度以下の粒界を低角粒界（Low-angle grain boundary, LAGB）、15度以上の粒界を高角粒界（High-angle grain boundary)と呼ぶ。低角粒界は周期的に配列した転位列として記述できる（Read-Shockleyの関係[1]）。相対角度の増加と共に転位の間隔が小さくなり、最終的に転位同士が重なってしまう。高角粒界では、転位が重なるため、転位列としての記述はできない。高角粒界は低角粒界と比べ構造乱れが大きい。以前は、高角粒界は非晶質に似た構造だと考えられていたが、電子顕微鏡観察により、規則的な原子構造を持つことが明らかとなっている。</p>
+<p>となる。方位差が増すと転位間隔が狭くなり、転位芯が重なるため、独立転位の列として記述できない高角粒界になる。低角・高角の境界には約 <span class="math inline">\(15^\circ\)</span> が目安として用いられる。</p>
+<p>高角粒界は結晶内部より乱れた構造をもつが、単なる非晶質層ではなく、方位関係と粒界面に応じた原子配列をもつ。</p>
+</div>
+</div>
+</div>
 
 
-</section>
-</section>
 </section>
 </section>
 
