@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -2625,20 +2660,10 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#講義内で重要そうだった部分" id="toc-講義内で重要そうだった部分" class="nav-link active" data-scroll-target="#講義内で重要そうだった部分">講義内で重要そうだった部分</a>
-  <ul class="collapse">
-  <li><a href="#等重率の原理" id="toc-等重率の原理" class="nav-link" data-scroll-target="#等重率の原理">等重率の原理</a></li>
-  </ul></li>
-  <li><a href="#過去問まとめ" id="toc-過去問まとめ" class="nav-link" data-scroll-target="#過去問まとめ">過去問まとめ</a>
-  <ul class="collapse">
-  <li><a href="#年度" id="toc-年度" class="nav-link" data-scroll-target="#年度">2007年度</a>
-  <ul class="collapse">
-  <li><a href="#問1" id="toc-問1" class="nav-link" data-scroll-target="#問1">問1</a></li>
-  <li><a href="#問2" id="toc-問2" class="nav-link" data-scroll-target="#問2">問2</a></li>
-  <li><a href="#問3" id="toc-問3" class="nav-link" data-scroll-target="#問3">問3</a></li>
-  <li><a href="#問4" id="toc-問4" class="nav-link" data-scroll-target="#問4">問4</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#アンサンブルと熱力学量" id="toc-アンサンブルと熱力学量" class="nav-link active" data-scroll-target="#アンサンブルと熱力学量">アンサンブルと熱力学量</a></li>
+  <li><a href="#エネルギー分布を状態数から導く" id="toc-エネルギー分布を状態数から導く" class="nav-link" data-scroll-target="#エネルギー分布を状態数から導く">エネルギー分布を状態数から導く</a></li>
+  <li><a href="#分配関数から熱力学量を求める" id="toc-分配関数から熱力学量を求める" class="nav-link" data-scroll-target="#分配関数から熱力学量を求める">分配関数から熱力学量を求める</a></li>
+  <li><a href="#量子統計" id="toc-量子統計" class="nav-link" data-scroll-target="#量子統計">量子統計</a></li>
   </ul>
 </nav>
     </div>
@@ -2651,6 +2676,8 @@ window.Quarto = {
 <h1 class="title">材料統計力学</h1>
   <div class="quarto-categories">
     <div class="quarto-category">University</div>
+    <div class="quarto-category">statistical-mechanics</div>
+    <div class="quarto-category">thermodynamics</div>
     <div class="quarto-category">2024</div>
   </div>
   </div>
@@ -2686,54 +2713,75 @@ window.Quarto = {
 \require{mhchem}
 \require{ams}
 \]</span></p>
-<section id="講義内で重要そうだった部分" class="level1">
-<h1>講義内で重要そうだった部分</h1>
-<section id="等重率の原理" class="level2">
-<h2 class="anchored" data-anchor-id="等重率の原理">等重率の原理</h2>
-<p>孤立系において、微視的状態はどの状態にあることも同様に確からしい。</p>
-</section>
-</section>
-<section id="過去問まとめ" class="level1">
-<h1>過去問まとめ</h1>
-<!-- 
-::: {.callout-note collapse="true"}
-#### 理論
-
-This is an example of a callout with a title.
-:::
-
-::: {.callout-tip collapse="true"}
-#### 解答
-
-This is an example of a callout with a title.
-::: 
--->
-<section id="年度" class="level2">
-<h2 class="anchored" data-anchor-id="年度">2007年度</h2>
-<p>注意：B側の問題だけです。</p>
-<section id="問1" class="level3">
-<h3 class="anchored" data-anchor-id="問1">問1</h3>
-<p><img src="timages/image0.png" class="img-fluid"></p>
+<p>この記事では、統計力学の基本概念を五つの問題でつなげます。各問題は、まず問題文だけで考え、必要になったところで理論を開き、最後に解答を確認できるようにしています。</p>
+<section id="アンサンブルと熱力学量" class="level2">
+<h2 class="anchored" data-anchor-id="アンサンブルと熱力学量">アンサンブルと熱力学量</h2>
+<section id="sec-statistical-ensembles" class="level4">
+<h4 class="anchored" data-anchor-id="sec-statistical-ensembles">問題A1 アンサンブルの違い</h4>
+<p>「ミクロカノニカル分布」「カノニカル分布」「グランドカノニカル分布」の違いを、系と外界の関係が分かる図を用いて簡潔に説明せよ。また、エネルギー <span class="math inline">\(\varepsilon_l\)</span> をもつ状態 <span class="math inline">\(l\)</span> の規格化された実現確率が、それぞれの分布でどのように表されるか答えよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>理論
+<span class="screen-reader-only">Note</span>理論A1：何を固定し、何を外界と交換するか
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、調べたい系をどのような外界の中へ置くかを選ぶことです。</p>
+<p>非常に多数の粒子を含む物体の微視状態を一つずつ追跡することはできません。そこで、同じ巨視的条件を満たす仮想的な系を多数集めた<strong>アンサンブル</strong>を考えます。三つのアンサンブルの違いは、外界と交換できるものによって決まります。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>アンサンブル</th>
+<th>外界との関係</th>
+<th>固定する量</th>
+<th>揺らぐ量</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ミクロカノニカル</td>
+<td>外界から孤立</td>
+<td><span class="math inline">\(E,V,N\)</span></td>
+<td>なし</td>
+</tr>
+<tr class="even">
+<td>カノニカル</td>
+<td>熱浴と接触</td>
+<td><span class="math inline">\(T,V,N\)</span></td>
+<td><span class="math inline">\(E\)</span></td>
+</tr>
+<tr class="odd">
+<td>グランドカノニカル</td>
+<td>熱浴・粒子浴と接触</td>
+<td><span class="math inline">\(T,V,\mu\)</span></td>
+<td><span class="math inline">\(E,N\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>ここで、<span class="math inline">\(E\)</span> は全エネルギー、<span class="math inline">\(V\)</span> は体積、<span class="math inline">\(N\)</span> は粒子数、<span class="math inline">\(T\)</span> は温度、<span class="math inline">\(\mu\)</span> は化学ポテンシャルです。</p>
+<p><strong>ミクロカノニカル分布</strong>では、許されたエネルギー殻の中にある微視状態はすべて同様に確からしいとします。これが<strong>等重率の原理</strong>です。許された微視状態数を <span class="math inline">\(W(E)\)</span> とすれば、各状態の確率は <span class="math inline">\(1/W(E)\)</span> です。</p>
+<p><strong>カノニカル分布</strong>では、系は熱浴とエネルギーを交換します。系がエネルギー <span class="math inline">\(\varepsilon_l\)</span> を取ると熱浴のエネルギーが同じだけ減るため、系の状態には</p>
 <p><span class="math display">\[
-\begin{aligned}
-\dd U &amp;= T \dd S - P \dd V \\
-\dd F &amp;= -S \dd T - P \dd V \\
-\dd G &amp;= -S \dd T + V \dd P
-\end{aligned}
+\exp(-\beta\varepsilon_l),
+\qquad
+\beta=\frac{1}{k_{\mathrm B}T}
 \]</span></p>
-<p>ここら辺について頭に入れておく</p>
+<p>という重みが付きます。この重みを全状態について足したものが分配関数</p>
+<p><span class="math display">\[
+Z=\sum_l\exp(-\beta\varepsilon_l)
+\]</span></p>
+<p>であり、<span class="math inline">\(Z\)</span> で割ることで確率の総和を1にします。</p>
+<p><strong>グランドカノニカル分布</strong>では、エネルギーだけでなく粒子も交換できます。粒子数 <span class="math inline">\(N\)</span> の状態に対しては、熱浴とのエネルギー交換に加えて <span class="math inline">\(\mu N\)</span> の寄与を考えるため、重みは</p>
+<p><span class="math display">\[
+\exp[-\beta(\varepsilon_{l,N}-\mu N)]
+\]</span></p>
+<p>となります。その規格化定数が大分配関数 <span class="math inline">\(\Xi\)</span> です。</p>
+<p>三つは別々の法則ではありません。十分に大きな系では同じ巨視的結果を与えますが、固定したい変数に合うアンサンブルを選ぶと計算が簡単になります。</p>
 </div>
 </div>
 </div>
@@ -2743,233 +2791,549 @@ This is an example of a callout with a title.
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>解答
+<span class="screen-reader-only">Tip</span>解答A1
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><img src="timages/image1.png" class="img-fluid"></p>
+<p>三つの系と外界の関係は、次のように整理できる。</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>性質</th>
-<th>ミクロカノニカル</th>
-<th>カノニカル</th>
-<th>グランドカノニカル</th>
+<th>分布</th>
+<th>模式図</th>
+<th>固定量</th>
+<th>状態の実現確率</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>状態</td>
-<td>外界から独立している</td>
-<td>周囲と熱平衡</td>
-<td>外界とやり取りがある</td>
+<td>ミクロカノニカル</td>
+<td>外界／断熱壁／系</td>
+<td><span class="math inline">\(E,V,N\)</span></td>
+<td><span class="math inline">\(P_l=1/W(E)\)</span>（<span class="math inline">\(\varepsilon_l=E\)</span> の許容状態）、それ以外は0</td>
 </tr>
 <tr class="even">
-<td>エネルギー</td>
-<td>一定(断熱)</td>
-<td>やり取りあり(等温)</td>
-<td>やり取りあり(等温)</td>
+<td>カノニカル</td>
+<td>熱浴 <span class="math inline">\(\rightleftarrows\)</span> 系</td>
+<td><span class="math inline">\(T,V,N\)</span></td>
+<td><span class="math inline">\(\displaystyle P_l=\frac{e^{-\beta\varepsilon_l}}{Z}\)</span></td>
 </tr>
 <tr class="odd">
-<td>粒子数</td>
-<td>一定</td>
-<td>一定</td>
-<td>やり取りあり</td>
-</tr>
-<tr class="even">
-<td>特徴量</td>
-<td><span class="math inline">\(U\)</span></td>
-<td><span class="math inline">\(F\)</span></td>
-<td><span class="math inline">\(G\)</span></td>
+<td>グランドカノニカル</td>
+<td>熱・粒子浴 <span class="math inline">\(\rightleftarrows\)</span> 系</td>
+<td><span class="math inline">\(T,V,\mu\)</span></td>
+<td><span class="math inline">\(\displaystyle P_{l,N}=\frac{e^{-\beta(\varepsilon_{l,N}-\mu N)}}{\Xi}\)</span></td>
 </tr>
 </tbody>
 </table>
+<p>ただし、</p>
+<p><span class="math display">\[
+Z=\sum_l e^{-\beta\varepsilon_l},
+\qquad
+\Xi=\sum_N\sum_l e^{-\beta(\varepsilon_{l,N}-\mu N)},
+\qquad
+\beta=\frac{1}{k_{\mathrm B}T}
+\]</span></p>
+<p>である。</p>
 </div>
 </div>
 </div>
 </section>
-<section id="問2" class="level3">
-<h3 class="anchored" data-anchor-id="問2">問2</h3>
-<p><img src="timages/image2.png" class="img-fluid"></p>
-<div class="callout callout-style-default callout-tip callout-titled">
+<section id="sec-statistical-partition-function" class="level4">
+<h4 class="anchored" data-anchor-id="sec-statistical-partition-function">問題A2 熱力学と統計力学を結ぶ量</h4>
+<p>次の二式は、熱力学と統計力学を結び付ける重要な関係式である。<span class="math inline">\(T\)</span> は温度である。<span class="math inline">\(Z,S,W,F\)</span> がそれぞれどのような量か説明せよ。</p>
+<p><span class="math display">\[
+S=k_{\mathrm B}\ln W,
+\qquad
+F=-k_{\mathrm B}T\ln Z
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>解答
+<span class="screen-reader-only">Note</span>理論A2：微視状態の数から巨視的な熱力学量を作る
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<table class="caption-top table">
-<colgroup>
-<col style="width: 8%">
-<col style="width: 9%">
-<col style="width: 81%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>記号</strong></th>
-<th><strong>物理量</strong></th>
-<th><strong>説明</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(S\)</span></td>
-<td>エントロピー</td>
-<td>乱雑さを示す状態量 <span class="math inline">\(k_B\ln W\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(k_B\)</span></td>
-<td>ボルツマン定数</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(W\)</span></td>
-<td>状態の数</td>
-<td>系のエネルギーが等しい微視状態の総数</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(F\)</span></td>
-<td>ヘルムホルツエネルギー</td>
-<td>等温条件下で取り出し可能なエネルギー量</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(\beta\)</span></td>
-<td>逆温度 <span class="math inline">\(1/k_BT\)</span></td>
-<td>温度の逆数として定義される量</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(Z\)</span></td>
-<td>分配関数</td>
-<td>カノニカル分布の規格化定数</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(J\)</span></td>
-<td>グランドポテンシャル</td>
-<td>系における可能な状態の分布</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\Xi\)</span></td>
-<td>大分配関数</td>
-<td>グランドポテンシャルに関連する量</td>
-</tr>
-</tbody>
-</table>
+<p><strong>問いの正体</strong>は、目に見えない微視状態の数え上げが、測定できるエントロピーや自由エネルギーにどう変換されるかを説明することです。</p>
+<p><span class="math inline">\(W\)</span> は、指定した巨視的条件のもとで実現できる微視状態の数です。<span class="math inline">\(W\)</span> が多いほど、系を微視的に実現する方法が多くなります。しかし、二つの独立な系を合わせると状態数は積 <span class="math inline">\(W_1W_2\)</span> になる一方、熱力学量は和で扱いたいので、対数を取って</p>
+<p><span class="math display">\[
+S=k_{\mathrm B}\ln W
+\]</span></p>
+<p>と定義します。実際、</p>
+<p><span class="math display">\[
+S_{12}=k_{\mathrm B}\ln(W_1W_2)=S_1+S_2
+\]</span></p>
+<p>となり、エントロピーの示量性と整合します。</p>
+<p>カノニカル分布では、各状態を同じ重さで数えるのではなく、Boltzmann因子 <span class="math inline">\(e^{-\beta\varepsilon_l}\)</span> を付けて足し合わせます。</p>
+<p><span class="math display">\[
+Z=\sum_l e^{-\beta\varepsilon_l}
+\]</span></p>
+<p>この <span class="math inline">\(Z\)</span> から平均エネルギーやエントロピーを求めると、Helmholtz自由エネルギー</p>
+<p><span class="math display">\[
+F=U-TS
+\]</span></p>
+<p>は</p>
+<p><span class="math display">\[
+F=-k_{\mathrm B}T\ln Z
+\]</span></p>
+<p>となります。したがって、<span class="math inline">\(W\)</span> と <span class="math inline">\(Z\)</span> は単なる規格化定数ではなく、巨視的な熱力学量を取り出すための情報をまとめた量です。</p>
 </div>
 </div>
 </div>
-</section>
-<section id="問3" class="level3">
-<h3 class="anchored" data-anchor-id="問3">問3</h3>
-<p><img src="timages/image3.png" class="img-fluid"></p>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>理論
+<span class="screen-reader-only">Tip</span>解答A2
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<ol type="a">
-<li>はただ単に確率の問題を解くだけ。ここで、 <span class="math inline">\(W_N(M) = {}_N \mathrm{H}_M = \binom{M+N-1}{M}\)</span> ということに注意した方がいい。</li>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>記号</th>
+<th>名称</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(W\)</span></td>
+<td>微視状態数</td>
+<td>指定した巨視的条件を満たす微視状態の総数</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(S\)</span></td>
+<td>エントロピー</td>
+<td>微視状態の多さを表す状態量。ミクロカノニカル分布では <span class="math inline">\(S=k_{\mathrm B}\ln W\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(Z\)</span></td>
+<td>分配関数</td>
+<td>カノニカル分布のBoltzmann因子を全状態について足した規格化定数、<span class="math inline">\(Z=\sum_l e^{-\beta\varepsilon_l}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(F\)</span></td>
+<td>Helmholtz自由エネルギー</td>
+<td><span class="math inline">\(T,V,N\)</span> 一定の平衡で最小となる熱力学ポテンシャル。<span class="math inline">\(F=U-TS=-k_{\mathrm B}T\ln Z\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>ここで、<span class="math inline">\(k_{\mathrm B}\)</span> はBoltzmann定数である。</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="エネルギー分布を状態数から導く" class="level2">
+<h2 class="anchored" data-anchor-id="エネルギー分布を状態数から導く">エネルギー分布を状態数から導く</h2>
+<section id="sec-statistical-einstein-solid" class="level4">
+<h4 class="anchored" data-anchor-id="sec-statistical-einstein-solid">問題B1 Einstein振動子系</h4>
+<p>角振動数 <span class="math inline">\(\omega\)</span> をもつ、量子力学に従う <span class="math inline">\(N\)</span> 個の調和振動子の集合を考える。系のエネルギーは</p>
+<p><span class="math display">\[
+E=\sum_{i=1}^{N}\left(n_i+\frac12\right)\hbar\omega
+\]</span></p>
+<p>である。全励起エネルギー <span class="math inline">\(M\hbar\omega\)</span> を <span class="math inline">\(N\)</span> 個の振動子へ配分する方法の数は</p>
+<p><span class="math display">\[
+W_N(M)=\frac{(M+N-1)!}{(N-1)!M!}
+\]</span></p>
+<p>で与えられる。</p>
+<ol type="1">
+<li>特定の一つの振動子が、全励起エネルギー <span class="math inline">\(M\hbar\omega\)</span> のうち <span class="math inline">\(n\hbar\omega\)</span> をもつ確率を求めよ。ただし、<span class="math inline">\(N\gg1\)</span>、<span class="math inline">\(M\gg n\)</span> とし、平均値 <span class="math inline">\(m=M/N\)</span> を用いてよい。</li>
+<li>この振動子系の温度 <span class="math inline">\(T\)</span> がどのように定義されるか示せ。</li>
 </ol>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>解答
+<span class="screen-reader-only">Note</span>理論B1：部分系の確率は、残りの系の状態数で決まる
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<ol type="a">
-<li>求める確率は <span class="math inline">\(\frac{W_{N-1}(M-n)}{W_N(M)}\)</span> であり、 <span class="math inline">\(m = M/N\)</span> を使えば、</li>
-</ol>
+<p><strong>問いの正体</strong>は、一つの振動子へエネルギーを渡したあと、残りの振動子にエネルギーを配る方法が何通り残るかを数えることです。</p>
+<p>全系の微視状態数は <span class="math inline">\(W_N(M)\)</span> です。特定の一つの振動子が <span class="math inline">\(n\)</span> 個のエネルギー量子を受け取ると、残る <span class="math inline">\(N-1\)</span> 個の振動子へ配れる量子は <span class="math inline">\(M-n\)</span> 個です。したがって、その条件を満たす微視状態数は <span class="math inline">\(W_{N-1}(M-n)\)</span> であり、等重率の原理から確率は</p>
 <p><span class="math display">\[
-\frac{1}{m+1} \left( \frac{m}{m+1} \right)^n
+P(n)=\frac{W_{N-1}(M-n)}{W_N(M)}
 \]</span></p>
-<ol start="2" type="a">
-<li></li>
-</ol>
+<p>です。</p>
+<p>大きな系では、一つの振動子が受け取る <span class="math inline">\(n\)</span> は全量 <span class="math inline">\(M\)</span> より十分小さいため、階乗比の各因子を <span class="math inline">\(M\)</span> または <span class="math inline">\(M+N\)</span> で近似できます。これにより幾何分布が現れます。</p>
+<p>温度は感覚的な「熱さ」ではなく、エントロピーがエネルギーに対してどれだけ増えるかで</p>
 <p><span class="math display">\[
-\frac{m}{1+m}=\frac{M}{M+N} = \exp \qty(-\frac{\hbar \omega}{k_BT})
+\frac{1}{T}=\left(\pdv{S}{U}\right)_{N,V}
 \]</span></p>
+<p>と定義されます。ここで <span class="math inline">\(S=k_{\mathrm B}\ln W_N(M)\)</span>、<span class="math inline">\(U=M\hbar\omega+N\hbar\omega/2\)</span> と置き、<span class="math inline">\(M,N\gg1\)</span> でStirling近似を使えば、状態数から温度を求められます。零点エネルギーは <span class="math inline">\(M\)</span> によらないため、この微分には寄与しません。</p>
 </div>
 </div>
 </div>
-</section>
-<section id="問4" class="level3">
-<h3 class="anchored" data-anchor-id="問4">問4</h3>
-<p><img src="timages/image4.png" class="img-fluid"></p>
-<p>不明瞭なので、解答は不確かです。</p>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>理論
+<span class="screen-reader-only">Tip</span>解答B1
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>問題自体は指示している通りに積分計算をすればいい。</p>
-<p>分配関数とかについて軽くまとめる。かなり我流な考え方なので注意してください。</p>
-<p>ある何らかの力が働いている系があ流として、そこでは圧力が定義可能である。 <span class="math inline">\(P=NkT\)</span> となるわけだが、この系のうち、あるエネルギー <span class="math inline">\(E\)</span> 以上を取る粒子が <span class="math inline">\(n\)</span> 個存在してるとしたら、その割合は、 PE が圧力を超えていく確立に等しくて、 <span class="math inline">\(-n\dd P.E. = \dd P = kT \dd n\)</span> で <span class="math inline">\(n\propto \exp(-P.E./kT)\)</span> になるわけだけど、これを正規化するために <span class="math inline">\(Z = \sum \exp(-P.E./kT)\)</span> をやっている。</p>
-<p>で、この <span class="math inline">\(Z\)</span> 自体を弄り回して <span class="math inline">\(T\)</span> 関連の量を求めることもできる。</p>
+<ol type="1">
+<li>特定の振動子が <span class="math inline">\(n\hbar\omega\)</span> の励起エネルギーをもつ確率は</li>
+</ol>
+<p><span class="math display">\[
+\begin{aligned}
+P(n)
+&amp;=\frac{W_{N-1}(M-n)}{W_N(M)}\\
+&amp;=\frac{(M-n+N-2)!}{(N-2)!(M-n)!}
+\frac{(N-1)!M!}{(M+N-1)!}.
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(N\gg1\)</span>、<span class="math inline">\(M\gg n\)</span>、<span class="math inline">\(m=M/N\)</span> を用いると、</p>
+<p><span class="math display">\[
+\boxed{
+P(n)\simeq
+\frac{1}{m+1}
+\left(\frac{m}{m+1}\right)^n
+}
+\]</span></p>
+<p>となる。</p>
+<ol start="2" type="1">
+<li><span class="math inline">\(S=k_{\mathrm B}\ln W_N(M)\)</span> とStirling近似を用いると、</li>
+</ol>
+<p><span class="math display">\[
+\frac{1}{T}
+=\pdv{S}{U}
+=\frac{k_{\mathrm B}}{\hbar\omega}
+\ln\left(\frac{M+N}{M}\right)
+=\frac{k_{\mathrm B}}{\hbar\omega}
+\ln\left(\frac{m+1}{m}\right).
+\]</span></p>
+<p>よって、温度は</p>
+<p><span class="math display">\[
+\boxed{
+\frac{m}{m+1}
+=\exp\left(-\frac{\hbar\omega}{k_{\mathrm B}T}\right)
+}
+\]</span></p>
+<p>を満たす量として定義される。したがって、</p>
+<p><span class="math display">\[
+m=\frac{1}{\exp(\hbar\omega/k_{\mathrm B}T)-1}
+\]</span></p>
+<p>であり、(1)の分布はBoltzmann因子を含む形になる。</p>
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
+</section>
+</section>
+<section id="分配関数から熱力学量を求める" class="level2">
+<h2 class="anchored" data-anchor-id="分配関数から熱力学量を求める">分配関数から熱力学量を求める</h2>
+<section id="sec-statistical-ideal-gas" class="level4">
+<h4 class="anchored" data-anchor-id="sec-statistical-ideal-gas">問題C1 単原子理想気体</h4>
+<p>一辺の長さが <span class="math inline">\(L\)</span>、体積が <span class="math inline">\(V=L^3\)</span> の立方体中を自由に動く、質量 <span class="math inline">\(m_{\mathrm p}\)</span> の同種粒子 <span class="math inline">\(N\)</span> 個を考える。一粒子のエネルギーは</p>
+<p><span class="math display">\[
+\varepsilon(n_x,n_y,n_z)
+=\frac{h^2}{2m_{\mathrm p}L^2}
+\left(n_x^2+n_y^2+n_z^2\right),
+\qquad
+n_x,n_y,n_z\in\mathbb Z
+\]</span></p>
+<p>であり、系の分配関数は</p>
+<p><span class="math display">\[
+Z_N
+=\frac{1}{N!}
+\sum_{{n_{xi},n_{yi},n_{zi}}}
+\exp\left[-\frac{1}{k_{\mathrm B}T}
+\sum_{i=1}^{N}\varepsilon(n_{xi},n_{yi},n_{zi})\right]
+\]</span></p>
+<p>と書ける。</p>
+<ol type="1">
+<li><p><span class="math inline">\(h^2/(2m_{\mathrm p}L^2k_{\mathrm B}T)\ll1\)</span> として、和を積分に置き換え、<span class="math inline">\(Z_N\)</span> を求めよ。必要なら</p>
+<p><span class="math display">\[
+\int_{-\infty}^{\infty}e^{-ax^2}\dd x
+=\sqrt{\frac{\pi}{a}}
+\]</span></p>
+<p>を用いてよい。</p></li>
+<li><p>得られた分配関数から、系の平均エネルギー <span class="math inline">\(U\)</span> と圧力 <span class="math inline">\(P\)</span> を求め、それぞれの意味を説明せよ。次の関係を用いてよい。</p>
+<p><span class="math display">\[
+U=-T^2\left[\pdv{(F/T)}{T}\right]_V,
+\qquad
+P=-\left(\pdv{F}{V}\right)_T
+\]</span></p></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>解答
+<span class="screen-reader-only">Note</span>理論C1：量子状態の和を位相空間の積分へ近似する
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<ol type="a">
-<li>分配関数は</li>
+<p><strong>問いの正体</strong>は、分配関数を一度求めれば、平均エネルギーと圧力を微分で取り出せることを確認する問題です。</p>
+<p>粒子同士が相互作用しないため、<span class="math inline">\(N\)</span> 粒子のBoltzmann因子は一粒子分の積へ分解できます。また、同種粒子を区別して数えた重複を除くために <span class="math inline">\(N!\)</span> で割ります。したがって、</p>
+<p><span class="math display">\[
+Z_N=\frac{z_1^N}{N!}
+\]</span></p>
+<p>です。<span class="math inline">\(z_1\)</span> は一粒子分配関数です。</p>
+<p>高温または大きな箱では、隣り合う準位の間隔が <span class="math inline">\(k_{\mathrm B}T\)</span> より十分小さくなります。このとき、離散的な量子数の和を連続変数の積分で近似できます。</p>
+<p><span class="math display">\[
+\sum_{n=-\infty}^{\infty}e^{-an^2}
+\simeq
+\int_{-\infty}^{\infty}e^{-ax^2}\dd x
+\]</span></p>
+<p>この近似は、低温や小さな箱のように準位間隔を無視できない場合には使えません。</p>
+<p>分配関数からは</p>
+<p><span class="math display">\[
+F=-k_{\mathrm B}T\ln Z_N,
+\qquad
+U=-\pdv{\ln Z_N}{\beta},
+\qquad
+P=k_{\mathrm B}T\pdv{\ln Z_N}{V}
+\]</span></p>
+<p>を用いて熱力学量を取り出せます。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答C1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>一粒子分配関数は</li>
 </ol>
 <p><span class="math display">\[
 \begin{aligned}
-Z = &amp;\eval{\frac{1}{N!}}_{\text{粒子については区別しない}} \\
-&amp;\eval{\sum_{n_x} \sum_{n_y} \sum_{n_z}}_{x,y,z\text{方向全て}} \\
-&amp;\exp \qty(-\frac{1}{k_BT} \eval{\sum_i}_{N個} \frac{h^2}{2mL^2} (n_x^2+n_y^2+n_z^2)) \\
-= &amp; \frac{1}{N!} \qty(\sum_n \exp(-\frac{\beta h^2}{2mL^2}n^2))^{3N} \\
-= &amp; \frac{V^N}{h^{3N}N!} \qty(\frac{2\pi m}{\beta})^{3N/2}
+z_1
+&amp;=\left[
+\sum_{n=-\infty}^{\infty}
+\exp\left(-\frac{\beta h^2n^2}{2m_{\mathrm p}L^2}\right)
+\right]^3\\
+&amp;\simeq
+\left[
+\int_{-\infty}^{\infty}
+\exp\left(-\frac{\beta h^2x^2}{2m_{\mathrm p}L^2}\right)\dd x
+\right]^3\\
+&amp;=V\left(\frac{2\pi m_{\mathrm p}k_{\mathrm B}T}{h^2}\right)^{3/2}.
 \end{aligned}
 \]</span></p>
-<ol start="2" type="a">
-<li></li>
+<p>したがって、</p>
+<p><span class="math display">\[
+\boxed{
+Z_N
+=\frac{V^N}{N!}
+\left(\frac{2\pi m_{\mathrm p}k_{\mathrm B}T}{h^2}\right)^{3N/2}
+}
+\]</span></p>
+<p>である。熱的de Broglie波長</p>
+<p><span class="math display">\[
+\lambda_{\mathrm T}
+=\frac{h}{\sqrt{2\pi m_{\mathrm p}k_{\mathrm B}T}}
+\]</span></p>
+<p>を用いれば、<span class="math inline">\(Z_N=(V/\lambda_{\mathrm T}^3)^N/N!\)</span> と書ける。</p>
+<ol start="2" type="1">
+<li><span class="math inline">\(\ln Z_N\)</span> の温度依存性と体積依存性から、</li>
 </ol>
+<p><span class="math display">\[
+\boxed{U=\frac{3}{2}Nk_{\mathrm B}T},
+\qquad
+\boxed{P=\frac{Nk_{\mathrm B}T}{V}}
+\]</span></p>
+<p>を得る。前者は、並進運動の三つの二次形式自由度がそれぞれ一粒子当たり <span class="math inline">\(k_{\mathrm B}T/2\)</span> の平均エネルギーをもつというエネルギー等分配則を表す。後者は</p>
+<p><span class="math display">\[
+PV=Nk_{\mathrm B}T
+\]</span></p>
+<p>であり、単原子理想気体の状態方程式である。</p>
 </div>
 </div>
 </div>
-
-
 </section>
+</section>
+<section id="量子統計" class="level2">
+<h2 class="anchored" data-anchor-id="量子統計">量子統計</h2>
+<section id="sec-statistical-quantum-distributions" class="level4">
+<h4 class="anchored" data-anchor-id="sec-statistical-quantum-distributions">問題D1 Fermi–Dirac分布とBose–Einstein分布</h4>
+<p>多数の粒子からなる系を粒子数表示で記述する。一粒子状態 <span class="math inline">\(\nu\)</span> のエネルギーを <span class="math inline">\(\varepsilon_\nu\)</span>、その状態にある粒子数を <span class="math inline">\(N_\nu\)</span> とする。</p>
+<ol type="1">
+<li><p>Fermi–Dirac分布とBose–Einstein分布では、<span class="math inline">\(N_\nu\)</span> にそれぞれどのような制限を課すか。</p></li>
+<li><p>系のエネルギーと大分配関数を、<span class="math inline">\(N_\nu\)</span> と <span class="math inline">\(\varepsilon_\nu\)</span> を用いて表せ。</p></li>
+<li><p>平均粒子数</p>
+<p><span class="math display">\[
+\overline{N_\nu}
+=\frac{1}{\exp[(\varepsilon_\nu-\mu)/(k_{\mathrm B}T)]+1}
+\qquad \text{(Fermi–Dirac)}
+\]</span></p>
+<p><span class="math display">\[
+\overline{N_\nu}
+=\frac{1}{\exp[(\varepsilon_\nu-\mu)/(k_{\mathrm B}T)]-1}
+\qquad \text{(Bose–Einstein)}
+\]</span></p>
+<p>に現れる <span class="math inline">\(\mu\)</span> はどのような量か。また、<span class="math inline">\(T=0\)</span> と有限温度における <span class="math inline">\(\overline{N_\nu}\)</span> を、<span class="math inline">\(\varepsilon_\nu\)</span> の関数として図示せよ。</p></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論D1：粒子を同じ状態へ何個入れられるか
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、量子粒子の種類によって、一つの一粒子状態へ入れられる粒子数が変わることです。</p>
+<p>半整数スピンをもつFermionはPauliの排他原理に従うため、一つの量子状態には高々一粒子しか入れません。したがって <span class="math inline">\(N_\nu=0,1\)</span> です。電子はFermionです。</p>
+<p>整数スピンをもつBosonには排他原理がなく、同じ量子状態へ何個でも入れます。したがって <span class="math inline">\(N_\nu=0,1,2,\ldots\)</span> です。光子やphononはBosonです。</p>
+<p>グランドカノニカル分布では、状態 <span class="math inline">\(\nu\)</span> に粒子を一つ加えると、指数部は <span class="math inline">\(\varepsilon_\nu-\mu\)</span> だけ増えます。<span class="math inline">\(\mu\)</span> は<strong>化学ポテンシャル</strong>であり、温度・体積一定で粒子を一つ加えたときの自由エネルギー変化を表します。</p>
+<p>Fermi–Dirac分布では、<span class="math inline">\(T=0\)</span> のとき <span class="math inline">\(\varepsilon_\nu&lt;\mu\)</span> の状態がすべて占有され、<span class="math inline">\(\varepsilon_\nu&gt;\mu\)</span> の状態は空になります。有限温度では、<span class="math inline">\(\mu\)</span> の近くで幅およそ数 <span class="math inline">\(k_{\mathrm B}T\)</span> にわたって段差が丸まります。</p>
+<p>Bose–Einstein分布では分母を正に保つ必要があるため、粒子数を保存するBosonでは <span class="math inline">\(\mu\)</span> は最低一粒子エネルギー <span class="math inline">\(\varepsilon_0\)</span> 以下です。<span class="math inline">\(\mu\)</span> が <span class="math inline">\(\varepsilon_0\)</span> に近づくと最低準位の占有数が大きくなります。光子やphononのように粒子数を保存しない準粒子では、平衡で通常 <span class="math inline">\(\mu=0\)</span> です。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答D1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>許される占有数は</p>
+<p><span class="math display">\[
+\boxed{N_\nu=0,1\quad\text{(Fermi–Dirac)}}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{N_\nu=0,1,2,\ldots\quad\text{(Bose–Einstein)}}
+\]</span></p>
+<p>である。</p></li>
+<li><p>系のエネルギーは</p>
+<p><span class="math display">\[
+\boxed{E=\sum_\nu N_\nu\varepsilon_\nu}
+\]</span></p>
+<p>であり、大分配関数は</p>
+<p><span class="math display">\[
+\boxed{
+\Xi
+=\sum_{\{N_\nu\}}
+\exp\left[-\beta\sum_\nu
+N_\nu(\varepsilon_\nu-\mu)\right]
+=\prod_\nu\sum_{N_\nu}
+e^{-\beta N_\nu(\varepsilon_\nu-\mu)}
+}
+\]</span></p>
+<p>である。各 <span class="math inline">\(N_\nu\)</span> の和の範囲は(1)の制限に従う。</p></li>
+<li><p><span class="math inline">\(\mu\)</span> は化学ポテンシャルであり、<span class="math inline">\(T,V\)</span> 一定で粒子を一つ加えたときの自由エネルギー変化を表す。Fermi–Dirac分布では、<span class="math inline">\(T=0\)</span> の極限で</p>
+<p><span class="math display">\[
+\overline{N_\nu}=
+\begin{cases}
+1 &amp; (\varepsilon_\nu&lt;\mu),\\
+0 &amp; (\varepsilon_\nu&gt;\mu)
+\end{cases}
+\]</span></p>
+<p>となり、有限温度では <span class="math inline">\(\varepsilon_\nu=\mu\)</span> を中心に段差が滑らかになる。Bose–Einstein分布では <span class="math inline">\(\mu\le\varepsilon_0\)</span> であり、<span class="math inline">\(\varepsilon_\nu\to\mu+0\)</span> で占有数が大きくなる。</p></li>
+</ol>
+<div id="cell-fig-quantum-occupations" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>作図コード</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>x_fd <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">800</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>x_be <span class="op">=</span> np.linspace(<span class="fl">0.08</span>, <span class="dv">5</span>, <span class="dv">800</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>fd_finite <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (np.exp(x_fd) <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>fd_zero <span class="op">=</span> np.where(x_fd <span class="op">&lt;</span> <span class="dv">0</span>, <span class="fl">1.0</span>, <span class="fl">0.0</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>be_finite <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (np.exp(x_be) <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="fl">9.2</span>, <span class="fl">3.8</span>))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(x_fd, fd_zero, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">2.0</span>, label<span class="op">=</span><span class="vs">r"</span><span class="dv">$</span><span class="vs">T=0</span><span class="dv">$</span><span class="vs">"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(x_fd, fd_finite, linewidth<span class="op">=</span><span class="fl">2.4</span>, label<span class="op">=</span><span class="vs">r"finite </span><span class="dv">$</span><span class="vs">T</span><span class="dv">$</span><span class="vs">"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"0.55"</span>, linewidth<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].<span class="bu">set</span>(</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    xlabel<span class="op">=</span><span class="vs">r"</span><span class="dv">$</span><span class="kw">(</span><span class="ch">\v</span><span class="vs">arepsilon-</span><span class="dv">\m</span><span class="vs">u</span><span class="kw">)</span><span class="vs">/</span><span class="kw">(</span><span class="vs">k_{</span><span class="dv">\m</span><span class="vs">athrm{B}}T</span><span class="kw">)</span><span class="dv">$</span><span class="vs">"</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    ylabel<span class="op">=</span><span class="vs">r"mean occupation </span><span class="dv">$</span><span class="er">\</span><span class="vs">overline{N}</span><span class="dv">$</span><span class="vs">"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"Fermi–Dirac"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    ylim<span class="op">=</span>(<span class="op">-</span><span class="fl">0.04</span>, <span class="fl">1.08</span>),</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend(frameon<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(x_be, be_finite, linewidth<span class="op">=</span><span class="fl">2.4</span>, color<span class="op">=</span><span class="st">"#d97706"</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"0.55"</span>, linewidth<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].<span class="bu">set</span>(</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    xlabel<span class="op">=</span><span class="vs">r"</span><span class="dv">$</span><span class="kw">(</span><span class="ch">\v</span><span class="vs">arepsilon-</span><span class="dv">\m</span><span class="vs">u</span><span class="kw">)</span><span class="vs">/</span><span class="kw">(</span><span class="vs">k_{</span><span class="dv">\m</span><span class="vs">athrm{B}}T</span><span class="kw">)</span><span class="dv">$</span><span class="vs">"</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    ylabel<span class="op">=</span><span class="vs">r"mean occupation </span><span class="dv">$</span><span class="er">\</span><span class="vs">overline{N}</span><span class="dv">$</span><span class="vs">"</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"Bose–Einstein (finite $T$)"</span>,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    xlim<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">5</span>),</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    ylim<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">5</span>),</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> axes:</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    ax.grid(alpha<span class="op">=</span><span class="fl">0.22</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-quantum-occupations" class="quarto-float quarto-figure quarto-figure-center anchored" alt="左はFermi–Dirac分布で、絶対零度の段差が有限温度で滑らかになる。右はBose–Einstein分布で、エネルギーが化学ポテンシャルへ上から近づくと占有数が急増する。">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-quantum-occupations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="材料統計力学_files/figure-html/fig-quantum-occupations-output-1.png" alt="左はFermi–Dirac分布で、絶対零度の段差が有限温度で滑らかになる。右はBose–Einstein分布で、エネルギーが化学ポテンシャルへ上から近づくと占有数が急増する。" width="872" height="352" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-quantum-occupations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Fermi–Dirac分布とBose–Einstein分布の模式図。横軸は化学ポテンシャルから測ったエネルギーで、有限温度では <span class="math inline">\(k_{\mathrm B}T=1\)</span> とした。Bose–Einstein分布は <span class="math inline">\(\varepsilon-\mu&gt;0\)</span> の範囲だけを示す。
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
 </section>
 </section>
 

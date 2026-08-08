@@ -2,7 +2,7 @@
 title: "材料統計力学"
 author: "Serika Yuzuki"
 date: "2024-11-29"
-categories: [University, 2024]
+categories: [University, statistical-mechanics, thermodynamics, 2024]
 image: "images/thumbnail.png"
 ---
 
@@ -12,165 +12,512 @@ $$
 \require{ams}
 $$
 
-# 講義内で重要そうだった部分
+この記事では、統計力学の基本概念を五つの問題でつなげます。各問題は、まず問題文だけで考え、必要になったところで理論を開き、最後に解答を確認できるようにしています。
 
-## 等重率の原理
+## アンサンブルと熱力学量
 
-孤立系において、微視的状態はどの状態にあることも同様に確からしい。
+#### 問題A1 アンサンブルの違い {#sec-statistical-ensembles}
 
-# 過去問まとめ
-
-<!-- 
-::: {.callout-note collapse="true"}
-#### 理論
-
-This is an example of a callout with a title.
-:::
-
-::: {.callout-tip collapse="true"}
-#### 解答
-
-This is an example of a callout with a title.
-::: 
--->
-
-## 2007年度
-
-注意：B側の問題だけです。
-
-### 問1
-
-![](timages/image0.png)
+「ミクロカノニカル分布」「カノニカル分布」「グランドカノニカル分布」の違いを、系と外界の関係が分かる図を用いて簡潔に説明せよ。また、エネルギー $\varepsilon_l$ をもつ状態 $l$ の規格化された実現確率が、それぞれの分布でどのように表されるか答えよ。
 
 ::: {.callout-note collapse="true"}
-#### 理論
+##### 理論A1：何を固定し、何を外界と交換するか
 
-$$
-\begin{aligned}
-\dd U &= T \dd S - P \dd V \\
-\dd F &= -S \dd T - P \dd V \\
-\dd G &= -S \dd T + V \dd P
-\end{aligned}
-$$
+**問いの正体**は、調べたい系をどのような外界の中へ置くかを選ぶことです。
 
-ここら辺について頭に入れておく
+非常に多数の粒子を含む物体の微視状態を一つずつ追跡することはできません。そこで、同じ巨視的条件を満たす仮想的な系を多数集めた**アンサンブル**を考えます。三つのアンサンブルの違いは、外界と交換できるものによって決まります。
 
-:::
-
-::: {.callout-tip collapse="true"}
-#### 解答
-
-![](timages/image1.png)
-
-|性質|ミクロカノニカル|カノニカル|グランドカノニカル|
+| アンサンブル | 外界との関係 | 固定する量 | 揺らぐ量 |
 |---|---|---|---|
-|状態|外界から独立している|周囲と熱平衡|外界とやり取りがある|
-|エネルギー|一定(断熱)|やり取りあり(等温)|やり取りあり(等温)|
-|粒子数|一定|一定|やり取りあり|
-|特徴量| $U$ | $F$ | $G$ |
+| ミクロカノニカル | 外界から孤立 | $E,V,N$ | なし |
+| カノニカル | 熱浴と接触 | $T,V,N$ | $E$ |
+| グランドカノニカル | 熱浴・粒子浴と接触 | $T,V,\mu$ | $E,N$ |
 
-::: 
+ここで、$E$ は全エネルギー、$V$ は体積、$N$ は粒子数、$T$ は温度、$\mu$ は化学ポテンシャルです。
 
-### 問2
+**ミクロカノニカル分布**では、許されたエネルギー殻の中にある微視状態はすべて同様に確からしいとします。これが**等重率の原理**です。許された微視状態数を $W(E)$ とすれば、各状態の確率は $1/W(E)$ です。
 
-![](timages/image2.png)
+**カノニカル分布**では、系は熱浴とエネルギーを交換します。系がエネルギー $\varepsilon_l$ を取ると熱浴のエネルギーが同じだけ減るため、系の状態には
 
-::: {.callout-tip collapse="true"}
-#### 解答
+$$
+\exp(-\beta\varepsilon_l),
+\qquad
+\beta=\frac{1}{k_{\mathrm B}T}
+$$
 
-| **記号** | **物理量** | **説明** |
-|----------|-----------|---------------------------------------------------------------------------------------------|
-| $S$  | エントロピー | 乱雑さを示す状態量 $k_B\ln W$ |
-| $k_B$| ボルツマン定数 | |
-| $W$  | 状態の数| 系のエネルギーが等しい微視状態の総数|
-| $F$  | ヘルムホルツエネルギー | 等温条件下で取り出し可能なエネルギー量 |
-| $\beta$| 逆温度 $1/k_BT$ | 温度の逆数として定義される量 |
-| $Z$  | 分配関数 | カノニカル分布の規格化定数 |
-| $J$  | グランドポテンシャル | 系における可能な状態の分布 |
-| $\Xi$| 大分配関数 | グランドポテンシャルに関連する量 |
+という重みが付きます。この重みを全状態について足したものが分配関数
 
+$$
+Z=\sum_l\exp(-\beta\varepsilon_l)
+$$
+
+であり、$Z$ で割ることで確率の総和を1にします。
+
+**グランドカノニカル分布**では、エネルギーだけでなく粒子も交換できます。粒子数 $N$ の状態に対しては、熱浴とのエネルギー交換に加えて $\mu N$ の寄与を考えるため、重みは
+
+$$
+\exp[-\beta(\varepsilon_{l,N}-\mu N)]
+$$
+
+となります。その規格化定数が大分配関数 $\Xi$ です。
+
+三つは別々の法則ではありません。十分に大きな系では同じ巨視的結果を与えますが、固定したい変数に合うアンサンブルを選ぶと計算が簡単になります。
 :::
 
-### 問3
+::: {.callout-tip collapse="true"}
+##### 解答A1
 
-![](timages/image3.png)
+三つの系と外界の関係は、次のように整理できる。
+
+| 分布 | 模式図 | 固定量 | 状態の実現確率 |
+|---|---|---|---|
+| ミクロカノニカル | 外界／断熱壁／系 | $E,V,N$ | $P_l=1/W(E)$（$\varepsilon_l=E$ の許容状態）、それ以外は0 |
+| カノニカル | 熱浴 $\rightleftarrows$ 系 | $T,V,N$ | $\displaystyle P_l=\frac{e^{-\beta\varepsilon_l}}{Z}$ |
+| グランドカノニカル | 熱・粒子浴 $\rightleftarrows$ 系 | $T,V,\mu$ | $\displaystyle P_{l,N}=\frac{e^{-\beta(\varepsilon_{l,N}-\mu N)}}{\Xi}$ |
+
+ただし、
+
+$$
+Z=\sum_l e^{-\beta\varepsilon_l},
+\qquad
+\Xi=\sum_N\sum_l e^{-\beta(\varepsilon_{l,N}-\mu N)},
+\qquad
+\beta=\frac{1}{k_{\mathrm B}T}
+$$
+
+である。
+:::
+
+#### 問題A2 熱力学と統計力学を結ぶ量 {#sec-statistical-partition-function}
+
+次の二式は、熱力学と統計力学を結び付ける重要な関係式である。$T$ は温度である。$Z,S,W,F$ がそれぞれどのような量か説明せよ。
+
+$$
+S=k_{\mathrm B}\ln W,
+\qquad
+F=-k_{\mathrm B}T\ln Z
+$$
 
 ::: {.callout-note collapse="true"}
-#### 理論
+##### 理論A2：微視状態の数から巨視的な熱力学量を作る
 
-(a) はただ単に確率の問題を解くだけ。ここで、 $W_N(M) = {}_N \mathrm{H}_M = \binom{M+N-1}{M}$ ということに注意した方がいい。
+**問いの正体**は、目に見えない微視状態の数え上げが、測定できるエントロピーや自由エネルギーにどう変換されるかを説明することです。
 
+$W$ は、指定した巨視的条件のもとで実現できる微視状態の数です。$W$ が多いほど、系を微視的に実現する方法が多くなります。しかし、二つの独立な系を合わせると状態数は積 $W_1W_2$ になる一方、熱力学量は和で扱いたいので、対数を取って
+
+$$
+S=k_{\mathrm B}\ln W
+$$
+
+と定義します。実際、
+
+$$
+S_{12}=k_{\mathrm B}\ln(W_1W_2)=S_1+S_2
+$$
+
+となり、エントロピーの示量性と整合します。
+
+カノニカル分布では、各状態を同じ重さで数えるのではなく、Boltzmann因子 $e^{-\beta\varepsilon_l}$ を付けて足し合わせます。
+
+$$
+Z=\sum_l e^{-\beta\varepsilon_l}
+$$
+
+この $Z$ から平均エネルギーやエントロピーを求めると、Helmholtz自由エネルギー
+
+$$
+F=U-TS
+$$
+
+は
+
+$$
+F=-k_{\mathrm B}T\ln Z
+$$
+
+となります。したがって、$W$ と $Z$ は単なる規格化定数ではなく、巨視的な熱力学量を取り出すための情報をまとめた量です。
 :::
 
 ::: {.callout-tip collapse="true"}
-#### 解答
+##### 解答A2
 
-(a) 求める確率は $\frac{W_{N-1}(M-n)}{W_N(M)}$ であり、 $m = M/N$ を使えば、
+| 記号 | 名称 | 意味 |
+|---|---|---|
+| $W$ | 微視状態数 | 指定した巨視的条件を満たす微視状態の総数 |
+| $S$ | エントロピー | 微視状態の多さを表す状態量。ミクロカノニカル分布では $S=k_{\mathrm B}\ln W$ |
+| $Z$ | 分配関数 | カノニカル分布のBoltzmann因子を全状態について足した規格化定数、$Z=\sum_l e^{-\beta\varepsilon_l}$ |
+| $F$ | Helmholtz自由エネルギー | $T,V,N$ 一定の平衡で最小となる熱力学ポテンシャル。$F=U-TS=-k_{\mathrm B}T\ln Z$ |
+
+ここで、$k_{\mathrm B}$ はBoltzmann定数である。
+:::
+
+## エネルギー分布を状態数から導く
+
+#### 問題B1 Einstein振動子系 {#sec-statistical-einstein-solid}
+
+角振動数 $\omega$ をもつ、量子力学に従う $N$ 個の調和振動子の集合を考える。系のエネルギーは
 
 $$
-\frac{1}{m+1} \left( \frac{m}{m+1} \right)^n
+E=\sum_{i=1}^{N}\left(n_i+\frac12\right)\hbar\omega
 $$
 
-(b) 
+である。全励起エネルギー $M\hbar\omega$ を $N$ 個の振動子へ配分する方法の数は
 
 $$
-\frac{m}{1+m}=\frac{M}{M+N} = \exp \qty(-\frac{\hbar \omega}{k_BT})
+W_N(M)=\frac{(M+N-1)!}{(N-1)!M!}
 $$
 
-::: 
+で与えられる。
 
-### 問4
-
-![](timages/image4.png)
-
-不明瞭なので、解答は不確かです。
+1. 特定の一つの振動子が、全励起エネルギー $M\hbar\omega$ のうち $n\hbar\omega$ をもつ確率を求めよ。ただし、$N\gg1$、$M\gg n$ とし、平均値 $m=M/N$ を用いてよい。
+2. この振動子系の温度 $T$ がどのように定義されるか示せ。
 
 ::: {.callout-note collapse="true"}
-#### 理論
+##### 理論B1：部分系の確率は、残りの系の状態数で決まる
 
-問題自体は指示している通りに積分計算をすればいい。
+**問いの正体**は、一つの振動子へエネルギーを渡したあと、残りの振動子にエネルギーを配る方法が何通り残るかを数えることです。
 
-分配関数とかについて軽くまとめる。かなり我流な考え方なので注意してください。
+全系の微視状態数は $W_N(M)$ です。特定の一つの振動子が $n$ 個のエネルギー量子を受け取ると、残る $N-1$ 個の振動子へ配れる量子は $M-n$ 個です。したがって、その条件を満たす微視状態数は $W_{N-1}(M-n)$ であり、等重率の原理から確率は
 
-ある何らかの力が働いている系があ流として、そこでは圧力が定義可能である。 $P=NkT$ となるわけだが、この系のうち、あるエネルギー $E$ 以上を取る粒子が $n$ 個存在してるとしたら、その割合は、 PE が圧力を超えていく確立に等しくて、 $-n\dd P.E. = \dd P = kT \dd n$ で $n\propto \exp(-P.E./kT)$ になるわけだけど、これを正規化するために $Z = \sum \exp(-P.E./kT)$ をやっている。
+$$
+P(n)=\frac{W_{N-1}(M-n)}{W_N(M)}
+$$
 
-で、この $Z$ 自体を弄り回して $T$ 関連の量を求めることもできる。
+です。
 
+大きな系では、一つの振動子が受け取る $n$ は全量 $M$ より十分小さいため、階乗比の各因子を $M$ または $M+N$ で近似できます。これにより幾何分布が現れます。
+
+温度は感覚的な「熱さ」ではなく、エントロピーがエネルギーに対してどれだけ増えるかで
+
+$$
+\frac{1}{T}=\left(\pdv{S}{U}\right)_{N,V}
+$$
+
+と定義されます。ここで $S=k_{\mathrm B}\ln W_N(M)$、$U=M\hbar\omega+N\hbar\omega/2$ と置き、$M,N\gg1$ でStirling近似を使えば、状態数から温度を求められます。零点エネルギーは $M$ によらないため、この微分には寄与しません。
 :::
 
 ::: {.callout-tip collapse="true"}
-#### 解答
+##### 解答B1
 
-(a) 分配関数は
+1. 特定の振動子が $n\hbar\omega$ の励起エネルギーをもつ確率は
 
 $$
 \begin{aligned}
-Z = &\eval{\frac{1}{N!}}_{\text{粒子については区別しない}} \\
-&\eval{\sum_{n_x} \sum_{n_y} \sum_{n_z}}_{x,y,z\text{方向全て}} \\
-&\exp \qty(-\frac{1}{k_BT} \eval{\sum_i}_{N個} \frac{h^2}{2mL^2} (n_x^2+n_y^2+n_z^2)) \\
-= & \frac{1}{N!} \qty(\sum_n \exp(-\frac{\beta h^2}{2mL^2}n^2))^{3N} \\
-= & \frac{V^N}{h^{3N}N!} \qty(\frac{2\pi m}{\beta})^{3N/2}
+P(n)
+&=\frac{W_{N-1}(M-n)}{W_N(M)}\\
+&=\frac{(M-n+N-2)!}{(N-2)!(M-n)!}
+\frac{(N-1)!M!}{(M+N-1)!}.
 \end{aligned}
 $$
 
-(b) 
+$N\gg1$、$M\gg n$、$m=M/N$ を用いると、
 
-::: 
+$$
+\boxed{
+P(n)\simeq
+\frac{1}{m+1}
+\left(\frac{m}{m+1}\right)^n
+}
+$$
 
+となる。
 
+2. $S=k_{\mathrm B}\ln W_N(M)$ とStirling近似を用いると、
 
+$$
+\frac{1}{T}
+=\pdv{S}{U}
+=\frac{k_{\mathrm B}}{\hbar\omega}
+\ln\left(\frac{M+N}{M}\right)
+=\frac{k_{\mathrm B}}{\hbar\omega}
+\ln\left(\frac{m+1}{m}\right).
+$$
 
+よって、温度は
 
+$$
+\boxed{
+\frac{m}{m+1}
+=\exp\left(-\frac{\hbar\omega}{k_{\mathrm B}T}\right)
+}
+$$
 
+を満たす量として定義される。したがって、
 
+$$
+m=\frac{1}{\exp(\hbar\omega/k_{\mathrm B}T)-1}
+$$
 
+であり、(1)の分布はBoltzmann因子を含む形になる。
+:::
 
+## 分配関数から熱力学量を求める
 
+#### 問題C1 単原子理想気体 {#sec-statistical-ideal-gas}
 
+一辺の長さが $L$、体積が $V=L^3$ の立方体中を自由に動く、質量 $m_{\mathrm p}$ の同種粒子 $N$ 個を考える。一粒子のエネルギーは
 
+$$
+\varepsilon(n_x,n_y,n_z)
+=\frac{h^2}{2m_{\mathrm p}L^2}
+\left(n_x^2+n_y^2+n_z^2\right),
+\qquad
+n_x,n_y,n_z\in\mathbb Z
+$$
 
+であり、系の分配関数は
 
+$$
+Z_N
+=\frac{1}{N!}
+\sum_{{n_{xi},n_{yi},n_{zi}}}
+\exp\left[-\frac{1}{k_{\mathrm B}T}
+\sum_{i=1}^{N}\varepsilon(n_{xi},n_{yi},n_{zi})\right]
+$$
 
+と書ける。
 
+1. $h^2/(2m_{\mathrm p}L^2k_{\mathrm B}T)\ll1$ として、和を積分に置き換え、$Z_N$ を求めよ。必要なら
 
+   $$
+   \int_{-\infty}^{\infty}e^{-ax^2}\dd x
+   =\sqrt{\frac{\pi}{a}}
+   $$
 
+   を用いてよい。
+2. 得られた分配関数から、系の平均エネルギー $U$ と圧力 $P$ を求め、それぞれの意味を説明せよ。次の関係を用いてよい。
+
+   $$
+   U=-T^2\left[\pdv{(F/T)}{T}\right]_V,
+   \qquad
+   P=-\left(\pdv{F}{V}\right)_T
+   $$
+
+::: {.callout-note collapse="true"}
+##### 理論C1：量子状態の和を位相空間の積分へ近似する
+
+**問いの正体**は、分配関数を一度求めれば、平均エネルギーと圧力を微分で取り出せることを確認する問題です。
+
+粒子同士が相互作用しないため、$N$ 粒子のBoltzmann因子は一粒子分の積へ分解できます。また、同種粒子を区別して数えた重複を除くために $N!$ で割ります。したがって、
+
+$$
+Z_N=\frac{z_1^N}{N!}
+$$
+
+です。$z_1$ は一粒子分配関数です。
+
+高温または大きな箱では、隣り合う準位の間隔が $k_{\mathrm B}T$ より十分小さくなります。このとき、離散的な量子数の和を連続変数の積分で近似できます。
+
+$$
+\sum_{n=-\infty}^{\infty}e^{-an^2}
+\simeq
+\int_{-\infty}^{\infty}e^{-ax^2}\dd x
+$$
+
+この近似は、低温や小さな箱のように準位間隔を無視できない場合には使えません。
+
+分配関数からは
+
+$$
+F=-k_{\mathrm B}T\ln Z_N,
+\qquad
+U=-\pdv{\ln Z_N}{\beta},
+\qquad
+P=k_{\mathrm B}T\pdv{\ln Z_N}{V}
+$$
+
+を用いて熱力学量を取り出せます。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答C1
+
+1. 一粒子分配関数は
+
+$$
+\begin{aligned}
+z_1
+&=\left[
+\sum_{n=-\infty}^{\infty}
+\exp\left(-\frac{\beta h^2n^2}{2m_{\mathrm p}L^2}\right)
+\right]^3\\
+&\simeq
+\left[
+\int_{-\infty}^{\infty}
+\exp\left(-\frac{\beta h^2x^2}{2m_{\mathrm p}L^2}\right)\dd x
+\right]^3\\
+&=V\left(\frac{2\pi m_{\mathrm p}k_{\mathrm B}T}{h^2}\right)^{3/2}.
+\end{aligned}
+$$
+
+したがって、
+
+$$
+\boxed{
+Z_N
+=\frac{V^N}{N!}
+\left(\frac{2\pi m_{\mathrm p}k_{\mathrm B}T}{h^2}\right)^{3N/2}
+}
+$$
+
+である。熱的de Broglie波長
+
+$$
+\lambda_{\mathrm T}
+=\frac{h}{\sqrt{2\pi m_{\mathrm p}k_{\mathrm B}T}}
+$$
+
+を用いれば、$Z_N=(V/\lambda_{\mathrm T}^3)^N/N!$ と書ける。
+
+2. $\ln Z_N$ の温度依存性と体積依存性から、
+
+$$
+\boxed{U=\frac{3}{2}Nk_{\mathrm B}T},
+\qquad
+\boxed{P=\frac{Nk_{\mathrm B}T}{V}}
+$$
+
+を得る。前者は、並進運動の三つの二次形式自由度がそれぞれ一粒子当たり $k_{\mathrm B}T/2$ の平均エネルギーをもつというエネルギー等分配則を表す。後者は
+
+$$
+PV=Nk_{\mathrm B}T
+$$
+
+であり、単原子理想気体の状態方程式である。
+:::
+
+## 量子統計
+
+#### 問題D1 Fermi–Dirac分布とBose–Einstein分布 {#sec-statistical-quantum-distributions}
+
+多数の粒子からなる系を粒子数表示で記述する。一粒子状態 $\nu$ のエネルギーを $\varepsilon_\nu$、その状態にある粒子数を $N_\nu$ とする。
+
+1. Fermi–Dirac分布とBose–Einstein分布では、$N_\nu$ にそれぞれどのような制限を課すか。
+2. 系のエネルギーと大分配関数を、$N_\nu$ と $\varepsilon_\nu$ を用いて表せ。
+3. 平均粒子数
+
+   $$
+   \overline{N_\nu}
+   =\frac{1}{\exp[(\varepsilon_\nu-\mu)/(k_{\mathrm B}T)]+1}
+   \qquad \text{(Fermi–Dirac)}
+   $$
+
+   $$
+   \overline{N_\nu}
+   =\frac{1}{\exp[(\varepsilon_\nu-\mu)/(k_{\mathrm B}T)]-1}
+   \qquad \text{(Bose–Einstein)}
+   $$
+
+   に現れる $\mu$ はどのような量か。また、$T=0$ と有限温度における $\overline{N_\nu}$ を、$\varepsilon_\nu$ の関数として図示せよ。
+
+::: {.callout-note collapse="true"}
+##### 理論D1：粒子を同じ状態へ何個入れられるか
+
+**問いの正体**は、量子粒子の種類によって、一つの一粒子状態へ入れられる粒子数が変わることです。
+
+半整数スピンをもつFermionはPauliの排他原理に従うため、一つの量子状態には高々一粒子しか入れません。したがって $N_\nu=0,1$ です。電子はFermionです。
+
+整数スピンをもつBosonには排他原理がなく、同じ量子状態へ何個でも入れます。したがって $N_\nu=0,1,2,\ldots$ です。光子やphononはBosonです。
+
+グランドカノニカル分布では、状態 $\nu$ に粒子を一つ加えると、指数部は $\varepsilon_\nu-\mu$ だけ増えます。$\mu$ は**化学ポテンシャル**であり、温度・体積一定で粒子を一つ加えたときの自由エネルギー変化を表します。
+
+Fermi–Dirac分布では、$T=0$ のとき $\varepsilon_\nu<\mu$ の状態がすべて占有され、$\varepsilon_\nu>\mu$ の状態は空になります。有限温度では、$\mu$ の近くで幅およそ数 $k_{\mathrm B}T$ にわたって段差が丸まります。
+
+Bose–Einstein分布では分母を正に保つ必要があるため、粒子数を保存するBosonでは $\mu$ は最低一粒子エネルギー $\varepsilon_0$ 以下です。$\mu$ が $\varepsilon_0$ に近づくと最低準位の占有数が大きくなります。光子やphononのように粒子数を保存しない準粒子では、平衡で通常 $\mu=0$ です。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答D1
+
+1. 許される占有数は
+
+   $$
+   \boxed{N_\nu=0,1\quad\text{(Fermi–Dirac)}}
+   $$
+
+   $$
+   \boxed{N_\nu=0,1,2,\ldots\quad\text{(Bose–Einstein)}}
+   $$
+
+   である。
+
+2. 系のエネルギーは
+
+   $$
+   \boxed{E=\sum_\nu N_\nu\varepsilon_\nu}
+   $$
+
+   であり、大分配関数は
+
+   $$
+   \boxed{
+   \Xi
+   =\sum_{\{N_\nu\}}
+   \exp\left[-\beta\sum_\nu
+   N_\nu(\varepsilon_\nu-\mu)\right]
+   =\prod_\nu\sum_{N_\nu}
+   e^{-\beta N_\nu(\varepsilon_\nu-\mu)}
+   }
+   $$
+
+   である。各 $N_\nu$ の和の範囲は(1)の制限に従う。
+
+3. $\mu$ は化学ポテンシャルであり、$T,V$ 一定で粒子を一つ加えたときの自由エネルギー変化を表す。Fermi–Dirac分布では、$T=0$ の極限で
+
+   $$
+   \overline{N_\nu}=
+   \begin{cases}
+   1 & (\varepsilon_\nu<\mu),\\
+   0 & (\varepsilon_\nu>\mu)
+   \end{cases}
+   $$
+
+   となり、有限温度では $\varepsilon_\nu=\mu$ を中心に段差が滑らかになる。Bose–Einstein分布では $\mu\le\varepsilon_0$ であり、$\varepsilon_\nu\to\mu+0$ で占有数が大きくなる。
+
+```{python}
+#| label: fig-quantum-occupations
+#| fig-cap: 'Fermi–Dirac分布とBose–Einstein分布の模式図。横軸は化学ポテンシャルから測ったエネルギーで、有限温度では $k_{\mathrm B}T=1$ とした。Bose–Einstein分布は $\varepsilon-\mu>0$ の範囲だけを示す。'
+#| fig-alt: "左はFermi–Dirac分布で、絶対零度の段差が有限温度で滑らかになる。右はBose–Einstein分布で、エネルギーが化学ポテンシャルへ上から近づくと占有数が急増する。"
+#| code-fold: true
+#| code-summary: "作図コード"
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+x_fd = np.linspace(-5, 5, 800)
+x_be = np.linspace(0.08, 5, 800)
+
+fd_finite = 1 / (np.exp(x_fd) + 1)
+fd_zero = np.where(x_fd < 0, 1.0, 0.0)
+be_finite = 1 / (np.exp(x_be) - 1)
+
+fig, axes = plt.subplots(1, 2, figsize=(9.2, 3.8))
+
+axes[0].plot(x_fd, fd_zero, linestyle="--", linewidth=2.0, label=r"$T=0$")
+axes[0].plot(x_fd, fd_finite, linewidth=2.4, label=r"finite $T$")
+axes[0].axvline(0, color="0.55", linewidth=1.0)
+axes[0].set(
+    xlabel=r"$(\varepsilon-\mu)/(k_{\mathrm{B}}T)$",
+    ylabel=r"mean occupation $\overline{N}$",
+    title="Fermi–Dirac",
+    ylim=(-0.04, 1.08),
+)
+axes[0].legend(frameon=False)
+
+axes[1].plot(x_be, be_finite, linewidth=2.4, color="#d97706")
+axes[1].axvline(0, color="0.55", linewidth=1.0)
+axes[1].set(
+    xlabel=r"$(\varepsilon-\mu)/(k_{\mathrm{B}}T)$",
+    ylabel=r"mean occupation $\overline{N}$",
+    title="Bose–Einstein (finite $T$)",
+    xlim=(0, 5),
+    ylim=(0, 5),
+)
+
+for ax in axes:
+    ax.grid(alpha=0.22)
+
+fig.tight_layout()
+plt.show()
+```
+:::
