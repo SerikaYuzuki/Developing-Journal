@@ -924,6 +924,14 @@ body.pj-drawer-active { overflow: hidden; }
   z-index: 2;
   pointer-events: none;
 }
+.gl-card .gl-cats,
+.gl-card .gl-cat-pill,
+.gl-card .gl-meta a,
+.gl-card .listing-categories {
+  pointer-events: auto;
+  position: relative;
+  z-index: 3;
+}
 .gl-card:hover {
   --pj-card-star-opacity: 0.92;
   --pj-card-orbit-spin: 18deg;
@@ -1082,17 +1090,18 @@ body.pj-drawer-active { overflow: hidden; }
 .gl-cat-pill {
   display: inline-block;
   background: color-mix(in srgb, var(--gl-cat-color, var(--gl-cat0)) 10%, var(--gl-card-bg-subtle));
-  border: 1px solid color-mix(in srgb, var(--gl-cat-color, var(--gl-cat0)) 22%, var(--gl-card-border-dim));
+  border: 1px solid color-mix(in srgb, var(--gl-cat-color, var(--gl-cat0)) 22%, var(--gl-card-border-dim)) !important;
   border-radius: 999px;
   padding: 3px 11px;
   font-size: 0.72rem;
   font-weight: 600;
   color: color-mix(in srgb, var(--gl-cat-color, var(--gl-cat0)) 55%, var(--gl-text-color));
-  border-bottom: none !important;
   text-decoration: none !important;
+  text-decoration-line: none !important;
   position: relative;
   z-index: 3;
   pointer-events: auto;
+  cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 .gl-cat-pill:hover {
@@ -1167,27 +1176,79 @@ body.pj-drawer-active { overflow: hidden; }
    .quarto-categories .quarto-category), so we need !important.
    ============================================================ */
 .quarto-category {
-  display: inline-block !important;
+  display: inline-flex !important;
+  align-items: center;
   background: var(--gl-card-bg-subtle) !important;
   -webkit-backdrop-filter: blur(12px) saturate(160%);
   backdrop-filter:         blur(12px) saturate(160%);
   border: 1px solid var(--gl-card-border-dim) !important;
   border-radius: 999px !important;
   opacity: 1 !important;
-  transition: background 0.2s;
-}
-.quarto-category a {
-  display: block;
   padding: 4px 13px !important;
   font-size: 0.75rem !important;
   font-weight: 600;
   color: var(--gl-cat0) !important;
   text-decoration: none !important;
+  border-bottom: 1px solid var(--gl-card-border-dim) !important;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.quarto-category a {
+  display: block;
+  padding: 0 !important;
+  font-size: inherit !important;
+  font-weight: inherit;
+  color: inherit !important;
+  text-decoration: none !important;
   border-bottom: none !important;
   white-space: nowrap;
 }
-.quarto-category:hover {
+.quarto-category:hover,
+.quarto-category:focus-visible {
   background: var(--gl-card-bg) !important;
+  outline: none;
+}
+
+/* Hero breadcrumbs / chrome links: no underline decoration. */
+#title-block-header a,
+.quarto-title-breadcrumbs a,
+.quarto-page-breadcrumbs a,
+.breadcrumb a,
+.gl-card-link,
+.quarto-category a {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  border-bottom-color: transparent !important;
+  border-bottom-style: none !important;
+}
+
+.gl-cat-pill,
+.quarto-category {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+}
+
+#title-block-header .breadcrumb-item + .breadcrumb-item::before {
+  text-decoration: none;
+}
+
+#quarto-document-content.content #title-block-header a:not(.btn),
+#quarto-document-content.content .gl-cat-pill,
+#quarto-document-content.content .quarto-category,
+#quarto-document-content.content .quarto-category a,
+#quarto-document-content.content .gl-card-link {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+}
+
+#quarto-document-content.content #title-block-header a:not(.btn):not(.quarto-category),
+#quarto-document-content.content .gl-card-link,
+#quarto-document-content.content .quarto-category a {
+  border-bottom: none !important;
+}
+
+#title-block-header .quarto-category {
+  border: 1px solid var(--gl-card-border-dim) !important;
 }
 
 /* ============================================================

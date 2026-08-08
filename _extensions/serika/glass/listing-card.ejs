@@ -79,7 +79,7 @@ var categoriesText = cats.join(' ');
 <div class="gl-meta-col"><div class="gl-meta-lbl">PUBLISHED</div><div class="gl-meta-val listing-date"><%- fmtDate(item.date) %></div></div>
 <% } %>
 <% if (cats.length > 0) { %>
-<div class="gl-meta-col"><div class="gl-meta-lbl">CATEGORIES</div><div class="gl-cats listing-categories"><% cats.forEach(function(cat){ %><a class="gl-cat-pill" data-gl-cat="<%- catColorIdx(cat) %>" href="<%- categoryHash(cat) %>" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('<%- encodeCategory(cat) %>'); return false; }"><%- cat %></a><% }); %></div></div>
+<div class="gl-meta-col"><div class="gl-meta-lbl">CATEGORIES</div><div class="gl-cats listing-categories"><% cats.forEach(function(cat){ %><a class="gl-cat-pill" data-gl-cat="<%- catColorIdx(cat) %>" data-category="<%- encodeCategory(cat) %>" href="<%- categoryHash(cat) %>"><%- cat %></a><% }); %></div></div>
 <% } %>
 <div class="listing-reading-time gl-hidden-listing-value"><%- rtText %></div>
 <div class="gl-hidden-listing-value"><%- categoriesText %></div>

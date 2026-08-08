@@ -370,8 +370,9 @@
       }
 
       var anchor = event.target.closest('a[href^="#"]');
-      if (anchor) {
+      if (anchor && !anchor.matches('.gl-cat-pill, .quarto-category, .quarto-category a')) {
         var targetId = anchor.getAttribute('href').slice(1);
+        if (targetId.indexOf('category=') === 0) return;
         var decodedTargetId = targetId;
         try { decodedTargetId = decodeURIComponent(targetId); } catch (_) { /* keep raw hash */ }
         var target = targetId && document.getElementById(decodedTargetId);
@@ -592,6 +593,74 @@
         ].join('');
         titleBlock.appendChild(dashboard);
 
+        // Make Quarto hero category pills actionable. On listing pages they
+        // filter the current listing; elsewhere they jump to the site home
+        // with the matching category hash.
+        function encodeListingCategory(category) {
+          try {
+            return window.btoa(unescape(encodeURIComponent(category)));
+          } catch (_) {
+            return window.btoa(String(category || ''));
+          }
+        }
+
+        function listingHomeUrl() {
+          var brand = document.querySelector('.navbar-brand[href]');
+          try {
+            return new URL(brand ? brand.getAttribute('href') : './index.html', window.location.href);
+          } catch (_) {
+            return new URL('./index.html', window.location.href);
+          }
+        }
+
+        function activateOrNavigateCategory(category) {
+          if (!category) return;
+          var hasListingFilter = !!document.querySelector('.quarto-listing-category, .quarto-listing');
+          if (hasListingFilter && typeof window.quartoListingCategory === 'function') {
+            window.quartoListingCategory(encodeListingCategory(category));
+            return;
+          }
+          var home = listingHomeUrl();
+          home.hash = 'category=' + encodeURIComponent(category);
+          if (normalizedPath(home) === normalizedPath(new URL(window.location.href))) {
+            window.location.hash = home.hash;
+            if (typeof window.quartoListingCategory === 'function') {
+              window.quartoListingCategory(encodeListingCategory(category));
+            }
+          } else {
+            window.location.href = home.href;
+          }
+        }
+
+        titleBlock.querySelectorAll('.quarto-category').forEach(function (chip) {
+          if (chip.dataset.pjCategoryReady === 'true') return;
+          chip.dataset.pjCategoryReady = 'true';
+          var existingLink = chip.matches('a') ? chip : chip.querySelector('a[href]');
+          var category = ((existingLink || chip).textContent || '').replace(/\s+/g, ' ').trim();
+          if (!category) return;
+          if (existingLink) {
+            existingLink.addEventListener('click', function (event) {
+              event.preventDefault();
+              event.stopPropagation();
+              activateOrNavigateCategory(category);
+            });
+            return;
+          }
+          chip.setAttribute('role', 'button');
+          chip.tabIndex = 0;
+          chip.setAttribute('aria-label', 'カテゴリ「' + category + '」で絞り込む');
+          chip.addEventListener('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            activateOrNavigateCategory(category);
+          });
+          chip.addEventListener('keydown', function (event) {
+            if (event.key !== 'Enter' && event.key !== ' ') return;
+            event.preventDefault();
+            activateOrNavigateCategory(category);
+          });
+        });
+
       }
 
       chapterSections.forEach(function (section, index) {
@@ -784,9 +853,24 @@
       function previewLinkFromEvent(event) {
         var link = event.target.closest && event.target.closest('a[href]');
         if (!link || !article.contains(link)) return null;
-        if (link.matches('.anchorjs-link, .code-copy-button, [data-bs-toggle], [role="button"]')) return null;
+        if (link.matches([
+          '.anchorjs-link',
+          '.code-copy-button',
+          '[data-bs-toggle]',
+          '[role="button"]',
+          '.gl-card-link',
+          '.gl-cat-pill',
+          '.quarto-category',
+          '.quarto-category a',
+          '.breadcrumb a',
+          '.quarto-title-breadcrumbs a',
+          '.quarto-page-breadcrumbs a',
+          '.pagination-link',
+          '.nav-page a'
+        ].join(', '))) return null;
         var href = link.getAttribute('href') || '';
         if (!href || href === '#' || /^(javascript|mailto|tel):/i.test(href)) return null;
+        if (/^#category=/i.test(href) || /[?&]category=/i.test(href) || /#category=/i.test(href)) return null;
         return link;
       }
 
@@ -934,5 +1018,23 @@
         if (link) hideLinkPreview(link);
       });
     }
+
+    // Listing constellation cards use a full-card cover link. Category pills
+    // sit above it, but capture clicks here so the cover never wins.
+    document.addEventListener('click', function (event) {
+      var pill = event.target.closest && event.target.closest('a.gl-cat-pill');
+      if (!pill) return;
+      event.preventDefault();
+      event.stopPropagation();
+      var encoded = pill.getAttribute('data-category');
+      if (encoded && typeof window.quartoListingCategory === 'function') {
+        window.quartoListingCategory(encoded);
+        return;
+      }
+      var href = pill.getAttribute('href') || '';
+      if (href.indexOf('#category=') === 0) {
+        window.location.hash = href.slice(1);
+      }
+    }, true);
   });
 })();</script>
