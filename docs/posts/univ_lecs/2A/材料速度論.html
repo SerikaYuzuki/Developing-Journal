@@ -19,8 +19,43 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -1758,6 +1793,35 @@ ul.task-list li input[type="checkbox"] {
 })();</script>
 <script defer="" src="https://umami.serika.work/script.js" data-website-id="28d4d73a-b30d-4183-9525-a0f9c2cb42a7"></script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../../site_libs/quarto-contrib/quarto-project/serika/glass/styles.css">
 </head>
@@ -1940,30 +2004,30 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../../../index.html" aria-current="page"> 
+    <a class="nav-link active" href="../../../index.html" aria-current="page">
 <span class="menu-text">Home</span></a>
-  </li>  
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../../about.html"> 
+    <a class="nav-link" href="../../../about.html">
 <span class="menu-text">Portfolio</span></a>
-  </li>  
+  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
     <a class="nav-link" href="https://syosetu.org/novel/309340/"> <i class="bi bi-book" role="img">
-</i> 
+</i>
 <span class="menu-text"></span></a>
-  </li>  
+  </li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/SerikaYuzuki"> <i class="bi bi-github" role="img">
-</i> 
+</i>
 <span class="menu-text"></span></a>
-  </li>  
+  </li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://twitter.com/serika_yuzuki"> <i class="bi bi-twitter" role="img">
-</i> 
+</i>
 <span class="menu-text"></span></a>
-  </li>  
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -1977,7 +2041,7 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">Univ Lecs</li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/2A/材料力学.html">2A</a></li><li class="breadcrumb-item"><a href="../../../posts/univ_lecs/2A/材料速度論.html">材料速度論</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -1994,112 +2058,112 @@ ul.task-list li input[type="checkbox"] {
         <div id="quarto-search" class="" title="Search"></div>
         </div>
         </div>
-    <div class="sidebar-menu-container"> 
+    <div class="sidebar-menu-container">
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">About</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
+      <div class="sidebar-item-container">
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Posts</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+          </a>
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
           <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
+      <div class="sidebar-item-container">
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">At Coder</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+          </a>
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/at_coder/cargo_compete.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cargo Compete</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/at_coder/template.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">template</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/at_coder/typical90-01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-01</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/at_coder/typical90-02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-02</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/at_coder/typical90-03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-03</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/at_coder/typical90-04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-04</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/at_coder/typical90-05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-05</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/at_coder/typical90-06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-06</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/at_coder/typical90-07.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-07</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/at_coder/typical90-08.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-08</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/at_coder/typical90-09.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-09</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/at_coder/typical90-10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-10</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/at_coder/typical90-11.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-11</span></a>
   </div>
@@ -2107,16 +2171,16 @@ ul.task-list li input[type="checkbox"] {
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
+      <div class="sidebar-item-container">
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Play Ground</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+          </a>
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/play_ground/template.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">template</span></a>
   </div>
@@ -2124,97 +2188,97 @@ ul.task-list li input[type="checkbox"] {
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
+      <div class="sidebar-item-container">
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">Tech</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+          </a>
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/tech/ENovelEpubConverter.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">小説をEPUBに変換するpythonパッケージを作った話</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/tech/linkwarden.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linkwardenにブックマーク管理を任せる</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/tech/MisskeyDockerSetup.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">DockerでMisskeyを立てる</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/tech/NovelApp.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SwiftUIで開発する小説執筆支援アプリ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/tech/QuartoRenderSingle.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Quartoで単一ファイルにレンダリングする方法</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/tech/SetUpNewDebianServer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Debianサーバーを立てた話</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/tech/StartUsingCodex.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Codexを使い始めた件</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/tech/SwiftPackageError.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Swift Packageの読み込みエラー</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/tech/TailscaleAndNord.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">NordとTailscaleで自宅サーバーを安全に公開する</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/tech/TimeMachineServer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Time Machine ServerをSambaで作った話</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/tech/UbuntuPartitionMissing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ミスって/boot/efiを消した話</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
+      <div class="sidebar-item-container">
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">AI</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+          </a>
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 ">
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/tech/AI/AttentionIsAllYouNeed.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Attention Is All You Needを読む話</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/tech/AI/BuildLLM.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Build a Large Language Model from Scratchを読む話</span></a>
   </div>
@@ -2222,40 +2286,40 @@ ul.task-list li input[type="checkbox"] {
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
+      <div class="sidebar-item-container">
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
  <span class="menu-text">SwiftUI小説アプリ</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+          </a>
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth3 ">
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/tech/SwiftUI小説アプリ/EditorKitPlugin.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">EditorKitのいじり方をプラグイン形式にする話</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/tech/SwiftUI小説アプリ/General.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">小説執筆アプリを作る</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/tech/SwiftUI小説アプリ/Gitflow.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Git FlowとGitHub Flow</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/tech/SwiftUI小説アプリ/POP.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Protocol Oriented Programming</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/tech/SwiftUI小説アプリ/SwiftUIAndAppKit.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SwiftUIとAppKitの連携</span></a>
   </div>
@@ -2265,46 +2329,46 @@ ul.task-list li input[type="checkbox"] {
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
+      <div class="sidebar-item-container">
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
  <span class="menu-text">Ue5 Aura Courses</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+          </a>
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/ue5_aura_courses/section_02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Section 02</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/ue5_aura_courses/section_03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">section_03</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/ue5_aura_courses/section_04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">section_04</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/ue5_aura_courses/section_05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">section_05</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/ue5_aura_courses/section_06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">section_06</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/ue5_aura_courses/template.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">template</span></a>
   </div>
@@ -2312,16 +2376,16 @@ ul.task-list li input[type="checkbox"] {
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
+      <div class="sidebar-item-container">
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
  <span class="menu-text">Ue5 Project</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+          </a>
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/ue5_project/planning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Planning</span></a>
   </div>
@@ -2329,49 +2393,49 @@ ul.task-list li input[type="checkbox"] {
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
+      <div class="sidebar-item-container">
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
  <span class="menu-text">Univ Lecs</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+          </a>
       </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 show">
           <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
+      <div class="sidebar-item-container">
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
  <span class="menu-text">2A</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+          </a>
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth3 show">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth3 show">
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/univ_lecs/2A/材料力学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">統計力学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/univ_lecs/2A/材料相平衡論.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料相平衡論</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/univ_lecs/2A/材料統計力学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料統計力学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/univ_lecs/2A/材料速度論.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">材料速度論</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/univ_lecs/2A/材料量子力学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料量子力学</span></a>
   </div>
@@ -2379,46 +2443,46 @@ ul.task-list li input[type="checkbox"] {
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
+      <div class="sidebar-item-container">
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
  <span class="menu-text">3A</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+          </a>
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth3 ">
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/univ_lecs/3A/セラミック材料学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">セラミックノート</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/univ_lecs/3A/デバイス材料工学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">デバイス材料工学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/univ_lecs/3A/信頼性学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">信頼性学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/univ_lecs/3A/数学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/univ_lecs/3A/生産プロセス.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">生産プロセス</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/univ_lecs/3A/高分子２.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">高分子ノート</span></a>
   </div>
@@ -2426,64 +2490,64 @@ ul.task-list li input[type="checkbox"] {
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
+      <div class="sidebar-item-container">
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false">
  <span class="menu-text">3S</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+          </a>
       </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth3 ">
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/univ_lecs/3S/半導体物性学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">半導体物性学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/univ_lecs/3S/固体物性学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">固体物性学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/univ_lecs/3S/数学2F.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学2F</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/univ_lecs/3S/材料力学II.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料力学II</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/univ_lecs/3S/材料反応工学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料反応工学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/univ_lecs/3S/材料強度学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料強度学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/univ_lecs/3S/材料電気化学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料電気化学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/univ_lecs/3S/組織生成論.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">組織生成論</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/univ_lecs/3S/金属材料学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">金属材料学</span></a>
   </div>
@@ -2491,16 +2555,16 @@ ul.task-list li input[type="checkbox"] {
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
+      <div class="sidebar-item-container">
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
  <span class="menu-text">4S</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+          </a>
       </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth3 ">
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/univ_lecs/4S/工学基礎演習.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">工学基礎演習</span></a>
   </div>
@@ -2510,55 +2574,55 @@ ul.task-list li input[type="checkbox"] {
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
+      <div class="sidebar-item-container">
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false">
  <span class="menu-text">収容所配布用</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+          </a>
       </div>
-      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth2 ">
           <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
+      <div class="sidebar-item-container">
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false">
  <span class="menu-text">数学</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+          </a>
       </div>
-      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth3 ">
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/収容所配布用/数学/数学A.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学A</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/収容所配布用/数学/数学B.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学B</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/収容所配布用/数学/数学I.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学I</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/収容所配布用/数学/数学II.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学II</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/収容所配布用/数学/数学III.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学III</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/収容所配布用/数学/過去問演習.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">過去問演習</span></a>
   </div>
@@ -2566,16 +2630,16 @@ ul.task-list li input[type="checkbox"] {
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
+      <div class="sidebar-item-container">
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false">
  <span class="menu-text">物理</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+          </a>
       </div>
-      <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth3 ">
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
+  <div class="sidebar-item-container">
   <a href="../../../posts/収容所配布用/物理/物理.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">物理</span></a>
   </div>
@@ -2591,8 +2655,18 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+
+  <ul>
+  <li><a href="#原子のジャンプと拡散係数" id="toc-原子のジャンプと拡散係数" class="nav-link active" data-scroll-target="#原子のジャンプと拡散係数">原子のジャンプと拡散係数</a></li>
+  <li><a href="#fickの第二法則と一定表面濃度" id="toc-fickの第二法則と一定表面濃度" class="nav-link" data-scroll-target="#fickの第二法則と一定表面濃度">Fickの第二法則と一定表面濃度</a></li>
+  <li><a href="#薄膜源からの拡散" id="toc-薄膜源からの拡散" class="nav-link" data-scroll-target="#薄膜源からの拡散">薄膜源からの拡散</a></li>
+  <li><a href="#拡散係数の温度依存性" id="toc-拡散係数の温度依存性" class="nav-link" data-scroll-target="#拡散係数の温度依存性">拡散係数の温度依存性</a></li>
+  <li><a href="#公式の使い分け" id="toc-公式の使い分け" class="nav-link" data-scroll-target="#公式の使い分け">公式の使い分け</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -2603,6 +2677,8 @@ ul.task-list li input[type="checkbox"] {
 <h1 class="title">材料速度論</h1>
   <div class="quarto-categories">
     <div class="quarto-category">University</div>
+    <div class="quarto-category">diffusion</div>
+    <div class="quarto-category">kinetics</div>
     <div class="quarto-category">2023</div>
   </div>
   </div>
@@ -2617,34 +2693,711 @@ ul.task-list li input[type="checkbox"] {
              <p>Serika Yuzuki </p>
           </div>
   </div>
-    
+
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
       <p class="date">October 10, 2023</p>
     </div>
   </div>
-  
-    
+
+
   </div>
-  
+
 
 
 </header>
 
 
-<p>軽いまとめと問題の過去問を手書きで解いてます。</p>
-<p>TeXにまとめるのは面倒でした。</p>
-<p><img src="images/速度/1.png" class="img-fluid"></p>
-<p><img src="images/速度/2.png" class="img-fluid"></p>
-<p><img src="images/速度/3.png" class="img-fluid"></p>
-<p><img src="images/速度/4.png" class="img-fluid"></p>
-<p><img src="images/速度/5.png" class="img-fluid"></p>
-<p><img src="images/速度/6.png" class="img-fluid"></p>
-<p><img src="images/速度/7.png" class="img-fluid"></p>
-<p><img src="images/速度/8.png" class="img-fluid"></p>
+<p><span class="math display">\[
+\require{physics}
+\require{mhchem}
+\require{ams}
+\]</span></p>
+<p>この記事では、原子のランダムなジャンプからFickの法則を導き、代表的な拡散方程式の解とArrhenius則へ進みます。各問題は、問題文だけで考えたあと、必要な理論と解答を順に開ける構成です。</p>
+<section id="原子のジャンプと拡散係数" class="level2">
+<h2 class="anchored" data-anchor-id="原子のジャンプと拡散係数">原子のジャンプと拡散係数</h2>
+<section id="sec-kinetics-random-walk" class="level4">
+<h4 class="anchored" data-anchor-id="sec-kinetics-random-walk">問題A1 原子ジャンプからFickの第一法則へ</h4>
+<p>体心立方格子（BCC）中の原子が、最近接原子位置へ等しい確率でジャンプするとする。格子定数を <span class="math inline">\(a\)</span>、1個の原子が単位時間に行うジャンプの総数を <span class="math inline">\(\nu\)</span> とする。<span class="math inline">\([100]\)</span> 方向に垂直な隣接原子面1、2の濃度を、それぞれ <span class="math inline">\(C_1,C_2\)</span> とする。</p>
+<ol type="1">
+<li>面1から面2へ移動する原子数を、単位面積・単位時間あたりで求めよ。</li>
+<li>逆向きの移動を差し引いてFickの第一法則と比較し、拡散係数 <span class="math inline">\(D\)</span> を <span class="math inline">\(\nu,a\)</span> で表せ。</li>
+<li><span class="math inline">\(a=10^{-8}\ \mathrm{cm}\)</span>、<span class="math inline">\(D=10^{-8}\ \mathrm{cm^2/s}\)</span> のとき、<span class="math inline">\(\nu\)</span> を見積もれ。</li>
+<li>空孔機構による拡散を考える。熱平衡状態で空孔が有限濃度だけ存在する理由を熱力学的に説明せよ。</li>
+<li>侵入型拡散を起こしやすい元素を三つ以上挙げよ。</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論A1：ランダムな原子運動が濃度勾配をならす
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、個々のジャンプは左右対称なのに、なぜ巨視的には高濃度側から低濃度側へ流れが生じるかを数えることです。</p>
+<p>BCCの各格子点には最近接原子が8個あり、<span class="math inline">\([100]\)</span> 方向の正側に4個、負側に4個あります。したがって、ある原子が正側へ飛ぶ確率は <span class="math inline">\(4/8=1/2\)</span> です。また、<span class="math inline">\([100]\)</span> 方向に隣接する原子面の間隔は <span class="math inline">\(a/2\)</span> です。</p>
+<p>単位面積を底面とする厚さ <span class="math inline">\(a/2\)</span> の層には、平均して <span class="math inline">\(C_1a/2\)</span> 個の原子が含まれます。このうち単位時間に <span class="math inline">\(\nu\)</span> 回ジャンプし、その半分が面2側へ向かいます。逆向きの流れも同じように数え、両者の差を取ると正味の流束が得られます。</p>
+<p>濃度がゆっくり変化するときは</p>
+<p><span class="math display">\[
+C_2-C_1\simeq \frac{a}{2}\pdv{C}{x}
+\]</span></p>
+<p>と近似できます。正味流束をFickの第一法則</p>
+<p><span class="math display">\[
+J=-D\pdv{C}{x}
+\]</span></p>
+<p>と比較すれば、微視的なジャンプ頻度と巨視的な拡散係数が結び付きます。係数の数値は格子、ジャンプ方向、<span class="math inline">\(\nu\)</span> を「全方向への総頻度」とするか「一方向の頻度」とするかで変わるため、定義を明記することが重要です。</p>
+<p>空孔については、1個作るごとに形成自由エネルギーが必要な一方、空孔を配置できる組合せが増えることで配置エントロピーが増大します。エネルギーとエントロピーの競争を自由エネルギー最小条件で評価すると、有限の平衡空孔濃度が得られます。この考え方は<a href="../../../posts/univ_lecs/2A/材料統計力学.html#sec-statistical-partition-function">材料統計力学の問題A2</a>で扱った <span class="math inline">\(S=k_{\mathrm B}\ln W\)</span> の直接的な応用です。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答A1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>面1から面2へ向かう原子流束は</li>
+</ol>
+<p><span class="math display">\[
+J_{1\to2}
+=C_1\frac{a}{2}\nu\frac{4}{8}
+=\boxed{\frac14\nu aC_1}
+\]</span></p>
+<p>である。同様に、<span class="math inline">\(J_{2\to1}=\nu aC_2/4\)</span> である。</p>
+<ol start="2" type="1">
+<li><span class="math inline">\(+x\)</span> 方向の正味流束は</li>
+</ol>
+<p><span class="math display">\[
+\begin{aligned}
+J
+&amp;=J_{1\to2}-J_{2\to1}\\
+&amp;=\frac14\nu a(C_1-C_2)\\
+&amp;\simeq-\frac18\nu a^2\pdv{C}{x}.
+\end{aligned}
+\]</span></p>
+<p>Fickの第一法則と比較して、</p>
+<p><span class="math display">\[
+\boxed{D=\frac18\nu a^2}
+\]</span></p>
+<p>を得る。</p>
+<ol start="3" type="1">
+<li>よって、</li>
+</ol>
+<p><span class="math display">\[
+\nu=\frac{8D}{a^2}
+=\frac{8\times10^{-8}}{(10^{-8})^2}
+=\boxed{8.0\times10^8\ \mathrm{s^{-1}}}.
+\]</span></p>
+<ol start="4" type="1">
+<li>格子点数を <span class="math inline">\(N\)</span>、空孔数を <span class="math inline">\(n\)</span>、空孔1個の形成自由エネルギーを <span class="math inline">\(G_{\mathrm f}\)</span> とする。希薄空孔なら、自由エネルギー</li>
+</ol>
+<p><span class="math display">\[
+G(n)=nG_{\mathrm f}-k_{\mathrm B}T\ln\binom{N}{n}
+\]</span></p>
+<p>を最小にする条件から</p>
+<p><span class="math display">\[
+\frac{n}{N-n}=\exp\left(-\frac{G_{\mathrm f}}{k_{\mathrm B}T}\right)
+\]</span></p>
+<p>となる。<span class="math inline">\(n\ll N\)</span> では、平衡空孔濃度は</p>
+<p><span class="math display">\[
+\boxed{
+c_{\mathrm v}=\frac{n}{N}simeq
+\exp\left(\frac{S_{\mathrm f}}{k_{\mathrm B}}\right)
+\exp\left(-\frac{H_{\mathrm f}}{k_{\mathrm B}T}\right)
+}
+\]</span></p>
+<p>である。形成エンタルピーは空孔を減らそうとし、配置エントロピーは空孔を増やそうとするため、平衡濃度は0にならない。</p>
+<ol start="5" type="1">
+<li>代表例は</li>
+</ol>
+<p><span class="math display">\[
+\boxed{\ce{H},\ \ce{B},\ \ce{C},\ \ce{N},\ \ce{O}}
+\]</span></p>
+<p>である。母相原子より十分小さいため、格子間位置を経由しやすい。</p>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-kinetics-self-interdiffusion" class="level4">
+<h4 class="anchored" data-anchor-id="sec-kinetics-self-interdiffusion">問題A2 自己拡散と相互拡散</h4>
+<p>自己拡散と相互拡散の違いを説明せよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論A2：化学組成が同じでも原子は動いている
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、何を目印に原子移動を観測するか、また濃度勾配を作る成分が一つか複数かを区別することです。</p>
+<p>純金属の中でも原子は熱運動によって位置を交換しています。しかし、すべて同じ元素なら通常の濃度測定では移動を追跡できません。そこで、化学的性質はほぼ同じで識別可能な放射性同位体などを標識として使います。これが自己拡散の測定です。</p>
+<p>異種元素を接合した拡散対では、各成分に化学ポテンシャル勾配があり、A原子とB原子が同時に移動します。これを相互拡散と呼びます。二元系では組成が拘束条件で結ばれるため、実験で観測する濃度分布は両成分の移動をまとめた相互拡散係数で表されます。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答A2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>自己拡散</strong>：一成分の純物質中で、同種原子が熱運動によって移動する現象。濃度勾配を作らず、同位体トレーサーなどで原子を識別して測定する。</li>
+<li><strong>相互拡散</strong>：合金や拡散対のような多成分系で、組成または化学ポテンシャルの勾配によって異種原子が相互に移動する現象。観測される濃度分布には複数成分の移動が関与する。</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="fickの第二法則と一定表面濃度" class="level2">
+<h2 class="anchored" data-anchor-id="fickの第二法則と一定表面濃度">Fickの第二法則と一定表面濃度</h2>
+<section id="sec-kinetics-constant-source" class="level4">
+<h4 class="anchored" data-anchor-id="sec-kinetics-constant-source">問題B1 Si中へのAl拡散</h4>
+<p>Siを <span class="math inline">\(1473\ \mathrm{K}\)</span> で一定濃度のAlを含む気体にさらし、Si表面のAl濃度を常に</p>
+<p><span class="math display">\[
+C_{\mathrm s}=10^{18}\ \mathrm{atoms/cm^3}
+\]</span></p>
+<p>に保つ。初期のSi中にはAlがないものとする。Alの拡散係数は</p>
+<p><span class="math display">\[
+D=D_0\exp\left(-\frac{Q}{RT}\right),
+\]</span></p>
+<p><span class="math display">\[
+D_0=8.0\times10^{-4}\ \mathrm{m^2/s},
+\quad
+Q=335\ \mathrm{kJ/mol},
+\quad
+R=8.31\ \mathrm{J/(mol\,K)}
+\]</span></p>
+<p>で与えられる。</p>
+<ol type="1">
+<li>30分後に <span class="math inline">\(C=10^{16}\ \mathrm{atoms/cm^3}\)</span> となる深さを求めよ。</li>
+<li>30分間に単位表面積からSi中へ入ったAl原子数を求めよ。</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論B1：保存則とFickの第一法則を組み合わせる
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、一定に保たれた表面から半無限固体へ溶質が入る境界値問題です。</p>
+<p>一次元の微小区間に対する物質保存則は</p>
+<p><span class="math display">\[
+\pdv{C}{t}=-\pdv{J}{x}
+\]</span></p>
+<p>です。<span class="math inline">\(D\)</span> が濃度や位置によらず一定なら、<span class="math inline">\(J=-D\pdv{C}{x}\)</span> を代入して</p>
+<p><span class="math display">\[
+\boxed{
+\pdv{C}{t}=D\pdv[2]{C}{x}
+}
+\]</span></p>
+<p>を得ます。これがFickの第二法則です。</p>
+<p>半無限固体 <span class="math inline">\(x\ge0\)</span> に対して</p>
+<p><span class="math display">\[
+C(x,0)=C_{\mathrm i},
+\qquad
+C(0,t)=C_{\mathrm s},
+\qquad
+C(\infty,t)=C_{\mathrm i}
+\]</span></p>
+<p>なら、解は</p>
+<p><span class="math display">\[
+\frac{C-C_{\mathrm i}}{C_{\mathrm s}-C_{\mathrm i}}
+=\operatorname{erfc}\left(\frac{x}{2\sqrt{Dt}}\right)
+\]</span></p>
+<p>です。拡散距離の尺度は <span class="math inline">\(\sqrt{Dt}\)</span> なので、時間を4倍にすると同じ濃度比の深さは2倍になります。</p>
+<p>単位面積あたりの総流入量は、初期濃度からの増加分を深さ方向に積分して</p>
+<p><span class="math display">\[
+M(t)=\int_0^\infty(C-C_{\mathrm i})\dd{x}
+=2(C_{\mathrm s}-C_{\mathrm i})\sqrt{\frac{Dt}{\pi}}
+\]</span></p>
+<p>と求まります。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答B1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>まず拡散係数を計算する。</p>
+<p><span class="math display">\[
+\begin{aligned}
+D
+&amp;=8.0\times10^{-4}
+\exp\left[-\frac{335000}{8.31\times1473}\right]\\
+&amp;=1.04\times10^{-15}\ \mathrm{m^2/s}\\
+&amp;=1.04\times10^{-11}\ \mathrm{cm^2/s}.
+\end{aligned}
+\]</span></p>
+<ol type="1">
+<li><span class="math inline">\(C_{\mathrm i}=0\)</span>、<span class="math inline">\(t=1800\ \mathrm{s}\)</span> より、</li>
+</ol>
+<p><span class="math display">\[
+0.01
+=\operatorname{erfc}\left(\frac{x}{2\sqrt{Dt}}\right).
+\]</span></p>
+<p><span class="math inline">\(\operatorname{erfc}^{-1}(0.01)=1.8214\)</span> を用いると、</p>
+<p><span class="math display">\[
+\begin{aligned}
+x
+&amp;=2(1.8214)\sqrt{(1.04\times10^{-11})(1800)}\\
+&amp;=4.99\times10^{-4}\ \mathrm{cm}.
+\end{aligned}
+\]</span></p>
+<p>したがって、</p>
+<p><span class="math display">\[
+\boxed{x\simeq5.0\ \mathrm{\mu m}}
+\]</span></p>
+<p>である。</p>
+<ol start="2" type="1">
+<li>総流入量は</li>
+</ol>
+<p><span class="math display">\[
+\begin{aligned}
+M
+&amp;=2C_{\mathrm s}\sqrt{\frac{Dt}{\pi}}\\
+&amp;=2\times10^{18}
+\sqrt{\frac{(1.04\times10^{-11})(1800)}{\pi}}\\
+&amp;=\boxed{1.54\times10^{14}\ \mathrm{atoms/cm^2}}.
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-kinetics-carburizing" class="level4">
+<h4 class="anchored" data-anchor-id="sec-kinetics-carburizing">問題B2 鋼の浸炭時間</h4>
+<p>初期炭素濃度が一様に <span class="math inline">\(C_{\mathrm i}=0.10\ \mathrm{mass\%}\)</span> の鋼板を <span class="math inline">\(930\,{}^\circ\mathrm{C}\)</span> で浸炭する。表面炭素濃度を <span class="math inline">\(C_{\mathrm s}=1.00\ \mathrm{mass\%}\)</span> に保ち、炭素の拡散係数を</p>
+<p><span class="math display">\[
+D=1.4\times10^{-7}\ \mathrm{cm^2/s}
+\]</span></p>
+<p>とする。表面から <span class="math inline">\(x=0.050\ \mathrm{cm}\)</span> の位置を <span class="math inline">\(0.45\ \mathrm{mass\%}\)</span> にするために必要な時間を求めよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論B2：濃度そのものではなく規格化濃度を使う
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、問題B1と同じ一定表面濃度の解に、0ではない初期濃度を正しく入れることです。</p>
+<p>境界条件を満たす規格化濃度は</p>
+<p><span class="math display">\[
+\frac{C-C_{\mathrm i}}{C_{\mathrm s}-C_{\mathrm i}}
+=\operatorname{erfc}(z),
+\qquad
+z=\frac{x}{2\sqrt{Dt}}.
+\]</span></p>
+<p>です。左辺は、初期濃度から表面濃度までの変化のうち、目的位置で何割進んだかを表します。質量%をそのまま代入してよいのは、比を取ることで単位が消えるためです。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答B2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\frac{C-C_{\mathrm i}}{C_{\mathrm s}-C_{\mathrm i}}
+=\frac{0.45-0.10}{1.00-0.10}
+=0.3889.
+\]</span></p>
+<p>したがって、</p>
+<p><span class="math display">\[
+z=\operatorname{erfc}^{-1}(0.3889)=0.6093.
+\]</span></p>
+<p><span class="math inline">\(z=x/(2\sqrt{Dt})\)</span> を <span class="math inline">\(t\)</span> について解くと、</p>
+<p><span class="math display">\[
+\begin{aligned}
+t
+&amp;=\frac{1}{D}\left(\frac{x}{2z}\right)^2\\
+&amp;=\frac{1}{1.4\times10^{-7}}
+\left(\frac{0.050}{2\times0.6093}\right)^2\\
+&amp;=1.20\times10^4\ \mathrm{s}.
+\end{aligned}
+\]</span></p>
+<p>よって、</p>
+<p><span class="math display">\[
+\boxed{t\simeq3.34\ \mathrm{h}}
+\]</span></p>
+<p>である。</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="薄膜源からの拡散" class="level2">
+<h2 class="anchored" data-anchor-id="薄膜源からの拡散">薄膜源からの拡散</h2>
+<section id="sec-kinetics-thin-source" class="level4">
+<h4 class="anchored" data-anchor-id="sec-kinetics-thin-source">問題C1 Auの自己拡散係数</h4>
+<p>純Auの丸棒2本の接合面に微量の放射性Auを薄く塗布し、接合面を <span class="math inline">\(x=0\)</span> として棒を接合した。<span class="math inline">\(920\,{}^\circ\mathrm{C}\)</span> で100時間焼鈍したところ、<span class="math inline">\(x=0.30\ \mathrm{mm}\)</span> と <span class="math inline">\(0.60\ \mathrm{mm}\)</span> における相対濃度は、それぞれ0.78と0.28であった。Auの自己拡散係数を求めよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論C1：総量一定の薄い拡散源はGaussian分布になる
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、一定濃度を供給し続ける問題ではなく、最初に置いた有限量のトレーサーが両側へ広がる問題です。</p>
+<p>単位断面積あたりのトレーサー総量を <span class="math inline">\(S_0\)</span> とし、無限に長い棒の <span class="math inline">\(x=0\)</span> に瞬間的な面状拡散源を置くと、Fickの第二法則の解は</p>
+<p><span class="math display">\[
+C(x,t)=\frac{S_0}{2\sqrt{\pi Dt}}
+\exp\left(-\frac{x^2}{4Dt}\right)
+\]</span></p>
+<p>です。濃度分布はGaussian型で、高さは <span class="math inline">\(t^{-1/2}\)</span> に比例して低下し、幅は <span class="math inline">\(\sqrt{Dt}\)</span> に比例して広がります。一方、全量</p>
+<p><span class="math display">\[
+\int_{-\infty}^{\infty}C(x,t)\dd{x}=S_0
+\]</span></p>
+<p>は保存されます。</p>
+<p>二つの位置の濃度比を取れば、未知の <span class="math inline">\(S_0\)</span> と共通の前因子を消去できます。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答C1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(x_1=0.30\ \mathrm{mm}=3.0\times10^{-4}\ \mathrm{m}\)</span>、<span class="math inline">\(x_2=0.60\ \mathrm{mm}=6.0\times10^{-4}\ \mathrm{m}\)</span>、<span class="math inline">\(t=100\times3600\ \mathrm{s}\)</span> とする。二点の濃度比は</p>
+<p><span class="math display">\[
+\frac{C(x_2,t)}{C(x_1,t)}
+=\exp\left[-\frac{x_2^2-x_1^2}{4Dt}\right]
+=\frac{0.28}{0.78}.
+\]</span></p>
+<p>したがって、</p>
+<p><span class="math display">\[
+\begin{aligned}
+D
+&amp;=-\frac{x_2^2-x_1^2}
+{4t\ln[C(x_2,t)/C(x_1,t)]}\\
+&amp;=-\frac{(6.0\times10^{-4})^2-(3.0\times10^{-4})^2}
+{4(3.60\times10^5)\ln(0.28/0.78)}\\
+&amp;=\boxed{1.83\times10^{-13}\ \mathrm{m^2/s}}.
+\end{aligned}
+\]</span></p>
+<p>二つの相対濃度は有限桁に丸められているため、それぞれを <span class="math inline">\(C(0,t)\)</span> と直接比較すると完全には同じ <span class="math inline">\(D\)</span> にならない。ここでは、両測定値を同時に使い、未知の拡散源量も消去できる二点比から求めた。</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="拡散係数の温度依存性" class="level2">
+<h2 class="anchored" data-anchor-id="拡散係数の温度依存性">拡散係数の温度依存性</h2>
+<section id="sec-kinetics-arrhenius" class="level4">
+<h4 class="anchored" data-anchor-id="sec-kinetics-arrhenius">問題D1 AgのAl中における活性化エネルギー</h4>
+<p>Al中のAgの拡散係数が次のように測定された。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">温度 <span class="math inline">\(T\)</span>（<span class="math inline">\(^\circ\mathrm{C}\)</span>）</th>
+<th style="text-align: right;"><span class="math inline">\(D\)</span>（<span class="math inline">\(\mathrm{cm^2/s}\)</span>）</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">465</td>
+<td style="text-align: right;"><span class="math inline">\(1.9\times10^{-10}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">500</td>
+<td style="text-align: right;"><span class="math inline">\(7.3\times10^{-10}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">573</td>
+<td style="text-align: right;"><span class="math inline">\(3.5\times10^{-9}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>拡散係数がArrhenius則に従うとして、片対数プロットを作成し、拡散の活性化エネルギーを求めよ。また、このプロットの名称を答えよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論D1：指数関数を直線に変換する
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、熱活性化過程の指数関数を対数で直線化し、その傾きからエネルギー障壁を読むことです。</p>
+<p>拡散係数の温度依存性は</p>
+<p><span class="math display">\[
+D=D_0\exp\left(-\frac{Q}{RT}\right)
+\]</span></p>
+<p>で近似されます。両辺の自然対数を取ると、</p>
+<p><span class="math display">\[
+\ln D=\ln D_0-\frac{Q}{R}\frac{1}{T}
+\]</span></p>
+<p>です。したがって、縦軸に <span class="math inline">\(\ln D\)</span>、横軸に <span class="math inline">\(1/T\)</span> を取ると直線になり、傾き <span class="math inline">\(m\)</span> は</p>
+<p><span class="math display">\[
+m=-\frac{Q}{R}
+\]</span></p>
+<p>となります。この表示を<strong>Arrhenius plot</strong>と呼びます。温度は摂氏ではなく、必ず絶対温度へ変換します。</p>
+<p>空孔機構による自己拡散では、空孔を作る形成エンタルピーと、原子が障壁を越える移動エンタルピーの両方が必要です。そのため、見かけの活性化エネルギーは概ね</p>
+<p><span class="math display">\[
+Q=H_{\mathrm f}+H_{\mathrm m}
+\]</span></p>
+<p>となります。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答D1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>温度をKelvinへ変換し、三点を最小二乗直線で近似する。</p>
+<div id="cell-fig-kinetics-arrhenius-ag-al" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>作図コード</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>temperature_c <span class="op">=</span> np.array([<span class="fl">465.0</span>, <span class="fl">500.0</span>, <span class="fl">573.0</span>])</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>temperature_k <span class="op">=</span> temperature_c <span class="op">+</span> <span class="fl">273.15</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>diffusivity <span class="op">=</span> np.array([<span class="fl">1.9e-10</span>, <span class="fl">7.3e-10</span>, <span class="fl">3.5e-9</span>])</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">1000.0</span> <span class="op">/</span> temperature_k</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.log(diffusivity)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>slope, intercept <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>x_line <span class="op">=</span> np.linspace(x.<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.015</span>, x.<span class="bu">max</span>() <span class="op">+</span> <span class="fl">0.015</span>, <span class="dv">200</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">6.6</span>, <span class="fl">4.2</span>))</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>ax.scatter(x, y, s<span class="op">=</span><span class="dv">58</span>, color<span class="op">=</span><span class="st">"#c23b53"</span>, zorder<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">"measured"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>ax.plot(x_line, slope <span class="op">*</span> x_line <span class="op">+</span> intercept, color<span class="op">=</span><span class="st">"#315b8a"</span>, label<span class="op">=</span><span class="st">"linear fit"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    xlabel<span class="op">=</span><span class="vs">r"</span><span class="dv">$</span><span class="vs">1000/T</span><span class="ch">\ </span><span class="kw">(</span><span class="dv">\m</span><span class="vs">athrm{K</span><span class="dv">^</span><span class="vs">{-1}}</span><span class="kw">)</span><span class="dv">$</span><span class="vs">"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    ylabel<span class="op">=</span><span class="vs">r"</span><span class="dv">$</span><span class="er">\</span><span class="vs">ln</span><span class="pp">[D/(</span><span class="dv">\m</span><span class="pp">athrm{cm^2</span><span class="ch">\,</span><span class="pp">s^{-1}})]</span><span class="dv">$</span><span class="vs">"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>ax.grid(alpha<span class="op">=</span><span class="fl">0.25</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-kinetics-arrhenius-ag-al" class="quarto-float quarto-figure quarto-figure-center anchored" alt="横軸1000割る絶対温度、縦軸拡散係数の自然対数。三つの測定点は右下がりの直線上にほぼ並ぶ。">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-kinetics-arrhenius-ag-al-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="材料速度論_files/figure-html/fig-kinetics-arrhenius-ag-al-output-1.png" alt="横軸1000割る絶対温度、縦軸拡散係数の自然対数。三つの測定点は右下がりの直線上にほぼ並ぶ。" width="590" height="377" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-kinetics-arrhenius-ag-al-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Al中のAgの拡散係数に対するArrhenius plot。点は測定値、直線は最小二乗近似。
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>回帰直線の傾きを <span class="math inline">\(1/T\)</span> に対して表すと</p>
+<p><span class="math display">\[
+m=-1.65\times10^4\ \mathrm{K}
+\]</span></p>
+<p>である。したがって、</p>
+<p><span class="math display">\[
+\begin{aligned}
+Q&amp;=-mR\\
+&amp;=(1.65\times10^4)(8.31)\\
+&amp;=1.37\times10^5\ \mathrm{J/mol}.
+\end{aligned}
+\]</span></p>
+<p>よって、</p>
+<p><span class="math display">\[
+\boxed{Q\simeq137\ \mathrm{kJ/mol}}
+\]</span></p>
+<p>である。このプロットを</p>
+<p><span class="math display">\[
+\boxed{\text{Arrhenius plot（アレニウスプロット）}}
+\]</span></p>
+<p>と呼ぶ。切片からは <span class="math inline">\(D_0\simeq1.12\ \mathrm{cm^2/s}\)</span> が得られる。</p>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-kinetics-arrhenius-extrapolation" class="level4">
+<h4 class="anchored" data-anchor-id="sec-kinetics-arrhenius-extrapolation">問題D2 溶融Ni中のCrの拡散係数</h4>
+<p>溶融Ni中のCrの拡散係数は、<span class="math inline">\(1500\,{}^\circ\mathrm{C}\)</span> で <span class="math inline">\(5.0\times10^{-9}\ \mathrm{m^2/s}\)</span>、<span class="math inline">\(1600\,{}^\circ\mathrm{C}\)</span> で <span class="math inline">\(7.0\times10^{-9}\ \mathrm{m^2/s}\)</span> である。Arrhenius則が成り立つとして、<span class="math inline">\(1700\,{}^\circ\mathrm{C}\)</span> における拡散係数を推定せよ。<span class="math inline">\(R=8.31\ \mathrm{J/(mol\,K)}\)</span> とする。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論D2：二つの温度から未知の前指数因子を消す
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、二つの測定値でArrhenius直線を定め、より高温側へ外挿することです。</p>
+<p>二温度 <span class="math inline">\(T_1,T_2\)</span> の比を取ると、未知の <span class="math inline">\(D_0\)</span> を消去して</p>
+<p><span class="math display">\[
+\ln\left(\frac{D_2}{D_1}\right)
+=-\frac{Q}{R}\left(\frac{1}{T_2}-\frac{1}{T_1}\right)
+\]</span></p>
+<p>と書けます。まず <span class="math inline">\(Q\)</span> を求め、その値を第3の温度へ代入します。外挿は測定範囲から遠ざかるほど誤差が増えるため、求めた値は有効数字を過度に増やさないようにします。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答D2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+T_1=1773.15\ \mathrm{K},
+\quad
+T_2=1873.15\ \mathrm{K},
+\quad
+T_3=1973.15\ \mathrm{K}
+\]</span></p>
+<p>とする。二つの測定値から、</p>
+<p><span class="math display">\[
+\begin{aligned}
+Q
+&amp;=-R\frac{\ln(D_2/D_1)}{1/T_2-1/T_1}\\
+&amp;=9.29\times10^4\ \mathrm{J/mol}.
+\end{aligned}
+\]</span></p>
+<p>次に、</p>
+<p><span class="math display">\[
+\ln\left(\frac{D_3}{D_1}\right)
+=-\frac{Q}{R}\left(\frac{1}{T_3}-\frac{1}{T_1}\right)
+\]</span></p>
+<p>より、</p>
+<p><span class="math display">\[
+D_3=9.47\times10^{-9}\ \mathrm{m^2/s}.
+\]</span></p>
+<p>したがって、推定値は</p>
+<p><span class="math display">\[
+\boxed{D(1700\,{}^\circ\mathrm{C})\simeq9.5\times10^{-9}\ \mathrm{m^2/s}}
+\]</span></p>
+<p>である。</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="公式の使い分け" class="level2">
+<h2 class="anchored" data-anchor-id="公式の使い分け">公式の使い分け</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>条件</th>
+<th>解または関係式</th>
+<th>見分け方</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>定常一次元拡散</td>
+<td><span class="math inline">\(J=-D\pdv{C}{x}\)</span></td>
+<td>濃度分布が時間変化しない</td>
+</tr>
+<tr class="even">
+<td>非定常拡散</td>
+<td><span class="math inline">\(\pdv{C}{t}=D\pdv[2]{C}{x}\)</span></td>
+<td>濃度分布が時間とともに変わる</td>
+</tr>
+<tr class="odd">
+<td>半無限固体・一定表面濃度</td>
+<td><span class="math inline">\(\dfrac{C-C_{\mathrm i}}{C_{\mathrm s}-C_{\mathrm i}}=\operatorname{erfc}\!\left(\dfrac{x}{2\sqrt{Dt}}\right)\)</span></td>
+<td>表面から溶質を供給し続ける</td>
+</tr>
+<tr class="even">
+<td>無限固体・瞬間面状源</td>
+<td><span class="math inline">\(C=\dfrac{S_0}{2\sqrt{\pi Dt}}\exp\!\left(-\dfrac{x^2}{4Dt}\right)\)</span></td>
+<td>最初に置いた有限量が両側へ広がる</td>
+</tr>
+<tr class="odd">
+<td>温度依存性</td>
+<td><span class="math inline">\(D=D_0\exp[-Q/(RT)]\)</span></td>
+<td>温度ごとの <span class="math inline">\(D\)</span> を比較する</td>
+</tr>
+</tbody>
+</table>
+<p>境界条件が異なれば、同じFickの第二法則でも解は変わります。式を暗記する前に、「供給を続けるのか」「最初に置いた量だけなのか」「固体は片側か両側か」を確認することが重要です。</p>
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -2671,7 +3424,7 @@ ul.task-list li input[type="checkbox"] {
     anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
+        if (clz.startsWith('code-annotation-')) {
           return true;
         }
       }
@@ -2691,11 +3444,11 @@ ul.task-list li input[type="checkbox"] {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
         button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
+        tooltip = new bootstrap.Tooltip(button,
+          { trigger: "manual",
             customClass: "code-copy-button-tooltip",
             offset: [0, -8]});
-        tooltip.show();    
+        tooltip.show();
       }
       setTimeout(function() {
         if (tooltip) {
@@ -2772,7 +3525,7 @@ ul.task-list li input[type="checkbox"] {
       if (onUntriggerFn) {
         config.onUntrigger = onUntriggerFn;
       }
-      window.tippy(el, config); 
+      window.tippy(el, config);
     }
     const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
     for (var i=0; i<noterefs.length; i++) {
@@ -2847,7 +3600,7 @@ ul.task-list li input[type="checkbox"] {
       tippyHover(xref, undefined, function(instance) {
         instance.disable();
         let url = xref.getAttribute('href');
-        let hash = undefined; 
+        let hash = undefined;
         if (url.startsWith('#')) {
           hash = url;
         } else {
@@ -2875,7 +3628,7 @@ ul.task-list li input[type="checkbox"] {
               if (note !== null) {
                 const html = processXRef(id, note);
                 instance.setContent(html);
-              } 
+              }
             }).finally(() => {
               instance.enable();
               instance.show();
@@ -2899,7 +3652,7 @@ ul.task-list li input[type="checkbox"] {
               }
               const html = processXRef(null, note);
               instance.setContent(html);
-            } 
+            }
           }).finally(() => {
             instance.enable();
             instance.show();
@@ -2939,7 +3692,7 @@ ul.task-list li input[type="checkbox"] {
               height = bottom - top;
             }
             if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
+              // cook up a div (if necessary) and position it
               let div = window.document.getElementById("code-annotation-line-highlight");
               if (div === null) {
                 div = window.document.createElement("div");

@@ -2,26 +2,588 @@
 title: "材料速度論"
 author: "Serika Yuzuki"
 date: "2023-10-10"
-categories: [University, 2023]
+categories: [University, diffusion, kinetics, 2023]
 image: "images/thumbnail.png"
 ---
 
-軽いまとめと問題の過去問を手書きで解いてます。
+$$
+\require{physics}
+\require{mhchem}
+\require{ams}
+$$
 
-TeXにまとめるのは面倒でした。
+この記事では、原子のランダムなジャンプからFickの法則を導き、代表的な拡散方程式の解とArrhenius則へ進みます。各問題は、問題文だけで考えたあと、必要な理論と解答を順に開ける構成です。
 
-![](images/%E9%80%9F%E5%BA%A6/1.png)
+## 原子のジャンプと拡散係数
 
-![](images/%E9%80%9F%E5%BA%A6/2.png)
+#### 問題A1 原子ジャンプからFickの第一法則へ {#sec-kinetics-random-walk}
 
-![](images/%E9%80%9F%E5%BA%A6/3.png)
+体心立方格子（BCC）中の原子が、最近接原子位置へ等しい確率でジャンプするとする。格子定数を $a$、1個の原子が単位時間に行うジャンプの総数を $\nu$ とする。$[100]$ 方向に垂直な隣接原子面1、2の濃度を、それぞれ $C_1,C_2$ とする。
 
-![](images/%E9%80%9F%E5%BA%A6/4.png)
+1. 面1から面2へ移動する原子数を、単位面積・単位時間あたりで求めよ。
+2. 逆向きの移動を差し引いてFickの第一法則と比較し、拡散係数 $D$ を $\nu,a$ で表せ。
+3. $a=10^{-8}\ \mathrm{cm}$、$D=10^{-8}\ \mathrm{cm^2/s}$ のとき、$\nu$ を見積もれ。
+4. 空孔機構による拡散を考える。熱平衡状態で空孔が有限濃度だけ存在する理由を熱力学的に説明せよ。
+5. 侵入型拡散を起こしやすい元素を三つ以上挙げよ。
 
-![](images/%E9%80%9F%E5%BA%A6/5.png)
+::: {.callout-note collapse="true"}
+##### 理論A1：ランダムな原子運動が濃度勾配をならす
 
-![](images/%E9%80%9F%E5%BA%A6/6.png)
+**問いの正体**は、個々のジャンプは左右対称なのに、なぜ巨視的には高濃度側から低濃度側へ流れが生じるかを数えることです。
 
-![](images/%E9%80%9F%E5%BA%A6/7.png)
+BCCの各格子点には最近接原子が8個あり、$[100]$ 方向の正側に4個、負側に4個あります。したがって、ある原子が正側へ飛ぶ確率は $4/8=1/2$ です。また、$[100]$ 方向に隣接する原子面の間隔は $a/2$ です。
 
-![](images/%E9%80%9F%E5%BA%A6/8.png)
+単位面積を底面とする厚さ $a/2$ の層には、平均して $C_1a/2$ 個の原子が含まれます。このうち単位時間に $\nu$ 回ジャンプし、その半分が面2側へ向かいます。逆向きの流れも同じように数え、両者の差を取ると正味の流束が得られます。
+
+濃度がゆっくり変化するときは
+
+$$
+C_2-C_1\simeq \frac{a}{2}\pdv{C}{x}
+$$
+
+と近似できます。正味流束をFickの第一法則
+
+$$
+J=-D\pdv{C}{x}
+$$
+
+と比較すれば、微視的なジャンプ頻度と巨視的な拡散係数が結び付きます。係数の数値は格子、ジャンプ方向、$\nu$ を「全方向への総頻度」とするか「一方向の頻度」とするかで変わるため、定義を明記することが重要です。
+
+空孔については、1個作るごとに形成自由エネルギーが必要な一方、空孔を配置できる組合せが増えることで配置エントロピーが増大します。エネルギーとエントロピーの競争を自由エネルギー最小条件で評価すると、有限の平衡空孔濃度が得られます。この考え方は[材料統計力学の問題A2](材料統計力学.qmd#sec-statistical-partition-function)で扱った $S=k_{\mathrm B}\ln W$ の直接的な応用です。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答A1
+
+1. 面1から面2へ向かう原子流束は
+
+$$
+J_{1\to2}
+=C_1\frac{a}{2}\nu\frac{4}{8}
+=\boxed{\frac14\nu aC_1}
+$$
+
+である。同様に、$J_{2\to1}=\nu aC_2/4$ である。
+
+2. $+x$ 方向の正味流束は
+
+$$
+\begin{aligned}
+J
+&=J_{1\to2}-J_{2\to1}\\
+&=\frac14\nu a(C_1-C_2)\\
+&\simeq-\frac18\nu a^2\pdv{C}{x}.
+\end{aligned}
+$$
+
+Fickの第一法則と比較して、
+
+$$
+\boxed{D=\frac18\nu a^2}
+$$
+
+を得る。
+
+3. よって、
+
+$$
+\nu=\frac{8D}{a^2}
+=\frac{8\times10^{-8}}{(10^{-8})^2}
+=\boxed{8.0\times10^8\ \mathrm{s^{-1}}}.
+$$
+
+4. 格子点数を $N$、空孔数を $n$、空孔1個の形成自由エネルギーを $G_{\mathrm f}$ とする。希薄空孔なら、自由エネルギー
+
+$$
+G(n)=nG_{\mathrm f}-k_{\mathrm B}T\ln\binom{N}{n}
+$$
+
+を最小にする条件から
+
+$$
+\frac{n}{N-n}=\exp\left(-\frac{G_{\mathrm f}}{k_{\mathrm B}T}\right)
+$$
+
+となる。$n\ll N$ では、平衡空孔濃度は
+
+$$
+\boxed{
+c_{\mathrm v}=\frac{n}{N}simeq
+\exp\left(\frac{S_{\mathrm f}}{k_{\mathrm B}}\right)
+\exp\left(-\frac{H_{\mathrm f}}{k_{\mathrm B}T}\right)
+}
+$$
+
+である。形成エンタルピーは空孔を減らそうとし、配置エントロピーは空孔を増やそうとするため、平衡濃度は0にならない。
+
+5. 代表例は
+
+$$
+\boxed{\ce{H},\ \ce{B},\ \ce{C},\ \ce{N},\ \ce{O}}
+$$
+
+である。母相原子より十分小さいため、格子間位置を経由しやすい。
+:::
+
+#### 問題A2 自己拡散と相互拡散 {#sec-kinetics-self-interdiffusion}
+
+自己拡散と相互拡散の違いを説明せよ。
+
+::: {.callout-note collapse="true"}
+##### 理論A2：化学組成が同じでも原子は動いている
+
+**問いの正体**は、何を目印に原子移動を観測するか、また濃度勾配を作る成分が一つか複数かを区別することです。
+
+純金属の中でも原子は熱運動によって位置を交換しています。しかし、すべて同じ元素なら通常の濃度測定では移動を追跡できません。そこで、化学的性質はほぼ同じで識別可能な放射性同位体などを標識として使います。これが自己拡散の測定です。
+
+異種元素を接合した拡散対では、各成分に化学ポテンシャル勾配があり、A原子とB原子が同時に移動します。これを相互拡散と呼びます。二元系では組成が拘束条件で結ばれるため、実験で観測する濃度分布は両成分の移動をまとめた相互拡散係数で表されます。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答A2
+
+- **自己拡散**：一成分の純物質中で、同種原子が熱運動によって移動する現象。濃度勾配を作らず、同位体トレーサーなどで原子を識別して測定する。
+- **相互拡散**：合金や拡散対のような多成分系で、組成または化学ポテンシャルの勾配によって異種原子が相互に移動する現象。観測される濃度分布には複数成分の移動が関与する。
+:::
+
+## Fickの第二法則と一定表面濃度
+
+#### 問題B1 Si中へのAl拡散 {#sec-kinetics-constant-source}
+
+Siを $1473\ \mathrm{K}$ で一定濃度のAlを含む気体にさらし、Si表面のAl濃度を常に
+
+$$
+C_{\mathrm s}=10^{18}\ \mathrm{atoms/cm^3}
+$$
+
+に保つ。初期のSi中にはAlがないものとする。Alの拡散係数は
+
+$$
+D=D_0\exp\left(-\frac{Q}{RT}\right),
+$$
+
+$$
+D_0=8.0\times10^{-4}\ \mathrm{m^2/s},
+\quad
+Q=335\ \mathrm{kJ/mol},
+\quad
+R=8.31\ \mathrm{J/(mol\,K)}
+$$
+
+で与えられる。
+
+1. 30分後に $C=10^{16}\ \mathrm{atoms/cm^3}$ となる深さを求めよ。
+2. 30分間に単位表面積からSi中へ入ったAl原子数を求めよ。
+
+::: {.callout-note collapse="true"}
+##### 理論B1：保存則とFickの第一法則を組み合わせる
+
+**問いの正体**は、一定に保たれた表面から半無限固体へ溶質が入る境界値問題です。
+
+一次元の微小区間に対する物質保存則は
+
+$$
+\pdv{C}{t}=-\pdv{J}{x}
+$$
+
+です。$D$ が濃度や位置によらず一定なら、$J=-D\pdv{C}{x}$ を代入して
+
+$$
+\boxed{
+\pdv{C}{t}=D\pdv[2]{C}{x}
+}
+$$
+
+を得ます。これがFickの第二法則です。
+
+半無限固体 $x\ge0$ に対して
+
+$$
+C(x,0)=C_{\mathrm i},
+\qquad
+C(0,t)=C_{\mathrm s},
+\qquad
+C(\infty,t)=C_{\mathrm i}
+$$
+
+なら、解は
+
+$$
+\frac{C-C_{\mathrm i}}{C_{\mathrm s}-C_{\mathrm i}}
+=\operatorname{erfc}\left(\frac{x}{2\sqrt{Dt}}\right)
+$$
+
+です。拡散距離の尺度は $\sqrt{Dt}$ なので、時間を4倍にすると同じ濃度比の深さは2倍になります。
+
+単位面積あたりの総流入量は、初期濃度からの増加分を深さ方向に積分して
+
+$$
+M(t)=\int_0^\infty(C-C_{\mathrm i})\dd{x}
+=2(C_{\mathrm s}-C_{\mathrm i})\sqrt{\frac{Dt}{\pi}}
+$$
+
+と求まります。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答B1
+
+まず拡散係数を計算する。
+
+$$
+\begin{aligned}
+D
+&=8.0\times10^{-4}
+\exp\left[-\frac{335000}{8.31\times1473}\right]\\
+&=1.04\times10^{-15}\ \mathrm{m^2/s}\\
+&=1.04\times10^{-11}\ \mathrm{cm^2/s}.
+\end{aligned}
+$$
+
+1. $C_{\mathrm i}=0$、$t=1800\ \mathrm{s}$ より、
+
+$$
+0.01
+=\operatorname{erfc}\left(\frac{x}{2\sqrt{Dt}}\right).
+$$
+
+$\operatorname{erfc}^{-1}(0.01)=1.8214$ を用いると、
+
+$$
+\begin{aligned}
+x
+&=2(1.8214)\sqrt{(1.04\times10^{-11})(1800)}\\
+&=4.99\times10^{-4}\ \mathrm{cm}.
+\end{aligned}
+$$
+
+したがって、
+
+$$
+\boxed{x\simeq5.0\ \mathrm{\mu m}}
+$$
+
+である。
+
+2. 総流入量は
+
+$$
+\begin{aligned}
+M
+&=2C_{\mathrm s}\sqrt{\frac{Dt}{\pi}}\\
+&=2\times10^{18}
+\sqrt{\frac{(1.04\times10^{-11})(1800)}{\pi}}\\
+&=\boxed{1.54\times10^{14}\ \mathrm{atoms/cm^2}}.
+\end{aligned}
+$$
+:::
+
+#### 問題B2 鋼の浸炭時間 {#sec-kinetics-carburizing}
+
+初期炭素濃度が一様に $C_{\mathrm i}=0.10\ \mathrm{mass\%}$ の鋼板を $930\,{}^\circ\mathrm{C}$ で浸炭する。表面炭素濃度を $C_{\mathrm s}=1.00\ \mathrm{mass\%}$ に保ち、炭素の拡散係数を
+
+$$
+D=1.4\times10^{-7}\ \mathrm{cm^2/s}
+$$
+
+とする。表面から $x=0.050\ \mathrm{cm}$ の位置を $0.45\ \mathrm{mass\%}$ にするために必要な時間を求めよ。
+
+::: {.callout-note collapse="true"}
+##### 理論B2：濃度そのものではなく規格化濃度を使う
+
+**問いの正体**は、問題B1と同じ一定表面濃度の解に、0ではない初期濃度を正しく入れることです。
+
+境界条件を満たす規格化濃度は
+
+$$
+\frac{C-C_{\mathrm i}}{C_{\mathrm s}-C_{\mathrm i}}
+=\operatorname{erfc}(z),
+\qquad
+z=\frac{x}{2\sqrt{Dt}}.
+$$
+
+です。左辺は、初期濃度から表面濃度までの変化のうち、目的位置で何割進んだかを表します。質量%をそのまま代入してよいのは、比を取ることで単位が消えるためです。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答B2
+
+$$
+\frac{C-C_{\mathrm i}}{C_{\mathrm s}-C_{\mathrm i}}
+=\frac{0.45-0.10}{1.00-0.10}
+=0.3889.
+$$
+
+したがって、
+
+$$
+z=\operatorname{erfc}^{-1}(0.3889)=0.6093.
+$$
+
+$z=x/(2\sqrt{Dt})$ を $t$ について解くと、
+
+$$
+\begin{aligned}
+t
+&=\frac{1}{D}\left(\frac{x}{2z}\right)^2\\
+&=\frac{1}{1.4\times10^{-7}}
+\left(\frac{0.050}{2\times0.6093}\right)^2\\
+&=1.20\times10^4\ \mathrm{s}.
+\end{aligned}
+$$
+
+よって、
+
+$$
+\boxed{t\simeq3.34\ \mathrm{h}}
+$$
+
+である。
+:::
+
+## 薄膜源からの拡散
+
+#### 問題C1 Auの自己拡散係数 {#sec-kinetics-thin-source}
+
+純Auの丸棒2本の接合面に微量の放射性Auを薄く塗布し、接合面を $x=0$ として棒を接合した。$920\,{}^\circ\mathrm{C}$ で100時間焼鈍したところ、$x=0.30\ \mathrm{mm}$ と $0.60\ \mathrm{mm}$ における相対濃度は、それぞれ0.78と0.28であった。Auの自己拡散係数を求めよ。
+
+::: {.callout-note collapse="true"}
+##### 理論C1：総量一定の薄い拡散源はGaussian分布になる
+
+**問いの正体**は、一定濃度を供給し続ける問題ではなく、最初に置いた有限量のトレーサーが両側へ広がる問題です。
+
+単位断面積あたりのトレーサー総量を $S_0$ とし、無限に長い棒の $x=0$ に瞬間的な面状拡散源を置くと、Fickの第二法則の解は
+
+$$
+C(x,t)=\frac{S_0}{2\sqrt{\pi Dt}}
+\exp\left(-\frac{x^2}{4Dt}\right)
+$$
+
+です。濃度分布はGaussian型で、高さは $t^{-1/2}$ に比例して低下し、幅は $\sqrt{Dt}$ に比例して広がります。一方、全量
+
+$$
+\int_{-\infty}^{\infty}C(x,t)\dd{x}=S_0
+$$
+
+は保存されます。
+
+二つの位置の濃度比を取れば、未知の $S_0$ と共通の前因子を消去できます。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答C1
+
+$x_1=0.30\ \mathrm{mm}=3.0\times10^{-4}\ \mathrm{m}$、$x_2=0.60\ \mathrm{mm}=6.0\times10^{-4}\ \mathrm{m}$、$t=100\times3600\ \mathrm{s}$ とする。二点の濃度比は
+
+$$
+\frac{C(x_2,t)}{C(x_1,t)}
+=\exp\left[-\frac{x_2^2-x_1^2}{4Dt}\right]
+=\frac{0.28}{0.78}.
+$$
+
+したがって、
+
+$$
+\begin{aligned}
+D
+&=-\frac{x_2^2-x_1^2}
+{4t\ln[C(x_2,t)/C(x_1,t)]}\\
+&=-\frac{(6.0\times10^{-4})^2-(3.0\times10^{-4})^2}
+{4(3.60\times10^5)\ln(0.28/0.78)}\\
+&=\boxed{1.83\times10^{-13}\ \mathrm{m^2/s}}.
+\end{aligned}
+$$
+
+二つの相対濃度は有限桁に丸められているため、それぞれを $C(0,t)$ と直接比較すると完全には同じ $D$ にならない。ここでは、両測定値を同時に使い、未知の拡散源量も消去できる二点比から求めた。
+:::
+
+## 拡散係数の温度依存性
+
+#### 問題D1 AgのAl中における活性化エネルギー {#sec-kinetics-arrhenius}
+
+Al中のAgの拡散係数が次のように測定された。
+
+| 温度 $T$（$^\circ\mathrm{C}$） | $D$（$\mathrm{cm^2/s}$） |
+|---:|---:|
+| 465 | $1.9\times10^{-10}$ |
+| 500 | $7.3\times10^{-10}$ |
+| 573 | $3.5\times10^{-9}$ |
+
+拡散係数がArrhenius則に従うとして、片対数プロットを作成し、拡散の活性化エネルギーを求めよ。また、このプロットの名称を答えよ。
+
+::: {.callout-note collapse="true"}
+##### 理論D1：指数関数を直線に変換する
+
+**問いの正体**は、熱活性化過程の指数関数を対数で直線化し、その傾きからエネルギー障壁を読むことです。
+
+拡散係数の温度依存性は
+
+$$
+D=D_0\exp\left(-\frac{Q}{RT}\right)
+$$
+
+で近似されます。両辺の自然対数を取ると、
+
+$$
+\ln D=\ln D_0-\frac{Q}{R}\frac{1}{T}
+$$
+
+です。したがって、縦軸に $\ln D$、横軸に $1/T$ を取ると直線になり、傾き $m$ は
+
+$$
+m=-\frac{Q}{R}
+$$
+
+となります。この表示を**Arrhenius plot**と呼びます。温度は摂氏ではなく、必ず絶対温度へ変換します。
+
+空孔機構による自己拡散では、空孔を作る形成エンタルピーと、原子が障壁を越える移動エンタルピーの両方が必要です。そのため、見かけの活性化エネルギーは概ね
+
+$$
+Q=H_{\mathrm f}+H_{\mathrm m}
+$$
+
+となります。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答D1
+
+温度をKelvinへ変換し、三点を最小二乗直線で近似する。
+
+```{python}
+#| label: fig-kinetics-arrhenius-ag-al
+#| fig-cap: 'Al中のAgの拡散係数に対するArrhenius plot。点は測定値、直線は最小二乗近似。'
+#| fig-alt: '横軸1000割る絶対温度、縦軸拡散係数の自然対数。三つの測定点は右下がりの直線上にほぼ並ぶ。'
+#| code-fold: true
+#| code-summary: "作図コード"
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+temperature_c = np.array([465.0, 500.0, 573.0])
+temperature_k = temperature_c + 273.15
+diffusivity = np.array([1.9e-10, 7.3e-10, 3.5e-9])
+
+x = 1000.0 / temperature_k
+y = np.log(diffusivity)
+slope, intercept = np.polyfit(x, y, 1)
+
+x_line = np.linspace(x.min() - 0.015, x.max() + 0.015, 200)
+
+fig, ax = plt.subplots(figsize=(6.6, 4.2))
+ax.scatter(x, y, s=58, color="#c23b53", zorder=3, label="measured")
+ax.plot(x_line, slope * x_line + intercept, color="#315b8a", label="linear fit")
+ax.set(
+    xlabel=r"$1000/T\ (\mathrm{K^{-1}})$",
+    ylabel=r"$\ln[D/(\mathrm{cm^2\,s^{-1}})]$",
+)
+ax.grid(alpha=0.25)
+ax.legend()
+plt.show()
+```
+
+回帰直線の傾きを $1/T$ に対して表すと
+
+$$
+m=-1.65\times10^4\ \mathrm{K}
+$$
+
+である。したがって、
+
+$$
+\begin{aligned}
+Q&=-mR\\
+&=(1.65\times10^4)(8.31)\\
+&=1.37\times10^5\ \mathrm{J/mol}.
+\end{aligned}
+$$
+
+よって、
+
+$$
+\boxed{Q\simeq137\ \mathrm{kJ/mol}}
+$$
+
+である。このプロットを
+
+$$
+\boxed{\text{Arrhenius plot（アレニウスプロット）}}
+$$
+
+と呼ぶ。切片からは $D_0\simeq1.12\ \mathrm{cm^2/s}$ が得られる。
+:::
+
+#### 問題D2 溶融Ni中のCrの拡散係数 {#sec-kinetics-arrhenius-extrapolation}
+
+溶融Ni中のCrの拡散係数は、$1500\,{}^\circ\mathrm{C}$ で $5.0\times10^{-9}\ \mathrm{m^2/s}$、$1600\,{}^\circ\mathrm{C}$ で $7.0\times10^{-9}\ \mathrm{m^2/s}$ である。Arrhenius則が成り立つとして、$1700\,{}^\circ\mathrm{C}$ における拡散係数を推定せよ。$R=8.31\ \mathrm{J/(mol\,K)}$ とする。
+
+::: {.callout-note collapse="true"}
+##### 理論D2：二つの温度から未知の前指数因子を消す
+
+**問いの正体**は、二つの測定値でArrhenius直線を定め、より高温側へ外挿することです。
+
+二温度 $T_1,T_2$ の比を取ると、未知の $D_0$ を消去して
+
+$$
+\ln\left(\frac{D_2}{D_1}\right)
+=-\frac{Q}{R}\left(\frac{1}{T_2}-\frac{1}{T_1}\right)
+$$
+
+と書けます。まず $Q$ を求め、その値を第3の温度へ代入します。外挿は測定範囲から遠ざかるほど誤差が増えるため、求めた値は有効数字を過度に増やさないようにします。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答D2
+
+$$
+T_1=1773.15\ \mathrm{K},
+\quad
+T_2=1873.15\ \mathrm{K},
+\quad
+T_3=1973.15\ \mathrm{K}
+$$
+
+とする。二つの測定値から、
+
+$$
+\begin{aligned}
+Q
+&=-R\frac{\ln(D_2/D_1)}{1/T_2-1/T_1}\\
+&=9.29\times10^4\ \mathrm{J/mol}.
+\end{aligned}
+$$
+
+次に、
+
+$$
+\ln\left(\frac{D_3}{D_1}\right)
+=-\frac{Q}{R}\left(\frac{1}{T_3}-\frac{1}{T_1}\right)
+$$
+
+より、
+
+$$
+D_3=9.47\times10^{-9}\ \mathrm{m^2/s}.
+$$
+
+したがって、推定値は
+
+
+$$
+\boxed{D(1700\,{}^\circ\mathrm{C})\simeq9.5\times10^{-9}\ \mathrm{m^2/s}}
+$$
+
+である。
+:::
+
+## 公式の使い分け
+
+| 条件 | 解または関係式 | 見分け方 |
+|---|---|---|
+| 定常一次元拡散 | $J=-D\pdv{C}{x}$ | 濃度分布が時間変化しない |
+| 非定常拡散 | $\pdv{C}{t}=D\pdv[2]{C}{x}$ | 濃度分布が時間とともに変わる |
+| 半無限固体・一定表面濃度 | $\dfrac{C-C_{\mathrm i}}{C_{\mathrm s}-C_{\mathrm i}}=\operatorname{erfc}\!\left(\dfrac{x}{2\sqrt{Dt}}\right)$ | 表面から溶質を供給し続ける |
+| 無限固体・瞬間面状源 | $C=\dfrac{S_0}{2\sqrt{\pi Dt}}\exp\!\left(-\dfrac{x^2}{4Dt}\right)$ | 最初に置いた有限量が両側へ広がる |
+| 温度依存性 | $D=D_0\exp[-Q/(RT)]$ | 温度ごとの $D$ を比較する |
+
+境界条件が異なれば、同じFickの第二法則でも解は変わります。式を暗記する前に、「供給を続けるのか」「最初に置いた量だけなのか」「固体は片側か両側か」を確認することが重要です。
