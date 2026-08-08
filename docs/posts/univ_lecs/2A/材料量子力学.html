@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -1758,6 +1793,35 @@ ul.task-list li input[type="checkbox"] {
 })();</script>
 <script defer="" src="https://umami.serika.work/script.js" data-website-id="28d4d73a-b30d-4183-9525-a0f9c2cb42a7"></script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../../site_libs/quarto-contrib/quarto-project/serika/glass/styles.css">
 </head>
@@ -2596,10 +2660,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">2021</a></li>
-  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">2019</a></li>
-  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">2015</a></li>
-  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">2009</a></li>
+  <li><a href="#粒子の波動性" id="toc-粒子の波動性" class="nav-link active" data-scroll-target="#粒子の波動性">粒子の波動性</a></li>
+  <li><a href="#界面障壁閉じ込め" id="toc-界面障壁閉じ込め" class="nav-link" data-scroll-target="#界面障壁閉じ込め">界面・障壁・閉じ込め</a></li>
+  <li><a href="#調和振動子" id="toc-調和振動子" class="nav-link" data-scroll-target="#調和振動子">調和振動子</a></li>
+  <li><a href="#球対称ポテンシャルと水素原子" id="toc-球対称ポテンシャルと水素原子" class="nav-link" data-scroll-target="#球対称ポテンシャルと水素原子">球対称ポテンシャルと水素原子</a></li>
+  <li><a href="#解法の見取り図" id="toc-解法の見取り図" class="nav-link" data-scroll-target="#解法の見取り図">解法の見取り図</a></li>
   </ul>
 </nav>
     </div>
@@ -2612,6 +2677,8 @@ ul.task-list li input[type="checkbox"] {
 <h1 class="title">材料量子力学</h1>
   <div class="quarto-categories">
     <div class="quarto-category">University</div>
+    <div class="quarto-category">quantum-mechanics</div>
+    <div class="quarto-category">materials-science</div>
     <div class="quarto-category">2023</div>
   </div>
   </div>
@@ -2642,28 +2709,1249 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>過去問を解いていく。手書きです。</p>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section">2021</h2>
-<p><img src="images/量子/2021-1.png" class="img-fluid"></p>
-<p><img src="images/量子/2021-2.png" class="img-fluid"></p>
-<p><img src="images/量子/2021-3.png" class="img-fluid"></p>
-<p><img src="images/量子/2021-4.png" class="img-fluid"></p>
+<p><span class="math display">\[
+\require{physics}
+\require{mhchem}
+\require{ams}
+\]</span></p>
+<p>この記事では、電子の波動性から出発し、界面での反射と閉じ込め、調和振動子、角運動量、水素原子へ進みます。各問題は、まず問題文だけで考え、必要になったところで理論と解答を開ける構成です。</p>
+<section id="粒子の波動性" class="level2">
+<h2 class="anchored" data-anchor-id="粒子の波動性">粒子の波動性</h2>
+<section id="sec-quantum-de-broglie" class="level4">
+<h4 class="anchored" data-anchor-id="sec-quantum-de-broglie">問題A1 電子のde Broglie波と二重スリット</h4>
+<p><span class="math inline">\(1.0\times10^4\ \mathrm{V}\)</span> の電圧で静止状態から加速した電子を、間隔の狭い二重スリットへ一個ずつ入射する。電子の質量を <span class="math inline">\(m=9.0\times10^{-31}\ \mathrm{kg}\)</span>、Planck定数を <span class="math inline">\(h=7.0\times10^{-34}\ \mathrm{J\,s}\)</span>、電子の電荷の大きさを <span class="math inline">\(e=2.0\times10^{-19}\ \mathrm{C}\)</span> とする。</p>
+<ol type="1">
+<li>入射電子のde Broglie波長を求めよ。</li>
+<li>スクリーン上で電子がどのように観測されるか説明せよ。</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論A1：一個ずつ届く粒子にも位相がある
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、電子が検出時には点として現れる一方、そこへ至る確率振幅は波として重ね合わされることを説明する問題です。</p>
+<p>電位差 <span class="math inline">\(U\)</span> で加速された電子は、非相対論的には電気的な位置エネルギー <span class="math inline">\(eU\)</span> を運動エネルギーへ変換します。</p>
+<p><span class="math display">\[
+eU=\frac{p^2}{2m}
+\]</span></p>
+<p>したがって、運動量とde Broglie波長は</p>
+<p><span class="math display">\[
+p=\sqrt{2meU},
+\qquad
+\lambda=\frac{h}{p}
+\]</span></p>
+<p>です。</p>
+<p>二つのスリットを通る確率振幅を <span class="math inline">\(\psi_1,\psi_2\)</span> とすると、検出確率は</p>
+<p><span class="math display">\[
+P\propto\abs{\psi_1+\psi_2}^2
+=\abs{\psi_1}^2+\abs{\psi_2}^2
++2\Re(\psi_1^*\psi_2)
+\]</span></p>
+<p>となります。最後の干渉項が明暗縞を作ります。一方、各電子はスクリーン上の一地点で検出されます。一個の着弾位置は予測できませんが、多数回繰り返すと確率分布として干渉縞が現れます。どちらのスリットを通ったか測定すると二経路の位相関係が失われ、干渉項も消えます。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答A1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>電子の運動エネルギーは</li>
+</ol>
+<p><span class="math display">\[
+K=eU=(2.0\times10^{-19})(1.0\times10^4)
+=2.0\times10^{-15}\ \mathrm{J}.
+\]</span></p>
+<p>よって、</p>
+<p><span class="math display">\[
+\begin{aligned}
+\lambda
+&amp;=\frac{h}{\sqrt{2mK}}\\
+&amp;=\frac{7.0\times10^{-34}}
+{\sqrt{2(9.0\times10^{-31})(2.0\times10^{-15})}}\\
+&amp;=\boxed{1.2\times10^{-11}\ \mathrm{m}}.
+\end{aligned}
+\]</span></p>
+<ol start="2" type="1">
+<li>各電子はスクリーン上の一点として検出される。多数の電子を一個ずつ入射すると着弾点が蓄積し、二つのスリットを通る確率振幅の干渉による縞模様を形成する。経路を観測すれば干渉縞は失われる。</li>
+</ol>
+</div>
+</div>
+</div>
 </section>
-<section id="section-1" class="level2">
-<h2 class="anchored" data-anchor-id="section-1">2019</h2>
-<p><img src="images/量子/2019-1.png" class="img-fluid"></p>
-<p><img src="images/量子/2019-2.png" class="img-fluid"></p>
-<p><img src="images/量子/2019-3.png" class="img-fluid"></p>
+<section id="sec-quantum-schrodinger" class="level4">
+<h4 class="anchored" data-anchor-id="sec-quantum-schrodinger">問題A2 Schrödinger方程式と零点エネルギー</h4>
+<p>質量 <span class="math inline">\(m\)</span> の粒子が一次元ポテンシャル <span class="math inline">\(V(x)\)</span> 中を運動する。</p>
+<ol type="1">
+<li>時間に依存するSchrödinger方程式を書け。</li>
+<li><span class="math inline">\(V\)</span> が時間に依存しないとき、定常状態を変数分離して時間に依存しないSchrödinger方程式を導け。</li>
+<li>調和振動子 <span class="math inline">\(V(x)=kx^2/2\)</span> の基底エネルギーが0にならない理由を、不確定性原理から説明せよ。</li>
+<li>有限な不連続をもつポテンシャル境界で、波動関数が満たす条件を述べよ。</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論A2：波動関数の時間発展と空間形状を分ける
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、量子状態の時間変化を定める基本式と、定常状態の固有値問題を区別することです。</p>
+<p>波動関数 <span class="math inline">\(\Psi(x,t)\)</span> の絶対値二乗は位置の確率密度です。Hamiltonianを</p>
+<p><span class="math display">\[
+\hat H=-\frac{\hbar^2}{2m}\pdv[2]{x}+V(x)
+\]</span></p>
+<p>とすると、時間発展は <span class="math inline">\(i\hbar\pdv*{\Psi}{t}=\hat H\Psi\)</span> で決まります。</p>
+<p><span class="math inline">\(V\)</span> が時間に依存しない場合、<span class="math inline">\(\Psi(x,t)=\psi(x)T(t)\)</span> と置けます。空間だけの式と時間だけの式が同じ定数 <span class="math inline">\(E\)</span> に等しくなり、</p>
+<p><span class="math display">\[
+\hat H\psi=E\psi,
+\qquad
+T(t)=e^{-iEt/\hbar}
+\]</span></p>
+<p>を得ます。<span class="math inline">\(E\)</span> は測定可能なエネルギー固有値です。</p>
+<p>調和振動子を原点へ完全に静止させれば古典力学では <span class="math inline">\(E=0\)</span> です。しかし、<span class="math inline">\(x=0\)</span> と <span class="math inline">\(p=0\)</span> を同時に正確に定めることは</p>
+<p><span class="math display">\[
+\Delta x\,\Delta p\ge\frac{\hbar}{2}
+\]</span></p>
+<p>に反します。局在を強めると運動量の揺らぎと運動エネルギーが増え、広げるとポテンシャルエネルギーが増えるため、両者の和には正の最小値があります。</p>
+<p>有限なポテンシャル段差で質量が同じなら、Schrödinger方程式を境界の微小区間で積分することで <span class="math inline">\(\psi\)</span> と <span class="math inline">\(\dv*{\psi}{x}\)</span> が連続になります。無限壁では壁の外を <span class="math inline">\(\psi=0\)</span> とし、境界でも <span class="math inline">\(\psi=0\)</span> です。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答A2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>時間に依存する式は</li>
+</ol>
+<p><span class="math display">\[
+\boxed{
+i\hbar\pdv{\Psi(x,t)}{t}
+=\left[-\frac{\hbar^2}{2m}\pdv[2]{x}+V(x)\right]\Psi(x,t)
+}.
+\]</span></p>
+<ol start="2" type="1">
+<li><span class="math inline">\(\Psi=\psi T\)</span> を代入して両辺を <span class="math inline">\(\psi T\)</span> で割ると、</li>
+</ol>
+<p><span class="math display">\[
+i\hbar\frac{1}{T}\dv{T}{t}
+=\frac{1}{\psi}\left[-\frac{\hbar^2}{2m}\dv[2]{\psi}{x}+V\psi\right]
+=E.
+\]</span></p>
+<p>したがって、</p>
+<p><span class="math display">\[
+\boxed{
+\left[-\frac{\hbar^2}{2m}\dv[2]{x}+V(x)\right]\psi(x)=E\psi(x)
+},
+\qquad
+\boxed{\Psi(x,t)=\psi(x)e^{-iEt/\hbar}}.
+\]</span></p>
+<ol start="3" type="1">
+<li><span class="math inline">\(\Delta p\gtrsim\hbar/(2\Delta x)\)</span> と見積もると、</li>
+</ol>
+<p><span class="math display">\[
+E\sim\frac{(\Delta p)^2}{2m}+\frac{k(\Delta x)^2}{2}
+\gtrsim\frac{\hbar^2}{8m(\Delta x)^2}+\frac{k(\Delta x)^2}{2}.
+\]</span></p>
+<p>右辺は有限の <span class="math inline">\(\Delta x\)</span> で正の最小値をもつ。厳密な基底エネルギーは</p>
+<p><span class="math display">\[
+\boxed{E_0=\frac12\hbar\omega&gt;0},
+\qquad
+\omega=\sqrt{\frac{k}{m}}
+\]</span></p>
+<p>である。</p>
+<ol start="4" type="1">
+<li><span class="math inline">\(x=x_0\)</span> が有限な段差なら</li>
+</ol>
+<p><span class="math display">\[
+\boxed{
+\psi(x_0^-)=\psi(x_0^+),
+\qquad
+\psi'(x_0^-)=\psi'(x_0^+)
+}.
+\]</span></p>
+<p>また、束縛状態は無限遠で0へ収束し、波動関数は一価かつ規格化可能でなければならない。</p>
+</div>
+</div>
+</div>
 </section>
-<section id="section-2" class="level2">
-<h2 class="anchored" data-anchor-id="section-2">2015</h2>
-<p><img src="images/量子/2015.png" class="img-fluid"></p>
 </section>
-<section id="section-3" class="level2">
-<h2 class="anchored" data-anchor-id="section-3">2009</h2>
-<p><img src="images/量子/2009-1.png" class="img-fluid"></p>
-<p><img src="images/量子/2009-2.png" class="img-fluid"></p>
+<section id="界面障壁閉じ込め" class="level2">
+<h2 class="anchored" data-anchor-id="界面障壁閉じ込め">界面・障壁・閉じ込め</h2>
+<section id="sec-quantum-step-potential" class="level4">
+<h4 class="anchored" data-anchor-id="sec-quantum-step-potential">問題B1 ポテンシャル段差での量子反射</h4>
+<p><span class="math display">\[
+V(x)=
+\begin{cases}
+0,&amp;x\le0,\\
+V_0,&amp;x&gt;0
+\end{cases}
+\qquad(V_0&gt;0)
+\]</span></p>
+<p>で表される材料界面へ、左側からエネルギー <span class="math inline">\(E&gt;0\)</span> の電子を入射する。</p>
+<ol type="1">
+<li><span class="math inline">\(E&lt;V_0\)</span> と <span class="math inline">\(E&gt;V_0\)</span> の各場合について、領域ごとの物理的な波動関数を書け。</li>
+<li>境界条件を用いて、<span class="math inline">\(E&gt;V_0\)</span> の反射確率を求めよ。</li>
+<li>古典力学との違いを説明せよ。</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論B1：運動エネルギーの符号が波の形を決める
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、各領域で <span class="math inline">\(E-V\)</span> の符号を見て、進行波か指数関数かを選ぶことです。</p>
+<p>一定ポテンシャル領域では</p>
+<p><span class="math display">\[
+\dv[2]{\psi}{x}+\frac{2m(E-V)}{\hbar^2}\psi=0
+\]</span></p>
+<p>です。<span class="math inline">\(E&gt;V\)</span> なら波数 <span class="math inline">\(k=\sqrt{2m(E-V)}/\hbar\)</span> の振動解、<span class="math inline">\(E&lt;V\)</span> なら減衰定数 <span class="math inline">\(\kappa=\sqrt{2m(V-E)}/\hbar\)</span> の指数解になります。</p>
+<p><span class="math inline">\(E&lt;V_0\)</span> でも右側の波動関数はただちに0にならず、界面からおよそ <span class="math inline">\(1/\kappa\)</span> の深さまで侵入します。ただし右側には伝播する確率流がないため、定常状態の反射確率は1です。</p>
+<p><span class="math inline">\(E&gt;V_0\)</span> では両側に伝播できます。それでも波数が界面で変わるため、境界条件を満たすには反射波が必要です。これは古典粒子にはない量子反射です。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答B1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>左側の入射振幅を1とする。</li>
+</ol>
+<p><span class="math inline">\(E&lt;V_0\)</span> では</p>
+<p><span class="math display">\[
+\psi(x)=
+\begin{cases}
+e^{ik_1x}+r e^{-ik_1x},&amp;x\le0,\\
+t e^{-\kappa_2x},&amp;x&gt;0,
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+k_1=\frac{\sqrt{2mE}}{\hbar},
+\qquad
+\kappa_2=\frac{\sqrt{2m(V_0-E)}}{\hbar}.
+\]</span></p>
+<p><span class="math inline">\(x\to+\infty\)</span> で発散する <span class="math inline">\(e^{+\kappa_2x}\)</span> は除く。</p>
+<p><span class="math inline">\(E&gt;V_0\)</span> では</p>
+<p><span class="math display">\[
+\psi(x)=
+\begin{cases}
+e^{ik_1x}+r e^{-ik_1x},&amp;x\le0,\\
+t e^{ik_2x},&amp;x&gt;0,
+\end{cases}
+\qquad
+k_2=\frac{\sqrt{2m(E-V_0)}}{\hbar}.
+\]</span></p>
+<p>右側からの入射がないので <span class="math inline">\(e^{-ik_2x}\)</span> は含めない。</p>
+<ol start="2" type="1">
+<li><span class="math inline">\(x=0\)</span> で <span class="math inline">\(\psi,\psi'\)</span> を連続にすると</li>
+</ol>
+<p><span class="math display">\[
+1+r=t,
+\qquad
+k_1(1-r)=k_2t.
+\]</span></p>
+<p>したがって、</p>
+<p><span class="math display">\[
+r=\frac{k_1-k_2}{k_1+k_2},
+\qquad
+\boxed{R=\abs{r}^2
+=\left(\frac{k_1-k_2}{k_1+k_2}\right)^2}.
+\]</span></p>
+<p><span class="math inline">\(E&lt;V_0\)</span> では伝播する透過波がないため <span class="math inline">\(\boxed{R=1}\)</span> である。</p>
+<ol start="3" type="1">
+<li>古典粒子は <span class="math inline">\(E&lt;V_0\)</span> なら界面で反射し、<span class="math inline">\(E&gt;V_0\)</span> なら必ず通過する。量子力学では <span class="math inline">\(E&lt;V_0\)</span> でも波動関数が右側へ侵入し、<span class="math inline">\(E&gt;V_0\)</span> でも <span class="math inline">\(R&gt;0\)</span> の反射が生じる。</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-quantum-three-layer" class="level4">
+<h4 class="anchored" data-anchor-id="sec-quantum-three-layer">問題B2 三層材料とエバネッセント波</h4>
+<p>三層材料を</p>
+<p><span class="math display">\[
+V(x)=
+\begin{cases}
+0,&amp;x&lt;0,\\
+V_1,&amp;0\le x\le a,\\
+V_2,&amp;a&lt;x
+\end{cases}
+\qquad(0&lt;V_1&lt;V_2)
+\]</span></p>
+<p>でモデル化する。左から粒子を入射し、<span class="math inline">\(V_1&lt;E&lt;V_2\)</span> とする。</p>
+<ol type="1">
+<li>各領域の物理的な一般解を書け。</li>
+<li>波動関数が満たす境界条件をすべて書け。</li>
+<li>中間層の右向き・左向き振幅の絶対値が等しいことを示し、その意味を説明せよ。</li>
+<li><span class="math inline">\(E&gt;V_2\)</span> になると右層の解がどう変わるか答えよ。</li>
+<li>中間層だけが井戸となる場合、束縛エネルギーが離散化する理由を述べよ。</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論B2：境界条件が許される振幅とエネルギーを選ぶ
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、各層で作った局所解を、界面で一つの波動関数へつなぐことです。</p>
+<p><span class="math inline">\(V_1&lt;E&lt;V_2\)</span> では、左層と中間層は古典的許容領域、右層は禁制領域です。右層には減衰波だけが残ります。中間層の波は右界面で完全反射されるため、右向き波と左向き波の絶対値は等しくなり、定在波を作ります。ただし左側は開いているので、系全体は束縛状態ではなく散乱状態です。</p>
+<p>両側が禁制領域になる井戸では、左右の無限遠で発散する解を除き、二つの界面で4個の接続条件を満たさなければなりません。任意の <span class="math inline">\(E\)</span> では係数がすべて0になるため、非自明解が存在する特定の <span class="math inline">\(E\)</span> だけが固有値として残ります。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答B2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>次を定義する。</li>
+</ol>
+<p><span class="math display">\[
+k_0=\frac{\sqrt{2mE}}{\hbar},
+\quad
+k_1=\frac{\sqrt{2m(E-V_1)}}{\hbar},
+\quad
+\kappa_2=\frac{\sqrt{2m(V_2-E)}}{\hbar}.
+\]</span></p>
+<p>物理的な解は</p>
+<p><span class="math display">\[
+\psi(x)=
+\begin{cases}
+e^{ik_0x}+r e^{-ik_0x},&amp;x&lt;0,\\
+\alpha e^{ik_1x}+\beta e^{-ik_1x},&amp;0\le x\le a,\\
+t e^{-\kappa_2(x-a)},&amp;a&lt;x.
+\end{cases}
+\]</span></p>
+<ol start="2" type="1">
+<li>境界条件は</li>
+</ol>
+<p><span class="math display">\[
+\boxed{
+\begin{aligned}
+\psi(0^-)&amp;=\psi(0^+),&amp;\psi'(0^-)&amp;=\psi'(0^+),\\
+\psi(a^-)&amp;=\psi(a^+),&amp;\psi'(a^-)&amp;=\psi'(a^+).
+\end{aligned}}
+\]</span></p>
+<ol start="3" type="1">
+<li><span class="math inline">\(x=a\)</span> の条件から</li>
+</ol>
+<p><span class="math display">\[
+\frac{\alpha}{\beta}
+=\frac{ik_1-\kappa_2}{ik_1+\kappa_2}e^{-2ik_1a}.
+\]</span></p>
+<p>分子と分母の絶対値が等しいため、</p>
+<p><span class="math display">\[
+\boxed{\abs{\alpha}=\abs{\beta}}.
+\]</span></p>
+<p>右層は禁制領域で確率流を運ばないので、中間層から右界面へ進む波は全反射され、逆向き波と定在波を作る。</p>
+<ol start="4" type="1">
+<li><span class="math inline">\(E&gt;V_2\)</span> なら <span class="math inline">\(\kappa_2\)</span> の代わりに</li>
+</ol>
+<p><span class="math display">\[
+k_2=\frac{\sqrt{2m(E-V_2)}}{\hbar}
+\]</span></p>
+<p>を用い、右層は <span class="math inline">\(t e^{ik_2(x-a)}\)</span> という透過進行波になる。</p>
+<ol start="5" type="1">
+<li>両外側が禁制領域なら、無限遠で減衰する解だけを残す。さらに二界面で <span class="math inline">\(\psi,\psi'\)</span> の連続条件を満たす非自明解が存在する条件が固有値方程式となるため、許される <span class="math inline">\(E\)</span> は離散値になる。</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-quantum-ribbon-cylinder" class="level4">
+<h4 class="anchored" data-anchor-id="sec-quantum-ribbon-cylinder">問題B3 リボンと円筒面への閉じ込め</h4>
+<p>電子の質量を <span class="math inline">\(m\)</span> とする。</p>
+<ol type="1">
+<li>二次元リボン <span class="math inline">\(-a&lt;x&lt;a\)</span> に電子を閉じ込め、<span class="math inline">\(y\)</span> 方向は自由とする。固有関数と固有エネルギーを求めよ。</li>
+<li>リボンの両端をつないで <span class="math inline">\(\psi(x+2a,y)=\psi(x,y)\)</span> とした場合の量子化条件を求めよ。</li>
+<li>半径 <span class="math inline">\(R\)</span>、長さ <span class="math inline">\(L\)</span> の円筒表面上に電子を閉じ込め、円周方向を <span class="math inline">\(\theta\)</span>、軸方向を <span class="math inline">\(z\)</span> とする。<span class="math inline">\(z=\pm L/2\)</span> を無限壁としたときの固有関数と固有エネルギーを求めよ。</li>
+<li>無限壁を有限障壁へ変えると固有状態がどう変わるか説明せよ。</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論B3：閉じ込めた方向だけ運動量が離散化する
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、多次元の波動関数を方向ごとの積へ分け、各方向に異なる境界条件を適用することです。</p>
+<p>Hamiltonianが方向ごとの和なら、<span class="math inline">\(\psi(x,y)=X(x)Y(y)\)</span> と変数分離できます。無限壁の間では端点で0となる定在波、自由方向では平面波になります。周期境界では、一周後に波動関数が同じ値へ戻る条件から、周長に整数個の波長だけが入ります。</p>
+<p>円筒面では半径方向の自由度を凍結し、Laplacianは</p>
+<p><span class="math display">\[
+\nabla^2=\frac{1}{R^2}\pdv[2]{\theta}+\pdv[2]{z}
+\]</span></p>
+<p>です。<span class="math inline">\(\theta\)</span> 方向の周期境界が整数の角量子数を、<span class="math inline">\(z\)</span> 方向の無限壁が正整数の定在波番号を生みます。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答B3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><span class="math inline">\(X(\pm a)=0\)</span> より</li>
+</ol>
+<p><span class="math display">\[
+X_n(x)=\sin\left[\frac{n\pi(x+a)}{2a}\right],
+\qquad n=1,2,\ldots
+\]</span></p>
+<p>であり、自由方向は <span class="math inline">\(Y=e^{ik_yy}\)</span> である。したがって、</p>
+<p><span class="math display">\[
+\boxed{
+\psi_{n,k_y}(x,y)=X_n(x)e^{ik_yy}
+},
+\]</span></p>
+<p><span class="math display">\[
+\boxed{
+E_{n,k_y}=\frac{\hbar^2}{2m}
+\left[\left(\frac{n\pi}{2a}\right)^2+k_y^2\right]
+}.
+\]</span></p>
+<ol start="2" type="1">
+<li><span class="math inline">\(X(x+2a)=X(x)\)</span> より <span class="math inline">\(e^{ik_x2a}=1\)</span> なので、</li>
+</ol>
+<p><span class="math display">\[
+\boxed{k_x=\frac{\pi q}{a}},
+\qquad q=0,\pm1,\pm2,\ldots
+\]</span></p>
+<p>となる。</p>
+<ol start="3" type="1">
+<li><span class="math inline">\(\psi(\theta,z)=\Theta(\theta)Z(z)\)</span> とする。周期条件 <span class="math inline">\(\Theta(\theta+2\pi)=\Theta(\theta)\)</span> と無限壁条件 <span class="math inline">\(Z(\pm L/2)=0\)</span> から、</li>
+</ol>
+<p><span class="math display">\[
+\Theta_q=e^{iq\theta},
+\quad q\in\mathbb Z,
+\qquad
+Z_n=\sin\left[\frac{n\pi(z+L/2)}{L}\right],
+\quad n=1,2,\ldots
+\]</span></p>
+<p>を得る。よって、</p>
+<p><span class="math display">\[
+\boxed{
+E_{q,n}=\frac{\hbar^2}{2m}
+\left(\frac{q^2}{R^2}+\frac{n^2\pi^2}{L^2}\right)
+}.
+\]</span></p>
+<p><span class="math inline">\(q\ne0\)</span> では <span class="math inline">\(+q\)</span> と <span class="math inline">\(-q\)</span> が同じエネルギーをもち、二重縮退する。</p>
+<ol start="4" type="1">
+<li>有限障壁では波動関数が壁の外へ指数関数的にしみ出す。実効的な閉じ込め幅が広がるため固有エネルギーは無限壁の場合より低くなり、障壁より低い有限個の束縛状態だけが残る。</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="調和振動子" class="level2">
+<h2 class="anchored" data-anchor-id="調和振動子">調和振動子</h2>
+<section id="sec-quantum-harmonic-half" class="level4">
+<h4 class="anchored" data-anchor-id="sec-quantum-harmonic-half">問題C1 期待値と半調和振動子</h4>
+<p>一次元調和振動子</p>
+<p><span class="math display">\[
+V(x)=\frac12kx^2,
+\qquad
+E_n=\left(n+\frac12\right)\hbar\omega,
+\qquad
+\omega=\sqrt{\frac{k}{m}}
+\]</span></p>
+<p>を考える。</p>
+<ol type="1">
+<li>第2励起状態 <span class="math inline">\(n=2\)</span> の運動エネルギーの期待値を求めよ。</li>
+<li>第1励起状態 <span class="math inline">\(n=1\)</span> のポテンシャルエネルギーの期待値を求めよ。</li>
+<li><span class="math inline">\(x&lt;0\)</span> を無限壁とし、<span class="math inline">\(x\ge0\)</span> だけ調和振動子ポテンシャルを残した。固有エネルギーと固有関数を求め、基底状態と第1励起状態を図示せよ。</li>
+<li>粒子が全調和振動子の <span class="math inline">\(n=0,1,2\)</span> のいずれかにある。<span class="math inline">\(n=2\)</span> の節を利用して状態を識別する方法を説明せよ。</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論C1：運動とポテンシャルは平均すると半分ずつ
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、固有関数を毎回積分せず、virial theoremと対称性を使うことです。</p>
+<p><span class="math inline">\(V\propto x^2\)</span> の調和振動子ではvirial theoremから</p>
+<p><span class="math display">\[
+2\expval{T}=2\expval{V}
+\]</span></p>
+<p>となるため、</p>
+<p><span class="math display">\[
+\expval{T}=\expval{V}=\frac{E_n}{2}
+\]</span></p>
+<p>です。</p>
+<p>原点に無限壁を置くと <span class="math inline">\(\psi(0)=0\)</span> が必要です。全空間の調和振動子のうち、原点で0になるのは奇関数の状態 <span class="math inline">\(n=1,3,5,\ldots\)</span> だけです。これらの <span class="math inline">\(x\ge0\)</span> 部分を取り出せば、半調和振動子の完全な固有状態になります。</p>
+<p>波動関数の節では確率密度が0です。理想的な一点の確率は常に0なので、実験的には節を中心とする十分狭い有限幅の検出領域を用い、幅を変えたときの検出確率の減少の仕方を比較します。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答C1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><span class="math inline">\(n=2\)</span> では <span class="math inline">\(E_2=5\hbar\omega/2\)</span> なので、</li>
+</ol>
+<p><span class="math display">\[
+\boxed{\expval{T}_{n=2}=\frac{E_2}{2}=\frac54\hbar\omega}.
+\]</span></p>
+<ol start="2" type="1">
+<li><span class="math inline">\(n=1\)</span> では <span class="math inline">\(E_1=3\hbar\omega/2\)</span> なので、</li>
+</ol>
+<p><span class="math display">\[
+\boxed{\expval{V}_{n=1}=\frac{E_1}{2}=\frac34\hbar\omega}.
+\]</span></p>
+<ol start="3" type="1">
+<li>半調和振動子の状態番号を <span class="math inline">\(j=0,1,2,\ldots\)</span> とすると、全調和振動子の <span class="math inline">\(n=2j+1\)</span> に対応する。</li>
+</ol>
+<p><span class="math display">\[
+\boxed{E_j^{\mathrm{half}}=\left(2j+\frac32\right)\hbar\omega}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{
+\psi_j^{\mathrm{half}}(x)=
+\begin{cases}
+0,&amp;x&lt;0,\\
+\sqrt2\,\psi_{2j+1}(x),&amp;x\ge0.
+\end{cases}}
+\]</span></p>
+<p>基底状態は <span class="math inline">\(x&gt;0\)</span> に節をもたず、第1励起状態は <span class="math inline">\(x&gt;0\)</span> に節を一つもつ。</p>
+<div id="cell-fig-quantum-half-harmonic" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>作図コード</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>xi <span class="op">=</span> np.linspace(<span class="fl">0.0</span>, <span class="fl">4.0</span>, <span class="dv">500</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>psi_ground <span class="op">=</span> xi <span class="op">*</span> np.exp(<span class="op">-</span>xi<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> <span class="dv">2</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>psi_excited <span class="op">=</span> (<span class="dv">8</span> <span class="op">*</span> xi<span class="op">**</span><span class="dv">3</span> <span class="op">-</span> <span class="dv">12</span> <span class="op">*</span> xi) <span class="op">*</span> np.exp(<span class="op">-</span>xi<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> <span class="dv">2</span>) <span class="op">/</span> <span class="dv">8</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="fl">8.4</span>, <span class="fl">3.3</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, psi, title <span class="kw">in</span> <span class="bu">zip</span>(</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    axes,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    (psi_ground, psi_excited),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"ground state"</span>, <span class="st">"first excited state"</span>),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    ax.axvspan(<span class="op">-</span><span class="fl">0.7</span>, <span class="dv">0</span>, color<span class="op">=</span><span class="st">"0.88"</span>, label<span class="op">=</span><span class="st">"infinite wall"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    ax.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"0.3"</span>, lw<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    ax.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"black"</span>, lw<span class="op">=</span><span class="fl">1.2</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    ax.plot(xi, psi, color<span class="op">=</span><span class="st">"#315b8a"</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    ax.<span class="bu">set</span>(xlim<span class="op">=</span>(<span class="op">-</span><span class="fl">0.7</span>, <span class="dv">4</span>), xlabel<span class="op">=</span><span class="vs">r"</span><span class="dv">$</span><span class="er">\</span><span class="vs">xi=</span><span class="dv">\s</span><span class="vs">qrt{m</span><span class="er">\</span><span class="vs">omega/</span><span class="er">\</span><span class="vs">hbar}</span><span class="ch">\,</span><span class="vs">x</span><span class="dv">$</span><span class="vs">"</span>, title<span class="op">=</span>title)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="vs">r"schematic </span><span class="dv">$</span><span class="er">\</span><span class="vs">psi</span><span class="dv">$</span><span class="vs">"</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-quantum-half-harmonic" class="quarto-float quarto-figure quarto-figure-center anchored" alt="原点より左は無限壁で波動関数がゼロ。基底状態は右側に一つの山、第1励起状態は右側に符号の異なる二つの山をもつ。">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-quantum-half-harmonic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="材料量子力学_files/figure-html/fig-quantum-half-harmonic-output-1.png" alt="原点より左は無限壁で波動関数がゼロ。基底状態は右側に一つの山、第1励起状態は右側に符号の異なる二つの山をもつ。" width="710" height="331" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-quantum-half-harmonic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: 半調和振動子の基底状態と第1励起状態の波動関数の模式図。横軸は無次元座標、規格化は省略した。
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ol start="4" type="1">
+<li><span class="math inline">\(n=2\)</span> の波動関数は <span class="math inline">\(H_2(\xi)=4\xi^2-2\)</span> に比例するため、</li>
+</ol>
+<p><span class="math display">\[
+x_0=\pm\sqrt{\frac{\hbar}{2m\omega}}
+\]</span></p>
+<p>に節をもつ。一方、<span class="math inline">\(n=0,1\)</span> の波動関数はこの位置で0ではない。<span class="math inline">\(x_0\)</span> 周囲の狭い検出領域について繰り返し非破壊測定し、検出確率が節に対応して抑制されるかを調べれば <span class="math inline">\(n=2\)</span> を識別できる。</p>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-quantum-oscillator-spectroscopy" class="level4">
+<h4 class="anchored" data-anchor-id="sec-quantum-oscillator-spectroscopy">問題C2 振動スペクトルとFermi粒子</h4>
+<p>ばね定数 <span class="math inline">\(k\)</span> は粒子の質量に依存しないものとする。</p>
+<ol type="1">
+<li>質量 <span class="math inline">\(M\)</span> の陽子と質量 <span class="math inline">\(2M\)</span> の重陽子が、それぞれ独立な一次元調和振動子として振動する。赤外吸収スペクトルの位置関係を求めよ。</li>
+<li>同じ一次元調和ポテンシャル中に、相互作用を無視できる陽子3個を入れる。基底状態の全エネルギーを求めよ。陽子はスピン <span class="math inline">\(1/2\)</span> のFermi粒子とする。</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論C2：準位差は質量で動き、占有数は統計で決まる
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、同じポテンシャルでも準位間隔は粒子質量に依存し、同一Fermi粒子はPauli原理に従って準位を埋めることを使う問題です。</p>
+<p>調和振動子の隣接準位差は</p>
+<p><span class="math display">\[
+\Delta E=\hbar\omega,
+\qquad
+\omega=\sqrt{\frac{k}{m}}
+\]</span></p>
+<p>です。電気双極子遷移では <span class="math inline">\(\Delta n=\pm1\)</span> が許容され、吸収角振動数は <span class="math inline">\(\omega\)</span>、通常の振動数は <span class="math inline">\(\nu=\omega/(2\pi)\)</span> です。重い同位体ほど低周波・長波長側へ移ります。</p>
+<p>一つの空間固有状態には、スピン上向きと下向きの2粒子まで入れます。3個目は次の空間準位へ入らなければなりません。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答C2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>陽子と重陽子の角振動数は</li>
+</ol>
+<p><span class="math display">\[
+\omega_{mathrm p}=\sqrt{\frac{k}{M}},
+\qquad
+\omega_{mathrm d}=\sqrt{\frac{k}{2M}}
+=\frac{\omega_{mathrm p}}{\sqrt2}.
+\]</span></p>
+<p>したがって、吸収線は</p>
+<p><span class="math display">\[
+\boxed{\nu_{mathrm d}=\frac{\nu_{mathrm p}}{\sqrt2}}
+\]</span></p>
+<p>に現れ、重陽子の線が低周波側にある。</p>
+<div id="cell-fig-quantum-isotope-ir" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>作図コード</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>frequency <span class="op">=</span> np.linspace(<span class="fl">0.45</span>, <span class="fl">1.2</span>, <span class="dv">600</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>nu_d <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> np.sqrt(<span class="dv">2</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>transmission <span class="op">=</span> (</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span> <span class="fl">0.42</span> <span class="op">*</span> np.exp(<span class="op">-</span>((frequency <span class="op">-</span> nu_d) <span class="op">/</span> <span class="fl">0.018</span>) <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span> <span class="fl">0.42</span> <span class="op">*</span> np.exp(<span class="op">-</span>((frequency <span class="op">-</span> <span class="fl">1.0</span>) <span class="op">/</span> <span class="fl">0.018</span>) <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">6.8</span>, <span class="fl">3.4</span>))</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>ax.plot(frequency, transmission, color<span class="op">=</span><span class="st">"#315b8a"</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>ax.axvline(nu_d, color<span class="op">=</span><span class="st">"#c23b53"</span>, ls<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>ax.axvline(<span class="fl">1.0</span>, color<span class="op">=</span><span class="st">"#c23b53"</span>, ls<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>ax.text(nu_d, <span class="fl">0.52</span>, <span class="st">"deuteron"</span>, ha<span class="op">=</span><span class="st">"center"</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">1.0</span>, <span class="fl">0.52</span>, <span class="st">"proton"</span>, ha<span class="op">=</span><span class="st">"center"</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="vs">r"normalized frequency </span><span class="dv">$</span><span class="ch">\n</span><span class="vs">u/</span><span class="ch">\n</span><span class="vs">u_{</span><span class="dv">\m</span><span class="vs">athrm{p}}</span><span class="dv">$</span><span class="vs">"</span>, ylabel<span class="op">=</span><span class="st">"transmission"</span>, ylim<span class="op">=</span>(<span class="fl">0.45</span>, <span class="fl">1.04</span>))</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>ax.grid(alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-quantum-isotope-ir" class="quarto-float quarto-figure quarto-figure-center anchored" alt="透過率対規格化振動数。1割るルート2の位置に重陽子、1の位置に陽子の吸収による谷がある。">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-quantum-isotope-ir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="材料量子力学_files/figure-html/fig-quantum-isotope-ir-output-1.png" alt="透過率対規格化振動数。1割るルート2の位置に重陽子、1の位置に陽子の吸収による谷がある。" width="574" height="314" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-quantum-isotope-ir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: 陽子と重陽子の調和振動による赤外吸収の模式図。重陽子の吸収は陽子より低周波側に現れる。
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li><span class="math inline">\(n=0\)</span> にスピンの異なる2個、<span class="math inline">\(n=1\)</span> に1個を入れる。</li>
+</ol>
+<p><span class="math display">\[
+\begin{aligned}
+E_{\mathrm{tot}}
+&amp;=2\left(\frac12\hbar\omega\right)
++\left(\frac32\hbar\omega\right)\\
+&amp;=\boxed{\frac52\hbar\omega},
+\qquad
+\omega=\sqrt{\frac{k}{M}}.
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-quantum-3d-oscillator" class="level4">
+<h4 class="anchored" data-anchor-id="sec-quantum-3d-oscillator">問題C3 三次元調和振動子と交換関係</h4>
+<p><span class="math display">\[
+V(x,y,z)=\frac{k}{2}(x^2+y^2+z^2)
+\]</span></p>
+<p>で表される等方的な三次元調和振動子を考える。</p>
+<ol type="1">
+<li>基底状態のエネルギーと固有関数を求めよ。</li>
+<li>第1励起状態のエネルギーと縮退度を求めよ。</li>
+<li>基底状態と第1励起状態における <span class="math inline">\(L^2\)</span> の期待値を求めよ。</li>
+<li>運動量 <span class="math inline">\(p_x\)</span> と軌道磁気モーメントの <span class="math inline">\(y\)</span> 成分を同時に正確に決定できるか答えよ。</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論C3：三方向の量子数を足し、回転対称性で分類する
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、三次元問題を独立な三つの一次元振動子へ分け、さらに回転対称性から角運動量を読むことです。</p>
+<p>固有エネルギーは</p>
+<p><span class="math display">\[
+E_{n_xn_yn_z}
+=\left(n_x+n_y+n_z+\frac32\right)\hbar\omega
+\]</span></p>
+<p>です。基底状態は三方向すべてが <span class="math inline">\(n=0\)</span> で球対称、したがって <span class="math inline">\(l=0\)</span> です。第1励起状態は <span class="math inline">\((1,0,0),(0,1,0),(0,0,1)\)</span> の三状態で、回転に対してベクトルのように変換する <span class="math inline">\(l=1\)</span> の組を作ります。</p>
+<p>電子の軌道磁気モーメントは <span class="math inline">\(\boldsymbol{\mu}_L=-e\mathbf L/(2m)\)</span> です。二つの物理量を同時に正確に決定できるかは、対応する演算子の交換子で判定します。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答C3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\alpha=m\omega/\hbar\)</span> とする。</p>
+<ol type="1">
+<li>基底状態は</li>
+</ol>
+<p><span class="math display">\[
+\boxed{E_0=\frac32\hbar\omega},
+\]</span></p>
+<p><span class="math display">\[
+\boxed{
+\psi_0(x,y,z)=
+\left(\frac{\alpha}{\pi}\right)^{3/4}
+\exp\left[-\frac{\alpha}{2}(x^2+y^2+z^2)\right]
+}.
+\]</span></p>
+<ol start="2" type="1">
+<li><span class="math inline">\(n_x+n_y+n_z=1\)</span> より</li>
+</ol>
+<p><span class="math display">\[
+\boxed{E_1=\frac52\hbar\omega}
+\]</span></p>
+<p>で、三重縮退する。</p>
+<ol start="3" type="1">
+<li><span class="math inline">\(L^2\)</span> の固有値は <span class="math inline">\(\hbar^2l(l+1)\)</span> なので、</li>
+</ol>
+<p><span class="math display">\[
+\boxed{\expval{L^2}_{\mathrm{ground}}=0},
+\qquad
+\boxed{\expval{L^2}_{\mathrm{first}}=2\hbar^2}.
+\]</span></p>
+<ol start="4" type="1">
+<li><span class="math inline">\(L_y=zp_x-xp_z\)</span> を用いると、</li>
+</ol>
+<p><span class="math display">\[
+[p_x,L_y]=i\hbar p_z.
+\]</span></p>
+<p>したがって、</p>
+<p><span class="math display">\[
+[p_x,\mu_{L,y}]
+=-\frac{e}{2m}[p_x,L_y]
+=-\frac{i e\hbar}{2m}p_z\ne0.
+\]</span></p>
+<p>よって、一般には</p>
+<p><span class="math display">\[
+\boxed{p_x\text{ と }\mu_{L,y}\text{ を同時に正確には決定できない}}
+\]</span></p>
+<p>と結論する。</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="球対称ポテンシャルと水素原子" class="level2">
+<h2 class="anchored" data-anchor-id="球対称ポテンシャルと水素原子">球対称ポテンシャルと水素原子</h2>
+<section id="sec-quantum-spherical-well" class="level4">
+<h4 class="anchored" data-anchor-id="sec-quantum-spherical-well">問題D1 球形無限井戸と角運動量</h4>
+<p>半径 <span class="math inline">\(R\)</span> の球内に質量 <span class="math inline">\(m\)</span> の粒子を閉じ込める。</p>
+<p><span class="math display">\[
+V(r)=
+\begin{cases}
+0,&amp;r&lt;R,\\
++\infty,&amp;r\ge R.
+\end{cases}
+\]</span></p>
+<p>極座標は通常の約束</p>
+<p><span class="math display">\[
+x=r\sin\theta\cos\phi,
+\quad
+y=r\sin\theta\sin\phi,
+\quad
+z=r\cos\theta
+\]</span></p>
+<p>を用いる。</p>
+<ol type="1">
+<li><span class="math inline">\(\psi=\mathcal R(r)\Theta(\theta)\Phi(\phi)\)</span> として変数分離し、動径方向と方位角方向の方程式を書け。</li>
+<li>方位角量子数が整数になることを示せ。</li>
+<li><span class="math inline">\(L^2,L_z\)</span> の期待値を量子数 <span class="math inline">\(l,m_l\)</span> で表せ。</li>
+<li><span class="math inline">\(l=0\)</span> の固有エネルギーと動径関数を求めよ。</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論D1：一価性が磁気量子数を整数にする
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、球対称な問題を半径と角度へ分離し、波動関数が一周後に同じ値へ戻る条件を使うことです。</p>
+<p>方位角の解は <span class="math inline">\(e^{im_l\phi}\)</span> 型です。<span class="math inline">\(\phi\)</span> と <span class="math inline">\(\phi+2\pi\)</span> は同じ位置なので、波動関数の一価性から <span class="math inline">\(e^{i2\pi m_l}=1\)</span> が必要です。これが <span class="math inline">\(m_l\)</span> を整数にします。</p>
+<p>角度方程式の正則解は球面調和関数 <span class="math inline">\(Y_{l,m_l}\)</span> であり、</p>
+<p><span class="math display">\[
+\hat L^2Y_{l,m_l}=\hbar^2l(l+1)Y_{l,m_l},
+\qquad
+\hat L_zY_{l,m_l}=\hbar m_lY_{l,m_l}
+\]</span></p>
+<p>を満たします。</p>
+<p><span class="math inline">\(l=0\)</span> では遠心力項が消え、<span class="math inline">\(u(r)=r\mathcal R(r)\)</span> と置くと一次元無限井戸と同じ正弦方程式になります。ただし原点で <span class="math inline">\(u(0)=0\)</span>、球壁で <span class="math inline">\(u(R)=0\)</span> です。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答D1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>球内で <span class="math inline">\(k^2=2mE/\hbar^2\)</span> とすると、動径方程式は</li>
+</ol>
+<p><span class="math display">\[
+\boxed{
+\frac{1}{r^2}\dv{}{r}\left(r^2\dv{\mathcal R}{r}\right)
++\left[k^2-\frac{l(l+1)}{r^2}\right]\mathcal R=0
+}
+\]</span></p>
+<p>である。方位角方程式は</p>
+<p><span class="math display">\[
+\boxed{\dv[2]{\Phi}{\phi}+m_l^2\Phi=0}.
+\]</span></p>
+<ol start="2" type="1">
+<li><span class="math inline">\(\Phi=Ae^{im_l\phi}+Be^{-im_l\phi}\)</span> と周期条件 <span class="math inline">\(\Phi(\phi+2\pi)=\Phi(\phi)\)</span> から、</li>
+</ol>
+<p><span class="math display">\[
+\boxed{m_l\in\mathbb Z}.
+\]</span></p>
+<p>正則な極角解との組合せでは <span class="math inline">\(l=0,1,2,\ldots\)</span>、<span class="math inline">\(m_l=-l,\ldots,l\)</span> である。</p>
+<ol start="3" type="1">
+<li><span class="math inline">\(Y_{l,m_l}\)</span> の状態では</li>
+</ol>
+<p><span class="math display">\[
+\boxed{\expval{L^2}=\hbar^2l(l+1)},
+\qquad
+\boxed{\expval{L_z}=\hbar m_l}.
+\]</span></p>
+<ol start="4" type="1">
+<li><span class="math inline">\(l=0\)</span> では <span class="math inline">\(u=r\mathcal R\)</span> と置くと <span class="math inline">\(u''+k^2u=0\)</span> である。<span class="math inline">\(u(0)=u(R)=0\)</span> より、</li>
+</ol>
+<p><span class="math display">\[
+k_n=\frac{n\pi}{R},
+\qquad n=1,2,\ldots
+\]</span></p>
+<p>したがって、</p>
+<p><span class="math display">\[
+\boxed{E_{n,l=0}=\frac{\hbar^2\pi^2n^2}{2mR^2}},
+\]</span></p>
+<p><span class="math display">\[
+\boxed{\mathcal R_{n0}(r)=A\frac{\sin(n\pi r/R)}{r}}.
+\]</span></p>
+<p><span class="math inline">\(r\to0\)</span> では <span class="math inline">\(\sin(kr)/r\to k\)</span> なので有限である。</p>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-quantum-hydrogen-measurement" class="level4">
+<h4 class="anchored" data-anchor-id="sec-quantum-hydrogen-measurement">問題D2 水素原子の確率と測定</h4>
+<p>水素原子の固有状態を</p>
+<p><span class="math display">\[
+\psi_{n,l,m_l}(r,\theta,\phi)
+=R_{n,l}(r)Y_{l,m_l}(\theta,\phi)
+\]</span></p>
+<p>とし、<span class="math inline">\(R_{n,l}\)</span> と <span class="math inline">\(Y_{l,m_l}\)</span> はそれぞれ規格化されているとする。</p>
+<ol type="1">
+<li>微小体積 <span class="math inline">\(\dd{\tau}\)</span> に電子を見いだす確率と、<span class="math inline">\(r_1\le r\le r_2\)</span> に電子を見いだす確率を書け。</li>
+<li><span class="math inline">\(\expval{r}\)</span> を <span class="math inline">\(n,l\)</span> で表し、2p状態の値を求めよ。</li>
+<li>3d状態における <span class="math inline">\(L^2\)</span> と、2p状態における <span class="math inline">\(L_z\)</span> の期待値・測定誤差を求めよ。</li>
+<li><span class="math inline">\(r\)</span> と <span class="math inline">\(L_z\)</span> を同時に正確に測定できるか答えよ。</li>
+<li>2p状態におけるCoulomb力の大きさの期待値を求めよ。</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論D2：確率密度には座標系の体積要素が必要
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、<span class="math inline">\(\abs{\psi}^2\)</span> だけでなく、球殻の体積が <span class="math inline">\(r^2\)</span> に比例して増えることまで含めて確率を計算することです。</p>
+<p>球座標の体積要素は</p>
+<p><span class="math display">\[
+\dd{\tau}=r^2\sin\theta\dd{r}\dd{\theta}\dd{\phi}
+\]</span></p>
+<p>です。角度をすべて積分した動径確率密度は <span class="math inline">\(r^2\abs{R_{n,l}(r)}^2\)</span> です。</p>
+<p>演算子の固有状態にある物理量は、測定するたび同じ固有値を与えるため分散が0です。3d状態は <span class="math inline">\(n=3,l=2\)</span>、2p状態は <span class="math inline">\(n=2,l=1\)</span> です。</p>
+<p>二つの物理量を同時に正確に測定できるかは交換子で判定します。<span class="math inline">\(r\)</span> は回転で変わらないため、<span class="math inline">\(z\)</span> 軸回転の生成子 <span class="math inline">\(L_z\)</span> と可換です。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答D2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Bohr半径を</p>
+<p><span class="math display">\[
+a_0=\frac{4\pi\varepsilon_0\hbar^2}{me^2}
+\]</span></p>
+<p>とする。</p>
+<ol type="1">
+<li>微小体積の確率は</li>
+</ol>
+<p><span class="math display">\[
+\boxed{
+\dd{P}=\abs{R_{n,l}(r)}^2\abs{Y_{l,m_l}(\theta,\phi)}^2
+r^2\sin\theta\dd{r}\dd{\theta}\dd{\phi}
+}.
+\]</span></p>
+<p>動径範囲の確率は、角度部分の規格化を使って</p>
+<p><span class="math display">\[
+\boxed{
+P(r_1\le r\le r_2)
+=\int_{r_1}^{r_2}\abs{R_{n,l}(r)}^2r^2\dd{r}
+}.
+\]</span></p>
+<ol start="2" type="1">
+<li>水素原子では</li>
+</ol>
+<p><span class="math display">\[
+\boxed{
+\expval{r}_{n,l}
+=\frac{a_0}{2}\left[3n^2-l(l+1)\right]
+}.
+\]</span></p>
+<p>2p状態では</p>
+<p><span class="math display">\[
+\boxed{\expval{r}_{2p}=5a_0}.
+\]</span></p>
+<ol start="3" type="1">
+<li>3d状態は <span class="math inline">\(l=2\)</span> なので、</li>
+</ol>
+<p><span class="math display">\[
+\boxed{L^2=6\hbar^2},
+\qquad
+\boxed{\Delta(L^2)=0}.
+\]</span></p>
+<p>2p状態では</p>
+<p><span class="math display">\[
+\boxed{\expval{L_z}=m_l\hbar},
+\qquad
+\boxed{\Delta L_z=0}.
+\]</span></p>
+<ol start="4" type="1">
+<li><span class="math inline">\([r,L_z]=0\)</span> なので、</li>
+</ol>
+<p><span class="math display">\[
+\boxed{r\text{ と }L_z\text{ は同時に正確に測定できる}}
+\]</span></p>
+<p>と答える。</p>
+<ol start="5" type="1">
+<li>Coulomb力の大きさは <span class="math inline">\(F=e^2/(4\pi\varepsilon_0r^2)\)</span> である。水素原子の</li>
+</ol>
+<p><span class="math display">\[
+\expval{r^{-2}}_{n,l}
+=\frac{1}{a_0^2n^3(l+1/2)}
+\]</span></p>
+<p>を用いると、2p状態では <span class="math inline">\(\expval{r^{-2}}=1/(12a_0^2)\)</span> なので、</p>
+<p><span class="math display">\[
+\boxed{
+\expval{F}_{2p}
+=\frac{e^2}{48\pi\varepsilon_0a_0^2}
+}.
+\]</span></p>
+<p>これは力の<strong>大きさ</strong>の期待値である。球対称性または定常状態の対称性を考えた力ベクトルの期待値は0になりうるため、両者を区別する。</p>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-quantum-hydrogen-spectrum" class="level4">
+<h4 class="anchored" data-anchor-id="sec-quantum-hydrogen-spectrum">問題D3 水素原子のスペクトル・束縛・電子配置</h4>
+<p>水素型の固有エネルギーを</p>
+<p><span class="math display">\[
+E_n=-\frac{R}{n^2},
+\qquad n=1,2,\ldots
+\]</span></p>
+<p>とする。ここで <span class="math inline">\(R\)</span> はエネルギーの次元をもつ定数である。</p>
+<ol type="1">
+<li>水素原子の発光スペクトルが離散線になる理由を説明し、<span class="math inline">\(n=3\)</span> から <span class="math inline">\(n=1\)</span> への遷移で放出される光の振動数を求めよ。</li>
+<li>電子のエネルギーが <span class="math inline">\(E\ge0\)</span> となる状態は存在するか答えよ。</li>
+<li>Coulomb引力があるのに、電子が原子核へ落ち込まない理由を説明せよ。</li>
+<li>電子間相互作用を無視し、陽子のまわりへ電子3個または5個を入れる。Pauli原理を満たす基底状態の全電子エネルギーを求めよ。</li>
+<li>Coulombポテンシャルを遮蔽Coulombポテンシャルや別の球対称中心力へ変えたとき、変わらない量と変わる量を述べよ。</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論D3：中心力の対称性とCoulomb固有の性質を分ける
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>問いの正体</strong>は、どの結果が量子力学一般から来るのか、どの結果がCoulombポテンシャル特有なのかを区別することです。</p>
+<p>束縛状態のエネルギーは離散化されているため、光子のエネルギー <span class="math inline">\(h\nu=E_i-E_f\)</span> も離散値になります。<span class="math inline">\(E&lt;0\)</span> は電離に必要なエネルギーが残る束縛状態、<span class="math inline">\(E=0\)</span> は電離限界、<span class="math inline">\(E&gt;0\)</span> は連続スペクトルに属する散乱状態です。</p>
+<p>原子核へ強く局在させると <span class="math inline">\(\Delta x\)</span> が小さくなり、不確定性原理により <span class="math inline">\(\Delta p\)</span> と運動エネルギーが増えます。運動エネルギーとCoulomb位置エネルギーの和は有限半径で最小になり、安定な基底状態を作ります。</p>
+<p>ポテンシャルが <span class="math inline">\(V(r)\)</span> だけに依存する限り回転対称性は保たれ、<span class="math inline">\(L^2,L_z\)</span> はHamiltonianと可換です。一方、動径関数、エネルギー固有値、束縛状態数、異なる <span class="math inline">\(l\)</span> 間の偶然縮退はポテンシャルの具体形に依存します。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答D3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>定常状態間の遷移では</li>
+</ol>
+<p><span class="math display">\[
+h\nu=E_3-E_1
+=-\frac{R}{9}-(-R)=\frac{8R}{9}.
+\]</span></p>
+<p>したがって、</p>
+<p><span class="math display">\[
+\boxed{\nu=\frac{8R}{9h}}.
+\]</span></p>
+<p>許される準位が離散的なので、遷移エネルギーも離散的となり、線スペクトルが現れる。</p>
+<ol start="2" type="1">
+<li><p><span class="math inline">\(\boxed{E\ge0\text{ の状態は存在する}}\)</span>。<span class="math inline">\(E=0\)</span> は電離限界、<span class="math inline">\(E&gt;0\)</span> は原子に束縛されない連続的な散乱状態である。</p></li>
+<li><p>代表的な大きさを <span class="math inline">\(r\)</span> とすると、</p></li>
+</ol>
+<p><span class="math display">\[
+E(r)\sim\frac{\hbar^2}{2mr^2}
+-\frac{e^2}{4\pi\varepsilon_0r}.
+\]</span></p>
+<p><span class="math inline">\(r\to0\)</span> では正の運動エネルギー項が <span class="math inline">\(1/r^2\)</span> で増大するため、全エネルギーは有限な <span class="math inline">\(r\)</span> で最小になる。よって電子は原子核へ崩壊しない。</p>
+<ol start="4" type="1">
+<li>一つの空間軌道には逆向きスピンの2電子まで入る。</li>
+</ol>
+<p>3電子では <span class="math inline">\(n=1\)</span> に2個、<span class="math inline">\(n=2\)</span> に1個なので、</p>
+<p><span class="math display">\[
+\boxed{
+E_{3\mathrm e}=2E_1+E_2
+=-2R-\frac{R}{4}
+=-\frac94R
+}.
+\]</span></p>
+<p>5電子では <span class="math inline">\(n=1\)</span> に2個、<span class="math inline">\(n=2\)</span> に3個なので、</p>
+<p><span class="math display">\[
+\boxed{
+E_{5\mathrm e}=2E_1+3E_2
+=-2R-\frac{3R}{4}
+=-\frac{11}{4}R
+}.
+\]</span></p>
+<ol start="5" type="1">
+<li><span class="math inline">\(V(r)\)</span> が球対称である限り、変わらないものは</li>
+</ol>
+<p><span class="math display">\[
+\boxed{
+l,m_l\text{ による角度関数の分類、}
+L^2=\hbar^2l(l+1)、L_z=\hbar m_l
+}
+\]</span></p>
+<p>である。同じ <span class="math inline">\(l\)</span> に対する <span class="math inline">\(m_l\)</span> の縮退も保たれる。一方、</p>
+<p><span class="math display">\[
+\boxed{
+R_{n,l}(r)、E_{n,l}、束縛状態数、異なるl間の縮退
+}
+\]</span></p>
+<p>は一般に変化する。特に遮蔽ポテンシャルでは長距離引力が弱くなり、束縛状態数は有限になりうる。</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="解法の見取り図" class="level2">
+<h2 class="anchored" data-anchor-id="解法の見取り図">解法の見取り図</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>問題の型</th>
+<th>最初に確認するもの</th>
+<th>次の操作</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>一定ポテンシャルの各領域</td>
+<td><span class="math inline">\(E-V\)</span> の符号</td>
+<td>振動解か指数解かを選ぶ</td>
+</tr>
+<tr class="even">
+<td>材料界面</td>
+<td>ポテンシャルが有限か無限か</td>
+<td>有限なら <span class="math inline">\(\psi,\psi'\)</span> を連続、無限壁なら <span class="math inline">\(\psi=0\)</span></td>
+</tr>
+<tr class="odd">
+<td>束縛状態</td>
+<td>無限遠での振る舞い</td>
+<td>発散解を除き、接続条件から固有値を決める</td>
+</tr>
+<tr class="even">
+<td>散乱状態</td>
+<td>入射方向</td>
+<td>入射波・反射波・透過波を確率流の向きで選ぶ</td>
+</tr>
+<tr class="odd">
+<td>多次元の閉じ込め</td>
+<td>Hamiltonianが方向ごとの和か</td>
+<td>変数分離し、方向ごとの境界条件を課す</td>
+</tr>
+<tr class="even">
+<td>球対称ポテンシャル</td>
+<td><span class="math inline">\(V=V(r)\)</span> か</td>
+<td><span class="math inline">\(R(r)Y_{l,m_l}\)</span> に分離し、角運動量を使う</td>
+</tr>
+<tr class="odd">
+<td>同時測定</td>
+<td>演算子の交換子</td>
+<td>交換子が0なら共通固有状態を選べる</td>
+</tr>
+<tr class="even">
+<td>複数のFermi粒子</td>
+<td>スピンを含む一粒子状態</td>
+<td>低い準位からPauli原理に従って埋める</td>
+</tr>
+</tbody>
+</table>
+<p>量子力学の計算では、微分方程式を解き始める前に、対称性、<span class="math inline">\(E-V\)</span> の符号、境界条件、無限遠での振る舞いを確認すると、残すべき解の形を大きく絞れます。</p>
 
 
 </section>

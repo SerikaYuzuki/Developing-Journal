@@ -2,36 +2,1087 @@
 title: "材料量子力学"
 author: "Serika Yuzuki"
 date: "2023-10-10"
-categories: [University, 2023]
+categories: [University, quantum-mechanics, materials-science, 2023]
 image: "images/thumbnail.png"
 ---
 
-過去問を解いていく。手書きです。
+$$
+\require{physics}
+\require{mhchem}
+\require{ams}
+$$
 
-## 2021
+この記事では、電子の波動性から出発し、界面での反射と閉じ込め、調和振動子、角運動量、水素原子へ進みます。各問題は、まず問題文だけで考え、必要になったところで理論と解答を開ける構成です。
 
-![](images/%E9%87%8F%E5%AD%90/2021-1.png)
+## 粒子の波動性
 
-![](images/%E9%87%8F%E5%AD%90/2021-2.png)
+#### 問題A1 電子のde Broglie波と二重スリット {#sec-quantum-de-broglie}
 
-![](images/%E9%87%8F%E5%AD%90/2021-3.png)
+$1.0\times10^4\ \mathrm{V}$ の電圧で静止状態から加速した電子を、間隔の狭い二重スリットへ一個ずつ入射する。電子の質量を $m=9.0\times10^{-31}\ \mathrm{kg}$、Planck定数を $h=7.0\times10^{-34}\ \mathrm{J\,s}$、電子の電荷の大きさを $e=2.0\times10^{-19}\ \mathrm{C}$ とする。
 
-![](images/%E9%87%8F%E5%AD%90/2021-4.png)
+1. 入射電子のde Broglie波長を求めよ。
+2. スクリーン上で電子がどのように観測されるか説明せよ。
 
-## 2019
+::: {.callout-note collapse="true"}
+##### 理論A1：一個ずつ届く粒子にも位相がある
 
-![](images/%E9%87%8F%E5%AD%90/2019-1.png)
+**問いの正体**は、電子が検出時には点として現れる一方、そこへ至る確率振幅は波として重ね合わされることを説明する問題です。
 
-![](images/%E9%87%8F%E5%AD%90/2019-2.png)
+電位差 $U$ で加速された電子は、非相対論的には電気的な位置エネルギー $eU$ を運動エネルギーへ変換します。
 
-![](images/%E9%87%8F%E5%AD%90/2019-3.png)
+$$
+eU=\frac{p^2}{2m}
+$$
 
-## 2015
+したがって、運動量とde Broglie波長は
 
-![](images/%E9%87%8F%E5%AD%90/2015.png)
+$$
+p=\sqrt{2meU},
+\qquad
+\lambda=\frac{h}{p}
+$$
 
-## 2009
+です。
 
-![](images/%E9%87%8F%E5%AD%90/2009-1.png)
+二つのスリットを通る確率振幅を $\psi_1,\psi_2$ とすると、検出確率は
 
-![](images/%E9%87%8F%E5%AD%90/2009-2.png)
+$$
+P\propto\abs{\psi_1+\psi_2}^2
+=\abs{\psi_1}^2+\abs{\psi_2}^2
++2\Re(\psi_1^*\psi_2)
+$$
+
+となります。最後の干渉項が明暗縞を作ります。一方、各電子はスクリーン上の一地点で検出されます。一個の着弾位置は予測できませんが、多数回繰り返すと確率分布として干渉縞が現れます。どちらのスリットを通ったか測定すると二経路の位相関係が失われ、干渉項も消えます。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答A1
+
+1. 電子の運動エネルギーは
+
+$$
+K=eU=(2.0\times10^{-19})(1.0\times10^4)
+=2.0\times10^{-15}\ \mathrm{J}.
+$$
+
+よって、
+
+$$
+\begin{aligned}
+\lambda
+&=\frac{h}{\sqrt{2mK}}\\
+&=\frac{7.0\times10^{-34}}
+{\sqrt{2(9.0\times10^{-31})(2.0\times10^{-15})}}\\
+&=\boxed{1.2\times10^{-11}\ \mathrm{m}}.
+\end{aligned}
+$$
+
+2. 各電子はスクリーン上の一点として検出される。多数の電子を一個ずつ入射すると着弾点が蓄積し、二つのスリットを通る確率振幅の干渉による縞模様を形成する。経路を観測すれば干渉縞は失われる。
+:::
+
+#### 問題A2 Schrödinger方程式と零点エネルギー {#sec-quantum-schrodinger}
+
+質量 $m$ の粒子が一次元ポテンシャル $V(x)$ 中を運動する。
+
+1. 時間に依存するSchrödinger方程式を書け。
+2. $V$ が時間に依存しないとき、定常状態を変数分離して時間に依存しないSchrödinger方程式を導け。
+3. 調和振動子 $V(x)=kx^2/2$ の基底エネルギーが0にならない理由を、不確定性原理から説明せよ。
+4. 有限な不連続をもつポテンシャル境界で、波動関数が満たす条件を述べよ。
+
+::: {.callout-note collapse="true"}
+##### 理論A2：波動関数の時間発展と空間形状を分ける
+
+**問いの正体**は、量子状態の時間変化を定める基本式と、定常状態の固有値問題を区別することです。
+
+波動関数 $\Psi(x,t)$ の絶対値二乗は位置の確率密度です。Hamiltonianを
+
+$$
+\hat H=-\frac{\hbar^2}{2m}\pdv[2]{x}+V(x)
+$$
+
+とすると、時間発展は $i\hbar\pdv*{\Psi}{t}=\hat H\Psi$ で決まります。
+
+$V$ が時間に依存しない場合、$\Psi(x,t)=\psi(x)T(t)$ と置けます。空間だけの式と時間だけの式が同じ定数 $E$ に等しくなり、
+
+$$
+\hat H\psi=E\psi,
+\qquad
+T(t)=e^{-iEt/\hbar}
+$$
+
+を得ます。$E$ は測定可能なエネルギー固有値です。
+
+調和振動子を原点へ完全に静止させれば古典力学では $E=0$ です。しかし、$x=0$ と $p=0$ を同時に正確に定めることは
+
+$$
+\Delta x\,\Delta p\ge\frac{\hbar}{2}
+$$
+
+に反します。局在を強めると運動量の揺らぎと運動エネルギーが増え、広げるとポテンシャルエネルギーが増えるため、両者の和には正の最小値があります。
+
+有限なポテンシャル段差で質量が同じなら、Schrödinger方程式を境界の微小区間で積分することで $\psi$ と $\dv*{\psi}{x}$ が連続になります。無限壁では壁の外を $\psi=0$ とし、境界でも $\psi=0$ です。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答A2
+
+1. 時間に依存する式は
+
+$$
+\boxed{
+i\hbar\pdv{\Psi(x,t)}{t}
+=\left[-\frac{\hbar^2}{2m}\pdv[2]{x}+V(x)\right]\Psi(x,t)
+}.
+$$
+
+2. $\Psi=\psi T$ を代入して両辺を $\psi T$ で割ると、
+
+$$
+i\hbar\frac{1}{T}\dv{T}{t}
+=\frac{1}{\psi}\left[-\frac{\hbar^2}{2m}\dv[2]{\psi}{x}+V\psi\right]
+=E.
+$$
+
+したがって、
+
+$$
+\boxed{
+\left[-\frac{\hbar^2}{2m}\dv[2]{x}+V(x)\right]\psi(x)=E\psi(x)
+},
+\qquad
+\boxed{\Psi(x,t)=\psi(x)e^{-iEt/\hbar}}.
+$$
+
+3. $\Delta p\gtrsim\hbar/(2\Delta x)$ と見積もると、
+
+$$
+E\sim\frac{(\Delta p)^2}{2m}+\frac{k(\Delta x)^2}{2}
+\gtrsim\frac{\hbar^2}{8m(\Delta x)^2}+\frac{k(\Delta x)^2}{2}.
+$$
+
+右辺は有限の $\Delta x$ で正の最小値をもつ。厳密な基底エネルギーは
+
+$$
+\boxed{E_0=\frac12\hbar\omega>0},
+\qquad
+\omega=\sqrt{\frac{k}{m}}
+$$
+
+である。
+
+4. $x=x_0$ が有限な段差なら
+
+$$
+\boxed{
+\psi(x_0^-)=\psi(x_0^+),
+\qquad
+\psi'(x_0^-)=\psi'(x_0^+)
+}.
+$$
+
+また、束縛状態は無限遠で0へ収束し、波動関数は一価かつ規格化可能でなければならない。
+:::
+
+## 界面・障壁・閉じ込め
+
+#### 問題B1 ポテンシャル段差での量子反射 {#sec-quantum-step-potential}
+
+$$
+V(x)=
+\begin{cases}
+0,&x\le0,\\
+V_0,&x>0
+\end{cases}
+\qquad(V_0>0)
+$$
+
+で表される材料界面へ、左側からエネルギー $E>0$ の電子を入射する。
+
+1. $E<V_0$ と $E>V_0$ の各場合について、領域ごとの物理的な波動関数を書け。
+2. 境界条件を用いて、$E>V_0$ の反射確率を求めよ。
+3. 古典力学との違いを説明せよ。
+
+::: {.callout-note collapse="true"}
+##### 理論B1：運動エネルギーの符号が波の形を決める
+
+**問いの正体**は、各領域で $E-V$ の符号を見て、進行波か指数関数かを選ぶことです。
+
+一定ポテンシャル領域では
+
+$$
+\dv[2]{\psi}{x}+\frac{2m(E-V)}{\hbar^2}\psi=0
+$$
+
+です。$E>V$ なら波数 $k=\sqrt{2m(E-V)}/\hbar$ の振動解、$E<V$ なら減衰定数 $\kappa=\sqrt{2m(V-E)}/\hbar$ の指数解になります。
+
+$E<V_0$ でも右側の波動関数はただちに0にならず、界面からおよそ $1/\kappa$ の深さまで侵入します。ただし右側には伝播する確率流がないため、定常状態の反射確率は1です。
+
+$E>V_0$ では両側に伝播できます。それでも波数が界面で変わるため、境界条件を満たすには反射波が必要です。これは古典粒子にはない量子反射です。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答B1
+
+1. 左側の入射振幅を1とする。
+
+$E<V_0$ では
+
+$$
+\psi(x)=
+\begin{cases}
+e^{ik_1x}+r e^{-ik_1x},&x\le0,\\
+t e^{-\kappa_2x},&x>0,
+\end{cases}
+$$
+
+$$
+k_1=\frac{\sqrt{2mE}}{\hbar},
+\qquad
+\kappa_2=\frac{\sqrt{2m(V_0-E)}}{\hbar}.
+$$
+
+$x\to+\infty$ で発散する $e^{+\kappa_2x}$ は除く。
+
+$E>V_0$ では
+
+$$
+\psi(x)=
+\begin{cases}
+e^{ik_1x}+r e^{-ik_1x},&x\le0,\\
+t e^{ik_2x},&x>0,
+\end{cases}
+\qquad
+k_2=\frac{\sqrt{2m(E-V_0)}}{\hbar}.
+$$
+
+右側からの入射がないので $e^{-ik_2x}$ は含めない。
+
+2. $x=0$ で $\psi,\psi'$ を連続にすると
+
+$$
+1+r=t,
+\qquad
+k_1(1-r)=k_2t.
+$$
+
+したがって、
+
+$$
+r=\frac{k_1-k_2}{k_1+k_2},
+\qquad
+\boxed{R=\abs{r}^2
+=\left(\frac{k_1-k_2}{k_1+k_2}\right)^2}.
+$$
+
+$E<V_0$ では伝播する透過波がないため $\boxed{R=1}$ である。
+
+3. 古典粒子は $E<V_0$ なら界面で反射し、$E>V_0$ なら必ず通過する。量子力学では $E<V_0$ でも波動関数が右側へ侵入し、$E>V_0$ でも $R>0$ の反射が生じる。
+:::
+
+#### 問題B2 三層材料とエバネッセント波 {#sec-quantum-three-layer}
+
+三層材料を
+
+$$
+V(x)=
+\begin{cases}
+0,&x<0,\\
+V_1,&0\le x\le a,\\
+V_2,&a<x
+\end{cases}
+\qquad(0<V_1<V_2)
+$$
+
+でモデル化する。左から粒子を入射し、$V_1<E<V_2$ とする。
+
+1. 各領域の物理的な一般解を書け。
+2. 波動関数が満たす境界条件をすべて書け。
+3. 中間層の右向き・左向き振幅の絶対値が等しいことを示し、その意味を説明せよ。
+4. $E>V_2$ になると右層の解がどう変わるか答えよ。
+5. 中間層だけが井戸となる場合、束縛エネルギーが離散化する理由を述べよ。
+
+::: {.callout-note collapse="true"}
+##### 理論B2：境界条件が許される振幅とエネルギーを選ぶ
+
+**問いの正体**は、各層で作った局所解を、界面で一つの波動関数へつなぐことです。
+
+$V_1<E<V_2$ では、左層と中間層は古典的許容領域、右層は禁制領域です。右層には減衰波だけが残ります。中間層の波は右界面で完全反射されるため、右向き波と左向き波の絶対値は等しくなり、定在波を作ります。ただし左側は開いているので、系全体は束縛状態ではなく散乱状態です。
+
+両側が禁制領域になる井戸では、左右の無限遠で発散する解を除き、二つの界面で4個の接続条件を満たさなければなりません。任意の $E$ では係数がすべて0になるため、非自明解が存在する特定の $E$ だけが固有値として残ります。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答B2
+
+1. 次を定義する。
+
+$$
+k_0=\frac{\sqrt{2mE}}{\hbar},
+\quad
+k_1=\frac{\sqrt{2m(E-V_1)}}{\hbar},
+\quad
+\kappa_2=\frac{\sqrt{2m(V_2-E)}}{\hbar}.
+$$
+
+物理的な解は
+
+$$
+\psi(x)=
+\begin{cases}
+e^{ik_0x}+r e^{-ik_0x},&x<0,\\
+\alpha e^{ik_1x}+\beta e^{-ik_1x},&0\le x\le a,\\
+t e^{-\kappa_2(x-a)},&a<x.
+\end{cases}
+$$
+
+2. 境界条件は
+
+$$
+\boxed{
+\begin{aligned}
+\psi(0^-)&=\psi(0^+),&\psi'(0^-)&=\psi'(0^+),\\
+\psi(a^-)&=\psi(a^+),&\psi'(a^-)&=\psi'(a^+).
+\end{aligned}}
+$$
+
+3. $x=a$ の条件から
+
+$$
+\frac{\alpha}{\beta}
+=\frac{ik_1-\kappa_2}{ik_1+\kappa_2}e^{-2ik_1a}.
+$$
+
+分子と分母の絶対値が等しいため、
+
+$$
+\boxed{\abs{\alpha}=\abs{\beta}}.
+$$
+
+右層は禁制領域で確率流を運ばないので、中間層から右界面へ進む波は全反射され、逆向き波と定在波を作る。
+
+4. $E>V_2$ なら $\kappa_2$ の代わりに
+
+$$
+k_2=\frac{\sqrt{2m(E-V_2)}}{\hbar}
+$$
+
+を用い、右層は $t e^{ik_2(x-a)}$ という透過進行波になる。
+
+5. 両外側が禁制領域なら、無限遠で減衰する解だけを残す。さらに二界面で $\psi,\psi'$ の連続条件を満たす非自明解が存在する条件が固有値方程式となるため、許される $E$ は離散値になる。
+:::
+
+#### 問題B3 リボンと円筒面への閉じ込め {#sec-quantum-ribbon-cylinder}
+
+電子の質量を $m$ とする。
+
+1. 二次元リボン $-a<x<a$ に電子を閉じ込め、$y$ 方向は自由とする。固有関数と固有エネルギーを求めよ。
+2. リボンの両端をつないで $\psi(x+2a,y)=\psi(x,y)$ とした場合の量子化条件を求めよ。
+3. 半径 $R$、長さ $L$ の円筒表面上に電子を閉じ込め、円周方向を $\theta$、軸方向を $z$ とする。$z=\pm L/2$ を無限壁としたときの固有関数と固有エネルギーを求めよ。
+4. 無限壁を有限障壁へ変えると固有状態がどう変わるか説明せよ。
+
+::: {.callout-note collapse="true"}
+##### 理論B3：閉じ込めた方向だけ運動量が離散化する
+
+**問いの正体**は、多次元の波動関数を方向ごとの積へ分け、各方向に異なる境界条件を適用することです。
+
+Hamiltonianが方向ごとの和なら、$\psi(x,y)=X(x)Y(y)$ と変数分離できます。無限壁の間では端点で0となる定在波、自由方向では平面波になります。周期境界では、一周後に波動関数が同じ値へ戻る条件から、周長に整数個の波長だけが入ります。
+
+円筒面では半径方向の自由度を凍結し、Laplacianは
+
+$$
+\nabla^2=\frac{1}{R^2}\pdv[2]{\theta}+\pdv[2]{z}
+$$
+
+です。$\theta$ 方向の周期境界が整数の角量子数を、$z$ 方向の無限壁が正整数の定在波番号を生みます。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答B3
+
+1. $X(\pm a)=0$ より
+
+$$
+X_n(x)=\sin\left[\frac{n\pi(x+a)}{2a}\right],
+\qquad n=1,2,\ldots
+$$
+
+であり、自由方向は $Y=e^{ik_yy}$ である。したがって、
+
+$$
+\boxed{
+\psi_{n,k_y}(x,y)=X_n(x)e^{ik_yy}
+},
+$$
+
+$$
+\boxed{
+E_{n,k_y}=\frac{\hbar^2}{2m}
+\left[\left(\frac{n\pi}{2a}\right)^2+k_y^2\right]
+}.
+$$
+
+2. $X(x+2a)=X(x)$ より $e^{ik_x2a}=1$ なので、
+
+$$
+\boxed{k_x=\frac{\pi q}{a}},
+\qquad q=0,\pm1,\pm2,\ldots
+$$
+
+となる。
+
+3. $\psi(\theta,z)=\Theta(\theta)Z(z)$ とする。周期条件 $\Theta(\theta+2\pi)=\Theta(\theta)$ と無限壁条件 $Z(\pm L/2)=0$ から、
+
+$$
+\Theta_q=e^{iq\theta},
+\quad q\in\mathbb Z,
+\qquad
+Z_n=\sin\left[\frac{n\pi(z+L/2)}{L}\right],
+\quad n=1,2,\ldots
+$$
+
+を得る。よって、
+
+$$
+\boxed{
+E_{q,n}=\frac{\hbar^2}{2m}
+\left(\frac{q^2}{R^2}+\frac{n^2\pi^2}{L^2}\right)
+}.
+$$
+
+$q\ne0$ では $+q$ と $-q$ が同じエネルギーをもち、二重縮退する。
+
+4. 有限障壁では波動関数が壁の外へ指数関数的にしみ出す。実効的な閉じ込め幅が広がるため固有エネルギーは無限壁の場合より低くなり、障壁より低い有限個の束縛状態だけが残る。
+:::
+
+## 調和振動子
+
+#### 問題C1 期待値と半調和振動子 {#sec-quantum-harmonic-half}
+
+一次元調和振動子
+
+$$
+V(x)=\frac12kx^2,
+\qquad
+E_n=\left(n+\frac12\right)\hbar\omega,
+\qquad
+\omega=\sqrt{\frac{k}{m}}
+$$
+
+を考える。
+
+1. 第2励起状態 $n=2$ の運動エネルギーの期待値を求めよ。
+2. 第1励起状態 $n=1$ のポテンシャルエネルギーの期待値を求めよ。
+3. $x<0$ を無限壁とし、$x\ge0$ だけ調和振動子ポテンシャルを残した。固有エネルギーと固有関数を求め、基底状態と第1励起状態を図示せよ。
+4. 粒子が全調和振動子の $n=0,1,2$ のいずれかにある。$n=2$ の節を利用して状態を識別する方法を説明せよ。
+
+::: {.callout-note collapse="true"}
+##### 理論C1：運動とポテンシャルは平均すると半分ずつ
+
+**問いの正体**は、固有関数を毎回積分せず、virial theoremと対称性を使うことです。
+
+$V\propto x^2$ の調和振動子ではvirial theoremから
+
+$$
+2\expval{T}=2\expval{V}
+$$
+
+となるため、
+
+$$
+\expval{T}=\expval{V}=\frac{E_n}{2}
+$$
+
+です。
+
+原点に無限壁を置くと $\psi(0)=0$ が必要です。全空間の調和振動子のうち、原点で0になるのは奇関数の状態 $n=1,3,5,\ldots$ だけです。これらの $x\ge0$ 部分を取り出せば、半調和振動子の完全な固有状態になります。
+
+波動関数の節では確率密度が0です。理想的な一点の確率は常に0なので、実験的には節を中心とする十分狭い有限幅の検出領域を用い、幅を変えたときの検出確率の減少の仕方を比較します。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答C1
+
+1. $n=2$ では $E_2=5\hbar\omega/2$ なので、
+
+$$
+\boxed{\expval{T}_{n=2}=\frac{E_2}{2}=\frac54\hbar\omega}.
+$$
+
+2. $n=1$ では $E_1=3\hbar\omega/2$ なので、
+
+$$
+\boxed{\expval{V}_{n=1}=\frac{E_1}{2}=\frac34\hbar\omega}.
+$$
+
+3. 半調和振動子の状態番号を $j=0,1,2,\ldots$ とすると、全調和振動子の $n=2j+1$ に対応する。
+
+$$
+\boxed{E_j^{\mathrm{half}}=\left(2j+\frac32\right)\hbar\omega}
+$$
+
+$$
+\boxed{
+\psi_j^{\mathrm{half}}(x)=
+\begin{cases}
+0,&x<0,\\
+\sqrt2\,\psi_{2j+1}(x),&x\ge0.
+\end{cases}}
+$$
+
+基底状態は $x>0$ に節をもたず、第1励起状態は $x>0$ に節を一つもつ。
+
+```{python}
+#| label: fig-quantum-half-harmonic
+#| fig-cap: '半調和振動子の基底状態と第1励起状態の波動関数の模式図。横軸は無次元座標、規格化は省略した。'
+#| fig-alt: '原点より左は無限壁で波動関数がゼロ。基底状態は右側に一つの山、第1励起状態は右側に符号の異なる二つの山をもつ。'
+#| code-fold: true
+#| code-summary: "作図コード"
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+xi = np.linspace(0.0, 4.0, 500)
+psi_ground = xi * np.exp(-xi**2 / 2)
+psi_excited = (8 * xi**3 - 12 * xi) * np.exp(-xi**2 / 2) / 8
+
+fig, axes = plt.subplots(1, 2, figsize=(8.4, 3.3), sharey=True)
+for ax, psi, title in zip(
+    axes,
+    (psi_ground, psi_excited),
+    ("ground state", "first excited state"),
+):
+    ax.axvspan(-0.7, 0, color="0.88", label="infinite wall")
+    ax.axhline(0, color="0.3", lw=0.8)
+    ax.axvline(0, color="black", lw=1.2)
+    ax.plot(xi, psi, color="#315b8a", lw=2)
+    ax.set(xlim=(-0.7, 4), xlabel=r"$\xi=\sqrt{m\omega/\hbar}\,x$", title=title)
+axes[0].set_ylabel(r"schematic $\psi$")
+plt.show()
+```
+
+4. $n=2$ の波動関数は $H_2(\xi)=4\xi^2-2$ に比例するため、
+
+$$
+x_0=\pm\sqrt{\frac{\hbar}{2m\omega}}
+$$
+
+に節をもつ。一方、$n=0,1$ の波動関数はこの位置で0ではない。$x_0$ 周囲の狭い検出領域について繰り返し非破壊測定し、検出確率が節に対応して抑制されるかを調べれば $n=2$ を識別できる。
+:::
+
+#### 問題C2 振動スペクトルとFermi粒子 {#sec-quantum-oscillator-spectroscopy}
+
+ばね定数 $k$ は粒子の質量に依存しないものとする。
+
+1. 質量 $M$ の陽子と質量 $2M$ の重陽子が、それぞれ独立な一次元調和振動子として振動する。赤外吸収スペクトルの位置関係を求めよ。
+2. 同じ一次元調和ポテンシャル中に、相互作用を無視できる陽子3個を入れる。基底状態の全エネルギーを求めよ。陽子はスピン $1/2$ のFermi粒子とする。
+
+::: {.callout-note collapse="true"}
+##### 理論C2：準位差は質量で動き、占有数は統計で決まる
+
+**問いの正体**は、同じポテンシャルでも準位間隔は粒子質量に依存し、同一Fermi粒子はPauli原理に従って準位を埋めることを使う問題です。
+
+調和振動子の隣接準位差は
+
+$$
+\Delta E=\hbar\omega,
+\qquad
+\omega=\sqrt{\frac{k}{m}}
+$$
+
+です。電気双極子遷移では $\Delta n=\pm1$ が許容され、吸収角振動数は $\omega$、通常の振動数は $\nu=\omega/(2\pi)$ です。重い同位体ほど低周波・長波長側へ移ります。
+
+一つの空間固有状態には、スピン上向きと下向きの2粒子まで入れます。3個目は次の空間準位へ入らなければなりません。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答C2
+
+1. 陽子と重陽子の角振動数は
+
+$$
+\omega_{mathrm p}=\sqrt{\frac{k}{M}},
+\qquad
+\omega_{mathrm d}=\sqrt{\frac{k}{2M}}
+=\frac{\omega_{mathrm p}}{\sqrt2}.
+$$
+
+したがって、吸収線は
+
+$$
+\boxed{\nu_{mathrm d}=\frac{\nu_{mathrm p}}{\sqrt2}}
+$$
+
+に現れ、重陽子の線が低周波側にある。
+
+```{python}
+#| label: fig-quantum-isotope-ir
+#| fig-cap: '陽子と重陽子の調和振動による赤外吸収の模式図。重陽子の吸収は陽子より低周波側に現れる。'
+#| fig-alt: '透過率対規格化振動数。1割るルート2の位置に重陽子、1の位置に陽子の吸収による谷がある。'
+#| code-fold: true
+#| code-summary: "作図コード"
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+frequency = np.linspace(0.45, 1.2, 600)
+nu_d = 1 / np.sqrt(2)
+transmission = (
+    1
+    - 0.42 * np.exp(-((frequency - nu_d) / 0.018) ** 2)
+    - 0.42 * np.exp(-((frequency - 1.0) / 0.018) ** 2)
+)
+
+fig, ax = plt.subplots(figsize=(6.8, 3.4))
+ax.plot(frequency, transmission, color="#315b8a", lw=2)
+ax.axvline(nu_d, color="#c23b53", ls="--", lw=1)
+ax.axvline(1.0, color="#c23b53", ls="--", lw=1)
+ax.text(nu_d, 0.52, "deuteron", ha="center")
+ax.text(1.0, 0.52, "proton", ha="center")
+ax.set(xlabel=r"normalized frequency $\nu/\nu_{\mathrm{p}}$", ylabel="transmission", ylim=(0.45, 1.04))
+ax.grid(alpha=0.2)
+plt.show()
+```
+
+2. $n=0$ にスピンの異なる2個、$n=1$ に1個を入れる。
+
+$$
+\begin{aligned}
+E_{\mathrm{tot}}
+&=2\left(\frac12\hbar\omega\right)
++\left(\frac32\hbar\omega\right)\\
+&=\boxed{\frac52\hbar\omega},
+\qquad
+\omega=\sqrt{\frac{k}{M}}.
+\end{aligned}
+$$
+:::
+
+#### 問題C3 三次元調和振動子と交換関係 {#sec-quantum-3d-oscillator}
+
+$$
+V(x,y,z)=\frac{k}{2}(x^2+y^2+z^2)
+$$
+
+で表される等方的な三次元調和振動子を考える。
+
+1. 基底状態のエネルギーと固有関数を求めよ。
+2. 第1励起状態のエネルギーと縮退度を求めよ。
+3. 基底状態と第1励起状態における $L^2$ の期待値を求めよ。
+4. 運動量 $p_x$ と軌道磁気モーメントの $y$ 成分を同時に正確に決定できるか答えよ。
+
+::: {.callout-note collapse="true"}
+##### 理論C3：三方向の量子数を足し、回転対称性で分類する
+
+**問いの正体**は、三次元問題を独立な三つの一次元振動子へ分け、さらに回転対称性から角運動量を読むことです。
+
+固有エネルギーは
+
+$$
+E_{n_xn_yn_z}
+=\left(n_x+n_y+n_z+\frac32\right)\hbar\omega
+$$
+
+です。基底状態は三方向すべてが $n=0$ で球対称、したがって $l=0$ です。第1励起状態は $(1,0,0),(0,1,0),(0,0,1)$ の三状態で、回転に対してベクトルのように変換する $l=1$ の組を作ります。
+
+電子の軌道磁気モーメントは $\boldsymbol{\mu}_L=-e\mathbf L/(2m)$ です。二つの物理量を同時に正確に決定できるかは、対応する演算子の交換子で判定します。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答C3
+
+$\alpha=m\omega/\hbar$ とする。
+
+1. 基底状態は
+
+$$
+\boxed{E_0=\frac32\hbar\omega},
+$$
+
+$$
+\boxed{
+\psi_0(x,y,z)=
+\left(\frac{\alpha}{\pi}\right)^{3/4}
+\exp\left[-\frac{\alpha}{2}(x^2+y^2+z^2)\right]
+}.
+$$
+
+2. $n_x+n_y+n_z=1$ より
+
+$$
+\boxed{E_1=\frac52\hbar\omega}
+$$
+
+で、三重縮退する。
+
+3. $L^2$ の固有値は $\hbar^2l(l+1)$ なので、
+
+$$
+\boxed{\expval{L^2}_{\mathrm{ground}}=0},
+\qquad
+\boxed{\expval{L^2}_{\mathrm{first}}=2\hbar^2}.
+$$
+
+4. $L_y=zp_x-xp_z$ を用いると、
+
+$$
+[p_x,L_y]=i\hbar p_z.
+$$
+
+したがって、
+
+$$
+[p_x,\mu_{L,y}]
+=-\frac{e}{2m}[p_x,L_y]
+=-\frac{i e\hbar}{2m}p_z\ne0.
+$$
+
+よって、一般には
+
+$$
+\boxed{p_x\text{ と }\mu_{L,y}\text{ を同時に正確には決定できない}}
+$$
+
+と結論する。
+:::
+
+## 球対称ポテンシャルと水素原子
+
+#### 問題D1 球形無限井戸と角運動量 {#sec-quantum-spherical-well}
+
+半径 $R$ の球内に質量 $m$ の粒子を閉じ込める。
+
+$$
+V(r)=
+\begin{cases}
+0,&r<R,\\
++\infty,&r\ge R.
+\end{cases}
+$$
+
+極座標は通常の約束
+
+$$
+x=r\sin\theta\cos\phi,
+\quad
+y=r\sin\theta\sin\phi,
+\quad
+z=r\cos\theta
+$$
+
+を用いる。
+
+1. $\psi=\mathcal R(r)\Theta(\theta)\Phi(\phi)$ として変数分離し、動径方向と方位角方向の方程式を書け。
+2. 方位角量子数が整数になることを示せ。
+3. $L^2,L_z$ の期待値を量子数 $l,m_l$ で表せ。
+4. $l=0$ の固有エネルギーと動径関数を求めよ。
+
+::: {.callout-note collapse="true"}
+##### 理論D1：一価性が磁気量子数を整数にする
+
+**問いの正体**は、球対称な問題を半径と角度へ分離し、波動関数が一周後に同じ値へ戻る条件を使うことです。
+
+方位角の解は $e^{im_l\phi}$ 型です。$\phi$ と $\phi+2\pi$ は同じ位置なので、波動関数の一価性から $e^{i2\pi m_l}=1$ が必要です。これが $m_l$ を整数にします。
+
+角度方程式の正則解は球面調和関数 $Y_{l,m_l}$ であり、
+
+$$
+\hat L^2Y_{l,m_l}=\hbar^2l(l+1)Y_{l,m_l},
+\qquad
+\hat L_zY_{l,m_l}=\hbar m_lY_{l,m_l}
+$$
+
+を満たします。
+
+$l=0$ では遠心力項が消え、$u(r)=r\mathcal R(r)$ と置くと一次元無限井戸と同じ正弦方程式になります。ただし原点で $u(0)=0$、球壁で $u(R)=0$ です。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答D1
+
+1. 球内で $k^2=2mE/\hbar^2$ とすると、動径方程式は
+
+$$
+\boxed{
+\frac{1}{r^2}\dv{}{r}\left(r^2\dv{\mathcal R}{r}\right)
++\left[k^2-\frac{l(l+1)}{r^2}\right]\mathcal R=0
+}
+$$
+
+である。方位角方程式は
+
+$$
+\boxed{\dv[2]{\Phi}{\phi}+m_l^2\Phi=0}.
+$$
+
+2. $\Phi=Ae^{im_l\phi}+Be^{-im_l\phi}$ と周期条件 $\Phi(\phi+2\pi)=\Phi(\phi)$ から、
+
+$$
+\boxed{m_l\in\mathbb Z}.
+$$
+
+正則な極角解との組合せでは $l=0,1,2,\ldots$、$m_l=-l,\ldots,l$ である。
+
+3. $Y_{l,m_l}$ の状態では
+
+$$
+\boxed{\expval{L^2}=\hbar^2l(l+1)},
+\qquad
+\boxed{\expval{L_z}=\hbar m_l}.
+$$
+
+4. $l=0$ では $u=r\mathcal R$ と置くと $u''+k^2u=0$ である。$u(0)=u(R)=0$ より、
+
+$$
+k_n=\frac{n\pi}{R},
+\qquad n=1,2,\ldots
+$$
+
+したがって、
+
+$$
+\boxed{E_{n,l=0}=\frac{\hbar^2\pi^2n^2}{2mR^2}},
+$$
+
+$$
+\boxed{\mathcal R_{n0}(r)=A\frac{\sin(n\pi r/R)}{r}}.
+$$
+
+$r\to0$ では $\sin(kr)/r\to k$ なので有限である。
+:::
+
+#### 問題D2 水素原子の確率と測定 {#sec-quantum-hydrogen-measurement}
+
+水素原子の固有状態を
+
+$$
+\psi_{n,l,m_l}(r,\theta,\phi)
+=R_{n,l}(r)Y_{l,m_l}(\theta,\phi)
+$$
+
+とし、$R_{n,l}$ と $Y_{l,m_l}$ はそれぞれ規格化されているとする。
+
+1. 微小体積 $\dd{\tau}$ に電子を見いだす確率と、$r_1\le r\le r_2$ に電子を見いだす確率を書け。
+2. $\expval{r}$ を $n,l$ で表し、2p状態の値を求めよ。
+3. 3d状態における $L^2$ と、2p状態における $L_z$ の期待値・測定誤差を求めよ。
+4. $r$ と $L_z$ を同時に正確に測定できるか答えよ。
+5. 2p状態におけるCoulomb力の大きさの期待値を求めよ。
+
+::: {.callout-note collapse="true"}
+##### 理論D2：確率密度には座標系の体積要素が必要
+
+**問いの正体**は、$\abs{\psi}^2$ だけでなく、球殻の体積が $r^2$ に比例して増えることまで含めて確率を計算することです。
+
+球座標の体積要素は
+
+$$
+\dd{\tau}=r^2\sin\theta\dd{r}\dd{\theta}\dd{\phi}
+$$
+
+です。角度をすべて積分した動径確率密度は $r^2\abs{R_{n,l}(r)}^2$ です。
+
+演算子の固有状態にある物理量は、測定するたび同じ固有値を与えるため分散が0です。3d状態は $n=3,l=2$、2p状態は $n=2,l=1$ です。
+
+二つの物理量を同時に正確に測定できるかは交換子で判定します。$r$ は回転で変わらないため、$z$ 軸回転の生成子 $L_z$ と可換です。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答D2
+
+Bohr半径を
+
+$$
+a_0=\frac{4\pi\varepsilon_0\hbar^2}{me^2}
+$$
+
+とする。
+
+1. 微小体積の確率は
+
+$$
+\boxed{
+\dd{P}=\abs{R_{n,l}(r)}^2\abs{Y_{l,m_l}(\theta,\phi)}^2
+r^2\sin\theta\dd{r}\dd{\theta}\dd{\phi}
+}.
+$$
+
+動径範囲の確率は、角度部分の規格化を使って
+
+$$
+\boxed{
+P(r_1\le r\le r_2)
+=\int_{r_1}^{r_2}\abs{R_{n,l}(r)}^2r^2\dd{r}
+}.
+$$
+
+2. 水素原子では
+
+$$
+\boxed{
+\expval{r}_{n,l}
+=\frac{a_0}{2}\left[3n^2-l(l+1)\right]
+}.
+$$
+
+2p状態では
+
+$$
+\boxed{\expval{r}_{2p}=5a_0}.
+$$
+
+3. 3d状態は $l=2$ なので、
+
+$$
+\boxed{L^2=6\hbar^2},
+\qquad
+\boxed{\Delta(L^2)=0}.
+$$
+
+2p状態では
+
+$$
+\boxed{\expval{L_z}=m_l\hbar},
+\qquad
+\boxed{\Delta L_z=0}.
+$$
+
+4. $[r,L_z]=0$ なので、
+
+$$
+\boxed{r\text{ と }L_z\text{ は同時に正確に測定できる}}
+$$
+
+と答える。
+
+5. Coulomb力の大きさは $F=e^2/(4\pi\varepsilon_0r^2)$ である。水素原子の
+
+$$
+\expval{r^{-2}}_{n,l}
+=\frac{1}{a_0^2n^3(l+1/2)}
+$$
+
+を用いると、2p状態では $\expval{r^{-2}}=1/(12a_0^2)$ なので、
+
+$$
+\boxed{
+\expval{F}_{2p}
+=\frac{e^2}{48\pi\varepsilon_0a_0^2}
+}.
+$$
+
+これは力の**大きさ**の期待値である。球対称性または定常状態の対称性を考えた力ベクトルの期待値は0になりうるため、両者を区別する。
+:::
+
+#### 問題D3 水素原子のスペクトル・束縛・電子配置 {#sec-quantum-hydrogen-spectrum}
+
+水素型の固有エネルギーを
+
+$$
+E_n=-\frac{R}{n^2},
+\qquad n=1,2,\ldots
+$$
+
+とする。ここで $R$ はエネルギーの次元をもつ定数である。
+
+1. 水素原子の発光スペクトルが離散線になる理由を説明し、$n=3$ から $n=1$ への遷移で放出される光の振動数を求めよ。
+2. 電子のエネルギーが $E\ge0$ となる状態は存在するか答えよ。
+3. Coulomb引力があるのに、電子が原子核へ落ち込まない理由を説明せよ。
+4. 電子間相互作用を無視し、陽子のまわりへ電子3個または5個を入れる。Pauli原理を満たす基底状態の全電子エネルギーを求めよ。
+5. Coulombポテンシャルを遮蔽Coulombポテンシャルや別の球対称中心力へ変えたとき、変わらない量と変わる量を述べよ。
+
+::: {.callout-note collapse="true"}
+##### 理論D3：中心力の対称性とCoulomb固有の性質を分ける
+
+**問いの正体**は、どの結果が量子力学一般から来るのか、どの結果がCoulombポテンシャル特有なのかを区別することです。
+
+束縛状態のエネルギーは離散化されているため、光子のエネルギー $h\nu=E_i-E_f$ も離散値になります。$E<0$ は電離に必要なエネルギーが残る束縛状態、$E=0$ は電離限界、$E>0$ は連続スペクトルに属する散乱状態です。
+
+原子核へ強く局在させると $\Delta x$ が小さくなり、不確定性原理により $\Delta p$ と運動エネルギーが増えます。運動エネルギーとCoulomb位置エネルギーの和は有限半径で最小になり、安定な基底状態を作ります。
+
+ポテンシャルが $V(r)$ だけに依存する限り回転対称性は保たれ、$L^2,L_z$ はHamiltonianと可換です。一方、動径関数、エネルギー固有値、束縛状態数、異なる $l$ 間の偶然縮退はポテンシャルの具体形に依存します。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答D3
+
+1. 定常状態間の遷移では
+
+$$
+h\nu=E_3-E_1
+=-\frac{R}{9}-(-R)=\frac{8R}{9}.
+$$
+
+したがって、
+
+$$
+\boxed{\nu=\frac{8R}{9h}}.
+$$
+
+許される準位が離散的なので、遷移エネルギーも離散的となり、線スペクトルが現れる。
+
+2. $\boxed{E\ge0\text{ の状態は存在する}}$。$E=0$ は電離限界、$E>0$ は原子に束縛されない連続的な散乱状態である。
+
+3. 代表的な大きさを $r$ とすると、
+
+$$
+E(r)\sim\frac{\hbar^2}{2mr^2}
+-\frac{e^2}{4\pi\varepsilon_0r}.
+$$
+
+$r\to0$ では正の運動エネルギー項が $1/r^2$ で増大するため、全エネルギーは有限な $r$ で最小になる。よって電子は原子核へ崩壊しない。
+
+4. 一つの空間軌道には逆向きスピンの2電子まで入る。
+
+3電子では $n=1$ に2個、$n=2$ に1個なので、
+
+$$
+\boxed{
+E_{3\mathrm e}=2E_1+E_2
+=-2R-\frac{R}{4}
+=-\frac94R
+}.
+$$
+
+5電子では $n=1$ に2個、$n=2$ に3個なので、
+
+$$
+\boxed{
+E_{5\mathrm e}=2E_1+3E_2
+=-2R-\frac{3R}{4}
+=-\frac{11}{4}R
+}.
+$$
+
+5. $V(r)$ が球対称である限り、変わらないものは
+
+$$
+\boxed{
+l,m_l\text{ による角度関数の分類、}
+L^2=\hbar^2l(l+1)、L_z=\hbar m_l
+}
+$$
+
+である。同じ $l$ に対する $m_l$ の縮退も保たれる。一方、
+
+$$
+\boxed{
+R_{n,l}(r)、E_{n,l}、束縛状態数、異なるl間の縮退
+}
+$$
+
+は一般に変化する。特に遮蔽ポテンシャルでは長距離引力が弱くなり、束縛状態数は有限になりうる。
+:::
+
+## 解法の見取り図
+
+| 問題の型 | 最初に確認するもの | 次の操作 |
+|---|---|---|
+| 一定ポテンシャルの各領域 | $E-V$ の符号 | 振動解か指数解かを選ぶ |
+| 材料界面 | ポテンシャルが有限か無限か | 有限なら $\psi,\psi'$ を連続、無限壁なら $\psi=0$ |
+| 束縛状態 | 無限遠での振る舞い | 発散解を除き、接続条件から固有値を決める |
+| 散乱状態 | 入射方向 | 入射波・反射波・透過波を確率流の向きで選ぶ |
+| 多次元の閉じ込め | Hamiltonianが方向ごとの和か | 変数分離し、方向ごとの境界条件を課す |
+| 球対称ポテンシャル | $V=V(r)$ か | $R(r)Y_{l,m_l}$ に分離し、角運動量を使う |
+| 同時測定 | 演算子の交換子 | 交換子が0なら共通固有状態を選べる |
+| 複数のFermi粒子 | スピンを含む一粒子状態 | 低い準位からPauli原理に従って埋める |
+
+量子力学の計算では、微分方程式を解き始める前に、対称性、$E-V$ の符号、境界条件、無限遠での振る舞いを確認すると、残すべき解の形を大きく絞れます。
