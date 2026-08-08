@@ -93,24 +93,18 @@
     var leftToggleBtn;
     var tocToggleBtn;
     var drawerOpen = false;
-    // Tablet/laptop layouts use an overlay rail. Start with the page TOC open
-    // so the reader sees orientation before choosing to dismiss it.
-    var overlayPanel = isOverlayNavigation() ? 'right' : null;
-
+    // ≥992 layouts always reserve rail space; overlay mode was removed because
+    // it covered article prose on tablet/laptop widths.
     function isMobileNavigation() {
       return window.innerWidth < 992;
     }
 
-    function isOverlayNavigation() {
-      return window.innerWidth >= 992 && window.innerWidth < 1280;
-    }
-
     function effectiveLeftVisible() {
-      return isOverlayNavigation() ? overlayPanel === 'left' : leftVisible;
+      return leftVisible;
     }
 
     function effectiveTocVisible() {
-      return isOverlayNavigation() ? overlayPanel === 'right' : tocVisible;
+      return tocVisible;
     }
 
     function updateLeftToggleState() {
@@ -155,25 +149,6 @@
       if (animate && !reducedMotion) body.dataset.pjMotionReady = 'true';
     }
 
-    if (navbarTools && toc) {
-      tocToggleBtn = document.createElement('button');
-      tocToggleBtn.type = 'button';
-      tocToggleBtn.className = 'pj-toc-toggle pj-rail-toggle quarto-navigation-tool';
-      tocToggleBtn.innerHTML = '<i class="bi bi-layout-text-sidebar-reverse" aria-hidden="true"></i>';
-      tocToggleBtn.setAttribute('aria-controls', 'quarto-margin-sidebar');
-      navbarTools.insertBefore(tocToggleBtn, navbarTools.firstChild);
-      tocToggleBtn.addEventListener('click', function () {
-        if (isOverlayNavigation()) {
-          overlayPanel = overlayPanel === 'right' ? null : 'right';
-          applyLayoutState(true);
-          return;
-        }
-        tocVisible = !tocVisible;
-        writeStoredBoolean(TOC_STORAGE_KEY, tocVisible);
-        applyLayoutState(true);
-      });
-    }
-
     if (brandContainer) {
       leftToggleBtn = document.createElement('button');
       leftToggleBtn.type = 'button';
@@ -183,6 +158,24 @@
       ].join('');
       leftToggleBtn.className = 'navbar-sidebar-toggle pj-rail-toggle quarto-navigation-tool';
       brandContainer.insertBefore(leftToggleBtn, brandContainer.firstChild);
+    }
+
+    // TOC toggle sits immediately left of the constellation (星図) button.
+    // Mobile keeps using the drawer "このページ" tab instead.
+    if (toc && navbarTools) {
+      tocToggleBtn = document.createElement('button');
+      tocToggleBtn.type = 'button';
+      tocToggleBtn.className = 'pj-toc-toggle pj-rail-toggle quarto-navigation-tool';
+      tocToggleBtn.innerHTML = '<i class="bi bi-layout-text-sidebar-reverse" aria-hidden="true"></i>';
+      tocToggleBtn.setAttribute('aria-controls', 'quarto-margin-sidebar');
+      tocToggleBtn.addEventListener('click', function () {
+        tocVisible = !tocVisible;
+        writeStoredBoolean(TOC_STORAGE_KEY, tocVisible);
+        applyLayoutState(true);
+      });
+      var networkBtn = navbarTools.querySelector('.pj-network-toggle');
+      if (networkBtn) navbarTools.insertBefore(tocToggleBtn, networkBtn);
+      else navbarTools.insertBefore(tocToggleBtn, navbarTools.firstChild);
     }
 
     // First paint uses the final state; transitions become available on the next frame.
@@ -314,39 +307,15 @@
         if (drawerOpen) closeDrawer(); else openDrawer();
         return;
       }
-      if (isOverlayNavigation()) {
-        overlayPanel = overlayPanel === 'left' ? null : 'left';
-        applyLayoutState(true);
-        return;
-      }
       leftVisible = !leftVisible;
       writeStoredBoolean(LEFT_STORAGE_KEY, leftVisible);
       applyLayoutState(true);
     });
 
-    var wasOverlayNavigation = isOverlayNavigation();
     window.addEventListener('resize', function () {
-      var overlayNow = isOverlayNavigation();
-      if (overlayNow !== wasOverlayNavigation) {
-        overlayPanel = overlayNow ? 'right' : null;
-        wasOverlayNavigation = overlayNow;
-        applyLayoutState(false);
-      }
       if (!isMobileNavigation() && drawerOpen) closeDrawer();
       else updateLeftToggleState();
-    });
-
-    document.addEventListener('pointerdown', function (event) {
-      if (!isOverlayNavigation() || !overlayPanel) return;
-      if (event.target.closest('#quarto-sidebar, #quarto-margin-sidebar, .pj-rail-toggle')) return;
-      overlayPanel = null;
-      applyLayoutState(true);
-    });
-
-    document.addEventListener('keydown', function (event) {
-      if (event.key !== 'Escape' || !isOverlayNavigation() || !overlayPanel) return;
-      overlayPanel = null;
-      applyLayoutState(true);
+      applyLayoutState(false);
     });
 
     // ── navbar は下方向で退避、上方向で復帰 -------------------------------
@@ -429,6 +398,10 @@
     if (toc && tocScrollRegion && !mobilePerformanceMode) {
       var visibleTocCurrent = null;
       var tocProjectionFrame = 0;
+      var tocMarker = document.createElement('span');
+      tocMarker.className = 'pj-toc-marker';
+      tocMarker.setAttribute('aria-hidden', 'true');
+      tocScrollRegion.prepend(tocMarker);
 
       function revealVisibleTocCurrent(link) {
         var regionRect = tocScrollRegion.getBoundingClientRect();
@@ -439,6 +412,17 @@
         } else if (linkRect.bottom > regionRect.bottom - inset) {
           tocScrollRegion.scrollTop += linkRect.bottom - regionRect.bottom + inset;
         }
+      }
+
+      function moveTocMarker(link) {
+        if (!link || !tocMarker) return;
+        var regionRect = tocScrollRegion.getBoundingClientRect();
+        var linkRect = link.getBoundingClientRect();
+        var top = linkRect.top - regionRect.top + tocScrollRegion.scrollTop + 4;
+        var height = Math.max(14, linkRect.height - 8);
+        tocMarker.style.transform = 'translateY(' + top + 'px)';
+        tocMarker.style.height = height + 'px';
+        tocMarker.classList.add('pj-toc-marker-ready');
       }
 
       function projectVisibleTocCurrent() {
@@ -460,7 +444,10 @@
           next.classList.add('pj-toc-visible-current');
         }
         visibleTocCurrent = next;
-        window.requestAnimationFrame(function () { revealVisibleTocCurrent(next); });
+        window.requestAnimationFrame(function () {
+          revealVisibleTocCurrent(next);
+          moveTocMarker(next);
+        });
       }
 
       function requestTocProjection() {
@@ -476,6 +463,9 @@
         attributes: true,
         attributeFilter: ['class']
       });
+      tocScrollRegion.addEventListener('scroll', function () {
+        if (visibleTocCurrent) moveTocMarker(visibleTocCurrent);
+      }, { passive: true });
       window.addEventListener('resize', requestTocProjection, { passive: true });
     }
 
@@ -656,6 +646,7 @@
 
       var statusChapter = status.querySelector('.pj-reading-chapter');
       var statusHeading = status.querySelector('.pj-reading-heading');
+      var statusCopy = status.querySelector('.pj-reading-copy');
       var statusPercent = status.querySelector('.pj-reading-percent');
       var statusOrbitProgress = status.querySelector('.pj-reading-orbit-progress');
       var progressBar = progress.querySelector('.pj-reading-progress-bar');
@@ -666,6 +657,7 @@
       var currentPercentage = -1;
       var scrollRange = 1;
       var geometryTimer = 0;
+      var labelSwapTimer = 0;
 
       function refreshHeadingOffsets() {
         headingOffsets = allHeadings.map(function (heading) {
@@ -697,6 +689,17 @@
         return current >= 0 ? headingOffsets[current] : null;
       }
 
+      function pulseReadingLabels() {
+        if (!statusCopy || reducedMotion) return;
+        statusCopy.classList.remove('pj-reading-label-swap');
+        void statusCopy.offsetWidth;
+        statusCopy.classList.add('pj-reading-label-swap');
+        window.clearTimeout(labelSwapTimer);
+        labelSwapTimer = window.setTimeout(function () {
+          statusCopy.classList.remove('pj-reading-label-swap');
+        }, 300);
+      }
+
       function updateReadingState() {
         if (activePreviewLink) hideLinkPreview(activePreviewLink);
         var percentage = Math.max(0, Math.min(100, Math.round(window.scrollY / scrollRange * 100)));
@@ -726,6 +729,7 @@
           statusChapter.textContent = chapterIndex ? 'Chapter ' + String(chapterIndex).padStart(2, '0') + ' · ' + chapterText.textContent.trim() : 'Introduction';
           document.body.dataset.pjChapter = chapterIndex ? String(chapterIndex) : '0';
           progress.setAttribute('aria-valuetext', percentage + '%、' + headingText);
+          pulseReadingLabels();
         }
 
         if (percentage >= 99 && !completed) {

@@ -270,16 +270,25 @@ body {
   a, .navbar-brand { border-bottom: none !important; }
 }
 
-.quarto-color-scheme-toggle { border-bottom: none !important; }
+.quarto-color-scheme-toggle {
+  border-bottom: none !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem !important;
+  height: 2.25rem !important;
+  min-width: 2.25rem !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
 
 main, .content, #quarto-content, body > .container,
 body > .container-fluid {
   padding-top: 88px;
 }
 
-// ---- Sidebar (traditional plain) -------------------------------------------
+// ---- Sidebar (rail surface; glass fill comes from styles.css) --------------
 .sidebar, #quarto-sidebar {
-  background: transparent;
   border: none;
   padding: 1.25rem 0.5rem;
 
@@ -355,6 +364,15 @@ h1, h2, h3, h4, h5, h6 {
   color: #f0f1f7;
   letter-spacing: -0.015em;
 }
+h2 { font-size: clamp(1.45rem, 2.2vw, 1.62rem); }
+h3 { font-size: clamp(1.18rem, 1.8vw, 1.3rem); }
+
+#quarto-document-content.content {
+  > p { margin-block: 0.72em 0.92em; }
+  > :is(ul, ol) { margin-block: 0.65em 0.95em; }
+  > :is(ul, ol) li { margin-block: 0.22em; }
+  > :is(ul, ol) li + li { margin-top: 0.28em; }
+}
 
 // ---- Links -----------------------------------------------------------------
 a {
@@ -376,12 +394,14 @@ a {
 .quarto-title-block {
   @include glass;
   border-radius: $glass-radius-lg;
-  padding: clamp(1.35rem, 2.8vw, 2rem) clamp(1.25rem, 3.2vw, 2.5rem);
-  margin: .75rem 0 1.75rem;
+  padding: clamp(1.15rem, 2.4vw, 1.85rem) clamp(1.15rem, 3vw, 2.25rem);
+  margin: .6rem 0 1.35rem;
   box-shadow: $glass-shadow-lg;
 
-  .title { font-size: clamp(2rem, 3.4vw, 2.45rem); line-height: 1.15; font-weight: 800; letter-spacing: -0.025em; color: #ffffff; }
-  .subtitle { color: lighten($body-color, 5%); font-weight: 400; }
+  .title { font-size: clamp(1.95rem, 3.2vw, 2.4rem); line-height: 1.15; font-weight: 800; letter-spacing: -0.025em; color: #ffffff; }
+  .subtitle { color: lighten($body-color, 5%); font-weight: 400; margin-top: 0.35rem; }
+  .quarto-title-meta { row-gap: 0.65rem; column-gap: 1rem; margin-top: 0.85rem; }
+  .quarto-title-meta-heading { font-size: 0.75rem; letter-spacing: 0.06em; }
 }
 
 // ---- Inline code -----------------------------------------------------------
@@ -431,22 +451,39 @@ pre.sourceCode {
   .op { color: $body-color; }
 }
 
-// ---- Callouts (glass frame, paper body) -------------------------------------
+// ---- Callouts (glass frame, paper body, short accent notch) -----------------
 .callout {
+  --callout-accent: #{$primary};
+  position: relative;
   @include glass-subtle;
   border: 1px solid $glass-border-dim !important;
+  border-left: 1px solid $glass-border-dim !important;
   border-radius: $glass-radius;
-  margin: 1.1rem 0;
+  margin: 0.85rem 0;
   overflow: hidden;
   box-shadow:
     0 12px 30px rgba(0, 0, 0, .24),
     inset 0 1px 0 rgba(255, 255, 255, .06);
   transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease;
 
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 16px;
+    left: 0;
+    width: 3px;
+    height: 16px;
+    border-radius: 0 999px 999px 0;
+    background: var(--callout-accent);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--callout-accent) 40%, transparent);
+    pointer-events: none;
+  }
+
   .callout-header {
     background: transparent !important;
     border: none !important;
-    min-height: 48px;
+    min-height: 46px;
     display: grid !important;
     grid-template-columns: 42px minmax(0, 1fr) 40px;
     align-items: center;
@@ -454,7 +491,7 @@ pre.sourceCode {
     font-weight: 700;
   }
   .callout-body, .callout-body-container {
-    padding: 0 48px 16px 48px;
+    padding: 0 48px 14px 48px;
     border-top: 1px solid $glass-border-dim;
   }
   .callout-icon-container {
@@ -469,6 +506,7 @@ pre.sourceCode {
     border-radius: 50%;
     display: inline-flex; align-items: center; justify-content: center;
     margin: 0;
+    transition: filter .22s ease, transform .22s ease;
   }
   .callout-title-container {
     min-width: 0;
@@ -488,6 +526,7 @@ pre.sourceCode {
     display: block !important;
     width: 1rem !important;
     height: 1rem !important;
+    transition: transform .2s cubic-bezier(.22, .61, .36, 1);
   }
   .callout-toggle::before {
     display: block !important;
@@ -497,6 +536,10 @@ pre.sourceCode {
     background-position: center !important;
     background-size: .9rem .9rem !important;
   }
+  &.callout-style-default:not(.collapsed) .callout-icon-container .callout-icon,
+  &:not(.collapsed) .callout-icon-container .callout-icon {
+    filter: drop-shadow(0 0 6px color-mix(in srgb, var(--callout-accent) 50%, transparent));
+  }
 }
 @each $type, $col in (
   "note": $info,
@@ -505,7 +548,7 @@ pre.sourceCode {
   "caution": $warning,
   "important": $danger
 ) {
-  .callout-#{$type}                            { --callout-accent: #{$col}; border-left-color: rgba($col, .7) !important; }
+  .callout-#{$type}                            { --callout-accent: #{$col}; }
   .callout-#{$type} .callout-icon-container .callout-icon { color: $col; }
   .callout-#{$type} .callout-header            { color: lighten($col, 8%); }
 }

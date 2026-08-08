@@ -1,0 +1,90 @@
+<%
+function toStr(s) {
+  if (s == null) return '';
+  if (typeof s === 'object') return s.name || s.text || s.value || '';
+  return String(s);
+}
+function strHash(s) {
+  return toStr(s).split('').reduce(function(a,c){ return a + c.charCodeAt(0); }, 0);
+}
+function initials(name) {
+  return toStr(name).split(/\s+/).filter(Boolean)
+    .map(function(p){ return p[0] ? p[0].toUpperCase() : ''; })
+    .join('').substring(0, 2);
+}
+function fmtDate(d) {
+  if (!d) return '';
+  try { return new Date(d).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}); }
+  catch(e) { return toStr(d); }
+}
+function attr(s) {
+  return toStr(s)
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+function categoryHash(cat) {
+  return '#category=' + encodeURIComponent(cat);
+}
+function catColorIdx(cat) { return strHash(cat) % 5; }
+function encodeCategory(cat) {
+  // Prefer Quarto's helper so filter/hash encoding stays in sync with metadataAttrs.
+  if (typeof utils !== 'undefined' && utils && typeof utils.b64encode === 'function') {
+    return utils.b64encode(cat);
+  }
+  return btoa(encodeURIComponent(toStr(cat)));
+}
+var AVATAR_GRADIENTS = [
+  'linear-gradient(135deg,#7c5cff,#2fb583)',
+  'linear-gradient(135deg,#3c8fcf,#7c5cff)',
+  'linear-gradient(135deg,#d65a76,#d99838)',
+  'linear-gradient(135deg,#2fb583,#3c8fcf)',
+  'linear-gradient(135deg,#e07be0,#7c5cff)'
+];
+%>
+<div class="list gl-listing">
+<% for (let i = 0; i < items.length; i++) { %>
+<%
+var item = items[i];
+var rawA = Array.isArray(item.author) ? item.author : (item.author ? [item.author] : []);
+var authors = rawA.map(toStr).filter(Boolean);
+var cats = (item.categories || []).map(toStr).filter(Boolean);
+var author0 = authors[0] || '';
+var avatarBg = AVATAR_GRADIENTS[strHash(author0) % AVATAR_GRADIENTS.length];
+var cat0 = cats[0] || '';
+var rt = toStr(item['reading-time'] || item.readingTime || '');
+var rtText = rt ? (/read/i.test(rt) ? rt.toUpperCase() : rt.toUpperCase() + ' READ') : '';
+var eyebrowParts = [];
+if (cat0) eyebrowParts.push(cat0.toUpperCase());
+if (rtText) eyebrowParts.push(rtText);
+var eyebrow = eyebrowParts.join(' · ');
+var categoriesText = cats.join(' ');
+%>
+<div class="gl-card-wrap" <%= metadataAttrs(item) %>>
+<article class="gl-card">
+<div class="gl-card-cover-wrap"><a href="<%- item.path %>" class="gl-card-link gl-card-cover" aria-label="<%- attr(item.title) %>"></a></div>
+<% if (eyebrow) { %>
+<div class="gl-eyebrow"><span class="gl-eyebrow-pill"><%- eyebrow %></span></div>
+<% } %>
+<h2 class="gl-title listing-title"><%- item.title %></h2>
+<% if (item.description && !toStr(item.description).startsWith('<!--')) { %>
+<p class="gl-desc listing-description"><%- item.description %></p>
+<% } %>
+<div class="gl-meta">
+<% if (author0) { %>
+<div class="gl-meta-col"><div class="gl-meta-lbl">AUTHOR</div><div class="gl-author-chip listing-author"><span class="gl-avatar" style="background:<%- avatarBg %>"><%- initials(author0) %></span><span class="gl-author-name"><%- author0 %></span></div></div>
+<% } %>
+<% if (item.date) { %>
+<div class="gl-meta-col"><div class="gl-meta-lbl">PUBLISHED</div><div class="gl-meta-val listing-date"><%- fmtDate(item.date) %></div></div>
+<% } %>
+<% if (cats.length > 0) { %>
+<div class="gl-meta-col"><div class="gl-meta-lbl">CATEGORIES</div><div class="gl-cats listing-categories"><% cats.forEach(function(cat){ %><a class="gl-cat-pill" data-gl-cat="<%- catColorIdx(cat) %>" href="<%- categoryHash(cat) %>" onclick="event.stopPropagation(); if (window.quartoListingCategory) { window.quartoListingCategory('<%- encodeCategory(cat) %>'); return false; }"><%- cat %></a><% }); %></div></div>
+<% } %>
+<div class="listing-reading-time gl-hidden-listing-value"><%- rtText %></div>
+<div class="gl-hidden-listing-value"><%- categoriesText %></div>
+</div>
+</article>
+</div>
+<% } %>
+</div>
