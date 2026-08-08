@@ -474,11 +474,11 @@ $$
 2. Roginsky--Zeldovich 型の吸着・脱離速度
 
 $$
-v_a=k_ap(1-\theta)\exp(-\alpha\theta),\qquad
-v_d=k_d\theta\exp(\beta\theta)
+v_a=k_ap\exp(-\alpha\theta),\qquad
+v_d=k_d\exp(\beta\theta)
 $$
 
-が平衡にあるとき、被覆率 $\theta$ の満たす式を求めよ。希薄被覆で $1-\theta\simeq1$ とできる場合の陽な解も示せ。
+が平衡にあるとき、被覆率 $\theta$ を求めよ。ただし $\alpha,\beta$ は定数とする。
 
 ::: {.callout-note collapse="true"}
 ##### 理論8：温度上昇が吸着量を減らすことがある
@@ -507,23 +507,15 @@ $$
 平衡条件 $v_a=v_d$ から
 
 $$
-\frac{\theta}{1-\theta}
-=Kp\exp[-(\alpha+\beta)\theta],qquad K=\frac{k_a}{k_d}
+k_ap\exp(-\alpha\theta)=k_d\exp(\beta\theta)
 $$
 
-を得る。一般にはこの陰方程式を数値的に解く。$\theta\ll1$ で $1-\theta\simeq1$ とすれば
+したがって
 
 $$
-\theta e^{(\alpha+\beta)\theta}=Kp
+\boxed{\theta=\frac{1}{\alpha+\beta}
+\ln\qty(\frac{k_a}{k_d}p)}
 $$
-
-より
-
-$$
-\boxed{\theta=\frac{W((\alpha+\beta)Kp)}{\alpha+\beta}}
-$$
-
-である。$W$ は Lambert の $W$ 関数である。
 :::
 
 ## 表面反応と物質移動
