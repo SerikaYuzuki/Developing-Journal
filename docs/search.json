@@ -4,7 +4,7 @@
     "href": "posts/収容所配布用/物理/物理.html",
     "title": "物理",
     "section": "",
-    "text": "回転運動方程式は\n\\[\n\\frac{1}{3}ml^2\\ddot{\\theta} = -mg\\frac{l}{2}\\cos \\theta\n\\]\nとなり、重心運動方程式は\n\\[\\begin{align*}\nm\\ddot{x} &= R_x \\\\\nm\\ddot{y} &= mg + R_y\n\\end{align*}\\]\nここで、\\(x,y\\) については、\n\\[\\begin{align*}\nx &= \\frac{l}{2} \\cos \\theta \\\\\ny &= \\frac{l}{2} \\sin \\theta \\\\\n\\dot{x} &= -\\frac{l}{2} \\sin \\theta \\dot{\\theta} \\\\\n\\dot{y} &= \\frac{l}{2} \\cos \\theta \\dot{\\theta} \\\\\n\\ddot{x} &= -\\frac{l}{2} \\cos \\theta \\dot{\\theta}^2 - \\frac{l}{2} \\sin \\theta \\ddot{\\theta} \\\\\n\\ddot{y} &= -\\frac{l}{2} \\sin \\theta \\dot{\\theta}^2 + \\frac{l}{2} \\cos \\theta \\ddot{\\theta}\n\\end{align*}\\]\n以上のことより、重心運動方程式は次のようになる\n\\[\n-m\\frac{l}{2}\n    \\begin{pmatrix}\n        \\cos \\theta & \\sin \\theta \\\\\n        -\\sin \\theta & \\cos \\theta\n    \\end{pmatrix}\n    \\begin{pmatrix}\n        \\dot{\\theta}^2 \\\\\n        \\ddot{\\theta}\n    \\end{pmatrix}\n    =\n    \\begin{pmatrix}\n        R_x \\\\\n        mg + R_y\n    \\end{pmatrix}\n\\]\n\\[\n-m\\frac{l}{2}\n    \\begin{pmatrix}\n        \\dot{\\theta}^2 \\\\\n        \\ddot{\\theta}\n    \\end{pmatrix}\n    =\n    \\begin{pmatrix}\n        \\cos \\theta & -\\sin \\theta \\\\\n        \\sin \\theta & \\cos \\theta\n    \\end{pmatrix}\n    \\begin{pmatrix}\n        R_x \\\\\n        mg + R_y\n    \\end{pmatrix}\n\\]\nこれが要するに角加速度の導出だったわけだ。 \\(\\ddot{\\theta}\\) について無視したら次元の数が足りないとなるだろう？\nで、軸に働く力を求めるとなると、上の方程式を解けばいいわけだ。\nエネルギー積分によって、\n\\[\n\\frac{1}{3}ml^2\\ddot{\\theta} = -mg\\frac{l}{2}\\cos \\theta\n\\]\nを \\(0 \\to \\pi /2\\) で積分して、いろいろと式を変形すると、求められていくわけだ。\n\n\n真空中に，中空で断面積 \\(S\\)〔\\(\\text{m}^2\\)〕のソレノイドがある。このソレノイドの単位長さあたりの導線の巻数は n〔\\(1/\\text{m}\\)〕であり，導線には電流 \\(I\\)〔\\(\\text{A}\\)〕の定常電流が流れている。このとき以下の問いに答えよ。ただし真空の透磁率を \\(\\mu_0\\)〔\\(\\text{N}/\\text{A}^2\\)〕，円周率を \\(\\pi\\) とし，ソレノイドの長さは十分に長いものとする。\n(問 1) ソレノイド内部の磁場(磁界)の強さを求めよ。\nこのソレノイドの内部全体に，比透磁率 \\(\\mu_r\\) ( \\(\\gg 1\\) )の鉄(鉄芯)を入れた。このとき，次の問いに答えよ。\n(問 2) ソレノイド内部の磁場の強さ \\(H\\)〔\\(\\text{A}/\\text{m}\\)〕と磁束密度を求めよ。\n(問 2)と同じ鉄芯が入った同じソレノイドを，図 1 のように，その中心が半径 \\(R\\)〔\\(\\text{m}\\)〕の円環を描くように均一に曲げて鉄芯の端を接続した。ソレノイドには電流 \\(I\\)〔\\(\\text{A}\\)〕が流れているとして，以下の問いに答えよ。\n(問 3) ソレノイド全体の巻数 \\(N\\) と \\(H,R,I\\) の間に成り立つ関係式を，これらを用いて表せ。",
+    "text": "各問では、最初に問題だけを読み、解き終えてから折りたたみの「解答」で式の流れを確認できます。問題文や解答が未掲載の箇所は、資料を受領後に追記します。",
     "crumbs": [
       "Home",
       "Posts",
@@ -46,7 +46,7 @@
     "href": "posts/収容所配布用/数学/数学III.html",
     "title": "数学III",
     "section": "",
-    "text": "\\(\\require{physics}\\)",
+    "text": "\\(\\require{physics}\\)\n各問では、最初に問題だけを読み、解き終えてから折りたたみの「解答」で式の流れを確認できます。難易度と所要時間は演習の目安です。",
     "crumbs": [
       "Home",
       "Posts",
@@ -144,7 +144,7 @@
     "href": "posts/収容所配布用/数学/数学I.html",
     "title": "数学I",
     "section": "",
-    "text": "次の \\(x\\) についての方程式の解を求めよ．ただし、 \\(0&lt;a&lt;\\frac{1}{4}\\) とする。\n\\[\nx^2 + 2ax + \\frac{1}{16} = -a + \\sqrt{a^2 + x - \\frac{1}{16}}\\;\n\\]",
+    "text": "各問では、最初に問題だけを読み、解き終えてから折りたたみの「解答」で式の流れを確認できます。難易度と所要時間は演習の目安です。",
     "crumbs": [
       "Home",
       "Posts",
@@ -438,7 +438,7 @@
     "href": "posts/収容所配布用/数学/数学A.html",
     "title": "数学A",
     "section": "",
-    "text": "難易度\n所要時間\n\n\n\n\nC\n20分\n\n\n\n\n\n次の値の1の桁の数を求めよ。\n\\[\n\\left\\lfloor \\frac{10^{20000}}{10^{100}+3} \\right\\rfloor\n\\]\n\n\n\n\\(N\\) を次のように定義する\n\\[\nN=\\frac{10^{20000}-(-3)^{200} }{100^{100} - (-3)} = (100^{100})^{199} - 3 \\times (100^{100})^{198} + ... - 3^{199}\n\\]\nとなるので、\n\\[\n\\frac{10^{20000}}{10^{100}+3} = N + \\frac{3^{200} }{10^{100} + 3}\n\\]\nここで、\n\\[\n\\frac{3^{200} }{10^{100} + 3} &lt; 1\n\\]\nなので、\n\\[\n\\left\\lfloor \\frac{10^{20000}}{10^{100}+3} \\right\\rfloor = N\n\\]\nとわかる。ここで、\\(N\\) を \\(10\\) を法にして考えれば、\n\\[\nN \\equiv -3^{199} \\equiv -27 \\times 81 ^{49} \\equiv 3\n\\]\nとなり、答えは \\(3\\) となる。",
+    "text": "各問では、最初に問題だけを読み、解き終えてから折りたたみの「解答」で式の流れを確認できます。難易度と所要時間は演習の目安です。",
     "crumbs": [
       "Home",
       "Posts",
@@ -2134,7 +2134,7 @@
     "href": "index.html",
     "title": "Serika’s Blog",
     "section": "",
-    "text": "こっちは秘密基地\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Author\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Categories\n      \n      \n        Description\n      \n      \n        Reading Time (Low to High)\n      \n      \n        Reading Time (High to Low)\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nADHDManager開発記\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nAug 9, 2026\n\n\n\n\nCATEGORIES\n\n\nprogramming2026swiftproductivity\n\n\n\n1 MIN READ\n\n\nprogramming 2026 swift productivity\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nふみにわ開発記\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nAug 9, 2026\n\n\n\n\nCATEGORIES\n\n\nprogramming2026swiftnovel\n\n\n\n1 MIN READ\n\n\nprogramming 2026 swift novel\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 2 MIN READ\n\n\nKaggle Pokemon TCG参加記録\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nAug 9, 2026\n\n\n\n\nCATEGORIES\n\n\nprogramming2026AIKaggle\n\n\n\n2 MIN READ\n\n\nprogramming 2026 AI Kaggle\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 17 MIN READ\n\n\n材料力学II\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJul 29, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n17 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 5 MIN READ\n\n\n金属材料学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJul 24, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n5 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 31 MIN READ\n\n\n半導体物性学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJul 23, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n31 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 15 MIN READ\n\n\n数学2F\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJun 8, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n15 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 7 MIN READ\n\n\n工学基礎演習\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 5, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n7 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nPOGRAMMING · 1 MIN READ\n\n\nAttention Is All You Needを読む話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nFeb 6, 2026\n\n\n\n\nCATEGORIES\n\n\npogramming2026AI\n\n\n\n1 MIN READ\n\n\npogramming 2026 AI\n\n\n\n\n\n\n\n\n\n\nPOGRAMMING · 8 MIN READ\n\n\nBuild a Large Language Model from Scratchを読む話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nFeb 6, 2026\n\n\n\n\nCATEGORIES\n\n\npogramming2026AI\n\n\n\n8 MIN READ\n\n\npogramming 2026 AI\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\n信頼性学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJan 5, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026Fracture MechanicsFatigueCorrosion\n\n\n\n3 MIN READ\n\n\nUniversity 2026 Fracture Mechanics Fatigue Corrosion\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 4 MIN READ\n\n\n数学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJan 5, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026Differential EquationsFourier Analysis\n\n\n\n4 MIN READ\n\n\nUniversity 2026 Differential Equations Fourier Analysis\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nDockerでMisskeyを立てる\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 13, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025\n\n\n\n1 MIN READ\n\n\nprogramming 2025\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nNordとTailscaleで自宅サーバーを安全に公開する\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 11, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025\n\n\n\n1 MIN READ\n\n\nprogramming 2025\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nDebianサーバーを立てた話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 8, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025server\n\n\n\n1 MIN READ\n\n\nprogramming 2025 server\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 3 MIN READ\n\n\nTime Machine ServerをSambaで作った話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 7, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025swift\n\n\n\n3 MIN READ\n\n\nprogramming 2025 swift\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nミスって/boot/efiを消した話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 7, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025swift\n\n\n\n1 MIN READ\n\n\nprogramming 2025 swift\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nQuartoで単一ファイルにレンダリングする方法\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 5, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025\n\n\n\n1 MIN READ\n\n\nprogramming 2025\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nCodexを使い始めた件\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 5, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025\n\n\n\n1 MIN READ\n\n\nprogramming 2025\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nSwift Packageの読み込みエラー\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 5, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025swift\n\n\n\n1 MIN READ\n\n\nprogramming 2025 swift\n\n\n\n\n\n\n\n\n\n\nHOMESERVER · 1 MIN READ\n\n\nLinkwardenにブックマーク管理を任せる\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nMay 13, 2025\n\n\n\n\nCATEGORIES\n\n\nhomeserverprogramming2025\n\n\n\n1 MIN READ\n\n\nhomeserver programming 2025\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\n生産プロセス\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 17, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024SteelmakingThermodynamics\n\n\n\n3 MIN READ\n\n\nUniversity 2024 Steelmaking Thermodynamics\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\nデバイス材料工学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 2, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024SemiconductorOptoelectronics\n\n\n\n3 MIN READ\n\n\nUniversity 2024 Semiconductor Optoelectronics\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 4 MIN READ\n\n\n材料統計力学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nNov 29, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversitystatistical-mechanicsthermodynamics2024\n\n\n\n4 MIN READ\n\n\nUniversity statistical-mechanics thermodynamics 2024\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\n材料反応工学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nNov 29, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024KineticsSurface Science\n\n\n\n3 MIN READ\n\n\nUniversity 2024 Kinetics Surface Science\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\nセラミック材料学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024Ceramics\n\n\n\n3 MIN READ\n\n\nUniversity 2024 Ceramics\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 4 MIN READ\n\n\n高分子材料学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024Polymer\n\n\n\n4 MIN READ\n\n\nUniversity 2024 Polymer\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 11 MIN READ\n\n\n材料電気化学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 8, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024材料工学電気化学\n\n\n\n11 MIN READ\n\n\nUniversity 2024 材料工学 電気化学\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 4 MIN READ\n\n\n組織生成論\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 8, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversityphase-transformationsolidificationkinetics2024\n\n\n\n4 MIN READ\n\n\nUniversity phase-transformation solidification kinetics 2024\n\n\n\n\n\n\n\n\n\n\nMATH · 1 MIN READ\n\n\n過去問演習\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 6, 2024\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n1 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 8 MIN READ\n\n\n固体物性学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 5, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024材料工学固体物理\n\n\n\n8 MIN READ\n\n\nUniversity 2024 材料工学 固体物理\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\n材料強度学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 5, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversitymechanicsdislocationfracture2024\n\n\n\n3 MIN READ\n\n\nUniversity mechanics dislocation fracture 2024\n\n\n\n\n\n\n\n\n\n\nMATH · 2 MIN READ\n\n\n数学A\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n2 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nMATH · 2 MIN READ\n\n\n数学B\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n2 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nMATH · 3 MIN READ\n\n\n数学II\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n3 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nMATH · 3 MIN READ\n\n\n数学III\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n3 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nATCODER · 1 MIN READ\n\n\ntypical90-11\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nNov 30, 2023\n\n\n\n\nCATEGORIES\n\n\nAtCoderProgramming\n\n\n\n1 MIN READ\n\n\nAtCoder Programming\n\n\n\n\n\n\n\n\n\n\nATCODER · 14 MIN READ\n\n\n競プロ典型90 06〜10\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nNov 25, 2023\n\n\n\n\nCATEGORIES\n\n\nAtCoderProgramming\n\n\n\n14 MIN READ\n\n\nAtCoder Programming\n\n\n\n\n\n\n\n\n\n\nATCODER · 20 MIN READ\n\n\n競プロ典型90 01〜05\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 17, 2023\n\n\n\n\nCATEGORIES\n\n\nAtCoderProgramming\n\n\n\n20 MIN READ\n\n\nAtCoder Programming\n\n\n\n\n\n\n\n\n\n\nMATH · 8 MIN READ\n\n\n数学I\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n8 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nMATH · 2 MIN READ\n\n\n物理\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n2 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 1 MIN READ\n\n\n統計力学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2023\n\n\n\n\nCATEGORIES\n\n\nUniversity2023\n\n\n\n1 MIN READ\n\n\nUniversity 2023\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 1 MIN READ\n\n\n材料相平衡論\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2023\n\n\n\n\nCATEGORIES\n\n\nUniversity2023\n\n\n\n1 MIN READ\n\n\nUniversity 2023\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\n材料速度論\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2023\n\n\n\n\nCATEGORIES\n\n\nUniversitydiffusionkinetics2023\n\n\n\n3 MIN READ\n\n\nUniversity diffusion kinetics 2023\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 5 MIN READ\n\n\n材料量子力学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2023\n\n\n\n\nCATEGORIES\n\n\nUniversityquantum-mechanicsmaterials-science2023\n\n\n\n5 MIN READ\n\n\nUniversity quantum-mechanics materials-science 2023\n\n\n\n\n\n\n\n\n\n\nATCODER · 1 MIN READ\n\n\nCargo Compete\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 9, 2023\n\n\n\n\nCATEGORIES\n\n\nAtCoderProgramming\n\n\n\n1 MIN READ\n\n\nAtCoder Programming\n\n\n\n\n\nNo matching items\n\n  \n\n Back to top",
+    "text": "こっちは秘密基地\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Author\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Categories\n      \n      \n        Description\n      \n      \n        Reading Time (Low to High)\n      \n      \n        Reading Time (High to Low)\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nADHDManager開発記\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nAug 9, 2026\n\n\n\n\nCATEGORIES\n\n\nprogramming2026swiftproductivity\n\n\n\n1 MIN READ\n\n\nprogramming 2026 swift productivity\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nふみにわ開発記\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nAug 9, 2026\n\n\n\n\nCATEGORIES\n\n\nprogramming2026swiftnovel\n\n\n\n1 MIN READ\n\n\nprogramming 2026 swift novel\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 2 MIN READ\n\n\nKaggle Pokemon TCG参加記録\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nAug 9, 2026\n\n\n\n\nCATEGORIES\n\n\nprogramming2026AIKaggle\n\n\n\n2 MIN READ\n\n\nprogramming 2026 AI Kaggle\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 17 MIN READ\n\n\n材料力学II\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJul 29, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n17 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 5 MIN READ\n\n\n金属材料学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJul 24, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n5 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 31 MIN READ\n\n\n半導体物性学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJul 23, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n31 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 15 MIN READ\n\n\n数学2F\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJun 8, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n15 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 7 MIN READ\n\n\n工学基礎演習\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 5, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n7 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nPOGRAMMING · 1 MIN READ\n\n\nAttention Is All You Needを読む話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nFeb 6, 2026\n\n\n\n\nCATEGORIES\n\n\npogramming2026AI\n\n\n\n1 MIN READ\n\n\npogramming 2026 AI\n\n\n\n\n\n\n\n\n\n\nPOGRAMMING · 8 MIN READ\n\n\nBuild a Large Language Model from Scratchを読む話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nFeb 6, 2026\n\n\n\n\nCATEGORIES\n\n\npogramming2026AI\n\n\n\n8 MIN READ\n\n\npogramming 2026 AI\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\n信頼性学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJan 5, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026Fracture MechanicsFatigueCorrosion\n\n\n\n3 MIN READ\n\n\nUniversity 2026 Fracture Mechanics Fatigue Corrosion\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 4 MIN READ\n\n\n数学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJan 5, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026Differential EquationsFourier Analysis\n\n\n\n4 MIN READ\n\n\nUniversity 2026 Differential Equations Fourier Analysis\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nDockerでMisskeyを立てる\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 13, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025\n\n\n\n1 MIN READ\n\n\nprogramming 2025\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nNordとTailscaleで自宅サーバーを安全に公開する\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 11, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025\n\n\n\n1 MIN READ\n\n\nprogramming 2025\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nDebianサーバーを立てた話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 8, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025server\n\n\n\n1 MIN READ\n\n\nprogramming 2025 server\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 3 MIN READ\n\n\nTime Machine ServerをSambaで作った話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 7, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025swift\n\n\n\n3 MIN READ\n\n\nprogramming 2025 swift\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nミスって/boot/efiを消した話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 7, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025swift\n\n\n\n1 MIN READ\n\n\nprogramming 2025 swift\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nQuartoで単一ファイルにレンダリングする方法\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 5, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025\n\n\n\n1 MIN READ\n\n\nprogramming 2025\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nCodexを使い始めた件\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 5, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025\n\n\n\n1 MIN READ\n\n\nprogramming 2025\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nSwift Packageの読み込みエラー\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 5, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025swift\n\n\n\n1 MIN READ\n\n\nprogramming 2025 swift\n\n\n\n\n\n\n\n\n\n\nHOMESERVER · 1 MIN READ\n\n\nLinkwardenにブックマーク管理を任せる\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nMay 13, 2025\n\n\n\n\nCATEGORIES\n\n\nhomeserverprogramming2025\n\n\n\n1 MIN READ\n\n\nhomeserver programming 2025\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\n生産プロセス\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 17, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024SteelmakingThermodynamics\n\n\n\n3 MIN READ\n\n\nUniversity 2024 Steelmaking Thermodynamics\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\nデバイス材料工学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 2, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024SemiconductorOptoelectronics\n\n\n\n3 MIN READ\n\n\nUniversity 2024 Semiconductor Optoelectronics\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 4 MIN READ\n\n\n材料統計力学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nNov 29, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversitystatistical-mechanicsthermodynamics2024\n\n\n\n4 MIN READ\n\n\nUniversity statistical-mechanics thermodynamics 2024\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\n材料反応工学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nNov 29, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024KineticsSurface Science\n\n\n\n3 MIN READ\n\n\nUniversity 2024 Kinetics Surface Science\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\nセラミック材料学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024Ceramics\n\n\n\n3 MIN READ\n\n\nUniversity 2024 Ceramics\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 4 MIN READ\n\n\n高分子材料学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024Polymer\n\n\n\n4 MIN READ\n\n\nUniversity 2024 Polymer\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 11 MIN READ\n\n\n材料電気化学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 8, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024材料工学電気化学\n\n\n\n11 MIN READ\n\n\nUniversity 2024 材料工学 電気化学\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 4 MIN READ\n\n\n組織生成論\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 8, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversityphase-transformationsolidificationkinetics2024\n\n\n\n4 MIN READ\n\n\nUniversity phase-transformation solidification kinetics 2024\n\n\n\n\n\n\n\n\n\n\nMATH · 1 MIN READ\n\n\n過去問演習\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 6, 2024\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n1 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 8 MIN READ\n\n\n固体物性学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 5, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024材料工学固体物理\n\n\n\n8 MIN READ\n\n\nUniversity 2024 材料工学 固体物理\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\n材料強度学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 5, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversitymechanicsdislocationfracture2024\n\n\n\n3 MIN READ\n\n\nUniversity mechanics dislocation fracture 2024\n\n\n\n\n\n\n\n\n\n\nMATH · 2 MIN READ\n\n\n数学A\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n2 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nMATH · 2 MIN READ\n\n\n数学B\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n2 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nMATH · 4 MIN READ\n\n\n数学II\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n4 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nMATH · 2 MIN READ\n\n\n数学III\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n2 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nATCODER · 1 MIN READ\n\n\ntypical90-11\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nNov 30, 2023\n\n\n\n\nCATEGORIES\n\n\nAtCoderProgramming\n\n\n\n1 MIN READ\n\n\nAtCoder Programming\n\n\n\n\n\n\n\n\n\n\nATCODER · 14 MIN READ\n\n\n競プロ典型90 06〜10\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nNov 25, 2023\n\n\n\n\nCATEGORIES\n\n\nAtCoderProgramming\n\n\n\n14 MIN READ\n\n\nAtCoder Programming\n\n\n\n\n\n\n\n\n\n\nATCODER · 20 MIN READ\n\n\n競プロ典型90 01〜05\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 17, 2023\n\n\n\n\nCATEGORIES\n\n\nAtCoderProgramming\n\n\n\n20 MIN READ\n\n\nAtCoder Programming\n\n\n\n\n\n\n\n\n\n\nMATH · 7 MIN READ\n\n\n数学I\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n7 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nMATH · 2 MIN READ\n\n\n物理\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n2 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 1 MIN READ\n\n\n統計力学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2023\n\n\n\n\nCATEGORIES\n\n\nUniversity2023\n\n\n\n1 MIN READ\n\n\nUniversity 2023\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 1 MIN READ\n\n\n材料相平衡論\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2023\n\n\n\n\nCATEGORIES\n\n\nUniversity2023\n\n\n\n1 MIN READ\n\n\nUniversity 2023\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\n材料速度論\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2023\n\n\n\n\nCATEGORIES\n\n\nUniversitydiffusionkinetics2023\n\n\n\n3 MIN READ\n\n\nUniversity diffusion kinetics 2023\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 5 MIN READ\n\n\n材料量子力学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2023\n\n\n\n\nCATEGORIES\n\n\nUniversityquantum-mechanicsmaterials-science2023\n\n\n\n5 MIN READ\n\n\nUniversity quantum-mechanics materials-science 2023\n\n\n\n\n\n\n\n\n\n\nATCODER · 1 MIN READ\n\n\nCargo Compete\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 9, 2023\n\n\n\n\nCATEGORIES\n\n\nAtCoderProgramming\n\n\n\n1 MIN READ\n\n\nAtCoder Programming\n\n\n\n\n\nNo matching items\n\n  \n\n Back to top",
     "crumbs": [
       "Home"
     ]
@@ -4096,7 +4096,7 @@
     "href": "posts/収容所配布用/数学/数学B.html",
     "title": "数学B",
     "section": "",
-    "text": "難易度\n所要時間\n\n\n\n\nB\n30分\n\n\n\n\n\n\\(a\\) を奇数として、 \\(a\\) と共通因数を持たない整数 \\(b\\) を考える。\n\\[\na_n + \\sqrt{2} b_n = (a + \\sqrt{2} b)^n\n\\]\nとなるような整数列 \\(a_n, b_n\\) を考える。このとき、\\(a_n, b_n\\) は互いに素であることを示せ。\n\n\n\n\\[\\begin{align*}\na_{n+1} + \\sqrt{2} b_{n+1} &= (a + \\sqrt{2} b)(a_n + \\sqrt{2} b_n) \\\\\n&= (a a_n + 2 b b_n) + \\sqrt{2} (a b_n + b a_n)\n\\end{align*}\\]\nなので、\n\\[\\begin{align*}\na_{n+1} &= a a_n + 2 b b_n \\\\\nb_{n+1} &= a b_n + b a_n\n\\end{align*}\\]\nとわかる。上の式から、\\(a_{n+1}\\) は \\(\\lambda \\times a_n + \\mu \\times b_n\\) の形にかけて、ゆえに \\(a_{n+1}|\\gcd (a_n,b_n)\\) とわかる。同様にして、 \\(b_{n+1}|\\gcd (a_n,b_n)\\) とわかる。よって、\n\\[\n\\gcd (a_{n+1}, b_{n+1}) | \\gcd (a_n, b_n)\n\\]\nが成り立つ。\nこの時次の式を考える。\n\\[\na_n^2 - 2b_n^2 = (a^2-2b^2)^n\n\\]\nこのことから、 \\(a_n,b_n\\) の共通素因数の一つを \\(c\\) にしたとき、 \\(c|a^2-2b^2\\) となる。\nここで、 \\(\\gcd (a_{n+1}, b_{n+1}) | \\gcd (a_n, b_n)\\) より、 \\(c|\\gcd (a_{n-1},b_{n-1})\\) となる。つまり、 \\(c\\) は \\(a_{n-1},b_{n-1}\\) の共通因数でもある。\nこのことを繰り返すことで、 \\(c\\) は \\(a_1,b_1\\) の共通因数でもある。しかし、 \\(a_1,b_1\\) は互いに素なので、 \\(c=1\\) となる。よって、 \\(a_n,b_n\\) は互いに素である。",
+    "text": "各問では、最初に問題だけを読み、解き終えてから折りたたみの「解答」で式の流れを確認できます。難易度と所要時間は演習の目安です。",
     "crumbs": [
       "Home",
       "Posts",
@@ -4208,7 +4208,7 @@
     "href": "posts/収容所配布用/数学/数学II.html",
     "title": "数学II",
     "section": "",
-    "text": "難易度\n所要時間\n\n\n\n\nB\n30分\n\n\n\n\n\n\\(\\{ a_n \\}\\) を \\(1, 2, 3, \\cdots , n\\) を任意に並び替えた数列とする。この時、次の式の取りうる最大値を求めよ。\n\\[\na_1a_2 + a_2a_3 + \\cdots + a_{n-1}a_n + a_na_1\n\\]\n\n\n\n数列の中にある連続した2つの整数のセットを2つ \\(a, b\\) と \\(c, d\\) を考える。この時、 \\(a,b\\) を固定して考えた時、 \\(c,d\\) の入れ替えで、どのような時に式の値が最大になるかを考える。\n\\[\n(ab+bc+cd) - (ab+bd+ca) = (b-c)(a-d) \\geq 0\n\\]\nと言うわけで、 \\(b&gt;c,\\; a&gt;d\\) のような式が成り立つような状態で最大になるとわかる。\nこのような状態を数列全体で達成することを考える。\n$$\n$$",
+    "text": "各問では、最初に問題だけを読み、解き終えてから折りたたみの「解答」で式の流れを確認できます。難易度と所要時間は演習の目安です。",
     "crumbs": [
       "Home",
       "Posts",
@@ -4376,7 +4376,7 @@
     "href": "posts/収容所配布用/数学/過去問演習.html",
     "title": "過去問演習",
     "section": "",
-    "text": "難易度\n所要時間\n\n\n\n\nB\n60分\n\n\n\n\n\n曲線 \\(y=x^3\\) の \\(x&gt;0\\) の部分を \\(C\\) とする。\\(C\\) 上の点 \\(P\\) において、\\(P\\) における \\(C\\) の接線と \\(x\\) 軸との交点を \\(Q\\) とし、 \\(P\\) における \\(C\\) の法線と \\(y\\) 軸との交点を \\(R\\) とする。 \\(\\frac{OR}{OQ}\\) の最小値を求めよ。\n\n\n\n下の等式を満たす複素数 \\(z\\) を全て求めよ。\n\\[\\frac{2z+2i}{z+2i}=\\bar{z}\\]\n\n\n\n\\(n\\) 個のドルコインと \\(n+1\\) 個のペソコインがある。これらを全て同時に投げた時、ペソコインの表の枚数がドルコインの表の枚数より多い確率を求めよ。",
+    "text": "3題を通して解く演習です。解き終えたら、折りたたみの「解答」で全体の流れを確認できます。難易度と所要時間は演習全体の目安です。",
     "crumbs": [
       "Home",
       "Posts",
@@ -4607,6 +4607,706 @@
       "Univ Lecs",
       "3A",
       "高分子材料学"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学A.html#第1問",
+    "href": "posts/収容所配布用/数学/数学A.html#第1問",
+    "title": "数学A",
+    "section": "第1問",
+    "text": "第1問\n\n  \n    ◇難易度\n    \n      C\n      \n      発展、4段階中3\n    \n  \n  \n    ◷所要時間\n    20分目安\n  \n\n\n\n問題\n次の値の1の桁の数を求めよ。\n\\[\n\\left\\lfloor \\frac{10^{20000}}{10^{100}+3} \\right\\rfloor\n\\]\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\(X=10^{100}\\) とおく。\\(X^{200}-(-3)^{200}\\) は \\(X+3\\) で割り切れるので、整数\n\\[\nN=\\frac{X^{200}-3^{200}}{X+3}\n=X^{199}-3X^{198}+\\cdots-3^{199}\n\\]\nを考える。このとき\n\\[\n\\frac{10^{20000}}{10^{100}+3} = N + \\frac{3^{200} }{10^{100} + 3}\n\\]\nである。さらに \\(3^2=9&lt;10\\) より\n\\[\n0&lt;\\frac{3^{200}}{10^{100}+3}\n&lt;\\frac{10^{100}}{10^{100}+3}&lt;1\n\\]\nなので、\n\\[\n\\left\\lfloor \\frac{10^{20000}}{10^{100}+3} \\right\\rfloor = N\n\\]\nだから、床関数の値は \\(N\\) である。最後に \\(X\\equiv0\\pmod{10}\\) を使うと、\\(N\\) の展開では末項以外がすべて \\(10\\) の倍数になる。したがって\n\\[\nN\\equiv-3^{199}\n=-3^3(3^4)^{49}\n\\equiv-27\\equiv3\\pmod{10}.\n\\]\nよって、求める1の桁は \\(\\boxed{3}\\) である。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学A"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学A.html#第2問",
+    "href": "posts/収容所配布用/数学/数学A.html#第2問",
+    "title": "数学A",
+    "section": "第2問",
+    "text": "第2問\n\n  \n    ◇難易度\n    \n      C\n      \n      発展、4段階中3\n    \n  \n  \n    ◷所要時間\n    20分目安\n  \n\n\n\n問題\n(1)\n次の連立方程式の解を \\((x,y)\\) として、 \\(z=x+yi\\) とおく。\n\\[\\begin{eqnarray}\n  \\left\\{\n    \\begin{array}{l}\n      \\dfrac{x}{x^2+y^2}=1 \\\\\n      -\\dfrac{y}{x^2+y^2}=1\n    \\end{array}\n  \\right.\n\\end{eqnarray}\\]\n次の等式を示せ。\n\\[\nz^{-1} = 1 + i\n\\]\n(2)\n次の4つの集合を考える。\n\\[\\begin{align*}\nA &= \\left\\{ (x,y): x^2 - y^2 = \\frac{x}{x^2+y^2} +1 \\right\\} \\\\\nB &= \\left\\{ (x,y): 2xy = -\\frac{y}{x^2+y^2} \\right\\} \\\\\nC &= \\left\\{ (x,y): x^3-3xy^2 = 1+x \\right\\} \\\\\nD &= \\left\\{ (x,y): 3x^2y-y^3 = y \\right\\}\n\\end{align*}\\]\nこの時、 \\(A \\cap B = C \\cap D\\) であることを示せ。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n(1)\n\\(z=x+yi\\) なので、\\(z\\neq0\\) のとき\n\\[\nz^{-1}=\\frac{1}{x+yi}\n=\\frac{x-yi}{x^2+y^2}\n=\\frac{x}{x^2+y^2}-i\\frac{y}{x^2+y^2}.\n\\]\n連立方程式の2式を代入すると、実部も虚部も \\(1\\) となる。よって\n\\[\n\\boxed{z^{-1}=1+i}\n\\]\nである。\n(2)\n\\(z=x+yi\\) とおくと、\n\\[\nz^2=(x^2-y^2)+2xyi,\n\\qquad\nz^{-1}=\\frac{x}{x^2+y^2}-\\frac{y}{x^2+y^2}i.\n\\]\nしたがって、\\(A\\) と \\(B\\) の条件を同時に満たすことは\n\\[\nz^2=z^{-1}+1\n\\]\nと同値である。分母があるため、このとき \\(z\\neq0\\) であり、両辺に \\(z\\) を掛けて\n\\[\nz^3=z+1\n\\]\nを得る。一方、\n\\[\nz^3=(x^3-3xy^2)+(3x^2y-y^3)i\n\\]\nだから、この等式の実部と虚部がそれぞれ \\(C,D\\) の条件である。逆に \\(z^3=z+1\\) を満たす \\(z\\) は \\(z=0\\) ではないので、\\(z\\) で割れば \\(z^2=z^{-1}+1\\) に戻る。よって\n\\[\n\\boxed{A\\cap B=C\\cap D}\n\\]\nが示された。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学A"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学A.html#第3問",
+    "href": "posts/収容所配布用/数学/数学A.html#第3問",
+    "title": "数学A",
+    "section": "第3問",
+    "text": "第3問\n\n  \n    ◇難易度\n    \n      B\n      \n      標準、4段階中2\n    \n  \n  \n    ◷所要時間\n    20分目安\n  \n\n\n\n問題\n\\(A,B,C\\) を \\(xy\\) 平面上の点として、それぞれの座標は整数値であるとする。この時、次の不等式が成り立つのは、3点が正方形の頂点であるとき、その時に限ることを示せ。\n\\[\n(|AB|+|BC|) ^2 &lt; 8 \\cdot [ABC] + 1\n\\]\nただし、 \\(|AB|\\) は \\(A,B\\) の距離、 \\([ABC]\\) は \\(A,B,C\\) で張られる三角形の面積を表す。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n模範解答を受領後に追記します。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学A"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学A.html#第4問",
+    "href": "posts/収容所配布用/数学/数学A.html#第4問",
+    "title": "数学A",
+    "section": "第4問",
+    "text": "第4問\n\n  \n    ◇難易度\n    \n      B\n      \n      標準、4段階中2\n    \n  \n  \n    ◷所要時間\n    20分目安\n  \n\n\n\n問題\n下図のように、お互いの中心が \\(r\\) だけ離れた、半径 \\(r\\) の2つの円がある。\n\n\n\n図\n\n\nこの時、片方の円に、円の中心同士の結ぶ線に対して対称的な位置にある点を \\(A,B\\) とする。また、 \\(P\\) はもう片方の円の周上にあるとするとき、次の不等式を示せ。\n\\[\nPA^2 + PB^2 \\geq 2r^2\n\\]\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n点 \\(A,B\\) がある円の中心を \\(O\\)、\\(AB\\) の中点を \\(C\\) とする。中線定理より\n\\[\nPA^2+PB^2=2PC^2+2AC^2.\n\\]\n二つの円の中心間距離も半径も \\(r\\) なので、\\(O\\) はもう一方の円周上にある。図の配置では、もう一方の円周上の点のうち \\(C\\) に最も近い点が \\(O\\) であるから\n\\[\nPC\\geq OC.\n\\]\nまた \\(C\\) は弦 \\(AB\\) の中点なので \\(OC\\perp AB\\) であり、直角三角形 \\(OCA\\) について\n\\[\nOC^2+AC^2=OA^2=r^2\n\\]\nが成り立つ。以上から\n\\[\nPA^2+PB^2\n\\geq2OC^2+2AC^2\n=2r^2.\n\\]\n等号は \\(PC=OC\\)、すなわち \\(P=O\\) のときに成立する。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学A"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学A.html#第5問",
+    "href": "posts/収容所配布用/数学/数学A.html#第5問",
+    "title": "数学A",
+    "section": "第5問",
+    "text": "第5問\n\n  \n    ◇難易度\n    \n      A\n      \n      取り組みやすい、4段階中1\n    \n  \n  \n    ◷所要時間\n    15分目安\n  \n\n\n\n問題\n100円と50円と10円の硬貨がそれぞれ無限にあるとする。この時、合計が 1,000円になるように硬貨を選ぶ方法は何通りあるか求めよ。ただし、０枚の場合も含むものとする。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n100円玉、50円玉、10円玉の枚数をそれぞれ \\(a,b,c\\) とすると、\n\\[\n100a+50b+10c=1000\n\\]\nすなわち\n\\[\n10a+5b+c=100\n\\]\nである。\\(a\\) を \\(0\\leq a\\leq10\\) の範囲で固定すると、\\(b\\) は\n\\[\n0\\leq b\\leq \\left\\lfloor\\frac{100-10a}{5}\\right\\rfloor=20-2a\n\\]\nの整数を自由に取れ、\\(c=100-10a-5b\\) は一意に決まる。したがって、固定した \\(a\\) に対する方法数は \\(21-2a\\) 通りである。\n\\[\n\\sum_{a=0}^{10}(21-2a)\n=11\\cdot21-2\\cdot\\frac{10\\cdot11}{2}\n=121.\n\\]\nよって、答えは \\(\\boxed{121\\text{通り}}\\) である。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学A"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学B.html#第1問",
+    "href": "posts/収容所配布用/数学/数学B.html#第1問",
+    "title": "数学B",
+    "section": "第1問",
+    "text": "第1問\n\n  \n    ◇難易度\n    \n      B\n      \n      標準、4段階中2\n    \n  \n  \n    ◷所要時間\n    30分目安\n  \n\n\n\n問題\n\\(a\\) を奇数として、 \\(a\\) と共通因数を持たない整数 \\(b\\) を考える。\n\\[\na_n + \\sqrt{2} b_n = (a + \\sqrt{2} b)^n\n\\]\nとなるような整数列 \\(a_n, b_n\\) を考える。このとき、\\(a_n, b_n\\) は互いに素であることを示せ。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n共役を掛けると\n\\[\na_n^2 - 2b_n^2 = (a^2-2b^2)^n\n\\]\nである。\\(a_n,b_n\\) に共通する素数 \\(p\\) があると仮定する。この式の左辺は \\(p\\) で割り切れるので\n\\[\np\\mid a^2-2b^2\n\\]\nとなる。\\(a\\) は奇数だから \\(a^2-2b^2\\) も奇数であり、\\(p\\) は奇素数である。また \\(\\gcd(a,b)=1\\) より、\\(p\\) は \\(a,b\\) のどちらも割らない。\n\\(\\alpha=a+\\sqrt2b\\) とおくと\n\\[\n\\alpha^2=2a\\alpha-(a^2-2b^2)\n\\]\nだから、係数を \\(p\\) を法として考えれば \\(\\alpha^2\\equiv2a\\alpha\\) である。帰納的に\n\\[\n\\alpha^n\\equiv(2a)^{n-1}\\alpha\\pmod p\n\\]\nとなるため、実部について\n\\[\na_n\\equiv(2a)^{n-1}a\\not\\equiv0\\pmod p\n\\]\nを得る。これは \\(p\\mid a_n\\) に矛盾する。したがって共通素因数は存在せず、\n\\[\n\\boxed{\\gcd(a_n,b_n)=1}\n\\]\nである。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学B"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学B.html#第2問",
+    "href": "posts/収容所配布用/数学/数学B.html#第2問",
+    "title": "数学B",
+    "section": "第2問",
+    "text": "第2問\n\n\n  \n    ◇難易度\n    \n      B\n      \n      標準、4段階中2\n    \n  \n  \n    ◷所要時間\n    15〜30分目安\n  \n\n\n\n問題\n3辺 \\(AB,AD,AE\\) の長さがそれぞれ \\(a,b,c\\) の直方体 \\(ABCD-EFHG\\) がある。この時 \\(\\triangle AFH\\) を含む面を \\(\\pi\\) とする。\\(ABCD-EFGH\\) ないの点 \\(P\\) から \\(\\pi\\) に下ろした垂線の足を \\(Q\\) とする。このとき、 \\(Q\\) の取りうる位置の面積を求めよ。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n模範解答を受領後に追記します。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学B"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学B.html#第3問",
+    "href": "posts/収容所配布用/数学/数学B.html#第3問",
+    "title": "数学B",
+    "section": "第3問",
+    "text": "第3問\n\n  \n    ◇難易度\n    \n      A\n      \n      取り組みやすい、4段階中1\n    \n  \n  \n    ◷所要時間\n    20分目安\n  \n\n\n\n問題\n正方形 \\(ABCD\\) の辺上を除く内部に \\(PA \\perp PB\\) となる点 \\(P\\) がある。 \\(\\overrightarrow{PC} = x\\overrightarrow{PA} + y\\overrightarrow{PB}\\) となるとき、\\(x+y\\) の最大値を求めよ。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n模範解答を受領後に追記します。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学B"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学B.html#第4問",
+    "href": "posts/収容所配布用/数学/数学B.html#第4問",
+    "title": "数学B",
+    "section": "第4問",
+    "text": "第4問\n\n  \n    ◇難易度\n    \n      C\n      \n      発展、4段階中3\n    \n  \n  \n    ◷所要時間\n    30分目安\n  \n\n\n\n問題\n次のように決められた数列 \\(\\{a_n\\}\\) がある。\n\\[\na_1=2, \\quad a_{n+1} = \\frac{2+a_n}{1-2a_n}\n\\]\nこのとき、 \\(a_n\\) は決して \\(0,1/2\\) の値をとらず、さらに全ての値が異なることを示せ。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\(0&lt;\\theta&lt;\\pi/2\\) かつ \\(\\tan\\theta=2\\) となる \\(\\theta\\) を取る。加法定理より\n\\[\n\\tan((n+1)\\theta)\n=\\frac{2+\\tan(n\\theta)}{1-2\\tan(n\\theta)}\n\\]\nだから、右辺が定義される限り \\(a_n=\\tan(n\\theta)\\) である。\nまず \\(\\theta/\\pi\\) が無理数であることを確認する。もし有理数なら \\(\\zeta=e^{2i\\theta}\\) は1の冪根となる。一方、\\(\\tan\\theta=2\\) より\n\\[\n\\zeta=\\cos2\\theta+i\\sin2\\theta\n=\\frac{-3+4i}{5}.\n\\]\nすると \\(\\zeta+\\zeta^{-1}=-6/5\\) は有理数であると同時に代数的整数でなければならない。有理数の代数的整数は整数なので、これは矛盾である。よって \\(\\theta/\\pi\\) は無理数である。\nもし初めて \\(a_n=1/2\\) となる \\(n\\) があれば、それまでの漸化式から \\(a_n=\\tan(n\\theta)\\) である。すると加法定理の分母が \\(0\\) となり、\\((n+1)\\theta\\equiv\\pi/2\\pmod\\pi\\) となるが、これは \\(\\theta/\\pi\\) の無理性に反する。したがって \\(a_n\\neq1/2\\) であり、数列はすべての \\(n\\) で定義される。\n同様に、\\(a_n=0\\) なら \\(n\\theta\\equiv0\\pmod\\pi\\) となって矛盾する。また \\(a_n=a_m\\ (n&gt;m)\\) なら\n\\[\n\\tan(n\\theta)=\\tan(m\\theta)\n\\]\nより \\((n-m)\\theta\\equiv0\\pmod\\pi\\) となり、やはり矛盾する。よって \\(a_n\\) は \\(0,1/2\\) を取らず、すべて相異なる。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学B"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学B.html#第5問",
+    "href": "posts/収容所配布用/数学/数学B.html#第5問",
+    "title": "数学B",
+    "section": "第5問",
+    "text": "第5問\n\n  \n    ◇難易度\n    \n      B+\n      \n      標準、4段階中2\n    \n  \n  \n    ◷所要時間\n    20分目安\n  \n\n\n\n問題\n\\(a_1=1, a_2=7\\) として、次のような漸化式を満たす数列 \\(\\{a_n\\}\\) を考える。\n\\[\na_{n+2} = \\frac{a_{n+1}^2 - 1}{a_n}\n\\]\nこの時、 \\(9a_na_{n+1}+1\\) が平方数となるような \\(n\\) の値をすべて求めよ。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\nまず\n\\[\na_n^2+a_{n+1}^2-7a_na_{n+1}=1\n\\tag{1}\n\\]\nを示す。\\(n=1\\) では \\(1+49-49=1\\) だから成立する。(1) が \\(n\\) で成立すると\n\\[\na_{n+2}\n=\\frac{a_{n+1}^2-1}{a_n}\n=7a_{n+1}-a_n.\n\\tag{2}\n\\]\n\nを使って計算すると\n\n\\[\n\\begin{aligned}\na_{n+1}^2+a_{n+2}^2-7a_{n+1}a_{n+2}\n&=a_n^2+a_{n+1}^2-7a_na_{n+1}\\\\\n&=1,\n\\end{aligned}\n\\]\nとなるので、(1) は帰納的にすべての \\(n\\) で成立する。\nここで (1) を変形すると\n\\[\n\\begin{aligned}\n9a_na_{n+1}+1\n&=a_n^2+2a_na_{n+1}+a_{n+1}^2\\\\\n&=(a_n+a_{n+1})^2.\n\\end{aligned}\n\\]\nしたがって、\\(9a_na_{n+1}+1\\) はすべての正整数 \\(n\\) について平方数である。答えは\n\\[\n\\boxed{n=1,2,3,\\ldots}\n\\]\nである。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学B"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学B.html#第6問",
+    "href": "posts/収容所配布用/数学/数学B.html#第6問",
+    "title": "数学B",
+    "section": "第6問",
+    "text": "第6問\n\n  \n    ◇難易度\n    \n      C\n      \n      発展、4段階中3\n    \n  \n  \n    ◷所要時間\n    20分目安\n  \n\n\n\n問題\n\\(a_1=2,a_2=5\\) として、次のような漸化式を満たす数列 \\(\\{a_n\\}\\) を考える。\n\\[\na_{n+2}=(2-n^2)a_{n+1}+(2+n^2)a_n\n\\]\nこの時、 \\(a_p a_q = a_r\\) となるような正整数 \\(p,q,r\\) の組は存在するか。存在する場合、全て求めよ。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\(a_n\\equiv a_{n+1}\\equiv2\\pmod3\\) と仮定する。\\(n^2\\equiv0,1\\pmod3\\) なので、\n\\[\na_{n+2}\n=(2-n^2)a_{n+1}+(2+n^2)a_n\n\\equiv2\\pmod3\n\\]\nである。実際、\\(n^2\\equiv0\\) なら右辺は \\(2\\cdot2+2\\cdot2\\equiv2\\)、\\(n^2\\equiv1\\) なら \\(1\\cdot2+0\\cdot2\\equiv2\\) となる。\n\\(a_1=2\\equiv2\\)、\\(a_2=5\\equiv2\\pmod3\\) だから、帰納法により\n\\[\na_n\\equiv2\\pmod3\n\\]\nがすべての正整数 \\(n\\) で成立する。もし \\(a_pa_q=a_r\\) なら、左辺は \\(2\\cdot2\\equiv1\\pmod3\\)、右辺は \\(2\\pmod3\\) となって矛盾する。よって、そのような組は\n\\[\n\\boxed{\\text{存在しない}}\n\\]\n。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学B"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学I.html#第1問",
+    "href": "posts/収容所配布用/数学/数学I.html#第1問",
+    "title": "数学I",
+    "section": "第1問",
+    "text": "第1問\n\n  \n    ◇難易度\n    \n      C+\n      \n      発展、4段階中3\n    \n  \n  \n    ◷所要時間\n    30分目安\n  \n\n\n\n問題\n次の \\(x\\) についての方程式の解を求めよ．ただし、 \\(0&lt;a&lt;\\frac{1}{4}\\) とする。\n\\[\nx^2 + 2ax + \\frac{1}{16} = -a + \\sqrt{a^2 + x - \\frac{1}{16}}\\;\n\\]\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n模範解答を受領後に追記します。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学I"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学I.html#第2問",
+    "href": "posts/収容所配布用/数学/数学I.html#第2問",
+    "title": "数学I",
+    "section": "第2問",
+    "text": "第2問\n\n  \n    ◇難易度\n    \n      C\n      \n      発展、4段階中3\n    \n  \n  \n    ◷所要時間\n    30分目安\n  \n\n\n\n問題\n次のような条件を満たす非負整数 \\(n\\) は無限に存在する事を示せ。\n\n\\(n,n+1,n+2\\) のいずれも二つの整数の平方の和である。\n\n例えば、\\(n=0\\) の時、\\(0,1,2\\) は \\(0^2+0^2, 0^2+1^2, 1^2+1^2\\) となり条件を満たす。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\(t\\) を非負整数とし、\\(a=10t+2\\) とおく。このとき \\(a\\) は偶数で、\\(a^2+1\\) は \\(5\\) で割り切れる。\\(t\\geq1\\) なら \\(a^2+1&gt;5\\) だから\n\\[\na^2+1=pq,\n\\qquad\np=5,\\quad q=\\frac{a^2+1}{5}\n\\]\nと、二つの奇数 \\(p,q&gt;1\\) の積に分解できる。そこで\n\\[\nA=\\frac{p+q}{2},\\qquad B=\\frac{q-p}{2}\n\\]\nとおくと、\\(A,B\\) は整数であり、\n\\[\nA^2-B^2=pq=a^2+1\n\\]\nが成り立つ。\\(n=A^2-1\\) と定めれば\n\\[\n\\begin{aligned}\nn&=A^2-1=a^2+B^2,\\\\\nn+1&=A^2+0^2,\\\\\nn+2&=A^2+1^2.\n\\end{aligned}\n\\]\nよって3数はいずれも二つの整数の平方の和である。\\(t\\) を大きくすれば \\(A\\)、したがって \\(n\\) も大きくなるため、このような \\(n\\) は無限に存在する。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学I"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学I.html#第3問",
+    "href": "posts/収容所配布用/数学/数学I.html#第3問",
+    "title": "数学I",
+    "section": "第3問",
+    "text": "第3問\n\n  \n    ◇難易度\n    \n      B\n      \n      標準、4段階中2\n    \n  \n  \n    ◷所要時間\n    15分目安\n  \n\n\n\n問題\n\\(m,n\\) が正整数であるとき、次の値が整数である事を示せ。\n\\[\n\\frac{\\gcd (m,n)}{n} \\binom{n}{m}=\\frac{\\gcd (m,n)}{n} {}_n\\mathrm{C}_m\n\\]\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\[\n\\lambda m + \\mu n = \\gcd (m,n)\n\\]\nとなる整数 \\(\\lambda, \\mu\\) が存在する。この時、与えられた式の値 \\(A\\) は、\n\\[\n\\begin{align*}\nA &= \\frac{\\gcd (m,n)}{n} \\binom{n}{m}\\\\\n&= \\frac{\\lambda m + \\mu n}{n} \\binom{n}{m}\\\\\n&= \\lambda \\frac{m}{n} \\binom{n}{m} + \\mu \\binom{n}{m}\\\\\n&= \\lambda \\frac{m}{n} \\frac{n}{m} \\binom{n-1}{m-1} + \\mu \\binom{n}{m}\\\\\n&= \\lambda \\binom{n-1}{m-1} + \\mu \\binom{n}{m}\\\\\n\\end{align*}\n\\]\nとなり、整数となる。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学I"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学I.html#第4問",
+    "href": "posts/収容所配布用/数学/数学I.html#第4問",
+    "title": "数学I",
+    "section": "第4問",
+    "text": "第4問\n\n  \n    ◇難易度\n    \n      B\n      \n      標準、4段階中2\n    \n  \n  \n    ◷所要時間\n    30分目安\n  \n\n\n\n問題\n次の連立方程式の実数解を全て求めよ。\n\\[\n\\begin{equation}\n\\left\\{ \\,\n    \\begin{aligned}\n    \\dfrac{3}{x} + \\dfrac{2}{y} &= 2(3x^2+y^2)(x^2+3y^2)\\\\\n    - \\dfrac{3}{x} + \\dfrac{2}{y} &= 4(x^2+y^2)(x^2-y^2)\n    \\end{aligned}\n\\right.\n\\end{equation}\n\\]\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n互いの式を足し、引くことで、次の式が成り立つ\n\\[\n\\begin{equation}\n\\left\\{ \\,\n    \\begin{aligned}\n    \\dfrac{3}{x} &= x^4+10x^2y^2+5y^4\\\\\n    \\dfrac{2}{y} &= 5x^4+10x^2y^2+y^4\n    \\end{aligned}\n\\right.\n\\end{equation}\n\\]\n\\(x,y\\neq 0\\) から、次のように変形できる\n\\[\n\\begin{equation}\n\\left\\{ \\,\n    \\begin{aligned}\n    3 &= x^5+10x^3y^2+5xy^4\\\\\n    2 &= 5x^4y+10x^2y^3+y^5\n    \\end{aligned}\n\\right.\n\\end{equation}\n\\]\nこれを再び足し引きすることによって、\n\\[\n\\begin{equation}\n\\left\\{ \\,\n    \\begin{aligned}\n    5 &= x^5+5x^4y+10x^3y^2+10x^2y^3+5xy^4+y^5 = (x+y)^5\\\\\n    1 &= x^5-5x^4y+10x^3y^2-10x^2y^3+5xy^4-y^5 = (x-y)^5\n    \\end{aligned}\n\\right.\n\\end{equation}\n\\]\n実数の5乗根は一意なので\n\\[\nx+y=\\sqrt[5]{5},\\qquad x-y=1.\n\\]\nこれを解くと\n\\[\n\\boxed{(x,y)=\\left(\\dfrac{1+\\sqrt[5]{5}}{2},\\dfrac{\\sqrt[5]{5}-1}{2}\\right)}\n\\]\nとなる。これは \\(x,y\\neq0\\) を満たすため、途中の変形はすべて可逆であり、実際に元の連立方程式の解である。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学I"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学I.html#第5問",
+    "href": "posts/収容所配布用/数学/数学I.html#第5問",
+    "title": "数学I",
+    "section": "第5問",
+    "text": "第5問\n\n  \n    ◇難易度\n    \n      C\n      \n      発展、4段階中3\n    \n  \n  \n    ◷所要時間\n    30分目安\n  \n\n\n\n問題\n\\(p\\) は \\(3\\) 以上の素数として、 \\(k = \\lfloor 2p/3 \\rfloor\\) とする。この時、次の式の値が \\(p^2\\) で割り切れることを示せ。\n\\[\n\\binom{p}{1} + \\binom{p}{2} + \\cdots + \\binom{p}{k}\n\\]\nただし、\n\\[\n\\binom{m}{n} = \\frac{m!}{n!(m-n)!}\n\\]\nとする。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\[\n\\frac{1}{p}\\binom{p}{n} = \\frac{1}{n} \\frac{p-1}{1} \\frac{p-2}{2} \\cdots \\frac{p-n+1}{n-1} \\equiv \\frac{(-1)^{n-1}}{n} \\pmod{p}\n\\]\nここで、 \\(x \\equiv y \\pmod{p}\\) というのは、有理数 \\(x - y\\) の分数の分子が \\(p\\) の倍数であることを意味する。よって、次の式を示せば十分である。\n\\[\n\\sum_{n=1}^{k} \\frac{(-1)^{n-1}}{n} \\equiv 0 \\pmod{p}\n\\]\nここで、 \\(p\\) を \\(6\\) で割った余りで場合分けをする。\n\n\\(p = 6q + 1\\) の時\n\n\\(k = 4q\\) となる。なので、\n\\[\\begin{align*}\n    \\sum_{n=1}^{4q} \\frac{(-1)^{n-1}}{n} &= \\sum_{n=1}^{4q} \\frac{1}{n} - 2 \\sum_{n=1}^{2q}\\frac{1}{2n} \\\\\n    &= \\sum_{n=2q+1}^{4q} \\frac{1}{n} \\\\\n    &= \\sum_{2q+1}^{3q} \\left( \\frac{1}{n} + \\frac{1}{6q+1-n} \\right) \\\\\n    &= \\sum_{2q+1}^{3q} \\frac{p}{n(p-n)} \\equiv 0 \\pmod{p}\n\\end{align*}\\]\nとわかる。\n\n\\(p = 6q + 5\\) の時\n\n\\(k=4q+3\\) である。同様に偶数番目の項をまとめると\n\\[\n\\sum_{n=1}^{4q+3}\\frac{(-1)^{n-1}}n\n=\\sum_{n=2q+2}^{4q+3}\\frac1n.\n\\]\nこの範囲を \\(n\\) と \\(p-n\\) で組にすると\n\\[\n\\sum_{n=2q+2}^{3q+2}\n\\left(\\frac1n+\\frac1{p-n}\\right)\n=\\sum_{n=2q+2}^{3q+2}\\frac{p}{n(p-n)}\n\\equiv0\\pmod p.\n\\]\nどちらの場合も \\(p\\) で割った後の和が \\(0\\pmod p\\) となるため、元の二項係数の和は \\(p^2\\) で割り切れる。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学I"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学I.html#第6問",
+    "href": "posts/収容所配布用/数学/数学I.html#第6問",
+    "title": "数学I",
+    "section": "第6問",
+    "text": "第6問\n\n  \n    ◇難易度\n    \n      C\n      \n      発展、4段階中3\n    \n  \n  \n    ◷所要時間\n    30分目安\n  \n\n\n\n問題\n任意の整数 \\(a, b, c\\) に対して、次の式\n\\[\n\\sqrt{n^3 + an^2 + bn + c}\n\\]\nの値が整数とならないような非負整数 \\(n\\) が存在することを示せ。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\(f(n) = n^3 + an^2 + bn + c\\) とする。 \\(f(n), f(n+2)\\) は偶奇を共にする上、任意の数の自乗は \\(4\\) で割った余りが \\(0,1\\) である。ゆえに、 \\(f(n), f(n+2)\\) が共にある数の自乗だったとすれば、その差は \\(4\\) で割り切れる。ところが、\n\\[\nf(n+2) - f(n) = 6n^2 + 12n + 8 + 2b \\equiv 2n^2 + 2b \\pmod{4}\n\\]\nなので、 \\(n,b\\) が偶奇を異にすれば、 \\(2n^2 + 2b\\) は \\(0\\) にならない。よって、 \\(f(n), f(n+2)\\) どちらかは平方数にならない。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学I"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学I.html#第7問",
+    "href": "posts/収容所配布用/数学/数学I.html#第7問",
+    "title": "数学I",
+    "section": "第7問",
+    "text": "第7問\n\n  \n    ◇難易度\n    \n      C\n      \n      発展、4段階中3\n    \n  \n  \n    ◷所要時間\n    35分目安\n  \n\n\n\n問題\n\\(n\\) を \\(2\\) 以上の整数として、 \\(f(x)\\) を \\(x\\) の \\(n\\) 次実数係数多項式とする。 このとき、 多項式 \\(\\{f(x)\\}^2\\) は最大幾つの負の係数の項を持つか。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\(\\{f(x)\\}^2\\) の最高次の係数と定数項は絶対に正なので、答えは \\(2n-1\\) 以下となるのは明らか。次に、\n\\[\\begin{align*}\nf(x) &= a_n x^n + a_{n-1} x^{n-1} + \\cdots + a_1 x + a_0 \\\\\n\\{f(x)\\}^2 &= b_{2n} x^{2n} + b_{2n-1} x^{2n-1} + \\cdots + b_1 x + b_0\n\\end{align*}\\]\nとおいておく。 \\(b_i\\) が \\(1 \\leq i \\leq 2n-1\\) で全て負であると仮定すると、\nまず \\(b_1 = 2a_0a_1 &lt; 0\\) である。ここで、一般性を失うことなく \\(a_0&gt;0\\) と仮定できて、 \\(a_1&lt;0\\) となる。次に係数を考えると、\n\\[\nb_i = \\sum_{j=0}^{i} a_j a_{i-j} = 2a_0a_i + \\sum_{j=1}^{i-1} a_j a_{i-j}\n\\]\nとなる。ここで、\n\\[\n2a_0a_i = b_i - \\sum_{j=1}^{i-1} a_j a_{i-j} &lt; 0\n\\]\nとなる。ここで帰納法の仮定から和の各項は正なので \\(a_i&lt;0\\) となる。これを \\(i=n\\) まで繰り返すと \\(a_{n-1}&lt;0,a_n&lt;0\\) を得る。ところが\n\\[\nb_{2n-1}=2a_{n-1}a_n&gt;0\n\\]\nとなり、全て負という仮定に矛盾する。ゆえに負の係数は高々 \\(2n-2\\) 個である。\n逆に、 \\(2n-2\\) であることを示せばいいのだが、例えば次のような多項式を考えれば良い。\n\\[\nf(x) = n(x^n+1) - (x^{n-1} + x^{n-2} + \\cdots + x)\n\\]\nそうすれば、\n\\[\\begin{align*}\n\\{f(x)\\}^2 = n^2(x^{2n}+2x^n+1) &- 2n(x^n+1)(x^{n-1}+x^{n-2}+\\cdots+x)\\\\\n&+ (x^{n-1}+x^{n-2}+\\cdots+x)^2\n\\end{align*}\\]\nとなる。次数 \\(1,\\ldots,n-1\\) と \\(n+1,\\ldots,2n-1\\) では、負の交差項の絶対値 \\(2n\\) が最後の平方項の係数より大きいため係数は負になる。一方、次数 \\(0,n,2n\\) の係数は正である。したがって実際に \\(2n-2\\) 個の負の係数をもち、最大値は\n\\[\n\\boxed{2n-2}\n\\]\nである。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学I"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学I.html#第8問",
+    "href": "posts/収容所配布用/数学/数学I.html#第8問",
+    "title": "数学I",
+    "section": "第8問",
+    "text": "第8問\n\n  \n    ◇難易度\n    \n      A\n      \n      取り組みやすい、4段階中1\n    \n  \n  \n    ◷所要時間\n    15分目安\n  \n\n\n\n問題\n\\(n \\in \\mathbb{Z}_{&gt;0}\\) のとき、次の不等式を示せ。\n\\[\n2n^2 + 3n + 1 \\geq 6(n!)^{2/n}\n\\]\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n模範解答を受領後に追記します。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学I"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学I.html#第9問",
+    "href": "posts/収容所配布用/数学/数学I.html#第9問",
+    "title": "数学I",
+    "section": "第9問",
+    "text": "第9問\n\n  \n    ◇難易度\n    \n      B\n      \n      標準、4段階中2\n    \n  \n  \n    ◷所要時間\n    20分目安\n  \n\n\n\n問題\n\\(n\\) を正整数として、ある立方体の体積が次のような式で表されることはあるか。\n\\[\n3n^2+3n+7\n\\]\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n考えている立方体の一辺を正整数 \\(m\\) とすると、\\(m^3=3n^2+3n+7\\) である。これを \\(3\\) を法として見ると \\(m^3\\equiv1\\)、したがって \\(m\\equiv1\\pmod3\\) である。\\(m=3k+1\\) とおいて展開し、両辺を \\(3\\) で整理すると\n\\[\n3k(3k^2+3k+1) = n^2 + n + 2\n\\]\nとなる。左辺は \\(3\\) で割り切れる。一方、\\(n\\equiv0,1,2\\pmod3\\) のいずれでも\n\\[\nn^2+n+2\\equiv2,1,2\\not\\equiv0\\pmod3\n\\]\nであり、矛盾する。よって、このような立方体は \\(\\boxed{\\text{存在しない}}\\)。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学I"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学I.html#第10問",
+    "href": "posts/収容所配布用/数学/数学I.html#第10問",
+    "title": "数学I",
+    "section": "第10問",
+    "text": "第10問\n\n  \n    ◇難易度\n    \n      B\n      \n      標準、4段階中2\n    \n  \n  \n    ◷所要時間\n    25分目安\n  \n\n\n\n問題\n\\(f,g,h\\) を二次関数とするとき、 \\(f\\circ g \\circ h\\) が \\(1,2,3,4,5,6,7,8\\) を解に持つことはあり得るか。\nすなわち、\\(f(x),g(x),h(x)\\) がそれぞれ \\(x\\) についての二次関数である時、 \\(f(g(h(x)))=0\\) が \\(x=1,2,3,4,5,6,7,8\\) を解に持つことはあり得るか。\n今後の問題は全て前者のような書き方をする。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\(f\\circ g\\) は4つの解を持つので、 \\(h\\) は \\(x=1,2,3,4,5,6,7,8\\) で4つの値を取る。対称性により、 \\(h\\) の軸は \\(9/2\\) となり、 \\(h(1)=h(8), h(2)=h(7), h(3)=h(6), h(4)=h(5)\\) となる。\n次に、 \\(f\\) は2つの解を持つので、 \\(g\\circ h(1), g\\circ h(2), g\\circ h(3), g\\circ h(4)\\) は2つの値を取る。対称性により、 \\(g\\circ h(1)=g\\circ h(4), g\\circ h(2)=g\\circ h(3)\\) となる。\n以上二つの条件を満たす \\(h\\) を考えた時、 \\(h=Ax^2+Bx+C\\) とおくと、\\(A=0\\) となって、そもそも成り立たないことがわかる。よって、このような \\(f,g,h\\) は存在しない。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学I"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学I.html#第11問",
+    "href": "posts/収容所配布用/数学/数学I.html#第11問",
+    "title": "数学I",
+    "section": "第11問",
+    "text": "第11問\n\n  \n    ◇難易度\n    \n      A-\n      \n      取り組みやすい、4段階中1\n    \n  \n  \n    ◷所要時間\n    10分目安\n  \n\n\n\n問題\nミリアム:　アーちゃんだ！　やっほー！\nアルティナ:　ミリアムさん……。お久しぶりです。\nミリアム:　もぅ！　お姉ちゃんって呼んでよ！\nアルティナ:　それで、今日は平日だったと思いますが、どうしてここに？　情報局の任務は終わったのですか？\nミリアム:　いや、まだ終わってないんだけど、ちょうど学院に用事があってね！　ついで寄ったところだよ！　それで、アーちゃんは何をしてるの？\nアルティナ:　私は今、基礎弾道学の宿題をしているところです。\nミリアム:　見せて見せて！\n\n\n【問題】\n照準と着弾のズレは、銃身の仰角によるか。理由を含めて考察せよ。\nミリアム: 懐かしいなぁ！　ボクも昔、こんな問題解いたような気がするなぁ！\nアルティナ:　そうですか。では、どうやって解いたのですか？\nミリアム:　忘れちゃった！\nアルティナ:　……。\nリィン: おいおい……。\nミリアム:　あ、リィンだ！\nアルティナ:　リィン教官、こんにちは。\nリィン:　ミハイル中佐の宿題だな。困っているようなら手伝うけど？\nアルティナ:　では、お願いします。\nアルティナはそう言うと、手元に書いたメモを出した。\n\nリィン:　弾道が放物線で、銃身は水平方向上に \\(\\theta\\) だけ傾いていて、照準は銃身に対して \\(\\phi\\) だけ下に傾いていると考えたわけだな。\nアルティナ:　はい。\nリィン:　じゃあ、初速を \\(v_0\\) とすると、物理学Iの授業で習った通り、弾道の方程式は時間 \\(t\\) を使って次のようになるわけだな。\n\\[\\begin{align*}\nx(t) &= v_0 t \\cos \\theta \\\\\ny(t) &= v_0 t \\sin \\theta - \\frac{1}{2}gt^2\n\\end{align*}\\]\nアルティナ:　はい。そこまでは分かりますが……。\nリィン:　じゃあ、弾道の放物線の方程式はどうなる？\nアルティナ:　\\(y\\) を \\(x\\) で表すことになるので……\n\\[\ny = \\boxed{\\phantom{hogehoge}}\n\\]\n選択肢\n\n\\(\\displaystyle y = x \\tan \\theta - \\frac{g}{2v_0^2 \\cos^2 \\theta} x^2\\)\n\\(\\displaystyle y = x \\tan \\theta - \\frac{g}{v_0^2 \\cos^2 \\theta} x^2\\)\n\\(\\displaystyle y = \\frac{v_0}{\\cos \\theta} x \\tan \\theta - \\frac{g}{2v_0^2 \\cos^2 \\theta} x^2\\)\n\\(\\displaystyle y = \\frac{v_0}{\\cos \\theta} x \\tan \\theta - \\frac{g}{v_0^2 \\cos^2 \\theta} x^2\\)\n\\(\\displaystyle y = \\frac{v_0}{\\cos \\theta} x \\tan \\theta - \\frac{g}{2v_0^2 \\cos^2 \\theta} x^2 + \\frac{v_0^2 \\sin^2 \\theta}{2g}\\)\n\\(\\displaystyle y = \\frac{v_0}{\\cos \\theta} x \\tan \\theta - \\frac{g}{2v_0^2 \\cos^2 \\theta} x^2 + \\frac{v_0^2 \\sin^2 \\theta}{g}\\)\n\nリィン:　そうだな。じゃあ、照準の方程式は次のようになるな。\n\\[\ny = \\boxed{\\phantom{hogehoge}}\n\\]\n選択肢\n\n\\(y = (\\tan \\theta ) x\\)\n\\(y = (\\tan \\phi ) x\\)\n\\(y = (\\tan \\theta + \\tan \\phi ) x\\)\n\\(y = (\\tan \\theta - \\tan \\phi ) x\\)\n\\(y = \\tan ( \\theta + \\phi ) x\\)\n\\(y = \\tan ( \\theta - \\phi ) x\\)\n\nリィン:　じゃあ、照準と弾道の交点を求めるわけだな。これは、どうすればいいかわかるか？\nアルティナ:　……。先程の方程式を連立させて、解けばいいのではないでしょうか？\nリィン:　その通りだ。その計算結果はこうなるな。\n\\[\nx = \\boxed{\\phantom{hogehoge}}\n\\]\n選択肢\n\n\\(\\displaystyle \\frac{v_0}{\\cos \\theta} \\frac{\\tan \\theta - \\tan \\phi}{1 - \\tan \\theta \\tan \\phi}\\)\n\\(\\displaystyle \\frac{v_0}{\\cos \\theta} \\frac{\\tan \\theta + \\tan \\phi}{1 + \\tan \\theta \\tan \\phi}\\)\n\\(\\dfrac{2v_o\\cos ^2 \\theta}{g}\\tan (\\theta + \\phi)\\)\n\\(\\dfrac{2v_o\\cos ^2 \\theta}{g}\\tan (\\theta - \\phi)\\)\n\\(\\dfrac{2v_o\\cos ^2 \\theta}{g}(\\tan \\theta - \\tan (\\phi - \\theta))\\)\n\\(\\dfrac{2v_o\\cos ^2 \\theta}{g}(\\tan \\theta - \\tan (\\phi + \\theta))\\)\n\\(\\dfrac{2v_o^2\\cos ^2 \\theta}{g}(\\tan \\theta - \\tan (\\phi - \\theta))\\)\n\\(\\dfrac{2v_o^2\\cos ^2 \\theta}{g}(\\tan \\theta - \\tan (\\phi + \\theta))\\)\n\nリィン: つまり、距離と照準が合っていたとしても、導力銃を上向や下向きに撃ち出すと、水平に打ち出した時と違って、着弾点がずれるということだな。\nアルティナ:　はい。それに、この式を使えば、水平方向に打ち出した時、照準と銃身のズレの角度と、着弾地点までの距離の関係も求められますね。\n\\[\nx_{Ideal} = \\boxed{\\phantom{hogehoge}}\n\\]\n選択肢\n\n\\(\\dfrac{2v_0 \\cos ^2 \\theta}{g}(1 - \\tan (\\pi/4 - \\phi))\\)\n\\(\\dfrac{2v_0 \\cos ^2 \\theta}{g}(1 - \\tan (\\pi/4 + \\phi))\\)\n\\(\\dfrac{2v_0^2 \\cos ^2 \\theta}{g}(1 - \\tan (\\pi/4 - \\theta))\\)\n\\(\\dfrac{2v_0^2 \\cos ^2 \\theta}{g}(1 - \\tan (\\pi/4 + \\theta))\\)\n\\(\\dfrac{2v_0^2 \\cos ^2 \\theta}{g}\\tan (\\phi)\\)\n\\(\\dfrac{2v_0^2 \\cos ^2 \\theta}{g}\\tan (\\theta)\\)\n\nリィン:　そうだな。じゃあ、次に、照準と銃身の距離についても考えてみよう。照準と銃身の距離を \\(\\Delta\\) にして考えると、先程アルティナが書いた図は次のようになるな。\n\nリィン:　ただ計算が面倒になるし、 \\(\\theta = 0\\) として、先ほどと同じように着弾地点を計算してみよう。\n\\[\nx = \\frac{v_0^2}{g} \\tan \\phi \\left\\{ 1 \\pm \\sqrt{\\boxed{\\phantom{hogehoge} } } \\right\\}\n\\]\n選択肢\n\n\\(\\displaystyle 1 + \\frac{2g\\Delta}{v_0^2 \\cos ^2 \\phi}\\)\n\\(\\displaystyle 1 - \\frac{2g\\Delta}{v_0 \\cos ^2 \\phi}\\)\n\\(\\displaystyle 1 + \\frac{2g\\Delta}{v_0^2 \\tan ^2 \\phi}\\)\n\\(\\displaystyle 1 - \\frac{2g\\Delta}{v_0 \\tan ^2 \\phi}\\)\n\\(\\displaystyle 1 + \\frac{g\\Delta}{v_0^2 \\cos ^2 \\phi}\\)\n\\(\\displaystyle 1 - \\frac{g\\Delta}{v_0 \\cos ^2 \\phi}\\)\n\\(\\displaystyle 1 + \\frac{g\\Delta}{v_0^2 \\tan ^2 \\phi}\\)\n\\(\\displaystyle 1 - \\frac{g\\Delta}{v_0 \\tan ^2 \\phi}\\)\n\nリィン:　\\(\\pm\\) があるけど、どちらの方を選べばいいかな？\nアルティナ:　……。 発射地点よりも銃弾が後ろに進むことはないので、 \\(\\boxed{\\phantom{h}}\\) が正しいと思います。\n選択肢\n\n\\(+\\)\n\\(-\\)\n\nリィン: そうだな。じゃあ、どんな時に先程の式のルートの中を \\(1\\) に近似できるかはわかるか？\nアルティナ:　……。 \\(\\Delta\\) が十分小さい時ですか？\nリィン:　その通りだ。だけどそれだけじゃないね。\nアルティナ:　\\(\\boxed{\\phantom{hogehoge}}\\) 時ですね。\nリィン:　その通りだ。ちゃんと考えられて偉いぞ。\nアルティナ:　ありがとうございます。……今日は長めにお願いしますね。\n選択肢\n\n\\(\\phi\\) が十分小さい\n\\(\\phi\\) が十分大きい\n\\(v_0\\) が十分小さい\n\\(v_0\\) が十分大きい\n\nミリアム: あれ？　ボク、放置されちゃった！？\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n模範解答を受領後に追記します。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学I"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学I.html#第12問",
+    "href": "posts/収容所配布用/数学/数学I.html#第12問",
+    "title": "数学I",
+    "section": "第12問",
+    "text": "第12問\n\n  \n    ◇難易度\n    \n      B\n      \n      標準、4段階中2\n    \n  \n  \n    ◷所要時間\n    20分目安\n  \n\n\n\n問題\n\\(n \\in \\mathbb{Z}_{&gt;0}\\) に対して、 \\(F(x)\\) を \\(n\\) 次の多項式函数とする。このとき、 \\(P(i)\\) が \\(i = 0,1,2, \\dots ,n\\) 全てで整数ならば、任意の \\(k \\in \\mathbb{Z}\\) に対して \\(F(k) \\in \\mathbb{Z}\\) であることを証明せよ。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n模範解答を受領後に追記します。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学I"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学I.html#第13問",
+    "href": "posts/収容所配布用/数学/数学I.html#第13問",
+    "title": "数学I",
+    "section": "第13問",
+    "text": "第13問\n\n  \n    ◇難易度\n    \n      B-\n      \n      標準、4段階中2\n    \n  \n  \n    ◷所要時間\n    20分目安\n  \n\n\n\n問題\n\\(a \\in \\mathbb{Z}\\) として、次の方程式が整数では無い正の有理根を持つとき、 \\(a\\) の値を求めよ。\n\\[\n4x^3 - (a-2)x - (a+4) = 0\n\\]\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n模範解答を受領後に追記します。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学I"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学I.html#第14問",
+    "href": "posts/収容所配布用/数学/数学I.html#第14問",
+    "title": "数学I",
+    "section": "第14問",
+    "text": "第14問\n\n  \n    ◇難易度\n    \n      A\n      \n      取り組みやすい、4段階中1\n    \n  \n  \n    ◷所要時間\n    5分目安\n  \n\n\n\n問題\n\\(a&gt;0\\) として、 \\(\\sqrt{x} = a + \\frac{1}{a}\\) の時、 \\(x-2+\\sqrt{x^2-4x}\\) の値を求めよ。ただし、答えに絶対値をつけてはならない。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n模範解答を受領後に追記します。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学I"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学I.html#第15問",
+    "href": "posts/収容所配布用/数学/数学I.html#第15問",
+    "title": "数学I",
+    "section": "第15問",
+    "text": "第15問\n\n  \n    ◇難易度\n    \n      A\n      \n      取り組みやすい、4段階中1\n    \n  \n  \n    ◷所要時間\n    15分目安\n  \n\n\n\n問題\n円Oがあり、その周上に点Aと点Bをとる。そして、弦ABの内の長くない方の弦に点Cをとる。そして、点Cで円Oに接する接線と、点A,Bを通るABと垂直な線分の交点をそれぞれ点E,Fとする。また、ABとOCの交点を点Dとする。\n\n誘導が必要ない人は、次の式の成立を証明せよ。\n\\[\nCE \\cdot CF = AD \\cdot BD\n\\]\n\\[\nCD^2 = AE \\cdot BF\n\\]\n次から誘導をつけながら解いていく。\n直角三角形に注目することによって、次の式が成立する。\n\\[\n\\angle ADE = \\angle A\\boxed{\\;1\\;}E\n\\]\n次に接舷定理を用いることによって、次の式が成立する。\n\\[\n\\angle A\\boxed{\\;1\\;}E = \\angle \\boxed{\\;2\\;}\\boxed{\\;3\\;}C\n\\]\nまた、円周角の性質から、次の式が成立する。\n\\[\n\\angle \\boxed{\\;2\\;}\\boxed{\\;3\\;}C = \\angle DFC\n\\]\nここで、$ADE = , ; CAD = $ とおく。\nそうすることによって、次の式が成立する。\n\\[\nCE = DE \\cdot \\sin \\boxed{\\;4\\;}\n\\]\n\\[\nCF = DF \\cdot \\sin \\boxed{\\;5\\;}\n\\]\n\\[\nAD = DE \\cdot \\sin \\boxed{\\;6\\;}\n\\]\n\\[\nBD = DF \\cdot \\sin \\boxed{\\;7\\;}\n\\]\nこれによって、一つ目の式が示された。同様にして2つ目の式も示すことができる。その概要を示せ。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n模範解答を受領後に追記します。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学I"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学I.html#第16問",
+    "href": "posts/収容所配布用/数学/数学I.html#第16問",
+    "title": "数学I",
+    "section": "第16問",
+    "text": "第16問\n\n  \n    ◇難易度\n    \n      C+\n      \n      発展、4段階中3\n    \n  \n  \n    ◷所要時間\n    30分目安\n  \n\n\n\n問題\n\\((n,a,b)\\in \\mathbb{Z}_{&gt;0}^3\\) として、 \\(p\\) を素数とする。この時、次の条件それぞれについて、 \\(p^n = a^3 + b^3\\) を満たす \\((n,a,b)\\) の組が存在するかどうかを判定せよ。\nただし、\\((n,a,b)\\in \\mathbb{Z}_{&gt;0}^3\\) は、\\(n,a,b\\) は正の整数であることを意味する。以降はこのように書くこととする。\n\n\\(p=2\\)\n\\(p=3\\)\n\\(p&gt;3\\)\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n模範解答を受領後に追記します。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学I"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学I.html#第17問",
+    "href": "posts/収容所配布用/数学/数学I.html#第17問",
+    "title": "数学I",
+    "section": "第17問",
+    "text": "第17問\n\n  \n    ◇難易度\n    \n      D\n      \n      挑戦、4段階中4\n    \n  \n  \n    ◷所要時間\n    20分目安\n  \n\n\n\n問題\n任意の整数 \\(k\\) に対して、\n\\[\nk = \\pm 1^2 \\pm 2^2 \\pm 3^2 \\pm \\cdots \\pm m^2\n\\]\nの \\(\\pm\\) から \\(+,-\\) を適当に選んで成立するような \\(m\\) が存在することを示し、そのような \\(m\\) が無限に存在することを示せ。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n模範解答を受領後に追記します。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学I"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学I.html#第18問",
+    "href": "posts/収容所配布用/数学/数学I.html#第18問",
+    "title": "数学I",
+    "section": "第18問",
+    "text": "第18問\n\n  \n    ◇難易度\n    \n      B+\n      \n      標準、4段階中2\n    \n  \n  \n    ◷所要時間\n    15分目安\n  \n\n\n\n問題\n\\(a, b, c\\) を異なる正整数として、次の条件を満たすとする。\n\\[\nab + bc + ca \\geq 3k^2 - 1\n\\]\nただし \\(k\\) は正整数とする。このとき次の不等式が成り立つことを示せ。\n\\[\na^3 + b^3 + c^3 \\geq 3(abc + 3k)\n\\]\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n一般性を失うことなく、\\(a&lt;b&lt;c\\) とおける。このとき、\n\\[\n\\begin{align*}\n(a-b)^2 + (b-c)^2 + (c-a)^2 &\\geq 1^2 + 1^2 + 2^2 = 6 \\\\\na^2 + b^2 + c^2 - ab - bc - ca &\\geq 3\n\\end{align*}\n\\]\nとなる。ここで与えられた不等式は、\n\\[\n\\begin{align*}\na^3 + b^3 + c^3 - 3abc &\\geq 9k \\\\\n(a+b+c)( a^2 + b^2 + c^2 - ab - bc - ca ) &\\geq 9k \\\\\n\\end{align*}\n\\]\nとなる。上の事実と合わせれば、 \\(a+b+c \\geq 3k\\) を示ば問題は示されたこととなるが、\n\\[\n\\begin{align*}\n(a + b + c)^2 &= a^2 + b^2 + c^2 - ab - bc - ca + 3(ab + bc + ca) \\\\\n&\\geq 3 + 3(3k^2 - 1) = 9k^2\n\\end{align*}\n\\]\nにより、示される。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学I"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学I.html#第19問",
+    "href": "posts/収容所配布用/数学/数学I.html#第19問",
+    "title": "数学I",
+    "section": "第19問",
+    "text": "第19問\n\n  \n    ◇難易度\n    \n      C\n      \n      発展、4段階中3\n    \n  \n  \n    ◷所要時間\n    30分目安\n  \n\n\n\n問題\n次の条件を満たす正整数 \\(a\\) が存在することを示せ。\n\\[\n\\begin{aligned}\na &\\not \\equiv 1 \\pmod 7 \\\\\na^3 &\\equiv 1 \\pmod{7^3}\n\\end{aligned}\n\\]\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n模範解答を受領後に追記します。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学I"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学II.html#第1問",
+    "href": "posts/収容所配布用/数学/数学II.html#第1問",
+    "title": "数学II",
+    "section": "第1問",
+    "text": "第1問\n\n  \n    ◇難易度\n    \n      B\n      \n      標準、4段階中2\n    \n  \n  \n    ◷所要時間\n    30分目安\n  \n\n\n\n問題\n\\(\\{ a_n \\}\\) を \\(1, 2, 3, \\cdots , n\\) を任意に並び替えた数列とする。この時、次の式の取りうる最大値を求めよ。\n\\[\na_1a_2 + a_2a_3 + \\cdots + a_{n-1}a_n + a_na_1\n\\]\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n求める和を \\(S\\) とする。恒等式\n\\[\n\\sum_{i=1}^n(a_i-a_{i+1})^2\n=2\\sum_{k=1}^n k^2-2S,\n\\qquad a_{n+1}=a_1\n\\]\nより、\\(S\\) を最大にすることは、円順列で隣り合う数の差の平方和を最小にすることと同値である。\n各辺の差を \\(d_i=|a_i-a_{i+1}|\\) とおく。円順列は最小値 \\(1\\) から最大値 \\(n\\) へ進み、再び \\(1\\) へ戻るため\n\\[\n\\sum_{i=1}^n d_i\\geq2(n-1).\n\\]\nまた正整数 \\(d\\) について \\(d^2\\geq3d-2\\) だから\n\\[\n\\sum_{i=1}^n d_i^2\n\\geq3\\sum_{i=1}^n d_i-2n\n\\geq4n-6.\n\\]\nこの下限は、たとえば\n\\[\n1,2,4,6,\\ldots,\n\\begin{cases}\nn,n-1,n-3,\\ldots,3 &(n\\text{ が偶数}),\\\\\nn-1,n,n-2,n-4,\\ldots,3 &(n\\text{ が奇数})\n\\end{cases}\n\\]\nという円順列で達成される。このとき差は2個が \\(1\\)、残り \\(n-2\\) 個が \\(2\\) で、平方和は \\(4n-6\\) である。\nしたがって\n\\[\n\\begin{aligned}\nS_{\\max}\n&=\\sum_{k=1}^n k^2-\\frac{4n-6}{2}\\\\\n&=\\frac{n(n+1)(2n+1)}6-2n+3\\\\\n&=\\boxed{\\frac{2n^3+3n^2-11n+18}{6}}.\n\\end{aligned}\n\\] $$",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学II"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学II.html#第2問",
+    "href": "posts/収容所配布用/数学/数学II.html#第2問",
+    "title": "数学II",
+    "section": "第2問",
+    "text": "第2問\n\n  \n    ◇難易度\n    \n      A\n      \n      取り組みやすい、4段階中1\n    \n  \n  \n    ◷所要時間\n    20分目安\n  \n\n\n\n問題\n\\(x&gt;0\\) として、次の式の最小値を求めよ。\n\\[\n\\frac{\\left(x+\\frac{1}{x}\\right)^6 - \\left( x^6 + \\frac{1}{x^6} \\right) - 2 }{ \\left( x + \\frac{1}{x} \\right)^3 + \\left( x^3 + \\frac{1}{x^3} \\right) }\n\\]\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\(t=x+1/x\\)、\\(s=x^3+1/x^3\\) とおく。\\(x&gt;0\\) だから \\(t\\geq2\\) であり、\\(s=t^3-3t\\) である。また\n\\[\nx^6+\\frac1{x^6}=s^2-2.\n\\]\nしたがって、与式の分子は\n\\[\nt^6-(s^2-2)-2=t^6-s^2=(t^3-s)(t^3+s)\n\\]\nとなる。分母が \\(t^3+s\\) なので、与式は\n\\[\nt^3-s=3t\\geq6\n\\]\nまで簡約できる。等号は \\(t=2\\)、すなわち \\(x=1\\) のときに成立する。よって最小値は \\(\\boxed{6}\\) である。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学II"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学II.html#第3問",
+    "href": "posts/収容所配布用/数学/数学II.html#第3問",
+    "title": "数学II",
+    "section": "第3問",
+    "text": "第3問\n\n  \n    ◇難易度\n    \n      A\n      \n      取り組みやすい、4段階中1\n    \n  \n  \n    ◷所要時間\n    15分目安\n  \n\n\n\n問題\n放物線 \\(y=x^2\\) 上に3点 \\(A, B, C\\) があり、 \\(\\triangle ABC\\) は \\(\\angle C\\) が直角となる直角三角形である。このとき、 \\(A, B\\) の座標をそれぞれ \\((a, a^2), (b, b^2)\\) とするとき、 \\(a, b\\) の条件を求めよ。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\(C(t,t^2)\\) とする。\\(t\\neq a,b\\) のとき、\\(AC,BC\\) の傾きはそれぞれ\n\\[\n\\frac{a^2-t^2}{a-t}=a+t,\n\\qquad\n\\frac{b^2-t^2}{b-t}=b+t\n\\]\nである。したがって直交条件は\n\\[\n(t+a)(t+b)=-1,\n\\]\nすなわち\n\\[\nt^2+(a+b)t+ab+1=0\n\\tag{1}\n\\]\nとなる。\nこの式が \\(t \\neq a, b\\) となるような解が存在するための必要十分条件を考える。\n実数解が存在する条件は、判別式\n\\[\n\\Delta=(a+b)^2-4(ab+1)=(a-b)^2-4\n\\]\nより \\(|a-b|\\geq2\\) である。ただし (1) が重解 \\(t=a\\) だけをもつ場合、\\(C=A\\) となって三角形を作れない。重解条件から\n\\[\n(a,b)=\\left(\\frac12,-\\frac32\\right),\n\\left(-\\frac12,\\frac32\\right)\n\\]\nを得る。同様に重解 \\(t=b\\) だけをもつ2組も除く必要がある。よって必要十分条件は\n\\[\n\\boxed{\n|a-b|\\geq2,quad\n(a,b)\\notin\n\\left\\{\n\\left(\\frac12,-\\frac32\\right),\n\\left(-\\frac12,\\frac32\\right),\n\\left(-\\frac32,\\frac12\\right),\n\\left(\\frac32,-\\frac12\\right)\n\\right\\}}\n\\]\nである。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学II"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学II.html#第4問",
+    "href": "posts/収容所配布用/数学/数学II.html#第4問",
+    "title": "数学II",
+    "section": "第4問",
+    "text": "第4問\n\n  \n    ◇難易度\n    \n      B\n      \n      標準、4段階中2\n    \n  \n  \n    ◷所要時間\n    20分目安\n  \n\n\n\n問題\n\\(n \\in \\mathbb{Z}_{&gt;0}\\) の時、次の式が成り立つことを示せ。\n\\[\n\\frac{1}{\\sin 2x} + \\frac{1}{\\sin 4x} + \\cdots + \\frac{1}{\\sin 2^nx} = \\frac{1}{\\tan x} - \\frac{1}{\\tan 2^nx}\n\\]\nただし、左辺や右辺が定義できないような \\(x\\) については考えない。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n模範解答を受領後に追記します。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学II"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学II.html#第5問",
+    "href": "posts/収容所配布用/数学/数学II.html#第5問",
+    "title": "数学II",
+    "section": "第5問",
+    "text": "第5問\n\n  \n    ◇難易度\n    \n      B\n      \n      標準、4段階中2\n    \n  \n  \n    ◷所要時間\n    20分目安\n  \n\n\n\n問題\n次の連立方程式を解け。\n\\[\\begin{equation}\n\\left\\{ \\,\n    \\begin{aligned}\n    x^2 + x - 1 &= y, \\\\\n    y^2 + y - 1 &= z, \\\\\n    z^2 + z - 1 &= x. \\\\\n    \\end{aligned}\n\\right.\n\\end{equation}\\]\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\(f(t)=t^2+t-1\\) とおくと、条件は \\(y=f(x),z=f(y),x=f(z)\\) である。\\(M=\\max\\{x,y,z\\}\\) を取る変数を \\(t\\) とすれば \\(f(t)\\leq t\\) なので \\(t^2-1\\leq0\\)、したがって \\(M\\leq1\\) である。同様に最小値 \\(m\\) では \\(f(m)\\geq m\\) だから \\(m^2-1\\geq0\\) である。\n\\(m\\geq1\\) なら \\(m=M=1\\) で \\((x,y,z)=(1,1,1)\\) である。\\(M\\leq-1\\) なら同様に全て \\(-1\\) となる。残る可能性として \\(m&lt;-1&lt;M\\) を仮定する。\n\\(m\\) から順に \\(u=f(m),v=f(u),m=f(v)\\) とする。\\(m=f(v)&lt;-1\\) より \\(-1&lt;v&lt;0\\) である。この区間では \\(f(v)\\geq-5/4\\) だから \\(m\\geq-5/4\\)、したがって \\(u=f(m)&gt;-1\\) である。さらに \\(v=f(u)\\in(-1,0)\\) なので \\(u&gt;0\\) となる。\nところが \\(u=f(m)&gt;0\\) かつ \\(m&lt;-1\\) なら\n\\[\nm&lt;\\frac{-1-\\sqrt5}{2}&lt;-\\frac54,\n\\]\nとなり、先ほどの \\(m\\geq-5/4\\) に矛盾する。よって残る場合はない。\n以上により、実数解は\n\\[\n\\boxed{(x,y,z)=(1,1,1),\\ (-1,-1,-1)}\n\\]\nだけである。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学II"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学II.html#第6問",
+    "href": "posts/収容所配布用/数学/数学II.html#第6問",
+    "title": "数学II",
+    "section": "第6問",
+    "text": "第6問\n\n  \n    ◇難易度\n    \n      B\n      \n      標準、4段階中2\n    \n  \n  \n    ◷所要時間\n    20分目安\n  \n\n\n\n問題\n\\(a,b,c\\) が共に正のとき、次の不等式を示せ。\n\\[\n\\frac{1}{a} + \\frac{1}{b} + \\frac{1}{c} \\leq \\frac{a^8 + b^8 + c^8}{ a^3b^3c^3 }\n\\]\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\[\\begin{align*}\n8a^2b^3c^3 &\\leq 2a^8 + 3b^8 + 3c^8 \\\\\n8a^3b^2c^3 &\\leq 3a^8 + 2b^8 + 3c^8 \\\\\n8a^3b^3c^2 &\\leq 3a^8 + 3b^8 + 2c^8\n\\end{align*}\\]\n1本目は、重み付き相加相乗平均より\n\\[\n\\frac{2a^8+3b^8+3c^8}{8}\n\\geq\\sqrt[8]{a^{16}b^{24}c^{24}}\n=a^2b^3c^3\n\\]\nとして得られ、残り2本も文字を巡回させれば同様である。3式を足すと各 \\(a^8,b^8,c^8\\) の係数は \\(8\\) になるため\n\\[\na^2b^3c^3+a^3b^2c^3+a^3b^3c^2\n\\leq a^8+b^8+c^8.\n\\]\n正数 \\(a^3b^3c^3\\) で割れば、求める不等式を得る。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学II"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学II.html#第7問",
+    "href": "posts/収容所配布用/数学/数学II.html#第7問",
+    "title": "数学II",
+    "section": "第7問",
+    "text": "第7問\n\n  \n    ◇難易度\n    \n      B\n      \n      標準、4段階中2\n    \n  \n  \n    ◷所要時間\n    25分目安\n  \n\n\n\n問題\n一辺の長さが \\(1\\) の立方体 \\(ABCD-EFGH\\) を考える。三角錐 \\(A-HFG\\) と三角錐 \\(C-HFE\\) の共通部分の体積を求めよ。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\(EFGH\\) の高さを \\(0\\)、\\(ABCD\\) の高さを \\(1\\) とし、\\(E=(0,0,0),F=(1,0,0),G=(1,1,0),H=(0,1,0)\\) と置く。高さ \\(z\\) における第1の三角錐の断面は\n\\[\n0\\leq x,y\\leq1-z,\\qquad x+y\\geq1-z,\n\\]\n第2の断面は\n\\[\nz\\leq x,y\\leq1,\\qquad x+y\\leq1+z\n\\]\nで表される。したがって共通部分は \\(z\\leq x,y\\leq1-z\\) の正方形を、2本の対角線に平行な直線で切った図形となる。その面積 \\(S(z)\\) は\n\\[\nS(z)=\n\\begin{cases}\n(1-2z)^2-(1-3z)^2=2z-5z^2,&0\\leq z\\leq1/3,\\\\\n(1-2z)^2,&1/3\\leq z\\leq1/2,\\\\\n0,&1/2\\leq z\\leq1\n\\end{cases}\n\\]\nとなる。よって体積は\n\\[\n\\begin{aligned}\nV\n&=\\int_0^{1/3}(2z-5z^2)\\,\\dd z\n+\\int_{1/3}^{1/2}(1-2z)^2\\,\\dd z\\\\\n&=\\frac4{81}+\\frac1{162}\n=\\boxed{\\frac1{18}}.\n\\end{aligned}\n\\]",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学II"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学II.html#第8問",
+    "href": "posts/収容所配布用/数学/数学II.html#第8問",
+    "title": "数学II",
+    "section": "第8問",
+    "text": "第8問\n\n  \n    ◇難易度\n    \n      A+\n      \n      取り組みやすい、4段階中1\n    \n  \n  \n    ◷所要時間\n    20分目安\n  \n\n\n\n問題\n実数 \\(\\theta, \\phi, \\psi\\) に対して、次の条件が成り立っている。\n\\[\\begin{aligned}\n&\\theta + \\phi + \\psi = \\frac{\\pi}{4} \\\\\n&\\tan \\theta + \\tan \\phi + \\tan \\psi = 1\n\\end{aligned}\\]\nこのとき、 \\(n\\in \\mathbb{Z}_{\\geq 0}\\) として、次の等式が成り立つことを示せ。\n\\[\n\\tan ^{2n+1} \\theta + \\tan ^{2n+1} \\phi + \\tan ^{2n+1} \\psi = 1\n\\]\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\[\n\\tan ( \\theta + \\phi + \\psi ) = \\frac{\\tan \\theta + \\tan \\phi + \\tan \\psi - \\tan \\theta \\tan \\phi \\tan \\psi}{1 - \\tan \\theta \\tan \\phi - \\tan \\phi \\tan \\psi - \\tan \\psi \\tan \\theta} = 1\n\\]\nここで、\n\\[\nx=\\tan \\theta, y=\\tan \\phi, z=\\tan \\psi\n\\]\nとして、\n\\[\\begin{aligned}\n\\frac{x+y+z-xyz}{1-xy-yz-zx}=1\\\\\nx+y+z-xyz=1-xy-yz-zx\\\\\n(x-1)(y-1)(z-1)=0\n\\end{aligned}\\]\nとなるので、\\(x,y,z\\) の少なくとも一つが \\(1\\) である。一般性を失わず \\(x=1\\) とすると、条件 \\(x+y+z=1\\) より \\(y+z=0\\)、すなわち \\(z=-y\\) となる。したがって\n\\[\n\\tan ^{2n+1} \\theta + \\tan ^{2n+1} \\phi + \\tan ^{2n+1} \\psi = 1^{2n+1} + y^{2n+1} + (-y)^{2n+1} = 1\n\\]\nとわかる。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学II"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学II.html#第9問",
+    "href": "posts/収容所配布用/数学/数学II.html#第9問",
+    "title": "数学II",
+    "section": "第9問",
+    "text": "第9問\n\n  \n    ◇難易度\n    \n      B\n      \n      標準、4段階中2\n    \n  \n  \n    ◷所要時間\n    20分目安\n  \n\n\n\n問題\n全ての \\(x \\in \\mathbb{R}\\) について、 \\(F(x) \\geq 0\\) となる多項式関数 \\(F\\) を考える。このとき、次の式を満たす多項式関数列 \\(\\{ f_n \\}\\) が存在することを示せ。\n\\[\nF(x) = \\sum_{i=1}^{n} \\{f_i(x)\\}^2\n\\]\nただし、関数列とは、ただ関数を並べただけのもので、 \\(f_i\\) は全て同じでも、すべて異なってもよく、また、関数列の長さ、つまり \\(n\\) もどんな値でも構わない。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\(F\\equiv0\\) なら \\(f_1=0\\) とすればよい。以下、\\(F\\) は零多項式でないとする。\\(F(x)\\geq0\\) なので、最高次係数は正で、すべての実根は偶数の重複度をもつ。重複を添字へ含めれば\n\\[\nF(x) = A\\prod_{i} (x-a_i)^2 \\prod_{j} (x^2+b_jx+c_j)\n\\]\nという形で因数分解が可能である。また、\n\\[\nx^2+b_jx+c_j = (x-z_j)(x-\\overline{z_j})\n\\]\nと因数分解が可能である。ところで、\n\\[\nG(x) + iH(x) = \\prod_{j} (x-z_j)\n\\]\nとすることによって、\n\\[\nG(x) - iH(x) = \\prod_{j} (x-\\overline{z_j})\n\\]\nとなるので、\n\\[\\begin{aligned}\nF(x) &= A \\prod_{i} (x-a_i)^2 (G(x) + iH(x)) (G(x) - iH(x)) \\\\\n&= A \\prod_{i} (x-a_i)^2 (G(x)^2 + H(x)^2) \\\\\n&= \\left(\\sqrt{A} \\prod_{i} (x-a_i)G(x)\\right)^2 + \\left(\\sqrt{A} \\prod_{i} (x-a_i)H(x)\\right)^2\n\\end{aligned}\\]\nとなる。\\(G,H\\) は実係数多項式だから、右辺は実係数多項式2本の平方和である。よって \\(n=2\\) として題意が満たされる。\n\n別解\n\\(F\\) を因数分解すると、 \\(F\\) が常に正ということから、 \\(F\\) の実根を \\(\\{a_n\\}\\) として、\n\\[\nF(x) = A\\prod_{i} (x-a_i)^2 \\prod_{j} (x^2+b_jx+c_j)\n\\]\nという形で因数分解が可能である。また、\n\\[\nx^2+b_jx+c_j = (x-d_j)^2 + e_j^2\n\\]\nと平方完成が可能であるので、\n\\[\n\\prod_{j} ((x-d_j)^2 + e_j^2) = \\sum_k \\{g_k(x)\\}^2\n\\]\nと平方完成できる。さらに二平方和の恒等式\n\\[\n(u^2+v^2)(r^2+s^2)=(ur-vs)^2+(us+vr)^2\n\\]\nを繰り返せば、二次因子の積も2本の実多項式 \\(G,H\\) を用いて \\(G^2+H^2\\) と書ける。したがって\n\\[\nf_1(x)=\\sqrt A\\prod_i(x-a_i)G(x),\n\\qquad\nf_2(x)=\\sqrt A\\prod_i(x-a_i)H(x)\n\\]\nとすればよい。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学II"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学II.html#第10問",
+    "href": "posts/収容所配布用/数学/数学II.html#第10問",
+    "title": "数学II",
+    "section": "第10問",
+    "text": "第10問\n\n  \n    ◇難易度\n    \n      B\n      \n      標準、4段階中2\n    \n  \n  \n    ◷所要時間\n    20分目安\n  \n\n\n\n問題\n\\[\nf(x)=\\frac{1}{\\sqrt{1+x}}+\\frac{1}{\\sqrt{1+a}}+\\sqrt{\\frac{ax}{ax+8}}\n\\]\nであるとき、任意の正数 \\(a\\) に対して、 \\(f(x) \\in (1,2)\\) を示せ。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n模範解答を受領後に追記します。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学II"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学III.html#第1問",
+    "href": "posts/収容所配布用/数学/数学III.html#第1問",
+    "title": "数学III",
+    "section": "第1問",
+    "text": "第1問\n\n  \n    ◇難易度\n    \n      B\n      \n      標準、4段階中2\n    \n  \n  \n    ◷所要時間\n    30分目安\n  \n\n\n\n問題\n\\(n\\) を正整数として、次の不等式を示せ。\n\\[\n\\left( \\frac{2n - 1}{e} \\right) ^ {\\frac{2n-1}{2} }  &lt; 1 \\cdot 3 \\cdot 5 \\cdots (2n - 1) &lt; \\left( \\frac{2n + 1}{e} \\right) ^ {\\frac{2n+1}{2} }\n\\]\nただしネイピア数 \\(e\\) のおおよその値は \\(2.718\\) であることは示さなくとも良い。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n模範解答を受領後に追記します。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学III"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学III.html#第2問",
+    "href": "posts/収容所配布用/数学/数学III.html#第2問",
+    "title": "数学III",
+    "section": "第2問",
+    "text": "第2問\n\n  \n    ◇難易度\n    \n      A\n      \n      取り組みやすい、4段階中1\n    \n  \n  \n    ◷所要時間\n    15分目安\n  \n\n\n\n問題\n直角双曲線 \\(x^2-y^2=2\\) 上の異なる３点を頂点とする三角形の垂心の存在範囲を求めよ\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n座標軸を \\(\\pi/4\\) 回転し、回転後の座標を \\((X,Y)\\) とする。\n\\[\\begin{equation}\n    \\left \\{ \\,\n    \\begin{aligned}\n        x &= X \\cos \\frac{\\pi}{4} + Y \\sin \\frac{\\pi}{4} \\\\\n        y &= -X \\sin \\frac{\\pi}{4} + Y \\cos \\frac{\\pi}{4}\n    \\end{aligned}\n    \\right.\n\\end{equation}\\]\nを \\(x^2-y^2=2\\) へ代入すると\n\\[\nXY=1\n\\]\nとなる。3点を \\(A(a,1/a), B(b,1/b), C(c,1/c)\\) とする。ただし \\(a,b,c\\) は相異なる非零実数である。\n\\[\nBC: x + bcy = b + c\n\\]\nであり、その傾きは \\(-1/(bc)\\) である。したがって、\\(A\\) を通る \\(BC\\) の垂線は\n\\[\nA_\\perp : abcx - ay = a^2bc - 1\n\\]\nとなる。同様に、\\(B\\) を通る \\(AC\\) の垂線は\n\\[\nB_\\perp : abcx - by = b^2ac - 1\n\\]\nとなる。2式を引くと \\(Y=-abc\\)、これを戻すと \\(X=-1/(abc)\\) なので、垂心は\n\\[\nH=\\left(-\\frac1{abc},-abc\\right)\n\\]\nである。確かに \\(X_HY_H=1\\) だから、垂心も双曲線 \\(XY=1\\) 上にある。\n逆に \\(XY=1\\) 上の任意の点 \\((t,1/t)\\) に対し、\\(abc=-1/t\\) となる相異なる非零実数 \\(a,b,c\\) を選べるため、その点を垂心として実現できる。よって回転前の座標へ戻した存在範囲は\n\\[\n\\boxed{x^2-y^2=2\\text{ の全体}}\n\\]\nである。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学III"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学III.html#第3問",
+    "href": "posts/収容所配布用/数学/数学III.html#第3問",
+    "title": "数学III",
+    "section": "第3問",
+    "text": "第3問\n\n  \n    ◇難易度\n    \n      B\n      \n      標準、4段階中2\n    \n  \n  \n    ◷所要時間\n    20分目安\n  \n\n\n\n問題\n\\(n \\in \\mathbb{Z}_{&gt;0}\\) として、次の条件を満たす複素数 \\(z\\) を考える。\n\\(z\\) および \\(z^n + 1\\) の絶対値が共に \\(1\\) である。\nこのとき、条件を満たす相異なる \\(z\\) 全ての和と積を求めよ。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n模範解答を受領後に追記します。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学III"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学III.html#第4問",
+    "href": "posts/収容所配布用/数学/数学III.html#第4問",
+    "title": "数学III",
+    "section": "第4問",
+    "text": "第4問\n\n  \n    ◇難易度\n    \n      A\n      \n      取り組みやすい、4段階中1\n    \n  \n  \n    ◷所要時間\n    20分目安\n  \n\n\n\n問題\n\\(z \\in \\mathbb{C}\\) として、 \\(z+\\frac{4}{z}\\) が実数であるとする。このとき、次の式を満たす \\(z\\) が存在するような \\(k \\in \\mathbb{R}\\) の値の範囲を求めよ。\n\\[\nk\\left( z + \\frac{4}{z} + 8 \\right) = i \\left( z - \\frac{4}{z} \\right)\n\\]\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\\(z\\) が実数の場合、等式の左辺は実数、右辺は純虚数である。したがって両辺が \\(0\\) でなければならず、\\(z-4/z=0\\) より \\(z=\\pm2\\)、さらに元の式から \\(k=0\\) となる。\n次に \\(z\\) が実数でない場合を考える。\\(z=re^{i\\theta}\\ (r&gt;0)\\) とおくと\n\\[\n\\operatorname{Im}\\left(z+\\frac4z\\right)\n=\\left(r-\\frac4r\\right)\\sin\\theta=0.\n\\]\n\\(\\sin\\theta\\neq0\\) なので \\(r=2\\) である。これを与式へ代入すると\n\\[\nk\\left( 4 \\cos \\theta + 8 \\right) = i \\left( 4i \\sin \\theta \\right)\n\\]\nとなるわけだが、\n\\[\nk = - \\frac{\\sin \\theta}{\\cos \\theta + 2}\n\\]\nとなる。\\(g(\\theta)=\\sin\\theta/(2+\\cos\\theta)\\) とおくと\n\\[\ng'(\\theta)=\\frac{2\\cos\\theta+1}{(2+\\cos\\theta)^2}.\n\\]\nしたがって極値は \\(\\cos\\theta=-1/2\\) で取り、\\(|g(\\theta)|\\leq1/\\sqrt3\\) である。端の値も \\(\\sin\\theta=\\pm\\sqrt3/2\\) のとき実現する。\\(k=-g(\\theta)\\) だから、実数の場合に得た \\(k=0\\) も含めて\nよって答えは\n\\[\n\\boxed{k \\in \\left[ -\\frac{1}{\\sqrt{3} }, \\frac{1}{\\sqrt{3} } \\right]}\n\\]",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学III"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学III.html#第5問",
+    "href": "posts/収容所配布用/数学/数学III.html#第5問",
+    "title": "数学III",
+    "section": "第5問",
+    "text": "第5問\n\n  \n    ◇難易度\n    \n      A\n      \n      取り組みやすい、4段階中1\n    \n  \n  \n    ◷所要時間\n    10分目安\n  \n\n\n\n問題\n極限値 \\[\n\\lim _{x \\rightarrow+\\infty}\\left(\\frac{\\sqrt[x]{a}+\\sqrt[2 x]{b}}{2}\\right)^{2 x}\n\\] を求めよ。ただし \\(a, b\\) は正の定数とする。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n模範解答を受領後に追記します。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学III"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/数学III.html#第6問",
+    "href": "posts/収容所配布用/数学/数学III.html#第6問",
+    "title": "数学III",
+    "section": "第6問",
+    "text": "第6問\n\n  \n    ◇難易度\n    \n      B\n      \n      標準、4段階中2\n    \n  \n  \n    ◷所要時間\n    20分目安\n  \n\n\n\n問題\n\n\\(x &gt; 0,\\; 0&lt;\\theta&lt;\\frac{\\pi}{2}\\) とする。\n\n\\[\n\\frac{e^x+e^{-x}}{2} = \\frac{1}{\\cos \\theta}\n\\]\nとなるとき、 \\(\\dv{x}{\\theta}\\) を求めよ。\n\n次の広義積分を求めよ。\n\n\\[\n\\int_{-\\infty}^{\\infty} \\qty( \\frac{2}{e^x+e^{-x}} )^n \\dd x\n\\]\nただし、この極限は収束することは示さなくとも良い。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n与式は \\(\\cosh x=\\sec\\theta\\) である。両辺を \\(\\theta\\) で微分すると\n\n\\[\n\\sinh x\\dv{x}{\\theta}=\\sec\\theta\\tan\\theta.\n\\]\n\\(x&gt;0\\)、\\(0&lt;\\theta&lt;\\pi/2\\) だから\n\\[\n\\sinh x\n=\\sqrt{\\cosh^2x-1}\n=\\sqrt{\\sec^2\\theta-1}\n=\\tan\\theta.\n\\]\nよって\n\\[\n\\boxed{\\dv{x}{\\theta}=\\sec\\theta=\\frac1{\\cos\\theta}}\n\\]\n\n\n\n\\(a \\to \\infty\\) を考えるので、\\(a&gt;0\\) とする。\n\\[\n\\int_{-a}^a \\left(\\frac{2}{e^x + e^{-x}}\\right)^n dx\n= 2\\int_{0}^a \\left(\\frac{2}{e^x + e^{-x}}\\right)^n dx\n\\tag{5}\n\\]\nここで \\(\\operatorname{sech}x=1/\\cosh x\\) と書けば、\n\\[\ne^x + e^{-x} = 2\\cosh x\n\\]\nを用い、\\(x=0\\) のとき \\(\\theta=0\\), \\(x=a\\) のとき \\(\\theta = \\theta_a\\) として変数変換すると、\n\\[\n(5) = 2\\int_{0}^{\\theta_a} \\cos^{n-1}\\theta \\, \\dd\\theta\n\\]\n極限 \\(a\\to\\infty\\) のとき \\(\\theta_a \\to \\pi/2\\) だから、\n\\[\n\\int_{-\\infty}^{\\infty}\\operatorname{sech}^n x\\,\\dd x\n=2\\int_0^{\\pi/2}\\cos^{n-1}\\theta\\,\\dd\\theta.\n\\tag{6}\n\\]\n一般に \\(J_m=\\int_0^{\\pi/2}\\cos^m\\theta\\,\\dd\\theta\\) とおく。部分積分により\n\\[\nJ_m=\\frac{m-1}{m}J_{m-2},\n\\qquad J_0=\\frac\\pi2,\\quad J_1=1\n\\]\nを得る。(6) は \\(2J_{n-1}\\) だから、\\(m\\geq0\\) として\n\\[\n\\boxed{\n\\int_{-\\infty}^{\\infty}\\left(\\frac2{e^x+e^{-x}}\\right)^n\\dd x\n=\n\\begin{cases}\n\\displaystyle\n\\pi\\frac{(2m)!}{2^{2m}(m!)^2},&n=2m+1,\\\\[8pt]\n\\displaystyle\n2\\frac{(2m-2)!!}{(2m-1)!!},&n=2m\n\\end{cases}}\n\\]\nとなる。特に \\(n=1\\) では \\(\\pi\\)、\\(n=2\\) では \\(2\\) である。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "数学III"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/数学/過去問演習.html#第1問",
+    "href": "posts/収容所配布用/数学/過去問演習.html#第1問",
+    "title": "過去問演習",
+    "section": "第1問",
+    "text": "第1問\n\n  \n    ◇難易度\n    \n      B\n      \n      標準、4段階中2\n    \n  \n  \n    ◷所要時間\n    60分目安\n  \n\n\n\n問題1\n曲線 \\(y=x^3\\) の \\(x&gt;0\\) の部分を \\(C\\) とする。\\(C\\) 上の点 \\(P\\) において、\\(P\\) における \\(C\\) の接線と \\(x\\) 軸との交点を \\(Q\\) とし、 \\(P\\) における \\(C\\) の法線と \\(y\\) 軸との交点を \\(R\\) とする。 \\(\\frac{OR}{OQ}\\) の最小値を求めよ。\n\n\n問題2\n下の等式を満たす複素数 \\(z\\) を全て求めよ。\n\\[\\frac{2z+2i}{z+2i}=\\bar{z}\\]\n\n\n問題3\n\\(n\\) 個のドルコインと \\(n+1\\) 個のペソコインがある。これらを全て同時に投げた時、ペソコインの表の枚数がドルコインの表の枚数より多い確率を求めよ。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n模範解答を受領後に追記します。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "数学",
+      "過去問演習"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/物理/物理.html#第1問",
+    "href": "posts/収容所配布用/物理/物理.html#第1問",
+    "title": "物理",
+    "section": "第1問",
+    "text": "第1問\n\n問題\n\n問題文は元資料を受領後に追記します。下図と既存の計算メモのみ掲載しています。\n\n\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n回転運動方程式は\n\\[\n\\frac{1}{3}ml^2\\ddot{\\theta} = -mg\\frac{l}{2}\\cos \\theta\n\\]\nとなり、重心運動方程式は\n\\[\\begin{align*}\nm\\ddot{x} &= R_x \\\\\nm\\ddot{y} &= mg + R_y\n\\end{align*}\\]\nここで、\\(x,y\\) については、\n\\[\\begin{align*}\nx &= \\frac{l}{2} \\cos \\theta \\\\\ny &= \\frac{l}{2} \\sin \\theta \\\\\n\\dot{x} &= -\\frac{l}{2} \\sin \\theta \\dot{\\theta} \\\\\n\\dot{y} &= \\frac{l}{2} \\cos \\theta \\dot{\\theta} \\\\\n\\ddot{x} &= -\\frac{l}{2} \\cos \\theta \\dot{\\theta}^2 - \\frac{l}{2} \\sin \\theta \\ddot{\\theta} \\\\\n\\ddot{y} &= -\\frac{l}{2} \\sin \\theta \\dot{\\theta}^2 + \\frac{l}{2} \\cos \\theta \\ddot{\\theta}\n\\end{align*}\\]\n以上のことより、重心運動方程式は次のようになる\n\\[\n-m\\frac{l}{2}\n    \\begin{pmatrix}\n        \\cos \\theta & \\sin \\theta \\\\\n        -\\sin \\theta & \\cos \\theta\n    \\end{pmatrix}\n    \\begin{pmatrix}\n        \\dot{\\theta}^2 \\\\\n        \\ddot{\\theta}\n    \\end{pmatrix}\n    =\n    \\begin{pmatrix}\n        R_x \\\\\n        mg + R_y\n    \\end{pmatrix}\n\\]\n\\[\n-m\\frac{l}{2}\n    \\begin{pmatrix}\n        \\dot{\\theta}^2 \\\\\n        \\ddot{\\theta}\n    \\end{pmatrix}\n    =\n    \\begin{pmatrix}\n        \\cos \\theta & -\\sin \\theta \\\\\n        \\sin \\theta & \\cos \\theta\n    \\end{pmatrix}\n    \\begin{pmatrix}\n        R_x \\\\\n        mg + R_y\n    \\end{pmatrix}\n\\]\nこれが要するに角加速度の導出だったわけだ。 \\(\\ddot{\\theta}\\) について無視したら次元の数が足りないとなるだろう？\nで、軸に働く力を求めるとなると、上の方程式を解けばいいわけだ。\nエネルギー積分によって、\n\\[\n\\frac{1}{3}ml^2\\ddot{\\theta} = -mg\\frac{l}{2}\\cos \\theta\n\\]\nを \\(0 \\to \\pi /2\\) で積分して、いろいろと式を変形すると、求められていくわけだ。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "物理",
+      "物理"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/物理/物理.html#第2問",
+    "href": "posts/収容所配布用/物理/物理.html#第2問",
+    "title": "物理",
+    "section": "第2問",
+    "text": "第2問\n\n問題\n真空中に，中空で断面積 \\(S\\)〔\\(\\text{m}^2\\)〕のソレノイドがある。このソレノイドの単位長さあたりの導線の巻数は n〔\\(1/\\text{m}\\)〕であり，導線には電流 \\(I\\)〔\\(\\text{A}\\)〕の定常電流が流れている。このとき以下の問いに答えよ。ただし真空の透磁率を \\(\\mu_0\\)〔\\(\\text{N}/\\text{A}^2\\)〕，円周率を \\(\\pi\\) とし，ソレノイドの長さは十分に長いものとする。\n(問 1) ソレノイド内部の磁場(磁界)の強さを求めよ。\nこのソレノイドの内部全体に，比透磁率 \\(\\mu_r\\) ( \\(\\gg 1\\) )の鉄(鉄芯)を入れた。このとき，次の問いに答えよ。\n(問 2) ソレノイド内部の磁場の強さ \\(H\\)〔\\(\\text{A}/\\text{m}\\)〕と磁束密度を求めよ。\n(問 2)と同じ鉄芯が入った同じソレノイドを，図 1 のように，その中心が半径 \\(R\\)〔\\(\\text{m}\\)〕の円環を描くように均一に曲げて鉄芯の端を接続した。ソレノイドには電流 \\(I\\)〔\\(\\text{A}\\)〕が流れているとして，以下の問いに答えよ。\n(問 3) ソレノイド全体の巻数 \\(N\\) と \\(H,R,I\\) の間に成り立つ関係式を，これらを用いて表せ。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n\n模範解答を受領後に追記します。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "物理",
+      "物理"
+    ]
+  },
+  {
+    "objectID": "posts/収容所配布用/物理/物理.html#第3問",
+    "href": "posts/収容所配布用/物理/物理.html#第3問",
+    "title": "物理",
+    "section": "第3問",
+    "text": "第3問\n\n問題\n\\(xy\\) 平面上に円形の非伝導体の紐があって、その紐は次のようにチャージされている。\n\nここで、 \\(\\lambda\\) は単位長さあたりの電荷密度である。紐の中心は原点にあって、半径は \\(R\\) である。紐は回転しておらず、電荷は静止しているとする。以下の問いに答えよ。\n(問題 1) 原点における電場の大きさを求めよ。\n(問題 2) \\(x, \\ y\\) 軸と垂直な軸 \\(z\\) 軸を考える。 \\(z\\) 軸上の点 \\((0,0,z)\\) における電場の大きさを求めよ。さらに、 \\(z \\gg R\\) の時の電場の振る舞いを求めよ。\n\n\n\n\n\n\nTip解答\n\n\n\n\n\n(問題 1)\n円環上の微小電荷要素は \\[\ndq = \\lambda(\\phi)\\, R\\, d\\phi = \\lambda_0 R \\cos\\phi\\, d\\phi\n\\]\n中心から各電荷要素までの距離は常に \\(R\\) であるため、微小電場の大きさは \\[\ndE = \\frac{1}{4\\pi\\varepsilon_0}\\frac{dq}{R^2}\n\\]\n正電荷の要素が作る電場は電荷要素から観測点へ向かう。\\(\\lambda(\\phi)=\\lambda_0\\cos\\phi\\) は符号も含むので、全周を積分すると \\(y\\) 成分は打ち消し合い、\\(x\\) 軸方向成分だけが残る。以下ではその大きさを求める。\n\\(x\\) 成分は \\[\ndE_x = dE \\cos\\phi\n\\]\nしたがって \\[\ndE_x\n= \\frac{1}{4\\pi\\varepsilon_0}\n\\frac{\\lambda_0 R \\cos\\phi\\, d\\phi}{R^2}\\cos\\phi\n= \\frac{\\lambda_0}{4\\pi\\varepsilon_0 R}\\cos^2\\phi\\, d\\phi\n\\]\n全電場は \\[\nE\n= \\frac{\\lambda_0}{4\\pi\\varepsilon_0 R}\n\\int_0^{2\\pi}\\cos^2\\phi\\, d\\phi\n\\]\n\\[\n\\int_0^{2\\pi}\\cos^2\\phi\\, d\\phi = \\pi\n\\]\nよって \\[\n\\boxed{\nE_{\\text{center}}\n= \\frac{\\lambda_0}{4\\varepsilon_0 R}\n}\n\\]\n(問題 2)\n軸上の点から円環上の任意の電荷要素までの距離は \\[\nr = \\sqrt{R^2 + z^2}\n\\]\n\\(y\\) 成分と \\(z\\) 成分は、\\(\\phi\\) と \\(\\phi+\\pi\\) の電荷要素を組にすると打ち消し合う。残る \\(x\\) 成分を考えると \\[\ndE\n= \\frac{1}{4\\pi\\varepsilon_0}\n\\frac{dq}{r^2}\\frac{R}{r}\n\\]\nここに \\(dq = \\lambda_0 R \\cos\\phi\\, d\\phi\\) を代入すると \\[\ndE\n= \\frac{1}{4\\pi\\varepsilon_0}\n\\frac{\\lambda_0 R^2 \\cos\\phi}{(R^2+z^2)^{3/2}}\\, d\\phi\n\\]\nそしてそのうち、 \\(x\\) 軸と水平な成分は、\n\\[\ndE_x = dE \\cos\\phi\n\\]\n結果として \\[\n|E_x(z)|\n= \\frac{\\lambda_0 R^2}{4\\pi\\varepsilon_0 (R^2+z^2)^{3/2}}\n\\int_0^{2\\pi}\\cos^2\\phi\\, d\\phi\n\\]\n\\[\n\\int_0^{2\\pi}\\cos^2\\phi\\, d\\phi = \\pi\n\\]\nよって \\[\n\\boxed{\n|E_x(z)|\n= \\frac{\\lambda_0 R^2}{4\\varepsilon_0 (R^2+z^2)^{3/2}}\n}\n\\]\n\\(z \\gg R\\) では \\[\n(R^2+z^2)^{3/2} \\approx z^3\n\\]\nしたがって \\[\n|E_x(z)|\n\\approx \\boxed{\\frac{\\lambda_0 R^2}{4\\varepsilon_0 z^3}}\n\\]\n全電荷は \\(\\int_0^{2\\pi}\\lambda_0R\\cos\\phi\\,\\dd\\phi=0\\) なので、遠方で \\(1/z^2\\) の単極子項は現れず、\\(1/z^3\\) で減衰する結果とも整合する。",
+    "crumbs": [
+      "Home",
+      "Posts",
+      "収容所配布用",
+      "物理",
+      "物理"
     ]
   }
 ]

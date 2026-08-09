@@ -1,0 +1,159 @@
+/* 収容所配布用の記事だけで使う演習情報カード。共有テーマは変更しない。 */
+.exercise-meta-card {
+  --exercise-meta-accent: var(--obs-accent-cyan, #168eaa);
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--pj-reading-width, 76ch);
+  margin: 0.7rem auto 1.35rem;
+  padding: 1px;
+  overflow: hidden;
+  color: var(--obs-text, currentColor);
+  background: linear-gradient(
+    115deg,
+    color-mix(in srgb, var(--exercise-meta-accent) 44%, var(--obs-border, transparent)),
+    var(--obs-border, transparent) 52%,
+    color-mix(in srgb, var(--obs-accent-magenta, #b7448e) 30%, var(--obs-border, transparent))
+  );
+  border: 0;
+  border-radius: var(--obs-radius-md, 18px);
+  box-shadow: var(--obs-shadow-soft, 0 12px 34px rgb(0 0 0 / 10%));
+}
+
+.exercise-meta-card::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -4rem -2rem auto auto;
+  width: 9rem;
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in srgb, var(--exercise-meta-accent) 22%, transparent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1.4rem color-mix(in srgb, var(--exercise-meta-accent) 5%, transparent);
+  pointer-events: none;
+}
+
+.exercise-meta-card--A { --exercise-meta-accent: #4c9b72; }
+.exercise-meta-card--B { --exercise-meta-accent: var(--obs-accent-cyan, #168eaa); }
+.exercise-meta-card--C { --exercise-meta-accent: var(--obs-accent, #7057e8); }
+.exercise-meta-card--D { --exercise-meta-accent: var(--obs-accent-magenta, #b7448e); }
+
+.exercise-meta-card__item {
+  display: grid;
+  grid-template-columns: minmax(6.4rem, auto) minmax(0, 1fr);
+  align-items: center;
+  gap: 0.9rem;
+  min-width: 0;
+  padding: 0.85rem 1rem;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--obs-glass-strong, #fff) 94%, transparent), var(--obs-surface-muted, #fff));
+}
+
+.exercise-meta-card__item:first-child {
+  border-radius: calc(var(--obs-radius-md, 18px) - 1px) 0 0 calc(var(--obs-radius-md, 18px) - 1px);
+}
+
+.exercise-meta-card__item:last-child {
+  border-radius: 0 calc(var(--obs-radius-md, 18px) - 1px) calc(var(--obs-radius-md, 18px) - 1px) 0;
+}
+
+.exercise-meta-card dt,
+.exercise-meta-card dd {
+  margin: 0;
+}
+
+.exercise-meta-card dt {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  color: var(--obs-text-muted, currentColor);
+  font-family: var(--bs-font-sans-serif, sans-serif);
+  font-size: 0.68rem;
+  font-weight: 760;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.exercise-meta-card__icon {
+  display: inline-grid;
+  place-items: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  color: var(--exercise-meta-accent);
+  font-size: 1rem;
+  background: color-mix(in srgb, var(--exercise-meta-accent) 11%, transparent);
+  border: 1px solid color-mix(in srgb, var(--exercise-meta-accent) 24%, transparent);
+  border-radius: 999px;
+}
+
+.exercise-meta-card dd {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.72rem;
+  min-width: 0;
+  font-family: var(--bs-font-sans-serif, sans-serif);
+  font-variant-numeric: tabular-nums;
+}
+
+.exercise-meta-card dd strong {
+  color: var(--obs-text, currentColor);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-weight: 780;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.exercise-meta-card__meter {
+  display: grid;
+  grid-template-columns: repeat(4, 0.62rem);
+  gap: 0.25rem;
+}
+
+.exercise-meta-card__segment {
+  width: 0.62rem;
+  height: 0.3rem;
+  background: color-mix(in srgb, var(--obs-text-muted, #777) 20%, transparent);
+  border-radius: 999px;
+}
+
+.exercise-meta-card__segment.is-active {
+  background: var(--exercise-meta-accent);
+  box-shadow: 0 0 9px color-mix(in srgb, var(--exercise-meta-accent) 38%, transparent);
+}
+
+.exercise-meta-card__hint {
+  color: var(--obs-text-muted, currentColor);
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 575.98px) {
+  .exercise-meta-card {
+    grid-template-columns: 1fr;
+  }
+
+  .exercise-meta-card__item {
+    grid-template-columns: minmax(6.4rem, auto) minmax(0, 1fr);
+  }
+
+  .exercise-meta-card__item:first-child {
+    border-radius: calc(var(--obs-radius-md, 18px) - 1px) calc(var(--obs-radius-md, 18px) - 1px) 0 0;
+  }
+
+  .exercise-meta-card__item:last-child {
+    border-radius: 0 0 calc(var(--obs-radius-md, 18px) - 1px) calc(var(--obs-radius-md, 18px) - 1px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exercise-meta-card,
+  .exercise-meta-card * {
+    transition: none !important;
+  }
+}
