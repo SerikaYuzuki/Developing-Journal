@@ -2543,6 +2543,7 @@ a_1a_2 + a_2a_3 + \cdots + a_{n-1}a_n + a_na_1
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p>まず <span class="math inline">\(n=1\)</span> のとき、和は <span class="math inline">\(a_1^2=1\)</span> である。以下では <span class="math inline">\(n\geq2\)</span> とする。</p>
 <p>求める和を <span class="math inline">\(S\)</span> とする。恒等式</p>
 <p><span class="math display">\[
 \sum_{i=1}^n(a_i-a_{i+1})^2
@@ -2560,7 +2561,7 @@ a_1a_2 + a_2a_3 + \cdots + a_{n-1}a_n + a_na_1
 \geq3\sum_{i=1}^n d_i-2n
 \geq4n-6.
 \]</span></p>
-<p>この下限は、たとえば</p>
+<p>この下限は <span class="math inline">\(n=2,3\)</span> ではそれぞれ数列 <span class="math inline">\(1,2\)</span> と <span class="math inline">\(1,2,3\)</span> により達成される。<span class="math inline">\(n\geq4\)</span> では、たとえば</p>
 <p><span class="math display">\[
 1,2,4,6,\ldots,
 \begin{cases}
@@ -2569,14 +2570,15 @@ n-1,n,n-2,n-4,\ldots,3 &amp;(n\text{ が奇数})
 \end{cases}
 \]</span></p>
 <p>という円順列で達成される。このとき差は2個が <span class="math inline">\(1\)</span>、残り <span class="math inline">\(n-2\)</span> 個が <span class="math inline">\(2\)</span> で、平方和は <span class="math inline">\(4n-6\)</span> である。</p>
-<p>したがって</p>
+<p>したがって、最大値は</p>
 <p><span class="math display">\[
-\begin{aligned}
-S_{\max}
-&amp;=\sum_{k=1}^n k^2-\frac{4n-6}{2}\\
-&amp;=\frac{n(n+1)(2n+1)}6-2n+3\\
-&amp;=\boxed{\frac{2n^3+3n^2-11n+18}{6}}.
-\end{aligned}
+\boxed{
+S_{\max}=
+\begin{cases}
+1 &amp;(n=1),\\[2mm]
+\dfrac{2n^3+3n^2-11n+18}{6} &amp;(n\geq2)
+\end{cases}
+}
 \]</span> $$</p>
 </div>
 </div>
