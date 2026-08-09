@@ -1,8 +1,8 @@
 ---
 title: "数学"
 author: "Serika Yuzuki"
-date: "2026-1-5"
-categories: [University, 2026]
+date: "2026-01-05"
+categories: [University, 2026, Differential Equations, Fourier Analysis]
 image: "images/thumbnail.png"
 ---
 
@@ -10,826 +10,788 @@ $$
 \require{physics}
 $$
 
-以降、pythonコードセル内で`dsolve`関数を使って常微分方程式を解く。
+この記事では、一階常微分方程式から線形偏微分方程式、Fourier解析、複素解析へ進む。各節では、問題を先に解き、必要なら理論を開き、最後に解答を確認する。
 
-### 同次型
+## 一階常微分方程式
+
+#### 問題1　同次形微分方程式 {#prob-homogeneous-ode}
+
+次の微分方程式の一般解を求めよ。
+
+$$
+x\dv{y}{x}=x+y,
+\qquad
+(x+y)\dv{y}{x}=2x-y.
+$$
+
+::: {.callout-note collapse="true"}
+##### 理論1：$y/x$ だけで決まる傾き
+
+$\dv{y}{x}=f(y/x)$ の形では $v=y/x$、すなわち $y=xv$ と置く。すると
+
+$$
+\dv{y}{x}=v+x\dv{v}{x}
+$$
+
+となり、$v$ と $x$ の変数分離形へ変換できる。第1式のように先に線形方程式として見える場合は、積分因子を使ってもよい。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答1
+
+第1式は
+
+$$
+\dv{y}{x}-\frac1xy=1
+$$
+
+であり、積分因子は $1/x$ である。したがって
+
+$$
+\dv{x}\left(\frac{y}{x}\right)=\frac1x,
+\qquad
+\boxed{y=x\left(\ln\abs{x}+C\right)}.
+$$
+
+第2式で $v=y/x$ と置くと
+
+$$
+v+x\dv{v}{x}=\frac{2-v}{1+v},
+\qquad
+\frac{1+v}{2-2v-v^2}\dd v=\frac{\dd x}{x}.
+$$
+
+積分・整理して
+
+$$
+\boxed{y^2+2xy-2x^2=C}
+$$
+
+を得る。
+:::
+
+#### 問題2　一階線形方程式とBernoulli方程式 {#prob-first-order-linear}
+
+1. 一階線形方程式 $y'+P(x)y=Q(x)$ の一般解を導け。
+2. $y'+5y=6e^x$ を解け。
+3. Bernoulli方程式 $y'+P(x)y=Q(x)y^n$ を線形方程式へ変換せよ。
+
+::: {.callout-note collapse="true"}
+##### 理論2：積の微分を作る
+
+一階線形方程式では、積分因子
+
+$$
+\mu(x)=\exp\left(\int P(x)\dd x\right)
+$$
+
+を掛けると、左辺が $(\mu y)'$ になる。Bernoulli方程式は $z=y^{1-n}$ と置くことで、$z$ の一階線形方程式になる。$y=0$ を割り算で失う場合がある点に注意する。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答2
+
+1.
+
+   $$
+   \boxed{
+   y=e^{-\int P\dd x}
+   \left[
+   \int Qe^{\int P\dd x}\dd x+C
+   \right]}.
+   $$
+
+2. 積分因子 $e^{5x}$ を掛けると
+
+   $$
+   (e^{5x}y)'=6e^{6x},
+   $$
+
+   したがって
+
+   $$
+   \boxed{y=e^x+Ce^{-5x}}.
+   $$
+
+3. $z=y^{1-n}$ と置けば
+
+   $$
+   z'=(1-n)y^{-n}y'
+   $$
+
+   なので、
+
+   $$
+   \boxed{z'+(1-n)P(x)z=(1-n)Q(x)}
+   $$
+
+   となる。
+:::
+
+#### 問題3　Riccati方程式 {#prob-riccati}
+
+$$
+x^2\dv{y}{x}=x^2y^2-xy-1
+$$
+
+を解け。
+
+::: {.callout-note collapse="true"}
+##### 理論3：形に合う置換を探す
+
+Riccati方程式は特殊解が一つ分かれば一階線形方程式へ落とせる。この問題では各項の $x$ の次数から $y=u/x$ と置くと、最短で変数分離形になる。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答3
+
+$y=u/x$ と置くと
+
+$$
+\frac1x\dv{u}{x}=\frac{u^2-1}{x^2}.
+$$
+
+よって
+
+$$
+\int\frac{\dd u}{u^2-1}=\int\frac{\dd x}{x},
+\qquad
+\frac{u-1}{u+1}=Cx^2.
+$$
+
+したがって
+
+$$
+\boxed{
+y=\frac1x\frac{1+Cx^2}{1-Cx^2}
+}.
+$$
+
+変数分離で除外した $u=-1$ も解なので、特別解 $y=-1/x$ を併記する。
+:::
+
+## 定数係数線形常微分方程式
+
+#### 問題4　二階斉次方程式 {#prob-second-order-homogeneous}
+
+次の方程式を解け。
 
 $$
 \begin{aligned}
-x\dv{y}{x} &= x + y \\
-(x + y) \dv{y}{x} &= 2x - y 
+y''+4y'-5y&=0,\\
+y''-6y'+9y&=0,\\
+y''+2y'+5y&=0.
 \end{aligned}
 $$
 
 ::: {.callout-note collapse="true"}
-##### 理論
+##### 理論4：特性根が解の形を決める
 
-$$
-\dv{y}{x} = f\qty(\frac{y}{x})
-$$
-
-この形に落とし込めば、 $t=\frac{y}{x}$ と置換して解ける。
-
+$y=e^{\lambda x}$ を仮定して特性方程式を作る。異なる実根なら二つの指数関数、重根なら $xe^{\lambda x}$ を追加し、複素根 $\alpha\pm i\beta$ なら $e^{\alpha x}\cos\beta x$ と $e^{\alpha x}\sin\beta x$ を基底にする。
 :::
 
 ::: {.callout-tip collapse="true"}
-##### 解答
+##### 解答4
 
-1問目は簡単なので解答だけ。
-
-```{python}
-#| output: asis
-
-from sympy import symbols, Function, Eq, dsolve, latex
-
-x = symbols('x')
-y = Function('y')(x)
-
-ode = Eq(x*y.diff(x), x + y)
-
-sol = dsolve(ode)
-print("$$" + latex(sol) + "$$")
-```
-
-２問目。
+順に、
 
 $$
-\begin{aligned}
-(x + y) \dv{y}{x} &= 2x - y \\
-\dv{y}{x} &= \frac{2x - y}{x + y} = \frac{2 - \frac{y}{x}}{1 + \frac{y}{x}} \\
-t &= \frac{y}{x} \\
-\dv{y}{x} &= t + x \dv{t}{x} \\
-t + x \dv{t}{x} &= \frac{2 - t}{1 + t} \\
-x \dv{t}{x} &= \frac{2 - t}{1 + t} - t = \frac{2 - t - t - t^2}{1 + t} = \frac{2 - 2t - t^2}{1 + t} \\
-\frac{1 + t}{2 - 2t - t^2} \dd{t} &= \frac{1}{x} \dd{x} \\
-\int \frac{1 + t}{2 - 2t - t^2} \dd{t} &= \int \frac{1}{x} \dd{x} \\
-\ln \abs{x} + C_1 &= -\frac{1}{2} \ln \abs{t^2 + 2t - 2} \\
-\frac{C_1}{x^2} &= \frac{1}{t^2 + 2t - 2} \\
-t & = -1 \pm \sqrt{ \frac{C_1}{x^2} + 1 } \\
-y & = x \qty( -1 \pm \sqrt{ \frac{C_1}{x^2} + 1 } )
-\end{aligned}
+\boxed{y=C_1e^x+C_2e^{-5x}},
 $$
 
-もしくは、
-
 $$
-y^2 + 2xy - 2x^2 = C_1
+\boxed{y=(C_1+C_2x)e^{3x}},
 $$
 
-::: 
-
-### 一階線型常微分方程式
-
 $$
-\begin{align}
-\dv{y}{x} + P(x)y &= Q(x) \\
-\dv{y}{x} + 5y &= 6e^x
-\end{align}
+\boxed{y=e^{-x}(C_1\cos2x+C_2\sin2x)}.
 $$
-
-::: {.callout-note collapse="true"}
-##### 理論
-
-一次線型常微分方程式は、積分因子 $e^{\int P(x) \dd{x}}$ を用いて解く。
-
-と書くと分かりづらいから、要するに、
-
-$$
-?\dv{y}{x} + ?P(x)y = \dv{x} ?
-$$
-
-という形を目指して、
-
-$$
-e^{\textcolor{orange}{\int P(x) \dd{x}}}\dv{y}{x} + y e^{\textcolor{orange}{\int P(x) \dd{x}}} \textcolor{red}{P(x)} = \dv{x} \qty(y e^{\int P(x) \dd{x}})
-$$
-
-という形に落ち着くって話。
-
 :::
 
-::: {.callout-tip collapse="true"}
-##### 解答
+#### 問題5　二階非斉次方程式 {#prob-second-order-inhomogeneous}
 
-１問目は、
-
-$$
-\begin{aligned}
-\dv{x} \qty(y e^{\int P(x) \dd{x}}) &= Q(x) e^{\int P(x) \dd{x}} \\
-y e^{\int P(x) \dd{x}} &= \int Q(x) e^{\int P(x) \dd{x}} \dd{x} + C \\
-y &= e^{-\int P(x) \dd{x}} \qty( \int Q(x) e^{\int P(x) \dd{x}} \dd{x} + C )
-\end{aligned}
-$$
-
-後半でこの式を覚えて当てはめるのは無理。覚えられうものなら覚えてみろ。
-
-２問目。
+次の方程式を解け。
 
 $$
 \begin{aligned}
-e^{\textcolor{orange}{5x}} \dv{y}{x} + \textcolor{red}{5} y e^{\textcolor{orange}{5x}} &= 6e^{6x} \\
-y e^{5x} &= \int 6e^{6x} \dd{x} + C \\
-y &= e^{x} + C e^{-5x}
-\end{aligned}
-$$
-
-```{python}
-#| output: asis
-
-from sympy import symbols, Function, Eq, dsolve, exp, integrate, latex
-
-x = symbols('x')
-y = Function('y')(x)
-ode = Eq(y.diff(x) + 5*y, 6*exp(x))
-sol = dsolve(ode)
-print("$$" + latex(sol) + "$$")
-```
-
-::: 
-
-### 一階非線型常微分方程式
-
-$$
-\begin{align}
-\dv{y}{x} + P(x)y &= Q(x)y^n \\
-\dv{y}{x} &= P(x)y^2 + Q(x)y + R(x) \quad \text{解き方のみ} \\
-x^2 \dv{y}{x} &= x^2y^2 - xy - 1
-\end{align}
-$$
-
-::: {.callout-note collapse="true"}
-##### 理論
-
-ベルヌーイの微分方程式は、$y^n$ で割ってから線形微分方程式に変形する。これは、 $y$ の次数が１だけズレてるから。
-
-2番目のはリッカチの微分方程式。特殊解 $y_p$ を知っているとき、 $y = y_p + t$ と置換することで線形微分方程式に変形できる。
-
-
-:::
-
-::: {.callout-tip collapse="true"}
-##### 解答
-
-１問目。
-
-$$
-\begin{aligned}
-\frac{1}{y^ \textcolor{red}{n}} \dv{y}{x} + P(x) \frac{1}{y^{\textcolor{red}{n-1}}} &= Q(x) \\
-(n-1)\dv{x} \qty(\frac{1}{y^{ \textcolor{red}{n-1} }}) + P(x) \frac{1}{y^{\textcolor{red}{n-1}}} &= Q(x) \\
-\dv{x} \qty(\textcolor{orange}{\frac{1}{y^{ n-1 }}}) + \frac{P(x)}{n-1} \textcolor{orange}{\frac{1}{y^{ n-1 }}} &= \frac{Q(x)}{n-1} \\
-\end{aligned}
-$$
-
-2問目はスキップして、具体例の３問目。
-
-$$
-\begin{aligned}
-x^2 \dv{y}{x} &= x^2y^2 - xy - 1 \\
-y &= \frac{1}{x} + t \\
--1 + x^2 \dv{t}{x} &= x^2 t^2 + xt - 1\\
-\dv{t}{x} &= \frac{x^2 t^2 + xt}{x^2} = t^2 + \frac{t}{x} \\
-\frac{1}{t^2} \dv{t}{x} - \frac{1}{x} \frac{1}{t} &= 1 \\
--\dv{x} \qty(\frac{1}{t}) - \frac{1}{x} \frac{1}{t} &= 1 \\
-\dv{x} \qty(\frac{1}{t}) + \frac{1}{x} \frac{1}{t} &= -1 \\
-s &= \frac{1}{t} \\
-\dv{s}{x} + \frac{s}{x} &= -1 \\
-u &= \frac{s}{x} \\
-\dv{x} (ux) + u &= -1 \\
-\dv{u}{x} x + 2u &= -1 \\
-\frac{\dd x}{x} &= - \frac{\dd u}{2u + 1} \\
-x = C \sqrt {2u + 1} \\
-u = \frac{C^2}{x^2} - \frac{1}{2} \\
-s = x \qty( \frac{C^2}{x^2} - \frac{1}{2} ) = \frac{C^2}{x} - \frac{x}{2} \\
-t = \frac{1}{s} = \frac{1}{ \frac{C^2}{x} - \frac{x}{2} } \\
-y = \frac{1}{x} + t &= \frac{1}{x} + \frac{1}{ \frac{C}{x} - \frac{x}{2} } = \frac{1}{x} \qty( 1 + \frac{1}{ \frac{C}{x^2} - \frac{1}{2} } ) \\
-&= \frac{1}{x} \frac{C + x^2}{C - x^2}
-\end{aligned}
-$$
-
-ってな感じだが、この問題に限って言えば、もっと簡単な方法がある。$y=u/x$ とおくと
-
-$$
-\begin{aligned}
-x^2 \dv{y}{x} -x^2y^2 + xy + 1 &= 0 \\
-\dv{y}{x} + \frac{1}{x}y &= y^2 - \frac{1}{x^2} \\
-\frac{1}{x}\dv{u}{x} &= \frac{u^2-1}{x^2} \\
-\frac{\dd x}{x}  &= \frac{\dd u}{u^2-1} \\
-\ln x &= \frac{1}{2}\ln\qty(\frac{u-1}{u+1}) + C \\
-\frac{u-1}{u+1} &= Cx^2 \\
-u &= \frac{1+Cx^2}{1-Cx^2} \\
-y &= \frac{1}{x} \frac{1+Cx^2}{1-Cx^2}
-\end{aligned}
-$$
-
-```{python}
-#| output: asis
-from sympy import symbols, Function, Eq, dsolve, latex
-
-x = symbols('x')
-y = Function('y')(x)
-ode = Eq(y.diff(x), y**2 - y/x - 1/x**2)
-sol = dsolve(ode)
-print("$$" + latex(sol) + "$$")
-```
-
-::: 
-
-### ２階斉次常微分方程式
-
-$$
-\begin{aligned}
-\dv[2]{y}{x} + a\dv{y}{x} + by &= 0 \\
-\dv[2]{y}{x} + 4\dv{y}{x} - 5y &= 0 \\
-\dv[2]{y}{x} - 6\dv{y}{x} + 9y &= 0 \\
-\dv[2]{y}{x} + 2\dv{y}{x} + 5y &= 0
+y''+2y'-3y&=e^{2x},\\
+y''-3y'+2y&=20\sin2x,\\
+y''+4y'-5y&=6x,\\
+y''+4y'+4y&=4e^{2x}.
 \end{aligned}
 $$
 
 ::: {.callout-note collapse="true"}
-##### 理論
+##### 理論5：一般解は斉次解と特殊解の和
 
-二次方程式を解いて、異なる基底の二つの解を重ねる。
+線形方程式 $L[y]=R(x)$ では
 
+$$
+y=y_h+y_p
+$$
+
+と分ける。未定係数法では $R(x)$ と同形の試行関数を仮定する。ただし試行関数が斉次解と重なる場合は $x$ を掛けて独立にする。
 :::
 
 ::: {.callout-tip collapse="true"}
-##### 解答
+##### 解答5
 
-１問目。
+特性方程式と未定係数法から、順に
 
-$ \lambda^2 + a\lambda + b = 0 $ を解いた解を $ \lambda_1, \lambda_2 $ とすると、
+$$
+\boxed{y=C_1e^x+C_2e^{-3x}+\frac15e^{2x}},
+$$
+
+$$
+\boxed{y=C_1e^x+C_2e^{2x}-\sin2x+3\cos2x},
+$$
+
+$$
+\boxed{y=C_1e^x+C_2e^{-5x}-\frac65x-\frac{24}{25}},
+$$
+
+$$
+\boxed{y=(C_1+C_2x)e^{-2x}+\frac14e^{2x}}.
+$$
+:::
+
+## Euler型方程式と高階方程式
+
+#### 問題6　Euler–Cauchy方程式 {#prob-euler-cauchy}
+
+次の方程式を解け。
 
 $$
 \begin{aligned}
-y &= C_1 e^{\lambda_1 x} + C_2 e^{\lambda_2 x} &&\quad \text{異なる実数解} \\
-y &= C_1 e^{\lambda x} + C_2 x e^{\lambda x} &&\quad \text{重解} \\
-y &= e^{\alpha x} \qty( C_1 \cos \beta x + C_2 \sin \beta x ) &&\quad \text{複素解 }
-\end{aligned}
-$$
-
-２〜４問目。
-
-$$
-\begin{aligned}
-y &= C_1 e^{x} + C_2 e^{-5x} \\
-y &= (C_1 + C_2 x) e^{3x} \\
-y &= e^{-x} \qty( C_1 \cos 2x + C_2 \sin 2x )
-\end{aligned}
-$$
-
-```{python}
-#| output: asis
-from sympy import symbols, Function, Eq, dsolve, exp, cos, sin, latex
-
-x = symbols('x')
-y = Function('y')(x)
-odes = [
-    Eq(y.diff(x, 2) + 4*y.diff(x) - 5*y, 0),
-    Eq(y.diff(x, 2) - 6*y.diff(x) + 9*y, 0),
-    Eq(y.diff(x, 2) + 2*y.diff(x) + 5*y, 0)
-]
-for ode in odes:
-    sol = dsolve(ode)
-    print("$$" + latex(sol) + "$$")
-```
-
-::: 
-
-### ２階非斉次常微分方程式
-
-$$
-\begin{aligned}
-\dv[2]{y}{x} + a\dv{y}{x} + by &= R(x) \quad \text{解き方のみ} \\
-\dv[2]{y}{x} + 2\dv{y}{x} - 3y &= e^{2x} \\
-\dv[2]{y}{x} - 3\dv{y}{x} + 2y &= 20 \sin 2x \\
-\dv[2]{y}{x} + 4\dv{y}{x} - 5y &= 6x \\
-\dv[2]{y}{x} + 4\dv{y}{x} + 4y &= 4e^{2x}
+x^2y''-xy'+y&=x^2,\\
+x^2y''-8xy'-8y&=x^2,\\
+y''+\frac1xy'+\frac4{x^2}y&=\left(\frac{2\ln x}{x}\right)^2
+\quad(x>0).
 \end{aligned}
 $$
 
 ::: {.callout-note collapse="true"}
-##### 理論
+##### 理論6：$t=\ln x$ で定数係数へ変える
 
-非斉次常微分方程式の解 = 斉次方程式の一般解 + 特殊解
+$t=\ln x$、$D=\dv{}{t}$ とすると
 
+$$
+x\dv{}{x}=D,\qquad
+x^2\dv[2]{}{x}=D(D-1).
+$$
+
+したがってEuler–Cauchy方程式は $t$ に関する定数係数方程式へ変換できる。右辺も $x=e^t$ で書き換える。
 :::
 
 ::: {.callout-tip collapse="true"}
-##### 解答
+##### 解答6
 
-１問目。
-
-特殊解の求め方は、$R(x)$ の形によって場合分けする。似たような形の $y_p$ を仮定して、定数を決める。
-
-２問目。
+第1式は
 
 $$
-\begin{aligned}
-y_p &= e^{2x} \\
-y &= C_1 e^{3x} + C_2 e^{-x} + e^{2x}
-\end{aligned}
+(D-1)^2y=e^{2t}
 $$
 
-3問目。
+となるので、
 
 $$
-\begin{aligned}
-y_p &= A \sin 2x + B \cos 2x \\
-20 \sin 2x &= - 4A \sin 2x - 4B \cos 2x - 6A \cos 2x + 6B \sin 2x + 2A \sin 2x + 2B \cos 2x \\
-&= (-2A + 6B) \sin 2x + (-2B - 6A) \cos 2x  \\
--2A + 6B &= 20 \\
--2B - 6A &= 0 \\
-A &= -1, \quad B = 3 \\
-y &= C_1 e^{x} + C_2 e^{2x} - \sin 2x + 3 \cos 2x
-\end{aligned}
+\boxed{y=C_1x+C_2x\ln x+x^2}.
 $$
 
-4問目。
+第2式は
 
 $$
-\begin{aligned}
-y_p &= Ax + B \\
-6x &= 4A - 5Ax - 5B \\
-6x &= (-A) x + (4A - B) \\
--A &= 6 \Rightarrow A = -6 \\
-4A - B &= 0 \Rightarrow B = 4(-6) = -24 \\
-y &= C_1 e^{x} + C_2 e^{-5x} - 6x - 24
-\end{aligned}
+(D^2-9D-8)y=e^{2t}.
 $$
 
-5問目。
+特性根は $r=(9\pm\sqrt{113})/2$ であり、
 
 $$
-y = (C_1 + C_2 x) e^{-2x} + \frac{1}{4}e^{2x}
+\boxed{
+y=C_1x^{(9+\sqrt{113})/2}
++C_2x^{(9-\sqrt{113})/2}
+-\frac1{22}x^2
+}.
 $$
 
-::: 
-
-### ２階線形微分⽅程式
+第3式に $t=\ln x$ を使うと
 
 $$
-\begin{aligned}
-x^2 \dv[2]{y}{x} + a x \dv{y}{x} + by &= 0 \quad \text{解き方のみ} \\
-x^2 \dv[2]{y}{x} -x \dv{y}{x} + y &= x^2 \\
-\dv[4]{y}{x} - 2 \dv[3]{y}{x} + 2 \dv{y}{x} - y &= 9e^{-2x} \\
-x^2 \dv[2]{y}{x} - 8x \dv{y}{x} - 8y &= x^2 \\
-\end{aligned}
+\dv[2]{y}{t}+4y=4t^2.
 $$
+
+したがって
+
+$$
+\boxed{
+y=C_1\cos(2\ln x)+C_2\sin(2\ln x)
++(\ln x)^2-\frac12
+}.
+$$
+:::
+
+#### 問題7　四階線形方程式 {#prob-fourth-order}
+
+$$
+y^{(4)}-2y^{(3)}+2y'-y=9e^{-2x}
+$$
+
+を解け。
+
+::: {.callout-note collapse="true"}
+##### 理論7：次数が増えても特性多項式を使う
+
+定数係数線形方程式では、階数が上がっても $y=e^{rx}$ を代入し、特性多項式の根と重複度から斉次解を作る。右辺の指数関数には演算子多項式へ指数を代入すると特殊解の係数を素早く求められる。
+:::
 
 ::: {.callout-tip collapse="true"}
-##### 解答
+##### 解答7
 
-1問目。
-
-$x = e^t$ と置換して、 $t$ に関する常微分方程式に変形する。
-
-2問目。
+特性多項式は
 
 $$
-\begin{aligned}
-x^2 \dv[2]{y}{x} -x \dv{y}{x} + y &= x^2 \\
-t &= \ln x \\
-\dv{y}{x} = \dv{y}{t} \dv{t}{x} &= \frac{1}{x} \dv{y}{t} \\
-&= e^{-t} \dv{y}{t} \\
-\dv[2]{y}{x} &= \dv{x} \qty( \frac{1}{x} \dv{y}{t} ) \\
-&= -\frac{1}{x^2} \dv{y}{t} + \frac{1}{x} \textcolor{red}{\dv{x}\dv{y}{t}} \\
-&= -\frac{1}{x^2} \dv{y}{t} + \frac{1}{x} \textcolor{red}{\qty( \dv{t}{x} \dv[2]{y}{t} )} \\
-&= -\frac{1}{x^2} \dv{y}{t} + \frac{1}{x^2} \dv[2]{y}{t} \\
--\dv{y}{t} + \dv[2]{y}{t} -\dv{y}{t} + y &= e^{2t} \\
-\dv[2]{y}{t} - 2\dv{y}{t} + y &= e^{2t} \\
-y &= C_1 e^{t} + C_2 t e^{t} + e^{2t} \\
-&= C_1 x + C_2 x \ln x + x^2
-\end{aligned}
+r^4-2r^3+2r-1=(r-1)^3(r+1).
 $$
 
-```{python}
-#| output: asis
-from sympy import symbols, Function, Eq, dsolve, exp, ln, latex
-
-x = symbols('x')
-y = Function('y')(x)
-ode = Eq(x**2 * y.diff(x, 2) - x * y.diff(x) + y, x**2)
-sol = dsolve(ode)
-print("$$" + latex(sol) + "$$")
-```
-
-3問目。
+また $p(-2)=27$ なので特殊解は $(1/3)e^{-2x}$ である。よって
 
 $$
-\begin{aligned}
-y = C_1 e^x + C_2 x e^x + C_3 x^2 e^x + C_4 e^{-x} + \frac{1}{3}e^{-2x}
-\end{aligned}
+\boxed{
+y=(C_1+C_2x+C_3x^2)e^x+C_4e^{-x}
++\frac13e^{-2x}
+}.
 $$
+:::
 
-```{python}
-#| output: asis
-from sympy import symbols, Function, Eq, dsolve, exp, latex
+## 線形偏微分方程式
 
-x = symbols('x')
-y = Function('y')(x)
-ode = Eq(y.diff(x, 4) - 2*y.diff(x, 3) + 2*y.diff(x) - y, 9*exp(-2*x))
-sol = dsolve(ode)
-print("$$" + latex(sol) + "$$")
-```
+#### 問題8　一階偏微分方程式 {#prob-first-order-pde}
 
-4問目。
+次の初期値問題を解け。
 
 $$
-\begin{aligned}
-t &= \ln x \\
-\dv{y}{x} = \dv{y}{t} \dv{t}{x} &= \frac{1}{x} \dv{y}{t} \\
-\dv[2]{y}{x} &= -\frac{1}{x^2} \dv{y}{t} + \frac{1}{x^2} \dv[2]{y}{t} \\
-\dv[2]{y}{t} - 2\dv{y}{t} - 8y &= e^{2t} \\
-y &= C_1 e^{4t} + C_2 e^{-2t} - \frac{1}{8} e^{2t} \\
-&= C_1 x^{4} + C_2 x^{-2} - \frac{1}{8} x^{2}
-\end{aligned}
+\pdv{u}{x}=4\pdv{u}{y},
+\qquad
+u(0,y)=8e^{-3y},
 $$
 
-::: 
-
-### 線形偏微分⽅程式
-
 $$
-\begin{aligned}
-
-\pdv{u}{x} &= 4 \pdv{u}{y} &&\quad u(0,y) = 8e^{-3y} \\
-\pdv{u}{t} &= 2 \pdv[2]{u}{x} &&\quad u(0,t)=u(3,t)=0, u(x,0) = 5\sin 4\pi x - 3 \sin 8 \pi x \\
-\pdv{u}{x} &= 2 \pdv{u}{y} + u &&\quad u(x,0) = 3e^{-5x} + 2e^{-3x} \\
-\pdv[2]{y}{t} &= 16 \pdv[2]{y}{x} &&\quad y(0,t) = y(2,t) = 0, y(x,0) = 6\sin \pi x - 3\sin 4 \pi x, \pdv{y}{t}(x,0) = 0 = \eval{\pdv{y}{t}}_{t=0}
-
-\end{aligned}
+\pdv{u}{x}=2\pdv{u}{y}+u,
+\qquad
+u(x,0)=3e^{-5x}+2e^{-3x}.
 $$
 
 ::: {.callout-note collapse="true"}
-##### 理論
+##### 理論8：特性曲線に沿って常微分方程式にする
 
-とりあえず変数分離。そうしてから、次数に合わせて $\lambda$ を設定する。
+$a u_x+b u_y=cu$ では
 
+$$
+\dv{x}{s}=a,\qquad
+\dv{y}{s}=b,\qquad
+\dv{u}{s}=cu
+$$
+
+を同時に解く。$c=0$ なら、$u$ は特性曲線上で一定である。
 :::
 
 ::: {.callout-tip collapse="true"}
-##### 解答
+##### 解答8
 
-$u=X(x)Y(y)T(t)$ とおいて考える。
-
-1問目。
+第1式は特性量 $y+4x$ に沿って一定なので
 
 $$
-\begin{aligned}
-\dv{X}{x} Y &= 4 X \dv{Y}{y} \\
-\frac{1}{X} \dv{X}{x} &= 4 \frac{1}{Y} \dv{Y}{y} = -\lambda \\
-X = C_1 e^{-\lambda x} &, \quad Y = C_2 e^{-\frac{\lambda}{4} y} \\
-u &= C e^{-\lambda x} e^{-\frac{\lambda}{4} y} \\
-u(0,y) &= 8 e^{-3y} \\
-C e^{-\frac{\lambda}{4} y} &= 8 e^{-3y} \\
-\lambda = 12&, \quad C = 8 \\
-u &= 8 e^{-12 x} e^{-3 y}
-\end{aligned}
+u=F(y+4x).
 $$
 
-2問目。
+初期条件から
 
 $$
-\begin{aligned}
-X \dv{T}{t} &= 2 T \dv[2]{X}{x} \\
-\frac{1}{T} \dv{T}{t} &= 2 \frac{1}{X} \dv[2]{X}{x} = -\lambda^2 \\
-T &= C_1 e^{-\lambda^2 t} \\
-\dv[2]{X}{x} + \frac{\lambda^2}{2} X &= 0 \\
-X &= C_2 \sin \qty( \frac{\lambda}{\sqrt{2}} x ) + C_3 \cos \qty( \frac{\lambda}{\sqrt{2}} x ) \\
-X(0) &= 0 \Rightarrow C_3 = 0 \\
-X(3) &= 0 \Rightarrow \frac{\lambda}{\sqrt{2}} 3 = n \pi \Rightarrow \lambda = \frac{n \pi \sqrt{2}}{3} \\
-u &= C e^{-\frac{2n^2 \pi^2}{9} t} \sin \qty( \frac{n \pi}{3} x ) \\
-&= C_1 e^{-\frac{2n_1^2 \pi^2}{9} t} \sin \qty( \frac{n_1 \pi}{3} x ) + C_2 e^{-\frac{2n_2^2 \pi^2}{9} t} \sin \qty( \frac{n_2 \pi}{3} x ) \\
-u(x,0) &= 5 \sin 4 \pi x - 3 \sin 8 \pi x \\
-C_1 = 5&, \quad n_1 = 12 \\
-C_2 = -3&, \quad n_2 = 24 \\
-u &= 5 e^{-32 \pi^2 t} \sin 4 \pi x - 3 e^{-128 \pi^2 t} \sin 8 \pi x
-\end{aligned}
+\boxed{u=8e^{-12x-3y}}.
 $$
 
-3問目。
+第2式では特性量は $y+2x$、特性上で $u'=u$ なので
 
 $$
-\begin{aligned}
-
-Y \dv{X}{x} &= 2 X \dv{Y}{y} + X Y \\
-\frac{1}{X} \dv{X}{x} - 1 &= 2 \frac{1}{Y} \dv{Y}{y} = \lambda \\
-X &= C_1 e^{(\lambda + 1) x} \\
-Y &= C_2 e^{\frac{\lambda}{2} y} \\
-u &= C_1 e^{(\lambda_1 + 1) x} e^{\frac{\lambda_1}{2} y} + C_2 e^{(\lambda_2 + 1) x} e^{\frac{\lambda_2}{2} y} \\
-u(x,0) &= 3e^{-5x} + 2e^{-3x} \\
-C_1 e^{(\lambda_1 + 1) x} + C_2 e^{(\lambda_2 + 1) x} &= 3e^{-5x} + 2e^{-3x} \\
-C_1 = 3&, \quad \lambda_1 = -6 \\
-C_2 = 2&, \quad \lambda_2 = -4 \\
-u &= 3 e^{-5x} e^{-3y} + 2 e^{-3x} e^{-2y}
-\end{aligned}
+u=e^xF(y+2x).
 $$
 
-4問目。
+初期条件を代入し、
 
 $$
-\begin{aligned}
-X &= C_1 \sin \lambda x + C_2 \cos \lambda x \\
-T &= C_3 \cos 4 \lambda t + C_4 \sin 4 \lambda t \\
-X(0) &= 0 \Rightarrow C_2 = 0 \\
-X(2) &= 0 \Rightarrow \lambda = \frac{n \pi}{2} \\
-u(0, t) &= C_2 T(t) = 0\\
-C_2 &= 0 \\
-u(2, t) &= C_1 \sin (2\lambda) T(t) = 0 \\
-\lambda &= \frac{n \pi}{2} \\
-\pdv{u}{t} &= 2C_1 n\pi \sin \qty( \frac{n \pi}{2} x ) \qty( - C_3 \sin \qty( 2 n \pi t ) + C_4 \cos \qty( 2 n \pi t ) ) \\
-u(x,0) &= C_1C_4 \sin \qty( \frac{n \pi}{2} x ) = 0 \\
-C_4 &= 0 \\
-u &= C_1 \sin \qty( \frac{n \pi}{2} x ) C_3 \cos \qty( 2 n \pi t ) \\
-u(x, 0) &= C_1' \qty( \frac{n_1 \pi}{2} x ) + C_2' \sin \qty( \frac{n_2 \pi}{2} x ) \\
-&= 6 \sin \pi x - 3 \sin 4 \pi x \\
-C_1' = 6&, \quad n_1 = 2 \\
-C_2' = -3&, \quad n_2 = 8 \\
-u &= 6 \sin \pi x \cos 4 \pi t - 3 \sin 4 \pi x \cos 16 \pi t 
-\end{aligned}
+\boxed{u=3e^{-5x-3y}+2e^{-3x-2y}}.
 $$
+:::
 
+#### 問題9　熱方程式と波動方程式 {#prob-separation}
 
-::: 
+1.
 
-### フーリエ級数
+   $$
+   \pdv{u}{t}=2\pdv[2]{u}{x},
+   \quad
+   u(0,t)=u(3,t)=0,
+   \quad
+   u(x,0)=5\sin4\pi x-3\sin8\pi x
+   $$
 
-フーリエ変換の定義式を書け。
+   を解け。
 
-次の式をフーリエ級数展開せよ。
+2.
 
-$$
-\begin{aligned}
-f(x) &= x^2, \quad \qty(-1 < x < 1) \\
-f(x) &= x(x - 1), \quad \qty(0 < x < 1) \quad \text{フーリエ余弦級数} \\
-f(x) &= x(x - 1), \quad \qty(0 < x < 1) \quad \text{フーリエ正弦級数} \\
-\pdv{u}{t} &= \alpha \pdv[2]{u}{x}, \quad 0 < x < L, \quad t > 0 \\
-u(0,t) &= 0, \quad u(L,t) = 0, \quad u(x,0) = f(x) \\
-\end{aligned}
-$$
+   $$
+   \pdv[2]{y}{t}=16\pdv[2]{y}{x},
+   \quad
+   y(0,t)=y(2,t)=0,
+   $$
+
+   $$
+   y(x,0)=6\sin\pi x-3\sin4\pi x,
+   \qquad
+   \pdv{y}{t}(x,0)=0
+   $$
+
+   を解け。
 
 ::: {.callout-note collapse="true"}
-##### 理論
+##### 理論9：境界条件が固有関数を選ぶ
 
-瞬間部分分数分解という技法についてまとめておく。
-
-例題として、 $\int \qty(x^3+x) \textcolor{orange}{\cos x} \dd{x}$ を考える。
+両端固定・零境界条件では空間固有関数は
 
 $$
-\begin{array}{ccc}
-+ & x^3 + x & \textcolor{red}{\sin x} \\
-- & 3x^2 + 1 & -\cos x \\
-+ & 6x & -\sin x \\
-- & 6 & \cos x \\
-\end{array}
+\sin\left(\frac{n\pi x}{L}\right)
 $$
 
-こんな感じで表を書く。真ん中の列は微分して、右の列は積分していく。一番右の列だけは一番上が積分された形になる。
-
+となる。熱方程式では各モードが指数減衰し、波動方程式では時間方向に正弦・余弦振動する。初期条件を固有関数へ展開して係数を決める。
 :::
 
 ::: {.callout-tip collapse="true"}
-##### 解答
+##### 解答9
 
-まず、フーリエ変換の定義式。
+1. 与えられた初期形はすでに固有関数の和なので、
 
-$$
-\begin{aligned}
-f(x) &= \frac{a_0}{2} + \sum_{n=1}^{\infty} \qty( a_n \cos \frac{n \pi x}{L} + b_n \sin \frac{n \pi x}{L} ) \\
-a_n &= \frac{1}{L} \int_{-L}^{L} f(x) \cos \frac{n \pi x}{L} \dd{x} \\
-b_n &= \frac{1}{L} \int_{-L}^{L} f(x) \sin \frac{n \pi x}{L} \dd{x} 
-\end{aligned}
-$$
+   $$
+   \boxed{
+   u=5e^{-32\pi^2t}\sin4\pi x
+   -3e^{-128\pi^2t}\sin8\pi x
+   }.
+   $$
 
-次に余弦級数、正弦級数の定義式。
+2. 波速は $c=4$、初速度は0なので、
 
-$$
-\begin{aligned}
+   $$
+   \boxed{
+   y=6\sin\pi x\cos4\pi t
+   -3\sin4\pi x\cos16\pi t
+   }.
+   $$
+:::
 
-f(x) &= \frac{a_0}{2} + \sum_{n=1}^{\infty} a_n \cos \frac{n \pi x}{L} &&\quad \text{余弦級数} \\
-a_n &= \frac{2}{L} \int_{0}^{L} f(x) \cos \frac{n \pi x}{L} \dd{x} \\
-f(x) &= \sum_{n=1}^{\infty} b_n \sin \frac{n \pi x}{L} &&\quad \text{正弦級数} \\
-b_n &= \frac{2}{L} \int_{0}^{L} f(x) \sin \frac{n \pi x}{L} \dd{x}
+## Fourier級数と変換
 
+#### 問題10　Fourier級数 {#prob-fourier-series}
 
-\end{aligned}
-$$
+1. $f(x)=x^2$（$-1<x<1$）を周期2のFourier級数へ展開せよ。
+2. $f(x)=x(x-1)$（$0<x<1$）の半区間余弦級数と半区間正弦級数を求めよ。
+3. 熱方程式
 
-1問目。
+   $$
+   u_t=\alpha u_{xx},
+   \quad 0<x<L,
+   \quad u(0,t)=u(L,t)=0,
+   \quad u(x,0)=f(x)
+   $$
 
-$$
-\begin{aligned}
+   の解をFourier係数で表せ。
 
-a_0 &= \int_{-1}^{1} x^2 \cos 0 \dd{x} = \frac{2}{3} \\
-a_n &= \int_{-1}^{1} x^2 \cos n \pi x \dd{x} \\
-&\text{部分分数分解の表}\\
-&\begin{array}{ccc}
-+ & x^2 & \frac{1}{n\pi}\sin n \pi x \\
-- & 2x & -\frac{1}{(n\pi)^2}\cos n \pi x \\
-+ & 2 & -\frac{1}{(n\pi)^3}\sin n \pi x \\
-\end{array} \\
-a_n &= \frac{4}{n^2\pi^2} (-1)^n \\
-b_n &= \int_{-1}^{1} x^2 \sin n \pi x \dd{x} = 0 \\
-&= 0 \\
+::: {.callout-note collapse="true"}
+##### 理論10：偶拡張と奇拡張
 
-f(x) &= \frac{1}{3} + \sum_{n=1}^{\infty} \frac{4}{n^2 \pi^2} (-1)^n \cos n \pi x
-\end{aligned}
-$$
-
-2問目。
+$(-L,L)$ のFourier級数は
 
 $$
-\begin{aligned}
-a_0 = -\frac{1}{3}
-a_n &= 2 \int_{0}^{1} x(x-1) \cos n \pi x \dd{x} \\
-&\text{部分分数分解の表}\\
-&\begin{array}{ccc}
-+ & x^2 - x & \frac{1}{n\pi} \sin n \pi x \\
-- & 2x - 1 & -\frac{1}{(n\pi)^2} \cos n \pi x \\
-+ & 2 & -\frac{1}{(n\pi)^3} \sin n \pi x \\
-\end{array} \\
-a_n &= \frac{1}{(n\pi)^2}\qty[(-1)^{n}+1] \\
-f(x) &= -\frac{1}{6} + \sum_{n=1}^{\infty} \frac{2}{(n\pi)^2}\qty[(-1)^{n}+1] \cos n \pi x
-\end{aligned}
+f(x)=\frac{a_0}{2}
++\sum_{n=1}^{\infty}
+\left(
+a_n\cos\frac{n\pi x}{L}
++b_n\sin\frac{n\pi x}{L}
+\right).
 $$
 
-3問目。
-
-$$
-\begin{aligned}
-
-u(x,t) &=C_1 \exp \qty(-\alpha \lambda^2 t)(C_2 \sin \lambda x + C_3 \cos \lambda x) \\
-C_3 &= 0\ , \quad \lambda L = n \pi \\
-u(x,t) &= \sum_{n=1}^{\infty} C_n \exp \qty(-\alpha \frac{n^2 \pi^2}{L^2} t) \sin \frac{n \pi x}{L} \\
-u(x,0) &= f(x) = \sum_{n=1}^{\infty} C_n \sin \frac{n \pi x}{L} \\
-&\textcolor{red}{\text{ここは展開の定義式を思い出せ}} \\
-C_n &= \frac{2}{L} \int_{0}^{L} f(x) \sin \frac{n \pi x}{L} \dd{x} \\
-
-\end{aligned}
-$$
-
-
-::: 
-
-### ベクトルあたり
-
-そもそも高校レベルの話なので、あまり詳しくは書かない。
-
-$$
-\mathbfit{r} = \cos u \cos v \mathbfit{i} + \cos u \sin v \mathbfit{j} + \sin u \mathbfit{k}
-$$
-
-これを使って法線ベクトルと表面積を求めろ。
+$(0,L)$ の余弦級数は偶拡張、正弦級数は奇拡張に対応する。係数の前の $1/L$ と $2/L$ を混同しない。
+:::
 
 ::: {.callout-tip collapse="true"}
-##### 解答
+##### 解答10
 
-法線ベクトルは
+1. 偶関数なので $b_n=0$ であり、
+
+   $$
+   \boxed{
+   x^2=\frac13
+   +\sum_{n=1}^{\infty}
+   \frac{4(-1)^n}{n^2\pi^2}\cos n\pi x
+   }.
+   $$
+
+2. 余弦級数は
+
+   $$
+   \boxed{
+   x(x-1)=-\frac16
+   +\sum_{n=1}^{\infty}
+   \frac{2[(-1)^n+1]}{n^2\pi^2}\cos n\pi x
+   }.
+   $$
+
+   正弦級数は
+
+   $$
+   \boxed{
+   x(x-1)=
+   -\sum_{n=1}^{\infty}
+   \frac{4[1-(-1)^n]}{n^3\pi^3}\sin n\pi x
+   }.
+   $$
+
+3.
+
+   $$
+   \boxed{
+   u(x,t)=\sum_{n=1}^{\infty}
+   b_n
+   \exp\left[-\alpha\left(\frac{n\pi}{L}\right)^2t\right]
+   \sin\frac{n\pi x}{L}
+   },
+   $$
+
+   $$
+   b_n=\frac2L\int_0^Lf(x)\sin\frac{n\pi x}{L}\dd x.
+   $$
+:::
+
+#### 問題11　Fourier正弦変換の逆変換 {#prob-fourier-inverse}
 
 $$
-\begin{aligned}
-\pdv{\mathbfit{r}}{u} \times \pdv{\mathbfit{r}}{v} &=
-\begin{vmatrix}
-\mathbfit{i} & \mathbfit{j} & \mathbfit{k} \\
--\sin u \cos v & -\sin u \sin v & \cos u \\
--\cos u \sin v & \cos u \cos v & 0 \\
-\end{vmatrix} \\
-&= -\cos^2 u \cos v \mathbfit{i} - \cos^2 u \sin v \mathbfit{j} - \cos u \sin u \mathbfit{k} \\
-\left|\pdv{\mathbfit{r}}{u} \times \pdv{\mathbfit{r}}{v}\right|&= |\cos u| \\
-\text{法線ベクトル} &= \left. \pdv{\mathbfit{r}}{u} \times \pdv{\mathbfit{r}}{v} \middle/ \left|\pdv{\mathbfit{r}}{u} \times \pdv{\mathbfit{r}}{v}\right| \right. \\
-\text{表面積} &= \int_0^{2\pi} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} |\cos u| \dd{u} \dd{v} = 4\pi
-\end{aligned}
+\int_0^\infty f(x)\sin(kx)\dd x=ke^{-k}
 $$
 
-::: 
+が与えられている。$f(x)$ を求めよ。
 
-### 複素積分
+::: {.callout-note collapse="true"}
+##### 理論11：採用した変換対を明示する
 
-2問だけまとめておく。
+正弦変換を
 
 $$
-\begin{aligned}
-\int_0^{2\pi} \frac{\dd \theta}{5 + 4\cos \theta} \\
-\oint_C \frac{1}{(z-1)z(z+2)}
-\end{aligned}
+F_s(k)=\int_0^\infty f(x)\sin(kx)\dd x
 $$
+
+と定義すれば、逆変換は
+
+$$
+f(x)=\frac2\pi\int_0^\infty F_s(k)\sin(kx)\dd k
+$$
+
+である。
+:::
 
 ::: {.callout-tip collapse="true"}
-##### 解答
-
-分解して面倒な計算をしないで済む方法を載せる。検算に使うか、もしくは証明して使えばいい。
+##### 解答11
 
 $$
-\begin{aligned}
-\int_0^{2\pi} \frac{\dd \theta}{a + b \cos \theta} &= \frac{2\pi}{\sqrt{a^2 - b^2}} \\
-\oint_C \frac{1}{(z-1)z(z+2)} \dd{z} &= \oint_C \qty( \frac{A}{z-1} + \frac{B}{z} + \frac{C}{z+2} ) \dd{z} \\
-A = -\frac{1}{2} &, \quad B = \frac{1}{3} , \quad C = \frac{1}{6} \\
-I &= 2i\pi (A+B+C) = 0 \\
- A,\ B,\ C\ &\text{こいつらが留数自体。定義を考えてどうぞ}
-\end{aligned}
+\int_0^\infty ke^{-k}e^{ikx}\dd k
+=\frac1{(1-ix)^2}.
 $$
 
-::: 
-
-### ジョルダン標準形
-
-次の行列のジョルダン標準形を求めよ。
+虚部を取ると
 
 $$
-\begin{aligned}
-A &= \begin{pmatrix}
-2 & 1 & 1 \\
-1 & 3 & 2 \\
-0 & -1 & 1
-\end{pmatrix} \\
-A &=
+\int_0^\infty ke^{-k}\sin(kx)\dd k
+=\frac{2x}{(1+x^2)^2}.
+$$
+
+したがって
+
+$$
+\boxed{
+f(x)=\frac{4x}{\pi(1+x^2)^2}
+}.
+$$
+:::
+
+## ベクトル解析・複素解析・線形代数
+
+#### 問題12　球面の法線と表面積 {#prob-sphere-surface}
+
+単位球面を
+
+$$
+\boldsymbol r(u,v)
+=(\cos u\cos v,\ \cos u\sin v,\ \sin u),
+$$
+
+$$
+-\frac\pi2\le u\le\frac\pi2,
+\qquad 0\le v<2\pi
+$$
+
+で表す。外向き単位法線と表面積を求めよ。
+
+::: {.callout-note collapse="true"}
+##### 理論12：接ベクトルの外積が面積要素
+
+$\boldsymbol r_u$ と $\boldsymbol r_v$ は曲面の接ベクトルであり、その外積は法線方向を向く。大きさ
+
+$$
+\abs{\boldsymbol r_u\times\boldsymbol r_v}
+$$
+
+が面積要素の倍率となる。外積の順序で向きが反転するので、外向きか確認する。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答12
+
+計算すると
+
+$$
+\boldsymbol r_u\times\boldsymbol r_v
+=-\cos u\,\boldsymbol r.
+$$
+
+この範囲では $\cos u\ge0$ なので、外向き単位法線は
+
+$$
+\boxed{\boldsymbol n=\boldsymbol r}.
+$$
+
+面積は
+
+$$
+A=\int_0^{2\pi}\int_{-\pi/2}^{\pi/2}\cos u\,\dd u\dd v
+=\boxed{4\pi}.
+$$
+:::
+
+#### 問題13　留数を使う積分 {#prob-residue}
+
+1.
+
+   $$
+   \int_0^{2\pi}\frac{\dd\theta}{5+4\cos\theta}
+   $$
+
+   を求めよ。
+
+2.
+
+   $$
+   \oint_C\frac{\dd z}{(z-1)z(z+2)}
+   $$
+
+   を、$C$ の内部にある極を用いて表せ。
+
+::: {.callout-note collapse="true"}
+##### 理論13：閉曲線内部の留数だけを足す
+
+留数定理は
+
+$$
+\oint_Cf(z)\dd z=2\pi i
+\sum_{\text{inside }C}\operatorname{Res}(f;z_k)
+$$
+
+である。積分路がどの極を囲むか分からなければ数値は一意に決まらない。三角関数積分は $z=e^{i\theta}$ と置けば単位円上の留数計算へ変換できる。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答13
+
+1. 標準積分または留数計算から
+
+   $$
+   \boxed{
+   \int_0^{2\pi}\frac{\dd\theta}{5+4\cos\theta}
+   =\frac{2\pi}{\sqrt{5^2-4^2}}
+   =\frac{2\pi}{3}
+   }.
+   $$
+
+2. 各留数は
+
+   $$
+   \operatorname{Res}(f;1)=\frac13,\qquad
+   \operatorname{Res}(f;0)=-\frac12,\qquad
+   \operatorname{Res}(f;-2)=\frac16.
+   $$
+
+   したがって
+
+   $$
+   \boxed{
+   \oint_Cf(z)\dd z
+   =2\pi i\sum_{z_k\in\operatorname{int}C}
+   \operatorname{Res}(f;z_k)
+   }.
+   $$
+
+   3極すべてを囲むなら留数和は0で、積分も0である。
+:::
+
+#### 問題14　Jordan標準形 {#prob-jordan}
+
+次の行列のJordan標準形を求めよ。
+
+$$
+A_1=
 \begin{pmatrix}
-1 & 3 & 1 \\
-1 & -1 & -1 \\
--1 & 3 & 3
-\end{pmatrix}
-\end{aligned}
+2&1&1\\
+1&3&2\\
+0&-1&1
+\end{pmatrix},
+\qquad
+A_2=
+\begin{pmatrix}
+1&3&1\\
+1&-1&-1\\
+-1&3&3
+\end{pmatrix}.
 $$
 
-### フーリエ逆変換
-
-$$
-\int_0^{\infty} f(x)\sin kx \dd{x} = ke^{-k}
-$$
-
-::: {.callout-tip collapse="true"}
-##### 解答
-
-$$
-\begin{aligned}
-f(x) &= \frac{2}{\pi}\int_0^{\infty} \sin kx \qty( ke^{-k} ) \dd{k} \\
-\int_0^{\infty} k e^{-k} e^{ikx} \dd{k} &= \int_0^{\infty} k e^{-(1-ix)k} \dd{k} \\
-&= \frac{1}{(1-ix)^2} \\
-&= \frac{1-x^2}{(1+x^2)^2} + i \frac{2x}{(1+x^2)^2} \\
-\int_0^{\infty} k e^{-k} \sin kx \dd{k} &= \frac{2x}{(1+x^2)^2} \\
-f(x) &= \frac{2}{\pi} \frac{2x}{(1+x^2)^2} = \frac{4x}{\pi (1+x^2)^2}
-\end{aligned}
-$$
-
-::: 
-
-最後に、フーリエ変換あたりの式をまとめておく
-
-$$
-\begin{aligned}
-f(x) &= \frac{a_0}{2} + \sum_{n=1}^{\infty} \qty( a_n \cos \frac{n \pi x}{L} + b_n \sin \frac{n \pi x}{L} ) \\
-a_n &= \frac{1}{L} \int_{-L}^{L} f(x) \cos \frac{n \pi x}{L} \dd{x} \\
-b_n &= \frac{1}{L} \int_{-L}^{L} f(x) \sin \frac{n \pi x}{L} \dd{x}  \\
-f(x) &= \sum_{n=\textcolor{red}{-\infty}}^{\infty} c_n e^{\frac{\textcolor{red}{2}n\pi}{T} x} \\
-c_n &= \frac{1}{T} \int_{0}^{T} f(x) e^{\textcolor{red}{-}\frac{\textcolor{red}{2}n\pi}{T} x} \dd{x} \\
-f(x) &= \frac{1}{2\pi} \int_{-\infty}^{\infty} F(k) e^{i k x} \dd{k} \\
-F(k) &= \int_{-\infty}^{\infty} f(x) e^{-i k x} \dd{x} \\
-f(x) &= \frac{2}{\pi} \int_0^{\infty} \sin kx \qty( \int_0^{\infty} f(x) \sin kx \dd{x} ) \dd{k} \\
-&= \frac{2}{\pi} \int_0^{\infty} a(k) \cos kx \dd{k} \\
-\end{aligned}
-
-$$
-
-$$
-\dv[2]{y}{x} + \frac{1}{x} \dv{y}{x} + \frac{4}{x^2}y = \qty(\frac{2\ln x}{x}) ^2
-$$
-
-::: {.callout-tip collapse="true"}
-##### 解答
-
-冪函数仮定を使う
-
-$$
-\begin{aligned}
-y = x^m \\
-m(m-1)x^{m-2} + \frac{1}{x} mx^{m-1} + \frac{4}{x^2} x^m &= 0 \\
-m^2 + 4 &= 0 \\
-m = \pm 2i \\
-y_h &= C_1 \cos (2 \ln x) + C_2 \sin (2 \ln x) \\
-y_p &= A (\ln x)^2 + B \ln x + C \\
-\dv{y_p}{x} &= \frac{2A \ln x  + B}{x} \\
-\dv[2]{y_p}{x} &= \frac{2A - 2A\ln x - B}{x^2} \\
-\text{左辺} &= \frac{4A (\ln x)^2 + 4B \ln x + 2A +4C}{x^2} = \frac{4(\ln x)^2}{x^2} \\
-A&=1, \quad B=0, \quad C=-\frac{1}{2} \\
-y_p &= (\ln x)^2 - \frac{1}{2} \\
-y &= C_1 \cos (2 \ln x) + C_2 \sin (2 \ln x) + (\ln x)^2 - \frac{1}{2}
-\end{aligned}
-$$
-
-
-::: 
-
-<!-- 
 ::: {.callout-note collapse="true"}
-##### 理論
+##### 理論14：固有値の重複度と固有空間の次元を見る
 
-This is an example of a callout with a title.
+固有値の代数的重複度だけではJordan blockの大きさは決まらない。$\dim\ker(A-\lambda I)$ がJordan blockの個数を与え、$\ker(A-\lambda I)^k$ の増え方が各blockの長さを決める。
 :::
 
 ::: {.callout-tip collapse="true"}
-##### 解答
+##### 解答14
 
-This is an example of a callout with a title.
-::: 
--->
+$A_1$ の特性多項式は $(\lambda-2)^3$ で、固有空間は1次元である。したがって
 
+$$
+\boxed{
+J_1=
+\begin{pmatrix}
+2&1&0\\
+0&2&1\\
+0&0&2
+\end{pmatrix}
+}.
+$$
+
+$A_2$ の特性多項式は $(\lambda-2)^2(\lambda+1)$ で、$\lambda=2$ の固有空間は2次元である。よって対角化でき、
+
+$$
+\boxed{
+J_2=\operatorname{diag}(-1,2,2)
+}.
+$$
+:::
+
+## 関連記事
+
+- 指数関数、分布関数、偏微分の物理的な使い方は[材料統計力学](../2A/材料統計力学.qmd)を参照。
+- 拡散方程式を材料中の移動現象へ適用する例は[材料速度論](../2A/材料速度論.qmd)を参照。
+- Fourier展開と波数空間を結晶へ適用する例は[固体物性学](../3S/固体物性学.qmd)を参照。

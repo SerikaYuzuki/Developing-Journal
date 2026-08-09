@@ -22,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -2490,18 +2455,13 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#同次型" id="toc-同次型" class="nav-link active" data-scroll-target="#同次型">同次型</a></li>
-  <li><a href="#一階線型常微分方程式" id="toc-一階線型常微分方程式" class="nav-link" data-scroll-target="#一階線型常微分方程式">一階線型常微分方程式</a></li>
-  <li><a href="#一階非線型常微分方程式" id="toc-一階非線型常微分方程式" class="nav-link" data-scroll-target="#一階非線型常微分方程式">一階非線型常微分方程式</a></li>
-  <li><a href="#階斉次常微分方程式" id="toc-階斉次常微分方程式" class="nav-link" data-scroll-target="#階斉次常微分方程式">２階斉次常微分方程式</a></li>
-  <li><a href="#階非斉次常微分方程式" id="toc-階非斉次常微分方程式" class="nav-link" data-scroll-target="#階非斉次常微分方程式">２階非斉次常微分方程式</a></li>
-  <li><a href="#階線形微分程式" id="toc-階線形微分程式" class="nav-link" data-scroll-target="#階線形微分程式">２階線形微分⽅程式</a></li>
-  <li><a href="#線形偏微分程式" id="toc-線形偏微分程式" class="nav-link" data-scroll-target="#線形偏微分程式">線形偏微分⽅程式</a></li>
-  <li><a href="#フーリエ級数" id="toc-フーリエ級数" class="nav-link" data-scroll-target="#フーリエ級数">フーリエ級数</a></li>
-  <li><a href="#ベクトルあたり" id="toc-ベクトルあたり" class="nav-link" data-scroll-target="#ベクトルあたり">ベクトルあたり</a></li>
-  <li><a href="#複素積分" id="toc-複素積分" class="nav-link" data-scroll-target="#複素積分">複素積分</a></li>
-  <li><a href="#ジョルダン標準形" id="toc-ジョルダン標準形" class="nav-link" data-scroll-target="#ジョルダン標準形">ジョルダン標準形</a></li>
-  <li><a href="#フーリエ逆変換" id="toc-フーリエ逆変換" class="nav-link" data-scroll-target="#フーリエ逆変換">フーリエ逆変換</a></li>
+  <li><a href="#一階常微分方程式" id="toc-一階常微分方程式" class="nav-link active" data-scroll-target="#一階常微分方程式">一階常微分方程式</a></li>
+  <li><a href="#定数係数線形常微分方程式" id="toc-定数係数線形常微分方程式" class="nav-link" data-scroll-target="#定数係数線形常微分方程式">定数係数線形常微分方程式</a></li>
+  <li><a href="#euler型方程式と高階方程式" id="toc-euler型方程式と高階方程式" class="nav-link" data-scroll-target="#euler型方程式と高階方程式">Euler型方程式と高階方程式</a></li>
+  <li><a href="#線形偏微分方程式" id="toc-線形偏微分方程式" class="nav-link" data-scroll-target="#線形偏微分方程式">線形偏微分方程式</a></li>
+  <li><a href="#fourier級数と変換" id="toc-fourier級数と変換" class="nav-link" data-scroll-target="#fourier級数と変換">Fourier級数と変換</a></li>
+  <li><a href="#ベクトル解析複素解析線形代数" id="toc-ベクトル解析複素解析線形代数" class="nav-link" data-scroll-target="#ベクトル解析複素解析線形代数">ベクトル解析・複素解析・線形代数</a></li>
+  <li><a href="#関連記事" id="toc-関連記事" class="nav-link" data-scroll-target="#関連記事">関連記事</a></li>
   </ul>
 </nav>
     </div>
@@ -2515,6 +2475,8 @@ window.Quarto = {
   <div class="quarto-categories">
     <div class="quarto-category">University</div>
     <div class="quarto-category">2026</div>
+    <div class="quarto-category">Differential Equations</div>
+    <div class="quarto-category">Fourier Analysis</div>
   </div>
   </div>
 
@@ -2547,14 +2509,16 @@ window.Quarto = {
 <p><span class="math display">\[
 \require{physics}
 \]</span></p>
-<p>以降、pythonコードセル内で<code>dsolve</code>関数を使って常微分方程式を解く。</p>
-<section id="同次型" class="level3">
-<h3 class="anchored" data-anchor-id="同次型">同次型</h3>
+<p>この記事では、一階常微分方程式から線形偏微分方程式、Fourier解析、複素解析へ進む。各節では、問題を先に解き、必要なら理論を開き、最後に解答を確認する。</p>
+<section id="一階常微分方程式" class="level2">
+<h2 class="anchored" data-anchor-id="一階常微分方程式">一階常微分方程式</h2>
+<section id="prob-homogeneous-ode" class="level4">
+<h4 class="anchored" data-anchor-id="prob-homogeneous-ode">問題1　同次形微分方程式</h4>
+<p>次の微分方程式の一般解を求めよ。</p>
 <p><span class="math display">\[
-\begin{aligned}
-x\dv{y}{x} &amp;= x + y \\
-(x + y) \dv{y}{x} &amp;= 2x - y
-\end{aligned}
+x\dv{y}{x}=x+y,
+\qquad
+(x+y)\dv{y}{x}=2x-y.
 \]</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -2562,16 +2526,17 @@ x\dv{y}{x} &amp;= x + y \\
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>理論
+<span class="screen-reader-only">Note</span>理論1：<span class="math inline">\(y/x\)</span> だけで決まる傾き
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p><span class="math inline">\(\dv{y}{x}=f(y/x)\)</span> の形では <span class="math inline">\(v=y/x\)</span>、すなわち <span class="math inline">\(y=xv\)</span> と置く。すると</p>
 <p><span class="math display">\[
-\dv{y}{x} = f\qty(\frac{y}{x})
+\dv{y}{x}=v+x\dv{v}{x}
 \]</span></p>
-<p>この形に落とし込めば、 <span class="math inline">\(t=\frac{y}{x}\)</span> と置換して解ける。</p>
+<p>となり、<span class="math inline">\(v\)</span> と <span class="math inline">\(x\)</span> の変数分離形へ変換できる。第1式のように先に線形方程式として見える場合は、積分因子を使ってもよい。</p>
 </div>
 </div>
 </div>
@@ -2581,81 +2546,61 @@ x\dv{y}{x} &amp;= x + y \\
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>解答
+<span class="screen-reader-only">Tip</span>解答1
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>1問目は簡単なので解答だけ。</p>
-<details class="code-fold">
-<summary>コードはこちら</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, Function, Eq, dsolve, latex</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> symbols(<span class="st">'x'</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> Function(<span class="st">'y'</span>)(x)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>ode <span class="op">=</span> Eq(x<span class="op">*</span>y.diff(x), x <span class="op">+</span> y)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>sol <span class="op">=</span> dsolve(ode)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"$$"</span> <span class="op">+</span> latex(sol) <span class="op">+</span> <span class="st">"$$"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<p><span class="math display">\[y{\left(x \right)} = x \left(C_{1} + \log{\left(x \right)}\right)\]</span></p>
-<p>２問目。</p>
+<p>第1式は</p>
 <p><span class="math display">\[
-\begin{aligned}
-(x + y) \dv{y}{x} &amp;= 2x - y \\
-\dv{y}{x} &amp;= \frac{2x - y}{x + y} = \frac{2 - \frac{y}{x}}{1 + \frac{y}{x}} \\
-t &amp;= \frac{y}{x} \\
-\dv{y}{x} &amp;= t + x \dv{t}{x} \\
-t + x \dv{t}{x} &amp;= \frac{2 - t}{1 + t} \\
-x \dv{t}{x} &amp;= \frac{2 - t}{1 + t} - t = \frac{2 - t - t - t^2}{1 + t} = \frac{2 - 2t - t^2}{1 + t} \\
-\frac{1 + t}{2 - 2t - t^2} \dd{t} &amp;= \frac{1}{x} \dd{x} \\
-\int \frac{1 + t}{2 - 2t - t^2} \dd{t} &amp;= \int \frac{1}{x} \dd{x} \\
-\ln \abs{x} + C_1 &amp;= -\frac{1}{2} \ln \abs{t^2 + 2t - 2} \\
-\frac{C_1}{x^2} &amp;= \frac{1}{t^2 + 2t - 2} \\
-t &amp; = -1 \pm \sqrt{ \frac{C_1}{x^2} + 1 } \\
-y &amp; = x \qty( -1 \pm \sqrt{ \frac{C_1}{x^2} + 1 } )
-\end{aligned}
+\dv{y}{x}-\frac1xy=1
 \]</span></p>
-<p>もしくは、</p>
+<p>であり、積分因子は <span class="math inline">\(1/x\)</span> である。したがって</p>
 <p><span class="math display">\[
-y^2 + 2xy - 2x^2 = C_1
+\dv{x}\left(\frac{y}{x}\right)=\frac1x,
+\qquad
+\boxed{y=x\left(\ln\abs{x}+C\right)}.
 \]</span></p>
+<p>第2式で <span class="math inline">\(v=y/x\)</span> と置くと</p>
+<p><span class="math display">\[
+v+x\dv{v}{x}=\frac{2-v}{1+v},
+\qquad
+\frac{1+v}{2-2v-v^2}\dd v=\frac{\dd x}{x}.
+\]</span></p>
+<p>積分・整理して</p>
+<p><span class="math display">\[
+\boxed{y^2+2xy-2x^2=C}
+\]</span></p>
+<p>を得る。</p>
 </div>
 </div>
 </div>
 </section>
-<section id="一階線型常微分方程式" class="level3">
-<h3 class="anchored" data-anchor-id="一階線型常微分方程式">一階線型常微分方程式</h3>
-<p><span class="math display">\[
-\begin{align}
-\dv{y}{x} + P(x)y &amp;= Q(x) \\
-\dv{y}{x} + 5y &amp;= 6e^x
-\end{align}
-\]</span></p>
+<section id="prob-first-order-linear" class="level4">
+<h4 class="anchored" data-anchor-id="prob-first-order-linear">問題2　一階線形方程式とBernoulli方程式</h4>
+<ol type="1">
+<li>一階線形方程式 <span class="math inline">\(y'+P(x)y=Q(x)\)</span> の一般解を導け。</li>
+<li><span class="math inline">\(y'+5y=6e^x\)</span> を解け。</li>
+<li>Bernoulli方程式 <span class="math inline">\(y'+P(x)y=Q(x)y^n\)</span> を線形方程式へ変換せよ。</li>
+</ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>理論
+<span class="screen-reader-only">Note</span>理論2：積の微分を作る
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>一次線型常微分方程式は、積分因子 <span class="math inline">\(e^{\int P(x) \dd{x}}\)</span> を用いて解く。</p>
-<p>と書くと分かりづらいから、要するに、</p>
+<p>一階線形方程式では、積分因子</p>
 <p><span class="math display">\[
-?\dv{y}{x} + ?P(x)y = \dv{x} ?
+\mu(x)=\exp\left(\int P(x)\dd x\right)
 \]</span></p>
-<p>という形を目指して、</p>
-<p><span class="math display">\[
-e^{\textcolor{orange}{\int P(x) \dd{x}}}\dv{y}{x} + y e^{\textcolor{orange}{\int P(x) \dd{x}}} \textcolor{red}{P(x)} = \dv{x} \qty(y e^{\int P(x) \dd{x}})
-\]</span></p>
-<p>という形に落ち着くって話。</p>
+<p>を掛けると、左辺が <span class="math inline">\((\mu y)'\)</span> になる。Bernoulli方程式は <span class="math inline">\(z=y^{1-n}\)</span> と置くことで、<span class="math inline">\(z\)</span> の一階線形方程式になる。<span class="math inline">\(y=0\)</span> を割り算で失う場合がある点に注意する。</p>
 </div>
 </div>
 </div>
@@ -2665,67 +2610,61 @@ e^{\textcolor{orange}{\int P(x) \dd{x}}}\dv{y}{x} + y e^{\textcolor{orange}{\int
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>解答
+<span class="screen-reader-only">Tip</span>解答2
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>１問目は、</p>
+<ol type="1">
+<li><p><span class="math display">\[
+\boxed{
+y=e^{-\int P\dd x}
+\left[
+\int Qe^{\int P\dd x}\dd x+C
+\right]}.
+\]</span></p></li>
+<li><p>積分因子 <span class="math inline">\(e^{5x}\)</span> を掛けると</p>
 <p><span class="math display">\[
-\begin{aligned}
-\dv{x} \qty(y e^{\int P(x) \dd{x}}) &amp;= Q(x) e^{\int P(x) \dd{x}} \\
-y e^{\int P(x) \dd{x}} &amp;= \int Q(x) e^{\int P(x) \dd{x}} \dd{x} + C \\
-y &amp;= e^{-\int P(x) \dd{x}} \qty( \int Q(x) e^{\int P(x) \dd{x}} \dd{x} + C )
-\end{aligned}
+(e^{5x}y)'=6e^{6x},
 \]</span></p>
-<p>後半でこの式を覚えて当てはめるのは無理。覚えられうものなら覚えてみろ。</p>
-<p>２問目。</p>
+<p>したがって</p>
 <p><span class="math display">\[
-\begin{aligned}
-e^{\textcolor{orange}{5x}} \dv{y}{x} + \textcolor{red}{5} y e^{\textcolor{orange}{5x}} &amp;= 6e^{6x} \\
-y e^{5x} &amp;= \int 6e^{6x} \dd{x} + C \\
-y &amp;= e^{x} + C e^{-5x}
-\end{aligned}
+\boxed{y=e^x+Ce^{-5x}}.
+\]</span></p></li>
+<li><p><span class="math inline">\(z=y^{1-n}\)</span> と置けば</p>
+<p><span class="math display">\[
+z'=(1-n)y^{-n}y'
 \]</span></p>
-<details class="code-fold">
-<summary>コードはこちら</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, Function, Eq, dsolve, exp, integrate, latex</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> symbols(<span class="st">'x'</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> Function(<span class="st">'y'</span>)(x)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>ode <span class="op">=</span> Eq(y.diff(x) <span class="op">+</span> <span class="dv">5</span><span class="op">*</span>y, <span class="dv">6</span><span class="op">*</span>exp(x))</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>sol <span class="op">=</span> dsolve(ode)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"$$"</span> <span class="op">+</span> latex(sol) <span class="op">+</span> <span class="st">"$$"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<p><span class="math display">\[y{\left(x \right)} = C_{1} e^{- 5 x} + e^{x}\]</span></p>
+<p>なので、</p>
+<p><span class="math display">\[
+\boxed{z'+(1-n)P(x)z=(1-n)Q(x)}
+\]</span></p>
+<p>となる。</p></li>
+</ol>
 </div>
 </div>
 </div>
 </section>
-<section id="一階非線型常微分方程式" class="level3">
-<h3 class="anchored" data-anchor-id="一階非線型常微分方程式">一階非線型常微分方程式</h3>
+<section id="prob-riccati" class="level4">
+<h4 class="anchored" data-anchor-id="prob-riccati">問題3　Riccati方程式</h4>
 <p><span class="math display">\[
-\begin{align}
-\dv{y}{x} + P(x)y &amp;= Q(x)y^n \\
-\dv{y}{x} &amp;= P(x)y^2 + Q(x)y + R(x) \quad \text{解き方のみ} \\
-x^2 \dv{y}{x} &amp;= x^2y^2 - xy - 1
-\end{align}
+x^2\dv{y}{x}=x^2y^2-xy-1
 \]</span></p>
+<p>を解け。</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>理論
+<span class="screen-reader-only">Note</span>理論3：形に合う置換を探す
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>ベルヌーイの微分方程式は、<span class="math inline">\(y^n\)</span> で割ってから線形微分方程式に変形する。これは、 <span class="math inline">\(y\)</span> の次数が１だけズレてるから。</p>
-<p>2番目のはリッカチの微分方程式。特殊解 <span class="math inline">\(y_p\)</span> を知っているとき、 <span class="math inline">\(y = y_p + t\)</span> と置換することで線形微分方程式に変形できる。</p>
+<p>Riccati方程式は特殊解が一つ分かれば一階線形方程式へ落とせる。この問題では各項の <span class="math inline">\(x\)</span> の次数から <span class="math inline">\(y=u/x\)</span> と置くと、最短で変数分離形になる。</p>
 </div>
 </div>
 </div>
@@ -2735,80 +2674,44 @@ x^2 \dv{y}{x} &amp;= x^2y^2 - xy - 1
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>解答
+<span class="screen-reader-only">Tip</span>解答3
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>１問目。</p>
+<p><span class="math inline">\(y=u/x\)</span> と置くと</p>
 <p><span class="math display">\[
-\begin{aligned}
-\frac{1}{y^ \textcolor{red}{n}} \dv{y}{x} + P(x) \frac{1}{y^{\textcolor{red}{n-1}}} &amp;= Q(x) \\
-(n-1)\dv{x} \qty(\frac{1}{y^{ \textcolor{red}{n-1} }}) + P(x) \frac{1}{y^{\textcolor{red}{n-1}}} &amp;= Q(x) \\
-\dv{x} \qty(\textcolor{orange}{\frac{1}{y^{ n-1 }}}) + \frac{P(x)}{n-1} \textcolor{orange}{\frac{1}{y^{ n-1 }}} &amp;= \frac{Q(x)}{n-1} \\
-\end{aligned}
+\frac1x\dv{u}{x}=\frac{u^2-1}{x^2}.
 \]</span></p>
-<p>2問目はスキップして、具体例の３問目。</p>
+<p>よって</p>
 <p><span class="math display">\[
-\begin{aligned}
-x^2 \dv{y}{x} &amp;= x^2y^2 - xy - 1 \\
-y &amp;= \frac{1}{x} + t \\
--1 + x^2 \dv{t}{x} &amp;= x^2 t^2 + xt - 1\\
-\dv{t}{x} &amp;= \frac{x^2 t^2 + xt}{x^2} = t^2 + \frac{t}{x} \\
-\frac{1}{t^2} \dv{t}{x} - \frac{1}{x} \frac{1}{t} &amp;= 1 \\
--\dv{x} \qty(\frac{1}{t}) - \frac{1}{x} \frac{1}{t} &amp;= 1 \\
-\dv{x} \qty(\frac{1}{t}) + \frac{1}{x} \frac{1}{t} &amp;= -1 \\
-s &amp;= \frac{1}{t} \\
-\dv{s}{x} + \frac{s}{x} &amp;= -1 \\
-u &amp;= \frac{s}{x} \\
-\dv{x} (ux) + u &amp;= -1 \\
-\dv{u}{x} x + 2u &amp;= -1 \\
-\frac{\dd x}{x} &amp;= - \frac{\dd u}{2u + 1} \\
-x = C \sqrt {2u + 1} \\
-u = \frac{C^2}{x^2} - \frac{1}{2} \\
-s = x \qty( \frac{C^2}{x^2} - \frac{1}{2} ) = \frac{C^2}{x} - \frac{x}{2} \\
-t = \frac{1}{s} = \frac{1}{ \frac{C^2}{x} - \frac{x}{2} } \\
-y = \frac{1}{x} + t &amp;= \frac{1}{x} + \frac{1}{ \frac{C}{x} - \frac{x}{2} } = \frac{1}{x} \qty( 1 + \frac{1}{ \frac{C}{x^2} - \frac{1}{2} } ) \\
-&amp;= \frac{1}{x} \frac{C + x^2}{C - x^2}
-\end{aligned}
+\int\frac{\dd u}{u^2-1}=\int\frac{\dd x}{x},
+\qquad
+\frac{u-1}{u+1}=Cx^2.
 \]</span></p>
-<p>ってな感じだが、この問題に限って言えば、もっと簡単な方法がある。<span class="math inline">\(y=u/x\)</span> とおくと</p>
+<p>したがって</p>
 <p><span class="math display">\[
-\begin{aligned}
-x^2 \dv{y}{x} -x^2y^2 + xy + 1 &amp;= 0 \\
-\dv{y}{x} + \frac{1}{x}y &amp;= y^2 - \frac{1}{x^2} \\
-\frac{1}{x}\dv{u}{x} &amp;= \frac{u^2-1}{x^2} \\
-\frac{\dd x}{x}  &amp;= \frac{\dd u}{u^2-1} \\
-\ln x &amp;= \frac{1}{2}\ln\qty(\frac{u-1}{u+1}) + C \\
-\frac{u-1}{u+1} &amp;= Cx^2 \\
-u &amp;= \frac{1+Cx^2}{1-Cx^2} \\
-y &amp;= \frac{1}{x} \frac{1+Cx^2}{1-Cx^2}
-\end{aligned}
+\boxed{
+y=\frac1x\frac{1+Cx^2}{1-Cx^2}
+}.
 \]</span></p>
-<details class="code-fold">
-<summary>コードはこちら</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, Function, Eq, dsolve, latex</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> symbols(<span class="st">'x'</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> Function(<span class="st">'y'</span>)(x)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>ode <span class="op">=</span> Eq(y.diff(x), y<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> y<span class="op">/</span>x <span class="op">-</span> <span class="dv">1</span><span class="op">/</span>x<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>sol <span class="op">=</span> dsolve(ode)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"$$"</span> <span class="op">+</span> latex(sol) <span class="op">+</span> <span class="st">"$$"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<p><span class="math display">\[y{\left(x \right)} = \frac{i \tan{\left(C_{1} + i \log{\left(x \right)} \right)}}{x}\]</span></p>
+<p>変数分離で除外した <span class="math inline">\(u=-1\)</span> も解なので、特別解 <span class="math inline">\(y=-1/x\)</span> を併記する。</p>
 </div>
 </div>
 </div>
 </section>
-<section id="階斉次常微分方程式" class="level3">
-<h3 class="anchored" data-anchor-id="階斉次常微分方程式">２階斉次常微分方程式</h3>
+</section>
+<section id="定数係数線形常微分方程式" class="level2">
+<h2 class="anchored" data-anchor-id="定数係数線形常微分方程式">定数係数線形常微分方程式</h2>
+<section id="prob-second-order-homogeneous" class="level4">
+<h4 class="anchored" data-anchor-id="prob-second-order-homogeneous">問題4　二階斉次方程式</h4>
+<p>次の方程式を解け。</p>
 <p><span class="math display">\[
 \begin{aligned}
-\dv[2]{y}{x} + a\dv{y}{x} + by &amp;= 0 \\
-\dv[2]{y}{x} + 4\dv{y}{x} - 5y &amp;= 0 \\
-\dv[2]{y}{x} - 6\dv{y}{x} + 9y &amp;= 0 \\
-\dv[2]{y}{x} + 2\dv{y}{x} + 5y &amp;= 0
+y''+4y'-5y&amp;=0,\\
+y''-6y'+9y&amp;=0,\\
+y''+2y'+5y&amp;=0.
 \end{aligned}
 \]</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -2817,13 +2720,13 @@ y &amp;= \frac{1}{x} \frac{1+Cx^2}{1-Cx^2}
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>理論
+<span class="screen-reader-only">Note</span>理論4：特性根が解の形を決める
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>二次方程式を解いて、異なる基底の二つの解を重ねる。</p>
+<p><span class="math inline">\(y=e^{\lambda x}\)</span> を仮定して特性方程式を作る。異なる実根なら二つの指数関数、重根なら <span class="math inline">\(xe^{\lambda x}\)</span> を追加し、複素根 <span class="math inline">\(\alpha\pm i\beta\)</span> なら <span class="math inline">\(e^{\alpha x}\cos\beta x\)</span> と <span class="math inline">\(e^{\alpha x}\sin\beta x\)</span> を基底にする。</p>
 </div>
 </div>
 </div>
@@ -2833,58 +2736,35 @@ y &amp;= \frac{1}{x} \frac{1+Cx^2}{1-Cx^2}
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>解答
+<span class="screen-reader-only">Tip</span>解答4
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>１問目。</p>
-<p>$ ^2 + a+ b = 0 $ を解いた解を $ _1, _2 $ とすると、</p>
+<p>順に、</p>
 <p><span class="math display">\[
-\begin{aligned}
-y &amp;= C_1 e^{\lambda_1 x} + C_2 e^{\lambda_2 x} &amp;&amp;\quad \text{異なる実数解} \\
-y &amp;= C_1 e^{\lambda x} + C_2 x e^{\lambda x} &amp;&amp;\quad \text{重解} \\
-y &amp;= e^{\alpha x} \qty( C_1 \cos \beta x + C_2 \sin \beta x ) &amp;&amp;\quad \text{複素解 }
-\end{aligned}
+\boxed{y=C_1e^x+C_2e^{-5x}},
 \]</span></p>
-<p>２〜４問目。</p>
 <p><span class="math display">\[
-\begin{aligned}
-y &amp;= C_1 e^{x} + C_2 e^{-5x} \\
-y &amp;= (C_1 + C_2 x) e^{3x} \\
-y &amp;= e^{-x} \qty( C_1 \cos 2x + C_2 \sin 2x )
-\end{aligned}
+\boxed{y=(C_1+C_2x)e^{3x}},
 \]</span></p>
-<details class="code-fold">
-<summary>コードはこちら</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, Function, Eq, dsolve, exp, cos, sin, latex</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> symbols(<span class="st">'x'</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> Function(<span class="st">'y'</span>)(x)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>odes <span class="op">=</span> [</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    Eq(y.diff(x, <span class="dv">2</span>) <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>y.diff(x) <span class="op">-</span> <span class="dv">5</span><span class="op">*</span>y, <span class="dv">0</span>),</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    Eq(y.diff(x, <span class="dv">2</span>) <span class="op">-</span> <span class="dv">6</span><span class="op">*</span>y.diff(x) <span class="op">+</span> <span class="dv">9</span><span class="op">*</span>y, <span class="dv">0</span>),</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    Eq(y.diff(x, <span class="dv">2</span>) <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>y.diff(x) <span class="op">+</span> <span class="dv">5</span><span class="op">*</span>y, <span class="dv">0</span>)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ode <span class="kw">in</span> odes:</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    sol <span class="op">=</span> dsolve(ode)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"$$"</span> <span class="op">+</span> latex(sol) <span class="op">+</span> <span class="st">"$$"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<p><span class="math display">\[y{\left(x \right)} = C_{1} e^{- 5 x} + C_{2} e^{x}\]</span> <span class="math display">\[y{\left(x \right)} = \left(C_{1} + C_{2} x\right) e^{3 x}\]</span> <span class="math display">\[y{\left(x \right)} = \left(C_{1} \sin{\left(2 x \right)} + C_{2} \cos{\left(2 x \right)}\right) e^{- x}\]</span></p>
+<p><span class="math display">\[
+\boxed{y=e^{-x}(C_1\cos2x+C_2\sin2x)}.
+\]</span></p>
 </div>
 </div>
 </div>
 </section>
-<section id="階非斉次常微分方程式" class="level3">
-<h3 class="anchored" data-anchor-id="階非斉次常微分方程式">２階非斉次常微分方程式</h3>
+<section id="prob-second-order-inhomogeneous" class="level4">
+<h4 class="anchored" data-anchor-id="prob-second-order-inhomogeneous">問題5　二階非斉次方程式</h4>
+<p>次の方程式を解け。</p>
 <p><span class="math display">\[
 \begin{aligned}
-\dv[2]{y}{x} + a\dv{y}{x} + by &amp;= R(x) \quad \text{解き方のみ} \\
-\dv[2]{y}{x} + 2\dv{y}{x} - 3y &amp;= e^{2x} \\
-\dv[2]{y}{x} - 3\dv{y}{x} + 2y &amp;= 20 \sin 2x \\
-\dv[2]{y}{x} + 4\dv{y}{x} - 5y &amp;= 6x \\
-\dv[2]{y}{x} + 4\dv{y}{x} + 4y &amp;= 4e^{2x}
+y''+2y'-3y&amp;=e^{2x},\\
+y''-3y'+2y&amp;=20\sin2x,\\
+y''+4y'-5y&amp;=6x,\\
+y''+4y'+4y&amp;=4e^{2x}.
 \end{aligned}
 \]</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -2893,13 +2773,17 @@ y &amp;= e^{-x} \qty( C_1 \cos 2x + C_2 \sin 2x )
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>理論
+<span class="screen-reader-only">Note</span>理論5：一般解は斉次解と特殊解の和
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>非斉次常微分方程式の解 = 斉次方程式の一般解 + 特殊解</p>
+<p>線形方程式 <span class="math inline">\(L[y]=R(x)\)</span> では</p>
+<p><span class="math display">\[
+y=y_h+y_p
+\]</span></p>
+<p>と分ける。未定係数法では <span class="math inline">\(R(x)\)</span> と同形の試行関数を仮定する。ただし試行関数が斉次解と重なる場合は <span class="math inline">\(x\)</span> を掛けて独立にする。</p>
 </div>
 </div>
 </div>
@@ -2909,556 +2793,675 @@ y &amp;= e^{-x} \qty( C_1 \cos 2x + C_2 \sin 2x )
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>解答
+<span class="screen-reader-only">Tip</span>解答5
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>１問目。</p>
-<p>特殊解の求め方は、<span class="math inline">\(R(x)\)</span> の形によって場合分けする。似たような形の <span class="math inline">\(y_p\)</span> を仮定して、定数を決める。</p>
-<p>２問目。</p>
+<p>特性方程式と未定係数法から、順に</p>
 <p><span class="math display">\[
-\begin{aligned}
-y_p &amp;= e^{2x} \\
-y &amp;= C_1 e^{3x} + C_2 e^{-x} + e^{2x}
-\end{aligned}
+\boxed{y=C_1e^x+C_2e^{-3x}+\frac15e^{2x}},
 \]</span></p>
-<p>3問目。</p>
 <p><span class="math display">\[
-\begin{aligned}
-y_p &amp;= A \sin 2x + B \cos 2x \\
-20 \sin 2x &amp;= - 4A \sin 2x - 4B \cos 2x - 6A \cos 2x + 6B \sin 2x + 2A \sin 2x + 2B \cos 2x \\
-&amp;= (-2A + 6B) \sin 2x + (-2B - 6A) \cos 2x  \\
--2A + 6B &amp;= 20 \\
--2B - 6A &amp;= 0 \\
-A &amp;= -1, \quad B = 3 \\
-y &amp;= C_1 e^{x} + C_2 e^{2x} - \sin 2x + 3 \cos 2x
-\end{aligned}
+\boxed{y=C_1e^x+C_2e^{2x}-\sin2x+3\cos2x},
 \]</span></p>
-<p>4問目。</p>
 <p><span class="math display">\[
-\begin{aligned}
-y_p &amp;= Ax + B \\
-6x &amp;= 4A - 5Ax - 5B \\
-6x &amp;= (-A) x + (4A - B) \\
--A &amp;= 6 \Rightarrow A = -6 \\
-4A - B &amp;= 0 \Rightarrow B = 4(-6) = -24 \\
-y &amp;= C_1 e^{x} + C_2 e^{-5x} - 6x - 24
-\end{aligned}
+\boxed{y=C_1e^x+C_2e^{-5x}-\frac65x-\frac{24}{25}},
 \]</span></p>
-<p>5問目。</p>
 <p><span class="math display">\[
-y = (C_1 + C_2 x) e^{-2x} + \frac{1}{4}e^{2x}
+\boxed{y=(C_1+C_2x)e^{-2x}+\frac14e^{2x}}.
 \]</span></p>
 </div>
 </div>
 </div>
 </section>
-<section id="階線形微分程式" class="level3">
-<h3 class="anchored" data-anchor-id="階線形微分程式">２階線形微分⽅程式</h3>
+</section>
+<section id="euler型方程式と高階方程式" class="level2">
+<h2 class="anchored" data-anchor-id="euler型方程式と高階方程式">Euler型方程式と高階方程式</h2>
+<section id="prob-euler-cauchy" class="level4">
+<h4 class="anchored" data-anchor-id="prob-euler-cauchy">問題6　Euler–Cauchy方程式</h4>
+<p>次の方程式を解け。</p>
 <p><span class="math display">\[
 \begin{aligned}
-x^2 \dv[2]{y}{x} + a x \dv{y}{x} + by &amp;= 0 \quad \text{解き方のみ} \\
-x^2 \dv[2]{y}{x} -x \dv{y}{x} + y &amp;= x^2 \\
-\dv[4]{y}{x} - 2 \dv[3]{y}{x} + 2 \dv{y}{x} - y &amp;= 9e^{-2x} \\
-x^2 \dv[2]{y}{x} - 8x \dv{y}{x} - 8y &amp;= x^2 \\
+x^2y''-xy'+y&amp;=x^2,\\
+x^2y''-8xy'-8y&amp;=x^2,\\
+y''+\frac1xy'+\frac4{x^2}y&amp;=\left(\frac{2\ln x}{x}\right)^2
+\quad(x&gt;0).
 \end{aligned}
 \]</span></p>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>解答
+<span class="screen-reader-only">Note</span>理論6：<span class="math inline">\(t=\ln x\)</span> で定数係数へ変える
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>1問目。</p>
-<p><span class="math inline">\(x = e^t\)</span> と置換して、 <span class="math inline">\(t\)</span> に関する常微分方程式に変形する。</p>
-<p>2問目。</p>
+<p><span class="math inline">\(t=\ln x\)</span>、<span class="math inline">\(D=\dv{}{t}\)</span> とすると</p>
 <p><span class="math display">\[
-\begin{aligned}
-x^2 \dv[2]{y}{x} -x \dv{y}{x} + y &amp;= x^2 \\
-t &amp;= \ln x \\
-\dv{y}{x} = \dv{y}{t} \dv{t}{x} &amp;= \frac{1}{x} \dv{y}{t} \\
-&amp;= e^{-t} \dv{y}{t} \\
-\dv[2]{y}{x} &amp;= \dv{x} \qty( \frac{1}{x} \dv{y}{t} ) \\
-&amp;= -\frac{1}{x^2} \dv{y}{t} + \frac{1}{x} \textcolor{red}{\dv{x}\dv{y}{t}} \\
-&amp;= -\frac{1}{x^2} \dv{y}{t} + \frac{1}{x} \textcolor{red}{\qty( \dv{t}{x} \dv[2]{y}{t} )} \\
-&amp;= -\frac{1}{x^2} \dv{y}{t} + \frac{1}{x^2} \dv[2]{y}{t} \\
--\dv{y}{t} + \dv[2]{y}{t} -\dv{y}{t} + y &amp;= e^{2t} \\
-\dv[2]{y}{t} - 2\dv{y}{t} + y &amp;= e^{2t} \\
-y &amp;= C_1 e^{t} + C_2 t e^{t} + e^{2t} \\
-&amp;= C_1 x + C_2 x \ln x + x^2
-\end{aligned}
+x\dv{}{x}=D,\qquad
+x^2\dv[2]{}{x}=D(D-1).
 \]</span></p>
-<details class="code-fold">
-<summary>コードはこちら</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, Function, Eq, dsolve, exp, ln, latex</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> symbols(<span class="st">'x'</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> Function(<span class="st">'y'</span>)(x)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>ode <span class="op">=</span> Eq(x<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> y.diff(x, <span class="dv">2</span>) <span class="op">-</span> x <span class="op">*</span> y.diff(x) <span class="op">+</span> y, x<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>sol <span class="op">=</span> dsolve(ode)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"$$"</span> <span class="op">+</span> latex(sol) <span class="op">+</span> <span class="st">"$$"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<p><span class="math display">\[y{\left(x \right)} = x \left(C_{1} + C_{2} \log{\left(x \right)} + x\right)\]</span></p>
-<p>3問目。</p>
-<p><span class="math display">\[
-\begin{aligned}
-y = C_1 e^x + C_2 x e^x + C_3 x^2 e^x + C_4 e^{-x} + \frac{1}{3}e^{-2x}
-\end{aligned}
-\]</span></p>
-<details class="code-fold">
-<summary>コードはこちら</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, Function, Eq, dsolve, exp, latex</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> symbols(<span class="st">'x'</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> Function(<span class="st">'y'</span>)(x)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>ode <span class="op">=</span> Eq(y.diff(x, <span class="dv">4</span>) <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>y.diff(x, <span class="dv">3</span>) <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>y.diff(x) <span class="op">-</span> y, <span class="dv">9</span><span class="op">*</span>exp(<span class="op">-</span><span class="dv">2</span><span class="op">*</span>x))</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>sol <span class="op">=</span> dsolve(ode)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"$$"</span> <span class="op">+</span> latex(sol) <span class="op">+</span> <span class="st">"$$"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<p><span class="math display">\[y{\left(x \right)} = C_{4} e^{- x} + \left(C_{1} + x \left(C_{2} + C_{3} x\right)\right) e^{x} + \frac{e^{- 2 x}}{3}\]</span></p>
-<p>4問目。</p>
-<p><span class="math display">\[
-\begin{aligned}
-t &amp;= \ln x \\
-\dv{y}{x} = \dv{y}{t} \dv{t}{x} &amp;= \frac{1}{x} \dv{y}{t} \\
-\dv[2]{y}{x} &amp;= -\frac{1}{x^2} \dv{y}{t} + \frac{1}{x^2} \dv[2]{y}{t} \\
-\dv[2]{y}{t} - 2\dv{y}{t} - 8y &amp;= e^{2t} \\
-y &amp;= C_1 e^{4t} + C_2 e^{-2t} - \frac{1}{8} e^{2t} \\
-&amp;= C_1 x^{4} + C_2 x^{-2} - \frac{1}{8} x^{2}
-\end{aligned}
-\]</span></p>
+<p>したがってEuler–Cauchy方程式は <span class="math inline">\(t\)</span> に関する定数係数方程式へ変換できる。右辺も <span class="math inline">\(x=e^t\)</span> で書き換える。</p>
 </div>
 </div>
 </div>
-</section>
-<section id="線形偏微分程式" class="level3">
-<h3 class="anchored" data-anchor-id="線形偏微分程式">線形偏微分⽅程式</h3>
-$$
-<span class="math display">\[\begin{aligned}
-
-\pdv{u}{x} &amp;= 4 \pdv{u}{y} &amp;&amp;\quad u(0,y) = 8e^{-3y} \\
-\pdv{u}{t} &amp;= 2 \pdv[2]{u}{x} &amp;&amp;\quad u(0,t)=u(3,t)=0, u(x,0) = 5\sin 4\pi x - 3 \sin 8 \pi x \\
-\pdv{u}{x} &amp;= 2 \pdv{u}{y} + u &amp;&amp;\quad u(x,0) = 3e^{-5x} + 2e^{-3x} \\
-\pdv[2]{y}{t} &amp;= 16 \pdv[2]{y}{x} &amp;&amp;\quad y(0,t) = y(2,t) = 0, y(x,0) = 6\sin \pi x - 3\sin 4 \pi x, \pdv{y}{t}(x,0) = 0 = \eval{\pdv{y}{t}}_{t=0}
-
-\end{aligned}\]</span>
-<p>$$</p>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>理論
+<span class="screen-reader-only">Tip</span>解答6
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>とりあえず変数分離。そうしてから、次数に合わせて <span class="math inline">\(\lambda\)</span> を設定する。</p>
+<p>第1式は</p>
+<p><span class="math display">\[
+(D-1)^2y=e^{2t}
+\]</span></p>
+<p>となるので、</p>
+<p><span class="math display">\[
+\boxed{y=C_1x+C_2x\ln x+x^2}.
+\]</span></p>
+<p>第2式は</p>
+<p><span class="math display">\[
+(D^2-9D-8)y=e^{2t}.
+\]</span></p>
+<p>特性根は <span class="math inline">\(r=(9\pm\sqrt{113})/2\)</span> であり、</p>
+<p><span class="math display">\[
+\boxed{
+y=C_1x^{(9+\sqrt{113})/2}
++C_2x^{(9-\sqrt{113})/2}
+-\frac1{22}x^2
+}.
+\]</span></p>
+<p>第3式に <span class="math inline">\(t=\ln x\)</span> を使うと</p>
+<p><span class="math display">\[
+\dv[2]{y}{t}+4y=4t^2.
+\]</span></p>
+<p>したがって</p>
+<p><span class="math display">\[
+\boxed{
+y=C_1\cos(2\ln x)+C_2\sin(2\ln x)
++(\ln x)^2-\frac12
+}.
+\]</span></p>
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
+</section>
+<section id="prob-fourth-order" class="level4">
+<h4 class="anchored" data-anchor-id="prob-fourth-order">問題7　四階線形方程式</h4>
+<p><span class="math display">\[
+y^{(4)}-2y^{(3)}+2y'-y=9e^{-2x}
+\]</span></p>
+<p>を解け。</p>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>解答
+<span class="screen-reader-only">Note</span>理論7：次数が増えても特性多項式を使う
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><span class="math inline">\(u=X(x)Y(y)T(t)\)</span> とおいて考える。</p>
-<p>1問目。</p>
-<p><span class="math display">\[
-\begin{aligned}
-\dv{X}{x} Y &amp;= 4 X \dv{Y}{y} \\
-\frac{1}{X} \dv{X}{x} &amp;= 4 \frac{1}{Y} \dv{Y}{y} = -\lambda \\
-X = C_1 e^{-\lambda x} &amp;, \quad Y = C_2 e^{-\frac{\lambda}{4} y} \\
-u &amp;= C e^{-\lambda x} e^{-\frac{\lambda}{4} y} \\
-u(0,y) &amp;= 8 e^{-3y} \\
-C e^{-\frac{\lambda}{4} y} &amp;= 8 e^{-3y} \\
-\lambda = 12&amp;, \quad C = 8 \\
-u &amp;= 8 e^{-12 x} e^{-3 y}
-\end{aligned}
-\]</span></p>
-<p>2問目。</p>
-<p><span class="math display">\[
-\begin{aligned}
-X \dv{T}{t} &amp;= 2 T \dv[2]{X}{x} \\
-\frac{1}{T} \dv{T}{t} &amp;= 2 \frac{1}{X} \dv[2]{X}{x} = -\lambda^2 \\
-T &amp;= C_1 e^{-\lambda^2 t} \\
-\dv[2]{X}{x} + \frac{\lambda^2}{2} X &amp;= 0 \\
-X &amp;= C_2 \sin \qty( \frac{\lambda}{\sqrt{2}} x ) + C_3 \cos \qty( \frac{\lambda}{\sqrt{2}} x ) \\
-X(0) &amp;= 0 \Rightarrow C_3 = 0 \\
-X(3) &amp;= 0 \Rightarrow \frac{\lambda}{\sqrt{2}} 3 = n \pi \Rightarrow \lambda = \frac{n \pi \sqrt{2}}{3} \\
-u &amp;= C e^{-\frac{2n^2 \pi^2}{9} t} \sin \qty( \frac{n \pi}{3} x ) \\
-&amp;= C_1 e^{-\frac{2n_1^2 \pi^2}{9} t} \sin \qty( \frac{n_1 \pi}{3} x ) + C_2 e^{-\frac{2n_2^2 \pi^2}{9} t} \sin \qty( \frac{n_2 \pi}{3} x ) \\
-u(x,0) &amp;= 5 \sin 4 \pi x - 3 \sin 8 \pi x \\
-C_1 = 5&amp;, \quad n_1 = 12 \\
-C_2 = -3&amp;, \quad n_2 = 24 \\
-u &amp;= 5 e^{-32 \pi^2 t} \sin 4 \pi x - 3 e^{-128 \pi^2 t} \sin 8 \pi x
-\end{aligned}
-\]</span></p>
-<p>3問目。</p>
-$$
-<span class="math display">\[\begin{aligned}
-
-Y \dv{X}{x} &amp;= 2 X \dv{Y}{y} + X Y \\
-\frac{1}{X} \dv{X}{x} - 1 &amp;= 2 \frac{1}{Y} \dv{Y}{y} = \lambda \\
-X &amp;= C_1 e^{(\lambda + 1) x} \\
-Y &amp;= C_2 e^{\frac{\lambda}{2} y} \\
-u &amp;= C_1 e^{(\lambda_1 + 1) x} e^{\frac{\lambda_1}{2} y} + C_2 e^{(\lambda_2 + 1) x} e^{\frac{\lambda_2}{2} y} \\
-u(x,0) &amp;= 3e^{-5x} + 2e^{-3x} \\
-C_1 e^{(\lambda_1 + 1) x} + C_2 e^{(\lambda_2 + 1) x} &amp;= 3e^{-5x} + 2e^{-3x} \\
-C_1 = 3&amp;, \quad \lambda_1 = -6 \\
-C_2 = 2&amp;, \quad \lambda_2 = -4 \\
-u &amp;= 3 e^{-5x} e^{-3y} + 2 e^{-3x} e^{-2y}
-\end{aligned}\]</span>
-<p>$$</p>
-<p>4問目。</p>
-<p><span class="math display">\[
-\begin{aligned}
-X &amp;= C_1 \sin \lambda x + C_2 \cos \lambda x \\
-T &amp;= C_3 \cos 4 \lambda t + C_4 \sin 4 \lambda t \\
-X(0) &amp;= 0 \Rightarrow C_2 = 0 \\
-X(2) &amp;= 0 \Rightarrow \lambda = \frac{n \pi}{2} \\
-u(0, t) &amp;= C_2 T(t) = 0\\
-C_2 &amp;= 0 \\
-u(2, t) &amp;= C_1 \sin (2\lambda) T(t) = 0 \\
-\lambda &amp;= \frac{n \pi}{2} \\
-\pdv{u}{t} &amp;= 2C_1 n\pi \sin \qty( \frac{n \pi}{2} x ) \qty( - C_3 \sin \qty( 2 n \pi t ) + C_4 \cos \qty( 2 n \pi t ) ) \\
-u(x,0) &amp;= C_1C_4 \sin \qty( \frac{n \pi}{2} x ) = 0 \\
-C_4 &amp;= 0 \\
-u &amp;= C_1 \sin \qty( \frac{n \pi}{2} x ) C_3 \cos \qty( 2 n \pi t ) \\
-u(x, 0) &amp;= C_1' \qty( \frac{n_1 \pi}{2} x ) + C_2' \sin \qty( \frac{n_2 \pi}{2} x ) \\
-&amp;= 6 \sin \pi x - 3 \sin 4 \pi x \\
-C_1' = 6&amp;, \quad n_1 = 2 \\
-C_2' = -3&amp;, \quad n_2 = 8 \\
-u &amp;= 6 \sin \pi x \cos 4 \pi t - 3 \sin 4 \pi x \cos 16 \pi t
-\end{aligned}
-\]</span></p>
+<p>定数係数線形方程式では、階数が上がっても <span class="math inline">\(y=e^{rx}\)</span> を代入し、特性多項式の根と重複度から斉次解を作る。右辺の指数関数には演算子多項式へ指数を代入すると特殊解の係数を素早く求められる。</p>
 </div>
 </div>
 </div>
-</section>
-<section id="フーリエ級数" class="level3">
-<h3 class="anchored" data-anchor-id="フーリエ級数">フーリエ級数</h3>
-<p>フーリエ変換の定義式を書け。</p>
-<p>次の式をフーリエ級数展開せよ。</p>
-<p><span class="math display">\[
-\begin{aligned}
-f(x) &amp;= x^2, \quad \qty(-1 &lt; x &lt; 1) \\
-f(x) &amp;= x(x - 1), \quad \qty(0 &lt; x &lt; 1) \quad \text{フーリエ余弦級数} \\
-f(x) &amp;= x(x - 1), \quad \qty(0 &lt; x &lt; 1) \quad \text{フーリエ正弦級数} \\
-\pdv{u}{t} &amp;= \alpha \pdv[2]{u}{x}, \quad 0 &lt; x &lt; L, \quad t &gt; 0 \\
-u(0,t) &amp;= 0, \quad u(L,t) = 0, \quad u(x,0) = f(x) \\
-\end{aligned}
-\]</span></p>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>理論
+<span class="screen-reader-only">Tip</span>解答7
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>瞬間部分分数分解という技法についてまとめておく。</p>
-<p>例題として、 <span class="math inline">\(\int \qty(x^3+x) \textcolor{orange}{\cos x} \dd{x}\)</span> を考える。</p>
+<p>特性多項式は</p>
 <p><span class="math display">\[
-\begin{array}{ccc}
-+ &amp; x^3 + x &amp; \textcolor{red}{\sin x} \\
-- &amp; 3x^2 + 1 &amp; -\cos x \\
-+ &amp; 6x &amp; -\sin x \\
-- &amp; 6 &amp; \cos x \\
-\end{array}
+r^4-2r^3+2r-1=(r-1)^3(r+1).
 \]</span></p>
-<p>こんな感じで表を書く。真ん中の列は微分して、右の列は積分していく。一番右の列だけは一番上が積分された形になる。</p>
+<p>また <span class="math inline">\(p(-2)=27\)</span> なので特殊解は <span class="math inline">\((1/3)e^{-2x}\)</span> である。よって</p>
+<p><span class="math display">\[
+\boxed{
+y=(C_1+C_2x+C_3x^2)e^x+C_4e^{-x}
++\frac13e^{-2x}
+}.
+\]</span></p>
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
+</section>
+</section>
+<section id="線形偏微分方程式" class="level2">
+<h2 class="anchored" data-anchor-id="線形偏微分方程式">線形偏微分方程式</h2>
+<section id="prob-first-order-pde" class="level4">
+<h4 class="anchored" data-anchor-id="prob-first-order-pde">問題8　一階偏微分方程式</h4>
+<p>次の初期値問題を解け。</p>
+<p><span class="math display">\[
+\pdv{u}{x}=4\pdv{u}{y},
+\qquad
+u(0,y)=8e^{-3y},
+\]</span></p>
+<p><span class="math display">\[
+\pdv{u}{x}=2\pdv{u}{y}+u,
+\qquad
+u(x,0)=3e^{-5x}+2e^{-3x}.
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>解答
+<span class="screen-reader-only">Note</span>理論8：特性曲線に沿って常微分方程式にする
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>まず、フーリエ変換の定義式。</p>
+<p><span class="math inline">\(a u_x+b u_y=cu\)</span> では</p>
 <p><span class="math display">\[
-\begin{aligned}
-f(x) &amp;= \frac{a_0}{2} + \sum_{n=1}^{\infty} \qty( a_n \cos \frac{n \pi x}{L} + b_n \sin \frac{n \pi x}{L} ) \\
-a_n &amp;= \frac{1}{L} \int_{-L}^{L} f(x) \cos \frac{n \pi x}{L} \dd{x} \\
-b_n &amp;= \frac{1}{L} \int_{-L}^{L} f(x) \sin \frac{n \pi x}{L} \dd{x}
-\end{aligned}
+\dv{x}{s}=a,\qquad
+\dv{y}{s}=b,\qquad
+\dv{u}{s}=cu
 \]</span></p>
-<p>次に余弦級数、正弦級数の定義式。</p>
-$$
-<span class="math display">\[\begin{aligned}
-
-f(x) &amp;= \frac{a_0}{2} + \sum_{n=1}^{\infty} a_n \cos \frac{n \pi x}{L} &amp;&amp;\quad \text{余弦級数} \\
-a_n &amp;= \frac{2}{L} \int_{0}^{L} f(x) \cos \frac{n \pi x}{L} \dd{x} \\
-f(x) &amp;= \sum_{n=1}^{\infty} b_n \sin \frac{n \pi x}{L} &amp;&amp;\quad \text{正弦級数} \\
-b_n &amp;= \frac{2}{L} \int_{0}^{L} f(x) \sin \frac{n \pi x}{L} \dd{x}
-
-
-\end{aligned}\]</span>
-<p>$$</p>
-<p>1問目。</p>
-$$
-<span class="math display">\[\begin{aligned}
-
-a_0 &amp;= \int_{-1}^{1} x^2 \cos 0 \dd{x} = \frac{2}{3} \\
-a_n &amp;= \int_{-1}^{1} x^2 \cos n \pi x \dd{x} \\
-&amp;\text{部分分数分解の表}\\
-&amp;\begin{array}{ccc}
-+ &amp; x^2 &amp; \frac{1}{n\pi}\sin n \pi x \\
-- &amp; 2x &amp; -\frac{1}{(n\pi)^2}\cos n \pi x \\
-+ &amp; 2 &amp; -\frac{1}{(n\pi)^3}\sin n \pi x \\
-\end{array} \\
-a_n &amp;= \frac{4}{n^2\pi^2} (-1)^n \\
-b_n &amp;= \int_{-1}^{1} x^2 \sin n \pi x \dd{x} = 0 \\
-&amp;= 0 \\
-
-f(x) &amp;= \frac{1}{3} + \sum_{n=1}^{\infty} \frac{4}{n^2 \pi^2} (-1)^n \cos n \pi x
-\end{aligned}\]</span>
-<p>$$</p>
-<p>2問目。</p>
-<p><span class="math display">\[
-\begin{aligned}
-a_0 = -\frac{1}{3}
-a_n &amp;= 2 \int_{0}^{1} x(x-1) \cos n \pi x \dd{x} \\
-&amp;\text{部分分数分解の表}\\
-&amp;\begin{array}{ccc}
-+ &amp; x^2 - x &amp; \frac{1}{n\pi} \sin n \pi x \\
-- &amp; 2x - 1 &amp; -\frac{1}{(n\pi)^2} \cos n \pi x \\
-+ &amp; 2 &amp; -\frac{1}{(n\pi)^3} \sin n \pi x \\
-\end{array} \\
-a_n &amp;= \frac{1}{(n\pi)^2}\qty[(-1)^{n}+1] \\
-f(x) &amp;= -\frac{1}{6} + \sum_{n=1}^{\infty} \frac{2}{(n\pi)^2}\qty[(-1)^{n}+1] \cos n \pi x
-\end{aligned}
-\]</span></p>
-<p>3問目。</p>
-$$
-<span class="math display">\[\begin{aligned}
-
-u(x,t) &amp;=C_1 \exp \qty(-\alpha \lambda^2 t)(C_2 \sin \lambda x + C_3 \cos \lambda x) \\
-C_3 &amp;= 0\ , \quad \lambda L = n \pi \\
-u(x,t) &amp;= \sum_{n=1}^{\infty} C_n \exp \qty(-\alpha \frac{n^2 \pi^2}{L^2} t) \sin \frac{n \pi x}{L} \\
-u(x,0) &amp;= f(x) = \sum_{n=1}^{\infty} C_n \sin \frac{n \pi x}{L} \\
-&amp;\textcolor{red}{\text{ここは展開の定義式を思い出せ}} \\
-C_n &amp;= \frac{2}{L} \int_{0}^{L} f(x) \sin \frac{n \pi x}{L} \dd{x} \\
-
-\end{aligned}\]</span>
-<p>$$</p>
+<p>を同時に解く。<span class="math inline">\(c=0\)</span> なら、<span class="math inline">\(u\)</span> は特性曲線上で一定である。</p>
 </div>
 </div>
 </div>
-</section>
-<section id="ベクトルあたり" class="level3">
-<h3 class="anchored" data-anchor-id="ベクトルあたり">ベクトルあたり</h3>
-<p>そもそも高校レベルの話なので、あまり詳しくは書かない。</p>
-<p><span class="math display">\[
-\mathbfit{r} = \cos u \cos v \mathbfit{i} + \cos u \sin v \mathbfit{j} + \sin u \mathbfit{k}
-\]</span></p>
-<p>これを使って法線ベクトルと表面積を求めろ。</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>解答
+<span class="screen-reader-only">Tip</span>解答8
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>法線ベクトルは</p>
+<p>第1式は特性量 <span class="math inline">\(y+4x\)</span> に沿って一定なので</p>
 <p><span class="math display">\[
-\begin{aligned}
-\pdv{\mathbfit{r}}{u} \times \pdv{\mathbfit{r}}{v} &amp;=
-\begin{vmatrix}
-\mathbfit{i} &amp; \mathbfit{j} &amp; \mathbfit{k} \\
--\sin u \cos v &amp; -\sin u \sin v &amp; \cos u \\
--\cos u \sin v &amp; \cos u \cos v &amp; 0 \\
-\end{vmatrix} \\
-&amp;= -\cos^2 u \cos v \mathbfit{i} - \cos^2 u \sin v \mathbfit{j} - \cos u \sin u \mathbfit{k} \\
-\left|\pdv{\mathbfit{r}}{u} \times \pdv{\mathbfit{r}}{v}\right|&amp;= |\cos u| \\
-\text{法線ベクトル} &amp;= \left. \pdv{\mathbfit{r}}{u} \times \pdv{\mathbfit{r}}{v} \middle/ \left|\pdv{\mathbfit{r}}{u} \times \pdv{\mathbfit{r}}{v}\right| \right. \\
-\text{表面積} &amp;= \int_0^{2\pi} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} |\cos u| \dd{u} \dd{v} = 4\pi
-\end{aligned}
+u=F(y+4x).
+\]</span></p>
+<p>初期条件から</p>
+<p><span class="math display">\[
+\boxed{u=8e^{-12x-3y}}.
+\]</span></p>
+<p>第2式では特性量は <span class="math inline">\(y+2x\)</span>、特性上で <span class="math inline">\(u'=u\)</span> なので</p>
+<p><span class="math display">\[
+u=e^xF(y+2x).
+\]</span></p>
+<p>初期条件を代入し、</p>
+<p><span class="math display">\[
+\boxed{u=3e^{-5x-3y}+2e^{-3x-2y}}.
 \]</span></p>
 </div>
 </div>
 </div>
 </section>
-<section id="複素積分" class="level3">
-<h3 class="anchored" data-anchor-id="複素積分">複素積分</h3>
-<p>2問だけまとめておく。</p>
-<p><span class="math display">\[
-\begin{aligned}
-\int_0^{2\pi} \frac{\dd \theta}{5 + 4\cos \theta} \\
-\oint_C \frac{1}{(z-1)z(z+2)}
-\end{aligned}
+<section id="prob-separation" class="level4">
+<h4 class="anchored" data-anchor-id="prob-separation">問題9　熱方程式と波動方程式</h4>
+<ol type="1">
+<li><p><span class="math display">\[
+\pdv{u}{t}=2\pdv[2]{u}{x},
+\quad
+u(0,t)=u(3,t)=0,
+\quad
+u(x,0)=5\sin4\pi x-3\sin8\pi x
 \]</span></p>
-<div class="callout callout-style-default callout-tip callout-titled">
+<p>を解け。</p></li>
+<li><p><span class="math display">\[
+\pdv[2]{y}{t}=16\pdv[2]{y}{x},
+\quad
+y(0,t)=y(2,t)=0,
+\]</span></p>
+<p><span class="math display">\[
+y(x,0)=6\sin\pi x-3\sin4\pi x,
+\qquad
+\pdv{y}{t}(x,0)=0
+\]</span></p>
+<p>を解け。</p></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>解答
+<span class="screen-reader-only">Note</span>理論9：境界条件が固有関数を選ぶ
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-17" class="callout-17-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>分解して面倒な計算をしないで済む方法を載せる。検算に使うか、もしくは証明して使えばいい。</p>
+<p>両端固定・零境界条件では空間固有関数は</p>
 <p><span class="math display">\[
-\begin{aligned}
-\int_0^{2\pi} \frac{\dd \theta}{a + b \cos \theta} &amp;= \frac{2\pi}{\sqrt{a^2 - b^2}} \\
-\oint_C \frac{1}{(z-1)z(z+2)} \dd{z} &amp;= \oint_C \qty( \frac{A}{z-1} + \frac{B}{z} + \frac{C}{z+2} ) \dd{z} \\
-A = -\frac{1}{2} &amp;, \quad B = \frac{1}{3} , \quad C = \frac{1}{6} \\
-I &amp;= 2i\pi (A+B+C) = 0 \\
-A,\ B,\ C\ &amp;\text{こいつらが留数自体。定義を考えてどうぞ}
-\end{aligned}
+\sin\left(\frac{n\pi x}{L}\right)
 \]</span></p>
+<p>となる。熱方程式では各モードが指数減衰し、波動方程式では時間方向に正弦・余弦振動する。初期条件を固有関数へ展開して係数を決める。</p>
 </div>
 </div>
 </div>
-</section>
-<section id="ジョルダン標準形" class="level3">
-<h3 class="anchored" data-anchor-id="ジョルダン標準形">ジョルダン標準形</h3>
-<p>次の行列のジョルダン標準形を求めよ。</p>
-<p><span class="math display">\[
-\begin{aligned}
-A &amp;= \begin{pmatrix}
-2 &amp; 1 &amp; 1 \\
-1 &amp; 3 &amp; 2 \\
-0 &amp; -1 &amp; 1
-\end{pmatrix} \\
-A &amp;=
-\begin{pmatrix}
-1 &amp; 3 &amp; 1 \\
-1 &amp; -1 &amp; -1 \\
--1 &amp; 3 &amp; 3
-\end{pmatrix}
-\end{aligned}
-\]</span></p>
-</section>
-<section id="フーリエ逆変換" class="level3">
-<h3 class="anchored" data-anchor-id="フーリエ逆変換">フーリエ逆変換</h3>
-<p><span class="math display">\[
-\int_0^{\infty} f(x)\sin kx \dd{x} = ke^{-k}
-\]</span></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>解答
+<span class="screen-reader-only">Tip</span>解答9
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>与えられた初期形はすでに固有関数の和なので、</p>
 <p><span class="math display">\[
-\begin{aligned}
-f(x) &amp;= \frac{2}{\pi}\int_0^{\infty} \sin kx \qty( ke^{-k} ) \dd{k} \\
-\int_0^{\infty} k e^{-k} e^{ikx} \dd{k} &amp;= \int_0^{\infty} k e^{-(1-ix)k} \dd{k} \\
-&amp;= \frac{1}{(1-ix)^2} \\
-&amp;= \frac{1-x^2}{(1+x^2)^2} + i \frac{2x}{(1+x^2)^2} \\
-\int_0^{\infty} k e^{-k} \sin kx \dd{k} &amp;= \frac{2x}{(1+x^2)^2} \\
-f(x) &amp;= \frac{2}{\pi} \frac{2x}{(1+x^2)^2} = \frac{4x}{\pi (1+x^2)^2}
-\end{aligned}
-\]</span></p>
-</div>
-</div>
-</div>
-<p>最後に、フーリエ変換あたりの式をまとめておく</p>
-$$
-<span class="math display">\[\begin{aligned}
-f(x) &amp;= \frac{a_0}{2} + \sum_{n=1}^{\infty} \qty( a_n \cos \frac{n \pi x}{L} + b_n \sin \frac{n \pi x}{L} ) \\
-a_n &amp;= \frac{1}{L} \int_{-L}^{L} f(x) \cos \frac{n \pi x}{L} \dd{x} \\
-b_n &amp;= \frac{1}{L} \int_{-L}^{L} f(x) \sin \frac{n \pi x}{L} \dd{x}  \\
-f(x) &amp;= \sum_{n=\textcolor{red}{-\infty}}^{\infty} c_n e^{\frac{\textcolor{red}{2}n\pi}{T} x} \\
-c_n &amp;= \frac{1}{T} \int_{0}^{T} f(x) e^{\textcolor{red}{-}\frac{\textcolor{red}{2}n\pi}{T} x} \dd{x} \\
-f(x) &amp;= \frac{1}{2\pi} \int_{-\infty}^{\infty} F(k) e^{i k x} \dd{k} \\
-F(k) &amp;= \int_{-\infty}^{\infty} f(x) e^{-i k x} \dd{x} \\
-f(x) &amp;= \frac{2}{\pi} \int_0^{\infty} \sin kx \qty( \int_0^{\infty} f(x) \sin kx \dd{x} ) \dd{k} \\
-&amp;= \frac{2}{\pi} \int_0^{\infty} a(k) \cos kx \dd{k} \\
-\end{aligned}\]</span>
-<p>$$</p>
+\boxed{
+u=5e^{-32\pi^2t}\sin4\pi x
+-3e^{-128\pi^2t}\sin8\pi x
+}.
+\]</span></p></li>
+<li><p>波速は <span class="math inline">\(c=4\)</span>、初速度は0なので、</p>
 <p><span class="math display">\[
-\dv[2]{y}{x} + \frac{1}{x} \dv{y}{x} + \frac{4}{x^2}y = \qty(\frac{2\ln x}{x}) ^2
+\boxed{
+y=6\sin\pi x\cos4\pi t
+-3\sin4\pi x\cos16\pi t
+}.
+\]</span></p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="fourier級数と変換" class="level2">
+<h2 class="anchored" data-anchor-id="fourier級数と変換">Fourier級数と変換</h2>
+<section id="prob-fourier-series" class="level4">
+<h4 class="anchored" data-anchor-id="prob-fourier-series">問題10　Fourier級数</h4>
+<ol type="1">
+<li><p><span class="math inline">\(f(x)=x^2\)</span>（<span class="math inline">\(-1&lt;x&lt;1\)</span>）を周期2のFourier級数へ展開せよ。</p></li>
+<li><p><span class="math inline">\(f(x)=x(x-1)\)</span>（<span class="math inline">\(0&lt;x&lt;1\)</span>）の半区間余弦級数と半区間正弦級数を求めよ。</p></li>
+<li><p>熱方程式</p>
+<p><span class="math display">\[
+u_t=\alpha u_{xx},
+\quad 0&lt;x&lt;L,
+\quad u(0,t)=u(L,t)=0,
+\quad u(x,0)=f(x)
 \]</span></p>
-<div class="callout callout-style-default callout-tip callout-titled">
+<p>の解をFourier係数で表せ。</p></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>解答
+<span class="screen-reader-only">Note</span>理論10：偶拡張と奇拡張
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-19" class="callout-19-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>冪函数仮定を使う</p>
+<p><span class="math inline">\((-L,L)\)</span> のFourier級数は</p>
 <p><span class="math display">\[
-\begin{aligned}
-y = x^m \\
-m(m-1)x^{m-2} + \frac{1}{x} mx^{m-1} + \frac{4}{x^2} x^m &amp;= 0 \\
-m^2 + 4 &amp;= 0 \\
-m = \pm 2i \\
-y_h &amp;= C_1 \cos (2 \ln x) + C_2 \sin (2 \ln x) \\
-y_p &amp;= A (\ln x)^2 + B \ln x + C \\
-\dv{y_p}{x} &amp;= \frac{2A \ln x  + B}{x} \\
-\dv[2]{y_p}{x} &amp;= \frac{2A - 2A\ln x - B}{x^2} \\
-\text{左辺} &amp;= \frac{4A (\ln x)^2 + 4B \ln x + 2A +4C}{x^2} = \frac{4(\ln x)^2}{x^2} \\
-A&amp;=1, \quad B=0, \quad C=-\frac{1}{2} \\
-y_p &amp;= (\ln x)^2 - \frac{1}{2} \\
-y &amp;= C_1 \cos (2 \ln x) + C_2 \sin (2 \ln x) + (\ln x)^2 - \frac{1}{2}
-\end{aligned}
+f(x)=\frac{a_0}{2}
++\sum_{n=1}^{\infty}
+\left(
+a_n\cos\frac{n\pi x}{L}
++b_n\sin\frac{n\pi x}{L}
+\right).
+\]</span></p>
+<p><span class="math inline">\((0,L)\)</span> の余弦級数は偶拡張、正弦級数は奇拡張に対応する。係数の前の <span class="math inline">\(1/L\)</span> と <span class="math inline">\(2/L\)</span> を混同しない。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答10
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>偶関数なので <span class="math inline">\(b_n=0\)</span> であり、</p>
+<p><span class="math display">\[
+\boxed{
+x^2=\frac13
++\sum_{n=1}^{\infty}
+\frac{4(-1)^n}{n^2\pi^2}\cos n\pi x
+}.
+\]</span></p></li>
+<li><p>余弦級数は</p>
+<p><span class="math display">\[
+\boxed{
+x(x-1)=-\frac16
++\sum_{n=1}^{\infty}
+\frac{2[(-1)^n+1]}{n^2\pi^2}\cos n\pi x
+}.
+\]</span></p>
+<p>正弦級数は</p>
+<p><span class="math display">\[
+\boxed{
+x(x-1)=
+-\sum_{n=1}^{\infty}
+\frac{4[1-(-1)^n]}{n^3\pi^3}\sin n\pi x
+}.
+\]</span></p></li>
+<li><p><span class="math display">\[
+\boxed{
+u(x,t)=\sum_{n=1}^{\infty}
+b_n
+\exp\left[-\alpha\left(\frac{n\pi}{L}\right)^2t\right]
+\sin\frac{n\pi x}{L}
+},
+\]</span></p>
+<p><span class="math display">\[
+b_n=\frac2L\int_0^Lf(x)\sin\frac{n\pi x}{L}\dd x.
+\]</span></p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="prob-fourier-inverse" class="level4">
+<h4 class="anchored" data-anchor-id="prob-fourier-inverse">問題11　Fourier正弦変換の逆変換</h4>
+<p><span class="math display">\[
+\int_0^\infty f(x)\sin(kx)\dd x=ke^{-k}
+\]</span></p>
+<p>が与えられている。<span class="math inline">\(f(x)\)</span> を求めよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論11：採用した変換対を明示する
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>正弦変換を</p>
+<p><span class="math display">\[
+F_s(k)=\int_0^\infty f(x)\sin(kx)\dd x
+\]</span></p>
+<p>と定義すれば、逆変換は</p>
+<p><span class="math display">\[
+f(x)=\frac2\pi\int_0^\infty F_s(k)\sin(kx)\dd k
+\]</span></p>
+<p>である。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答11
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\int_0^\infty ke^{-k}e^{ikx}\dd k
+=\frac1{(1-ix)^2}.
+\]</span></p>
+<p>虚部を取ると</p>
+<p><span class="math display">\[
+\int_0^\infty ke^{-k}\sin(kx)\dd k
+=\frac{2x}{(1+x^2)^2}.
+\]</span></p>
+<p>したがって</p>
+<p><span class="math display">\[
+\boxed{
+f(x)=\frac{4x}{\pi(1+x^2)^2}
+}.
 \]</span></p>
 </div>
 </div>
 </div>
-<!-- 
-::: {.callout-note collapse="true"}
-##### 理論
-
-This is an example of a callout with a title.
-:::
-
-::: {.callout-tip collapse="true"}
-##### 解答
-
-This is an example of a callout with a title.
-::: 
--->
+</section>
+</section>
+<section id="ベクトル解析複素解析線形代数" class="level2">
+<h2 class="anchored" data-anchor-id="ベクトル解析複素解析線形代数">ベクトル解析・複素解析・線形代数</h2>
+<section id="prob-sphere-surface" class="level4">
+<h4 class="anchored" data-anchor-id="prob-sphere-surface">問題12　球面の法線と表面積</h4>
+<p>単位球面を</p>
+<p><span class="math display">\[
+\boldsymbol r(u,v)
+=(\cos u\cos v,\ \cos u\sin v,\ \sin u),
+\]</span></p>
+<p><span class="math display">\[
+-\frac\pi2\le u\le\frac\pi2,
+\qquad 0\le v&lt;2\pi
+\]</span></p>
+<p>で表す。外向き単位法線と表面積を求めよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論12：接ベクトルの外積が面積要素
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\boldsymbol r_u\)</span> と <span class="math inline">\(\boldsymbol r_v\)</span> は曲面の接ベクトルであり、その外積は法線方向を向く。大きさ</p>
+<p><span class="math display">\[
+\abs{\boldsymbol r_u\times\boldsymbol r_v}
+\]</span></p>
+<p>が面積要素の倍率となる。外積の順序で向きが反転するので、外向きか確認する。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答12
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>計算すると</p>
+<p><span class="math display">\[
+\boldsymbol r_u\times\boldsymbol r_v
+=-\cos u\,\boldsymbol r.
+\]</span></p>
+<p>この範囲では <span class="math inline">\(\cos u\ge0\)</span> なので、外向き単位法線は</p>
+<p><span class="math display">\[
+\boxed{\boldsymbol n=\boldsymbol r}.
+\]</span></p>
+<p>面積は</p>
+<p><span class="math display">\[
+A=\int_0^{2\pi}\int_{-\pi/2}^{\pi/2}\cos u\,\dd u\dd v
+=\boxed{4\pi}.
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="prob-residue" class="level4">
+<h4 class="anchored" data-anchor-id="prob-residue">問題13　留数を使う積分</h4>
+<ol type="1">
+<li><p><span class="math display">\[
+\int_0^{2\pi}\frac{\dd\theta}{5+4\cos\theta}
+\]</span></p>
+<p>を求めよ。</p></li>
+<li><p><span class="math display">\[
+\oint_C\frac{\dd z}{(z-1)z(z+2)}
+\]</span></p>
+<p>を、<span class="math inline">\(C\)</span> の内部にある極を用いて表せ。</p></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論13：閉曲線内部の留数だけを足す
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>留数定理は</p>
+<p><span class="math display">\[
+\oint_Cf(z)\dd z=2\pi i
+\sum_{\text{inside }C}\operatorname{Res}(f;z_k)
+\]</span></p>
+<p>である。積分路がどの極を囲むか分からなければ数値は一意に決まらない。三角関数積分は <span class="math inline">\(z=e^{i\theta}\)</span> と置けば単位円上の留数計算へ変換できる。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答13
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-26" class="callout-26-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>標準積分または留数計算から</p>
+<p><span class="math display">\[
+\boxed{
+\int_0^{2\pi}\frac{\dd\theta}{5+4\cos\theta}
+=\frac{2\pi}{\sqrt{5^2-4^2}}
+=\frac{2\pi}{3}
+}.
+\]</span></p></li>
+<li><p>各留数は</p>
+<p><span class="math display">\[
+\operatorname{Res}(f;1)=\frac13,\qquad
+\operatorname{Res}(f;0)=-\frac12,\qquad
+\operatorname{Res}(f;-2)=\frac16.
+\]</span></p>
+<p>したがって</p>
+<p><span class="math display">\[
+\boxed{
+\oint_Cf(z)\dd z
+=2\pi i\sum_{z_k\in\operatorname{int}C}
+\operatorname{Res}(f;z_k)
+}.
+\]</span></p>
+<p>3極すべてを囲むなら留数和は0で、積分も0である。</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="prob-jordan" class="level4">
+<h4 class="anchored" data-anchor-id="prob-jordan">問題14　Jordan標準形</h4>
+<p>次の行列のJordan標準形を求めよ。</p>
+<p><span class="math display">\[
+A_1=
+\begin{pmatrix}
+2&amp;1&amp;1\\
+1&amp;3&amp;2\\
+0&amp;-1&amp;1
+\end{pmatrix},
+\qquad
+A_2=
+\begin{pmatrix}
+1&amp;3&amp;1\\
+1&amp;-1&amp;-1\\
+-1&amp;3&amp;3
+\end{pmatrix}.
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論14：固有値の重複度と固有空間の次元を見る
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>固有値の代数的重複度だけではJordan blockの大きさは決まらない。<span class="math inline">\(\dim\ker(A-\lambda I)\)</span> がJordan blockの個数を与え、<span class="math inline">\(\ker(A-\lambda I)^k\)</span> の増え方が各blockの長さを決める。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答14
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-28" class="callout-28-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(A_1\)</span> の特性多項式は <span class="math inline">\((\lambda-2)^3\)</span> で、固有空間は1次元である。したがって</p>
+<p><span class="math display">\[
+\boxed{
+J_1=
+\begin{pmatrix}
+2&amp;1&amp;0\\
+0&amp;2&amp;1\\
+0&amp;0&amp;2
+\end{pmatrix}
+}.
+\]</span></p>
+<p><span class="math inline">\(A_2\)</span> の特性多項式は <span class="math inline">\((\lambda-2)^2(\lambda+1)\)</span> で、<span class="math inline">\(\lambda=2\)</span> の固有空間は2次元である。よって対角化でき、</p>
+<p><span class="math display">\[
+\boxed{
+J_2=\operatorname{diag}(-1,2,2)
+}.
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="関連記事" class="level2">
+<h2 class="anchored" data-anchor-id="関連記事">関連記事</h2>
+<ul>
+<li>指数関数、分布関数、偏微分の物理的な使い方は<a href="../../../posts/univ_lecs/2A/材料統計力学.html">材料統計力学</a>を参照。</li>
+<li>拡散方程式を材料中の移動現象へ適用する例は<a href="../../../posts/univ_lecs/2A/材料速度論.html">材料速度論</a>を参照。</li>
+<li>Fourier展開と波数空間を結晶へ適用する例は<a href="../../../posts/univ_lecs/3S/固体物性学.html">固体物性学</a>を参照。</li>
+</ul>
 
 
 </section>
