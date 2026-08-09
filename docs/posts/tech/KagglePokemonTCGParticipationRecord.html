@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Serika Yuzuki">
+<meta name="dcterms.date" content="2026-08-09">
 
-<title>Serika’s Blog – 芹香のブログ 気軽にコメント残してね！</title>
+<title>Kaggle Pokemon TCG参加記録 – 芹香のブログ 気軽にコメント残してね！</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,28 +25,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-57df612ce7d31eb042a4162ec1190c32.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-9ce02ba9bf05f77acce06f7d436c50a3.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-57df612ce7d31eb042a4162ec1190c32.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-9ce02ba9bf05f77acce06f7d436c50a3.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,36 +72,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-description','listing-date','listing-author','listing-categories','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
-      page: 25,
-    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
-      searchColumns: ["listing-project","listing-execute","listing-bibliography","listing-resource-path","listing-biblio-style","listing-website","listing-format","listing-language","listing-title","listing-author","listing-date","listing-categories","listing-image","listing-path","listing-outputHref","listing-date-modified","listing-description","listing-filename","listing-file-modified","listing-reading-time","listing-word-count","listing-lang","listing-jupyter"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <script>(function () {
   "use strict";
 
@@ -1788,37 +1758,8 @@ ul.task-list li input[type="checkbox"] {
 })();</script>
 <script defer="" src="https://umami.serika.work/script.js" data-website-id="28d4d73a-b30d-4183-9525-a0f9c2cb42a7"></script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="site_libs/quarto-contrib/quarto-project/serika/glass/styles.css">
+<link rel="stylesheet" href="../../site_libs/quarto-contrib/quarto-project/serika/glass/styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
@@ -1988,7 +1929,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">芹香のブログ 気軽にコメント残してね！</span>
     </a>
   </div>
@@ -1999,11 +1940,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">Portfolio</span></a>
   </li>  
 </ul>
@@ -2035,7 +1976,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Home</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/tech/ADHDManagerDevelopmentLog.html">Tech</a></li><li class="breadcrumb-item"><a href="../../posts/tech/KagglePokemonTCGParticipationRecord.html">Kaggle Pokemon TCG参加記録</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -2045,7 +1986,7 @@ window.Quarto = {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -2057,13 +1998,13 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link">
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">About</span></a>
   </div>
 </li>
@@ -2087,25 +2028,25 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/at_coder/cargo_compete.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/at_coder/cargo_compete.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cargo Compete</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/at_coder/typical90-01-05.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/at_coder/typical90-01-05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">競プロ典型90 01〜05</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/at_coder/typical90-06-10.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/at_coder/typical90-06-10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">競プロ典型90 06〜10</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/at_coder/typical90-11.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/at_coder/typical90-11.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">typical90-11</span></a>
   </div>
 </li>
@@ -2113,82 +2054,82 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Tech</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/tech/ADHDManagerDevelopmentLog.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/ADHDManagerDevelopmentLog.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ADHDManager開発記</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/tech/FUMINIWADevelopmentLog.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/FUMINIWADevelopmentLog.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ふみにわ開発記</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/tech/KagglePokemonTCGParticipationRecord.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/KagglePokemonTCGParticipationRecord.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Kaggle Pokemon TCG参加記録</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/tech/linkwarden.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/linkwarden.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linkwardenにブックマーク管理を任せる</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/tech/MisskeyDockerSetup.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/MisskeyDockerSetup.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">DockerでMisskeyを立てる</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/tech/QuartoRenderSingle.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/QuartoRenderSingle.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Quartoで単一ファイルにレンダリングする方法</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/tech/SetUpNewDebianServer.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/SetUpNewDebianServer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Debianサーバーを立てた話</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/tech/StartUsingCodex.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/StartUsingCodex.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Codexを使い始めた件</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/tech/SwiftPackageError.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/SwiftPackageError.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Swift Packageの読み込みエラー</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/tech/TailscaleAndNord.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/TailscaleAndNord.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">NordとTailscaleで自宅サーバーを安全に公開する</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/tech/TimeMachineServer.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/TimeMachineServer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Time Machine ServerをSambaで作った話</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/tech/UbuntuPartitionMissing.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/UbuntuPartitionMissing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ミスって/boot/efiを消した話</span></a>
   </div>
 </li>
@@ -2203,13 +2144,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/tech/AI/AttentionIsAllYouNeed.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/AI/AttentionIsAllYouNeed.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Attention Is All You Needを読む話</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/tech/AI/BuildLLM.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/tech/AI/BuildLLM.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Build a Large Language Model from Scratchを読む話</span></a>
   </div>
 </li>
@@ -2237,31 +2178,31 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/univ_lecs/2A/材料力学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/2A/材料力学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">統計力学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/univ_lecs/2A/材料相平衡論.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/2A/材料相平衡論.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料相平衡論</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/univ_lecs/2A/材料統計力学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/2A/材料統計力学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料統計力学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/univ_lecs/2A/材料速度論.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/2A/材料速度論.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料速度論</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/univ_lecs/2A/材料量子力学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/2A/材料量子力学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料量子力学</span></a>
   </div>
 </li>
@@ -2278,37 +2219,37 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/univ_lecs/3A/セラミック材料学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3A/セラミック材料学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">セラミックノート</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/univ_lecs/3A/デバイス材料工学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3A/デバイス材料工学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">デバイス材料工学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/univ_lecs/3A/信頼性学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3A/信頼性学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">信頼性学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/univ_lecs/3A/数学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3A/数学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/univ_lecs/3A/生産プロセス.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3A/生産プロセス.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">生産プロセス</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/univ_lecs/3A/高分子２.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3A/高分子２.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">高分子ノート</span></a>
   </div>
 </li>
@@ -2325,55 +2266,55 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/univ_lecs/3S/半導体物性学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3S/半導体物性学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">半導体物性学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/univ_lecs/3S/固体物性学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3S/固体物性学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">固体物性学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/univ_lecs/3S/数学2F.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3S/数学2F.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学2F</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/univ_lecs/3S/材料力学II.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3S/材料力学II.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料力学II</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/univ_lecs/3S/材料反応工学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3S/材料反応工学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料反応工学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/univ_lecs/3S/材料強度学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3S/材料強度学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料強度学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/univ_lecs/3S/材料電気化学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3S/材料電気化学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">材料電気化学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/univ_lecs/3S/組織生成論.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3S/組織生成論.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">組織生成論</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/univ_lecs/3S/金属材料学.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/3S/金属材料学.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">金属材料学</span></a>
   </div>
 </li>
@@ -2390,7 +2331,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/univ_lecs/4S/工学基礎演習.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/univ_lecs/4S/工学基礎演習.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">工学基礎演習</span></a>
   </div>
 </li>
@@ -2418,37 +2359,37 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/収容所配布用/数学/数学A.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/収容所配布用/数学/数学A.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学A</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/収容所配布用/数学/数学B.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/収容所配布用/数学/数学B.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学B</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/収容所配布用/数学/数学I.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/収容所配布用/数学/数学I.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学I</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/収容所配布用/数学/数学II.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/収容所配布用/数学/数学II.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学II</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/収容所配布用/数学/数学III.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/収容所配布用/数学/数学III.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">数学III</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/収容所配布用/数学/過去問演習.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/収容所配布用/数学/過去問演習.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">過去問演習</span></a>
   </div>
 </li>
@@ -2465,7 +2406,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/収容所配布用/物理/物理.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/収容所配布用/物理/物理.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">物理</span></a>
   </div>
 </li>
@@ -2481,22 +2422,67 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(46)</span></div><div class="category" data-category="MjAyMw==">2023 <span class="quarto-category-count">(4)</span></div><div class="category" data-category="MjAyNA==">2024 <span class="quarto-category-count">(10)</span></div><div class="category" data-category="MjAyNQ==">2025 <span class="quarto-category-count">(9)</span></div><div class="category" data-category="MjAyNg==">2026 <span class="quarto-category-count">(12)</span></div><div class="category" data-category="QUk=">AI <span class="quarto-category-count">(3)</span></div><div class="category" data-category="QXRDb2Rlcg==">AtCoder <span class="quarto-category-count">(4)</span></div><div class="category" data-category="ZGlmZnVzaW9u">diffusion <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGlzbG9jYXRpb24=">dislocation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZnJhY3R1cmU=">fracture <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aG9tZXNlcnZlcg==">homeserver <span class="quarto-category-count">(1)</span></div><div class="category" data-category="S2FnZ2xl">Kaggle <span class="quarto-category-count">(1)</span></div><div class="category" data-category="S2luZXRpY3M=">Kinetics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="a2luZXRpY3M=">kinetics <span class="quarto-category-count">(2)</span></div><div class="category" data-category="bWF0ZXJpYWxzLXNjaWVuY2U=">materials-science <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWF0aA==">Math <span class="quarto-category-count">(7)</span></div><div class="category" data-category="bWVjaGFuaWNz">mechanics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bm92ZWw=">novel <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cGhhc2UtdHJhbnNmb3JtYXRpb24=">phase-transformation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cG9ncmFtbWluZw==">pogramming <span class="quarto-category-count">(2)</span></div><div class="category" data-category="cHJvZHVjdGl2aXR5">productivity <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHJvZ3JhbW1pbmc=">programming <span class="quarto-category-count">(12)</span></div><div class="category" data-category="UHJvZ3JhbW1pbmc=">Programming <span class="quarto-category-count">(4)</span></div><div class="category" data-category="cXVhbnR1bS1tZWNoYW5pY3M=">quantum-mechanics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c2VydmVy">server <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c29saWRpZmljYXRpb24=">solidification <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c3RhdGlzdGljYWwtbWVjaGFuaWNz">statistical-mechanics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3RlZWxtYWtpbmc=">Steelmaking <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3VyZmFjZSUyMFNjaWVuY2U=">Surface Science <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c3dpZnQ=">swift <span class="quarto-category-count">(5)</span></div><div class="category" data-category="VGhlcm1vZHluYW1pY3M=">Thermodynamics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGhlcm1vZHluYW1pY3M=">thermodynamics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VW5pdmVyc2l0eQ==">University <span class="quarto-category-count">(21)</span></div><div class="category" data-category="JUU1JTlCJUJBJUU0JUJEJTkzJUU3JTg5JUE5JUU3JTkwJTg2">固体物理 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUU2JTlEJTkwJUU2JTk2JTk5JUU1JUI3JUE1JUU1JUFEJUE2">材料工学 <span class="quarto-category-count">(2)</span></div><div class="category" data-category="JUU5JTlCJUJCJUU2JUIwJTk3JUU1JThDJTk2JUU1JUFEJUE2">電気化学 <span class="quarto-category-count">(1)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#最初に作ったaiはカードを理解していなかった" id="toc-最初に作ったaiはカードを理解していなかった" class="nav-link active" data-scroll-target="#最初に作ったaiはカードを理解していなかった">最初に作ったAIは、カードを理解していなかった</a></li>
+  <li><a href="#ルールに浅い探索を足すと初めて大きく伸びた" id="toc-ルールに浅い探索を足すと初めて大きく伸びた" class="nav-link" data-scroll-target="#ルールに浅い探索を足すと初めて大きく伸びた">ルールに浅い探索を足すと、初めて大きく伸びた</a></li>
+  <li><a href="#ルールを学習すればもっと強くなると思った" id="toc-ルールを学習すればもっと強くなると思った" class="nav-link" data-scroll-target="#ルールを学習すればもっと強くなると思った">ルールを学習すれば、もっと強くなると思った</a></li>
+  <li><a href="#最大の転機は公開対戦の60枚とbelief-searchだった" id="toc-最大の転機は公開対戦の60枚とbelief-searchだった" class="nav-link" data-scroll-target="#最大の転機は公開対戦の60枚とbelief-searchだった">最大の転機は、公開対戦の60枚とbelief searchだった</a></li>
+  <li><a href="#強いrank-1を学習で超えられるか" id="toc-強いrank-1を学習で超えられるか" class="nav-link" data-scroll-target="#強いrank-1を学習で超えられるか">強いrank-1を、学習で超えられるか</a></li>
+  <li><a href="#psychic-drawを止めても強くはならなかった" id="toc-psychic-drawを止めても強くはならなかった" class="nav-link" data-scroll-target="#psychic-drawを止めても強くはならなかった">Psychic Drawを止めても、強くはならなかった</a></li>
+  <li><a href="#p2-sは一度だけ間違った物差しで落ちた" id="toc-p2-sは一度だけ間違った物差しで落ちた" class="nav-link" data-scroll-target="#p2-sは一度だけ間違った物差しで落ちた">P2-Sは、一度だけ間違った物差しで落ちた</a></li>
+  <li><a href="#ローカルで勝っても本番には別の敵がいた" id="toc-ローカルで勝っても本番には別の敵がいた" class="nav-link" data-scroll-target="#ローカルで勝っても本番には別の敵がいた">ローカルで勝っても、本番には別の敵がいた</a></li>
+  <li><a href="#失敗には少なくとも四つの種類があった" id="toc-失敗には少なくとも四つの種類があった" class="nav-link" data-scroll-target="#失敗には少なくとも四つの種類があった">失敗には、少なくとも四つの種類があった</a></li>
+  <li><a href="#上位デッキを持ってくるだけでもいつも勝てるわけではない" id="toc-上位デッキを持ってくるだけでもいつも勝てるわけではない" class="nav-link" data-scroll-target="#上位デッキを持ってくるだけでもいつも勝てるわけではない">上位デッキを持ってくるだけでも、いつも勝てるわけではない</a></li>
+  <li><a href="#最後の有望候補も比較実験の安全性条件で止めた" id="toc-最後の有望候補も比較実験の安全性条件で止めた" class="nav-link" data-scroll-target="#最後の有望候補も比較実験の安全性条件で止めた">最後の有望候補も、比較実験の安全性条件で止めた</a></li>
+  <li><a href="#番外編llmをそのままプレイヤーにしたら" id="toc-番外編llmをそのままプレイヤーにしたら" class="nav-link" data-scroll-target="#番外編llmをそのままプレイヤーにしたら">番外編：LLMをそのままプレイヤーにしたら</a></li>
+  <li><a href="#この開発で残った六つの教訓" id="toc-この開発で残った六つの教訓" class="nav-link" data-scroll-target="#この開発で残った六つの教訓">この開発で残った六つの教訓</a>
+  <ul class="collapse">
+  <li><a href="#メタ追随は最も安い大レバーだった" id="toc-メタ追随は最も安い大レバーだった" class="nav-link" data-scroll-target="#メタ追随は最も安い大レバーだった">1. メタ追随は、最も安い大レバーだった</a></li>
+  <li><a href="#既存知識を残した探索が学習より先に効いた" id="toc-既存知識を残した探索が学習より先に効いた" class="nav-link" data-scroll-target="#既存知識を残した探索が学習より先に効いた">2. 既存知識を残した探索が、学習より先に効いた</a></li>
+  <li><a href="#offline精度は必要条件でしかない" id="toc-offline精度は必要条件でしかない" class="nav-link" data-scroll-target="#offline精度は必要条件でしかない">3. offline精度は必要条件でしかない</a></li>
+  <li><a href="#動かなかったと動いて弱かったを分ける" id="toc-動かなかったと動いて弱かったを分ける" class="nav-link" data-scroll-target="#動かなかったと動いて弱かったを分ける">4. 「動かなかった」と「動いて弱かった」を分ける</a></li>
+  <li><a href="#敗因ラベルも仮説である" id="toc-敗因ラベルも仮説である" class="nav-link" data-scroll-target="#敗因ラベルも仮説である">5. 敗因ラベルも仮説である</a></li>
+  <li><a href="#評価系もエージェントと同じくらい鍛える必要がある" id="toc-評価系もエージェントと同じくらい鍛える必要がある" class="nav-link" data-scroll-target="#評価系もエージェントと同じくらい鍛える必要がある">6. 評価系も、エージェントと同じくらい鍛える必要がある</a></li>
+  </ul></li>
+  <li><a href="#現在地" id="toc-現在地" class="nav-link" data-scroll-target="#現在地">現在地</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/tech/ADHDManagerDevelopmentLog.html">Tech</a></li><li class="breadcrumb-item"><a href="../../posts/tech/KagglePokemonTCGParticipationRecord.html">Kaggle Pokemon TCG参加記録</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Serika’s Blog</h1>
-</div>
+<h1 class="title">Kaggle Pokemon TCG参加記録</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">programming</div>
+    <div class="quarto-category">2026</div>
+    <div class="quarto-category">AI</div>
+    <div class="quarto-category">Kaggle</div>
+  </div>
+  </div>
 
 
 
-<div class="quarto-title-meta column-body">
+<div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Serika Yuzuki </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 9, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -2506,2126 +2492,343 @@ window.Quarto = {
 </header>
 
 
-<p>こっちは秘密基地</p>
+<p><em>ルールベース、探索、模倣学習、PPO、Transformer、そしてLLMまで。2026年6月17日から8月9日までの開発記録。</em></p>
+<p>この話の結論を先に書く。</p>
+<p>このコンペで最も大きく勝率を伸ばしたのは、巨大なニューラルネットでも、長時間の強化学習でもなかった。公開対戦から当時の上位デッキ60枚を正確に復元することと、見えていないカードを複数の「あり得る世界」として比較する探索だった。</p>
+<p>舞台は、公式シミュレータ上でポケモンTCGのエージェント同士を戦わせるKaggleコンペである。提出物は60枚のデッキと、各局面で合法手を選ぶプログラム。相手の手札はもちろん、自分の山札順や伏せたサイドも見えない。不完全情報の中で勝ち筋を選び、他の提出との対戦ratingを競う。</p>
+<p>現在このリポジトリで最も強い根拠を持つ提出エージェントは、次の組み合わせである。</p>
+<blockquote class="blockquote">
+<ul>
+<li>2026年7月14日時点の外部首位プレイヤーの60枚</li>
+<li>カード固有のルール</li>
+<li>belief search</li>
+<li>山札切れとサイドレースを比べる小さな二時計補正</li>
+</ul>
+</blockquote>
+<p>一方で、その形へたどり着くまでには、もっともらしい改善を大量に捨てた。学習精度が上がったのに弱いモデル、狙いどおり発火したのに勝率を落とすルール、全体では勝っているのに一対面の安全柵で落ちたデッキ、そして候補ではなく評価指標のほうが間違っていた実験もあった。</p>
+<p>この記事は成功した手法の紹介というより、<strong>何を試し、どこで間違い、なぜ止めたか</strong>の記録である。</p>
+<p>なお、以下で特記のない勝率はローカルの固定対戦パネルで測ったものだ。相手が変化しながら逐次更新されるKaggleのratingとは直接換算できない。また、同じseedを指定してもnative simulator内部の乱数は完全には揃わないため、正式比較は対応のある試験ではなく独立標本として扱っている。「+3pt」は勝率のpercentage pointを表す。</p>
+<blockquote class="blockquote">
+<p><strong>参照について:</strong> 元リポジトリは現時点で非公開のため、個別レポートはリンクではなくファイル名で示す。</p>
+</blockquote>
+<p>全体の流れは、<code>基盤構築 → ルールと浅い探索 → 初期学習の失敗 → rank-1デッキ＋belief search → P2-S採用 → 本番敗戦から再評価 → champion凍結</code>である。</p>
+<section id="最初に作ったaiはカードを理解していなかった" class="level2">
+<h2 class="anchored" data-anchor-id="最初に作ったaiはカードを理解していなかった">最初に作ったAIは、カードを理解していなかった</h2>
+<p>6月17日、プロジェクトは公式シミュレータをPythonから動かし、合法な選択肢をランダムに返すところから始まった。そこから複数戦評価、学習コード、提出アーカイブ、Docker環境、対戦ログ、GUIリプレイを順に整えた。</p>
+<p>振り返ると、最初に必要だったのは高度なAIではない。先攻と後攻を入れ替えて戦えること、勝敗とtimeoutを正しく残すこと、そして変更前後を同じ物差しで比べられることだった。</p>
+<p>既存エージェントを小さな総当たりにかけると、公開されていたAlakazamのルールベースが暫定首位になった。対して、NN系には重みの非互換や欠損があり、importはできても実際には先頭合法手へfallbackするものがあった。<strong>「動く」と「意図した方策で動く」は違う。</strong> これは後の学習実験でも何度も戻ってくる問題になった。</p>
+<p>そこで既存実装を直接壊さず、独立したAlakazamのルールエージェントを作った。攻撃、進化、サーチ、エネルギー、退却、ベンチ展開を点数化し、対戦ログを見ながら一つずつ直していった。たとえばFezandipiti exの攻撃はeffect処理のため静的データ上のdamageが0だった。これを実質100ダメージとして評価すると、短い90戦比較は56勝から60勝へ改善した。</p>
+<p>逆に、「支援ポケモンをもっと置かない」「山札が薄ければドローを止める」「攻撃役が立ったら追加展開を抑える」といった直感的なルールは、勝ち筋まで消して悪化することが多かった。詳しい試行錯誤は初期Alakazamルール探索の記録（<code>alakazam_original_rule_search.md</code>）に残っている。</p>
+<p>並行して、Crustle / Great Tuskの山札切れデッキも改良した。公開版40.3%に対して派生版42.2%まで上がった評価もあったが、特定対面へ寄せるほど別の対面が壊れた。Enhanced Hammerの採用、ドロー抑制、ベンチ制限、エネルギー差し替えなど、もっともらしい案の多くが総合では不採用になった。Crustle / Great Tusk LOの実験記録（<code>crustle_great_tusk_lo_original.md</code>）は、この時期の「単対面の改善を全体改善と呼ばない」という原則ができるまでのログでもある。</p>
+</section>
+<section id="ルールに浅い探索を足すと初めて大きく伸びた" class="level2">
+<h2 class="anchored" data-anchor-id="ルールに浅い探索を足すと初めて大きく伸びた">ルールに浅い探索を足すと、初めて大きく伸びた</h2>
+<p>次の本線<code>serika_alakazam</code>は、強い公開ルールを非破壊でforkし、主に二つを足した。</p>
+<ul>
+<li>Great Tusk上のMist Energy / Rock Fighting EnergyをEnhanced Hammerで狙う。</li>
+<li>MAIN（自分ターンの主要行動選択）でルール上位4候補を短く再生し、約150msの計算予算で先の盤面を比べる。</li>
+</ul>
+<p>Stage 2の代表8対面・各100戦では、元の教師ルール40.6%に対して48.0%。Great Tusk LOは14%から30%へ上がった。LO限定のablationでは探索ONが33.8%、OFFが22.5%で、浅い探索だけでも約11ptの差が出た。正式結果（<code>serika_alakazam.md</code>）</p>
+<p>ただし、LOに効いたmill bufferやデッキ1枚差し替えは、8対面総合を落として棄却した。ここで学んだのは、苦手対面の数字を上げること自体は難しくない、ということだった。難しいのは、その対策で残りの対面を壊さないことである。</p>
+<p>この頃から評価は三段階に固定した。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>相手</th>
+<th style="text-align: right;">規模</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>random群</td>
+<td style="text-align: right;">600戦</td>
+<td>合法性と基本進行</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>代表的な8方策</td>
+<td style="text-align: right;">800戦</td>
+<td>戦術・相性・汎化</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>競争力の高い10方策</td>
+<td style="text-align: right;">1,000戦</td>
+<td>提出判断</td>
+</tr>
+</tbody>
+</table>
+<p>すべて物理seatを半分ずつ入れ替え、実際の先攻・後攻も別に集計し、提出後継は現行baselineとも比較する。まずquick 160戦を回帰screenとして使い、有望な候補だけを原則各800戦のformal比較へ進める。最終確認は未使用seedで行い、timeout・不正手・補正手は原則0を要求する。quickだけで非劣性を証明したことにはしない。詳細はベンチマーク手順（<code>benchmarks.md</code>）にまとめた。</p>
+<p>以下では、比較元を<code>baseline</code>、変更案を<code>candidate</code>、直接測りにくい現象の代替指標を<code>proxy</code>、採否の事前条件を<code>gate</code>と呼ぶ。</p>
+</section>
+<section id="ルールを学習すればもっと強くなると思った" class="level2">
+<h2 class="anchored" data-anchor-id="ルールを学習すればもっと強くなると思った">ルールを学習すれば、もっと強くなると思った</h2>
+<p>ここからMLP、DeepSet、Set Transformerでルールエージェントを模倣した。validationのexact accuracyはおよそ75%まで上がった。しかし旧データ収集器は教師が勝ったゲームだけを保存し、validationも同じゲームの近接局面が学習側とまたがり得る行単位分割だったため、この75%を未知ゲームへの健全な汎化精度とは扱えない。Stage 2 quickではDeepSetが28.75%、Set Transformerが32.5%で、ルール＋探索の約50%に届かなかった。</p>
+<p>後から入力を監査すると、理由は単なる学習不足ではなかった。手札の11枚目、カードeffectの文脈、31個目以降の合法手などが表現から落ちていた。同じ特徴ベクトルなのに教師の選択が異なる衝突もあった。NNから見ると、戦術的には別の局面が「同じ盤面」に見えていた。</p>
+<p>模倣重みからPPOへ進めた最初のrunは、Stage 2が32.5%から15%まで崩壊した。学習だけを長くすれば解決する兆候はなく、初期のstandalone NN路線はいったん止めた。初期NN・PPOのまとめ（<code>serika_alakazam_roadmap.md</code>）</p>
+</section>
+<section id="最大の転機は公開対戦の60枚とbelief-searchだった" class="level2">
+<h2 class="anchored" data-anchor-id="最大の転機は公開対戦の60枚とbelief-searchだった">最大の転機は、公開対戦の60枚とbelief searchだった</h2>
+<p>学習路線と並行して、2026年7月14日のDaily Top Episodeから、当時の外部首位プレイヤーが使っていた60枚を復元した。ここでいう「rank-1デッキ」は、このリポジトリのエージェントが1位だったという意味ではない。公開対戦に現れた外部首位のデッキを指す。</p>
+<p>旧構成のGenesect 1枚、Psyduck 1枚、Lucky Helmet 3枚、Battle Cage 4枚を外し、Alakazam、Poké Pad、Boss’s Orders、Lana’s Aidを各1枚、Xerosic’s Machinationsを3枚、Nighttime Mineを2枚増やした構成だった。</p>
+<p>同時に、浅い探索をbelief searchへ置き換えた。</p>
+<ol type="1">
+<li>ルール上位6候補に、即攻撃とENDを加える。</li>
+<li>既知の60枚から、自分の手札を含む自分から見えているカードを除く。</li>
+<li>自分の残り山札と伏せサイドを、あり得る配置として2通り具体化する。</li>
+<li>同じ仮想世界を全候補で共有する。</li>
+<li>最初は全候補を少数回ずつ試し、悪い半分を落として残りへ追加試行する。</li>
+<li>終局、サイド差、仮想世界間の評価分散を差し引いた盤面値の順で比較する。</li>
+<li>0.30秒の期限内に完了できなければ既存ルールへ戻る。</li>
+</ol>
+<p>同条件800戦で得たpoint estimateは、プロジェクト全体の方向を変えた。以下の差は、同じパネル上で別々に走らせた800戦どうしの観測差であり、pairedな因果推定値ではない。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>構成</th>
+<th style="text-align: right;">勝数</th>
+<th style="text-align: right;">勝率</th>
+<th style="text-align: right;">直前との差（観測差）</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>旧デッキ＋旧探索</td>
+<td style="text-align: right;">443/800</td>
+<td style="text-align: right;">55.38%</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr class="even">
+<td>旧デッキ＋belief search</td>
+<td style="text-align: right;">509/800</td>
+<td style="text-align: right;">63.63%</td>
+<td style="text-align: right;"><strong>+8.25pt</strong></td>
+</tr>
+<tr class="odd">
+<td>rank-1デッキ＋belief search</td>
+<td style="text-align: right;">608/800</td>
+<td style="text-align: right;">76.00%</td>
+<td style="text-align: right;"><strong>+12.38pt</strong></td>
+</tr>
+</tbody>
+</table>
+<p>最も大きな改善は、モデルを複雑にすることではなく、強い60枚を使うことだった。次が、既存知識を残したまま不確定情報を読む探索だった。rank-1デッキとbelief searchの全記録（<code>serika_alakazam_v2.md</code>）</p>
+<p>このrank-1版は正式評価でもStage 1が593/600、Stage 2が606/800、Stage 3が791/1,000で、全戦timeout 0だった。ただしStage 3の79.1%には有利な重複Crustle枠への200勝が含まれ、それを除くと73.88%になる。「79.1%の万能AI」ではなく、相手集合込みの結果として読む必要がある。3 Stage正式評価（<code>benchmark_results_serika_alakazam_rank1_20260715.md</code>）</p>
+<p>ここまでの投資対効果は、ほぼ次の順になった。</p>
+<blockquote class="blockquote">
+<p>デッキ追随 ＞ 探索改善 ＞ ルール微調整 ≫ 学習</p>
+</blockquote>
+</section>
+<section id="強いrank-1を学習で超えられるか" class="level2">
+<h2 class="anchored" data-anchor-id="強いrank-1を学習で超えられるか">強いrank-1を、学習で超えられるか</h2>
+<p>rank-1 baselineができた後、PPOを大きいrollout、低いlearning rate、小さいclip、低entropyという保守的な設定で再開した。early collapseそのものは抑えられた。3 seedを各1,048,576 decisionまで揃えた比較では、PPOのStage 2 pooled point estimateは39.38%、BCは33.54%だった。ただし差の95% CIは-0.25〜+11.86ptで0を含む。各seed最大42.5%でStage 2の45%目安に届かず、rank-1方策75.75%からは遠かった。GPUは5.547時間で止めた。BC→PPO再実験（<code>alakazam_bc_ppo_relaunch_experiments_20260716.md</code>）</p>
+<p>これは「PPOが何も学ばなかった」という失敗ではない。学習mixture内の短い評価では改善したが、固定Stage 2パネルで提出候補に必要な強さを確認できなかった、という失敗だった。</p>
+<p>standaloneのNNが弱いなら、ルールを捨てず、候補生成と探索先盤面の評価を学習で補助すればよい。そこで盤面、合法手、カード関係、belief情報をTransformerへ入れ、既存ルールの初期順位を残したまま小さな補正を加えるlearned-searchを作った。</p>
+<p>offlineではW/D/L accuracy 86.67%、search top-1は既存ルール73.45%に対して74.48%まで上がった。だが80本のbaseline trajectoryを反実仮想再生すると、77局で少なくとも一つの行動差が見つかった。その最初の差の大半はNNではなく、探索が途中で終わった時にrank-1方策ではなく静的greedyへ落ちるfallback bugだった。fallbackを直すと勝率はbaseline水準まで戻った。</p>
+<p>正式Stage 2は安全側へ寄せたcandidate 609/800、rank-1 baseline 618/800。差は-1.13ptで、candidateの実行時間は3.46倍だった。この設定はneural residualを0、learned mean overrideを無効にしてhard dominanceだけを残しており、後のactivation smokeでもneural action contributionは0件だった。したがって「NNが勝率を下げた」という因果証拠ではないが、少なくとも重くなった候補が現行方策を上回る昇格根拠は作れず、Stage 3へ進めなかった。learned-search実装・評価（<code>alakazam_learned_search_experiments.md</code>）</p>
+<p>さらにv4〜v7では、勝敗が同じ候補をサイド差や勝利までの速さで並べる教師、専用rank head、共通乱数による兄弟比較などを試した。それでも5回のGPU試行で昇格はゼロだった。v5では勝敗同率が多すぎて、dev 16 game中、非tieで比較できたのは4 gameだけ。v7では比較可能性を増やせたが、小さなサイド・テンポ差へ偏った順位をモデルが汎化できなかった。教師信号が飽和するか微差へ寄り、実用的な順位信号にならなかった。v7の停止判断（<code>alakazam_terminal_leaf_root_v7_report_20260716.md</code>）</p>
+<p>NNのtop-1を既存探索の候補へ一つ足す案には、さらに構造的な問題があった。held-outで教師searchが選んだMAIN actionの94.8%は、すでに既存候補集合の中にあった。模倣に成功するほど何も変わらず、候補集合外へ出た49件は教師基準で0/49一致。実戦で最終採用されたのも、NN候補を追加できる条件を満たした意思決定点の0.6%程度だった。</p>
+<blockquote class="blockquote">
+<p>模倣に成功すると何も変わらず、模倣から外れた時だけ新しい候補を持ち込みやすい。上手く学ぶほど介入しなくなる接続だった。</p>
+</blockquote>
+<p>この発見で、actorを候補へ足す路線から、探索自体の弱点を直す路線へ軌道修正した。軌道修正の記録（<code>course_correction_20260717.md</code>）</p>
+</section>
+<section id="psychic-drawを止めても強くはならなかった" class="level2">
+<h2 class="anchored" data-anchor-id="psychic-drawを止めても強くはならなかった">Psychic Drawを止めても、強くはならなかった</h2>
+<p>Great Tusk LO戦では山札切れが明確だった。そこで、山札が薄い時だけAlakazam系のPsychic Drawを使わないP0-aを作った。quickではbaseline 128/160に対して129/160、強化LOは20/40から26/40、山札0敗proxyも19から10へ減り、かなり有望に見えた。</p>
+<p>しかしformalはcandidate 607/800、baseline 620/800で-1.625pt。その後、P2-S上へ重ね、本番分布を反映した13-cellの別パネルで一回限りのscreenを行っても、各設定976戦で-0.717ptとなり、事前FAIL境界を越えた。実装不良ではない。対象判断は変わり、安全性errorも0だった。それでも全体では強くならなかった。P0-a formal（<code>serika_rank1_p0a_formal_20260717.md</code>） / live-meta最終結果（<code>p0a_live_meta_rerun_report_20260720.md</code>）</p>
+<p>「山札が薄いならドローを止める」は正しそうに聞こえる。しかしドローは打点、進化、次の攻撃役にもなる。危険な行動を単独で禁止するより、山札切れまでに勝ち切れるかを比較する必要があった。</p>
+</section>
+<section id="p2-sは一度だけ間違った物差しで落ちた" class="level2">
+<h2 class="anchored" data-anchor-id="p2-sは一度だけ間違った物差しで落ちた">P2-Sは、一度だけ間違った物差しで落ちた</h2>
+<p>そこで作ったのがP2-Sだった。探索先の盤面ごとに、次の二つを同じ「今後の攻撃回数」という単位へ直す。</p>
+<ul>
+<li>自分の山札が尽きるまでに残っている攻撃窓。</li>
+<li>残りサイドを最速で取り切るために必要な攻撃回数。</li>
+</ul>
+<p>山札時計がサイド時計に負ける探索先盤面だけ、評価へ最大600点の小さな減点を入れる。勝敗やサイド差という上位の比較は変えず、その対局中にagentが観測した公開イベント履歴だけを使い、分からない時は補正0に戻る設計にした。</p>
+<p>最初のformalはP2-S 615/800、baseline 599/800で+2.0pt。勝率と非劣性の条件は通った。しかし、当時事前登録していた「対象対面のdeck 0敗件数」が41から46へ増えたため、AND gateに従ってNO-GOにした。</p>
+<p>レビューすると、このproxyには構造的な欠陥があった。P2-Sの狙いは、中盤の評価差を抑えて終盤の山札レースまで持ち込むことだった。その狙いどおりの対局が仮に増えれば、deck 0で終わるゲームの母数が増え、勝ち件数も負け件数も増え得る。到達母数を無視して負けの件数だけ比べると、機構が働くほど悪化して見えることがある。</p>
+<p>ここで古いrunを都合よく勝ちへ書き換えなかった。旧NO-GOはそのまま残し、P2-Sの式・上限・発火条件を一切変えず、機構指標だけを対象3対面の合計勝数へ修正した。そして未使用seed 72000を実行前に凍結し、もう一度baselineと各800戦を走らせた。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>訂正版confirmation</th>
+<th style="text-align: right;">baseline</th>
+<th style="text-align: right;">P2-S</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>総合</td>
+<td style="text-align: right;">605/800</td>
+<td style="text-align: right;"><strong>635/800</strong></td>
+</tr>
+<tr class="even">
+<td>勝率</td>
+<td style="text-align: right;">75.625%</td>
+<td style="text-align: right;"><strong>79.375%</strong></td>
+</tr>
+<tr class="odd">
+<td>Iono＋Archaludon＋LO</td>
+<td style="text-align: right;">204/300</td>
+<td style="text-align: right;"><strong>217/300</strong></td>
+</tr>
+<tr class="even">
+<td>timeout / invalid / corrected</td>
+<td style="text-align: right;">0 / 0 / 0</td>
+<td style="text-align: right;">0 / 0 / 0</td>
+</tr>
+</tbody>
+</table>
+<p>差は+3.750pt、95% CIは-0.344〜+7.830pt。区間は0を含むため、因果的な優越が証明されたとは言わない。それでも事前登録した「point estimateがbaseline以上」「差CI下限が-3ptより上」「対象3対面で非悪化」「単対面の大崩れなし」「安全性0」の5条件をすべて通過し、採用となった。</p>
+<p>続くStage 3は783勝216敗1分、10対面すべて勝ち越し、安全性error 0だった。旧rank-1の別時点Stage 3は791/1,000だが、同時paired比較ではなくStage 3自体にも自動gateはないため、後から採用判断を上書きしていない。P2-Sの設計、誤ったproxy、訂正版confirmation（<code>serika_rank1_adaptive_experiments_20260717.md</code>）</p>
+<blockquote class="blockquote">
+<p>測定ミスを見つけても、負けた実験を勝ちに直さない。新しい物差しと新しいseedで、もう一度決着をつける。</p>
+</blockquote>
+<p>この出来事は、強いエージェントを作った話であると同時に、強さの測り方を作り直した話でもあった。</p>
+</section>
+<section id="ローカルで勝っても本番には別の敵がいた" class="level2">
+<h2 class="anchored" data-anchor-id="ローカルで勝っても本番には別の敵がいた">ローカルで勝っても、本番には別の敵がいた</h2>
+<p>最初のrank-1版を提出すると、validation自己対戦を除く外部30戦は17勝13敗だった。ただしscoreは10戦時点の715.079から25戦時点の785.411まで大きく往復した。少数の逐次ratingを、そのまま強さの即時判定へ使えないことが早くも見えた。最初のlive監査（<code>serika_rank1_live_benchmark_audit_20260717.md</code>）</p>
+<p>P2-S版の提出後に取得できた外部59戦は31勝28敗、勝率52.54%。ローカルStage 3の78.3%とはかなり違って見えるが、相手集合もsamplingも別物である。むしろreplayが教えたのは、固定パネルでは薄かった問題の分布だった。</p>
+<ul>
+<li>最大セルのAlakazam mirrorは22戦10勝12敗。12敗中7敗がdeck-outだった。</li>
+<li>新たに現れたMarnie Grimmsnarlは7戦2勝5敗。5敗すべてで<code>Shadow Bullet</code>を3〜6回許し、こちらの攻撃は2〜3回に留まった。</li>
+<li>全28敗のうち8敗がdeck-out。最初の集計では、さらに16敗を終局時の「自軍active不在」から盤面切れと分類した。</li>
+</ul>
+<p>ところが16件を公開盤面から再監査すると、本当にactiveとbenchがともに空だったのは6件だけだった。残り10件ではbenchが残り、そのうち8件には終局時にもAbra系がいた。終局後には次のactiveを選ぶ画面がないため、<code>active=[]</code>は「攻撃役をすべて失った」と同義ではない。</p>
+<p>Marnieの5敗も、Lana’s Aid不足やBoss狙撃だけでは多数例を説明できなかった。観測上の中心は、activeへ360、benchへ30を同時に与える攻撃を繰り返される間に、こちらの攻撃・サイド取得が追いつかないcadence差だった。<strong>敗因ラベルそのものが、次に検証すべき仮説だった。</strong> 59戦の提出後監査（<code>p2s_live_daily_episode_report_20260719.md</code>） / 敗局の再分類（<code>p2s_live_loss_hypotheses_20260720.md</code>）</p>
+</section>
+<section id="失敗には少なくとも四つの種類があった" class="level2">
+<h2 class="anchored" data-anchor-id="失敗には少なくとも四つの種類があった">失敗には、少なくとも四つの種類があった</h2>
+<p>P2-S採用後も、ルール、探索、デッキ、教師モデル、相手情報の使い方を原子的な候補として試した。重要だったのは、すべてのNO-GOを「弱かった」で一括りにしないことだった。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>失敗の型</th>
+<th>代表例</th>
+<th>実際に起きたこと</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>作用点を確認できない</td>
+<td>Peek-first、same-turn macro、A4 mill clamp</td>
+<td>対象rootが少ないか、観測可能なsubsetで順位・行動差が見えなかった</td>
+</tr>
+<tr class="even">
+<td>機構は動くが弱い</td>
+<td>semantic-unique top-6、H3M3、Psychic Draw D=2</td>
+<td>数千rootで発火・行動変更しても、実対戦勝率が落ちた</td>
+</tr>
+<tr class="odd">
+<td>情報は増えるが安全でない</td>
+<td>exact-Prize sampler</td>
+<td>649/656戦で正しく作用し保存則error 0でも、-1.524ptかつtimeout 1で停止</td>
+</tr>
+<tr class="even">
+<td>入力や評価契約が無効</td>
+<td>reward欠損live監査、Luca clone、旧P2-S proxy</td>
+<td>強さを判定できる入力・相手再現・指標になっていなかった</td>
+</tr>
+</tbody>
+</table>
+<p>具体例を挙げる。</p>
+<ul>
+<li>semantic-unique top-6は6,152の意思決定点で候補集合を変えたが、各設定512戦で-3.516pt。未発火ではなく、<strong>動いた上で弱かった</strong>。</li>
+<li>Enhanced Hammer 4→3、Nighttime Mine 2→3のH3M3は機構・identity・安全性を通過したが、各設定320戦で-9.688pt。</li>
+<li>Psychic Drawを二つの共通未来で比較するD=2探索は903/903の判断点を完走し、103 actionを変えたが、Stage 2で-7.5pt。</li>
+<li>20,000試合・139万局面で、既存盤面評価も入力の一つとして学習したlogistic valueは、WDL AUCを0.708から0.807へ改善した。それでも各設定2,432戦のscreenは+0.350ptに留まり、事前の+2.5pt仮説でFAILした。</li>
+<li>Recovery3デッキは総合で+5.625ptだったが、Skarin Dragapultがちょうど-5勝の停止境界へ達し、正式評価へ進めなかった。</li>
+<li>新規live 41対局の監査では、1対局だけmetadata rewardが<code>[null, 1]</code>だった。都合のよい40対局へ縮めず、replayからrewardを補完せず、outcome分析0の<code>INVALID</code>で停止した。入力gateで止めた監査（<code>p2s_live_increment_audit_report_20260723.md</code>）</li>
+</ul>
+<p>「発火した」「offline accuracyが上がった」「全体のpoint estimateが良い」は、それぞれ必要な診断ではあっても、提出採用の十分条件ではなかった。7月20日以降の多数の停止判断は最強候補6 armのまとめ（<code>strongest_agent_breakthrough_experiments_20260723.md</code>）、privileged teacher研究（<code>privileged_teacher_research_results_20260721.md</code>）、unconventional labのcloseout（<code>unconventional_agent_lab_closeout_20260806.md</code>）にまとまっている。</p>
+</section>
+<section id="上位デッキを持ってくるだけでもいつも勝てるわけではない" class="level2">
+<h2 class="anchored" data-anchor-id="上位デッキを持ってくるだけでもいつも勝てるわけではない">上位デッキを持ってくるだけでも、いつも勝てるわけではない</h2>
+<p>rank-1 Alakazamの60枚追随は最大の成功だった。しかし、そこから「leaderboard上位のデッキなら、既存policyへ載せても強い」と一般化すると失敗した。</p>
+<ul>
+<li>rank-2 Crustleのexact deckを近い既存policyへ載せると79/160、元のnative deckは89/160。結果（<code>pixiux_crustle_rank2_exact_report_20260729.md</code>）</li>
+<li>rank-2 MarnieはP2-S baseline 156/220に対して99/220、-25.9pt。</li>
+<li>rank-5 Mega Lucarioは152/200に対して112/200、-20pt。</li>
+</ul>
+<p>強かったのは60枚だけではない。<strong>その60枚と、それを操る方策（policy）の組</strong>だった。Alakazamでは上位デッキと既存ルールの意味がうまく噛み合ったが、別アーキタイプへ同じ成功を移植はできなかった。rank-2 Marnie結果（<code>alternative_decks_result_20260807.md</code>） / rank-5 Mega Lucario結果（<code>mega_lucario_rank5_result_20260807.md</code>）</p>
+</section>
+<section id="最後の有望候補も比較実験の安全性条件で止めた" class="level2">
+<h2 class="anchored" data-anchor-id="最後の有望候補も比較実験の安全性条件で止めた">最後の有望候補も、比較実験の安全性条件で止めた</h2>
+<p>8月6日の最終メタ監査では、top-20から復元できたAlakazam 3件がすべて現championの60枚と完全一致していた。少なくともtop-20内のAlakazam追随ルートでは、新候補が得られなかった。一方、自分の新しいlive 180戦では、96敗中32件で終局盤面からAbra系が消えていた。</p>
+<p>そこからXerosicを3→2、Night Stretcherを1→2へ変えたX2S2を一候補だけ作った。quickは123/160対115/160。別のseed・パネル・試合数で凍結した更新live-meta screenでも192/296対170/296、記述上は+7.432ptだった。二つは同条件の再現比較ではないが、screenでは三つのstrength gateをすべて通った。</p>
+<p>それでも不採用にした。baseline側でmax-step timeoutが1件あり、事前登録は比較する両設定の全安全counterを0と要求していたからだ。candidate自身のtimeoutは0だった。つまりX2S2が危険だったという結果ではなく、この比較を採用根拠に使う事前条件を満たさなかった。結果が良かった後で例外を作らず、再試行も閾値変更もせず、このexact candidateを閉じた。X2S2の最終判断（<code>final_deck_x2s2_screen_report_20260806.md</code>）</p>
+<p>これは最も苦い停止の一つだった。ただ、事前登録が有効なのは、守りやすい結果が出た時ではない。守ると惜しい結果を失う時である。</p>
+</section>
+<section id="番外編llmをそのままプレイヤーにしたら" class="level2">
+<h2 class="anchored" data-anchor-id="番外編llmをそのままプレイヤーにしたら">番外編：LLMをそのままプレイヤーにしたら</h2>
+<p>8月には、LLMを教師やプレイヤーとして使う実験も行った。提出本線には一切入れていない。</p>
+<p>OpenRouterの最初のSHADOW評価ではGemma 4 31Bを呼びながら、実行側のrank-1 policyが5試合に勝った。しかしGemmaの提案は一度も実行されず、実際の手は常にrank-1へ戻っていた。確認できたのは複雑なJSON Schema契約の成功率が低いことだけで、Gemmaの強さではない。同日、記録を訂正した。SHADOW監査（<code>openrouter_gemma4_31b_live_smoke_20260806.md</code>）</p>
+<p>fallbackなし・choices-onlyでGemma自身に5試合をさせると、2勝2敗、technical failure 1。random 2体には勝ち、rule AlakazamとP2-Sには負けた。合計1,108,257 token、実費約$0.155だった。別デッキ・別対面・別provider・別token上限で行ったMarine mirror 10局は、すべて完走したが0勝10敗。低コスト3モデルの比較では15局すべてtechnical failureで、完了局は0だった。Qwenは最終的にHTTP 429、残る2モデルはcontentなしのAPI protocol errorで、後者は64-token枠の大半をreasoningが使ったことと整合した。Gemma実プレイ（<code>openrouter_gemma4_31b_play_eval_20260806.md</code>） / Marine 10局（<code>openrouter_gemma4_31b_marine_10game_eval_20260807.md</code>） / 低コスト3モデル（<code>openrouter_low_cost_model_play_eval_20260807.md</code>）</p>
+<p>Codexをblind workerとして使うpilotでは、300ユニーク盤面へのラベルはすべて形式・合法性を通った。しかしrolloutで支持されたラベルは0件で、30監査盤面の3 worker完全一致は63.3%。MAINでは44.4%、11択以上では33.3%だった。合法な答えを返せても、それが安定した「正解教師」とは限らない。Codex教師pilot（<code>codex_teacher_pilot_report_20260806.md</code>）</p>
+<p>model不明のblind live pilotではlegacy rank-1 Serika相手に5勝1敗、Marine相手に7勝3敗という興味深い記述値も出た。一方、modelを<code>gpt-5.3-codex-spark</code>へ固定した後のMarine smokeは0勝2敗だった。いずれも小標本・単一対面なので、正式な強さの根拠にはしていない。Serika 6局（<code>codex_vs_serika_pilot_report_20260806.md</code>） / Marine 10局（<code>codex_vs_marine_pilot_report_20260806.md</code>） / Spark 2局（<code>codex_spark_vs_marine_smoke_report_20260807.md</code>）</p>
+<blockquote class="blockquote">
+<p>合法に動くこと、一致して答えること、最後まで完走すること、安く動くこと、強いこと、そして再現できることは、すべて別の条件だった。</p>
+</blockquote>
+</section>
+<section id="この開発で残った六つの教訓" class="level2">
+<h2 class="anchored" data-anchor-id="この開発で残った六つの教訓">この開発で残った六つの教訓</h2>
+<section id="メタ追随は最も安い大レバーだった" class="level3">
+<h3 class="anchored" data-anchor-id="メタ追随は最も安い大レバーだった">1. メタ追随は、最も安い大レバーだった</h3>
+<p>同じbelief searchのまま60枚を変えただけで+12.38pt。まず上位公開対戦を観察し、デッキ差分を疑う価値は大きい。ただしpolicyとの適合確認は必要である。</p>
+</section>
+<section id="既存知識を残した探索が学習より先に効いた" class="level3">
+<h3 class="anchored" data-anchor-id="既存知識を残した探索が学習より先に効いた">2. 既存知識を残した探索が、学習より先に効いた</h3>
+<p>belief searchはルールを捨てず、見えない情報だけを複数世界として補った。旧デッキのまま+8.25ptだった。</p>
+</section>
+<section id="offline精度は必要条件でしかない" class="level3">
+<h3 class="anchored" data-anchor-id="offline精度は必要条件でしかない">3. offline精度は必要条件でしかない</h3>
+<p>139万局面のWDL改善も、Transformerの小さな順位改善も、実対戦の昇格にはつながらなかった。最後の通貨は同じ条件での対戦結果と安全性である。</p>
+</section>
+<section id="動かなかったと動いて弱かったを分ける" class="level3">
+<h3 class="anchored" data-anchor-id="動かなかったと動いて弱かったを分ける">4. 「動かなかった」と「動いて弱かった」を分ける</h3>
+<p>作用点がない案は安いroot probeで止める。十分発火して負けた案は、機構の実装を疑って再試行するのではなく、強さのNO-GOとして閉じる。この区別で無駄な正式評価を減らせた。</p>
+</section>
+<section id="敗因ラベルも仮説である" class="level3">
+<h3 class="anchored" data-anchor-id="敗因ラベルも仮説である">5. 敗因ラベルも仮説である</h3>
+<p>「盤面切れ16件」は再監査で真の全枯渇6件になった。ログに名前を付けるだけで満足せず、資源曲線、攻撃回数、相手の実際の圧力まで分解する必要がある。</p>
+</section>
+<section id="評価系もエージェントと同じくらい鍛える必要がある" class="level3">
+<h3 class="anchored" data-anchor-id="評価系もエージェントと同じくらい鍛える必要がある">6. 評価系も、エージェントと同じくらい鍛える必要がある</h3>
+<p>swap sides、現行baseline、未使用seed、Wilson区間、timeout 0、事前登録した停止条件。これらは慎重さの飾りではなく、何十個もの候補から偶然よく見えたものを選ばないための実装だった。</p>
+</section>
+</section>
+<section id="現在地" class="level2">
+<h2 class="anchored" data-anchor-id="現在地">現在地</h2>
+<p>2026年8月9日時点で、提出本線は変わっていない。</p>
+<ul>
+<li>2026年7月14日のrank-1 Alakazam 60枚。</li>
+<li>カード固有ルール。</li>
+<li>determinization（伏せ情報の具体化）＋successive halving（有望候補への試行集中）によるbelief search。</li>
+<li>探索先だけを小さく補正するP2-S <code>DECK_CLOCK_SMALL</code>。</li>
+</ul>
+<p>この組み合わせは訂正版confirmationの採用条件を5/5通過し、Stage 3を783勝216敗1分、全10対面勝ち越し、安全性error 0で完走した。8月6日に最終archiveを隔離展開し、import、60枚、主要カード枚数、依存ファイルの同一性まで確認して凍結している。</p>
+<p>MLを完全に諦めたわけではない。ただし次に使うなら、既存探索を丸ごと置き換えるactorではなく、安定した教師と十分な作用点が先に確認できる小さな補助に限る。現時点の工数優先順位は高得点戦略指針（<code>scoring_strategy.md</code>）のとおりである。</p>
+<blockquote class="blockquote">
+<p>この開発で強くなったのは、AIだけではなかった。何を勝利と呼び、どの失敗を数え、どの魅力的な結果を採用しないか。最後までいちばん長く鍛えられたのは、評価系そのものだった。</p>
+</blockquote>
+<hr>
+<p>この記事は2026年8月9日時点のリポジトリ内実験記録をもとにした中間総括である。個別の事前登録、対面別結果、信頼区間、artifact identityは本文中に示した各レポートを正本とする。</p>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-custom" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title" data-direction="asc">
-        Title
-      </option>
-      <option value="listing-author" data-direction="asc">
-        Author
-      </option>
-      <option value="listing-date-sort" data-direction="asc">
-        Date - Oldest
-      </option>
-      <option value="listing-date-sort" data-direction="desc">
-        Date - Newest
-      </option>
-      <option value="listing-categories" data-direction="asc">
-        Categories
-      </option>
-      <option value="listing-description" data-direction="asc">
-        Description
-      </option>
-      <option value="listing-reading-time-sort" data-direction="asc">
-        Reading Time (Low to High)
-      </option>
-      <option value="listing-reading-time-sort" data-direction="desc">
-        Reading Time (High to Low)
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<div class="list gl-listing">
-<div class="gl-card-wrap" data-index="0" data-categories="cHJvZ3JhbW1pbmclMkMyMDI2JTJDc3dpZnQlMkNwcm9kdWN0aXZpdHk=" data-listing-date-sort="1786201200000" data-listing-file-modified-sort="1786213841573" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="118">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/tech/ADHDManagerDevelopmentLog.html" class="gl-card-link gl-card-cover" aria-label="ADHDManager開発記"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">PROGRAMMING · 1 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-ADHDManager開発記
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Aug 9, 2026
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="2" data-category="cHJvZ3JhbW1pbmc=" href="#category=programming">programming</a><a class="gl-cat-pill" data-gl-cat="2" data-category="MjAyNg==" href="#category=2026">2026</a><a class="gl-cat-pill" data-gl-cat="2" data-category="c3dpZnQ=" href="#category=swift">swift</a><a class="gl-cat-pill" data-gl-cat="4" data-category="cHJvZHVjdGl2aXR5" href="#category=productivity">productivity</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-1 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-programming 2026 swift productivity
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="1" data-categories="cHJvZ3JhbW1pbmclMkMyMDI2JTJDc3dpZnQlMkNub3ZlbA==" data-listing-date-sort="1786201200000" data-listing-file-modified-sort="1786213106835" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="83">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/tech/FUMINIWADevelopmentLog.html" class="gl-card-link gl-card-cover" aria-label="ふみにわ開発記"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">PROGRAMMING · 1 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-ふみにわ開発記
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Aug 9, 2026
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="2" data-category="cHJvZ3JhbW1pbmc=" href="#category=programming">programming</a><a class="gl-cat-pill" data-gl-cat="2" data-category="MjAyNg==" href="#category=2026">2026</a><a class="gl-cat-pill" data-gl-cat="2" data-category="c3dpZnQ=" href="#category=swift">swift</a><a class="gl-cat-pill" data-gl-cat="3" data-category="bm92ZWw=" href="#category=novel">novel</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-1 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-programming 2026 swift novel
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="2" data-categories="cHJvZ3JhbW1pbmclMkMyMDI2JTJDQUklMkNLYWdnbGU=" data-listing-date-sort="1786201200000" data-listing-file-modified-sort="1786235106030" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="442">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/tech/KagglePokemonTCGParticipationRecord.html" class="gl-card-link gl-card-cover" aria-label="Kaggle Pokemon TCG参加記録"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">PROGRAMMING · 3 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-Kaggle Pokemon TCG参加記録
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Aug 9, 2026
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="2" data-category="cHJvZ3JhbW1pbmc=" href="#category=programming">programming</a><a class="gl-cat-pill" data-gl-cat="2" data-category="MjAyNg==" href="#category=2026">2026</a><a class="gl-cat-pill" data-gl-cat="3" data-category="QUk=" href="#category=AI">AI</a><a class="gl-cat-pill" data-gl-cat="2" data-category="S2FnZ2xl" href="#category=Kaggle">Kaggle</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-3 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-programming 2026 AI Kaggle
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="3" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1785250800000" data-listing-file-modified-sort="1785346093958" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3286">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/univ_lecs/3S/材料力学II.html" class="gl-card-link gl-card-cover" aria-label="材料力学II"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">UNIVERSITY · 17 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-材料力学II
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Jul 29, 2026
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="0" data-category="VW5pdmVyc2l0eQ==" href="#category=University">University</a><a class="gl-cat-pill" data-gl-cat="2" data-category="MjAyNg==" href="#category=2026">2026</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-17 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-University 2026
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="4" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1784818800000" data-listing-file-modified-sort="1786207117445" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="906">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/univ_lecs/3S/金属材料学.html" class="gl-card-link gl-card-cover" aria-label="金属材料学"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">UNIVERSITY · 5 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-金属材料学
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Jul 24, 2026
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="0" data-category="VW5pdmVyc2l0eQ==" href="#category=University">University</a><a class="gl-cat-pill" data-gl-cat="2" data-category="MjAyNg==" href="#category=2026">2026</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-5 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-University 2026
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="5" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1784732400000" data-listing-file-modified-sort="1784827364664" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="31" data-listing-word-count-sort="6054">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/univ_lecs/3S/半導体物性学.html" class="gl-card-link gl-card-cover" aria-label="半導体物性学"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">UNIVERSITY · 31 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-半導体物性学
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Jul 23, 2026
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="0" data-category="VW5pdmVyc2l0eQ==" href="#category=University">University</a><a class="gl-cat-pill" data-gl-cat="2" data-category="MjAyNg==" href="#category=2026">2026</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-31 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-University 2026
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="6" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1780844400000" data-listing-file-modified-sort="1784646395137" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="3000">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/univ_lecs/3S/数学2F.html" class="gl-card-link gl-card-cover" aria-label="数学2F"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">UNIVERSITY · 15 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-数学2F
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Jun 8, 2026
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="0" data-category="VW5pdmVyc2l0eQ==" href="#category=University">University</a><a class="gl-cat-pill" data-gl-cat="2" data-category="MjAyNg==" href="#category=2026">2026</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-15 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-University 2026
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="7" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1775314800000" data-listing-file-modified-sort="1783095776045" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1205">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/univ_lecs/4S/工学基礎演習.html" class="gl-card-link gl-card-cover" aria-label="工学基礎演習"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">UNIVERSITY · 7 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-工学基礎演習
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Apr 5, 2026
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="0" data-category="VW5pdmVyc2l0eQ==" href="#category=University">University</a><a class="gl-cat-pill" data-gl-cat="2" data-category="MjAyNg==" href="#category=2026">2026</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-7 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-University 2026
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="8" data-categories="cG9ncmFtbWluZyUyQzIwMjYlMkNBSQ==" data-listing-date-sort="1770303600000" data-listing-file-modified-sort="1783095775932" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="44">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/tech/AI/AttentionIsAllYouNeed.html" class="gl-card-link gl-card-cover" aria-label="Attention Is All You Needを読む話"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">POGRAMMING · 1 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-Attention Is All You Needを読む話
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Feb 6, 2026
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="3" data-category="cG9ncmFtbWluZw==" href="#category=pogramming">pogramming</a><a class="gl-cat-pill" data-gl-cat="2" data-category="MjAyNg==" href="#category=2026">2026</a><a class="gl-cat-pill" data-gl-cat="3" data-category="QUk=" href="#category=AI">AI</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-1 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-pogramming 2026 AI
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="9" data-categories="cG9ncmFtbWluZyUyQzIwMjYlMkNBSQ==" data-listing-date-sort="1770303600000" data-listing-file-modified-sort="1783095775932" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1579">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/tech/AI/BuildLLM.html" class="gl-card-link gl-card-cover" aria-label="Build a Large Language Model from Scratchを読む話"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">POGRAMMING · 8 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-Build a Large Language Model from Scratchを読む話
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Feb 6, 2026
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="3" data-category="cG9ncmFtbWluZw==" href="#category=pogramming">pogramming</a><a class="gl-cat-pill" data-gl-cat="2" data-category="MjAyNg==" href="#category=2026">2026</a><a class="gl-cat-pill" data-gl-cat="3" data-category="QUk=" href="#category=AI">AI</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-8 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-pogramming 2026 AI
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="10" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1767538800000" data-listing-file-modified-sort="1783095776015" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2128">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/univ_lecs/3A/信頼性学.html" class="gl-card-link gl-card-cover" aria-label="信頼性学"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">UNIVERSITY · 11 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-信頼性学
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Jan 5, 2026
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="0" data-category="VW5pdmVyc2l0eQ==" href="#category=University">University</a><a class="gl-cat-pill" data-gl-cat="2" data-category="MjAyNg==" href="#category=2026">2026</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-11 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-University 2026
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="11" data-categories="VW5pdmVyc2l0eSUyQzIwMjY=" data-listing-date-sort="1767538800000" data-listing-file-modified-sort="1783095776016" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2612">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/univ_lecs/3A/数学.html" class="gl-card-link gl-card-cover" aria-label="数学"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">UNIVERSITY · 14 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-数学
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Jan 5, 2026
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="0" data-category="VW5pdmVyc2l0eQ==" href="#category=University">University</a><a class="gl-cat-pill" data-gl-cat="2" data-category="MjAyNg==" href="#category=2026">2026</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-14 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-University 2026
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="12" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1" data-listing-date-sort="1757689200000" data-listing-file-modified-sort="1783095775932" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/tech/MisskeyDockerSetup.html" class="gl-card-link gl-card-cover" aria-label="DockerでMisskeyを立てる"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">PROGRAMMING · 1 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-DockerでMisskeyを立てる
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Sep 13, 2025
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="2" data-category="cHJvZ3JhbW1pbmc=" href="#category=programming">programming</a><a class="gl-cat-pill" data-gl-cat="1" data-category="MjAyNQ==" href="#category=2025">2025</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-1 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-programming 2025
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="13" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1" data-listing-date-sort="1757516400000" data-listing-file-modified-sort="1783095775933" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="31">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/tech/TailscaleAndNord.html" class="gl-card-link gl-card-cover" aria-label="NordとTailscaleで自宅サーバーを安全に公開する"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">PROGRAMMING · 1 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-NordとTailscaleで自宅サーバーを安全に公開する
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Sep 11, 2025
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="2" data-category="cHJvZ3JhbW1pbmc=" href="#category=programming">programming</a><a class="gl-cat-pill" data-gl-cat="1" data-category="MjAyNQ==" href="#category=2025">2025</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-1 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-programming 2025
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="14" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc2VydmVy" data-listing-date-sort="1757257200000" data-listing-file-modified-sort="1783095775932" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="17">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/tech/SetUpNewDebianServer.html" class="gl-card-link gl-card-cover" aria-label="Debianサーバーを立てた話"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">PROGRAMMING · 1 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-Debianサーバーを立てた話
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Sep 8, 2025
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="2" data-category="cHJvZ3JhbW1pbmc=" href="#category=programming">programming</a><a class="gl-cat-pill" data-gl-cat="1" data-category="MjAyNQ==" href="#category=2025">2025</a><a class="gl-cat-pill" data-gl-cat="3" data-category="c2VydmVy" href="#category=server">server</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-1 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-programming 2025 server
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="15" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQ=" data-listing-date-sort="1757170800000" data-listing-file-modified-sort="1783095775933" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="487">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/tech/TimeMachineServer.html" class="gl-card-link gl-card-cover" aria-label="Time Machine ServerをSambaで作った話"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">PROGRAMMING · 3 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-Time Machine ServerをSambaで作った話
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Sep 7, 2025
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="2" data-category="cHJvZ3JhbW1pbmc=" href="#category=programming">programming</a><a class="gl-cat-pill" data-gl-cat="1" data-category="MjAyNQ==" href="#category=2025">2025</a><a class="gl-cat-pill" data-gl-cat="2" data-category="c3dpZnQ=" href="#category=swift">swift</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-3 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-programming 2025 swift
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="16" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQ=" data-listing-date-sort="1757170800000" data-listing-file-modified-sort="1783095775933" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="14">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/tech/UbuntuPartitionMissing.html" class="gl-card-link gl-card-cover" aria-label="ミスって/boot/efiを消した話"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">PROGRAMMING · 1 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-ミスって/boot/efiを消した話
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Sep 7, 2025
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="2" data-category="cHJvZ3JhbW1pbmc=" href="#category=programming">programming</a><a class="gl-cat-pill" data-gl-cat="1" data-category="MjAyNQ==" href="#category=2025">2025</a><a class="gl-cat-pill" data-gl-cat="2" data-category="c3dpZnQ=" href="#category=swift">swift</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-1 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-programming 2025 swift
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="17" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1" data-listing-date-sort="1756998000000" data-listing-file-modified-sort="1783095775932" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="4">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/tech/QuartoRenderSingle.html" class="gl-card-link gl-card-cover" aria-label="Quartoで単一ファイルにレンダリングする方法"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">PROGRAMMING · 1 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-Quartoで単一ファイルにレンダリングする方法
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Sep 5, 2025
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="2" data-category="cHJvZ3JhbW1pbmc=" href="#category=programming">programming</a><a class="gl-cat-pill" data-gl-cat="1" data-category="MjAyNQ==" href="#category=2025">2025</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-1 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-programming 2025
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="18" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1" data-listing-date-sort="1756998000000" data-listing-file-modified-sort="1783095775932" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="5">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/tech/StartUsingCodex.html" class="gl-card-link gl-card-cover" aria-label="Codexを使い始めた件"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">PROGRAMMING · 1 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-Codexを使い始めた件
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Sep 5, 2025
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="2" data-category="cHJvZ3JhbW1pbmc=" href="#category=programming">programming</a><a class="gl-cat-pill" data-gl-cat="1" data-category="MjAyNQ==" href="#category=2025">2025</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-1 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-programming 2025
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="19" data-categories="cHJvZ3JhbW1pbmclMkMyMDI1JTJDc3dpZnQ=" data-listing-date-sort="1756998000000" data-listing-file-modified-sort="1783095775932" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="21">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/tech/SwiftPackageError.html" class="gl-card-link gl-card-cover" aria-label="Swift Packageの読み込みエラー"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">PROGRAMMING · 1 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-Swift Packageの読み込みエラー
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Sep 5, 2025
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="2" data-category="cHJvZ3JhbW1pbmc=" href="#category=programming">programming</a><a class="gl-cat-pill" data-gl-cat="1" data-category="MjAyNQ==" href="#category=2025">2025</a><a class="gl-cat-pill" data-gl-cat="2" data-category="c3dpZnQ=" href="#category=swift">swift</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-1 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-programming 2025 swift
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="20" data-categories="aG9tZXNlcnZlciUyQ3Byb2dyYW1taW5nJTJDMjAyNQ==" data-listing-date-sort="1747062000000" data-listing-file-modified-sort="1783095775933" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="11">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/tech/linkwarden.html" class="gl-card-link gl-card-cover" aria-label="Linkwardenにブックマーク管理を任せる"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">HOMESERVER · 1 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-Linkwardenにブックマーク管理を任せる
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-May 13, 2025
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="3" data-category="aG9tZXNlcnZlcg==" href="#category=homeserver">homeserver</a><a class="gl-cat-pill" data-gl-cat="2" data-category="cHJvZ3JhbW1pbmc=" href="#category=programming">programming</a><a class="gl-cat-pill" data-gl-cat="1" data-category="MjAyNQ==" href="#category=2025">2025</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-1 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-homeserver programming 2025
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="21" data-categories="VW5pdmVyc2l0eSUyQzIwMjQlMkNTdGVlbG1ha2luZyUyQ1RoZXJtb2R5bmFtaWNz" data-listing-date-sort="1734361200000" data-listing-file-modified-sort="1786234978323" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="408">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/univ_lecs/3A/生産プロセス.html" class="gl-card-link gl-card-cover" aria-label="生産プロセス"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">UNIVERSITY · 3 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-生産プロセス
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Dec 17, 2024
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="0" data-category="VW5pdmVyc2l0eQ==" href="#category=University">University</a><a class="gl-cat-pill" data-gl-cat="0" data-category="MjAyNA==" href="#category=2024">2024</a><a class="gl-cat-pill" data-gl-cat="0" data-category="U3RlZWxtYWtpbmc=" href="#category=Steelmaking">Steelmaking</a><a class="gl-cat-pill" data-gl-cat="4" data-category="VGhlcm1vZHluYW1pY3M=" href="#category=Thermodynamics">Thermodynamics</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-3 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-University 2024 Steelmaking Thermodynamics
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="22" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1733065200000" data-listing-file-modified-sort="1783095776015" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1028">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/univ_lecs/3A/デバイス材料工学.html" class="gl-card-link gl-card-cover" aria-label="デバイス材料工学"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">UNIVERSITY · 6 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-デバイス材料工学
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Dec 2, 2024
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="0" data-category="VW5pdmVyc2l0eQ==" href="#category=University">University</a><a class="gl-cat-pill" data-gl-cat="0" data-category="MjAyNA==" href="#category=2024">2024</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-6 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-University 2024
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="23" data-categories="VW5pdmVyc2l0eSUyQ3N0YXRpc3RpY2FsLW1lY2hhbmljcyUyQ3RoZXJtb2R5bmFtaWNzJTJDMjAyNA==" data-listing-date-sort="1732806000000" data-listing-file-modified-sort="1786206681069" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="673">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/univ_lecs/2A/材料統計力学.html" class="gl-card-link gl-card-cover" aria-label="材料統計力学"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">UNIVERSITY · 4 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-材料統計力学
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Nov 29, 2024
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="0" data-category="VW5pdmVyc2l0eQ==" href="#category=University">University</a><a class="gl-cat-pill" data-gl-cat="3" data-category="c3RhdGlzdGljYWwtbWVjaGFuaWNz" href="#category=statistical-mechanics">statistical-mechanics</a><a class="gl-cat-pill" data-gl-cat="1" data-category="dGhlcm1vZHluYW1pY3M=" href="#category=thermodynamics">thermodynamics</a><a class="gl-cat-pill" data-gl-cat="0" data-category="MjAyNA==" href="#category=2024">2024</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-4 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-University statistical-mechanics thermodynamics 2024
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="24" data-categories="VW5pdmVyc2l0eSUyQzIwMjQlMkNLaW5ldGljcyUyQ1N1cmZhY2UlMjBTY2llbmNl" data-listing-date-sort="1732806000000" data-listing-file-modified-sort="1786213202231" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="435">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/univ_lecs/3S/材料反応工学.html" class="gl-card-link gl-card-cover" aria-label="材料反応工学"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">UNIVERSITY · 3 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-材料反応工学
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Nov 29, 2024
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="0" data-category="VW5pdmVyc2l0eQ==" href="#category=University">University</a><a class="gl-cat-pill" data-gl-cat="0" data-category="MjAyNA==" href="#category=2024">2024</a><a class="gl-cat-pill" data-gl-cat="1" data-category="S2luZXRpY3M=" href="#category=Kinetics">Kinetics</a><a class="gl-cat-pill" data-gl-cat="3" data-category="U3VyZmFjZSUyMFNjaWVuY2U=" href="#category=Surface%20Science">Surface Science</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-3 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-University 2024 Kinetics Surface Science
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="25" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1728486000000" data-listing-file-modified-sort="1783095776015" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="539">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/univ_lecs/3A/セラミック材料学.html" class="gl-card-link gl-card-cover" aria-label="セラミックノート"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">UNIVERSITY · 3 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-セラミックノート
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Oct 10, 2024
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="0" data-category="VW5pdmVyc2l0eQ==" href="#category=University">University</a><a class="gl-cat-pill" data-gl-cat="0" data-category="MjAyNA==" href="#category=2024">2024</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-3 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-University 2024
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="26" data-categories="VW5pdmVyc2l0eSUyQzIwMjQ=" data-listing-date-sort="1728486000000" data-listing-file-modified-sort="1783095776016" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1459">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/univ_lecs/3A/高分子２.html" class="gl-card-link gl-card-cover" aria-label="高分子ノート"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">UNIVERSITY · 8 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-高分子ノート
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Oct 10, 2024
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="0" data-category="VW5pdmVyc2l0eQ==" href="#category=University">University</a><a class="gl-cat-pill" data-gl-cat="0" data-category="MjAyNA==" href="#category=2024">2024</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-8 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-University 2024
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="27" data-categories="VW5pdmVyc2l0eSUyQzIwMjQlMkMlRTYlOUQlOTAlRTYlOTYlOTklRTUlQjclQTUlRTUlQUQlQTYlMkMlRTklOUIlQkIlRTYlQjAlOTclRTUlOEMlOTYlRTUlQUQlQTY=" data-listing-date-sort="1712502000000" data-listing-file-modified-sort="1786212543396" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2130">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/univ_lecs/3S/材料電気化学.html" class="gl-card-link gl-card-cover" aria-label="材料電気化学"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">UNIVERSITY · 11 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-材料電気化学
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Apr 8, 2024
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="0" data-category="VW5pdmVyc2l0eQ==" href="#category=University">University</a><a class="gl-cat-pill" data-gl-cat="0" data-category="MjAyNA==" href="#category=2024">2024</a><a class="gl-cat-pill" data-gl-cat="2" data-category="JUU2JTlEJTkwJUU2JTk2JTk5JUU1JUI3JUE1JUU1JUFEJUE2" href="#category=%E6%9D%90%E6%96%99%E5%B7%A5%E5%AD%A6">材料工学</a><a class="gl-cat-pill" data-gl-cat="0" data-category="JUU5JTlCJUJCJUU2JUIwJTk3JUU1JThDJTk2JUU1JUFEJUE2" href="#category=%E9%9B%BB%E6%B0%97%E5%8C%96%E5%AD%A6">電気化学</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-11 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-University 2024 材料工学 電気化学
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="28" data-categories="VW5pdmVyc2l0eSUyQ3BoYXNlLXRyYW5zZm9ybWF0aW9uJTJDc29saWRpZmljYXRpb24lMkNraW5ldGljcyUyQzIwMjQ=" data-listing-date-sort="1712502000000" data-listing-file-modified-sort="1786211360568" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="658">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/univ_lecs/3S/組織生成論.html" class="gl-card-link gl-card-cover" aria-label="組織生成論"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">UNIVERSITY · 4 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-組織生成論
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Apr 8, 2024
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="0" data-category="VW5pdmVyc2l0eQ==" href="#category=University">University</a><a class="gl-cat-pill" data-gl-cat="1" data-category="cGhhc2UtdHJhbnNmb3JtYXRpb24=" href="#category=phase-transformation">phase-transformation</a><a class="gl-cat-pill" data-gl-cat="4" data-category="c29saWRpZmljYXRpb24=" href="#category=solidification">solidification</a><a class="gl-cat-pill" data-gl-cat="3" data-category="a2luZXRpY3M=" href="#category=kinetics">kinetics</a><a class="gl-cat-pill" data-gl-cat="0" data-category="MjAyNA==" href="#category=2024">2024</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-4 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-University phase-transformation solidification kinetics 2024
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="29" data-categories="TWF0aA==" data-listing-date-sort="1712329200000" data-listing-file-modified-sort="1783095776048" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="36">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/収容所配布用/数学/過去問演習.html" class="gl-card-link gl-card-cover" aria-label="過去問演習"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">MATH · 1 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-過去問演習
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Apr 6, 2024
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="4" data-category="TWF0aA==" href="#category=Math">Math</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-1 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-Math
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="30" data-categories="VW5pdmVyc2l0eSUyQzIwMjQlMkMlRTYlOUQlOTAlRTYlOTYlOTklRTUlQjclQTUlRTUlQUQlQTYlMkMlRTUlOUIlQkElRTQlQkQlOTMlRTclODklQTklRTclOTAlODY=" data-listing-date-sort="1712242800000" data-listing-file-modified-sort="1786213081194" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1571">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/univ_lecs/3S/固体物性学.html" class="gl-card-link gl-card-cover" aria-label="固体物性学"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">UNIVERSITY · 8 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-固体物性学
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Apr 5, 2024
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="0" data-category="VW5pdmVyc2l0eQ==" href="#category=University">University</a><a class="gl-cat-pill" data-gl-cat="0" data-category="MjAyNA==" href="#category=2024">2024</a><a class="gl-cat-pill" data-gl-cat="2" data-category="JUU2JTlEJTkwJUU2JTk2JTk5JUU1JUI3JUE1JUU1JUFEJUE2" href="#category=%E6%9D%90%E6%96%99%E5%B7%A5%E5%AD%A6">材料工学</a><a class="gl-cat-pill" data-gl-cat="4" data-category="JUU1JTlCJUJBJUU0JUJEJTkzJUU3JTg5JUE5JUU3JTkwJTg2" href="#category=%E5%9B%BA%E4%BD%93%E7%89%A9%E7%90%86">固体物理</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-8 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-University 2024 材料工学 固体物理
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="31" data-categories="VW5pdmVyc2l0eSUyQ21lY2hhbmljcyUyQ2Rpc2xvY2F0aW9uJTJDZnJhY3R1cmUlMkMyMDI0" data-listing-date-sort="1712242800000" data-listing-file-modified-sort="1786207117496" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="448">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/univ_lecs/3S/材料強度学.html" class="gl-card-link gl-card-cover" aria-label="材料強度学"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">UNIVERSITY · 3 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-材料強度学
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Apr 5, 2024
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="0" data-category="VW5pdmVyc2l0eQ==" href="#category=University">University</a><a class="gl-cat-pill" data-gl-cat="4" data-category="bWVjaGFuaWNz" href="#category=mechanics">mechanics</a><a class="gl-cat-pill" data-gl-cat="2" data-category="ZGlzbG9jYXRpb24=" href="#category=dislocation">dislocation</a><a class="gl-cat-pill" data-gl-cat="0" data-category="ZnJhY3R1cmU=" href="#category=fracture">fracture</a><a class="gl-cat-pill" data-gl-cat="0" data-category="MjAyNA==" href="#category=2024">2024</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-3 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-University mechanics dislocation fracture 2024
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="32" data-categories="TWF0aA==" data-listing-date-sort="1702479600000" data-listing-file-modified-sort="1783095776048" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="342">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/収容所配布用/数学/数学A.html" class="gl-card-link gl-card-cover" aria-label="数学A"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">MATH · 2 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-数学A
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Dec 14, 2023
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="4" data-category="TWF0aA==" href="#category=Math">Math</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-2 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-Math
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="33" data-categories="TWF0aA==" data-listing-date-sort="1702479600000" data-listing-file-modified-sort="1783095776048" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="382">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/収容所配布用/数学/数学B.html" class="gl-card-link gl-card-cover" aria-label="数学B"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">MATH · 2 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-数学B
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Dec 14, 2023
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="4" data-category="TWF0aA==" href="#category=Math">Math</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-2 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-Math
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="34" data-categories="TWF0aA==" data-listing-date-sort="1702479600000" data-listing-file-modified-sort="1783095776048" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="599">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/収容所配布用/数学/数学II.html" class="gl-card-link gl-card-cover" aria-label="数学II"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">MATH · 3 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-数学II
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Dec 14, 2023
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="4" data-category="TWF0aA==" href="#category=Math">Math</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-3 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-Math
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="35" data-categories="TWF0aA==" data-listing-date-sort="1702479600000" data-listing-file-modified-sort="1783095776048" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="430">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/収容所配布用/数学/数学III.html" class="gl-card-link gl-card-cover" aria-label="数学III"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">MATH · 3 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-数学III
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Dec 14, 2023
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="4" data-category="TWF0aA==" href="#category=Math">Math</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-3 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-Math
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="36" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1701270000000" data-listing-file-modified-sort="1783095775931" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="162">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/at_coder/typical90-11.html" class="gl-card-link gl-card-cover" aria-label="typical90-11"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">ATCODER · 1 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-typical90-11
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Nov 30, 2023
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="4" data-category="QXRDb2Rlcg==" href="#category=AtCoder">AtCoder</a><a class="gl-cat-pill" data-gl-cat="0" data-category="UHJvZ3JhbW1pbmc=" href="#category=Programming">Programming</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-1 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-AtCoder Programming
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="37" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1700838000000" data-listing-file-modified-sort="1786212351482" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2669">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/at_coder/typical90-06-10.html" class="gl-card-link gl-card-cover" aria-label="競プロ典型90 06〜10"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">ATCODER · 14 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-競プロ典型90 06〜10
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Nov 25, 2023
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="4" data-category="QXRDb2Rlcg==" href="#category=AtCoder">AtCoder</a><a class="gl-cat-pill" data-gl-cat="0" data-category="UHJvZ3JhbW1pbmc=" href="#category=Programming">Programming</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-14 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-AtCoder Programming
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="38" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1697468400000" data-listing-file-modified-sort="1786212351429" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="20" data-listing-word-count-sort="3853">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/at_coder/typical90-01-05.html" class="gl-card-link gl-card-cover" aria-label="競プロ典型90 01〜05"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">ATCODER · 20 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-競プロ典型90 01〜05
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Oct 17, 2023
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="4" data-category="QXRDb2Rlcg==" href="#category=AtCoder">AtCoder</a><a class="gl-cat-pill" data-gl-cat="0" data-category="UHJvZ3JhbW1pbmc=" href="#category=Programming">Programming</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-20 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-AtCoder Programming
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="39" data-categories="TWF0aA==" data-listing-date-sort="1697209200000" data-listing-file-modified-sort="1783095776048" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1581">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/収容所配布用/数学/数学I.html" class="gl-card-link gl-card-cover" aria-label="数学I"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">MATH · 8 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-数学I
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Oct 14, 2023
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="4" data-category="TWF0aA==" href="#category=Math">Math</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-8 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-Math
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="40" data-categories="TWF0aA==" data-listing-date-sort="1697209200000" data-listing-file-modified-sort="1783095776050" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="377">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/収容所配布用/物理/物理.html" class="gl-card-link gl-card-cover" aria-label="物理"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">MATH · 2 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-物理
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Oct 14, 2023
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="4" data-category="TWF0aA==" href="#category=Math">Math</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-2 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-Math
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="41" data-categories="VW5pdmVyc2l0eSUyQzIwMjM=" data-listing-date-sort="1696863600000" data-listing-file-modified-sort="1783095775963" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="94">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/univ_lecs/2A/材料力学.html" class="gl-card-link gl-card-cover" aria-label="統計力学"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">UNIVERSITY · 1 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-統計力学
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Oct 10, 2023
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="0" data-category="VW5pdmVyc2l0eQ==" href="#category=University">University</a><a class="gl-cat-pill" data-gl-cat="4" data-category="MjAyMw==" href="#category=2023">2023</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-1 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-University 2023
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="42" data-categories="VW5pdmVyc2l0eSUyQzIwMjM=" data-listing-date-sort="1696863600000" data-listing-file-modified-sort="1783095775963" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/univ_lecs/2A/材料相平衡論.html" class="gl-card-link gl-card-cover" aria-label="材料相平衡論"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">UNIVERSITY · 1 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-材料相平衡論
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Oct 10, 2023
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="0" data-category="VW5pdmVyc2l0eQ==" href="#category=University">University</a><a class="gl-cat-pill" data-gl-cat="4" data-category="MjAyMw==" href="#category=2023">2023</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-1 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-University 2023
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="43" data-categories="VW5pdmVyc2l0eSUyQ2RpZmZ1c2lvbiUyQ2tpbmV0aWNzJTJDMjAyMw==" data-listing-date-sort="1696863600000" data-listing-file-modified-sort="1786209416430" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="414">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/univ_lecs/2A/材料速度論.html" class="gl-card-link gl-card-cover" aria-label="材料速度論"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">UNIVERSITY · 3 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-材料速度論
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Oct 10, 2023
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="0" data-category="VW5pdmVyc2l0eQ==" href="#category=University">University</a><a class="gl-cat-pill" data-gl-cat="2" data-category="ZGlmZnVzaW9u" href="#category=diffusion">diffusion</a><a class="gl-cat-pill" data-gl-cat="3" data-category="a2luZXRpY3M=" href="#category=kinetics">kinetics</a><a class="gl-cat-pill" data-gl-cat="4" data-category="MjAyMw==" href="#category=2023">2023</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-3 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-University diffusion kinetics 2023
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="44" data-categories="VW5pdmVyc2l0eSUyQ3F1YW50dW0tbWVjaGFuaWNzJTJDbWF0ZXJpYWxzLXNjaWVuY2UlMkMyMDIz" data-listing-date-sort="1696863600000" data-listing-file-modified-sort="1786210840698" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="854">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/univ_lecs/2A/材料量子力学.html" class="gl-card-link gl-card-cover" aria-label="材料量子力学"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">UNIVERSITY · 5 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-材料量子力学
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Oct 10, 2023
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="0" data-category="VW5pdmVyc2l0eQ==" href="#category=University">University</a><a class="gl-cat-pill" data-gl-cat="3" data-category="cXVhbnR1bS1tZWNoYW5pY3M=" href="#category=quantum-mechanics">quantum-mechanics</a><a class="gl-cat-pill" data-gl-cat="2" data-category="bWF0ZXJpYWxzLXNjaWVuY2U=" href="#category=materials-science">materials-science</a><a class="gl-cat-pill" data-gl-cat="4" data-category="MjAyMw==" href="#category=2023">2023</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-5 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-University quantum-mechanics materials-science 2023
-</div>
-</div>
-</article>
-</div>
-<div class="gl-card-wrap" data-index="45" data-categories="QXRDb2RlciUyQ1Byb2dyYW1taW5n" data-listing-date-sort="1696777200000" data-listing-file-modified-sort="1783095775930" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="19">
-<article class="gl-card">
-<div class="gl-card-cover-wrap">
-<a href="./posts/at_coder/cargo_compete.html" class="gl-card-link gl-card-cover" aria-label="Cargo Compete"></a>
-</div>
-<div class="gl-eyebrow">
-<span class="gl-eyebrow-pill">ATCODER · 1 MIN READ</span>
-</div>
-<h2 class="gl-title listing-title anchored">
-Cargo Compete
-</h2>
-<div class="gl-meta">
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-AUTHOR
-</div>
-<div class="gl-author-chip listing-author">
-<span class="gl-avatar" style="background:linear-gradient(135deg,#3c8fcf,#7c5cff)">SY</span><span class="gl-author-name">Serika Yuzuki</span>
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-PUBLISHED
-</div>
-<div class="gl-meta-val listing-date">
-Oct 9, 2023
-</div>
-</div>
-<div class="gl-meta-col">
-<div class="gl-meta-lbl">
-CATEGORIES
-</div>
-<div class="gl-cats listing-categories">
-<a class="gl-cat-pill" data-gl-cat="4" data-category="QXRDb2Rlcg==" href="#category=AtCoder">AtCoder</a><a class="gl-cat-pill" data-gl-cat="0" data-category="UHJvZ3JhbW1pbmc=" href="#category=Programming">Programming</a>
-</div>
-</div>
-<div class="listing-reading-time gl-hidden-listing-value">
-1 MIN READ
-</div>
-<div class="gl-hidden-listing-value">
-AtCoder Programming
-</div>
-</div>
-</article>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-<nav id="listing-pagination" class="listing-pagination" aria-label="Page Navigation">
-  <ul class="pagination"></ul>
-</nav>
-</div><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
