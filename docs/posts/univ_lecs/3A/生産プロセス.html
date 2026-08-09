@@ -22,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -2139,6 +2104,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/KagglePokemonTCGParticipationRecord.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kaggle Pokemon TCG参加記録</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../posts/tech/linkwarden.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linkwardenにブックマーク管理を任せる</span></a>
   </div>
@@ -2278,7 +2249,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/univ_lecs/3A/セラミック材料学.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">セラミックノート</span></a>
+ <span class="menu-text">セラミック材料学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -2484,18 +2455,12 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#過去問まとめ" id="toc-過去問まとめ" class="nav-link active" data-scroll-target="#過去問まとめ">過去問まとめ</a>
-  <ul class="collapse">
-  <li><a href="#年度" id="toc-年度" class="nav-link" data-scroll-target="#年度">2023年度</a>
-  <ul class="collapse">
-  <li><a href="#問1" id="toc-問1" class="nav-link" data-scroll-target="#問1">問1</a></li>
-  <li><a href="#問2" id="toc-問2" class="nav-link" data-scroll-target="#問2">問2</a></li>
-  <li><a href="#問3" id="toc-問3" class="nav-link" data-scroll-target="#問3">問3</a></li>
-  <li><a href="#問4" id="toc-問4" class="nav-link" data-scroll-target="#問4">問4</a></li>
-  <li><a href="#問5" id="toc-問5" class="nav-link" data-scroll-target="#問5">問5</a></li>
-  <li><a href="#問題" id="toc-問題" class="nav-link" data-scroll-target="#問題">問題</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#製錬と精錬" id="toc-製錬と精錬" class="nav-link active" data-scroll-target="#製錬と精錬">製錬と精錬</a></li>
+  <li><a href="#高炉製銑とスラグ" id="toc-高炉製銑とスラグ" class="nav-link" data-scroll-target="#高炉製銑とスラグ">高炉製銑とスラグ</a></li>
+  <li><a href="#スラグ精錬の熱力学" id="toc-スラグ精錬の熱力学" class="nav-link" data-scroll-target="#スラグ精錬の熱力学">スラグ精錬の熱力学</a></li>
+  <li><a href="#ellingham図" id="toc-ellingham図" class="nav-link" data-scroll-target="#ellingham図">Ellingham図</a></li>
+  <li><a href="#関連記事" id="toc-関連記事" class="nav-link" data-scroll-target="#関連記事">関連記事</a></li>
+  <li><a href="#参考資料" id="toc-参考資料" class="nav-link" data-scroll-target="#参考資料">参考資料</a></li>
   </ul>
 </nav>
     </div>
@@ -2509,6 +2474,8 @@ window.Quarto = {
   <div class="quarto-categories">
     <div class="quarto-category">University</div>
     <div class="quarto-category">2024</div>
+    <div class="quarto-category">Steelmaking</div>
+    <div class="quarto-category">Thermodynamics</div>
   </div>
   </div>
 
@@ -2543,272 +2510,411 @@ window.Quarto = {
 \require{mhchem}
 \require{ams}
 \]</span></p>
-<section id="過去問まとめ" class="level1">
-<h1>過去問まとめ</h1>
-<!-- 
-::: {.callout-note collapse="true"}
-### 理論
-
-This is an example of a callout with a title.
-:::
-
-::: {.callout-tip collapse="true"}
-### 解答
-
-This is an example of a callout with a title.
-::: 
--->
-<section id="年度" class="level2">
-<h2 class="anchored" data-anchor-id="年度">2023年度</h2>
-<section id="問1" class="level3">
-<h3 class="anchored" data-anchor-id="問1">問1</h3>
-<p><img src="pimages/image0.jpeg" class="img-fluid"></p>
-<p>製錬：　鉱石中の化合物状態で存在している元素を、熱や化学的エネルギーを加えて金属状態にすること</p>
-<p>精錬：　製錬で得られた金属から不純物を取り除き、純度を高める工程のこと</p>
-</section>
-<section id="問2" class="level3">
-<h3 class="anchored" data-anchor-id="問2">問2</h3>
-<p>略</p>
-</section>
-<section id="問3" class="level3">
-<h3 class="anchored" data-anchor-id="問3">問3</h3>
-<p><img src="pimages/image3.png" class="img-fluid"></p>
-<ol type="1">
-<li>高炉挿入原料：鉄鉱石、コークス、石灰石</li>
-</ol>
-<p>間接還元：</p>
-<p><span class="math display">\[
-\begin{aligned}
-\ce{3Fe2O3 + CO &amp;-&gt; 2Fe3O4 + CO2} \\
-\ce{Fe3O4 + CO &amp;-&gt; 3FeO + CO2} \\
-\ce{FeO + CO &amp;-&gt; Fe + CO2} \\
-\end{aligned}
-\]</span></p>
-<p>直接還元：</p>
-<p><span class="math display">\[
-\ce{FeO + C -&gt; Fe + CO}
-\]</span></p>
-<ol start="2" type="1">
-<li></li>
-</ol>
+<p>この記事では、鉄鋼製錬を「原料から鉄を取り出す」「不純物をスラグへ移す」「溶鋼の成分と温度を整える」という流れで学ぶ。各節は、問題を先に考え、必要なら理論を開き、最後に解答を確認する構成である。</p>
+<section id="製錬と精錬" class="level2">
+<h2 class="anchored" data-anchor-id="製錬と精錬">製錬と精錬</h2>
+<section id="prob-smelting-refining" class="level4">
+<h4 class="anchored" data-anchor-id="prob-smelting-refining">問題1　製錬と精錬の違い</h4>
+<p>「製錬」と「精錬」の違いが分かるように、それぞれの用語の意味を説明せよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論1：金属を得る工程と純度を上げる工程
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>鉱石中の金属は、多くの場合、酸化物や硫化物として存在する。まず化学反応を用いて金属を取り出し、その後、得られた粗金属から炭素・リン・硫黄などを除く、と工程を分けて考える。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <ul>
-<li>水素還元は条件によって吸熱反応である。</li>
-<li>コークスの通気性を保つ性質の代替が不可能。</li>
-<li>銑鉄化(浸炭)ができない。</li>
+<li><strong>製錬</strong>：鉱石中に化合物として存在する目的元素を、還元・溶融などによって金属として取り出す工程。</li>
+<li><strong>精錬</strong>：製錬で得た粗金属から不純物を除き、目的の組成・純度へ調整する工程。</li>
 </ul>
-<ol start="3" type="1">
-<li></li>
-</ol>
-<ul>
-<li>高炉に<strong>微粉化プラスチック</strong>を吹込み、熱分解で <span class="math inline">\(\ce{CO, H2}\)</span> を発生し、<strong>還元剤・燃料</strong>として<strong>コークスや微粉炭を代替</strong>する。</li>
-<li>コークス炉で<strong>微粉化プラスチックを原料として利用</strong>しつつ、<strong>コークス使用量を削減</strong>する。</li>
-</ul>
-<ol start="4" type="1">
-<li></li>
-</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="prob-carbon-neutral" class="level4">
+<h4 class="anchored" data-anchor-id="prob-carbon-neutral">問題2　鉄鋼業のカーボンニュートラル</h4>
+<p>カーボンニュートラル実現を目指して、日本の鉄鋼業はどのような取り組みを行っているか。今後のあり方に対する自身の考えも含めて、300〜500字程度で述べよ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論2：排出源を還元材・熱源・電力に分ける
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>高炉ではコークスが還元材、熱源、炉内の通気を保つ骨格という複数の役割を担う。このため、燃料だけを置き換えても全排出はなくならない。対策は、(i) 高炉で炭素還元の一部を水素還元へ置き換える、(ii) 水素直接還元鉄と電炉を組み合わせる、(iii) スクラップ利用を増やし電炉を高度化する、(iv) 高炉ガスから <span class="math inline">\(\\ce{CO2}\)</span> を分離・回収する、という複線で考える。</p>
+<p><a href="https://www.enecho.meti.go.jp/about/special/johoteikyo/suiso_seitetu.html">資源エネルギー庁の解説</a>では、COURSE50・外部水素を用いる高炉還元・直接還元と電炉の組合せが整理されている。技術だけでなく、低炭素電力・水素の量、スクラップ中の不純物、設備更新費、製品品質まで同時に考える必要がある。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>日本の鉄鋼業は、既存高炉では水素を含むガスを吹き込んでコークス由来の還元を一部代替し、高炉ガスから二酸化炭素を分離・回収するCOURSE50系技術を開発している。並行して、外部水素による直接還元鉄の製造、大型電炉による高級鋼製造、スクラップ利用の拡大、省エネルギー、CCUSも進めている。今後は一つの方式に絞らず、品質要求や地域の電力・水素供給に応じて、高炉・直接還元・電炉を組み合わせるべきである。ただし、電炉化しても電力が化石燃料由来なら排出は残る。再生可能電力と低炭素水素の安定供給、スクラップの選別・循環、移行期の設備投資を一体で進め、製品単位の排出量で効果を評価する必要がある。</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="高炉製銑とスラグ" class="level2">
+<h2 class="anchored" data-anchor-id="高炉製銑とスラグ">高炉製銑とスラグ</h2>
+<section id="prob-blast-furnace" class="level4">
+<h4 class="anchored" data-anchor-id="prob-blast-furnace">問題3　高炉の原料と鉄鉱石の還元</h4>
 <ol type="1">
-<li></li>
+<li>代表的な高炉装入原料を3つ挙げ、高炉内で鉄鉱石から鉄が生成する機構を化学反応式で説明せよ。</li>
+<li>従来型の高炉に還元剤として100%水素ガスを吹き込むだけでは鉄を得られない理由を簡潔に説明せよ。</li>
+<li>廃棄プラスチックを高炉製銑プロセスで有効利用する二つの方法を、それぞれ説明せよ。</li>
 </ol>
-<p>除冷スラグ：　<strong>自然放冷</strong>した<strong>結晶質</strong>のスラグ。<strong>空隙</strong>を含む岩石城で、道路やコンクリートに使われる。</p>
-<p>水砕スラグ：　高温の溶融スラグを<strong>加圧水噴射急冷</strong>した<strong>非晶質</strong>のスラグ。<strong>気泡</strong>を含む粒子状。セメントの原料や路床材に使われる。</p>
-<ol start="2" type="1">
-<li></li>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論3：高炉は反応器であると同時に充填層である
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>鉄鉱石は炉上部から下降し、下部から上昇する <span class="math inline">\(\\ce{CO}\)</span> と接触して段階的に還元される。炉下部ではコークスとの直接還元も起こる。コークスは還元ガスを作るだけでなく、荷重を支えてガスと溶銑の通路を保つため、単純なガス置換ではその機械的役割を代替できない。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>代表原料は<strong>鉄鉱石、コークス、石灰石</strong>である。主な間接還元は</p>
+<p><span class="math display">\[
+\\\ce{3Fe2O3 + CO -&gt; 2Fe3O4 + CO2},
+\]</span></p>
+<p><span class="math display">\[
+\\\ce{Fe3O4 + CO -&gt; 3FeO + CO2},\qquad
+\\\ce{FeO + CO -&gt; Fe + CO2}
+\]</span></p>
+<p>と進み、炉下部では</p>
+<p><span class="math display">\[
+\\\ce{FeO + C -&gt; Fe + CO}
+\]</span></p>
+<p>の直接還元も起こる。</p></li>
+<li><p>水素還元は条件によって吸熱的で炉内の熱収支を悪化させる。また、水素だけではコークスが担う炉内通気性の維持、熱源、溶銑への浸炭を代替できない。</p></li>
+<li><p>高炉羽口から微粉化した廃プラスチックを吹き込み、熱分解で生じる <span class="math inline">\(\\ce{CO}\)</span>・<span class="math inline">\(\\ce{H2}\)</span> を還元材・燃料として利用する方法と、コークス炉の原料へ混合して炭化水素油・コークス炉ガス・コークスとして回収する方法がある。</p></li>
 </ol>
-<div id="fe362c66" class="cell" data-execution_count="1">
-<details class="code-fold">
-<summary>コードはこちら</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Vertices of ternary diagram ---</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>V_CaO <span class="op">=</span> np.array([<span class="fl">0.0</span>, <span class="fl">0.0</span>])</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>V_Al  <span class="op">=</span> np.array([<span class="fl">1.0</span>, <span class="fl">0.0</span>])</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>V_Si  <span class="op">=</span> np.array([<span class="fl">0.5</span>, math.sqrt(<span class="dv">3</span>)<span class="op">/</span><span class="dv">2</span>])</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bary_to_xy(cao, al, si):</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> cao <span class="op">+</span> al <span class="op">+</span> si</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    cao, al, si <span class="op">=</span> cao<span class="op">/</span>s, al<span class="op">/</span>s, si<span class="op">/</span>s</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cao<span class="op">*</span>V_CaO <span class="op">+</span> al<span class="op">*</span>V_Al <span class="op">+</span> si<span class="op">*</span>V_Si</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">6</span>))</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Draw triangle ---</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>tri <span class="op">=</span> np.vstack([V_CaO, V_Al, V_Si, V_CaO])</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>ax.plot(tri[:,<span class="dv">0</span>], tri[:,<span class="dv">1</span>], color<span class="op">=</span><span class="st">"black"</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Axis ticks every 10% ---</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>ticks <span class="op">=</span> np.linspace(<span class="fl">0.1</span>, <span class="fl">0.9</span>, <span class="dv">9</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># SiO2 ticks (parallel to base)</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> ticks:</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    p1 <span class="op">=</span> bary_to_xy(<span class="dv">1</span><span class="op">-</span>s, <span class="dv">0</span>, s)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    p2 <span class="op">=</span> bary_to_xy(<span class="dv">0</span>, <span class="dv">1</span><span class="op">-</span>s, s)</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    ax.plot([p1[<span class="dv">0</span>], p2[<span class="dv">0</span>]], [p1[<span class="dv">1</span>], p2[<span class="dv">1</span>]], color<span class="op">=</span><span class="st">"lightgray"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    ax.text(p2[<span class="dv">0</span>]<span class="op">+</span><span class="fl">0.02</span>, p2[<span class="dv">1</span>], <span class="ss">f"</span><span class="sc">{</span><span class="bu">int</span>(s<span class="op">*</span><span class="dv">100</span>)<span class="sc">}</span><span class="ss">%"</span>, fontsize<span class="op">=</span><span class="dv">8</span>, va<span class="op">=</span><span class="st">"center"</span>)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co"># CaO ticks (parallel to Al2O3–SiO2 edge)</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> ticks:</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    p1 <span class="op">=</span> bary_to_xy(c, <span class="dv">1</span><span class="op">-</span>c, <span class="dv">0</span>)</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    p2 <span class="op">=</span> bary_to_xy(c, <span class="dv">0</span>, <span class="dv">1</span><span class="op">-</span>c)</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    ax.plot([p1[<span class="dv">0</span>], p2[<span class="dv">0</span>]], [p1[<span class="dv">1</span>], p2[<span class="dv">1</span>]], color<span class="op">=</span><span class="st">"lightgray"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Al2O3 ticks (parallel to CaO–SiO2 edge)</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a <span class="kw">in</span> ticks:</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    p1 <span class="op">=</span> bary_to_xy(<span class="dv">1</span><span class="op">-</span>a, a, <span class="dv">0</span>)</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    p2 <span class="op">=</span> bary_to_xy(<span class="dv">0</span>, a, <span class="dv">1</span><span class="op">-</span>a)</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    ax.plot([p1[<span class="dv">0</span>], p2[<span class="dv">0</span>]], [p1[<span class="dv">1</span>], p2[<span class="dv">1</span>]], color<span class="op">=</span><span class="st">"lightgray"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Highlight required lines ---</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="co"># CaO : Al2O3 = 2 : 1</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">200</span>)</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>cao <span class="op">=</span> (<span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> t)</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>al  <span class="op">=</span> (<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> t)</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>si  <span class="op">=</span> t</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>xy_ratio <span class="op">=</span> np.vstack([bary_to_xy(cao[i], al[i], si[i]) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(t))])</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>ax.plot(xy_ratio[:,<span class="dv">0</span>], xy_ratio[:,<span class="dv">1</span>], color<span class="op">=</span><span class="st">"red"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"CaO:Al$_2$O$_3$ = 2:1"</span>)</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="co"># SiO2 = 30%</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">=</span> bary_to_xy(<span class="fl">0.70</span>, <span class="fl">0.00</span>, <span class="fl">0.30</span>)</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>p2 <span class="op">=</span> bary_to_xy(<span class="fl">0.00</span>, <span class="fl">0.70</span>, <span class="fl">0.30</span>)</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>ax.plot([p1[<span class="dv">0</span>], p2[<span class="dv">0</span>]], [p1[<span class="dv">1</span>], p2[<span class="dv">1</span>]], color<span class="op">=</span><span class="st">"blue"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"SiO$_2$ = 30%"</span>)</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Labels ---</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>ax.text(V_CaO[<span class="dv">0</span>]<span class="op">-</span><span class="fl">0.05</span>, V_CaO[<span class="dv">1</span>]<span class="op">-</span><span class="fl">0.05</span>, <span class="st">"CaO"</span>, ha<span class="op">=</span><span class="st">"right"</span>, va<span class="op">=</span><span class="st">"top"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>ax.text(V_Al[<span class="dv">0</span>]<span class="op">+</span><span class="fl">0.05</span>,  V_Al[<span class="dv">1</span>]<span class="op">-</span><span class="fl">0.05</span>,  <span class="st">"Al$_2$O$_3$"</span>, ha<span class="op">=</span><span class="st">"left"</span>, va<span class="op">=</span><span class="st">"top"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>ax.text(V_Si[<span class="dv">0</span>],       V_Si[<span class="dv">1</span>]<span class="op">+</span><span class="fl">0.06</span>,  <span class="st">"SiO$_2$"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"bottom"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">"equal"</span>)</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">"off"</span>)</span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">"upper right"</span>, frameon<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-display">
-<div>
+</div>
+</div>
+</div>
+</section>
+<section id="prob-ternary-slag" class="level4">
+<h4 class="anchored" data-anchor-id="prob-ternary-slag">問題4　三元系状態図と高炉スラグ</h4>
+<p>高炉スラグの代表成分を <span class="math inline">\(\\ce{CaO-Al2O3-SiO2}\)</span> 三元系状態図で考える。状態図中のムライト固溶体は無視する。</p>
+<ol type="1">
+<li>高炉スラグを冷却方法によって二種類に大別し、それぞれの特徴と代表的な用途を述べよ。</li>
+<li><span class="math inline">\(\\ce{CaO}:\\ce{Al2O3}=2:1\)</span> の組成線と、<span class="math inline">\(\\ce{SiO2}=30\ \mathrm{mass\%}\)</span> の組成線を三元図に描け。</li>
+<li><span class="math inline">\(45\ \mathrm{mass\%\ CaO}\)</span>–<span class="math inline">\(20\ \mathrm{mass\%\ Al2O3}\)</span>–<span class="math inline">\(35\ \mathrm{mass\%\ SiO2}\)</span> の溶融スラグを平衡を保って冷却する。液相が消失する温度と、凝固後に存在する相を状態図から求めよ。</li>
+<li><span class="math inline">\(1600\,\mathrm{^\circ C}\)</span> の等温断面図を描き、共役線と平衡相を明記せよ。</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論4：三元図では平行線とタイラインを読む
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>三角形の各頂点は一成分100%を表し、頂点の対辺に平行な線上ではその頂点成分の濃度が一定である。二成分の比が一定の組成線は、残りの成分の頂点と、その比を満たす対辺上の点を結ぶ。</p>
+<p>冷却経路は組成点から温度を下げて液相面を追う。液相面に達したところで初晶が生じ、境界を通って不変点へ至る。三相域では、組成点を囲む三角形の三頂点が平衡相である。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong>徐冷スラグ</strong>は自然放冷した結晶質スラグで、砕石として道路路盤材やコンクリート骨材に用いる。<strong>水砕スラグ</strong>は溶融スラグを水で急冷したガラス質・粒状のスラグで、潜在水硬性を利用して高炉セメント原料などに用いる。</p></li>
+<li><p>赤線が <span class="math inline">\(\\ce{CaO}:\\ce{Al2O3}=2:1\)</span>、青緑線が <span class="math inline">\(\\ce{SiO2}=30\ \mathrm{mass\%}\)</span> を示す。元の図へ引いた組成線をそのまま残す。</p>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="生産プロセス_files/figure-html/cell-2-output-1.png" width="608" height="507" class="figure-img"></p>
+<p><img src="pimages/image1.png" class="img-fluid figure-img" alt="CaO-Al2O3-SiO2三元状態図。赤と青緑の組成線、冷却経路、相の読み取りが書き込まれている。"></p>
+<figcaption>CaO-Al2O3-SiO2三元状態図に組成線と冷却経路を書き込んだ解答</figcaption>
 </figure>
+</div></li>
+<li><p>図から読む近似値では、約 <span class="math inline">\(1265\,\mathrm{^\circ C}\)</span> で液相が消失する。最終的な平衡相は、ゲーレナイト <span class="math inline">\(\\ce{2CaO.Al2O3.SiO2}\)</span>、アノーサイト <span class="math inline">\(\\ce{CaO.Al2O3.2SiO2}\)</span>、ウォラストナイト <span class="math inline">\(\\ce{CaO.SiO2}\)</span> の三相である。図の解像度に基づく読み取り値なので、温度に過剰な有効数字は付けない。</p></li>
+<li><p><span class="math inline">\(1600\,\mathrm{^\circ C}\)</span> の液相域と固相を区分し、二相域では液相組成と固相組成を共役線で結ぶ。図へ直接記入した等温断面の解答を残す。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pimages/image2.png" class="img-fluid figure-img" alt="CaO-Al2O3-SiO2三元状態図に1600℃の液相域、相境界、共役線を書き込んだ図。"></p>
+<figcaption>1600℃におけるCaO-Al2O3-SiO2三元系の等温断面を書き込んだ解答</figcaption>
+</figure>
+</div></li>
+</ol>
 </div>
 </div>
 </div>
-<p>3)4)</p>
-<p><img src="pimages/image1.png" class="img-fluid"></p>
-<p><img src="pimages/image2.png" class="img-fluid"></p>
 </section>
-<section id="問4" class="level3">
-<h3 class="anchored" data-anchor-id="問4">問4</h3>
-<p><img src="pimages/image6-1.png" class="img-fluid"></p>
-<p><img src="pimages/image6-2.png" class="img-fluid"></p>
+</section>
+<section id="スラグ精錬の熱力学" class="level2">
+<h2 class="anchored" data-anchor-id="スラグ精錬の熱力学">スラグ精錬の熱力学</h2>
+<section id="prob-dephosphorization" class="level4">
+<h4 class="anchored" data-anchor-id="prob-dephosphorization">問題5　脱リン反応と分配比</h4>
+<p>転炉脱炭に先立つ溶銑予備処理で、スラグを用いてリンを除去する。</p>
 <ol type="1">
-<li></li>
-</ol>
-<ol type="1">
-<li></li>
-</ol>
+<li><p>脱リンのイオン反応式を示し、反応を促進する条件を三つ挙げよ。</p></li>
+<li><p>炭素がリンの活量係数へ及ぼす一次相互作用助係数 <span class="math inline">\(e_{\\\ce{P}}^{\\\ce{C}}\)</span> の定義を示せ。<span class="math inline">\(e_{\\\ce{P}}^{\\\ce{C}}=0.079\)</span>、<span class="math inline">\([\%\\\ce{C}]=4.5\)</span> として、1 mass% Henrian基準のリンの活量係数 <span class="math inline">\(f_{\\\ce{P}}\)</span> を求めよ。</p></li>
+<li><p>反応</p>
 <p><span class="math display">\[
-\ce{P + \frac{5}{4}O2 + \frac{3}{2}O^{2-} -&gt; PO4^{3-}}
+\\\ce{1/2P2(g) = P(1 mass\%)}
 \]</span></p>
-<p>低温・高塩基性・高酸素分圧でリン酸イオンが安定。</p>
-<ol start="2" type="1">
-<li></li>
+<p>の標準Gibbsエネルギー変化が</p>
+<p><span class="math display">\[
+\Delta G_1^\circ=-122200-19.25T\ \mathrm{J\,mol^{-1}}
+\]</span></p>
+<p>であるとき、平衡定数 <span class="math inline">\(K_1\)</span> を <span class="math inline">\(T\)</span> の関数として表せ。</p></li>
+<li><p><span class="math inline">\(1300\,\mathrm{^\circ C}\)</span>、<span class="math inline">\(p_{\\\ce{O2}}=10^{-15}\ \mathrm{atm}\)</span> でリン分配比を <span class="math inline">\(L_{\\\ce{P}}=5.00\times10^2\)</span> とする。関係式</p>
+<p><span class="math display">\[
+L_{\\\ce{P}}=rac{0.326 f_{\\\ce{P}}C_{\\\ce{PO4^{3-}}}p_{\\\ce{O2}}^{5/4}}{K_1}
+\]</span></p>
+<p>から、必要なフォスフェイトキャパシティー <span class="math inline">\(C_{\\\ce{PO4^{3-}}}\)</span> を求めよ。気体定数は <span class="math inline">\(R=8.314\ \mathrm{J\,mol^{-1}K^{-1}}\)</span> とする。</p></li>
 </ol>
-<p>定義式は次のとおり</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論5：化学ポテンシャルを分配比へつなぐ
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>脱リンでは、溶銑中のリンを酸化し、塩基性スラグ中でリン酸イオンとして安定化する。したがって高酸素ポテンシャル、高塩基度、低温が有利である。活量は濃度と活量係数の積であり、Wagnerの一次近似では希薄溶質 <span class="math inline">\(i\)</span> について</p>
 <p><span class="math display">\[
-e_{\ce{P}}^{\ce{C}} = \lim _{ [\%1] \to 100} \pdv{\log_{10} f_{\ce{P}}}{[\%\ce{C}]}
+\log_{10}f_i=\sum_j e_i^j[\%j]
 \]</span></p>
-<p>実際の値は、</p>
+<p>と書く。標準Gibbsエネルギーと平衡定数の関係は</p>
 <p><span class="math display">\[
-\begin{aligned}
-\log_{10}f_{\ce{P}} &amp;= e_{\ce{P}}^{\ce{C}} [\%\ce{C}] \\
-&amp;= 0.079 \times 4.5 \\
-&amp;= 0.3555 \\
-\therefore \quad f_{\ce{P}} &amp;= 10^{0.3555} = 2.27
-\end{aligned}
+\Delta G^\circ=-RT\ln K
 \]</span></p>
-<ol start="3" type="1">
-<li></li>
-</ol>
-<p><span class="math display">\[
-\begin{aligned}
-\Delta G_1^\circ &amp;= -122200 - 19.25T\;(\mathrm{J/mol}) \\
-\Delta G_1^\circ &amp;= -RT\ln K_1 \\
-\Rightarrow
-\ln K_1 &amp;= -\frac{\Delta G_1^\circ}{RT} \\
-&amp;= \frac{122200+19.25T}{RT}
-\end{aligned}
-\]</span></p>
-<ol start="4" type="1">
-<li></li>
-</ol>
-<p><span class="math display">\[
-\begin{aligned}
-L_\ce{P} &amp;= \frac{0.326 f_{\ce{P}} C_{\ce{PO4^{3-}}}p_{\ce{O2}}^{\frac{5}{4}}}{K_1} \\
-&amp;= \frac{0.326 \times 2.27  \times (10^{-15})^{\frac{5}{4}}}{\exp\qty(\frac{-(122200 + 19.25 \times 1573)}{8.314 \times 1573})} C_{\ce{PO4^{3-}}}\\
-&amp;= 1.14 \times 10^{-24} C_{\ce{PO4^{3-}}} \\
-&amp;= 5.00 \times 10^{2} \\
-\therefore \quad C_{\ce{PO4^{3-}}} &amp;= 4.40 \times 10^{26}
-\end{aligned}
-\]</span></p>
-<div id="aafb6d71" class="cell" data-execution_count="2">
-<details class="code-fold">
-<summary>コードはこちら</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fl">8.314</span>  <span class="co"># J/(mol·K)</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">1573</span>  <span class="co"># K</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>f_P <span class="op">=</span> <span class="fl">2.27</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>p_O2 <span class="op">=</span> <span class="fl">1e-15</span>  <span class="co"># atm</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>delta_G1_0 <span class="op">=</span> <span class="op">-</span><span class="dv">122200</span> <span class="op">-</span> <span class="fl">19.25</span> <span class="op">*</span> T  <span class="co"># J/mol</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>K1 <span class="op">=</span> np.exp(<span class="op">-</span>delta_G1_0 <span class="op">/</span> (R <span class="op">*</span> T))</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>L_P <span class="op">=</span> <span class="fl">5.00e2</span>  <span class="co"># given</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>C_PO4_3_minus <span class="op">=</span> L_P <span class="op">*</span> K1 <span class="op">/</span> (<span class="fl">0.326</span> <span class="op">*</span> f_P <span class="op">*</span> p_O2<span class="op">**</span>(<span class="dv">5</span><span class="op">/</span><span class="dv">4</span>))</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"C_PO4^3- is:"</span>, C_PO4_3_minus, <span class="st">"mol/m^3"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>C_PO4^3- is: 4.398695474423597e+26 mol/m^3</code></pre>
+<p>である。</p>
 </div>
 </div>
-<ol start="2" type="1">
-<li><p>転炉精錬の主目的は、<strong>溶銑中の炭素を酸化反応によって除去</strong>し、所定の炭素量をもつ鋼を得ること。同時に<strong>SiやMnは優先的に酸化</strong>されスラグ中へ移行し、<strong>塩基性スラグと高い酸素ポテンシャル下でリンもリン酸塩として除去</strong>される。これらの<strong>処理を同時に実現</strong>し、外部加熱を用いずに<strong>溶鋼温度を上昇</strong>させることができる。</p></li>
-<li></li>
-</ol>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <ol type="1">
-<li></li>
+<li><p>反応は</p>
+<p><span class="math display">\[
+\\\ce{P + 5/4O2 + 3/2O^{2-} -&gt; PO4^{3-}}
+\]</span></p>
+<p>である。促進条件は、<strong>高酸素分圧、高塩基度（高い酸化物イオン活量）、低温</strong>である。</p></li>
+<li><p>定義は</p>
+<p><span class="math display">\[
+e_{\\\ce{P}}^{\\\ce{C}}
+=\left(\pdv{\log_{10}f_{\\\ce{P}}}{[\%\\\ce{C}]}\right)_{[\%\\\ce{C}]\to0}
+\]</span></p>
+<p>である。一次項だけを用いると</p>
+<p><span class="math display">\[
+\log_{10}f_{\\\ce{P}}=0.079\times4.5=0.3555,
+\qquad f_{\\\ce{P}}=10^{0.3555}=2.27.
+\]</span></p></li>
+<li><p><span class="math display">\[
+K_1=\exp\left(-\frac{\Delta G_1^\circ}{RT}\right)
+=\exp\left(\frac{122200+19.25T}{RT}\right).
+\]</span></p></li>
+<li><p><span class="math inline">\(T=1573\ \mathrm{K}\)</span> では <span class="math inline">\(K_1=1.16\times10^5\)</span> なので、</p>
+<p><span class="math display">\[
+C_{\\\ce{PO4^{3-}}}
+=\frac{L_{\\\ce{P}}K_1}{0.326f_{\\\ce{P}}p_{\\\ce{O2}}^{5/4}}
+=4.40\times10^{26}.
+\]</span></p></li>
 </ol>
+</div>
+</div>
+</div>
+</section>
+<section id="prob-steelmaking" class="level4">
+<h4 class="anchored" data-anchor-id="prob-steelmaking">問題6　転炉精錬と二次精錬</h4>
+<ol type="1">
+<li>転炉精錬の主目的と、溶銑中の元素が示す反応挙動を100〜200字程度で述べよ。</li>
+<li>溶鋼中のガス成分を除去する代表的な二つの方法を、対象ガスと原理とともに示せ。</li>
+<li>ステンレス鋼を溶製するとき、高炭素フェロクロムの添加後にどのような方法で脱炭するか。クロムの酸化損失を抑える原理とともに説明せよ。</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論6：分圧を下げれば溶解ガスは抜ける
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>転炉では酸素吹錬によって炭素を <span class="math inline">\(\\ce{CO}\)</span> として除去する。Si、Mn、Pも酸化されてスラグへ移る。二次精錬では、真空によって気相側分圧を下げる、または不活性ガスで希釈・攪拌して、溶鋼中のH、N、COを気相へ移す。</p>
+<p>ステンレス鋼では、低い <span class="math inline">\(p_{\\\ce{CO}}\)</span> ほど同じ酸素ポテンシャルで脱炭が進み、Crの酸化を抑えやすい。この考えをAr希釈で使うのがAOD、真空で使うのがVODである。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答6
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>主目的は酸素吹錬による脱炭である。初期にはSi、Mnが優先酸化され、中期に脱炭が活発化し、塩基性スラグと高い酸素ポテンシャルの下でPも除去される。反応熱で外部加熱なしに溶鋼温度を上げ、所定の炭素濃度と温度へ調整する。</p></li>
+<li><p><strong>RH法</strong>ではArガスリフトで溶鋼を真空槽へ循環させ、H、Nおよび脱酸で生じたCOを除く。<strong>VD法</strong>では取鍋全体を真空下に置き、Ar攪拌で界面更新を促して主にH、Nを除去する。</p></li>
+<li><p>AODでは酸素をAr（またはAr–<span class="math inline">\(\\ce{N2}\)</span>）で希釈して <span class="math inline">\(p_{\\\ce{CO}}\)</span> を下げ、VODでは真空下で酸素吹錬して <span class="math inline">\(p_{\\\ce{CO}}\)</span> を下げる。いずれも脱炭平衡を生成物側へ移し、CrよりCを優先的に酸化する。</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="ellingham図" class="level2">
+<h2 class="anchored" data-anchor-id="ellingham図">Ellingham図</h2>
+<section id="prob-ellingham" class="level4">
+<h4 class="anchored" data-anchor-id="prob-ellingham">問題7　酸化物の安定性と還元可能性</h4>
+<p>酸化物の標準生成Gibbsエネルギー－温度線図（Ellingham図）について答えよ。</p>
+<ol type="1">
+<li>縦軸の標準生成Gibbsエネルギーは、酸素分圧とどのように関係するか。図から平衡酸素分圧を読む方法も説明せよ。</li>
+<li>各直線の傾きと <span class="math inline">\(0\ \mathrm{K}\)</span> における切片は何を意味するか。多くの酸化反応の傾きがほぼ同じ理由も述べよ。</li>
+<li><span class="math inline">\(1600\ \mathrm{K}\)</span> で <span class="math inline">\(\\ce{SiO2}\)</span> をCOガスによって容易に還元できるか、理由を付けて答えよ。</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論7：下にある酸化物ほど安定
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>反応を酸素1 mol消費する形にそろえると、平衡では</p>
+<p><span class="math display">\[
+\Delta G^\circ=-RT\ln K=RT\ln p_{\\\ce{O2}}
+\]</span></p>
+<p>と対応づけられる。線が下にある酸化反応ほど標準生成Gibbsエネルギーが低く、その酸化物は安定である。別の物質で還元できるかは、還元剤の酸化線が対象酸化物の生成線より下にあるかで判断する。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答7
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>酸素1 mol基準の酸化反応なら、縦軸は平衡時の <span class="math inline">\(RT\ln p_{\\\ce{O2}}\)</span> に対応する。所定温度で酸化物生成線の値を読み、<span class="math inline">\(p_{\\\ce{O2}}=\exp(\Delta G^\circ/RT)\)</span> として平衡酸素分圧を得る。</p></li>
+<li><p><span class="math display">\[
+\Delta G^\circ=\Delta H^\circ-T\Delta S^\circ
+\]</span></p>
+<p>より、傾きは <span class="math inline">\(-\Delta S^\circ\)</span>、<span class="math inline">\(0\ \mathrm{K}\)</span> の切片は <span class="math inline">\(\Delta H^\circ\)</span> である。多くの反応では酸素1 molを消費し、固体同士のエントロピー差は気体酸素の消失に比べて小さいため、<span class="math inline">\(\Delta S^\circ\)</span> が似た値となる。</p></li>
+<li><p>容易ではない。<span class="math inline">\(1600\ \mathrm{K}\)</span> では <span class="math inline">\(\\ce{SiO2}\)</span> の生成線が <span class="math inline">\(\\ce{CO/CO2}\)</span> の酸化線より下にあり、<span class="math inline">\(\\ce{SiO2}\)</span> の方が熱力学的に安定だからである。</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="関連記事" class="level2">
+<h2 class="anchored" data-anchor-id="関連記事">関連記事</h2>
 <ul>
-<li><strong>RD</strong>：<strong>アルゴンガスにの吹き込み</strong>によって<strong>真空槽</strong>に溶鉱を<strong>循環</strong>させる方法。H, N, COの除去に有効。</li>
-<li><strong>VD</strong>：真空槽内で溶鉱を<strong>攪拌</strong>し、真空引きによって<strong>Hを効率的</strong>に除去する方法.</li>
+<li>化学ポテンシャル、活量、平衡定数の基礎は<a href="../../../posts/univ_lecs/3S/材料電気化学.html">材料電気化学</a>を参照。</li>
+<li>相図の読み方と相平衡は<a href="../../../posts/univ_lecs/3S/組織生成論.html">組織生成論</a>を参照。</li>
 </ul>
-<ol start="2" type="1">
-<li></li>
-</ol>
-<p>クロム酸化損失の抑制のために、AODやVODが用いられる。前者は<strong>アルゴンガスを吹き込んでCO分圧を下げる</strong>手法で、後者は真空下で<strong>酸素を吹き込むことでCO</strong>を吸い上げる手法。</p>
 </section>
-<section id="問5" class="level3">
-<h3 class="anchored" data-anchor-id="問5">問5</h3>
-<p><img src="pimages/image5.png" class="img-fluid"></p>
-<ol type="1">
-<li></li>
-</ol>
-<p><span class="math inline">\(\ln p_{\ce{O2}}\)</span> を表している。ある温度での縦軸の値から、反応が平衡となる酸素分圧を読み取れば良い。</p>
-<ol start="2" type="1">
-<li></li>
-</ol>
-<p>傾きは <span class="math inline">\(-\Delta S\)</span> であり、切片は <span class="math inline">\(\Delta H\)</span> である。酸化反応でエントロピー変化が類似するため。</p>
-<ol start="3" type="1">
-<li></li>
-</ol>
-<p>1600 Kでは <span class="math inline">\(\ce{SiO2}\)</span> の生成Gibbsエネルギーが <span class="math inline">\(\ce{CO}\)</span> の酸化反応より低く、<span class="math inline">\(\ce{SiO2}\)</span> が熱力学的に安定であるため、 <span class="math inline">\(\ce{CO}\)</span> による還元は困難である</p>
-</section>
-<section id="問題" class="level3">
-<h3 class="anchored" data-anchor-id="問題">問題</h3>
-<p><img src="pimages/image7.png" class="img-fluid"></p>
-<p>CaO, Al2O3, SiO2 が主成分。300kgほどのスラグを作る</p>
+<section id="参考資料" class="level2">
+<h2 class="anchored" data-anchor-id="参考資料">参考資料</h2>
+<ul>
+<li><a href="https://www.enecho.meti.go.jp/about/special/johoteikyo/suiso_seitetu.html">資源エネルギー庁「水素を活用した製鉄技術、今どこまで進んでる？」</a></li>
+<li><a href="https://www.meti.go.jp/shingikai/sankoshin/green_innovation/energy_structure/pdf/028_03_00.pdf">経済産業省「鉄鋼業のカーボンニュートラルに向けた国内外の動向等について」</a></li>
+</ul>
 
 
-</section>
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
