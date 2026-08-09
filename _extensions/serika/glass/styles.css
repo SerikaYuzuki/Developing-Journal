@@ -198,8 +198,10 @@ main.content,
   font-size: 1rem;
   line-height: 1.68;
 }
-.page-columns .content > :is(p, ul, ol, blockquote, .callout, table, .table, .table-responsive) {
+.page-columns .content > :is(p, ul, ol, blockquote, .blockquote, .callout, table, .table, .table-responsive, div.sourceCode, figure, .figure, .panel-tabset, .cell, details) {
+  box-sizing: border-box;
   max-width: var(--pj-reading-width, 76ch);
+  margin-inline: auto;
 }
 .page-columns .content > p { margin-block: 0.72rem 0.95rem; }
 .page-columns .content > :is(ul, ol) { margin-block: 0.65rem 0.95rem; padding-inline-start: 1.35rem; }
@@ -302,7 +304,10 @@ body.pj-theme-transition {
   body { overflow-x: hidden; }
   /* Edge-to-edge reading on narrow screens; only notch/safe-area remains. */
   .page-columns .content { padding-inline: 0 !important; }
-  .page-columns .content > :is(p, ul, ol, blockquote, .callout, table, .table, .table-responsive) { max-width: none; }
+  .page-columns .content > :is(p, ul, ol, blockquote, .blockquote, .callout, table, .table, .table-responsive, div.sourceCode, figure, .figure, .panel-tabset, .cell, details) {
+    max-width: none;
+    margin-inline: 0;
+  }
   /* Pandoc can emit a table without Quarto's optional responsive wrapper.
      Keep that table readable with an inline scroller instead of letting it
      widen the document and create a second horizontal page scrollbar. */
@@ -1367,16 +1372,28 @@ body::after {
   content: none;
 }
 
+/* Keep every top-level prose block on the same centered reading column.
+   Sections already constrain nested tables/quotes; preamble blocks that sit
+   directly under #quarto-document-content (before the first h2) need the
+   same max-width + auto margins or they stick to the left edge. */
 #quarto-document-content.content > section,
 #quarto-document-content.content > p,
 #quarto-document-content.content > ul,
-#quarto-document-content.content > ol {
-  width: 100%;
-  max-width: var(--pj-reading-width);
-  margin-inline: auto;
-}
-
+#quarto-document-content.content > ol,
+#quarto-document-content.content > blockquote,
+#quarto-document-content.content > .blockquote,
+#quarto-document-content.content > table,
+#quarto-document-content.content > .table,
+#quarto-document-content.content > .table-responsive,
+#quarto-document-content.content > .callout,
+#quarto-document-content.content > div.sourceCode,
+#quarto-document-content.content > figure,
+#quarto-document-content.content > .figure,
+#quarto-document-content.content > .panel-tabset,
+#quarto-document-content.content > .cell,
+#quarto-document-content.content > details,
 #quarto-document-content.content > #quarto-appendix {
+  box-sizing: border-box;
   width: 100%;
   max-width: var(--pj-reading-width);
   margin-inline: auto;
@@ -2189,6 +2206,12 @@ body::after {
   #quarto-document-content.content > p,
   #quarto-document-content.content > ul,
   #quarto-document-content.content > ol,
+  #quarto-document-content.content > blockquote,
+  #quarto-document-content.content > .blockquote,
+  #quarto-document-content.content > .callout,
+  #quarto-document-content.content > .panel-tabset,
+  #quarto-document-content.content > .cell,
+  #quarto-document-content.content > details,
   #quarto-document-content.content > #quarto-appendix,
   .quarto-listing-container-custom {
     max-width: none;
@@ -2199,9 +2222,8 @@ body::after {
   #quarto-document-content.content > :is(div.sourceCode, table, .table, .table-responsive, figure, .figure) {
     margin-inline: 0;
     max-width: none;
-  }
-  #quarto-document-content.content > :is(.callout, .panel-tabset) {
-    margin-inline: 0.5rem;
+    padding-inline: 0.5rem;
+    box-sizing: border-box;
   }
   #quarto-document-content.content > :is(div.sourceCode) {
     margin-inline: 0;

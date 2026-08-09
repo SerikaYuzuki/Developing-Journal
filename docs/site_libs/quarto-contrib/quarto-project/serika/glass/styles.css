@@ -199,6 +199,7 @@ main.content,
   line-height: 1.68;
 }
 .page-columns .content > :is(p, ul, ol, blockquote, .blockquote, .callout, table, .table, .table-responsive, div.sourceCode, figure, .figure, .panel-tabset, .cell, details) {
+  box-sizing: border-box;
   max-width: var(--pj-reading-width, 76ch);
   margin-inline: auto;
 }
@@ -1392,6 +1393,7 @@ body::after {
 #quarto-document-content.content > .cell,
 #quarto-document-content.content > details,
 #quarto-document-content.content > #quarto-appendix {
+  box-sizing: border-box;
   width: 100%;
   max-width: var(--pj-reading-width);
   margin-inline: auto;
