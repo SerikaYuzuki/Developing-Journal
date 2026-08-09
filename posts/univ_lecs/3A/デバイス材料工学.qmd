@@ -1,8 +1,8 @@
 ---
 title: "デバイス材料工学"
 author: "Serika Yuzuki"
-date: "2024-12-2"
-categories: [University, 2024]
+date: "2024-12-02"
+categories: [University, 2024, Semiconductor, Optoelectronics]
 image: "images/thumbnail.png"
 ---
 
@@ -10,459 +10,378 @@ $$
 \require{physics}
 $$
 
-過去問を中心にして書いていく予定。
+この記事では、キャリア統計から光吸収・発光・太陽電池へ進む。各問題を先に考え、必要な理論を開き、最後に模範解答を確認する。
 
-# 半導体デバイス
+## 半導体のキャリア
 
-## 電流や抵抗率などの話
+#### 問題1　真性キャリア密度とフェルミ準位 {#prob-intrinsic-carrier}
 
-電流は、素電荷e・キャリア密度n・断面積S・平均速度vの積で表される。
-
-$$
-I = e n S v
-$$
-
-また、抵抗は抵抗率 $\rho$ と導電率 $\sigma$ でかける。
-
-$$
-\begin{aligned}
-R &= \rho \frac{L}{S} = \sigma^{-1} \frac{L}{S} 
-\end{aligned}
-$$
-
-次に電流密度は次のように定義する。
-
-$$
-j = \frac{I}{S} = \frac{V}{R} \frac{1}{S} = \sigma \frac{V}{L} = \sigma E
-$$
-
-ここで、キャリアの移動度という概念を導入する。金属内ではキャリアがぶつかりながら一定の平均速度で動いていると考えられる。この平均速度vは、電場Eに比例する。その比例係数を移動度 $\mu$ と定義する。
-
-$$
-v = \mu E
-$$
-
-この移動度を用いると、電流密度jは次のように表される。
-
-$$
-\begin{aligned}
-j &= \sigma \frac{v}{\mu} = e n v \\
-\sigma &= e n \mu
-\end{aligned}
-$$
-
-## フェルミ-ディラック分布
-
-復習の話。
-
-まず、フェルミ準位ってのは絶対零度での化学ポテンシャル。絶対零度でこのエネルギーより下にある状態は全て電子で満たされ、このエネルギーより上にある状態は全て空になる。
-
-それで、絶対零度以外では、フェルミ準位付近で電子が熱的に励起されるため、エネルギー状態の占有率は0か1かではなくなる。この占有率を与えるのがフェルミ-ディラック分布関数である。
-
-$$
-f_{\mathrm{fd}}(E, T) = \frac{1}{\exp\left(\frac{E - E_{\mathrm{F}}}{k_{\mathrm{B}} T}\right) + 1}
-$$
-
-ここで、 $(E-F_{\mathrm{F}})/k_{\mathrm{B}} T \gg 1$ の時近似できて、
-
-$$
-f_{\mathrm{fd}}(E, T) \approx \exp\left(-\frac{E - E_{\mathrm{F}}}{k_{\mathrm{B}} T}\right)
-$$
-
-同じ状況での状態密度は、次の式。
-
-$$
-G_{\mathrm{c}}(E) = \frac{1}{2 \pi^{2}} \left(\frac{2 m_{\mathrm{e}}^{*}}{\hbar^{2}}\right)^{\frac{3}{2}} \sqrt{E - E_{\mathrm{c}}}
-$$
-
-$f_{\mathrm{fd}}(E, T)$ ってのは存在する確率で、 $G_{\mathrm{c}}(E)$ ってのはそのエネルギーに存在する状態数密度（席の数）だから、両方をかけて積分すれば、伝導帯に存在する電子の総数が求まる。
-
-したがって、伝導帯における電子濃度は、
-
-$$
-\begin{aligned}
-n &= \int_{E_{\mathrm{c}}}^{\infty} G_{\mathrm{c}}(E) f_{\mathrm{fd}}(E, T) dE \\
-&= N_{\mathrm{c}} \frac{2}{\sqrt{\pi}} \int_{0}^{\infty} \frac{2}{\sqrt{\pi}} \frac{\sqrt{t}}{1+\exp(t - \frac{E_{\mathrm{F}} - E_{\mathrm{c}}}{k_{\mathrm{B}} T})} dt \\
-\end{aligned}
-$$
-
-ここで、$N_{\mathrm{c}}$ は伝導帯有効状態密度であり、具体的には計算で出てくる。先ほどと同じ近似で、次のように表される。
-
-$$
-n_\mathrm{c} = N_{\mathrm{c}} \exp\left(-\frac{E_{\mathrm{c}} - E_{\mathrm{F}}}{k_{\mathrm{B}} T}\right)
-$$
-
-## 真性半導体
-
-真性半導体ってのは、電子と正孔の数が等しい半導体のこと。つまり、ドーピングされていない純粋な半導体。
-
-$$
-\begin{aligned}
-n &= N_{\mathrm{c}} \exp\left(-\frac{E_{\mathrm{c}} - E_{\mathrm{F}}}{k_{\mathrm{B}} T}\right) \\
-p &= N_{\mathrm{v}} \exp\left(-\frac{E_{\mathrm{F}} - E_{\mathrm{v}}}{k_{\mathrm{B}} T}\right) \\
-n &= p \\
-\Rightarrow E_{\mathrm{F}} &= \frac{E_{\mathrm{c}} + E_{\mathrm{v}}}{2} + \frac{k_{\mathrm{B}} T}{2} \ln\left(\frac{N_{\mathrm{v}}}{N_{\mathrm{c}}}\right) \\
-n &= p = \sqrt{N_{\mathrm{c}} N_{\mathrm{v}}} \exp\left(-\frac{E_{\mathrm{c}} - E_{\mathrm{v}}}{2 k_{\mathrm{B}} T}\right) \\
-&= \sqrt{N_{\mathrm{c}} N_{\mathrm{v}}} \exp\left(-\frac{E_{\mathrm{g}}}{2 k_{\mathrm{B}} T}\right)
-\end{aligned}
-$$
-
-### チェックポイント
-
-1. 真性半導体キャリア密度を式で表せ。真性キャリア密度は $E_{\mathrm{g}}$ にどう依存するか？
-2. 半導体キャリア密度の温度依存性によって禁制帯幅を測定する方法を説明せよ。
-3. $N_\mathrm{V} = 4N_\mathrm{C}$ のとき、真性半導体のフェルミ準位はバンドギャップは中央からどれほどずれるか。
-
-::: {.callout-tip collapse="true"}
-##### 解答
-
-1. $\sqrt{N_\mathrm{c}N_\mathrm{v}} \exp\left(-\frac{E_{\mathrm{g}}}{2 k_{\mathrm{B}} T}\right)$ で、キャリア密度は $E_{\mathrm{g}}$ が増加すると、減少する。
-2. 真性キャリア密度の温度依存性は上の式で表されるので、 $\ln n$ を $1/T$ に対してプロットすると、傾きが $-E_{\mathrm{g}}/2 k_{\mathrm{B}}$ になる。これにより、禁制帯幅 $E_{\mathrm{g}}$ を測定できる。
-3. $E_\mathrm{F} - \frac{E_\mathrm{c} + E_\mathrm{v}}{2} = \frac{k_\mathrm{B} T}{2} \ln 4 \approx 0.048 \ \mathrm{eV}$ だけ中央から上にずれる。
-
-::: 
-
-$T=300\ \mathrm{K}$ で、Si にドナーを $N_D=1.00\times10^{16}\ \mathrm{cm^{-3}}$ ドーピングした。  
-イオン化していないドナー（ドナー準位に電子がいる）密度 $n_d$ は
-
-$$
-n_d = N_D f_D(E_D)
-= \frac{N_D}{1+\frac12\exp\!\left(\frac{E_D-E_F}{k_BT}\right)}
-$$
-
-で与えられる。
-
-- $E_D-E_F \gg k_BT$ を用いて近似せよ。
-- $N_C=2.80\times10^{19}\ \mathrm{cm^{-3}}$
-- ドナー準位は伝導帯端より $45\ \mathrm{meV}$ 下： $E_D = E_C-45\ \mathrm{meV}$
-
-を使い、イオン化していないドナーの比率を求めよ。
-
-::: {.callout-tip collapse="true"}
-##### 解答
-
-1. 近似すると、
-
-$$
-\begin{aligned}
-n_\mathrm{d} &\approx 2N_\mathrm{D} \exp \qty(\frac{E_\mathrm{F}-E_\mathrm{D}}{k_\mathrm{B} T}) \\
-n_\mathrm{c} &= N_\mathrm{C} \exp \qty(-\frac{E_\mathrm{C}-E_\mathrm{F}}{k_\mathrm{B} T}) \\
-\Rightarrow r = \frac{n_\mathrm{d}}{n_\mathrm{d} + n_\mathrm{c}} &= \frac{1}{1 + \frac{N_\mathrm{C}}{2N_\mathrm{D}} \exp \qty(-\frac{E_\mathrm{C} - E_\mathrm{D}}{k_\mathrm{B} T})} \\
-&= 0.0041
-\end{aligned}
-$$
-
-::: 
-
-## ドーピング半導体のキャリア密度
-
-ドーピング半導体では、ドナーやアクセプターが導入されることで、キャリア密度が変化する。例えば、n型半導体ではドナーが導入され、伝導帯に電子が供給される。一方、p型半導体ではアクセプターが導入され、価電子帯に正孔が供給される。
-
-まず、n型半導体では $E_\mathrm{c}$ の下に ドナー準位 $E_\mathrm{D}$ ができて、余った電子が入る。で、このドナー準位での電子占有率は、
-
-$$
-f_D(E_D) = \frac{1}{1 + \frac{1}{2} \exp\left(\frac{E_D - E_F}{k_B T}\right)}
-$$
-
-と書かれる。これはフェルミ-ディラック分布関数関数とは違って、 $E_\mathrm{D}$ という特定のエネルギー準位での占有率を表している。分布ではない。
-
-ドナー準位は2つの電子が入れるため、分母に $\frac{1}{2}$ がついている。この計算の詳細は省略する。
-
-ただ以降は、基本的にはドナー準位には電子がほぼなくて、アクセプター準位には電子がほぼ満たされている、という近似を使う。
-
-それで、不純物の挿入によってエネルギー準位が変化した結果、$n, p$ の値を考えていく。
-
-これをどうやって考えるかというと、まず元の状態でのフェルミ準位を $E_{\mathrm{i}}$ としたとき、
-
-$$
-\begin{aligned}
-n &= N_{\mathrm{c}} \exp\left(-\frac{E_{\mathrm{c}} - E_{\mathrm{F}}}{k_{\mathrm{B}} T}\right) \\
-&= N_{\mathrm{c}} \exp\left(-\frac{E_{\mathrm{c}} - E_{\mathrm{i}}}{k_{\mathrm{B}} T}\right) \exp\left(-\frac{E_{\mathrm{i}} - E_{\mathrm{F}}}{k_{\mathrm{B}} T}\right) \\
-&= n_{\mathrm{i}} \exp\left(-\frac{E_{\mathrm{i}} - E_{\mathrm{F}}}{k_{\mathrm{B}} T}\right) \\
-p &= p_{\mathrm{i}} \exp\left(\frac{E_{\mathrm{i}} - E_{\mathrm{F}}}{k_{\mathrm{B}} T}\right) \\
-np &= n_{\mathrm{i}}^{2} = N_{\mathrm{c}} N_{\mathrm{v}} \exp\left(-\frac{E_{\mathrm{g}}}{k_{\mathrm{B}} T}\right)
-\end{aligned}
-$$
-
-これに合わせて、
-
-$$
-n + N_{\mathrm{a}} = p + N_{\mathrm{d}}
-$$
-
-という電気的中性条件を考えると、 $n$ と $p$ を求めることができる。
-
-$$
-n = \frac{1}{2} \left[(N_{\mathrm{d}} - N_{\mathrm{a}}) + \sqrt{(N_{\mathrm{d}} - N_{\mathrm{a}})^{2} + 4 n_{\mathrm{i}}^{2}}\right]
-$$
-
-次に、フェルミ準位について考えれば、 $n=p$ となるところだから、
-
-$$
-\begin{aligned}
-n&= p \\
-N_{\mathrm{c}} \exp\left(-\frac{E_{\mathrm{c}} - E_{\mathrm{F}}}{k_{\mathrm{B}} T}\right) &= N_{\mathrm{v}} \exp\left(-\frac{E_{\mathrm{F}} - E_{\mathrm{v}}}{k_{\mathrm{B}} T}\right) \\
-\Rightarrow E_{\mathrm{F}} &= \frac{E_{\mathrm{c}} + E_{\mathrm{v}}}{2} + \frac{k_{\mathrm{B}} T}{2} \ln\left(\frac{N_{\mathrm{v}}}{N_{\mathrm{c}}}\right)
-\end{aligned}
-$$
-
-$$
-\boxed{V_{FB}=\phi_m-\phi_s \;\;(\text{+ 追加があれば }-Q_{ox}/C_{ox})}
-$$
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# 光デバイス
-
-### 結合状態密度
-
-半導体のバンド感繊維による光吸収の吸収係数は結合状態密度
-
-$$
-J_{\mathrm{cv}}(E) = \frac{1}{V} \sum_k \delta(E_{\mathrm{c}}(k) - E_{\mathrm{v}}(k) - E)\delta(\mathbfit{k} - \mathbfit{k}' - \mathbfit{K})
-$$
-
-にほぼ比例する。
-
-1. 式の和は実質的に同じ波数を持つ荷電子帯電子と伝導帯電子の組み合わせのみでいい理由を述べよ。
-
-2. 次のようなバンド構造を有する半導体の結合状態密度を求めよ。
-
-$$
-\begin{aligned}
-E_{\mathrm{c}}(k) &= E_{\mathrm{g}} + \frac{\hbar^{2} k^{2}}{2 m_{\mathrm{e}}^{*}} \\
-E_{\mathrm{v}}(k) &= -\frac{\hbar^{2} k^{2}}{2 m_{\mathrm{h}}^{*}}
-\end{aligned}
-$$
-
-![](dimages/image0.png)
-
-3. SiとGaAsの光吸収スペクトルの違いを説明せよ。
-
-4. Si と GaAs それぞれについて、バンドギャップエネルギーよりも $0.5\ \mathrm{eV}$ 高エネルギーの光を 99% 吸収するために必要な半導体の厚さを求めよ。
-
-5. SiとGaAsの特徴と違いを簡潔に述べよ。
+1. 非縮退半導体の真性キャリア密度 $n_i$ を式で表し、禁制帯幅 $E_g$ への依存性を述べよ。
+2. キャリア密度の温度依存性から $E_g$ を測定する方法を説明せよ。
+3. $N_V=4N_C$ のとき、真性フェルミ準位は禁制帯中央からどちらへ、どれだけずれるか。$T=300\ \mathrm{K}$ とせよ。
 
 ::: {.callout-note collapse="true"}
-##### 理論
+##### 理論1：状態数と占有確率を掛ける
 
-まず、決勝内の電子の波動関数はブロッホ関数で表される。詳しくは固体物理学の記事で書いてある。
-
-それで、ここで考えるべきは、光の吸収なので、光によってもたらされるハミルトニアンの摂動は次の通り。
+伝導帯の電子濃度は、状態密度とFermi–Dirac分布の積を積分して得る。$E_C-E_F\gg k_BT$ の非縮退近似では
 
 $$
-\begin{aligned}
-H' &= -e \mathbfit{r} \cdot \mathbfit{E} \\
-\mathbfit{E} &= \mathbfit{E}_0 e^{i(\mathbfit{K} \cdot \mathbfit{r} - \omega t)}
-\end{aligned}
+n=N_C\exp\left(-\frac{E_C-E_F}{k_BT}\right),\qquad
+p=N_V\exp\left(-\frac{E_F-E_V}{k_BT}\right).
 $$
 
-で、これを波動方程式に入れてまとめ上げると、$\Psi = \sum_n a_n(t) \psi_n e^{-i E_n t/\hbar}$ として、途中から $m \to n$ を $0 \to n$ に遷移を変えると、
+両式を掛けるとFermi準位が消え、質量作用則
 
 $$
-|a_m(t)|^2 = \frac{2\pi}{\hbar} |\langle n | H' | 0 \rangle|^2 \delta(E_n - E_0 - \hbar \omega) t
+np=N_CN_V\exp\left(-\frac{E_g}{k_BT}\right)=n_i^2
 $$
 
-で、こいつはフェルミの黄金律と呼ばれる。要するに、波動方程式を摂動的に解いたときの、ある状態から別の状態への遷移確率を与える式である。
-
-で、こいつの時間あたりの遷移確率を出すと、
-
-$$
-W_{0 \to n} = \frac{2\pi}{\hbar} |\langle n | H' | 0 \rangle|^2 \delta(E_n - E_0 - \hbar \omega)
-$$
-
-でこっから結局どれだけ時間あたりにパワーが吸収されるかを考えると、$\mathrm{c} \to \mathrm{v}$ の遷移を全部足し合わせればいいので、
-
-$$
-\begin{aligned}
-E_{\mathrm{c} \to \mathrm{v}} &= E_{\mathrm{g}} + \frac{\hbar ^2 k^2}{2\mu} \\
-P_{\mathrm{abs}} &= \sum_k \hbar \omega W_{\mathrm{c} \to \mathrm{v}} \\
-&= \hbar \omega\frac{2\pi}{\hbar} |\langle \mathrm{c} | H' | \mathrm{v} \rangle|^2 \underbrace{ \sum_k \delta(E_{\mathrm{c} \to \mathrm{v}} - \hbar \omega) }_{= J_{\mathrm{c} \to \mathrm{v}}(E_{\mathrm{c} \to \mathrm{v}}) \times V} \\ 
-\sum_k &= \underbrace{2}_{電子のスピンが2} \times \qty( \frac{L}{2\pi} )^3 \int 4\pi k^2 \mathrm{d}k \\
-P_{\mathrm{abs}} &= \hbar \omega \frac{2\pi}{\hbar} |\langle \mathrm{c} | H' | \mathrm{v} \rangle|^2 \times 2 \times \qty( \frac{L}{2\pi} )^3 \int  \delta(E_{\mathrm{c} \to \mathrm{v}} - \hbar \omega) 4\pi k^2 \mathrm{d}k \\
-&= \hbar\omega\frac{2\pi}{\hbar} L^3 |\langle \mathrm{c} | H' | \mathrm{v} \rangle|^2 \int \frac{2}{(2\pi)^3} \delta(E_{\mathrm{c} \to \mathrm{v}} - \hbar \omega) 4\pi k^2 \mathrm{d} k \\
-&= \text{定数} \times \underbrace{\int \frac{2}{(2\pi)^3} \delta(E_{\mathrm{c} \to \mathrm{v}} - \hbar \omega) 4\pi k^2 \mathrm{d} k}_{= J_{\mathrm{c} \to \mathrm{v}}(E_{\mathrm{c} \to \mathrm{v}})  } \\
-&= \text{定数} \times J_{\mathrm{c} \to \mathrm{v}}(E) \quad (E = E_{\mathrm{c} \to \mathrm{v}}) \\
-J_{\mathrm{c} \to \mathrm{v}}(E) &= \frac{1}{\pi^2} \int \delta\left( E - \hbar \omega \right) k^2 (E - E_\mathrm{g}) \dv{k}{E} \dd E\\
-&= \frac{1}{2\pi^2} \qty( \frac{2\mu}{\hbar^2} )^{3/2}  \underbrace{\int \delta(E - \hbar \omega) \sqrt{E - E_\mathrm{g}} \dd E}_{E = \hbar \omega の時の\sqrt{E - E_\mathrm{g}}の値の定義} \\
-&= \frac{1}{2\pi^2} \qty( \frac{2\mu}{\hbar^2} )^{3/2} \sqrt{\hbar \omega - E_\mathrm{g}}
-\end{aligned}
-$$
-
+を得る。真性半導体では $n=p=n_i$ である。なお $N_C,N_V\propto T^{3/2}$ なので、Arrheniusプロットで高精度に $E_g$ を求めるときはこの温度依存性も除く。
 :::
 
 ::: {.callout-tip collapse="true"}
-##### 解答
+##### 解答1
 
-1. 結晶の電子の波数のスケールに比べて可視光の波数は非常に小さいため、光吸収過程において波数保存則を満たす遷移は $\mathbfit{k} \approx \mathbfit{k}'$ の組み合わせに限られる。
+1.
 
-2. 詳細は理論のところで説明している。
+   $$
+   n_i=\sqrt{N_CN_V}\exp\left(-\frac{E_g}{2k_BT}\right).
+   $$
+
+   同温度なら $E_g$ が大きいほど $n_i$ は指数関数的に小さくなる。
+
+2.
+
+   $$
+   \ln\left(\frac{n_i}{T^{3/2}}\right)
+   =\text{const.}-\frac{E_g}{2k_B}\frac1T
+   $$
+
+   を用い、$\ln(n_i/T^{3/2})$ を $1/T$ に対してプロットする。直線の傾き $m$ から $E_g=-2k_Bm$ を得る。
+
+3. 真性Fermi準位は
+
+   $$
+   E_i=\frac{E_C+E_V}{2}+\frac{k_BT}{2}\ln\left(\frac{N_V}{N_C}\right)
+   $$
+
+   なので、$N_V=4N_C$ では中央より伝導帯側へ
+
+   $$
+   \Delta E=k_BT\ln2=1.79\times10^{-2}\ \mathrm{eV}
+   $$
+
+   ずれる。
+:::
+
+#### 問題2　ドナーの不完全イオン化 {#prob-donor-ionization}
+
+$T=300\ \mathrm{K}$ のSiへ、ドナーを $N_D=1.00\times10^{16}\ \mathrm{cm^{-3}}$ 添加した。中性ドナー密度は
+
 $$
-\begin{aligned}
-J_{\mathrm{cv}}(E) &= \frac{1}{V} \sum_k \delta(E_{\mathrm{c}}(k) - E_{\mathrm{v}}(k) - E) \\
-&= \frac{1}{V} \sum_k \delta\left(E_{\mathrm{g}} + \frac{\hbar^{2} k^{2}}{2 \mu} - E\right) \\
-&= \frac{1}{(2\pi)^{3}} \int 4 \pi k^{2} \delta\left(E_{\mathrm{g}} + \frac{\hbar^{2} k^{2}}{2 \mu} - E\right) \mathrm{d} k \\
-&= \frac{1}{2 \pi^{2}} \left(\frac{2 \mu}{\hbar^{2}}\right)^{\frac{3}{2}} \sqrt{E - E_{\mathrm{g}}}
-\end{aligned}
+n_d=\frac{N_D}{1+\frac12\exp\left(\frac{E_D-E_F}{k_BT}\right)}
 $$
 
-3. Siは間接遷移型半導体であり、光吸収においてはフォノンの関与が必要となるが、GaAsは直接遷移型半導体である。前者は立ち上がりが鈍く、後者は急峻である。それだけではなく、バンドギャップの値に関しても、Siは約1.1 eV、GaAsは約1.4 eVであり、これも吸収スペクトルに影響を与える。
+で与えられる。$N_C=2.80\times10^{19}\ \mathrm{cm^{-3}}$、$E_C-E_D=45\ \mathrm{meV}$ とし、正孔を無視して、中性のまま残るドナーの割合を求めよ。
 
-4. 
+::: {.callout-note collapse="true"}
+##### 理論2：電荷中性条件でFermi準位を決める
+
+「ドナーを入れたから電子濃度は必ず $N_D$」ではない。中性ドナーは電子を束縛しており、イオン化したドナーだけが伝導電子を供給する。正孔とアクセプターを無視すれば
+
 $$
-I = I_0 e^{-\alpha x}
-$$  
-99%吸収するためには、$I/I_0 = 0.01$ となるので、
+n=N_D^+=N_D-n_d
 $$
-0.01 = e^{-\alpha x} \\
-\Rightarrow x = \frac{\ln(100)}{\alpha}
+
+が電荷中性条件である。これと
+
 $$
-あとは $\alpha$ の値をSiとGaAsのデータから読み取り、計算すればよい。Siについては $1.6 \mathrm{eV}$ あたりで $\alpha \approx 10^3 \mathrm{cm^{-1}}$、GaAsについては $1.9 \mathrm{eV}$ あたりで $\alpha \approx 30000 \mathrm{cm^{-1}}$ とすると、
+n=N_C\exp\left(-\frac{E_C-E_F}{k_BT}\right)
+$$
 
-| 材料 | 吸収係数 $\alpha$ ($\mathrm{cm^{-1}}$) | 必要な厚さ $x$ (cm) |
-|------|-------------------------------|------------------|
-| Si   | $10^3$                        | $4.6 \times 10^{-3}$ |
-| GaAs | $30000$                       | $1.5 \times 10^{-4}$ |
+を連立する。
+:::
 
-5.
+::: {.callout-tip collapse="true"}
+##### 解答2
 
-| 材料 | 特徴 | 違い |
-|------|------|------|
-| Si   | 間接遷移型半導体、豊富な資源、低コスト | 吸光効率が低い、厚い層が必要 |
-| GaAs | 直接遷移型半導体、高コスト | 吸光効率が高い、薄い層で十分 |
+$y=\exp[(E_F-E_D)/(k_BT)]$、$A=N_C\exp[-(E_C-E_D)/(k_BT)]$ と置くと
 
-::: 
+$$
+n=Ay,\qquad \frac{n_d}{N_D}=\frac{y}{y+1/2}.
+$$
 
-### 量子効率
+電荷中性条件 $Ay=N_D/[2(y+1/2)]$ を解く。$k_BT=25.85\ \mathrm{meV}$ より $A=4.91\times10^{18}\ \mathrm{cm^{-3}}$、したがって
+
+$$
+\frac{n_d}{N_D}\\\simeq4.1\times10^{-3}.
+$$
+
+中性ドナーは約 $0.41\%$、すなわち約 $99.6\%$ がイオン化している。
+:::
+
+#### 問題3　導電率とドーピング後のキャリア密度 {#prob-conductivity}
+
+1. キャリア密度 $n,p$、移動度 $\mu_n,\mu_p$ を用いて半導体の導電率を表せ。
+2. ドナー濃度 $N_D$、アクセプター濃度 $N_A$ の非縮退半導体について、完全イオン化を仮定して電子濃度 $n$ を求めよ。真性キャリア密度を $n_i$ とする。
+
+::: {.callout-note collapse="true"}
+##### 理論3：輸送式と電荷の帳簿を分ける
+
+電場 $E$ に対するドリフト速度は $v_d=\mu E$ であり、電子と正孔の電流密度を足すと
+
+$$
+j=q(n\mu_n+p\mu_p)E.
+$$
+
+一方、平衡キャリア密度は、電荷中性条件
+
+$$
+n+N_A^-=p+N_D^+
+$$
+
+と質量作用則 $np=n_i^2$ で決める。完全イオン化なら $N_D^+=N_D$、$N_A^-=N_A$ である。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答3
+
+1.
+
+   $$
+   \sigma=q(n\mu_n+p\mu_p),\qquad \rho=\sigma^{-1}.
+   $$
+
+2. $p=n_i^2/n$ を $n+N_A=p+N_D$ へ代入すると
+
+   $$
+   n^2-(N_D-N_A)n-n_i^2=0.
+   $$
+
+   物理的な正根を選び、
+
+   $$
+   n=\frac{(N_D-N_A)+\sqrt{(N_D-N_A)^2+4n_i^2}}{2},
+   \qquad p=\frac{n_i^2}{n}.
+   $$
+:::
+
+## 光吸収
+
+#### 問題4　結合状態密度と直接・間接遷移 {#prob-jdos}
+
+放物線バンド
+
+$$
+E_c(k)=E_g+\frac{\hbar^2k^2}{2m_e^*},\qquad
+E_v(k)=-\frac{\hbar^2k^2}{2m_h^*}
+$$
+
+をもつ半導体を考える。
+
+1. 光学遷移で、ほぼ同じ波数をもつ価電子帯状態と伝導帯状態の組合せを考えればよい理由を述べよ。
+2. 単位体積当たりの結合状態密度
+
+   $$
+   J_{cv}(E)=\frac1V\sum_{\boldsymbol{k}}\delta\left(E_c(\boldsymbol{k})-E_v(\boldsymbol{k})-E\right)
+   $$
+
+   を求めよ。
+3. 図の吸収曲線A、BをGaAs、Siへ対応させ、吸収端の違いを説明せよ。
+4. 各材料について、$E_g+0.5\ \mathrm{eV}$ の光を99%吸収するために必要な厚さを図から概算せよ。
+
+![二種類の半導体の吸収係数と光子エネルギーの関係](dimages/image0.png){fig-alt="吸収係数を縦軸、光子エネルギーを横軸としたグラフ。Aは約1.4 eVから急増し、Bは約1.1 eVから緩やかに増加する。"}
+
+::: {.callout-note collapse="true"}
+##### 理論4：光子はエネルギーを運ぶが運動量は小さい
+
+可視光の波数はBrillouin zoneの尺度に比べて小さいため、光子だけの遷移では結晶運動量がほぼ保存され、$\boldsymbol{k}_c\\\simeq\boldsymbol{k}_v$ となる。伝導帯底と価電子帯頂上が同じ波数にある直接遷移型では光子だけで遷移できる。異なる波数にある間接遷移型ではフォノンも必要になる。
+
+二つの放物線の差は
+
+$$
+E_c-E_v=E_g+\frac{\hbar^2k^2}{2\mu},\qquad
+\frac1\mu=\frac1{m_e^*}+\frac1{m_h^*}
+$$
+
+である。三次元 $k$ 空間の殻の状態数 $4\pi k^2\dd k$ をエネルギーへ変数変換すると、吸収端上の平方根依存性が現れる。
+:::
+
+::: {.callout-tip collapse="true"}
+##### 解答4
+
+1. 光子の運動量 $\hbar K$ は結晶電子の結晶運動量に比べて小さいため、光子吸収では $\boldsymbol{k}_c=\boldsymbol{k}_v+\boldsymbol{K}\\\simeq\boldsymbol{k}_v$ となる。
+
+2. スピン縮退を含めると
+
+   $$
+   J_{cv}(E)=\frac1{2\pi^2}\left(\frac{2\mu}{\hbar^2}\right)^{3/2}\sqrt{E-E_g}\,\Theta(E-E_g).
+   $$
+
+3. Aは吸収端が急峻な直接遷移型GaAs、Bはフォノンを必要とし立ち上がりが緩やかな間接遷移型Siである。
+
+4. Beer–Lambert則 $I/I_0=e^{-\alpha x}$ より
+
+   $$
+   x=\frac{\ln100}{\alpha}.
+   $$
+
+   図から、Siでは $E\\\simeq1.6\ \mathrm{eV}$ で $\alpha\\\simeq10^3\ \mathrm{cm^{-1}}$、GaAsでは $E\\\simeq1.9\ \mathrm{eV}$ で $\alpha\\\simeq3\times10^4\ \mathrm{cm^{-1}}$ と読める。したがって
+
+   $$
+   x_{\mathrm{Si}}\\\simeq4.6\times10^{-3}\ \mathrm{cm}=46\ \mathrm{\mu m},
+   $$
+
+   $$
+   x_{\mathrm{GaAs}}\\\simeq1.5\times10^{-4}\ \mathrm{cm}=1.5\ \mathrm{\mu m}.
+   $$
+:::
+
+## 発光デバイス
+
+#### 問題5　再結合寿命と内部量子効率 {#prob-internal-qe}
 
 1. 間接遷移型半導体が発光デバイスに不向きな理由を説明せよ。
-2. Siの発光性再結合寿命は約 $10^{-3}\ \mathrm{s}$ であり、非発光性再結合寿命は約 $10^{-6}\ \mathrm{s}$ である。一方、GaAsの発光性再結合寿命は約 $10^{-9}\ \mathrm{s}$ であり、非発光性再結合寿命は約 $10^{-7}\ \mathrm{s}$ である。これらの値を用いて、SiとGaAsの内量子効率をそれぞれ求めよ。
+2. Siの発光再結合寿命を $\tau_r=10^{-3}\ \mathrm{s}$、非発光再結合寿命を $\tau_{nr}=10^{-6}\ \mathrm{s}$ とする。GaAsではそれぞれ $10^{-9}\ \mathrm{s}$、$10^{-7}\ \mathrm{s}$ とする。内部量子効率を求めよ。
 
 ::: {.callout-note collapse="true"}
-##### 理論
+##### 理論5：競争する再結合速度の比を取る
+
+過剰キャリアは発光再結合と非発光再結合の並列経路で減衰する。
 
 $$
-\begin{aligned}
 \dv{\Delta n}{t}
-&= \underbrace{-\frac{\Delta n}{\tau_r}}_{\text{発光性再結合}} - \underbrace{\frac{\Delta n}{\tau_{nr}}}_{\text{非発光性再結合}}
-= -\frac{\Delta n}{\tau} \\
-\Delta n(t) &= \Delta n(0) \exp\left(-\frac{t}{\tau}\right) \\
-\eta &= \frac{\tau_{nr}}{\tau_r + \tau_{nr}}
-\end{aligned}
+=-\frac{\Delta n}{\tau_r}-\frac{\Delta n}{\tau_{nr}}.
 $$
 
-内部量子効率は、1に近いほど発光効率が高いと考えればいい。つまり、発光性再結合時間が短く、非発光性再結合時間が長いほど、内部量子効率は高くなる。
+単位時間当たりの発光再結合の割合は、発光速度を全再結合速度で割って
 
+$$
+\eta_{int}=\frac{1/\tau_r}{1/\tau_r+1/\tau_{nr}}
+=\frac{\tau_{nr}}{\tau_r+\tau_{nr}}
+$$
+
+となる。
 :::
 
 ::: {.callout-tip collapse="true"}
-##### 解答
+##### 解答5
 
-1. 間接遷移半導体における発光再結合はフォノンの放出または吸収を同時に伴う必要があり、遷移確率が著しく小さくなる。結果として発光再結合寿命が長くなり、非発光再結合が支配的となるため、間接遷移半導体は発光しにくい。
-2. Siの場合、
-$$
-\begin{aligned}
-\eta_{\mathrm{Si}} &= \frac{\tau_{nr}}{\tau_r + \tau_{nr}} = \frac{10^{-6}}{10^{-3} + 10^{-6}} \approx 0.001
-\end{aligned}
-$$ 
-GaAsの場合、
-$$
-\begin{aligned}
-\eta_{\mathrm{GaAs}} &= \frac{\tau_{nr}}{\tau_r + \tau_{nr}} = \frac{10^{-7}}{10^{-9} + 10^{-7}} \approx 0.99
-\end{aligned}
-$$
+1. 間接遷移では、電子と正孔の再結合に光子だけでなく運動量を補うフォノンも必要である。遷移確率が小さく発光寿命が長いため、その間に欠陥などを介した非発光再結合が起こりやすい。
 
+2.
+
+   $$
+   \eta_{int}^{\mathrm{Si}}=\frac{10^{-6}}{10^{-3}+10^{-6}}\\simeq9.99\times10^{-4},
+   $$
+
+   $$
+   \eta_{int}^{\mathrm{GaAs}}=\frac{10^{-7}}{10^{-9}+10^{-7}}\\simeq0.990.
+   $$
 :::
 
-### 効率関連
+#### 問題6　発光デバイスの効率 {#prob-led-efficiency}
 
-![](dimages/image1.png)
+図の赤色発光デバイスについて、$25\,\mathrm{^\circ C}$、電流 $I=33\ \mathrm{mA}$ における次の量をグラフから概算せよ。
 
-上の図のような赤色半導体発光デバイスにおいて、電流33mAの時のパワー変換効率、スロープ効率、外部量子効率、内部量子効率の概算を求めよ。
+1. パワー変換効率 $P_{out}/(VI)$
+2. スロープ効率 $\dv{P_{out}}{I}$
+3. 外部微分量子効率
+
+![赤色発光デバイスの発光スペクトルと電流―光出力・電圧特性](dimages/image1.png){fig-alt="左に650から670 nmの発光スペクトル、右に温度別の電流光出力曲線と電流電圧曲線を示す。"}
 
 ::: {.callout-note collapse="true"}
-##### 理論
+##### 理論6：電力の比と粒子数の比を区別する
 
-効率関連は、とりあえず定義をわかっていればいい。
-
-| 種類 | 定義 |
-|------|------|
-| パワー変換効率 $\eta_{\mathrm{P}}$ | 出力光パワー $P_{\mathrm{out}}$ を入力電力 $P_{\mathrm{in}}$ で割ったもの。 $\eta_{\mathrm{P}} = \frac{P_{\mathrm{out}}}{P_{\mathrm{in}}}$ |
-| スロープ効率 $\eta_{\mathrm{S}}$ | 出力光パワーの電流に対する微分。 $\eta_{\mathrm{S}} = \dv{P_{\mathrm{out}}}{I}$ |
-| 外部量子効率 $\eta_{\mathrm{ext}}$ | 入力電流に対する出力光子数の比率。 $\eta_{\mathrm{ext}} = \frac{\text{出力光子数}}{\text{入力電子数}}= \frac{1}{h\nu}\dv{P}{t}/\frac{1}{q}\dv{I}{t}=\frac{q}{h\nu}\dv{P}{I}=\frac{q\lambda}{hc}\dv{P}{I}$ |
-| 内部量子効率 $\eta_{\mathrm{int}}$ | 発光再結合に寄与する電子と正孔の比率。 $\eta_{\mathrm{int}} = \frac{\text{発光再結合数}}{\text{全再結合数}}$ |
-
-特に内部量子効率は
+パワー変換効率はエネルギー流の比、外部量子効率は電子数と光子数の比である。
 
 $$
-\begin{aligned}
-\eta_{\mathrm{int}} &= \eta_{\mathrm{ext}} \frac{\alpha_\mathrm{m}}{ \alpha_\mathrm{m} + \alpha_\mathrm{i} } \\
-\alpha_\mathrm{m} &= \frac{1}{L} \ln\left(\frac{1}{R_1 R_2}\right) \\
-L &\approx 300\ \mathrm{\mu m} \\
-R_1 = R_2 &\approx 0.3 \\
-\alpha_\mathrm{i} &\approx 10\ \mathrm{cm^{-1}}
-\end{aligned}
+\eta_P=\frac{P_{out}}{VI},\qquad
+\eta_{ext,d}=\frac{q}{h\nu}\dv{P_{out}}{I}
+=\frac{q\lambda}{hc}\dv{P_{out}}{I}.
 $$
 
-また、視感効率というあたいが過去問では出てきたのだが、人間の目では $683 \mathrm{lm/W}$ が最大視感効率で、赤色光では約 $0.5$ 倍程度になる。で、その値が必要になる問題が出ることがある。
-
+グラフ読み取りでは、値の精度を曲線の太さ以上に細かくしない。
 :::
 
 ::: {.callout-tip collapse="true"}
-##### 解答
+##### 解答6
 
-グラフを見て値を代入するだけなので略
+図から $I=33\ \mathrm{mA}$ で、およそ $P_{out}=6\text{〜}6.5\ \mathrm{mW}$、$V\\\simeq2.2\ \mathrm{V}$ と読める。したがって
 
-::: 
+$$
+\eta_P\\\simeq\frac{6.3\ \mathrm{mW}}{(2.2\ \mathrm{V})(33\ \mathrm{mA})}\\\simeq0.087
+$$
 
-### 太陽電池
+で、約9%である。直線部の傾きはおよそ
 
-下図のようなJ-V特性を持つ太陽電池がある。これの開放電圧、短絡電流密度、FFと電力変換効率を求めよ。
+$$
+\dv{P_{out}}{I}\\\simeq0.4\text{〜}0.5\ \mathrm{W\,A^{-1}}.
+$$
 
-![](dimages/image3.png)
+$\lambda\\\simeq655\ \mathrm{nm}$ を用いると
 
-::: {.callout-note collapse="true"}
-##### 理論
+$$
+\eta_{ext,d}\\\simeq\frac{q\lambda}{hc}(0.45)\\\simeq0.24.
+$$
 
-それぞれ$I = 0$ のときの電圧が開放電圧 $V_{\mathrm{oc}}$ 、$V=0$ のときの電流が短絡電流密度 $J_{\mathrm{sc}}$ である。FFはフィルファクターで、最大出力点の電圧と電流の積を $V_{\mathrm{oc}} J_{\mathrm{sc}}$ で割ったものである。最後に、電力変換効率 $\eta$ は、最大出力を入射光パワーで割ったものである。つまり、 $FF/ V_{\mathrm{oc}} J_{\mathrm{sc}}$
-
+よって外部微分量子効率は約24%である。いずれも図からの概算値である。
 :::
 
-<!-- 
-::: {.callout-note collapse="true"}
-##### 理論
+## 太陽電池
 
-This is an example of a callout with a title.
+#### 問題7　J–V特性から性能指標を読む {#prob-solar-cell}
+
+図の太陽電池について、開放電圧 $V_{oc}$、短絡電流密度 $J_{sc}$、最大出力点、曲線因子 $FF$ を求めよ。また、入射光強度を $100\ \mathrm{mW\,cm^{-2}}$ として電力変換効率を概算せよ。
+
+![太陽電池の光電流密度―電圧特性。図上に最大出力点を読むための補助線が書き込まれている](dimages/image3.png){fig-alt="光電流密度を縦軸、電圧を横軸とした太陽電池のJ-V曲線。最大出力点を読む補助線が残されている。"}
+
+::: {.callout-note collapse="true"}
+##### 理論7：切片と最大長方形を読む
+
+$V=0$ の縦軸切片が $J_{sc}$、$J=0$ の横軸切片が $V_{oc}$ である。曲線上の点 $(V_m,J_m)$ が作る長方形 $V_mJ_m$ が最大になる点を最大出力点と呼び、
+
+$$
+FF=\frac{V_mJ_m}{V_{oc}J_{sc}},\qquad
+\eta=\frac{V_mJ_m}{P_{in}}
+$$
+
+である。
 :::
 
 ::: {.callout-tip collapse="true"}
-##### 解答
+##### 解答7
 
-This is an example of a callout with a title.
-::: 
--->
+図から
 
+$$
+V_{oc}\\\simeq1.0\ \mathrm{V},\qquad
+J_{sc}\\\simeq18\ \mathrm{mA\,cm^{-2}}
+$$
 
+と読める。最大出力点はおよそ
 
+$$
+V_m\\\simeq0.80\ \mathrm{V},\qquad
+J_m\\\simeq13\ \mathrm{mA\,cm^{-2}}
+$$
 
+なので、
 
+$$
+FF\\\simeq\frac{0.80\times13}{1.0\times18}\\\simeq0.58,
+$$
 
+$$
+\eta\\\simeq\frac{0.80\times13\ \mathrm{mW\,cm^{-2}}}{100\ \mathrm{mW\,cm^{-2}}}
+\\\simeq0.10.
+$$
+
+したがって変換効率は約10%である。元図の線幅に合わせた概算値である。
+:::
+
+## 関連記事
+
+- Fermi–Dirac統計と状態密度の導出は[材料統計力学](../2A/材料統計力学.qmd)を参照。
+- 結晶中のバンド、Brillouin zone、有効質量は[固体物性学](../3S/固体物性学.qmd)を参照。
+- 半導体のバンドギャップとキャリア統計は[半導体物性学](../3S/半導体物性学.qmd)も参照。

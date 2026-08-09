@@ -2104,6 +2104,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../posts/tech/KagglePokemonTCGParticipationRecord.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kaggle Pokemon TCG参加記録</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../posts/tech/linkwarden.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linkwardenにブックマーク管理を任せる</span></a>
   </div>
@@ -2243,7 +2249,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/univ_lecs/3A/セラミック材料学.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">セラミックノート</span></a>
+ <span class="menu-text">セラミック材料学</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -2449,23 +2455,11 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#半導体デバイス" id="toc-半導体デバイス" class="nav-link active" data-scroll-target="#半導体デバイス">半導体デバイス</a>
-  <ul class="collapse">
-  <li><a href="#電流や抵抗率などの話" id="toc-電流や抵抗率などの話" class="nav-link" data-scroll-target="#電流や抵抗率などの話">電流や抵抗率などの話</a></li>
-  <li><a href="#フェルミ-ディラック分布" id="toc-フェルミ-ディラック分布" class="nav-link" data-scroll-target="#フェルミ-ディラック分布">フェルミ-ディラック分布</a></li>
-  <li><a href="#真性半導体" id="toc-真性半導体" class="nav-link" data-scroll-target="#真性半導体">真性半導体</a>
-  <ul class="collapse">
-  <li><a href="#チェックポイント" id="toc-チェックポイント" class="nav-link" data-scroll-target="#チェックポイント">チェックポイント</a></li>
-  </ul></li>
-  <li><a href="#ドーピング半導体のキャリア密度" id="toc-ドーピング半導体のキャリア密度" class="nav-link" data-scroll-target="#ドーピング半導体のキャリア密度">ドーピング半導体のキャリア密度</a></li>
-  </ul></li>
-  <li><a href="#光デバイス" id="toc-光デバイス" class="nav-link" data-scroll-target="#光デバイス">光デバイス</a>
-  <ul class="collapse">
-  <li><a href="#結合状態密度" id="toc-結合状態密度" class="nav-link" data-scroll-target="#結合状態密度">結合状態密度</a></li>
-  <li><a href="#量子効率" id="toc-量子効率" class="nav-link" data-scroll-target="#量子効率">量子効率</a></li>
-  <li><a href="#効率関連" id="toc-効率関連" class="nav-link" data-scroll-target="#効率関連">効率関連</a></li>
+  <li><a href="#半導体のキャリア" id="toc-半導体のキャリア" class="nav-link active" data-scroll-target="#半導体のキャリア">半導体のキャリア</a></li>
+  <li><a href="#光吸収" id="toc-光吸収" class="nav-link" data-scroll-target="#光吸収">光吸収</a></li>
+  <li><a href="#発光デバイス" id="toc-発光デバイス" class="nav-link" data-scroll-target="#発光デバイス">発光デバイス</a></li>
   <li><a href="#太陽電池" id="toc-太陽電池" class="nav-link" data-scroll-target="#太陽電池">太陽電池</a></li>
-  </ul></li>
+  <li><a href="#関連記事" id="toc-関連記事" class="nav-link" data-scroll-target="#関連記事">関連記事</a></li>
   </ul>
 </nav>
     </div>
@@ -2479,6 +2473,8 @@ window.Quarto = {
   <div class="quarto-categories">
     <div class="quarto-category">University</div>
     <div class="quarto-category">2024</div>
+    <div class="quarto-category">Semiconductor</div>
+    <div class="quarto-category">Optoelectronics</div>
   </div>
   </div>
 
@@ -2511,259 +2507,105 @@ window.Quarto = {
 <p><span class="math display">\[
 \require{physics}
 \]</span></p>
-<p>過去問を中心にして書いていく予定。</p>
-<section id="半導体デバイス" class="level1">
-<h1>半導体デバイス</h1>
-<section id="電流や抵抗率などの話" class="level2">
-<h2 class="anchored" data-anchor-id="電流や抵抗率などの話">電流や抵抗率などの話</h2>
-<p>電流は、素電荷e・キャリア密度n・断面積S・平均速度vの積で表される。</p>
-<p><span class="math display">\[
-I = e n S v
-\]</span></p>
-<p>また、抵抗は抵抗率 <span class="math inline">\(\rho\)</span> と導電率 <span class="math inline">\(\sigma\)</span> でかける。</p>
-<p><span class="math display">\[
-\begin{aligned}
-R &amp;= \rho \frac{L}{S} = \sigma^{-1} \frac{L}{S}
-\end{aligned}
-\]</span></p>
-<p>次に電流密度は次のように定義する。</p>
-<p><span class="math display">\[
-j = \frac{I}{S} = \frac{V}{R} \frac{1}{S} = \sigma \frac{V}{L} = \sigma E
-\]</span></p>
-<p>ここで、キャリアの移動度という概念を導入する。金属内ではキャリアがぶつかりながら一定の平均速度で動いていると考えられる。この平均速度vは、電場Eに比例する。その比例係数を移動度 <span class="math inline">\(\mu\)</span> と定義する。</p>
-<p><span class="math display">\[
-v = \mu E
-\]</span></p>
-<p>この移動度を用いると、電流密度jは次のように表される。</p>
-<p><span class="math display">\[
-\begin{aligned}
-j &amp;= \sigma \frac{v}{\mu} = e n v \\
-\sigma &amp;= e n \mu
-\end{aligned}
-\]</span></p>
-</section>
-<section id="フェルミ-ディラック分布" class="level2">
-<h2 class="anchored" data-anchor-id="フェルミ-ディラック分布">フェルミ-ディラック分布</h2>
-<p>復習の話。</p>
-<p>まず、フェルミ準位ってのは絶対零度での化学ポテンシャル。絶対零度でこのエネルギーより下にある状態は全て電子で満たされ、このエネルギーより上にある状態は全て空になる。</p>
-<p>それで、絶対零度以外では、フェルミ準位付近で電子が熱的に励起されるため、エネルギー状態の占有率は0か1かではなくなる。この占有率を与えるのがフェルミ-ディラック分布関数である。</p>
-<p><span class="math display">\[
-f_{\mathrm{fd}}(E, T) = \frac{1}{\exp\left(\frac{E - E_{\mathrm{F}}}{k_{\mathrm{B}} T}\right) + 1}
-\]</span></p>
-<p>ここで、 <span class="math inline">\((E-F_{\mathrm{F}})/k_{\mathrm{B}} T \gg 1\)</span> の時近似できて、</p>
-<p><span class="math display">\[
-f_{\mathrm{fd}}(E, T) \approx \exp\left(-\frac{E - E_{\mathrm{F}}}{k_{\mathrm{B}} T}\right)
-\]</span></p>
-<p>同じ状況での状態密度は、次の式。</p>
-<p><span class="math display">\[
-G_{\mathrm{c}}(E) = \frac{1}{2 \pi^{2}} \left(\frac{2 m_{\mathrm{e}}^{*}}{\hbar^{2}}\right)^{\frac{3}{2}} \sqrt{E - E_{\mathrm{c}}}
-\]</span></p>
-<p><span class="math inline">\(f_{\mathrm{fd}}(E, T)\)</span> ってのは存在する確率で、 <span class="math inline">\(G_{\mathrm{c}}(E)\)</span> ってのはそのエネルギーに存在する状態数密度（席の数）だから、両方をかけて積分すれば、伝導帯に存在する電子の総数が求まる。</p>
-<p>したがって、伝導帯における電子濃度は、</p>
-<p><span class="math display">\[
-\begin{aligned}
-n &amp;= \int_{E_{\mathrm{c}}}^{\infty} G_{\mathrm{c}}(E) f_{\mathrm{fd}}(E, T) dE \\
-&amp;= N_{\mathrm{c}} \frac{2}{\sqrt{\pi}} \int_{0}^{\infty} \frac{2}{\sqrt{\pi}} \frac{\sqrt{t}}{1+\exp(t - \frac{E_{\mathrm{F}} - E_{\mathrm{c}}}{k_{\mathrm{B}} T})} dt \\
-\end{aligned}
-\]</span></p>
-<p>ここで、<span class="math inline">\(N_{\mathrm{c}}\)</span> は伝導帯有効状態密度であり、具体的には計算で出てくる。先ほどと同じ近似で、次のように表される。</p>
-<p><span class="math display">\[
-n_\mathrm{c} = N_{\mathrm{c}} \exp\left(-\frac{E_{\mathrm{c}} - E_{\mathrm{F}}}{k_{\mathrm{B}} T}\right)
-\]</span></p>
-</section>
-<section id="真性半導体" class="level2">
-<h2 class="anchored" data-anchor-id="真性半導体">真性半導体</h2>
-<p>真性半導体ってのは、電子と正孔の数が等しい半導体のこと。つまり、ドーピングされていない純粋な半導体。</p>
-<p><span class="math display">\[
-\begin{aligned}
-n &amp;= N_{\mathrm{c}} \exp\left(-\frac{E_{\mathrm{c}} - E_{\mathrm{F}}}{k_{\mathrm{B}} T}\right) \\
-p &amp;= N_{\mathrm{v}} \exp\left(-\frac{E_{\mathrm{F}} - E_{\mathrm{v}}}{k_{\mathrm{B}} T}\right) \\
-n &amp;= p \\
-\Rightarrow E_{\mathrm{F}} &amp;= \frac{E_{\mathrm{c}} + E_{\mathrm{v}}}{2} + \frac{k_{\mathrm{B}} T}{2} \ln\left(\frac{N_{\mathrm{v}}}{N_{\mathrm{c}}}\right) \\
-n &amp;= p = \sqrt{N_{\mathrm{c}} N_{\mathrm{v}}} \exp\left(-\frac{E_{\mathrm{c}} - E_{\mathrm{v}}}{2 k_{\mathrm{B}} T}\right) \\
-&amp;= \sqrt{N_{\mathrm{c}} N_{\mathrm{v}}} \exp\left(-\frac{E_{\mathrm{g}}}{2 k_{\mathrm{B}} T}\right)
-\end{aligned}
-\]</span></p>
-<section id="チェックポイント" class="level3">
-<h3 class="anchored" data-anchor-id="チェックポイント">チェックポイント</h3>
+<p>この記事では、キャリア統計から光吸収・発光・太陽電池へ進む。各問題を先に考え、必要な理論を開き、最後に模範解答を確認する。</p>
+<section id="半導体のキャリア" class="level2">
+<h2 class="anchored" data-anchor-id="半導体のキャリア">半導体のキャリア</h2>
+<section id="prob-intrinsic-carrier" class="level4">
+<h4 class="anchored" data-anchor-id="prob-intrinsic-carrier">問題1　真性キャリア密度とフェルミ準位</h4>
 <ol type="1">
-<li>真性半導体キャリア密度を式で表せ。真性キャリア密度は <span class="math inline">\(E_{\mathrm{g}}\)</span> にどう依存するか？</li>
-<li>半導体キャリア密度の温度依存性によって禁制帯幅を測定する方法を説明せよ。</li>
-<li><span class="math inline">\(N_\mathrm{V} = 4N_\mathrm{C}\)</span> のとき、真性半導体のフェルミ準位はバンドギャップは中央からどれほどずれるか。</li>
+<li>非縮退半導体の真性キャリア密度 <span class="math inline">\(n_i\)</span> を式で表し、禁制帯幅 <span class="math inline">\(E_g\)</span> への依存性を述べよ。</li>
+<li>キャリア密度の温度依存性から <span class="math inline">\(E_g\)</span> を測定する方法を説明せよ。</li>
+<li><span class="math inline">\(N_V=4N_C\)</span> のとき、真性フェルミ準位は禁制帯中央からどちらへ、どれだけずれるか。<span class="math inline">\(T=300\ \mathrm{K}\)</span> とせよ。</li>
 </ol>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>解答
+<span class="screen-reader-only">Note</span>理論1：状態数と占有確率を掛ける
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<ol type="1">
-<li><span class="math inline">\(\sqrt{N_\mathrm{c}N_\mathrm{v}} \exp\left(-\frac{E_{\mathrm{g}}}{2 k_{\mathrm{B}} T}\right)\)</span> で、キャリア密度は <span class="math inline">\(E_{\mathrm{g}}\)</span> が増加すると、減少する。</li>
-<li>真性キャリア密度の温度依存性は上の式で表されるので、 <span class="math inline">\(\ln n\)</span> を <span class="math inline">\(1/T\)</span> に対してプロットすると、傾きが <span class="math inline">\(-E_{\mathrm{g}}/2 k_{\mathrm{B}}\)</span> になる。これにより、禁制帯幅 <span class="math inline">\(E_{\mathrm{g}}\)</span> を測定できる。</li>
-<li><span class="math inline">\(E_\mathrm{F} - \frac{E_\mathrm{c} + E_\mathrm{v}}{2} = \frac{k_\mathrm{B} T}{2} \ln 4 \approx 0.048 \ \mathrm{eV}\)</span> だけ中央から上にずれる。</li>
-</ol>
-</div>
-</div>
-</div>
-<p><span class="math inline">\(T=300\ \mathrm{K}\)</span> で、Si にドナーを <span class="math inline">\(N_D=1.00\times10^{16}\ \mathrm{cm^{-3}}\)</span> ドーピングした。<br>
-イオン化していないドナー（ドナー準位に電子がいる）密度 <span class="math inline">\(n_d\)</span> は</p>
+<p>伝導帯の電子濃度は、状態密度とFermi–Dirac分布の積を積分して得る。<span class="math inline">\(E_C-E_F\gg k_BT\)</span> の非縮退近似では</p>
 <p><span class="math display">\[
-n_d = N_D f_D(E_D)
-= \frac{N_D}{1+\frac12\exp\!\left(\frac{E_D-E_F}{k_BT}\right)}
+n=N_C\exp\left(-\frac{E_C-E_F}{k_BT}\right),\qquad
+p=N_V\exp\left(-\frac{E_F-E_V}{k_BT}\right).
 \]</span></p>
-<p>で与えられる。</p>
-<ul>
-<li><span class="math inline">\(E_D-E_F \gg k_BT\)</span> を用いて近似せよ。</li>
-<li><span class="math inline">\(N_C=2.80\times10^{19}\ \mathrm{cm^{-3}}\)</span></li>
-<li>ドナー準位は伝導帯端より <span class="math inline">\(45\ \mathrm{meV}\)</span> 下： <span class="math inline">\(E_D = E_C-45\ \mathrm{meV}\)</span></li>
-</ul>
-<p>を使い、イオン化していないドナーの比率を求めよ。</p>
+<p>両式を掛けるとFermi準位が消え、質量作用則</p>
+<p><span class="math display">\[
+np=N_CN_V\exp\left(-\frac{E_g}{k_BT}\right)=n_i^2
+\]</span></p>
+<p>を得る。真性半導体では <span class="math inline">\(n=p=n_i\)</span> である。なお <span class="math inline">\(N_C,N_V\propto T^{3/2}\)</span> なので、Arrheniusプロットで高精度に <span class="math inline">\(E_g\)</span> を求めるときはこの温度依存性も除く。</p>
+</div>
+</div>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>解答
+<span class="screen-reader-only">Tip</span>解答1
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>近似すると、</li>
-</ol>
-<p><span class="math display">\[
-\begin{aligned}
-n_\mathrm{d} &amp;\approx 2N_\mathrm{D} \exp \qty(\frac{E_\mathrm{F}-E_\mathrm{D}}{k_\mathrm{B} T}) \\
-n_\mathrm{c} &amp;= N_\mathrm{C} \exp \qty(-\frac{E_\mathrm{C}-E_\mathrm{F}}{k_\mathrm{B} T}) \\
-\Rightarrow r = \frac{n_\mathrm{d}}{n_\mathrm{d} + n_\mathrm{c}} &amp;= \frac{1}{1 + \frac{N_\mathrm{C}}{2N_\mathrm{D}} \exp \qty(-\frac{E_\mathrm{C} - E_\mathrm{D}}{k_\mathrm{B} T})} \\
-&amp;= 0.0041
-\end{aligned}
+<li><p><span class="math display">\[
+n_i=\sqrt{N_CN_V}\exp\left(-\frac{E_g}{2k_BT}\right).
 \]</span></p>
+<p>同温度なら <span class="math inline">\(E_g\)</span> が大きいほど <span class="math inline">\(n_i\)</span> は指数関数的に小さくなる。</p></li>
+<li><p><span class="math display">\[
+\ln\left(\frac{n_i}{T^{3/2}}\right)
+=\text{const.}-\frac{E_g}{2k_B}\frac1T
+\]</span></p>
+<p>を用い、<span class="math inline">\(\ln(n_i/T^{3/2})\)</span> を <span class="math inline">\(1/T\)</span> に対してプロットする。直線の傾き <span class="math inline">\(m\)</span> から <span class="math inline">\(E_g=-2k_Bm\)</span> を得る。</p></li>
+<li><p>真性Fermi準位は</p>
+<p><span class="math display">\[
+E_i=\frac{E_C+E_V}{2}+\frac{k_BT}{2}\ln\left(\frac{N_V}{N_C}\right)
+\]</span></p>
+<p>なので、<span class="math inline">\(N_V=4N_C\)</span> では中央より伝導帯側へ</p>
+<p><span class="math display">\[
+\Delta E=k_BT\ln2=1.79\times10^{-2}\ \mathrm{eV}
+\]</span></p>
+<p>ずれる。</p></li>
+</ol>
 </div>
 </div>
 </div>
 </section>
-</section>
-<section id="ドーピング半導体のキャリア密度" class="level2">
-<h2 class="anchored" data-anchor-id="ドーピング半導体のキャリア密度">ドーピング半導体のキャリア密度</h2>
-<p>ドーピング半導体では、ドナーやアクセプターが導入されることで、キャリア密度が変化する。例えば、n型半導体ではドナーが導入され、伝導帯に電子が供給される。一方、p型半導体ではアクセプターが導入され、価電子帯に正孔が供給される。</p>
-<p>まず、n型半導体では <span class="math inline">\(E_\mathrm{c}\)</span> の下に ドナー準位 <span class="math inline">\(E_\mathrm{D}\)</span> ができて、余った電子が入る。で、このドナー準位での電子占有率は、</p>
+<section id="prob-donor-ionization" class="level4">
+<h4 class="anchored" data-anchor-id="prob-donor-ionization">問題2　ドナーの不完全イオン化</h4>
+<p><span class="math inline">\(T=300\ \mathrm{K}\)</span> のSiへ、ドナーを <span class="math inline">\(N_D=1.00\times10^{16}\ \mathrm{cm^{-3}}\)</span> 添加した。中性ドナー密度は</p>
 <p><span class="math display">\[
-f_D(E_D) = \frac{1}{1 + \frac{1}{2} \exp\left(\frac{E_D - E_F}{k_B T}\right)}
+n_d=\frac{N_D}{1+\frac12\exp\left(\frac{E_D-E_F}{k_BT}\right)}
 \]</span></p>
-<p>と書かれる。これはフェルミ-ディラック分布関数関数とは違って、 <span class="math inline">\(E_\mathrm{D}\)</span> という特定のエネルギー準位での占有率を表している。分布ではない。</p>
-<p>ドナー準位は2つの電子が入れるため、分母に <span class="math inline">\(\frac{1}{2}\)</span> がついている。この計算の詳細は省略する。</p>
-<p>ただ以降は、基本的にはドナー準位には電子がほぼなくて、アクセプター準位には電子がほぼ満たされている、という近似を使う。</p>
-<p>それで、不純物の挿入によってエネルギー準位が変化した結果、<span class="math inline">\(n, p\)</span> の値を考えていく。</p>
-<p>これをどうやって考えるかというと、まず元の状態でのフェルミ準位を <span class="math inline">\(E_{\mathrm{i}}\)</span> としたとき、</p>
-<p><span class="math display">\[
-\begin{aligned}
-n &amp;= N_{\mathrm{c}} \exp\left(-\frac{E_{\mathrm{c}} - E_{\mathrm{F}}}{k_{\mathrm{B}} T}\right) \\
-&amp;= N_{\mathrm{c}} \exp\left(-\frac{E_{\mathrm{c}} - E_{\mathrm{i}}}{k_{\mathrm{B}} T}\right) \exp\left(-\frac{E_{\mathrm{i}} - E_{\mathrm{F}}}{k_{\mathrm{B}} T}\right) \\
-&amp;= n_{\mathrm{i}} \exp\left(-\frac{E_{\mathrm{i}} - E_{\mathrm{F}}}{k_{\mathrm{B}} T}\right) \\
-p &amp;= p_{\mathrm{i}} \exp\left(\frac{E_{\mathrm{i}} - E_{\mathrm{F}}}{k_{\mathrm{B}} T}\right) \\
-np &amp;= n_{\mathrm{i}}^{2} = N_{\mathrm{c}} N_{\mathrm{v}} \exp\left(-\frac{E_{\mathrm{g}}}{k_{\mathrm{B}} T}\right)
-\end{aligned}
-\]</span></p>
-<p>これに合わせて、</p>
-<p><span class="math display">\[
-n + N_{\mathrm{a}} = p + N_{\mathrm{d}}
-\]</span></p>
-<p>という電気的中性条件を考えると、 <span class="math inline">\(n\)</span> と <span class="math inline">\(p\)</span> を求めることができる。</p>
-<p><span class="math display">\[
-n = \frac{1}{2} \left[(N_{\mathrm{d}} - N_{\mathrm{a}}) + \sqrt{(N_{\mathrm{d}} - N_{\mathrm{a}})^{2} + 4 n_{\mathrm{i}}^{2}}\right]
-\]</span></p>
-<p>次に、フェルミ準位について考えれば、 <span class="math inline">\(n=p\)</span> となるところだから、</p>
-<p><span class="math display">\[
-\begin{aligned}
-n&amp;= p \\
-N_{\mathrm{c}} \exp\left(-\frac{E_{\mathrm{c}} - E_{\mathrm{F}}}{k_{\mathrm{B}} T}\right) &amp;= N_{\mathrm{v}} \exp\left(-\frac{E_{\mathrm{F}} - E_{\mathrm{v}}}{k_{\mathrm{B}} T}\right) \\
-\Rightarrow E_{\mathrm{F}} &amp;= \frac{E_{\mathrm{c}} + E_{\mathrm{v}}}{2} + \frac{k_{\mathrm{B}} T}{2} \ln\left(\frac{N_{\mathrm{v}}}{N_{\mathrm{c}}}\right)
-\end{aligned}
-\]</span></p>
-<p><span class="math display">\[
-\boxed{V_{FB}=\phi_m-\phi_s \;\;(\text{+ 追加があれば }-Q_{ox}/C_{ox})}
-\]</span></p>
-</section>
-</section>
-<section id="光デバイス" class="level1">
-<h1>光デバイス</h1>
-<section id="結合状態密度" class="level3">
-<h3 class="anchored" data-anchor-id="結合状態密度">結合状態密度</h3>
-<p>半導体のバンド感繊維による光吸収の吸収係数は結合状態密度</p>
-<p><span class="math display">\[
-J_{\mathrm{cv}}(E) = \frac{1}{V} \sum_k \delta(E_{\mathrm{c}}(k) - E_{\mathrm{v}}(k) - E)\delta(\mathbfit{k} - \mathbfit{k}' - \mathbfit{K})
-\]</span></p>
-<p>にほぼ比例する。</p>
-<ol type="1">
-<li><p>式の和は実質的に同じ波数を持つ荷電子帯電子と伝導帯電子の組み合わせのみでいい理由を述べよ。</p></li>
-<li><p>次のようなバンド構造を有する半導体の結合状態密度を求めよ。</p></li>
-</ol>
-<p><span class="math display">\[
-\begin{aligned}
-E_{\mathrm{c}}(k) &amp;= E_{\mathrm{g}} + \frac{\hbar^{2} k^{2}}{2 m_{\mathrm{e}}^{*}} \\
-E_{\mathrm{v}}(k) &amp;= -\frac{\hbar^{2} k^{2}}{2 m_{\mathrm{h}}^{*}}
-\end{aligned}
-\]</span></p>
-<p><img src="dimages/image0.png" class="img-fluid"></p>
-<ol start="3" type="1">
-<li><p>SiとGaAsの光吸収スペクトルの違いを説明せよ。</p></li>
-<li><p>Si と GaAs それぞれについて、バンドギャップエネルギーよりも <span class="math inline">\(0.5\ \mathrm{eV}\)</span> 高エネルギーの光を 99% 吸収するために必要な半導体の厚さを求めよ。</p></li>
-<li><p>SiとGaAsの特徴と違いを簡潔に述べよ。</p></li>
-</ol>
+<p>で与えられる。<span class="math inline">\(N_C=2.80\times10^{19}\ \mathrm{cm^{-3}}\)</span>、<span class="math inline">\(E_C-E_D=45\ \mathrm{meV}\)</span> とし、正孔を無視して、中性のまま残るドナーの割合を求めよ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>理論
+<span class="screen-reader-only">Note</span>理論2：電荷中性条件でFermi準位を決める
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>まず、決勝内の電子の波動関数はブロッホ関数で表される。詳しくは固体物理学の記事で書いてある。</p>
-<p>それで、ここで考えるべきは、光の吸収なので、光によってもたらされるハミルトニアンの摂動は次の通り。</p>
+<p>「ドナーを入れたから電子濃度は必ず <span class="math inline">\(N_D\)</span>」ではない。中性ドナーは電子を束縛しており、イオン化したドナーだけが伝導電子を供給する。正孔とアクセプターを無視すれば</p>
 <p><span class="math display">\[
-\begin{aligned}
-H' &amp;= -e \mathbfit{r} \cdot \mathbfit{E} \\
-\mathbfit{E} &amp;= \mathbfit{E}_0 e^{i(\mathbfit{K} \cdot \mathbfit{r} - \omega t)}
-\end{aligned}
+n=N_D^+=N_D-n_d
 \]</span></p>
-<p>で、これを波動方程式に入れてまとめ上げると、<span class="math inline">\(\Psi = \sum_n a_n(t) \psi_n e^{-i E_n t/\hbar}\)</span> として、途中から <span class="math inline">\(m \to n\)</span> を <span class="math inline">\(0 \to n\)</span> に遷移を変えると、</p>
+<p>が電荷中性条件である。これと</p>
 <p><span class="math display">\[
-|a_m(t)|^2 = \frac{2\pi}{\hbar} |\langle n | H' | 0 \rangle|^2 \delta(E_n - E_0 - \hbar \omega) t
+n=N_C\exp\left(-\frac{E_C-E_F}{k_BT}\right)
 \]</span></p>
-<p>で、こいつはフェルミの黄金律と呼ばれる。要するに、波動方程式を摂動的に解いたときの、ある状態から別の状態への遷移確率を与える式である。</p>
-<p>で、こいつの時間あたりの遷移確率を出すと、</p>
-<p><span class="math display">\[
-W_{0 \to n} = \frac{2\pi}{\hbar} |\langle n | H' | 0 \rangle|^2 \delta(E_n - E_0 - \hbar \omega)
-\]</span></p>
-<p>でこっから結局どれだけ時間あたりにパワーが吸収されるかを考えると、<span class="math inline">\(\mathrm{c} \to \mathrm{v}\)</span> の遷移を全部足し合わせればいいので、</p>
-<p><span class="math display">\[
-\begin{aligned}
-E_{\mathrm{c} \to \mathrm{v}} &amp;= E_{\mathrm{g}} + \frac{\hbar ^2 k^2}{2\mu} \\
-P_{\mathrm{abs}} &amp;= \sum_k \hbar \omega W_{\mathrm{c} \to \mathrm{v}} \\
-&amp;= \hbar \omega\frac{2\pi}{\hbar} |\langle \mathrm{c} | H' | \mathrm{v} \rangle|^2 \underbrace{ \sum_k \delta(E_{\mathrm{c} \to \mathrm{v}} - \hbar \omega) }_{= J_{\mathrm{c} \to \mathrm{v}}(E_{\mathrm{c} \to \mathrm{v}}) \times V} \\
-\sum_k &amp;= \underbrace{2}_{電子のスピンが2} \times \qty( \frac{L}{2\pi} )^3 \int 4\pi k^2 \mathrm{d}k \\
-P_{\mathrm{abs}} &amp;= \hbar \omega \frac{2\pi}{\hbar} |\langle \mathrm{c} | H' | \mathrm{v} \rangle|^2 \times 2 \times \qty( \frac{L}{2\pi} )^3 \int  \delta(E_{\mathrm{c} \to \mathrm{v}} - \hbar \omega) 4\pi k^2 \mathrm{d}k \\
-&amp;= \hbar\omega\frac{2\pi}{\hbar} L^3 |\langle \mathrm{c} | H' | \mathrm{v} \rangle|^2 \int \frac{2}{(2\pi)^3} \delta(E_{\mathrm{c} \to \mathrm{v}} - \hbar \omega) 4\pi k^2 \mathrm{d} k \\
-&amp;= \text{定数} \times \underbrace{\int \frac{2}{(2\pi)^3} \delta(E_{\mathrm{c} \to \mathrm{v}} - \hbar \omega) 4\pi k^2 \mathrm{d} k}_{= J_{\mathrm{c} \to \mathrm{v}}(E_{\mathrm{c} \to \mathrm{v}})  } \\
-&amp;= \text{定数} \times J_{\mathrm{c} \to \mathrm{v}}(E) \quad (E = E_{\mathrm{c} \to \mathrm{v}}) \\
-J_{\mathrm{c} \to \mathrm{v}}(E) &amp;= \frac{1}{\pi^2} \int \delta\left( E - \hbar \omega \right) k^2 (E - E_\mathrm{g}) \dv{k}{E} \dd E\\
-&amp;= \frac{1}{2\pi^2} \qty( \frac{2\mu}{\hbar^2} )^{3/2}  \underbrace{\int \delta(E - \hbar \omega) \sqrt{E - E_\mathrm{g}} \dd E}_{E = \hbar \omega の時の\sqrt{E - E_\mathrm{g}}の値の定義} \\
-&amp;= \frac{1}{2\pi^2} \qty( \frac{2\mu}{\hbar^2} )^{3/2} \sqrt{\hbar \omega - E_\mathrm{g}}
-\end{aligned}
-\]</span></p>
+<p>を連立する。</p>
 </div>
 </div>
 </div>
@@ -2773,90 +2615,30 @@ J_{\mathrm{c} \to \mathrm{v}}(E) &amp;= \frac{1}{\pi^2} \int \delta\left( E - \h
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>解答
+<span class="screen-reader-only">Tip</span>解答2
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<ol type="1">
-<li><p>結晶の電子の波数のスケールに比べて可視光の波数は非常に小さいため、光吸収過程において波数保存則を満たす遷移は <span class="math inline">\(\mathbfit{k} \approx \mathbfit{k}'\)</span> の組み合わせに限られる。</p></li>
-<li><p>詳細は理論のところで説明している。 <span class="math display">\[
-\begin{aligned}
-J_{\mathrm{cv}}(E) &amp;= \frac{1}{V} \sum_k \delta(E_{\mathrm{c}}(k) - E_{\mathrm{v}}(k) - E) \\
-&amp;= \frac{1}{V} \sum_k \delta\left(E_{\mathrm{g}} + \frac{\hbar^{2} k^{2}}{2 \mu} - E\right) \\
-&amp;= \frac{1}{(2\pi)^{3}} \int 4 \pi k^{2} \delta\left(E_{\mathrm{g}} + \frac{\hbar^{2} k^{2}}{2 \mu} - E\right) \mathrm{d} k \\
-&amp;= \frac{1}{2 \pi^{2}} \left(\frac{2 \mu}{\hbar^{2}}\right)^{\frac{3}{2}} \sqrt{E - E_{\mathrm{g}}}
-\end{aligned}
-\]</span></p></li>
-<li><p>Siは間接遷移型半導体であり、光吸収においてはフォノンの関与が必要となるが、GaAsは直接遷移型半導体である。前者は立ち上がりが鈍く、後者は急峻である。それだけではなく、バンドギャップの値に関しても、Siは約1.1 eV、GaAsは約1.4 eVであり、これも吸収スペクトルに影響を与える。</p></li>
-<li><p><span class="math display">\[
-I = I_0 e^{-\alpha x}
-\]</span><br>
-99%吸収するためには、<span class="math inline">\(I/I_0 = 0.01\)</span> となるので、 <span class="math display">\[
-0.01 = e^{-\alpha x} \\
-\Rightarrow x = \frac{\ln(100)}{\alpha}
-\]</span> あとは <span class="math inline">\(\alpha\)</span> の値をSiとGaAsのデータから読み取り、計算すればよい。Siについては <span class="math inline">\(1.6 \mathrm{eV}\)</span> あたりで <span class="math inline">\(\alpha \approx 10^3 \mathrm{cm^{-1}}\)</span>、GaAsについては <span class="math inline">\(1.9 \mathrm{eV}\)</span> あたりで <span class="math inline">\(\alpha \approx 30000 \mathrm{cm^{-1}}\)</span> とすると、</p></li>
-</ol>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>材料</th>
-<th>吸収係数 <span class="math inline">\(\alpha\)</span> (<span class="math inline">\(\mathrm{cm^{-1}}\)</span>)</th>
-<th>必要な厚さ <span class="math inline">\(x\)</span> (cm)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Si</td>
-<td><span class="math inline">\(10^3\)</span></td>
-<td><span class="math inline">\(4.6 \times 10^{-3}\)</span></td>
-</tr>
-<tr class="even">
-<td>GaAs</td>
-<td><span class="math inline">\(30000\)</span></td>
-<td><span class="math inline">\(1.5 \times 10^{-4}\)</span></td>
-</tr>
-</tbody>
-</table>
-<ol start="5" type="1">
-<li></li>
-</ol>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>材料</th>
-<th>特徴</th>
-<th>違い</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Si</td>
-<td>間接遷移型半導体、豊富な資源、低コスト</td>
-<td>吸光効率が低い、厚い層が必要</td>
-</tr>
-<tr class="even">
-<td>GaAs</td>
-<td>直接遷移型半導体、高コスト</td>
-<td>吸光効率が高い、薄い層で十分</td>
-</tr>
-</tbody>
-</table>
+<p><span class="math inline">\(y=\exp[(E_F-E_D)/(k_BT)]\)</span>、<span class="math inline">\(A=N_C\exp[-(E_C-E_D)/(k_BT)]\)</span> と置くと</p>
+<p><span class="math display">\[
+n=Ay,\qquad \frac{n_d}{N_D}=\frac{y}{y+1/2}.
+\]</span></p>
+<p>電荷中性条件 <span class="math inline">\(Ay=N_D/[2(y+1/2)]\)</span> を解く。<span class="math inline">\(k_BT=25.85\ \mathrm{meV}\)</span> より <span class="math inline">\(A=4.91\times10^{18}\ \mathrm{cm^{-3}}\)</span>、したがって</p>
+<p><span class="math display">\[
+\frac{n_d}{N_D}\\\simeq4.1\times10^{-3}.
+\]</span></p>
+<p>中性ドナーは約 <span class="math inline">\(0.41\%\)</span>、すなわち約 <span class="math inline">\(99.6\%\)</span> がイオン化している。</p>
 </div>
 </div>
 </div>
 </section>
-<section id="量子効率" class="level3">
-<h3 class="anchored" data-anchor-id="量子効率">量子効率</h3>
+<section id="prob-conductivity" class="level4">
+<h4 class="anchored" data-anchor-id="prob-conductivity">問題3　導電率とドーピング後のキャリア密度</h4>
 <ol type="1">
-<li>間接遷移型半導体が発光デバイスに不向きな理由を説明せよ。</li>
-<li>Siの発光性再結合寿命は約 <span class="math inline">\(10^{-3}\ \mathrm{s}\)</span> であり、非発光性再結合寿命は約 <span class="math inline">\(10^{-6}\ \mathrm{s}\)</span> である。一方、GaAsの発光性再結合寿命は約 <span class="math inline">\(10^{-9}\ \mathrm{s}\)</span> であり、非発光性再結合寿命は約 <span class="math inline">\(10^{-7}\ \mathrm{s}\)</span> である。これらの値を用いて、SiとGaAsの内量子効率をそれぞれ求めよ。</li>
+<li>キャリア密度 <span class="math inline">\(n,p\)</span>、移動度 <span class="math inline">\(\mu_n,\mu_p\)</span> を用いて半導体の導電率を表せ。</li>
+<li>ドナー濃度 <span class="math inline">\(N_D\)</span>、アクセプター濃度 <span class="math inline">\(N_A\)</span> の非縮退半導体について、完全イオン化を仮定して電子濃度 <span class="math inline">\(n\)</span> を求めよ。真性キャリア密度を <span class="math inline">\(n_i\)</span> とする。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
@@ -2864,22 +2646,21 @@ I = I_0 e^{-\alpha x}
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>理論
+<span class="screen-reader-only">Note</span>理論3：輸送式と電荷の帳簿を分ける
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p>電場 <span class="math inline">\(E\)</span> に対するドリフト速度は <span class="math inline">\(v_d=\mu E\)</span> であり、電子と正孔の電流密度を足すと</p>
 <p><span class="math display">\[
-\begin{aligned}
-\dv{\Delta n}{t}
-&amp;= \underbrace{-\frac{\Delta n}{\tau_r}}_{\text{発光性再結合}} - \underbrace{\frac{\Delta n}{\tau_{nr}}}_{\text{非発光性再結合}}
-= -\frac{\Delta n}{\tau} \\
-\Delta n(t) &amp;= \Delta n(0) \exp\left(-\frac{t}{\tau}\right) \\
-\eta &amp;= \frac{\tau_{nr}}{\tau_r + \tau_{nr}}
-\end{aligned}
+j=q(n\mu_n+p\mu_p)E.
 \]</span></p>
-<p>内部量子効率は、1に近いほど発光効率が高いと考えればいい。つまり、発光性再結合時間が短く、非発光性再結合時間が長いほど、内部量子効率は高くなる。</p>
+<p>一方、平衡キャリア密度は、電荷中性条件</p>
+<p><span class="math display">\[
+n+N_A^-=p+N_D^+
+\]</span></p>
+<p>と質量作用則 <span class="math inline">\(np=n_i^2\)</span> で決める。完全イオン化なら <span class="math inline">\(N_D^+=N_D\)</span>、<span class="math inline">\(N_A^-=N_A\)</span> である。</p>
 </div>
 </div>
 </div>
@@ -2889,86 +2670,76 @@ I = I_0 e^{-\alpha x}
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>解答
+<span class="screen-reader-only">Tip</span>解答3
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>間接遷移半導体における発光再結合はフォノンの放出または吸収を同時に伴う必要があり、遷移確率が著しく小さくなる。結果として発光再結合寿命が長くなり、非発光再結合が支配的となるため、間接遷移半導体は発光しにくい。</li>
-<li>Siの場合、 <span class="math display">\[
-\begin{aligned}
-\eta_{\mathrm{Si}} &amp;= \frac{\tau_{nr}}{\tau_r + \tau_{nr}} = \frac{10^{-6}}{10^{-3} + 10^{-6}} \approx 0.001
-\end{aligned}
-\]</span> GaAsの場合、 <span class="math display">\[
-\begin{aligned}
-\eta_{\mathrm{GaAs}} &amp;= \frac{\tau_{nr}}{\tau_r + \tau_{nr}} = \frac{10^{-7}}{10^{-9} + 10^{-7}} \approx 0.99
-\end{aligned}
-\]</span></li>
+<li><p><span class="math display">\[
+\sigma=q(n\mu_n+p\mu_p),\qquad \rho=\sigma^{-1}.
+\]</span></p></li>
+<li><p><span class="math inline">\(p=n_i^2/n\)</span> を <span class="math inline">\(n+N_A=p+N_D\)</span> へ代入すると</p>
+<p><span class="math display">\[
+n^2-(N_D-N_A)n-n_i^2=0.
+\]</span></p>
+<p>物理的な正根を選び、</p>
+<p><span class="math display">\[
+n=\frac{(N_D-N_A)+\sqrt{(N_D-N_A)^2+4n_i^2}}{2},
+\qquad p=\frac{n_i^2}{n}.
+\]</span></p></li>
 </ol>
 </div>
 </div>
 </div>
 </section>
-<section id="効率関連" class="level3">
-<h3 class="anchored" data-anchor-id="効率関連">効率関連</h3>
-<p><img src="dimages/image1.png" class="img-fluid"></p>
-<p>上の図のような赤色半導体発光デバイスにおいて、電流33mAの時のパワー変換効率、スロープ効率、外部量子効率、内部量子効率の概算を求めよ。</p>
+</section>
+<section id="光吸収" class="level2">
+<h2 class="anchored" data-anchor-id="光吸収">光吸収</h2>
+<section id="prob-jdos" class="level4">
+<h4 class="anchored" data-anchor-id="prob-jdos">問題4　結合状態密度と直接・間接遷移</h4>
+<p>放物線バンド</p>
+<p><span class="math display">\[
+E_c(k)=E_g+\frac{\hbar^2k^2}{2m_e^*},\qquad
+E_v(k)=-\frac{\hbar^2k^2}{2m_h^*}
+\]</span></p>
+<p>をもつ半導体を考える。</p>
+<ol type="1">
+<li><p>光学遷移で、ほぼ同じ波数をもつ価電子帯状態と伝導帯状態の組合せを考えればよい理由を述べよ。</p></li>
+<li><p>単位体積当たりの結合状態密度</p>
+<p><span class="math display">\[
+J_{cv}(E)=\frac1V\sum_{\boldsymbol{k}}\delta\left(E_c(\boldsymbol{k})-E_v(\boldsymbol{k})-E\right)
+\]</span></p>
+<p>を求めよ。</p></li>
+<li><p>図の吸収曲線A、BをGaAs、Siへ対応させ、吸収端の違いを説明せよ。</p></li>
+<li><p>各材料について、<span class="math inline">\(E_g+0.5\ \mathrm{eV}\)</span> の光を99%吸収するために必要な厚さを図から概算せよ。</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dimages/image0.png" class="img-fluid figure-img" alt="吸収係数を縦軸、光子エネルギーを横軸としたグラフ。Aは約1.4 eVから急増し、Bは約1.1 eVから緩やかに増加する。"></p>
+<figcaption>二種類の半導体の吸収係数と光子エネルギーの関係</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>理論
+<span class="screen-reader-only">Note</span>理論4：光子はエネルギーを運ぶが運動量は小さい
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>効率関連は、とりあえず定義をわかっていればいい。</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>種類</th>
-<th>定義</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>パワー変換効率 <span class="math inline">\(\eta_{\mathrm{P}}\)</span></td>
-<td>出力光パワー <span class="math inline">\(P_{\mathrm{out}}\)</span> を入力電力 <span class="math inline">\(P_{\mathrm{in}}\)</span> で割ったもの。 <span class="math inline">\(\eta_{\mathrm{P}} = \frac{P_{\mathrm{out}}}{P_{\mathrm{in}}}\)</span></td>
-</tr>
-<tr class="even">
-<td>スロープ効率 <span class="math inline">\(\eta_{\mathrm{S}}\)</span></td>
-<td>出力光パワーの電流に対する微分。 <span class="math inline">\(\eta_{\mathrm{S}} = \dv{P_{\mathrm{out}}}{I}\)</span></td>
-</tr>
-<tr class="odd">
-<td>外部量子効率 <span class="math inline">\(\eta_{\mathrm{ext}}\)</span></td>
-<td>入力電流に対する出力光子数の比率。 <span class="math inline">\(\eta_{\mathrm{ext}} = \frac{\text{出力光子数}}{\text{入力電子数}}= \frac{1}{h\nu}\dv{P}{t}/\frac{1}{q}\dv{I}{t}=\frac{q}{h\nu}\dv{P}{I}=\frac{q\lambda}{hc}\dv{P}{I}\)</span></td>
-</tr>
-<tr class="even">
-<td>内部量子効率 <span class="math inline">\(\eta_{\mathrm{int}}\)</span></td>
-<td>発光再結合に寄与する電子と正孔の比率。 <span class="math inline">\(\eta_{\mathrm{int}} = \frac{\text{発光再結合数}}{\text{全再結合数}}\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>特に内部量子効率は</p>
+<p>可視光の波数はBrillouin zoneの尺度に比べて小さいため、光子だけの遷移では結晶運動量がほぼ保存され、<span class="math inline">\(\boldsymbol{k}_c\\\simeq\boldsymbol{k}_v\)</span> となる。伝導帯底と価電子帯頂上が同じ波数にある直接遷移型では光子だけで遷移できる。異なる波数にある間接遷移型ではフォノンも必要になる。</p>
+<p>二つの放物線の差は</p>
 <p><span class="math display">\[
-\begin{aligned}
-\eta_{\mathrm{int}} &amp;= \eta_{\mathrm{ext}} \frac{\alpha_\mathrm{m}}{ \alpha_\mathrm{m} + \alpha_\mathrm{i} } \\
-\alpha_\mathrm{m} &amp;= \frac{1}{L} \ln\left(\frac{1}{R_1 R_2}\right) \\
-L &amp;\approx 300\ \mathrm{\mu m} \\
-R_1 = R_2 &amp;\approx 0.3 \\
-\alpha_\mathrm{i} &amp;\approx 10\ \mathrm{cm^{-1}}
-\end{aligned}
+E_c-E_v=E_g+\frac{\hbar^2k^2}{2\mu},\qquad
+\frac1\mu=\frac1{m_e^*}+\frac1{m_h^*}
 \]</span></p>
-<p>また、視感効率というあたいが過去問では出てきたのだが、人間の目では <span class="math inline">\(683 \mathrm{lm/W}\)</span> が最大視感効率で、赤色光では約 <span class="math inline">\(0.5\)</span> 倍程度になる。で、その値が必要になる問題が出ることがある。</p>
+<p>である。三次元 <span class="math inline">\(k\)</span> 空間の殻の状態数 <span class="math inline">\(4\pi k^2\dd k\)</span> をエネルギーへ変数変換すると、吸収端上の平方根依存性が現れる。</p>
 </div>
 </div>
 </div>
@@ -2978,53 +2749,238 @@ R_1 = R_2 &amp;\approx 0.3 \\
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>解答
+<span class="screen-reader-only">Tip</span>解答4
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>グラフを見て値を代入するだけなので略</p>
+<ol type="1">
+<li><p>光子の運動量 <span class="math inline">\(\hbar K\)</span> は結晶電子の結晶運動量に比べて小さいため、光子吸収では <span class="math inline">\(\boldsymbol{k}_c=\boldsymbol{k}_v+\boldsymbol{K}\\\simeq\boldsymbol{k}_v\)</span> となる。</p></li>
+<li><p>スピン縮退を含めると</p>
+<p><span class="math display">\[
+J_{cv}(E)=\frac1{2\pi^2}\left(\frac{2\mu}{\hbar^2}\right)^{3/2}\sqrt{E-E_g}\,\Theta(E-E_g).
+\]</span></p></li>
+<li><p>Aは吸収端が急峻な直接遷移型GaAs、Bはフォノンを必要とし立ち上がりが緩やかな間接遷移型Siである。</p></li>
+<li><p>Beer–Lambert則 <span class="math inline">\(I/I_0=e^{-\alpha x}\)</span> より</p>
+<p><span class="math display">\[
+x=\frac{\ln100}{\alpha}.
+\]</span></p>
+<p>図から、Siでは <span class="math inline">\(E\\\simeq1.6\ \mathrm{eV}\)</span> で <span class="math inline">\(\alpha\\\simeq10^3\ \mathrm{cm^{-1}}\)</span>、GaAsでは <span class="math inline">\(E\\\simeq1.9\ \mathrm{eV}\)</span> で <span class="math inline">\(\alpha\\\simeq3\times10^4\ \mathrm{cm^{-1}}\)</span> と読める。したがって</p>
+<p><span class="math display">\[
+x_{\mathrm{Si}}\\\simeq4.6\times10^{-3}\ \mathrm{cm}=46\ \mathrm{\mu m},
+\]</span></p>
+<p><span class="math display">\[
+x_{\mathrm{GaAs}}\\\simeq1.5\times10^{-4}\ \mathrm{cm}=1.5\ \mathrm{\mu m}.
+\]</span></p></li>
+</ol>
 </div>
 </div>
 </div>
 </section>
-<section id="太陽電池" class="level3">
-<h3 class="anchored" data-anchor-id="太陽電池">太陽電池</h3>
-<p>下図のようなJ-V特性を持つ太陽電池がある。これの開放電圧、短絡電流密度、FFと電力変換効率を求めよ。</p>
-<p><img src="dimages/image3.png" class="img-fluid"></p>
+</section>
+<section id="発光デバイス" class="level2">
+<h2 class="anchored" data-anchor-id="発光デバイス">発光デバイス</h2>
+<section id="prob-internal-qe" class="level4">
+<h4 class="anchored" data-anchor-id="prob-internal-qe">問題5　再結合寿命と内部量子効率</h4>
+<ol type="1">
+<li>間接遷移型半導体が発光デバイスに不向きな理由を説明せよ。</li>
+<li>Siの発光再結合寿命を <span class="math inline">\(\tau_r=10^{-3}\ \mathrm{s}\)</span>、非発光再結合寿命を <span class="math inline">\(\tau_{nr}=10^{-6}\ \mathrm{s}\)</span> とする。GaAsではそれぞれ <span class="math inline">\(10^{-9}\ \mathrm{s}\)</span>、<span class="math inline">\(10^{-7}\ \mathrm{s}\)</span> とする。内部量子効率を求めよ。</li>
+</ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>理論
+<span class="screen-reader-only">Note</span>理論5：競争する再結合速度の比を取る
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>それぞれ<span class="math inline">\(I = 0\)</span> のときの電圧が開放電圧 <span class="math inline">\(V_{\mathrm{oc}}\)</span> 、<span class="math inline">\(V=0\)</span> のときの電流が短絡電流密度 <span class="math inline">\(J_{\mathrm{sc}}\)</span> である。FFはフィルファクターで、最大出力点の電圧と電流の積を <span class="math inline">\(V_{\mathrm{oc}} J_{\mathrm{sc}}\)</span> で割ったものである。最後に、電力変換効率 <span class="math inline">\(\eta\)</span> は、最大出力を入射光パワーで割ったものである。つまり、 <span class="math inline">\(FF/ V_{\mathrm{oc}} J_{\mathrm{sc}}\)</span></p>
+<p>過剰キャリアは発光再結合と非発光再結合の並列経路で減衰する。</p>
+<p><span class="math display">\[
+\dv{\Delta n}{t}
+=-\frac{\Delta n}{\tau_r}-\frac{\Delta n}{\tau_{nr}}.
+\]</span></p>
+<p>単位時間当たりの発光再結合の割合は、発光速度を全再結合速度で割って</p>
+<p><span class="math display">\[
+\eta_{int}=\frac{1/\tau_r}{1/\tau_r+1/\tau_{nr}}
+=\frac{\tau_{nr}}{\tau_r+\tau_{nr}}
+\]</span></p>
+<p>となる。</p>
 </div>
 </div>
 </div>
-<!-- 
-::: {.callout-note collapse="true"}
-##### 理論
-
-This is an example of a callout with a title.
-:::
-
-::: {.callout-tip collapse="true"}
-##### 解答
-
-This is an example of a callout with a title.
-::: 
--->
-
-
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>間接遷移では、電子と正孔の再結合に光子だけでなく運動量を補うフォノンも必要である。遷移確率が小さく発光寿命が長いため、その間に欠陥などを介した非発光再結合が起こりやすい。</p></li>
+<li><p><span class="math display">\[
+\eta_{int}^{\mathrm{Si}}=\frac{10^{-6}}{10^{-3}+10^{-6}}\\simeq9.99\times10^{-4},
+\]</span></p>
+<p><span class="math display">\[
+\eta_{int}^{\mathrm{GaAs}}=\frac{10^{-7}}{10^{-9}+10^{-7}}\\simeq0.990.
+\]</span></p></li>
+</ol>
+</div>
+</div>
+</div>
 </section>
+<section id="prob-led-efficiency" class="level4">
+<h4 class="anchored" data-anchor-id="prob-led-efficiency">問題6　発光デバイスの効率</h4>
+<p>図の赤色発光デバイスについて、<span class="math inline">\(25\,\mathrm{^\circ C}\)</span>、電流 <span class="math inline">\(I=33\ \mathrm{mA}\)</span> における次の量をグラフから概算せよ。</p>
+<ol type="1">
+<li>パワー変換効率 <span class="math inline">\(P_{out}/(VI)\)</span></li>
+<li>スロープ効率 <span class="math inline">\(\dv{P_{out}}{I}\)</span></li>
+<li>外部微分量子効率</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dimages/image1.png" class="img-fluid figure-img" alt="左に650から670 nmの発光スペクトル、右に温度別の電流光出力曲線と電流電圧曲線を示す。"></p>
+<figcaption>赤色発光デバイスの発光スペクトルと電流―光出力・電圧特性</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論6：電力の比と粒子数の比を区別する
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>パワー変換効率はエネルギー流の比、外部量子効率は電子数と光子数の比である。</p>
+<p><span class="math display">\[
+\eta_P=\frac{P_{out}}{VI},\qquad
+\eta_{ext,d}=\frac{q}{h\nu}\dv{P_{out}}{I}
+=\frac{q\lambda}{hc}\dv{P_{out}}{I}.
+\]</span></p>
+<p>グラフ読み取りでは、値の精度を曲線の太さ以上に細かくしない。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答6
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>図から <span class="math inline">\(I=33\ \mathrm{mA}\)</span> で、およそ <span class="math inline">\(P_{out}=6\text{〜}6.5\ \mathrm{mW}\)</span>、<span class="math inline">\(V\\\simeq2.2\ \mathrm{V}\)</span> と読める。したがって</p>
+<p><span class="math display">\[
+\eta_P\\\simeq\frac{6.3\ \mathrm{mW}}{(2.2\ \mathrm{V})(33\ \mathrm{mA})}\\\simeq0.087
+\]</span></p>
+<p>で、約9%である。直線部の傾きはおよそ</p>
+<p><span class="math display">\[
+\dv{P_{out}}{I}\\\simeq0.4\text{〜}0.5\ \mathrm{W\,A^{-1}}.
+\]</span></p>
+<p><span class="math inline">\(\lambda\\\simeq655\ \mathrm{nm}\)</span> を用いると</p>
+<p><span class="math display">\[
+\eta_{ext,d}\\\simeq\frac{q\lambda}{hc}(0.45)\\\simeq0.24.
+\]</span></p>
+<p>よって外部微分量子効率は約24%である。いずれも図からの概算値である。</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="太陽電池" class="level2">
+<h2 class="anchored" data-anchor-id="太陽電池">太陽電池</h2>
+<section id="prob-solar-cell" class="level4">
+<h4 class="anchored" data-anchor-id="prob-solar-cell">問題7　J–V特性から性能指標を読む</h4>
+<p>図の太陽電池について、開放電圧 <span class="math inline">\(V_{oc}\)</span>、短絡電流密度 <span class="math inline">\(J_{sc}\)</span>、最大出力点、曲線因子 <span class="math inline">\(FF\)</span> を求めよ。また、入射光強度を <span class="math inline">\(100\ \mathrm{mW\,cm^{-2}}\)</span> として電力変換効率を概算せよ。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dimages/image3.png" class="img-fluid figure-img" alt="光電流密度を縦軸、電圧を横軸とした太陽電池のJ-V曲線。最大出力点を読む補助線が残されている。"></p>
+<figcaption>太陽電池の光電流密度―電圧特性。図上に最大出力点を読むための補助線が書き込まれている</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>理論7：切片と最大長方形を読む
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(V=0\)</span> の縦軸切片が <span class="math inline">\(J_{sc}\)</span>、<span class="math inline">\(J=0\)</span> の横軸切片が <span class="math inline">\(V_{oc}\)</span> である。曲線上の点 <span class="math inline">\((V_m,J_m)\)</span> が作る長方形 <span class="math inline">\(V_mJ_m\)</span> が最大になる点を最大出力点と呼び、</p>
+<p><span class="math display">\[
+FF=\frac{V_mJ_m}{V_{oc}J_{sc}},\qquad
+\eta=\frac{V_mJ_m}{P_{in}}
+\]</span></p>
+<p>である。</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>解答7
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>図から</p>
+<p><span class="math display">\[
+V_{oc}\\\simeq1.0\ \mathrm{V},\qquad
+J_{sc}\\\simeq18\ \mathrm{mA\,cm^{-2}}
+\]</span></p>
+<p>と読める。最大出力点はおよそ</p>
+<p><span class="math display">\[
+V_m\\\simeq0.80\ \mathrm{V},\qquad
+J_m\\\simeq13\ \mathrm{mA\,cm^{-2}}
+\]</span></p>
+<p>なので、</p>
+<p><span class="math display">\[
+FF\\\simeq\frac{0.80\times13}{1.0\times18}\\\simeq0.58,
+\]</span></p>
+<p><span class="math display">\[
+\eta\\\simeq\frac{0.80\times13\ \mathrm{mW\,cm^{-2}}}{100\ \mathrm{mW\,cm^{-2}}}
+\\\simeq0.10.
+\]</span></p>
+<p>したがって変換効率は約10%である。元図の線幅に合わせた概算値である。</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="関連記事" class="level2">
+<h2 class="anchored" data-anchor-id="関連記事">関連記事</h2>
+<ul>
+<li>Fermi–Dirac統計と状態密度の導出は<a href="../../../posts/univ_lecs/2A/材料統計力学.html">材料統計力学</a>を参照。</li>
+<li>結晶中のバンド、Brillouin zone、有効質量は<a href="../../../posts/univ_lecs/3S/固体物性学.html">固体物性学</a>を参照。</li>
+<li>半導体のバンドギャップとキャリア統計は<a href="../../../posts/univ_lecs/3S/半導体物性学.html">半導体物性学</a>も参照。</li>
+</ul>
+
+
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
