@@ -34,6 +34,9 @@ def main() -> None:
     fig, ax = plt.subplots(figsize=(8.0, 6.4), constrained_layout=True)
     for label, r1, r2, linestyle in systems:
         f_polymer = instantaneous_composition(f1, r1, r2)
+        if r2 == 0:
+            # M2 単独では生長できず、f1=0 では共重合組成自体が未定義。
+            f_polymer[0] = np.nan
         f_polymer[-1] = 1.0
         ax.plot(
             f1,
