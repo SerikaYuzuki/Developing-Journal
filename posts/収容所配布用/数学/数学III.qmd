@@ -27,63 +27,7 @@ $$
 ::: {.callout-tip collapse="true"}
 ##### 解答
 
-$$
-F(x)=\frac{x}{2}(\log x-1)\qquad(x>0)
-$$
-
-とおくと、$F'(x)=\frac12\log x$ である。
-
-まず $n=1$ では
-
-$$
-\left(\frac1e\right)^{1/2}<1<\left(\frac3e\right)^{3/2}
-$$
-
-が成り立つ。ここで、$e<3$ より右側の不等式も確認できる。
-
-$D_n=1\cdot3\cdots(2n-1)$ とおく。下側の不等式が $n-1$ で成り立つと仮定すると、
-
-$$
-\log D_n
-=\log D_{n-1}+\log(2n-1)
->F(2n-3)+\log(2n-1).
-$$
-
-一方、$F'$ は単調増加するので
-
-$$
-F(2n-1)-F(2n-3)
-=\int_{2n-3}^{2n-1}\frac12\log x\,\dd x
-<\log(2n-1).
-$$
-
-したがって $\log D_n>F(2n-1)$ となり、下側が帰納的に示される。
-
-同様に、上側の不等式が $n-1$ で成り立つとすると
-
-$$
-\log D_n<F(2n-1)+\log(2n-1).
-$$
-
-また
-
-$$
-F(2n+1)-F(2n-1)
-=\int_{2n-1}^{2n+1}\frac12\log x\,\dd x
->\log(2n-1)
-$$
-
-だから $\log D_n<F(2n+1)$ である。指数関数を取れば
-
-$$
-\boxed{
-\left(\frac{2n-1}{e}\right)^{(2n-1)/2}
-<D_n<
-\left(\frac{2n+1}{e}\right)^{(2n+1)/2}
-}
-$$
-
-を得る。
+> 模範解答を受領後に追記します。
 
 :::
 
@@ -167,47 +111,7 @@ $z$ および $z^n + 1$ の絶対値が共に $1$ である。
 ::: {.callout-tip collapse="true"}
 ##### 解答
 
-$|z|=1$ なので $w=z^n$ とおけば $|w|=1$ である。$w=e^{i\phi}$ とすると
-
-$$
-|w+1|^2
-=(w+1)(\overline w+1)
-=2+2\cos\phi.
-$$
-
-これが $1$ に等しいためには $\cos\phi=-1/2$、すなわち
-
-$$
-w=e^{2\pi i/3},\quad e^{4\pi i/3}
-$$
-
-でなければならない。したがって条件を満たす $z$ は
-
-$$
-z^{2n}+z^n+1=0
-$$
-
-の $2n$ 個の根である。これは $3n$ 乗根のうち $n$ 乗根を除いたものに一致する。
-
-積は、上の多項式がモニックで定数項が $1$、次数が $2n$ であることから
-
-$$
-\boxed{1}
-$$
-
-である。和は $n=1$ のとき $z^2+z+1=0$ より $-1$ である。$n\geq2$ のとき、$z^{2n-1}$ の係数が $0$ なので和も $0$ となる。したがって
-
-$$
-\boxed{
-\text{和}=
-\begin{cases}
--1&(n=1),\\
-0&(n\geq2),
-\end{cases}
-\qquad
-\text{積}=1
-}
-$$
+> 模範解答を受領後に追記します。
 
 :::
 
@@ -279,36 +183,7 @@ $$
 ::: {.callout-tip collapse="true"}
 ##### 解答
 
-$y=2x$ とおくと $y\to+\infty$ であり、求める極限は
-
-$$
-\left(\frac{a^{2/y}+b^{1/y}}2\right)^y
-$$
-
-となる。$A=\log a,\ B=\log b$ とおけば
-
-$$
-e^{2A/y}=1+\frac{2A}{y}+o\left(\frac1y\right),
-\qquad
-e^{B/y}=1+\frac{B}{y}+o\left(\frac1y\right).
-$$
-
-したがって
-
-$$
-\frac{a^{2/y}+b^{1/y}}2
-=1+\frac{2A+B}{2y}+o\left(\frac1y\right).
-$$
-
-$\lim_{y\to\infty}(1+c/y)^y=e^c$ を使うと、求める極限は
-
-$$
-\exp\left(\frac{2A+B}{2}\right)
-=\exp\left(A+\frac B2\right)
-=\boxed{a\sqrt b}
-$$
-
-である。
+> 模範解答を受領後に追記します。
 
 :::
 

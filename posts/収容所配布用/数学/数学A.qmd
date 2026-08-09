@@ -180,43 +180,7 @@ $$
 ::: {.callout-tip collapse="true"}
 ##### 解答
 
-$$
-\boldsymbol u=\overrightarrow{AB},
-\qquad
-\boldsymbol v=\overrightarrow{BC},
-\qquad
-D=\left|\det(\boldsymbol u,\boldsymbol v)\right|
-$$
-
-とおく。各点の座標は整数なので、$D$ は非負整数であり、三角形の面積は $[ABC]=D/2$ である。
-
-$\boldsymbol v$ を $90^\circ$ 回転し、$\boldsymbol u$ との内積が $D$ となる向きを選んだベクトルを $R\boldsymbol v$ とする。このベクトルも整数成分をもつ。すると
-
-$$
-\begin{aligned}
-(|AB|+|BC|)^2-8[ABC]
-&=(|\boldsymbol u|+|\boldsymbol v|)^2-4D\\
-&=|\boldsymbol u-R\boldsymbol v|^2
-+2\bigl(|\boldsymbol u||\boldsymbol v|-D\bigr).
-\end{aligned}
-$$
-
-Cauchy--Schwarz の不等式より $D\leq |\boldsymbol u||\boldsymbol v|$ なので、右辺の2項はいずれも $0$ 以上である。さらに $\boldsymbol u-R\boldsymbol v$ は整数ベクトルだから、これが零ベクトルでなければ
-
-$$
-|\boldsymbol u-R\boldsymbol v|^2\geq1
-$$
-
-となる。問題の不等式は左辺が $1$ 未満であることを意味するため、$\boldsymbol u-R\boldsymbol v=\boldsymbol0$ でなければならない。したがって $AB=BC$ かつ $AB\perp BC$ であり、$A,B,C$ はある正方形の連続する3頂点である。
-
-逆に $A,B,C$ が正方形の連続する3頂点なら、辺の長さを $s$ として
-
-$$
-(|AB|+|BC|)^2=4s^2
-<4s^2+1=8[ABC]+1.
-$$
-
-よって、条件は必要十分である。
+> 模範解答を受領後に追記します。
 
 :::
 
