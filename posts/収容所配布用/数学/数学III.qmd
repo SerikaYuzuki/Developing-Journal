@@ -8,13 +8,15 @@ image: "images/thumbnail.jpg"
 
 $\require{physics}$
 
+各問では、最初に問題だけを読み、解き終えてから折りたたみの「解答」で式の流れを確認できます。難易度と所要時間は演習の目安です。
+
 ## 第1問
 
 ::: {.exercise-meta difficulty="B" time="30分"}
 :::
 
 #### 問題
-$n$ を非負整数として、次の不等式を示せ。
+$n$ を正整数として、次の不等式を示せ。
 
 $$
 \left( \frac{2n - 1}{e} \right) ^ {\frac{2n-1}{2} }  < 1 \cdot 3 \cdot 5 \cdots (2n - 1) < \left( \frac{2n + 1}{e} \right) ^ {\frac{2n+1}{2} } 
@@ -25,6 +27,63 @@ $$
 ::: {.callout-tip collapse="true"}
 ##### 解答
 
+$$
+F(x)=\frac{x}{2}(\log x-1)\qquad(x>0)
+$$
+
+とおくと、$F'(x)=\frac12\log x$ である。
+
+まず $n=1$ では
+
+$$
+\left(\frac1e\right)^{1/2}<1<\left(\frac3e\right)^{3/2}
+$$
+
+が成り立つ。ここで、$e<3$ より右側の不等式も確認できる。
+
+$D_n=1\cdot3\cdots(2n-1)$ とおく。下側の不等式が $n-1$ で成り立つと仮定すると、
+
+$$
+\log D_n
+=\log D_{n-1}+\log(2n-1)
+>F(2n-3)+\log(2n-1).
+$$
+
+一方、$F'$ は単調増加するので
+
+$$
+F(2n-1)-F(2n-3)
+=\int_{2n-3}^{2n-1}\frac12\log x\,\dd x
+<\log(2n-1).
+$$
+
+したがって $\log D_n>F(2n-1)$ となり、下側が帰納的に示される。
+
+同様に、上側の不等式が $n-1$ で成り立つとすると
+
+$$
+\log D_n<F(2n-1)+\log(2n-1).
+$$
+
+また
+
+$$
+F(2n+1)-F(2n-1)
+=\int_{2n-1}^{2n+1}\frac12\log x\,\dd x
+>\log(2n-1)
+$$
+
+だから $\log D_n<F(2n+1)$ である。指数関数を取れば
+
+$$
+\boxed{
+\left(\frac{2n-1}{e}\right)^{(2n-1)/2}
+<D_n<
+\left(\frac{2n+1}{e}\right)^{(2n+1)/2}
+}
+$$
+
+を得る。
 
 :::
 
@@ -39,7 +98,7 @@ $$
 ::: {.callout-tip collapse="true"}
 ##### 解答
 
-考える直角双曲線を $\pi / 4$ 回転して考えると、回転後の座標を $(X,Y)$ としたとき、回転行列や複素数の回転公式から、
+座標軸を $\pi/4$ 回転し、回転後の座標を $(X,Y)$ とする。
 
 \begin{equation}
     \left \{ \,
@@ -50,31 +109,45 @@ $$
     \right. 
 \end{equation}
 
-という式が成り立つので、それを与えられた式に代入して整理すると、
+を $x^2-y^2=2$ へ代入すると
 
 $$
-xy = 1
+XY=1
 $$
 
-となる。与えられた3点を $A(a,1/a), B(b,1/b), C(c,1/c)$ とすると、
+となる。3点を $A(a,1/a), B(b,1/b), C(c,1/c)$ とする。ただし $a,b,c$ は相異なる非零実数である。
 
 $$
 BC: x + bcy = b + c
 $$
 
-となるので、 $A$ を通る $BC$ に垂直な直線の方程式は、
+であり、その傾きは $-1/(bc)$ である。したがって、$A$ を通る $BC$ の垂線は
 
 $$
 A_\perp : abcx - ay = a^2bc - 1
 $$
 
-となる。対称性により、 $B$ を通る $AC$ に垂直な直線の方程式、
+となる。同様に、$B$ を通る $AC$ の垂線は
 
 $$
 B_\perp : abcx - by = b^2ac - 1
 $$
 
-となるので、垂心の座標は、$(-1/abc,-abc)$ である。なので、垂心の存在範囲は、元の直角双曲線上全体となる。
+となる。2式を引くと $Y=-abc$、これを戻すと $X=-1/(abc)$ なので、垂心は
+
+$$
+H=\left(-\frac1{abc},-abc\right)
+$$
+
+である。確かに $X_HY_H=1$ だから、垂心も双曲線 $XY=1$ 上にある。
+
+逆に $XY=1$ 上の任意の点 $(t,1/t)$ に対し、$abc=-1/t$ となる相異なる非零実数 $a,b,c$ を選べるため、その点を垂心として実現できる。よって回転前の座標へ戻した存在範囲は
+
+$$
+\boxed{x^2-y^2=2\text{ の全体}}
+$$
+
+である。
 
 
 :::
@@ -94,6 +167,47 @@ $z$ および $z^n + 1$ の絶対値が共に $1$ である。
 ::: {.callout-tip collapse="true"}
 ##### 解答
 
+$|z|=1$ なので $w=z^n$ とおけば $|w|=1$ である。$w=e^{i\phi}$ とすると
+
+$$
+|w+1|^2
+=(w+1)(\overline w+1)
+=2+2\cos\phi.
+$$
+
+これが $1$ に等しいためには $\cos\phi=-1/2$、すなわち
+
+$$
+w=e^{2\pi i/3},\quad e^{4\pi i/3}
+$$
+
+でなければならない。したがって条件を満たす $z$ は
+
+$$
+z^{2n}+z^n+1=0
+$$
+
+の $2n$ 個の根である。これは $3n$ 乗根のうち $n$ 乗根を除いたものに一致する。
+
+積は、上の多項式がモニックで定数項が $1$、次数が $2n$ であることから
+
+$$
+\boxed{1}
+$$
+
+である。和は $n=1$ のとき $z^2+z+1=0$ より $-1$ である。$n\geq2$ のとき、$z^{2n-1}$ の係数が $0$ なので和も $0$ となる。したがって
+
+$$
+\boxed{
+\text{和}=
+\begin{cases}
+-1&(n=1),\\
+0&(n\geq2),
+\end{cases}
+\qquad
+\text{積}=1
+}
+$$
 
 :::
 
@@ -112,9 +226,16 @@ $$
 ::: {.callout-tip collapse="true"}
 ##### 解答
 
-$z$ が実数の場合、$z+\frac{4}{z}$ が実数であるのは当然である。ゆえに与えられた条件式の右辺の虚部が $0$ となるので、$z-\frac{4}{z}=0$ から、 $z=\pm 2$ となる。これを代入すると、 $k=\pm 0$ となる。
+$z$ が実数の場合、等式の左辺は実数、右辺は純虚数である。したがって両辺が $0$ でなければならず、$z-4/z=0$ より $z=\pm2$、さらに元の式から $k=0$ となる。
 
-次に、$z=r(\cos \theta + i \sin \theta)$ とおくと、 $z+\frac{4}{z}$ が実数であるから、その条件を求めれば $r=\pm2$ となるが、極表示なので、 $r=2$ とできる。それを与えられた式に代入すると、
+次に $z$ が実数でない場合を考える。$z=re^{i\theta}\ (r>0)$ とおくと
+
+$$
+\operatorname{Im}\left(z+\frac4z\right)
+=\left(r-\frac4r\right)\sin\theta=0.
+$$
+
+$\sin\theta\neq0$ なので $r=2$ である。これを与式へ代入すると
 
 $$
 k\left( 4 \cos \theta + 8 \right) = i \left( 4i \sin \theta \right)
@@ -126,12 +247,18 @@ $$
 k = - \frac{\sin \theta}{\cos \theta + 2}
 $$
 
-となるので、 $k$ の範囲は、点 $(2,0)$ と単位円上の点を結ぶ直線の傾きに $-1$ をかけたものの範囲となる。これについては簡単な図形的考察で $\left[ -\frac{1}{\sqrt{3} }, \frac{1}{\sqrt{3} } \right]$ 求められる。
+となる。$g(\theta)=\sin\theta/(2+\cos\theta)$ とおくと
+
+$$
+g'(\theta)=\frac{2\cos\theta+1}{(2+\cos\theta)^2}.
+$$
+
+したがって極値は $\cos\theta=-1/2$ で取り、$|g(\theta)|\leq1/\sqrt3$ である。端の値も $\sin\theta=\pm\sqrt3/2$ のとき実現する。$k=-g(\theta)$ だから、実数の場合に得た $k=0$ も含めて
 
 よって答えは
 
 $$
-k \in \left[ -\frac{1}{\sqrt{3} }, \frac{1}{\sqrt{3} } \right]
+\boxed{k \in \left[ -\frac{1}{\sqrt{3} }, \frac{1}{\sqrt{3} } \right]}
 $$
 
 
@@ -152,6 +279,36 @@ $$
 ::: {.callout-tip collapse="true"}
 ##### 解答
 
+$y=2x$ とおくと $y\to+\infty$ であり、求める極限は
+
+$$
+\left(\frac{a^{2/y}+b^{1/y}}2\right)^y
+$$
+
+となる。$A=\log a,\ B=\log b$ とおけば
+
+$$
+e^{2A/y}=1+\frac{2A}{y}+o\left(\frac1y\right),
+\qquad
+e^{B/y}=1+\frac{B}{y}+o\left(\frac1y\right).
+$$
+
+したがって
+
+$$
+\frac{a^{2/y}+b^{1/y}}2
+=1+\frac{2A+B}{2y}+o\left(\frac1y\right).
+$$
+
+$\lim_{y\to\infty}(1+c/y)^y=e^c$ を使うと、求める極限は
+
+$$
+\exp\left(\frac{2A+B}{2}\right)
+=\exp\left(A+\frac B2\right)
+=\boxed{a\sqrt b}
+$$
+
+である。
 
 :::
 
@@ -169,7 +326,7 @@ $$
 
 となるとき、 $\dv{x}{\theta}$ を求めよ。
 
-(2) 次の極限値を求めよ
+(2) 次の広義積分を求めよ。
 
 $$
 \int_{-\infty}^{\infty} \qty( \frac{2}{e^x+e^{-x}} )^n \dd x
@@ -180,43 +337,25 @@ $$
 ::: {.callout-tip collapse="true"}
 ##### 解答
 
-(1)
+(1) 与式は $\cosh x=\sec\theta$ である。両辺を $\theta$ で微分すると
 
 $$
-x = \frac{e^x + e^{-x}}{2} \cdot \frac{1}{\cos\theta}
-\tag{1}
+\sinh x\dv{x}{\theta}=\sec\theta\tan\theta.
 $$
 
-両辺を $\theta$ で微分して、
+$x>0$、$0<\theta<\pi/2$ だから
 
 $$
-\frac{dx}{d\theta} = \frac{e^x - e^{-x}}{2} \cdot \frac{\sin\theta}{\cos^2\theta}
+\sinh x
+=\sqrt{\cosh^2x-1}
+=\sqrt{\sec^2\theta-1}
+=\tan\theta.
 $$
 
-ここで
+よって
 
 $$
-y = \frac{e^x + e^{-x}}{2}, \quad y' = \frac{e^x - e^{-x}}{2}
-$$
-
-を用いると、
-
-$$
-\left(\frac{e^x - e^{-x}}{2}\right)^2 = \left(\frac{e^x + e^{-x}}{2}\right)^2 - 1
-$$
-
-となり、
-
-$$
-\frac{e^x - e^{-x}}{2} = \frac{e^x + e^{-x}}{2} \cdot \frac{\sin\theta}{\cos\theta}
-$$
-
-が成り立つ。
-
-これを (2) に代入して、
-
-$$
-\frac{dx}{d\theta} = \frac{\sin\theta}{\cos\theta} \cdot \frac{dx}{d\theta} \cdot \frac{1}{\cos\theta}
+\boxed{\dv{x}{\theta}=\sec\theta=\frac1{\cos\theta}}
 $$
 
 
@@ -230,7 +369,7 @@ $$
 \tag{5}
 $$
 
-ここで
+ここで $\operatorname{sech}x=1/\cosh x$ と書けば、
 
 $$
 e^x + e^{-x} = 2\cosh x
@@ -239,49 +378,39 @@ $$
 を用い、$x=0$ のとき $\theta=0$, $x=a$ のとき $\theta = \theta_a$ として変数変換すると、
 
 $$
-(5) = 2\int_{0}^{\theta_a} \cos^{n-1}\theta \, d\theta
+(5) = 2\int_{0}^{\theta_a} \cos^{n-1}\theta \, \dd\theta
 $$
 
 極限 $a\to\infty$ のとき $\theta_a \to \pi/2$ だから、
 
 $$
-I_n = \int_0^{\pi/2} \cos^{n-1}\theta \, d\theta
+\int_{-\infty}^{\infty}\operatorname{sech}^n x\,\dd x
+=2\int_0^{\pi/2}\cos^{n-1}\theta\,\dd\theta.
 \tag{6}
 $$
 
-を得る。部分積分より、
+一般に $J_m=\int_0^{\pi/2}\cos^m\theta\,\dd\theta$ とおく。部分積分により
 
 $$
-I_n = (n-1) \int_0^{\pi/2} (1 - \cos^2\theta)\cos^{n-2}\theta \, d\theta
+J_m=\frac{m-1}{m}J_{m-2},
+\qquad J_0=\frac\pi2,\quad J_1=1
 $$
 
-$$
-I_n = (n-1)(I_{n-2} - I_n)
-$$
+を得る。(6) は $2J_{n-1}$ だから、$m\geq0$ として
 
 $$
-I_n = \frac{n-1}{n} I_{n-2}
+\boxed{
+\int_{-\infty}^{\infty}\left(\frac2{e^x+e^{-x}}\right)^n\dd x
+=
+\begin{cases}
+\displaystyle
+\pi\frac{(2m)!}{2^{2m}(m!)^2},&n=2m+1,\\[8pt]
+\displaystyle
+2\frac{(2m-2)!!}{(2m-1)!!},&n=2m
+\end{cases}}
 $$
 
-$$
-I_0 = \int_0^{\pi/2} d\theta = \frac{\pi}{2}, \quad
-I_1 = \int_0^{\pi/2} \cos\theta \, d\theta = 1
-$$
-
-- $n=1$ のとき $2I_{n-1} = \pi$  
-- $n$ が奇数のとき：
-
-$$
-2I_{n-1} = \frac{2}{n-2} \cdot \frac{n-2}{n-1} \cdot \frac{n-4}{n-3} \cdots \frac{2}{3} \cdot \frac{\pi}{2}
-$$
-
-- $n=2$ のとき $2I_{n-1} = 2$  
-- $n$ が偶数のとき：
-
-$$
-2I_{n-1} = \frac{2}{n-2} \cdot \frac{n-2}{n-1} \cdot \frac{n-4}{n-3} \cdots \frac{2}{3}
-$$
+となる。特に $n=1$ では $\pi$、$n=2$ では $2$ である。
 
 
 :::
-
