@@ -7,6 +7,9 @@
   --pj-rail-utility-row: 2.75rem;
   --pj-rail-label-row: 2.25rem;
   --pj-rail-row-gap: 0.25rem;
+  /* ~20px article gutter on phones; expand per-side for the notch. */
+  --pj-mobile-page-inline-start: max(1.25rem, env(safe-area-inset-left, 0px));
+  --pj-mobile-page-inline-end: max(1.25rem, env(safe-area-inset-right, 0px));
 }
 
 /* ── スクロール連動 navbar ── */
@@ -302,8 +305,10 @@ body.pj-theme-transition {
 
 @media (max-width: 991.98px) {
   body { overflow-x: hidden; }
-  /* Edge-to-edge reading on narrow screens; only notch/safe-area remains. */
-  .page-columns .content { padding-inline: 0 !important; }
+  /* Comfortable mobile page gutters (about the same as common web articles). */
+  .page-columns .content {
+    padding-inline: var(--pj-mobile-page-inline-start) var(--pj-mobile-page-inline-end) !important;
+  }
   .page-columns .content > :is(p, ul, ol, blockquote, .blockquote, .callout, table, .table, .table-responsive, div.sourceCode, figure, .figure, .panel-tabset, .cell, details) {
     max-width: none;
     margin-inline: 0;
@@ -2158,13 +2163,12 @@ body::after {
     width: 100% !important;
     max-width: none !important;
     margin-inline: 0 !important;
+    /* Page gutter comes from --pj-mobile-page-inline-* on .content; keep
+       the grid full-bleed so safe-area is not counted twice. */
     grid-template-columns:
-      [screen-start] env(safe-area-inset-left, 0px)
-      [screen-start-inset page-start page-start-inset body-start-outset body-start body-content-start]
+      [screen-start screen-start-inset page-start page-start-inset body-start-outset body-start body-content-start]
       minmax(0, 1fr)
-      [body-content-end body-end body-end-outset page-end-inset page-end screen-end-inset]
-      env(safe-area-inset-right, 0px)
-      [screen-end] !important;
+      [body-content-end body-end body-end-outset page-end-inset page-end screen-end-inset screen-end] !important;
   }
   #quarto-document-content.content {
     width: 100%;
@@ -2177,7 +2181,8 @@ body::after {
   }
   #title-block-header.pj-observatory-hero {
     min-height: 0;
-    padding: 1.15rem 1rem !important;
+    /* Horizontal inset comes from .page-columns .content. */
+    padding: 1.15rem 0 !important;
     border-radius: 0 !important;
     border-inline: 0 !important;
     max-width: none;
@@ -2201,7 +2206,7 @@ body::after {
     width: calc(100vw - 1rem);
   }
 
-  /* Keep a small readable inset for prose without page-level gutters. */
+  /* Parent .content already owns the mobile page gutter. */
   #quarto-document-content.content > section,
   #quarto-document-content.content > p,
   #quarto-document-content.content > ul,
@@ -2216,13 +2221,13 @@ body::after {
   .quarto-listing-container-custom {
     max-width: none;
     margin-inline: 0;
-    padding-inline: 0.5rem;
+    padding-inline: 0;
     box-sizing: border-box;
   }
   #quarto-document-content.content > :is(div.sourceCode, table, .table, .table-responsive, figure, .figure) {
     margin-inline: 0;
     max-width: none;
-    padding-inline: 0.5rem;
+    padding-inline: 0;
     box-sizing: border-box;
   }
   #quarto-document-content.content > :is(div.sourceCode) {

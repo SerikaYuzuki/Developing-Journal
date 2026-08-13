@@ -1,0 +1,164 @@
+<script>
+(() => {
+  function listingRoot(hub) {
+    return (hub && hub.closest('.quarto-listing')) || document.getElementById('listing-listing');
+  }
+
+  function decodeListingCategory(encoded) {
+    if (encoded == null || encoded === '') return '';
+    try {
+      return decodeURIComponent(atob(encoded));
+    } catch (_) {
+      return '';
+    }
+  }
+
+  function categoryIsActive() {
+    // Quarto's "All" chip can be .active with empty data-category — that is not filtering.
+    const active = document.querySelector('.quarto-listing-category .category.active');
+    if (!active) return false;
+    return decodeListingCategory(active.getAttribute('data-category')) !== '';
+  }
+
+  function searchIsActive(root) {
+    if (!root) return false;
+    const input = root.querySelector('.quarto-listing-filter input.search');
+    return !!(input && String(input.value || '').trim());
+  }
+
+  function updateHubFilterState() {
+    const hub = document.querySelector('.gl-hub');
+    if (!hub) return;
+
+    const root = listingRoot(hub);
+    const filtering = searchIsActive(root) || categoryIsActive();
+    hub.classList.toggle('is-filtering', filtering);
+
+    const sky = hub.querySelector('.gl-sky');
+    if (sky) {
+      if (filtering) {
+        sky.hidden = true;
+        sky.setAttribute('inert', '');
+      } else {
+        sky.hidden = false;
+        sky.removeAttribute('inert');
+      }
+    }
+
+    // Log contains ALL posts. While sky is visible, in-sky rows stay
+    // hidden+inert (still List.js items). When filtering, they participate.
+    hub.querySelectorAll('.gl-log-row[data-in-sky="1"]').forEach((row) => {
+      if (filtering) {
+        row.hidden = false;
+        row.removeAttribute('inert');
+      } else {
+        row.hidden = true;
+        row.setAttribute('inert', '');
+      }
+    });
+  }
+
+  function moveToolbar(hub) {
+    const root = listingRoot(hub);
+    const actions = root && root.querySelector(':scope > .listing-actions-group');
+    const slot = hub.querySelector('.gl-log-toolbar-slot');
+    if (actions && slot && actions.parentElement !== slot) {
+      slot.appendChild(actions);
+    }
+  }
+
+  function bindListUpdated() {
+    const listings = window['quarto-listings'];
+    if (!listings) return false;
+    let bound = false;
+    Object.keys(listings).forEach((id) => {
+      const list = listings[id];
+      if (!list || list.__glHubBound) return;
+      list.__glHubBound = true;
+      list.on('updated', updateHubFilterState);
+      bound = true;
+    });
+    return bound;
+  }
+
+  function wrapCategoryHook() {
+    if (window.__glHubCategoryWrapped) return;
+    const original = window.quartoListingCategory;
+    if (typeof original !== 'function') return;
+    window.__glHubCategoryWrapped = true;
+    window.quartoListingCategory = function () {
+      const result = original.apply(this, arguments);
+      queueMicrotask(updateHubFilterState);
+      return result;
+    };
+  }
+
+  function onReady() {
+    const hub = document.querySelector('.gl-hub');
+    if (!hub) return;
+
+    moveToolbar(hub);
+    wrapCategoryHook();
+    updateHubFilterState();
+
+    if (!bindListUpdated()) {
+      let tries = 0;
+      const timer = setInterval(() => {
+        wrapCategoryHook();
+        if (bindListUpdated() || ++tries > 40) {
+          clearInterval(timer);
+          updateHubFilterState();
+        }
+      }, 50);
+    }
+
+    const root = listingRoot(hub);
+    if (root) {
+      root.addEventListener('input', (event) => {
+        if (event.target && event.target.matches && event.target.matches('.quarto-listing-filter input.search')) {
+          queueMicrotask(updateHubFilterState);
+        }
+      });
+      root.addEventListener('keyup', (event) => {
+        if (event.target && event.target.matches && event.target.matches('.quarto-listing-filter input.search')) {
+          queueMicrotask(updateHubFilterState);
+        }
+      });
+      root.addEventListener('change', (event) => {
+        if (event.target && event.target.matches && event.target.matches('.quarto-listing-sort select')) {
+          // Sort-only: keep sky; still refresh in case state drifted.
+          queueMicrotask(updateHubFilterState);
+        }
+      });
+    }
+
+    document.addEventListener('click', (event) => {
+      const t = event.target;
+      if (!t || !t.closest) return;
+      if (t.closest('.quarto-listing-category .category, .quarto-listing-category-title, .gl-cat-pill, .gl-log-cat, .quarto-category')) {
+        queueMicrotask(updateHubFilterState);
+        setTimeout(updateHubFilterState, 0);
+      }
+    });
+
+    window.addEventListener('hashchange', () => {
+      queueMicrotask(updateHubFilterState);
+      setTimeout(updateHubFilterState, 0);
+    });
+
+    const originalLoaded = window['quarto-listing-loaded'];
+    window['quarto-listing-loaded'] = function () {
+      if (typeof originalLoaded === 'function') originalLoaded.apply(this, arguments);
+      wrapCategoryHook();
+      bindListUpdated();
+      updateHubFilterState();
+    };
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', onReady);
+  } else {
+    onReady();
+  }
+})();
+</script>
