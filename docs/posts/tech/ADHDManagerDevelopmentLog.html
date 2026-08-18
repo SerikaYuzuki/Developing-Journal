@@ -1113,6 +1113,170 @@ ul.task-list li input[type="checkbox"] {
   });
 })();</script>
 
+<script>
+(() => {
+  function listingRoot(hub) {
+    return (hub && hub.closest('.quarto-listing')) || document.getElementById('listing-listing');
+  }
+
+  function decodeListingCategory(encoded) {
+    if (encoded == null || encoded === '') return '';
+    try {
+      return decodeURIComponent(atob(encoded));
+    } catch (_) {
+      return '';
+    }
+  }
+
+  function categoryIsActive() {
+    // Quarto's "All" chip can be .active with empty data-category — that is not filtering.
+    const active = document.querySelector('.quarto-listing-category .category.active');
+    if (!active) return false;
+    return decodeListingCategory(active.getAttribute('data-category')) !== '';
+  }
+
+  function searchIsActive(root) {
+    if (!root) return false;
+    const input = root.querySelector('.quarto-listing-filter input.search');
+    return !!(input && String(input.value || '').trim());
+  }
+
+  function updateHubFilterState() {
+    const hub = document.querySelector('.gl-hub');
+    if (!hub) return;
+
+    const root = listingRoot(hub);
+    const filtering = searchIsActive(root) || categoryIsActive();
+    hub.classList.toggle('is-filtering', filtering);
+
+    const sky = hub.querySelector('.gl-sky');
+    if (sky) {
+      if (filtering) {
+        sky.hidden = true;
+        sky.setAttribute('inert', '');
+      } else {
+        sky.hidden = false;
+        sky.removeAttribute('inert');
+      }
+    }
+
+    // Log contains ALL posts. While sky is visible, in-sky rows stay
+    // hidden+inert (still List.js items). When filtering, they participate.
+    hub.querySelectorAll('.gl-log-row[data-in-sky="1"]').forEach((row) => {
+      if (filtering) {
+        row.hidden = false;
+        row.removeAttribute('inert');
+      } else {
+        row.hidden = true;
+        row.setAttribute('inert', '');
+      }
+    });
+  }
+
+  function moveToolbar(hub) {
+    const root = listingRoot(hub);
+    const actions = root && root.querySelector(':scope > .listing-actions-group');
+    const slot = hub.querySelector('.gl-log-toolbar-slot');
+    if (actions && slot && actions.parentElement !== slot) {
+      slot.appendChild(actions);
+    }
+  }
+
+  function bindListUpdated() {
+    const listings = window['quarto-listings'];
+    if (!listings) return false;
+    let bound = false;
+    Object.keys(listings).forEach((id) => {
+      const list = listings[id];
+      if (!list || list.__glHubBound) return;
+      list.__glHubBound = true;
+      list.on('updated', updateHubFilterState);
+      bound = true;
+    });
+    return bound;
+  }
+
+  function wrapCategoryHook() {
+    if (window.__glHubCategoryWrapped) return;
+    const original = window.quartoListingCategory;
+    if (typeof original !== 'function') return;
+    window.__glHubCategoryWrapped = true;
+    window.quartoListingCategory = function () {
+      const result = original.apply(this, arguments);
+      queueMicrotask(updateHubFilterState);
+      return result;
+    };
+  }
+
+  function onReady() {
+    const hub = document.querySelector('.gl-hub');
+    if (!hub) return;
+
+    moveToolbar(hub);
+    wrapCategoryHook();
+    updateHubFilterState();
+
+    if (!bindListUpdated()) {
+      let tries = 0;
+      const timer = setInterval(() => {
+        wrapCategoryHook();
+        if (bindListUpdated() || ++tries > 40) {
+          clearInterval(timer);
+          updateHubFilterState();
+        }
+      }, 50);
+    }
+
+    const root = listingRoot(hub);
+    if (root) {
+      root.addEventListener('input', (event) => {
+        if (event.target && event.target.matches && event.target.matches('.quarto-listing-filter input.search')) {
+          queueMicrotask(updateHubFilterState);
+        }
+      });
+      root.addEventListener('keyup', (event) => {
+        if (event.target && event.target.matches && event.target.matches('.quarto-listing-filter input.search')) {
+          queueMicrotask(updateHubFilterState);
+        }
+      });
+      root.addEventListener('change', (event) => {
+        if (event.target && event.target.matches && event.target.matches('.quarto-listing-sort select')) {
+          // Sort-only: keep sky; still refresh in case state drifted.
+          queueMicrotask(updateHubFilterState);
+        }
+      });
+    }
+
+    document.addEventListener('click', (event) => {
+      const t = event.target;
+      if (!t || !t.closest) return;
+      if (t.closest('.quarto-listing-category .category, .quarto-listing-category-title, .gl-cat-pill, .gl-log-cat, .quarto-category')) {
+        queueMicrotask(updateHubFilterState);
+        setTimeout(updateHubFilterState, 0);
+      }
+    });
+
+    window.addEventListener('hashchange', () => {
+      queueMicrotask(updateHubFilterState);
+      setTimeout(updateHubFilterState, 0);
+    });
+
+    const originalLoaded = window['quarto-listing-loaded'];
+    window['quarto-listing-loaded'] = function () {
+      if (typeof originalLoaded === 'function') originalLoaded.apply(this, arguments);
+      wrapCategoryHook();
+      bindListUpdated();
+      updateHubFilterState();
+    };
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', onReady);
+  } else {
+    onReady();
+  }
+})();
+</script>
 <style>
   .pj-network-toggle {
     appearance: none;
@@ -2426,25 +2590,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#出発点aiが次にやることを選んでくれたら" id="toc-出発点aiが次にやることを選んでくれたら" class="nav-link active" data-scroll-target="#出発点aiが次にやることを選んでくれたら">出発点——AIが「次にやること」を選んでくれたら</a></li>
-  <li><a href="#最初の大きな方向転換管理ではなく選択を終わらせる" id="toc-最初の大きな方向転換管理ではなく選択を終わらせる" class="nav-link" data-scroll-target="#最初の大きな方向転換管理ではなく選択を終わらせる">最初の大きな方向転換——「管理」ではなく「選択を終わらせる」</a></li>
-  <li><a href="#実際に壊れていたもの動く画面の裏で信頼が欠けていた" id="toc-実際に壊れていたもの動く画面の裏で信頼が欠けていた" class="nav-link" data-scroll-target="#実際に壊れていたもの動く画面の裏で信頼が欠けていた">実際に壊れていたもの——動く画面の裏で、信頼が欠けていた</a></li>
-  <li><a href="#projectを消すただしデータは消さない" id="toc-projectを消すただしデータは消さない" class="nav-link" data-scroll-target="#projectを消すただしデータは消さない">Projectを消す。ただし、データは消さない</a></li>
-  <li><a href="#aiを主役から降ろす" id="toc-aiを主役から降ろす" class="nav-link" data-scroll-target="#aiを主役から降ろす">AIを主役から降ろす</a></li>
-  <li><a href="#同期通知widgetビルド成功では証明できないもの" id="toc-同期通知widgetビルド成功では証明できないもの" class="nav-link" data-scroll-target="#同期通知widgetビルド成功では証明できないもの">同期、通知、Widget——ビルド成功では証明できないもの</a></li>
-  <li><a href="#楽しさを足すただし義務にはしない" id="toc-楽しさを足すただし義務にはしない" class="nav-link" data-scroll-target="#楽しさを足すただし義務にはしない">楽しさを足す。ただし、義務にはしない</a></li>
-  <li><a href="#商業化監査作れていることと売れることの間" id="toc-商業化監査作れていることと売れることの間" class="nav-link" data-scroll-target="#商業化監査作れていることと売れることの間">商業化監査——作れていることと、売れることの間</a></li>
-  <li><a href="#今取り組んでいることtrust-repair" id="toc-今取り組んでいることtrust-repair" class="nav-link" data-scroll-target="#今取り組んでいることtrust-repair">今取り組んでいること——Trust repair</a></li>
-  <li><a href="#何に失敗し何を学んだか" id="toc-何に失敗し何を学んだか" class="nav-link" data-scroll-target="#何に失敗し何を学んだか">何に失敗し、何を学んだか</a>
-  <ul class="collapse">
-  <li><a href="#aiで選ぶを目的にしてしまった" id="toc-aiで選ぶを目的にしてしまった" class="nav-link" data-scroll-target="#aiで選ぶを目的にしてしまった">1. 「AIで選ぶ」を目的にしてしまった</a></li>
-  <li><a href="#一般的なtask-managerの常識を持ち込んだ" id="toc-一般的なtask-managerの常識を持ち込んだ" class="nav-link" data-scroll-target="#一般的なtask-managerの常識を持ち込んだ">2. 一般的なTask managerの常識を持ち込んだ</a></li>
-  <li><a href="#正常系の成功を信頼性と呼んだ" id="toc-正常系の成功を信頼性と呼んだ" class="nav-link" data-scroll-target="#正常系の成功を信頼性と呼んだ">3. 正常系の成功を、信頼性と呼んだ</a></li>
-  <li><a href="#失敗を見えなくすれば体験が滑らかになると思った" id="toc-失敗を見えなくすれば体験が滑らかになると思った" class="nav-link" data-scroll-target="#失敗を見えなくすれば体験が滑らかになると思った">4. 失敗を見えなくすれば、体験が滑らかになると思った</a></li>
-  <li><a href="#設定の言葉と実際の範囲がずれた" id="toc-設定の言葉と実際の範囲がずれた" class="nav-link" data-scroll-target="#設定の言葉と実際の範囲がずれた">5. 設定の言葉と、実際の範囲がずれた</a></li>
-  </ul></li>
-  <li><a href="#これから機能を増やす前に仮説を証明する" id="toc-これから機能を増やす前に仮説を証明する" class="nav-link" data-scroll-target="#これから機能を増やす前に仮説を証明する">これから——機能を増やす前に、仮説を証明する</a></li>
-  <li><a href="#おわりに作らないものがプロダクトを形にする" id="toc-おわりに作らないものがプロダクトを形にする" class="nav-link" data-scroll-target="#おわりに作らないものがプロダクトを形にする">おわりに——作らないものが、プロダクトを形にする</a></li>
+  <li><a href="#最初は普通のai付きtodoだった" id="toc-最初は普通のai付きtodoだった" class="nav-link active" data-scroll-target="#最初は普通のai付きtodoだった">最初は普通のAI付きToDoだった</a></li>
+  <li><a href="#projectを画面から消した" id="toc-projectを画面から消した" class="nav-link" data-scroll-target="#projectを画面から消した">Projectを画面から消した</a></li>
+  <li><a href="#画面は動いたでも普通に危なかった" id="toc-画面は動いたでも普通に危なかった" class="nav-link" data-scroll-target="#画面は動いたでも普通に危なかった">画面は動いた。でも普通に危なかった</a></li>
+  <li><a href="#aiを主役から降ろした" id="toc-aiを主役から降ろした" class="nav-link" data-scroll-target="#aiを主役から降ろした">AIを主役から降ろした</a></li>
+  <li><a href="#ビルドが通っても実機で動くとは限らない" id="toc-ビルドが通っても実機で動くとは限らない" class="nav-link" data-scroll-target="#ビルドが通っても実機で動くとは限らない">ビルドが通っても、実機で動くとは限らない</a></li>
+  <li><a href="#少しだけ楽しくした" id="toc-少しだけ楽しくした" class="nav-link" data-scroll-target="#少しだけ楽しくした">少しだけ楽しくした</a></li>
+  <li><a href="#売れるか見直した" id="toc-売れるか見直した" class="nav-link" data-scroll-target="#売れるか見直した">売れるか見直した</a></li>
+  <li><a href="#月9日時点でどこまでできたか" id="toc-月9日時点でどこまでできたか" class="nav-link" data-scroll-target="#月9日時点でどこまでできたか">8月9日時点で、どこまでできたか</a></li>
   </ul>
 </nav>
     </div>
@@ -2489,196 +2642,130 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>タスク管理アプリは、ときどきタスクを減らすどころか、<strong>「タスクをきれいに管理する」という新しい仕事</strong>を増やしてしまう。</p>
-<p>Projectを作る。期限を決める。優先順位を付ける。分類する。今日やるものを選ぶ。そして、もっと良い選び方がある気がして、また並べ直す。</p>
-<p>ADHDManagerは、そうした「管理のための管理」を減らすために始まった。しかし開発の初期には、まさにProjectとTaskを管理する、ごく普通のタスク管理アプリに近い姿をしていた。</p>
-<p>そこから設計を何度も壊し、AIの役割を疑い、同期や通知の失敗に向き合い、商業化を前に立ち止まった。最終的に見つかった中心価値は、タスクをたくさん管理できることでも、AIが賢いことでもない。</p>
+<p>タスク管理アプリって、たまにタスクを減らすどころか、「タスクをきれいに管理する」という新しい仕事を増やしてくる。</p>
+<p>Projectを作る。期限を決める。優先順位を付ける。分類する。今日やるものを選ぶ。もっといい選び方がある気がして、また並べ直す。</p>
+<p>ADHDManagerは、そういう管理のための管理を減らしたくて作り始めた。</p>
+<p>ところが最初に作ったのは、ProjectとTaskがあって、AIが次にやることを選んでくれる、ごく普通のタスク管理アプリだった。</p>
+<p>今見ると、やりたかったことと普通に逆だった。</p>
 <blockquote class="blockquote">
-<p>迷いを一件まで減らす。本人が決めたら勝手に変えない。決まった後は、アプリが退く。</p>
+<p>ADHDManagerはProductivityアプリとして開発中のもので、ADHDの診断、治療、症状改善をうたうものではない。この記事は2026年8月9日時点の記録で、作業ツリー上にしかない開発中の変更は、そのように分けて書いている。</p>
 </blockquote>
-<p>この記事は、その考えにたどり着くまでの記録である。成功した機能だけでなく、途中で捨てた前提、実際に起きた障害、テストでは証明できなかったこと、そして現在も残っている課題までを書いていく。</p>
-<blockquote class="blockquote">
-<p><strong>前提:</strong> ADHDManagerはProductivityアプリとして開発中のプロダクトであり、ADHDの診断・治療・症状改善をうたうものではない。本記事の内容は2026年8月9日時点で、未コミットの開発中変更も区別して記載している。</p>
-</blockquote>
-<section id="出発点aiが次にやることを選んでくれたら" class="level2">
-<h2 class="anchored" data-anchor-id="出発点aiが次にやることを選んでくれたら">出発点——AIが「次にやること」を選んでくれたら</h2>
-<p>最初の発想は単純だった。</p>
-<p>締め切りなどの外圧がないと動き出しにくい時、目の前に一つだけ「今はこれ」と出してくれるアプリがあれば、選ぶところで消耗せずに済むのではないか。</p>
-<p>2026年5月末に始まった最初の実装へ、Project、Task、AI推薦UIが加わった。OpenRouter経由でAIを使い、期限、重要度、使える時間、場所などを見て、取り組むTaskを選ぶ。コードが大きくなると、一つのファイルに集まっていた型を役割ごとのファイルへ分割した。</p>
-<p>技術的には、順当にアプリらしくなっていった。ただし、ここには早くも矛盾があった。</p>
-<p>「選べなくて困っている人」を助けたいのに、最初にProjectを作らせ、Taskを所属させ、いくつもの属性を入力させていた。迷いを減らすアプリが、使い始める前に新しい判断を要求していたのである。</p>
-<p>当時の実装が無駄だったわけではない。Taskの永続化、AI通信、推薦ロジック、iOS/macOSで共有できる基礎は、その後も残った。しかし、<strong>動く実装と、目的に合うプロダクトは別物だった。</strong></p>
-</section>
-<section id="最初の大きな方向転換管理ではなく選択を終わらせる" class="level2">
-<h2 class="anchored" data-anchor-id="最初の大きな方向転換管理ではなく選択を終わらせる">最初の大きな方向転換——「管理」ではなく「選択を終わらせる」</h2>
-<p>2026年7月、プロジェクト全体を目的から見直した。</p>
-<p>そこで言語化されたのが、ADHDManagerはplannerではなく、むしろ<strong>anti-planner</strong>だという考えだった。工程をきれいに計画するのではなく、比較を終わらせて、一件に固定する。その後の進め方は本人へ返す。</p>
-<p>中核体験は、次の流れへ変わった。</p>
+<section id="最初は普通のai付きtodoだった" class="level2">
+<h2 class="anchored" data-anchor-id="最初は普通のai付きtodoだった">最初は普通のAI付きToDoだった</h2>
+<p>最初の実装を始めたのは2026年5月末。</p>
+<p>ProjectとTaskを作り、期限、重要度、使える時間、場所などをOpenRouter経由のAIへ渡して、次に取り組むTaskを選ばせた。コードが大きくなってきたので、一つのファイルに集まっていた型も役割ごとに分けた。</p>
+<p>機能は増えたし、画面上は一通り動いた。</p>
+<p>でも、「選べなくて困っている人」を助けたいのに、使う前にProjectを作らせ、Taskを所属させ、属性をいくつも入力させている。</p>
+<p>いや、選ぶ前にやること増えてるじゃん。</p>
+<p>2026年7月にプロジェクト全体を見直して、ADHDManagerはplannerではなく、むしろanti-plannerなんじゃないかと考えるようになった。</p>
+<p>きれいな計画を作るより、比較を終わらせて一件に固定する。決めたあとの進め方は本人へ返す。</p>
+<p>流れもかなり単純にした。</p>
 <ol type="1">
-<li>現在の条件に合うTaskを一件だけ見せる。</li>
-<li>ユーザーが「これをやる」と決める。</li>
-<li>その一件を固定し、AIの遅い応答や同期更新が来ても勝手に差し替えない。</li>
-<li>ユーザーはアプリの外を含め、自分のやり方で進める。</li>
-<li>戻って「終わった」「ここで切り上げる」「手放す」のどれかを選ぶ。</li>
+<li>今の条件に合うTaskを一件だけ見せる。</li>
+<li>ユーザーが「これをやる」と決めたら、その一件を固定する。</li>
+<li>AIの遅い返事や同期更新が来ても、勝手に別のTaskへ変えない。</li>
+<li>戻ってきたら「終わった」「ここで切り上げる」「手放す」のどれかを選ぶ。</li>
 </ol>
-<p>ここで重要だったのは、「完了」だけを成功にしなかったことだ。</p>
-<p>途中まで進んで区切ることも、今は合わないと手放すこともある。それを失敗や連続記録の途切れとして扱えば、アプリを開くこと自体が新しい圧力になる。そこで「今は無理」は推薦を改善するための情報にし、「ここで切り上げる」はTaskを残したまま現在の選択だけを終える操作にした。</p>
-<p>同時にmacOS対応も進めた。単にiPhone画面を広げるのではなく、推薦ロジックや選択状態は共有し、NavigationSplitViewやキーボード操作など、画面の殻だけをプラットフォームへ合わせる方針を採った。</p>
-<p>この段階で、製品の軸は「AI付きToDo」から、<strong>選択状態を守るアプリ</strong>へ移った。</p>
+<p>完了だけを正解にするのもやめた。途中まで進んで区切ることもあるし、今は合わないと手放すこともある。それを失敗やstreakの途切れにしたら、アプリを開くこと自体が新しい圧力になる。</p>
+<p>「今は無理」は次の推薦を調整する情報にして、「ここで切り上げる」はTaskを残したまま、今の選択だけを終える操作にした。</p>
+<p>同じ頃にmacOS対応も進めた。iPhoneの画面をそのまま引き延ばすのではなく、推薦ロジックと選択状態は共有しつつ、NavigationSplitViewやキーボード操作など、画面側だけを各OSに合わせている。</p>
 </section>
-<section id="実際に壊れていたもの動く画面の裏で信頼が欠けていた" class="level2">
-<h2 class="anchored" data-anchor-id="実際に壊れていたもの動く画面の裏で信頼が欠けていた">実際に壊れていたもの——動く画面の裏で、信頼が欠けていた</h2>
-<p>方向性を変えた後、UIを細かく見直すと、推薦精度より先に直すべき問題がいくつも見つかった。</p>
+<section id="projectを画面から消した" class="level2">
+<h2 class="anchored" data-anchor-id="projectを画面から消した">Projectを画面から消した</h2>
+<p>次に、初期設計の中心だったProject管理を通常の画面から外した。</p>
+<p>Project一覧、詳細、作成画面、Taskの所属先選択を消して、Taskは一つのフラットな集合として扱う。共通の<code>+</code>から、タイトルだけですぐ追加できるようにした。詳細は必要になったときに開けばいい。</p>
+<p>「整理してから登録する」ではなく、まず捕まえる。整えるのはあと。</p>
+<p>ただし、画面からProjectを消すのと、過去のProjectデータを消すのは別の話だ。</p>
+<p><code>ProjectItem</code>と<code>TaskItem.project</code>は、V1／V2のストアを読み続けるための互換層として残した。新しいTaskはProjectを持たないけど、既存TaskとProjectの関連を勝手に外したり、Project名を変えたり、削除したりはしない。</p>
+<p>移行テストで使うFrozen V2 fixtureも固定した。新しい設計に都合よく作り直したら、古いデータを本当に開けるか分からなくなるからだ。</p>
+</section>
+<section id="画面は動いたでも普通に危なかった" class="level2">
+<h2 class="anchored" data-anchor-id="画面は動いたでも普通に危なかった">画面は動いた。でも普通に危なかった</h2>
+<p>方向を変えたあとにUIと状態遷移を見直すと、推薦精度より先に直すものがいくつも出てきた。</p>
 <ul>
-<li>AI処理中に画面を閉じても、遅れて返った結果がTaskを追加し得た。</li>
-<li>一覧の「開始」と、推薦画面の「これをやる」が別の状態遷移だった。</li>
-<li>AIが誤認した期限や重要度を、追加後に十分修正できなかった。</li>
+<li>AI処理中に画面を閉じても、遅れて返った結果がTaskを追加できた。</li>
+<li>一覧の「開始」と、推薦画面の「これをやる」が別の状態遷移になっていた。</li>
+<li>AIが誤認した期限や重要度を、追加したあと十分に直せなかった。</li>
 <li>誤完了や誤削除を取り消す境界が弱かった。</li>
-<li>「今やる」画面にProject名、選択元、条件調整などが並び、決定後もアプリが退いていなかった。</li>
+<li>「今やる」画面にProject名や条件調整が残り、決めたあともアプリが退いていなかった。</li>
 </ul>
-<p>さらに、macOSレビュー用ビルドを起動した時、既存のSwiftDataストアを現行のデータ形式（schema）として開けず、<code>Cannot use staged migration with an unknown model version</code>でアプリが終了した。</p>
-<p>一番の問題は、移行に失敗したことそのものではない。保存領域を開けない時に<code>fatalError</code>へ進み、既存データを持つユーザーへ復旧手段を見せられなかったことだった。</p>
-<p>この経験から、保存失敗を「例外」ではなく、製品が扱うべき状態に変えた。起動を<code>loading / ready / recoveryRequired</code>へ分け、読めないデータを黙って削除・初期化せず、再試行や診断、バックアップの導線を出す。PreviewやGUIレビューには明示的な一時ストアを使い、実データから隔離する。</p>
-<p>この時に得た教訓は明快だった。</p>
-<blockquote class="blockquote">
-<p>信頼性は、正常系が速く動くことではない。失敗した時に、入力や既存データを勝手に失わないことで作られる。</p>
-</blockquote>
+<p>さらにmacOSのレビュー用ビルドを起動したら、既存のSwiftDataストアを現行schemaとして開けず、<code>Cannot use staged migration with an unknown model version</code>でアプリが終了した。</p>
+<p>起動しないのも困るけど、もっとまずかったのは、保存領域を開けないと<code>fatalError</code>へ進み、既存データを持つ人へ「どう戻すか」を何も出せなかったことだった。</p>
+<p>そこで起動状態を<code>loading / ready / recoveryRequired</code>の三つに分けた。読めないデータは勝手に削除したり初期化したりせず、Recoveryで止めて、再試行、診断、バックアップの導線を出す。</p>
+<p>PreviewやGUIレビューも、実データではなく明示的な一時ストアを使うようにした。</p>
 </section>
-<section id="projectを消すただしデータは消さない" class="level2">
-<h2 class="anchored" data-anchor-id="projectを消すただしデータは消さない">Projectを消す。ただし、データは消さない</h2>
-<p>次に行ったのは、初期設計の中心だったProject管理を製品から外すことだった。</p>
-<p>Project一覧、Project詳細、Project作成、Taskの所属先選択を通常導線から削除し、Taskを一つのフラットな集合として扱う。主要画面の共通<code>+</code>から、タイトルだけですぐ追加できるようにした。詳細は、必要になった時だけ後から開く。</p>
-<p>これは見た目の整理ではない。「整理してから登録する」を、「まず捕まえてから必要なら整える」へ反転させる変更だった。</p>
-<p>ただし、ここで過去のProjectデータまで消すと、正しい思想のために既存ユーザーのデータを犠牲にすることになる。そこで<code>ProjectItem</code>と<code>TaskItem.project</code>は、V1/V2ストアを読み続ける互換層として残した。新規TaskはProjectを持たないが、既存Projectとの関連を自動で外したり、名前を変えたり、削除したりしない。</p>
-<p>古い構造を物理的に消すことと、製品体験から退場させることを分けたのである。</p>
-<p>移行テストには、出荷済みschemaを再現するFrozen V2 fixtureを固定し、都合よく作り直さないルールも設けた。新しい設計へ進みながら、古いデータを開けることを同じくらい重く扱った。</p>
+<section id="aiを主役から降ろした" class="level2">
+<h2 class="anchored" data-anchor-id="aiを主役から降ろした">AIを主役から降ろした</h2>
+<p>AI自体は便利だった。</p>
+<p>貼り付けた文章や写真からTask案を作ったり、複数科目の試験日程表を科目ごとのTaskへ分けたりできる。「詰まった」ときには、長い手順ではなく、再開するための一動作だけを返すこともできた。</p>
+<p>ただ、中心へ置くと途端に不安定になる。</p>
+<p>OpenRouterではproviderの振り分けに互換性問題が出た。構造化応答が長さ上限で切れることもあった。</p>
+<p>推薦では、通信処理が45秒待てるのに、画面側は1.5秒で端末内推薦へ切り替えていた。画面から見れば、AIは1.5秒で打ち切られていたことになる。</p>
+<p>待ち時間を8秒へ揃え、空応答、不正応答、timeoutなら端末内選択へ戻るようにした。</p>
+<p>画像入力も「AIなら読める」で済ませず、縮小とサイズ上限を入れ、端末内OCRの原文を残すようにした。AIが原文を消したり、勝手に言い換えたりできないようにするためだ。</p>
+<p>複数Taskへ分けるのも、独立した予定が明示されている場合だけ最大8件まで。一つの仕事をAIが勝手に細かい手順へ分解するのはやめた。</p>
+<p>中心の推薦は、まず即時に返せる端末内ロジック。AIは文章や画像の整理、曖昧な日付の抽出、詰まったときの一手に使う。AIが落ちても、追加、選択、固定、完了は止めない。</p>
+<p>外部へ送るのも、ユーザーが同意した機能だけにして、送る内容を画面上で説明する。</p>
+<p>8月9日時点の作業ツリーでは、使えるなら端末内のApple Intelligenceを先に使い、足りないときだけ同意済みのOpenRouterへ進む構成も試していた。ただし、これはまだ開発中で、出荷済みの完成機能ではない。</p>
+<p>AIを減らしたというより、AIが失敗しても中心の流れが止まらない位置まで降ろした、という方が近い。</p>
 </section>
-<section id="aiを主役から降ろす" class="level2">
-<h2 class="anchored" data-anchor-id="aiを主役から降ろす">AIを主役から降ろす</h2>
-<p>AIは便利だった。貼り付けた文章や写真からTask案を作り、複数科目の試験日程表なら科目ごとのTaskへ変換できる。「詰まった」時には、長い手順ではなく、再開のための一動作だけを返せる。</p>
-<p>一方で、AIを中心へ置くほど、プロダクトは不安定になった。</p>
-<p>OpenRouterではAI提供元の振り分けに互換性問題が起きた。構造化応答が長さ上限で切れる場合もあった。推薦では、通信処理が45秒待てる設計なのに、画面側は1.5秒で端末内推薦へ切り替えており、「AIが返事をしない」ように見える待ち時間のずれも見つかった。待ち時間を8秒へ揃え、空応答・不正応答・timeoutでは安全に端末内選択へ戻すようにした。</p>
-<p>画像入力でも、単に「AIなら読める」とは考えなかった。画像を縮小し、サイズ上限を設け、端末内OCRの原文を保存し、AIが原文を消したり言い換えたりできないようにした。複数Task化は、独立した予定が明示された場合だけ最大8件まで許可し、一つの仕事を勝手に手順へ分解することは拒否した。</p>
-<p>こうしてAIの役割は、次第に限定されていった。</p>
+<section id="ビルドが通っても実機で動くとは限らない" class="level2">
+<h2 class="anchored" data-anchor-id="ビルドが通っても実機で動くとは限らない">ビルドが通っても、実機で動くとは限らない</h2>
+<p>Apple Developer Programへ登録したあと、iPhoneとMacのTask、選択中の一件、推薦抑制をprivate CloudKitで同期するPhaseへ進んだ。</p>
+<p>日本語の日時表示や所要時間編集も整え、既存TaskをAIで編集・拡張する機能、Taskとは別のReminder、今の一件を表示するWidgetも追加した。</p>
+<p>Widget側で読み取り用に置いた互換型を<code>Codable</code>にしていたが、<code>Encodable</code>の要件を満たせずビルドエラーになった。必要だったのは<code>Decodable</code>だけ。</p>
+<p>それを直したら、今度はWidgetが時間経過で「次のReminder」へ進まない。アプリを開き直さない限り古い表示のままだったので、次のReminder時刻にもWidgetを更新する予定を登録し、アプリ内表示も定期更新するようにした。</p>
+<p><code>xcodebuild</code>が成功しても、App GroupsやWidgetKitの権限、通知許可、deep link、実機上のCloudKit競合までは分からない。</p>
+<p>署名、provisioning、2台の実機、CloudKit本番schema、通知権限を拒否・取消した場合の動作は、それぞれ別に確認する必要がある。</p>
+<p>ビルドは通った。でも実機で同期できるかは、まだ別の話だった。</p>
+</section>
+<section id="少しだけ楽しくした" class="level2">
+<h2 class="anchored" data-anchor-id="少しだけ楽しくした">少しだけ楽しくした</h2>
+<p>タスクを終えた瞬間に短い光や触覚が返ってくる。そのくらいの楽しさは、操作の手応えになる。</p>
+<p>そこでFocus SparkというPlay layerを追加した。</p>
+<p>反応を返すのは完了だけではない。「ここで切り上げる」と「手放す」にも返す。点数、streak、通貨、ランキング、未達ペナルティは作らない。遊びのための永続データも増やさない。</p>
+<p>最初のレビューでは、Dynamic Typeを大きくすると48ptの装飾が終了文へ重なる懸念が見つかった。</p>
+<p>それに、「遊びの演出をOFF」という設定が「今やる」画面にしか効かず、Quick Addや一覧のspring、glow、hapticには残っていた。</p>
+<p>OFFとは。</p>
+<p>Reduce Motionを含む共通gateを作り、設定をアプリ全体へ適用した。装飾が見えなくても操作結果は分かるようにしている。</p>
+</section>
+<section id="売れるか見直した" class="level2">
+<h2 class="anchored" data-anchor-id="売れるか見直した">売れるか見直した</h2>
+<p>2026年7月19日、一度実装を止めて、商業化の観点からプロダクト全体を監査した。</p>
+<p>コード、UI、CloudKit、通知、AI送信、Privacy、Accessibility、価格、Support、App Store運用まで見た結果、レポートは約2,500行になった。</p>
+<p>出てきたのは、派手な機能不足より、かなり地味で嫌な問題だった。</p>
+<p>通常のQuick Addと外部AIへ送る入力の境界が分かりにくい。同期中、未ログイン、offline、errorの違いが見えない。通知登録に失敗しても成功したように見える。Export、Restore、全データ削除の仕様が弱い。オンボーディング、Privacy Policy、Support、配布方式、公開名も決まっていない。</p>
+<p>CloudKit本番schema、2端末競合、実機Accessibility、signed archiveも未確認だった。</p>
+<p>監査時のテストは249件中248件が成功し、Unit test bundleは通った。残ったのはQuick AddのUIテスト1件。</p>
+<p>ただ、分かったのは、テストがkeyboard focusを確認せず<code>typeText</code>しようとしていたところまでだった。製品のautofocusが壊れているのか、テストの前提が間違っているのかは切り分けられていない。</p>
+<p>ここで適当に待ち時間を足して緑にしても、何も証明したことにはならない。</p>
+<p>結局、最初に売り物になるのはAIではなく、「もう選び直さなくていい」の方だった。</p>
+<p>監査後の作業ツリーでは、Quick Addをタイトルだけ端末内へ保存する入口へ戻し、文章や写真のAI整理は別の明示操作へ分ける変更を進めていた。</p>
+<p>同時に、「今やる」の条件を折りたたんで5分、15分、25分、60分から選べるようにし、一覧から任意のTaskを「今やる」に指定する変更も進めていた。選択中のTaskからメモや詳細を開く導線も、この途中だった。</p>
+<p>ほかにも、オンボーディング、同期状態、通知失敗、JSON書き出し、全データ削除、外部AIの同意と送信内容を詰めていた。ZDR（データを保持しない経路指定）、端末内AI、OpenRouter、固定の代替ヒントをどういう順番で使うかも、この中に入る。</p>
+<p>ただし、ここは未コミットの開発中変更を含む。実機、CloudKit、通知、Accessibility、Release archiveの検証はまだだった。</p>
+</section>
+<section id="月9日時点でどこまでできたか" class="level2">
+<h2 class="anchored" data-anchor-id="月9日時点でどこまでできたか">8月9日時点で、どこまでできたか</h2>
+<p>一般公開できる状態かと言われたら、まだだった。</p>
+<p>まず、誰のどの瞬間を助けるのかを実際の利用者調査で確かめる必要がある。想定していたのは、やることはあるのに比較で止まり、必要なときだけ短く一件へ絞りたい人。ADHDの人全員に同じ解決策が効くとは考えない。</p>
+<p>そのうえで、端末内だけでも、追加、一件への固定、終了、切り上げ、手放す、という流れを速く安心して使えるところまで仕上げる。AIはそのあとでもいい。</p>
+<p>公開前に残っていた確認も多い。</p>
 <ul>
-<li>中心の推薦は、まず即時で決定的な端末内ロジックを使う。</li>
-<li>AIは、文章や画像の整理、曖昧な日付の抽出、詰まった時の一手を得意領域とする。</li>
-<li>AIが使えなくても、追加、選択、固定、完了という中核体験は止めない。</li>
-<li>外部送信は同意した機能だけにし、送る内容を画面上で説明する。</li>
+<li>stable Xcodeでsigned archiveを作り、配布相当の環境で動かす。</li>
+<li>CloudKit本番schemaと2台の実機で、競合と復旧を確かめる。</li>
+<li>通知、Widget、deep link、App Groupsを実機で通す。</li>
+<li>VoiceOver、Voice Control、Larger Text、Reduce Motionで主要操作を終えられるか確かめる。</li>
+<li>Export、Restore、Delete、Privacy、Supportの運用を決める。</li>
+<li>外部AIへ送る内容、同意、ZDR、fallbackを画面の説明と一致させる。</li>
 </ul>
-<p>現在の作業ツリーでは、利用可能なら端末内のApple Intelligenceを先に使い、それで足りない時だけ、同意済みのOpenRouterへ進む段階的な構成も試している。ただし、これはまだ開発中であり、出荷済みの完成機能ではない。</p>
-<p>AIを減らしたのではない。<strong>AIが失敗しても製品の約束が壊れない位置まで、主役から降ろした。</strong></p>
-</section>
-<section id="同期通知widgetビルド成功では証明できないもの" class="level2">
-<h2 class="anchored" data-anchor-id="同期通知widgetビルド成功では証明できないもの">同期、通知、Widget——ビルド成功では証明できないもの</h2>
-<p>Apple Developer Program登録後、iPhoneとMacのTask、選択中の一件、推薦抑制をprivate CloudKitで同期するPhaseへ進んだ。日本語の日時表示や所要時間編集も整え、既存TaskをAIで編集・拡張する機能、Taskと独立したReminder、現在の一件を表示するWidgetを追加した。</p>
-<p>ここでも、小さく見える不具合が設計の弱点を教えてくれた。</p>
-<p>Widget側の互換型は読み取りにしか使わないのに<code>Codable</code>へしていたため、<code>Encodable</code>適合がなくビルドエラーになった。必要なのは<code>Decodable</code>だけだった。さらに、最初のWidget実装は表示データを正しく作れても、時間が過ぎた時に「次のReminder」へ進まなかった。アプリを開き直さない限り表示が古いままだったので、将来のReminder境界を更新予定へ積み、アプリ内表示も定期更新するように直した。</p>
-<p>そして、ここには今も越えていない境界がある。</p>
-<p><code>xcodebuild</code>が成功しても、App GroupsやWidgetKitの権限設定、通知許可、deep link、実機上のCloudKit競合までは証明できない。署名、provisioning、2台の実機、CloudKit本番schema、通知権限の拒否や取消しは、それぞれ別に確認しなければならない。</p>
-<p>「テストが通った」と「ユーザーの端末で信頼できる」は、同じ言葉ではなかった。</p>
-</section>
-<section id="楽しさを足すただし義務にはしない" class="level2">
-<h2 class="anchored" data-anchor-id="楽しさを足すただし義務にはしない">楽しさを足す。ただし、義務にはしない</h2>
-<p>タスクを終えた瞬間に、ほんの短い光や触覚が返ってくる。その程度の楽しさは、操作の手応えになる。</p>
-<p>そこでFocus SparkというPlay layerを追加した。完了だけでなく、「ここで切り上げる」「手放す」にも肯定的な反応を返す。点数、streak、通貨、ランキング、未達ペナルティは作らない。遊びのための永続データも増やさない。</p>
-<p>最初の実装レビューでは、Dynamic Typeを大きくした時に48ptの装飾が終了文へ重なる懸念が見つかった。また、「遊びの演出をOFF」という設定が今やる画面だけに効き、Quick Addや一覧のspring、glow、hapticには残るという、設定名と実効範囲のずれもあった。</p>
-<p>そのため、Reduce Motionを含む共通gateを作り、装飾を主要操作の唯一の状態表現にせず、設定OFFをアプリ全体へ適用した。</p>
-<p>楽しさを足す作業で学んだのは、派手さではなく一貫性だった。小さな演出ほど、「消したい人が確実に消せる」「見えなくても操作結果が分かる」という約束が重要になる。</p>
-</section>
-<section id="商業化監査作れていることと売れることの間" class="level2">
-<h2 class="anchored" data-anchor-id="商業化監査作れていることと売れることの間">商業化監査——作れていることと、売れることの間</h2>
-<p>2026年7月19日、実装を止めて、商業化の観点からプロダクト全体を監査した。コード、UI、CloudKit、通知、AI送信、Privacy、Accessibility、価格、Support、App Store運用までを横断し、結果は約2,500行のレポートになった。</p>
-<p>そこで見えたのは、「機能が足りない」よりも、「信頼の説明と失敗時の回復が足りない」という問題だった。</p>
-<ul>
-<li>通常のQuick Addと、外部AIへ送る入力の境界が分かりにくい。</li>
-<li>同期中、未ログイン、offline、errorの違いが利用者に見えない。</li>
-<li>通知登録に失敗しても、成功したように見える経路がある。</li>
-<li>portableなExport、Restore、全データ削除の契約が弱い。</li>
-<li>オンボーディングがなく、初回に何を入力すれば価値を試せるか伝わらない。</li>
-<li>Privacy Policy、Support、配布方式、公開名、App Store上の表現が未決定である。</li>
-<li>CloudKit本番schema、2端末競合、実機Accessibility、signed archiveは未証明である。</li>
-</ul>
-<p>テストでは249件中248件が成功し、Unit test bundleは通った。一方、Quick AddのUIテストが1件失敗した。ただし証明できたのは、テストがkeyboard focusを確認せずに<code>typeText</code>しようとしたことまでだった。製品のautofocusが壊れているのか、テストの前提が間違っているのかは切り分けられていない。</p>
-<p>この失敗は象徴的だった。数字をきれいにするために製品側かテスト側を適当に直すのではなく、<strong>何が証明され、何がまだ分からないかを分ける必要がある。</strong></p>
-<p>監査の結論は、機能競争へ進むことではなかった。</p>
-<blockquote class="blockquote">
-<p>最初に売るべきものはAIではない。「もう選び直さなくていい」という安心である。</p>
-</blockquote>
-</section>
-<section id="今取り組んでいることtrust-repair" class="level2">
-<h2 class="anchored" data-anchor-id="今取り組んでいることtrust-repair">今取り組んでいること——Trust repair</h2>
-<p>監査後の現在は、商用機能を増やす前に、中心体験と信頼を修復する作業へ戻っている。</p>
-<p>作業ツリー上では、次の改善を進めている。</p>
-<ul>
-<li>Quick Addを、まずタイトルだけ端末内へ保存する入口に戻す。</li>
-<li>文章・写真のAI整理を別の明示操作へ分け、生成結果を確認してから追加する。</li>
-<li>「今やる」の条件を折りたたみ、5分・15分・25分・60分から選べるようにする。</li>
-<li>一覧から任意のTaskを「今やる」に指定できるようにする。</li>
-<li>選択中のTaskからメモや詳細を開けるようにする。</li>
-<li>オンボーディングで、一件を追加して固定する価値を短く説明する。</li>
-<li>同期状態、通知失敗、JSON書き出し、全データ削除を利用者へ見せる。</li>
-<li>外部AIの同意と送信内容を明確にし、ZDR（データ保持を許可しない経路指定）を安全側の既定へ寄せる。</li>
-<li>端末内AI、OpenRouter、固定の代替ヒントを段階的に使う。</li>
-</ul>
-<p>ただし、この一覧は「完成した機能一覧」ではない。未コミットの開発中変更を含み、実機、CloudKit、通知、Accessibility、Release archiveの検証はこれからである。</p>
-<p>ここまでの開発で、完成度を誤認させる言い方そのものが信頼を損なうと分かった。だから現在地も、実装済み、検証済み、未確認を分けて扱う。</p>
-</section>
-<section id="何に失敗し何を学んだか" class="level2">
-<h2 class="anchored" data-anchor-id="何に失敗し何を学んだか">何に失敗し、何を学んだか</h2>
-<p>振り返ると、大きな失敗はクラッシュやビルドエラーだけではない。目的と手段を取り違えた瞬間にあった。</p>
-<section id="aiで選ぶを目的にしてしまった" class="level3">
-<h3 class="anchored" data-anchor-id="aiで選ぶを目的にしてしまった">1. 「AIで選ぶ」を目的にしてしまった</h3>
-<p>AIは手段なのに、AIが返るまで待つUIや、モデル設定が中心になりかけた。必要だったのは賢い推薦ではなく、迷いを短く終わらせることだった。</p>
-</section>
-<section id="一般的なtask-managerの常識を持ち込んだ" class="level3">
-<h3 class="anchored" data-anchor-id="一般的なtask-managerの常識を持ち込んだ">2. 一般的なTask managerの常識を持ち込んだ</h3>
-<p>Project、階層、分類、豊富な属性は便利だが、このプロダクトでは開始前の判断を増やした。高機能であるほど目的に近づくとは限らなかった。</p>
-</section>
-<section id="正常系の成功を信頼性と呼んだ" class="level3">
-<h3 class="anchored" data-anchor-id="正常系の成功を信頼性と呼んだ">3. 正常系の成功を、信頼性と呼んだ</h3>
-<p>Build成功は、migration、entitlement、通知許可、同期競合、署名を保証しない。テスト成功も、実機の利用旅程やAccessibilityを自動的には証明しない。</p>
-</section>
-<section id="失敗を見えなくすれば体験が滑らかになると思った" class="level3">
-<h3 class="anchored" data-anchor-id="失敗を見えなくすれば体験が滑らかになると思った">4. 失敗を見えなくすれば、体験が滑らかになると思った</h3>
-<p>AI fallback、通知登録、CloudKit同期を静かに処理しすぎると、利用者には「何が起きたか分からない」状態が残る。滑らかさと不透明さは違う。</p>
-</section>
-<section id="設定の言葉と実際の範囲がずれた" class="level3">
-<h3 class="anchored" data-anchor-id="設定の言葉と実際の範囲がずれた">5. 設定の言葉と、実際の範囲がずれた</h3>
-<p>Play layerのOFF、AI送信の同意、「端末内」という表示など、小さな文言のずれが製品全体の信用へ影響した。設定は実装詳細ではなく、利用者との契約だった。</p>
-</section>
-</section>
-<section id="これから機能を増やす前に仮説を証明する" class="level2">
-<h2 class="anchored" data-anchor-id="これから機能を増やす前に仮説を証明する">これから——機能を増やす前に、仮説を証明する</h2>
-<p>今後の優先順位は、すでにかなりはっきりしている。</p>
-<p>まず、誰のどの瞬間を助けるのかを、実際の利用者調査で確かめる。想定しているのは、タスクを持っているのに比較で止まり、必要な時だけ短く一件へ絞りたい人だ。ADHDの人全員に同じ解決策が効くとは仮定しない。</p>
-<p>次に、端末内だけでも中心の流れが成立する状態を完成させる。追加し、一件へ固定し、終えるか区切るか手放し、必要な時だけ戻ってくる。AIなしでもここが速く、安心して使えることが先である。</p>
-<p>その上で、次を公開前の合格条件として証明する。</p>
-<ul>
-<li>stable Xcodeでのsigned archiveとTestFlight相当の動作</li>
-<li>CloudKit本番schema、2台の実機、競合と復旧</li>
-<li>通知、Widget、deep link、App Groupsの実機確認</li>
-<li>VoiceOver、Voice Control、Larger Text、Reduce Motionでの主要操作完遂</li>
-<li>Export、Restore、Deleteと、Privacy・Supportの運用</li>
-<li>外部AIへ送る内容、同意、ZDR、失敗時fallbackの一致</li>
-<li>UIテストのfocus問題を含む、主要stateの再現可能な検証</li>
-</ul>
-<p>収益化は、現時点では「無期限で使えるlocal core＋買い切りPro」が最初の仮説である。継続原価のあるmanaged AI subscriptionは、localや端末内AIより明確に価値が高く、品質、Privacy、費用、Supportが成立すると分かってから判断する。</p>
-<p>最適化したいのは、滞在時間でも、入力Task数でも、連続利用日数でもない。</p>
-<p><strong>迷って止まった時、一件を決めるまでの時間が短くなったか。決まった後、アプリを閉じて実際の行動へ戻れたか。</strong></p>
-<p>この二つを、プロダクトの成長より先に測りたい。</p>
-</section>
-<section id="おわりに作らないものがプロダクトを形にする" class="level2">
-<h2 class="anchored" data-anchor-id="おわりに作らないものがプロダクトを形にする">おわりに——作らないものが、プロダクトを形にする</h2>
-<p>ADHDManagerの開発は、機能を積み上げる歴史であると同時に、作らないものを決める歴史でもあった。</p>
-<p>Projectを通常導線から外した。サブタスクや依存関係を作らなかった。AIを必須にしなかった。streakや罰を入れなかった。決定後の画面から、理由や候補や技術情報を退かせた。</p>
-<p>残ったのは、とても小さな約束である。</p>
-<blockquote class="blockquote">
-<p>一度に見せるのは一件だけ。<br> 決めた一件は、勝手に変えない。<br> 終わっても、区切っても、手放しても責めない。<br> 必要な時だけ現れ、決まった後は退く。</p>
-</blockquote>
-<p>まだ、商用リリースの準備が整ったとは言えない。名前、配布、同期、Privacy、Support、実機品質、そして本当に人の役に立つかという検証が残っている。</p>
-<p>それでも、何を作るかより先に、何を守るかは見えてきた。</p>
-<p>ADHDManagerが目指しているのは、人生を管理することではない。次の一歩を選ぶための摩擦を、ほんの少しだけ減らすことである。</p>
+<p>収益化は「無期限で使えるlocal core＋買い切りPro」が、8月9日時点の最初の仮説だった。</p>
+<p>継続費用のかかるAI subscriptionは、localや端末内AIより明確に価値があり、品質、Privacy、費用、Supportが成立すると分かってから考える。</p>
+<p>測りたかったのは、アプリの滞在時間でも、登録したTask数でも、連続利用日数でもない。</p>
+<p>迷って止まったとき、一件を決めるまでの時間が短くなったか。決めたあと、アプリを閉じて実際の行動へ戻れたか。</p>
+<p>まだ公開名、配布、同期、Privacy、Support、実機品質、それに本当に人の役に立つかという検証が残っている。</p>
+<p>ADHDManagerでやりたいのは、人生を管理することではない。迷って止まったときに一件だけ決めて、用が済んだらアプリを閉じられるようにすること。</p>
+<p>タスク管理アプリなのに、長く使われない方が正解なのかもしれない。</p>
 
 
 </section>

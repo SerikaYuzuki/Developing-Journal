@@ -833,12 +833,13 @@ body.pj-drawer-active { overflow: hidden; }
 /* GL card CSS variables are defined in each SCSS theme file (:root blocks)
    so they switch automatically when Quarto swaps stylesheets. */
 
-/* --- Listing grid --- */
+/* --- Listing container --- */
+/* Reading-width (76ch) belongs on the paper log + toolbar, not the sky. */
 .quarto-listing-container-custom {
   box-sizing: border-box;
   width: 100%;
-  max-width: var(--pj-reading-width);
-  margin-inline: auto;
+  max-width: none;
+  margin-inline: 0;
 }
 
 .gl-listing {
@@ -849,6 +850,191 @@ body.pj-drawer-active { overflow: hidden; }
 }
 .gl-card-wrap {
   height: 100%;
+}
+
+/* ============================================================
+   Two-layer hub: 今夜の空 (sky) + 観測ログ (log)
+   ============================================================ */
+.gl-hub {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.gl-sky-heading {
+  margin: 0 0 1rem;
+}
+.gl-sky-heading .eyebrow {
+  display: block;
+  color: var(--obs-accent, var(--gl-cat0));
+  font: 700 0.68rem/1.2 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.gl-sky-heading h2,
+.gl-log > h2 {
+  font: 650 clamp(1.25rem, 2.4vw, 1.7rem)/1.25 var(--bs-body-font-family, system-ui);
+  color: var(--gl-title-color, inherit);
+  margin: 0.3rem 0 0;
+}
+.gl-sky .anchorjs-link,
+.gl-log > h2 .anchorjs-link,
+.gl-sky-card .anchorjs-link {
+  display: none !important;
+}
+
+/* Desktop: 1 large (primary) + 2 small (satellites), CSS grid only */
+.gl-sky-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+.gl-sky-card--primary {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  min-width: 0;
+}
+.gl-sky-card--satellite {
+  grid-column: 2;
+  min-width: 0;
+}
+.gl-sky-card--primary:only-child {
+  grid-column: 1 / -1;
+  grid-row: auto;
+}
+.gl-sky-card--primary .gl-title {
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+}
+.gl-sky-card--satellite .gl-title {
+  font-size: clamp(1.5rem, 2.6vw, 1.85rem);
+}
+
+/* Mobile: horizontal scroll-snap with peek (inner scroller only) */
+@media (max-width: 640px) {
+  .gl-sky-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    margin-inline: -0.15rem;
+    padding-inline: 0.15rem 1.25rem;
+    padding-block: 0.15rem 0.35rem;
+  }
+  .gl-sky-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    width: max-content;
+    min-width: 100%;
+    grid-template-columns: none;
+    grid-template-rows: none;
+  }
+  .gl-sky-card,
+  .gl-sky-card--primary,
+  .gl-sky-card--satellite,
+  .gl-sky-card--primary:only-child {
+    flex: 0 0 80vw;
+    width: 80vw;
+    max-width: 22rem;
+    grid-column: auto;
+    grid-row: auto;
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
+  .gl-sky-card .gl-title {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+}
+
+/* Paper log — TOC rows, not glass cards */
+.gl-log {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--pj-reading-width);
+  margin-inline: auto;
+  min-width: 0;
+}
+.gl-log-toolbar-slot {
+  margin: 0.85rem 0 0.65rem;
+}
+.gl-log-toolbar-slot:empty {
+  display: none;
+}
+.gl-log-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.gl-log-row {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr) auto;
+  gap: 0.65rem 1rem;
+  align-items: baseline;
+  padding: 0.72rem 0.15rem;
+  border-bottom: 1px solid var(--gl-card-border-dim, rgba(255, 255, 255, 0.1));
+  background: transparent;
+  transition: background-color 0.15s ease;
+}
+.gl-log-row:hover,
+.gl-log-row:focus-within {
+  background: color-mix(in srgb, var(--obs-accent, #7c5cff) 4.5%, transparent);
+}
+.gl-log-date {
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--gl-muted-color);
+  white-space: nowrap;
+}
+.gl-log-title {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--gl-title-color, inherit) !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.gl-log-title:hover,
+.gl-log-title:focus-visible {
+  color: var(--obs-accent, var(--gl-cat0)) !important;
+}
+.gl-log-cat {
+  justify-self: end;
+  align-self: center;
+  white-space: nowrap;
+}
+.gl-log-cat-empty {
+  display: none;
+}
+
+/* Default view: in-sky log rows use hidden+inert (JS + SSR).
+   !important beats List.js inline display while sky is visible. */
+.gl-hub:not(.is-filtering) .gl-log-row[data-in-sky="1"][hidden] {
+  display: none !important;
+}
+
+@media (max-width: 575.98px) {
+  .gl-log-row {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "date cat"
+      "title title";
+    gap: 0.25rem 0.75rem;
+    padding-block: 0.85rem;
+  }
+  .gl-log-date { grid-area: date; }
+  .gl-log-title { grid-area: title; }
+  .gl-log-cat { grid-area: cat; }
 }
 
 /* --- Card link overlay --- */
@@ -1014,7 +1200,7 @@ body.pj-drawer-active { overflow: hidden; }
   flex-shrink: 0;
 }
 
-/* AnchorJS が gl-card 内の h2 に <a> を入れ子で挿入するのを無効化 */
+/* AnchorJS が gl-card 内の見出しに <a> を入れ子で挿入するのを無効化 */
 .gl-card .anchorjs-link {
   display: none !important;
 }

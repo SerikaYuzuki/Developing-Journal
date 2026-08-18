@@ -1780,7 +1780,7 @@
     "href": "posts/tech/FUMINIWADevelopmentLog.html",
     "title": "ふみにわ開発記",
     "section": "",
-    "text": "2026年8月9日時点の開発記録。\nmainはPR #65まで反映済み。AI関連の一部は現在の作業ブランチ上にあり、実際のCodex／OpenRouter接続や公開用ビルドは未完成である。\n「日本語で小説を書くための、静かで使いやすいmacOSアプリを作りたい」\nふみにわ（FUMINIWA）は、そんな比較的素朴な目標から始まった。\nところが、実際に開発を進めると、問題は「本文を入力できるか」では終わらなかった。\n日本語IMEを壊さず扱えるか。\n自動保存は、本当に作者を守っているか。\n開けない原稿を、空の新規作品に見せかけていないか。\n便利そうな未実装機能を、あたかも使えるように表示していないか。\nAIを接続したとき、古い校正結果を別の原稿へ誤適用しないか。\n開発が進むほど、目指すものは「機能の多い小説エディタ」から、「原稿を安心して預けられる道具」へ変わっていった。\nこれは、その過程で何を作り、何を間違え、何を捨て、これからどこへ進もうとしているのかをまとめた記録である。",
+    "text": "2026年8月9日時点の開発記録。\nmainはPR #65まで反映済み。AI関連の一部は作業ブランチ上にあって、実際のCodex／OpenRouter接続や公開用ビルドはまだ終わっていない。\n「日本語で小説を書くための、静かで使いやすいmacOSアプリが欲しい」\nふみにわ（FUMINIWA）は、もともとそれくらいのところから始まった。\n俺自身が小説を書くので、だったら自分が欲しいやつを作ればいいじゃん、というかなり単純な話だったんだけど、作っていくと当然そんな簡単には終わらなかった。\n本文が入力できれば小説エディタなのかというと、全然そんなことはない。\n日本語IMEを壊さず扱えるのか。自動保存って言ってるけど、本当に保存されてるのか。壊れた原稿を開いたとき、何食わぬ顔で空の新規作品を表示したりしないか。まだ実装していない機能を、それっぽいUIだけ置いて「使えそう」に見せていないか。AIを入れるなら、数秒前の校正結果を別の原稿にぶち込んだりしないか。\n作れば作るほど、俺が欲しかったのは「機能がいっぱいある小説エディタ」ではなくて、原稿を安心して預けられる道具なんじゃないか、という方向に変わっていった。\nというわけで、これはふみにわで何を作ったかだけじゃなく、何を間違えて、何を捨てて、どうして今の形になったのか、その辺をまとめた開発記録。",
     "crumbs": [
       "Home",
       "Posts",
@@ -1789,11 +1789,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#最初に決めたのは機能ではなく境界だった",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#最初に決めたのは機能ではなく境界だった",
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#最初に作ったもの",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#最初に作ったもの",
     "title": "ふみにわ開発記",
-    "section": "最初に決めたのは、機能ではなく境界だった",
-    "text": "最初に決めたのは、機能ではなく境界だった\n開発初期に最も重視したのは、画面の見た目や機能数ではなく、あとから壊れにくい構造だった。\nアプリ全体のUIにはSwiftUIを使う。ただし、本文エディタにはSwiftUIのTextEditorを使わず、AppKitのNSTextViewとTextKit 2を採用した。\n理由は日本語IMEである。\nSwiftUIの状態更新と本文を素朴な双方向Bindingで結ぶと、IME変換中に外側から文字列が書き戻され、入力が巻き戻ることがある。そのため、編集中の本文の正はNSTextView側に置き、モデルから本文を流し込むのは話を切り替えたときだけ、という「テキスト所有権ルール」を最初に定めた。\n保存形式には、単一の巨大なJSONではなく、フォルダパッケージ形式の.novelpkgを採用した。\n本文、メモ、添付資料、メタデータを分けて保持し、本文ファイル名には並び順ではなくUUIDを使う。章や話を並べ替えても、ファイルを一斉にリネームしなくて済むからだ。\n章順と話順は配列だけを正とし、別のorderフィールドは持たない。二つの順序情報を持てば、いつか必ず食い違う。\nこの頃から、ふみにわの設計には一つの傾向があった。\n「便利そうな情報を増やす」よりも、「正が二つ存在する状態を作らない」ことを優先していた。",
+    "section": "最初に作ったもの",
+    "text": "最初に作ったもの\n最初の頃に気にしていたのは、機能をどれだけ積むかより、あとから自分で地雷原を作らないことだった。\nUI全体はSwiftUI。ただし、一番大事な本文エディタだけはSwiftUIのTextEditorを使わず、AppKitのNSTextViewとTextKit 2を使っている。\n理由は日本語IME。\nふみにわの当時の構成では、SwiftUIの状態と本文を素直に双方向Bindingすると、IMEで変換している最中に外から文字列が書き戻されて、入力が巻き戻ることがあった。日本語を書くアプリで日本語入力が怪しいのは、さすがに笑えない。\nなので、編集中の本文についてはNSTextView側を正とした。モデルから本文を流し込むのは話を切り替えたときだけで、編集中にモデル側から勝手に本文へ触らない。\n要するに、「この文字列、結局誰が持ってんの？」を曖昧にしないというルールを最初に作った。\n保存形式も同じ発想で、巨大なJSON一個に全部詰め込むのではなく、.novelpkgというフォルダパッケージ形式にした。\n本文、メモ、添付資料、メタデータは分ける。本文のファイル名も「第1話」「第2話」みたいな並び順依存にはせず、UUIDを使う。話を並べ替えただけで大量のファイル名が変わるとか、絶対あとで嫌なことになるからね。\n章順と話順についても、配列だけを正にして別のorderフィールドは持たせなかった。順序を表す情報が二つあったら、いつか必ずズレる。俺はそういう「今は一致してるからヨシ！」を全く信用していない。\n基盤ができてからは結構速かった。章と話の管理、本文編集、検索、話メモ、キャラクター、プロット、伏線、資料、スナップショットと、かなりの勢いで機能が増えた。\nこの辺はAIコーディングとの相性もよくて、仕様を決めて実装してテストして、というサイクルを高速で回せた。\nで、当然ちょっと得意げになるわけよ。\nこれもう結構できてるんじゃね？　と。\nあとから考えると、機能が揃っていることと、製品として信用できることを、この頃はまだごっちゃにしていた。",
     "crumbs": [
       "Home",
       "Posts",
@@ -1802,11 +1802,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#機能は驚くほど速く増えていった",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#機能は驚くほど速く増えていった",
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#uiを一回捨てた",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#uiを一回捨てた",
     "title": "ふみにわ開発記",
-    "section": "機能は、驚くほど速く増えていった",
-    "text": "機能は、驚くほど速く増えていった\n基盤を作ったあと、開発はかなり速い速度で進んだ。\n章と話の管理、本文編集、自動字下げ、検索、文字数表示、話メモ、キャラクター管理、登場箇所へのジャンプ、プロットカード、伏線管理、資料添付、世界観ノート、スナップショット保存と復元。\nさらに、作品の新規作成、既存作品を開く、別名保存、Finder表示、TXT／Markdown／EPUB 3への書き出しまで実装した。\nPhase 0からPhase 5までを通して、「小説を書くために必要そうな機能」は急速に揃っていった。\nしかし、ここで最初の大きな認識違いが見えてきた。\n機能が揃っていることと、製品として信頼できることは別だった。",
+    "section": "UIを一回捨てた",
+    "text": "UIを一回捨てた\nUIについても、かなりデカい手戻りをやっている。\n最初の大規模刷新では、画面を「執筆」「キャラクター」「プロット」の3モードに分けていた。キャラクターはシート形式、プロットは章レーン式のカードボード。それぞれ専用の広い画面で編集する。\n実装としては普通に完成した。\n完成したんだけど、実際に使ってみるとなんか違う。\n小説を書いてるときって、本文だけ見てるわけじゃないんだよね。「あれ、こいつ何歳だっけ」で人物を見るし、「この伏線どこだっけ」でプロットを見るし、「そもそもこの章で何やるんだっけ」でアウトラインを見る。\nなのに、そのたびにモードを切り替えると、「今ここの文章を書いていた」という文脈が毎回ぶった切られる。\nこれ嫌だな、と。\nということで、せっかく完成した3モード制を捨てた。そこからProject Sidebar、Outline、Editorを中心にしたWorkbench形式へ作り直した。\nところが、これも一発では決まらない。\nOutlineを統一したときには、操作としてはきれいになったんだけど、今度は画面全体が妙に不透明で重くなった。俺が欲しかったmacOSっぽい透過感というか、静かな感じとは逆方向に行っていた。\nなのでまた直す。\nGlass UIをいじって、入力余白を変えて、2列と3列を行ったり来たりして、ツールバーの位置を変えて、章と話の階層も変えて、作品情報画面も作り直した。\n完成したコードを捨てるのは嫌だった。でも「せっかく作ったし」で残す方がもっと嫌だったので、捨てた。",
     "crumbs": [
       "Home",
       "Posts",
@@ -1815,11 +1815,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#一度完成させたuiをいったん捨てた",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#一度完成させたuiをいったん捨てた",
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#日本語imeで詰まった",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#日本語imeで詰まった",
     "title": "ふみにわ開発記",
-    "section": "一度完成させたUIを、いったん捨てた",
-    "text": "一度完成させたUIを、いったん捨てた\nUIでも大きな手戻りがあった。\n最初の刷新では、画面を「執筆」「キャラクター」「プロット」の3モードに分けた。キャラクターはシート形式、プロットは章レーン式のカードボードにし、それぞれを広い画面で扱えるようにした。\nこのUIは、実装としては完成した。\nそれでも、使い方を見直すと問題があった。\n小説を書いている最中には、本文だけでなく、章構造、人物、プロット、資料を行き来する。モードを切り替えるたびに、今どこを書いているのかという文脈が途切れてしまう。\nそこで、完成済みの3モード制を捨て、Project Sidebar、Outline、Editorを中心とするWorkbenchへ作り直した。\nところが、これで終わりではなかった。\nOutlineを統一しようとした修正では、意図していたmacOSらしい透過感とは反対に、画面全体を不透明で重い方向へ寄せてしまった。操作の整合性は上がったが、見た目の方向が違っていた。\nそのため、Glass UI、入力余白、2列／3列構成、ツールバー配置、章と話の階層、作品情報画面などを何度も再設計した。\nこの過程で学んだのは、「完成したコードを残すこと」よりも、「違う方向へ進んだと認めること」の方が重要だということだった。\nUIの作り直しは失敗の隠蔽ではない。実際に使った結果、理解が更新された証拠でもある。",
+    "section": "日本語IMEで詰まった",
+    "text": "日本語IMEで詰まった\n自動字下げでも、かなり象徴的なのがあった。\n小説だと段落の頭に全角スペースを入れるので、改行したときに自動で一字下げする機能を入れている。ただし、\n「こんにちは」\nみたいな会話文には頭のスペースがいらない。\nそこで、行頭に全角スペースがある状態で「を入力したら、そのスペースを消す処理を書いた。直接「を入力すると動く。\nヨシ。\nで、日本語IMEから入力すると動かない。\nなんでだよ。\n原因はIMEGuardPluginだった。\nIME変換中に余計な処理を走らせると日本語入力そのものを壊すので、「変換中は後続処理に触らせない」というガードを入れていた。これがあまりにも真面目に仕事をして、字下げ解除まで止めていた。\nIMEを守る処理は正しい。字下げを消す処理も正しい。組み合わせると動かない。そういうやつ。\n最終的には、「IME変換中は触らない」という原則は維持したまま、変換確定後のtextDidChangeで行頭スペースを取り除くようにした。Undoしたらちゃんと戻るよう、通常の編集経路も通している。\n傍点記法も似たようなもので、最初は《《対象文字列》》を採用していた。これは特定の投稿サイトでは使えるんだけど、サービスによっては互換性がない。そこで、1文字ずつ｜字《・》へ変換する方式に変えた。\nこういうのは、デモ動画で30秒触るだけならまず気にならない。でも毎日何千文字も日本語を書く道具だと、こういうクソ細かいところがそのまま使い心地になる。",
     "crumbs": [
       "Home",
       "Posts",
@@ -1828,11 +1828,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#日本語入力は仕様書どおりには動かなかった",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#日本語入力は仕様書どおりには動かなかった",
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#epubより先に保存を直した",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#epubより先に保存を直した",
     "title": "ふみにわ開発記",
-    "section": "日本語入力は、仕様書どおりには動かなかった",
-    "text": "日本語入力は、仕様書どおりには動かなかった\n自動字下げにも、象徴的な失敗があった。\n当初は、行頭に全角スペースがある状態で「を入力したら、そのスペースを削除するルールを用意していた。直接入力では動作した。\nしかし、日本語IMEから「を入力すると動かなかった。\n原因は、IME変換中の安全を守るために置いたIMEGuardPluginだった。変換中は後続処理へ介入させない設計が正しく働き、字下げ解除の処理まで止めていたのである。\nつまり、個々の機能はそれぞれ正しくても、組み合わせると期待した動作にならなかった。\n修正では、IME変換中には触らない原則を維持したまま、変換確定後のtextDidChangeで行頭スペースを取り除く処理を追加した。もちろん、Undoで元に戻せる通常の編集経路を通している。\n傍点記法でも変更があった。\n最初に採用した《《対象文字列》》は特定の投稿サイトでは使えるが、他の主要サービスでは通用しない。そこで、1文字ずつ｜字《・》へ変換する方式へ変更した。\nこうした問題は、デモでは目立ちにくい。\nしかし、日本語で毎日何千文字も書く道具では、こういう細部が製品の本体になる。",
+    "section": "EPUBより先に保存を直した",
+    "text": "EPUBより先に保存を直した\nWorkbenchが一通りできた時点では、そのままTXTとかEPUBとか、出力機能を増やしていく予定だった。\nでも一回プロジェクト全体を見直したときに、いや、出力増やしてる場合か？　となった。\n当時、自動保存はあった。でも保存に失敗してもユーザーにはかなり分かりにくい。作品の新規作成、作品を開く、別名保存みたいな、「エディタなら普通にあるだろ」というファイル操作もまだ微妙。\nこの状態でEPUB出力を豪華にして何になるんだ、と。\nそこでロードマップを一旦止めて、Phase 4.5という安定化フェーズをねじ込んだ。保存状態は「未保存」「保存中」「保存済み」「保存失敗」の4つを持たせて、失敗したら再試行できるようにした。\n作品を切り替えるときも、先に表示だけ切り替えるのではなく、候補作品の読み込みと現在作品の保存が両方成功してから入れ替える。スナップショットを復元するときは、復元前の状態を一回別のスナップショットとして退避する。「昔の状態へ戻そうとしたら今の原稿まで消えました」は最悪なので。\nさらに保存処理を調べたら、競合もあった。\n保存中に新しい編集が入ったとき、昔の実装だと「保存成功」という結果だけ返って、実は直後の変更が保存されていない、という隙間があった。そこで保存要求をrevision単位で直列化して、dirtyな変更がなくなるまで保存担当が回り続ける形に変えた。\nテスト環境も一発では生えなかった。最初のNovelAppTestsは、XcodeGen側のscheme、TEST_HOST、BUNDLE_LOADERが足りなくて死亡。そこを直したら今度はSwiftFormatのimport順でローカルチェックが死ぬ。\nさらにコードを直したあと、設計文書を見ると、もう存在しないAppModeの説明が残っている。\nコードは新しい。文書は古い。はい文書ドリフト。\nこの辺から、設計書とかDecision Logも「暇なときに更新する説明書」ではなく、コードと一緒に変更するものとして扱うようになった。\n性能については、先回りして保存形式を最適化する前に測った。当時の開発環境で、1MBの本文、100MBの添付、20個のスナップショットを持つパッケージを測ると、保存時間は約0.039秒だった。\nじゃあ今直す必要ないじゃん。\n将来遅くなるかもしれないからと先に複雑にするのはやめて、実際に遅くなったら、もう一度測って直すことにした。そのあと、書き出しはTXT／Markdown／EPUB 3まで実装した。",
     "crumbs": [
       "Home",
       "Posts",
@@ -1841,11 +1841,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#出力へ進む直前にロードマップを止めた",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#出力へ進む直前にロードマップを止めた",
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#macosファースト",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#macosファースト",
     "title": "ふみにわ開発記",
-    "section": "出力へ進む直前に、ロードマップを止めた",
-    "text": "出力へ進む直前に、ロードマップを止めた\nWorkbenchが完成した時点では、次にTXTやEPUBなどの書き出し機能へ進む予定だった。\nだが、プロジェクト全体を見直した結果、その順番は危険だと判断した。\n当時は、保存に失敗しても利用者が気づきにくく、新規作成、作品を開く、別名保存といった通常のファイル操作も十分に揃っていなかった。\nそこで、出力の前にPhase 4.5という安定化フェーズを挿入した。\n保存状態を「未保存」「保存中」「保存済み」「保存失敗」として表示し、失敗時には再試行できるようにした。作品切り替えでは、候補作品の読み込みと現在作品の保存が両方成功してから状態を入れ替えるようにした。\nスナップショット復元では、復元前の現在状態を先に別スナップショットへ退避するようにした。復元が失敗しても、現在の作品を維持するためである。\n保存処理そのものにも競合が見つかった。\n保存中に新しい変更が入ったとき、古い実装では変更が保存されていないのに成功が返る隙間があった。保存要求をrevision単位で直列化し、dirtyな変更がなくなるまで保存担当が処理を続ける形へ修正した。\nテスト環境の追加も一度では成功しなかった。\n最初のNovelAppTestsは、XcodeGen側のscheme、TEST_HOST、BUNDLE_LOADERが不足して失敗した。その後はSwiftFormatのimport順でもローカルチェックが止まった。コードを直したあと、設計文書に削除済みのAppModeが残るという文書ドリフトも起きた。\nこの経験から、ふみにわでは設計書やDecision Logを単なる説明資料ではなく、実装と同時に更新する成果物として扱うようになった。\n性能については、先回りして保存形式を書き換えることを避けた。\n1MBの本文、100MBの添付、20個のスナップショットを持つ代表パッケージで測定したところ、APFS上の保存時間は当時約0.039秒だった。想像で最適化するのではなく、予算を超えてから直す方針を選んだ。",
+    "section": "macOSファースト",
+    "text": "macOSファースト\n途中からWindows版も視野に入れ始めた。\nただし、SwiftUIのコードを無理やりWindowsでも使えるようにするとかはやらない。Windows側はWinUI 3＋C#／.NETで別に作る予定。\n共有するのは、.novelpkgのschema、UUIDや順序の意味、入出力fixture、保存トランザクションの考え方。コードではなく、原稿を扱うための契約を共有する。\nUIまで無理に共通化すると、macOSとWindowsで違うIME、Undo、ファイル操作、デザインの作法まで無理に揃えることになる。多分それ、一番誰も幸せにならないやつ。\nだから、「同じコードが動く」より「同じ原稿を安全に往復できる」を優先することにした。\nもちろんWindows版がもうあるわけではない。2026年8月9日時点では、言語非依存schemaとgolden fixtureを固定するW0がまだ終わっていなくて、本実装はそのあと。",
     "crumbs": [
       "Home",
       "Posts",
@@ -1854,11 +1854,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#macos専用からmacosファーストへ",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#macos専用からmacosファーストへ",
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#商業化できるか見直した",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#商業化できるか見直した",
     "title": "ふみにわ開発記",
-    "section": "macOS専用から、macOSファーストへ",
-    "text": "macOS専用から、macOSファーストへ\n途中で、Windows版も視野に入れる方針が加わった。\nただし、SwiftUIやAppKitのコードをWindowsへ無理に共有することはしない。\n共有するのは.novelpkgのschema、UUIDや順序の意味、入出力fixture、保存トランザクションの考え方である。Windows側はWinUI 3とC#／.NETで、同じ契約を別実装する。\nUIまで共通化すれば、各OSのIME、Undo、ファイル操作、デザイン慣習を損なう。\nコードを共有することより、同じ原稿を安全に往復できることを優先した。\nもっとも、これはWindows版が完成したという意味ではない。現在は、言語非依存schemaとgolden fixtureを固定するW0が未完了であり、実装はその次である。",
+    "section": "商業化できるか見直した",
+    "text": "商業化できるか見直した\n一度、ふみにわを「俺しか使わないアプリ」ではなく、「これを知らない人へ渡して金を取れるか」という目線でかなり徹底的に監査した。\n出てきた致命的な問題は、「AI機能がない」とか「PDF出力できない」とかではなかった。もっと地味で、もっと嫌なやつ。\n起動直後、読み込みを待たずに編集可能な仮作品を出していた。なので起動してすぐユーザーが文章を書き始めると、そのあと読み込み終わった前回作品が表示され、今書いた文章を上書きする可能性があった。\n怖すぎる。\n作品の読み込みに失敗したら、空の新規作品へ黙ってfallbackするコードもあった。本文ファイルが壊れていたり、不正なUTF-8だったりしても、「読めなかったので空文字です」ということにして処理を続ける場所まであった。\nいやいやいや。\nエディタが「原稿を読めませんでした」を「原稿は空でした」に変換したらダメだろ。\n他にも、外部変更、孤児化した本文、署名、公証、AppIcon、アクセシビリティ、未接続AIの常設表示とか、まあ色々出た。\nここで、ふみにわの中心って結局何なんだろう、とかなり考えた。たどり着いたのは、昨日の続きを昨日の場所から始められることと、異常が起きたら黙って空にせず、救出できる状態で止まることだった。\n起動処理はLoading、Ready、Recoveryの3状態に分けた。作品を安全に読み込めるまで、編集可能なWorkbench自体を出さない。\n前回開いていた作品が壊れているとか、Finderから渡された作品が読めないとか、そういうときも勝手に新規作品へfallbackしない。Recovery画面で止めて、「再試行」「Finderで表示」「別作品を選択」「新規作品を作る」のどれかをユーザー自身に選んでもらう。\n本文が読めないなら、空文字として開かない。小説アプリなら「開けました！　中身は空です！」より、「すみません、これ開けません」の方が百倍マシだろ。\n作品ライフサイクルをさらにレビューしていたら、もっと厄介な競合も出てきた。\nSwiftには@MainActorがあるので、一見すると状態変更は一個ずつ処理される。じゃあ安全じゃん、と思うんだけど、awaitが入ると話が変わる。ファイルI/Oを待っている間に別の操作が入れる。\n例えば、作品Aのスナップショットを復元する。途中でファイルI/Oをawaitする。その間にFinderから作品Bを開く。そのあと、Aの復元処理が再開する。\nそこで「現在の保存先」を動的に読み直すと、もう現在の作品はBになっている。結果、AのスナップショットをBへ書き戻す可能性がある。\n最悪である。\n起動処理にも似た競合があった。最初の読み込みが遅いと、その途中でFinderから別作品を開いても、あとから終わった起動処理が古い作品を再表示する可能性があった。\nそこで、作品操作全体をFIFOのgateで直列化した。さらに各操作について、開始した瞬間の作品ID、URL、generationをsession tokenとして固定する。待っている間に作品が変わっていたら、その操作は保存層へ触る前に拒否する。\n作品を切り替える前には、日本語IMEの未確定文字も旧作品側へ確定して保存する。終了処理が始まったら新しい作品操作は受けない。lockの取得順も固定した。\n同時に触らせなければ大丈夫、ではなかった。その処理がどの作品に対して始まったのかまで固定しないといけない。\n非同期処理、怖いね。",
     "crumbs": [
       "Home",
       "Posts",
@@ -1867,11 +1867,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#商業化監査で製品の中心が変わった",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#商業化監査で製品の中心が変わった",
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#改名で古いprojectを踏んだ",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#改名で古いprojectを踏んだ",
     "title": "ふみにわ開発記",
-    "section": "商業化監査で、製品の中心が変わった",
-    "text": "商業化監査で、製品の中心が変わった\n一度、ふみにわを「他人へ渡せる製品」として徹底的に監査した。\nそこで見つかった重大な問題は、派手な新機能の不足ではなかった。\n起動直後に編集可能な仮の作品を表示していたため、利用者が入力した本文を、遅れて読み込まれた前回作品が上書きする可能性があった。\n作品の読み込みに失敗したとき、空の新規作品へ黙ってfallbackする経路があった。\n本文ファイルの読み込み失敗や不正なUTF-8を、空文字へ変換して処理を続ける箇所もあった。\nさらに、外部変更、孤児化した本文、署名や公証、AppIcon、アクセシビリティ、未接続AIの常設表示など、多数の問題が見つかった。\nこの監査を境に、製品の中心価値は次のように整理された。\n\n昨日の続きを、昨日の場所から始められること。\nそして異常が起きたとき、黙って空にせず、救出可能な状態で止まること。\n\nふみにわにとって、信用は機能数ではなく、失敗時の振る舞いに宿っていた。",
+    "section": "改名で古いprojectを踏んだ",
+    "text": "改名で古いprojectを踏んだ\n途中で製品名をNovelWriterから「ふみにわ／FUMINIWA」に変えた。\n画面に出ているNovelWriterを全部FUMINIWAにreplaceすれば終わり！\nなわけがない。\n旧bundle domainには「最近開いた作品」とか、エディタ設定とかが保存されている。そこまで雑に変えたら、アップデートした瞬間、新しいアプリからは設定も履歴も消えたように見える。\nなので移行対象をallowlistで限定して、一回だけ旧domainから移す。新しい値がもうあるなら上書きしない。旧作品や旧フォルダも勝手に移動したり削除したりしない。\n.novelpkgの内部形式、NovelKitみたいなドメイン名、toolbarの永続IDなんかも、名前が古いからといって変えず、互換資産として残した。\nさらに改名直後、訳の分からないビルドエラーも出た。\n現行のFUMINIWA.xcodeprojは普通にビルドできる。なのにXcodeが「NovelWriterApp.swiftがありません」とか言ってくる。\nそりゃないよ。消したから。\n調べたら、Xcodeが古いNovelWriter.xcodeprojを開いていた。コードではなく、古い生成物が原因だった。\nその後、XcodeGenの共通スクリプトから現行projectを生成して、古いやつは退避するようにした。生成物を正として扱わないことの大事さを、身をもって知った瞬間だった。",
     "crumbs": [
       "Home",
       "Posts",
@@ -1880,11 +1880,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#開けないを正直に表示する",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#開けないを正直に表示する",
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#使えないaiは一旦消した",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#使えないaiは一旦消した",
     "title": "ふみにわ開発記",
-    "section": "「開けない」を正直に表示する",
-    "text": "「開けない」を正直に表示する\n起動処理はLoading、Ready、Recoveryの三状態へ分離した。\n作品を安全に読み込めるまで、編集可能なWorkbenchを表示しない。前回作品やFinderから指定された作品を開けなかった場合も、新規作品へ自動fallbackしない。\n代わりにRecovery画面で止まり、再試行、Finderで表示、別作品を選択、明示的な新規作成を提示する。\n本文が読めないなら、空文字として開かない。\n執筆アプリでは、「開けません」と伝える方が、「空で開けました」と装うよりはるかに安全だからだ。",
+    "section": "使えないAIは一旦消した",
+    "text": "使えないAIは一旦消した\n昔のWorkbenchには、下の方にAI Assistant Panelがあった。入力欄があって、AIの状態が見えて、ショートカットまである。見た目は結構それっぽい。\n問題は、AI providerも通信処理も存在していなかったこと。\nつまり、ただのハリボテ。\n開発者側からすると「ここに将来AIを入れるからね」というプレースホルダなんだけど、使う側からしたらそんなことは知らない。ボタンがあれば使えると思う。\nしかも小説エディタにAI欄が常設されていたら、「え、俺の本文どこかへ送られてる？」という不安まで生まれる。何もしていないのに。\nこれはよくないなと思って、未実装AIの入口は通常版から全部消した。この辺はProduct Truthという名前でルール化した。本当に存在する機能だけUIに出して、まだできないものを未来感だけで先に置かない。\n以下は、2026年8月9日時点でAI作業ブランチにあった仕組みの話。\n実際の外部送信はまだつないでいない。その前に、providerへ渡す範囲をかなり意図的に小さくした。まずは選択範囲の校正だけで、ユーザーが明示的に選んだ本文しか渡さない。作品名も章名も人物情報もプロットもローカルファイルも、「役に立ちそうだから」で勝手に追加しない。\n送信前には、実際に送るpromptとresponse schemaをそのままpreviewする。確認したあとに本文やproviderが変わったら、その確認は無効。同じ確認を使って二回送信することもできない。\n返ってきた結果も自動適用しない。原文との差分を出して、ユーザーがApplyしたときだけ、EditorKitの通常編集経路を通して置換する。Undo一回で戻せる。\nAIへ送信して待っている間に、作品、話、エディタ、選択範囲、元の文章のどれかが変わったら、その結果はstale扱いで適用を拒否する。「同じ文章が見つかったから多分ここだろ」で、別の場所へ勝手に当て直したりもしない。\nこの一連の流れをfake providerでテストしてから、実providerをつなぐ予定だった。\n通常版のFUMINIWAと個人実験用のFUMINIWAExperimentalも、別target、別bundle ID、別保存rootに分けた。少なくともこの時点の通常版targetのbuild graphには、NovelAI、AI UI、provider依存、sidecar artifactを含めていない。設定で隠すだけではなく、通常版の実行経路から分けている。\n実providerの第一候補はCodex TypeScript SDK。ただ、Swiftから直接使えるSDKではないので、Node sidecarを挟む必要がある。\nまあ、そこはいい。\n調べていくと分かったのは、俺が欲しかった安全側の保証が意外と簡単には取れないことだった。\n8月9日時点の調査では、toolを完全に無効化できる保証、ephemeral threadの保証、上流側でのoutput token capなんかを、公開APIだけでは確認できなかった。\nFUMINIWA側で結果をmemory onlyにしても、providerやSDK側まで本当に何も残らないとは限らない。ローカル側でbyte数や実行時間を制限しても、それはAPI料金の上限ではない。\nここで一番やっちゃいけないのが、「多分保存されないだろう」からの、UIに「保存なし」。\n分からないなら「未保証」。ない保証をこっちで勝手に生やさない。\nなので、次にやることも「とりあえずAPIを叩いて返事が来た！　やった！」ではなくなった。\n先にやるのは、SDK／CLI／Nodeのversion、path、hashを固定して、専用の空cwdとCODEX_HOMEで動かすところから。親のenvironmentも丸ごと渡さず、認証情報はKeychainへ置く。cancel／timeout後にprocessが残らないか、local artifactが生えないか、OSレベルの隔離が効くかも実測する。\nここまでやって、ようやくExperimental UIへ実Codex adapterをつなぐ。そのあとOpenRouterも、独立したHTTP adapterとして追加する予定。\nちなみに、Codexが失敗したら勝手にOpenRouterへfallback、みたいなのもやらない。送信先が変わるなら、それはもう別の確認だから。ユーザーに見せて、もう一回previewしてもらう。",
     "crumbs": [
       "Home",
       "Posts",
@@ -1893,89 +1893,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#mainactorだけでは原稿を守れなかった",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#mainactorだけでは原稿を守れなかった",
+    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#月9日時点でどこまでできたか",
+    "href": "posts/tech/FUMINIWADevelopmentLog.html#月9日時点でどこまでできたか",
     "title": "ふみにわ開発記",
-    "section": "@MainActorだけでは、原稿を守れなかった",
-    "text": "@MainActorだけでは、原稿を守れなかった\n作品ライフサイクルのレビューでは、さらに厄介な競合が見つかった。\nSwiftの@MainActorを使えば、状態は一度に一つずつ変更されるように見える。しかし、ファイルI/Oのawait中には別の操作が入り込める。\n作品Aのスナップショット復元を待っている間に、Finderから作品Bを開く。すると、復元処理が再開したあと、動的に読み直した保存先へAのスナップショットを書き戻し、Bを壊す可能性があった。\n起動処理でも、遅い初回読み込みが、あとからFinderで開いた作品を古い作品へ巻き戻す競合があった。\n対策では、作品操作全体をFIFOのgateで直列化し、各操作が呼び出された時点の作品ID、URL、世代をsession tokenとして固定した。\n待機中に作品が変わった操作は、保存層へ触る前に拒否する。\n作品切り替え前には、日本語IMEの未確定文字を旧作品へ確定して保存する。終了要求後は新しい作品操作を受け付けない。lockの取得順も固定した。\nここで重要だったのは、「同時に触らない」だけでは足りないということだった。\n「その操作が、どの作品に対して始まったのか」まで固定しなければならなかった。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ふみにわ開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#改名は文字列置換ではなかった",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#改名は文字列置換ではなかった",
-    "title": "ふみにわ開発記",
-    "section": "改名は、文字列置換ではなかった",
-    "text": "改名は、文字列置換ではなかった\n製品名は、NovelWriterから「ふみにわ／FUMINIWA」へ変更した。\nだが、改名を画面上の文字列置換として行えば、既存作品や設定を壊す。\n旧bundle domainに保存されていた最近開いた作品やエディタ設定は、対象をallowlistで限定して一度だけ移行する。新しい値がすでにある場合は上書きせず、旧作品や旧フォルダも移動・削除しない。\n.novelpkgの内部形式、NovelKitなどのドメイン名、toolbarの永続IDも互換資産として維持した。\nこの改名の直後には、別の分かりにくい問題も起きた。\nXcodeが古いNovelWriter.xcodeprojを開き、すでに削除されたNovelWriterApp.swiftを参照していた。現在のFUMINIWA.xcodeprojはビルドできるのに、アプリ全体が壊れたように見えた。\n原因はコードではなく、古い生成物だった。\n現在は、XcodeGenの共通スクリプトから現行projectを生成し、旧projectを退避するようにしている。\n生成物を正として扱わない、という原則が実際の障害として現れた例だった。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ふみにわ開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#使えないaiを先に見せない",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#使えないaiを先に見せない",
-    "title": "ふみにわ開発記",
-    "section": "使えないAIを、先に見せない",
-    "text": "使えないAIを、先に見せない\nかつてのWorkbenchには、下部にAI Assistant Panelがあった。\nまだproviderも通信処理も存在しないのに、入力欄やAI状態、ショートカットだけが置かれていた。\n見栄えとしては未来を感じさせる。しかし、利用者から見れば「使える機能」に見える。さらに、本文が外部へ送られるのかもしれないという不安だけを生む。\nそこで、未実装AIの入口を通常版からすべて撤去した。\nこの判断は「Product Truth」として明文化した。\n実在する機能だけをUIへ出す。\nまだできないことを、雰囲気で先に見せない。\nAIを再び表示するには、送信範囲、送信先、保持情報、明示確認、取消、失敗時の挙動、差分、適用確認まで成立していなければならない。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ふみにわ開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#aiは接続より先に誤適用を防ぐ",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#aiは接続より先に誤適用を防ぐ",
-    "title": "ふみにわ開発記",
-    "section": "AIは、接続より先に誤適用を防ぐ",
-    "text": "AIは、接続より先に誤適用を防ぐ\n現在のAI実装は、選択範囲の校正案だけに絞っている。\n利用者が明示的に選択した本文だけを対象にし、作品名、章名、人物、プロット、ローカルファイルを暗黙に追加しない。\n送信前には、実際に送るpromptとresponse schemaをそのままpreviewする。確認後に内容やproviderが変わった場合は、確認を無効にする。同じ確認から送信できるのは一度だけである。\n結果は自動適用しない。原文との差分を表示し、利用者が明示的にApplyしたときだけ、EditorKitの正規編集経路で1回のUndo単位として置換する。\n通信中に作品、話、エディタ、選択範囲、原文のどれかが変わった場合、その結果はstaleとして適用を拒否する。同じ文字列を別の場所から検索して、勝手に結び直すこともしない。\n現在は、この一連の流れをfake providerで検証している。\n通常版のFUMINIWAと、個人実験用のFUMINIWAExperimentalは別target、別bundle ID、別保存rootに分けた。通常版にはNovelAI、AI UI、provider依存、sidecar artifactをbuild graphの段階で含めない。\nこれは、設定で隠しているだけではない。\n通常版には、そもそもAIの実行経路を入れないという分離である。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ふみにわ開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#codexをつなぐ前に見つかった都合の悪い現実",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#codexをつなぐ前に見つかった都合の悪い現実",
-    "title": "ふみにわ開発記",
-    "section": "Codexをつなぐ前に見つかった、都合の悪い現実",
-    "text": "Codexをつなぐ前に見つかった、都合の悪い現実\n実providerの第一候補はCodex TypeScript SDKである。\nしかし、Swiftから直接使えるSDKではないため、Node sidecarを介して接続する必要がある。\nさらに調査時点では、期待していたtool完全無効化、ephemeral thread、上流のoutput token capなどを、公開API上で保証できなかった。\nFUMINIWA側で結果をmemory onlyにしても、providerやSDK側に履歴やartifactが残らないとは限らない。\nローカルでbyte数や実行時間を制限しても、それは上流の料金上限ではない。\nそのため、存在しない保証をUI上で「無効」「保存なし」「上限あり」と補うことはしない。確認できないものは、未保証として表示する。\n次に必要なのは、単に通信を成功させることではない。\nSDK、CLI、Nodeのversion・path・hash固定、専用の空cwdとCODEX_HOME、親environmentを継承しないallowlist、Keychain、OSレベルのファイル隔離、cancel／timeout後のprocess tree回収、orphan processが残らないこと、local artifactの実測が必要になる。\nここまで成立して初めて、個人用Experimental UIへ実Codex adapterを接続できる。\nその後、OpenRouterを独立したHTTP adapterとして同じUIへ追加する予定である。Codexが失敗したからOpenRouterへ自動で切り替える、といったfallbackは行わない。\n送信先が変わるなら、利用者もそれを知り、新しいpreviewを確認しなければならない。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ふみにわ開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#現在地とこれから",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#現在地とこれから",
-    "title": "ふみにわ開発記",
-    "section": "現在地と、これから",
-    "text": "現在地と、これから\nふみにわには現在、macOS上で小説を書くための主要機能が一通り揃っている。\n日本語IME対応の本文エディタ、章と話の管理、自動保存、検索、スナップショット、人物、プロット、伏線、資料、世界観ノート、TXT／Markdown／EPUB書き出しまで動作する。\n一方で、一般公開できる状態とは考えていない。\n今後は、個人用AIと公開Releaseを別トラックとして進める。\n個人用AIでは、Codex sidecarの固定protocolと隔離feasibilityを先に実証し、その後に実adapterを共通UIへ接続する。続いてOpenRouter adapterを追加する。\n公開Releaseでは、まずPackage Validatorを作る。重複ID、不正参照、symlink、巨大パッケージ、孤児化した本文を検出し、元作品を直接書き換えず、修復コピーとして救出できるようにする。\nその次に、Finderでの移動や削除、同期サービス、別プロセスによる外部変更を検出するConflict Gateへ進む。\nさらにAppIcon、Developer ID署名、公証、更新機構、別MacでのGatekeeper検証、VoiceOver、Light／Dark、Reduce Transparency、長文・大量データの実機QAが残っている。\nWindows版はW0のschemaとgolden fixtureから始める。PDFとiOS／iPadOSも未実装である。\nできていないことを、できたことのようには書かない。\nそれ自体が、現在のふみにわにとって重要な製品要件になっている。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ふみにわ開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/FUMINIWADevelopmentLog.html#この開発で学んだこと",
-    "href": "posts/tech/FUMINIWADevelopmentLog.html#この開発で学んだこと",
-    "title": "ふみにわ開発記",
-    "section": "この開発で学んだこと",
-    "text": "この開発で学んだこと\n一連の開発を振り返ると、重要だったのは成功した実装より、途中で前提を捨てられたことだった。\n\n完成したUIでも、使い方に合わなければ作り直す\n保存成功だけでなく、失敗、取消、競合、復旧を先に設計する\n画面の見た目だけでなく、実際の状態遷移を検証する\n@MainActorや自動保存という言葉だけで、安全だと思い込まない\nAIは接続できることより、何を送り、どこへ適用するかを固定する\n未実装機能や未確認の保証をUIで補わない\n測定せずに最適化しない\n設計文書も、コードと一緒に更新される実装成果物として扱う\n\nふみにわは、まだ完成していない。\nしかし、目標は以前より明確になった。\n派手な機能を最速で増やすことではない。作者の文章を勝手に消さず、勝手に送り、勝手に書き換えず、異常時には正直に止まること。\n小説を書く人が、道具の都合を意識せず物語へ戻れること。\nその当たり前を積み上げて、「書けるアプリ」から「原稿を預けられるアプリ」へ進んでいく。\nそれが、現在のふみにわが目指している場所である。",
+    "section": "8月9日時点で、どこまでできたか",
+    "text": "8月9日時点で、どこまでできたか\nmacOSで小説を書くための主要なところは一通り動いている。日本語IME対応の本文エディタ、章と話の管理、自動保存、検索、スナップショット、人物、プロット、伏線、資料、世界観ノート、TXT／Markdown／EPUB書き出し。「俺が小説を書く」だけなら、かなり普通に使えるところまで来た。\nただ、一般公開できるかと言われたら、まだだと思っている。\n個人用AIは、まずこのCodex sidecarの隔離実証から。そのあとOpenRouter adapterへ進む。\n公開Releaseでは、まずPackage Validatorを作りたい。重複ID、不正参照、symlink、巨大パッケージ、孤児化した本文なんかを検出する。問題があったときも、元の作品を直接書き換えて「直しました！」ではなく、修復コピーとして救出する。\nその次がConflict Gate。Finderで作品を移動したり消したり、同期サービスが触ったり、別プロセスがファイルを書き換えたりしたとき、それを検出する。\nあとはAppIcon、Developer ID署名、公証、更新機構、別MacでのGatekeeper確認、VoiceOver、Light／Dark、Reduce Transparency、長文や大量データでの実機QA。まだ普通にいっぱいある。\nWindows版、PDF、iOS／iPadOSも、8月9日時点ではまだ未実装だった。\nなので、できていないものはできていない。「もうほぼ完成です！」みたいに書こうと思えば書けるんだけど、それをやらないこと自体、8月9日時点のふみにわでは結構大事だと思っていた。\nふみにわはまだ完成していない。というか、作れば作るほど「完成ってなんだ？」という感じにはなっている。\nただ、最初より何を作りたいのかはかなりはっきりした。\n作者の文章を勝手に消さない。勝手に外へ送らない。AIが勝手に書き換えない。何かおかしくなったら、正常なふりをして処理を続けず、ちゃんと止まる。\nそして次の日にアプリを開いたとき、昨日書いていた場所へそのまま戻れる。\nこう書くとめちゃくちゃ当たり前なんだけど、小説を書く道具なら、結局その当たり前が一番大事なんじゃないかと思っている。\n少なくとも、この時点でふみにわが目指していたのはそこ。",
     "crumbs": [
       "Home",
       "Posts",
@@ -2120,7 +2042,7 @@
     "href": "index.html",
     "title": "Serika’s Blog",
     "section": "",
-    "text": "こっちは秘密基地\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Author\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Categories\n      \n      \n        Description\n      \n      \n        Reading Time (Low to High)\n      \n      \n        Reading Time (High to Low)\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nADHDManager開発記\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nAug 9, 2026\n\n\n\n\nCATEGORIES\n\n\nprogramming2026swiftproductivity\n\n\n\n1 MIN READ\n\n\nprogramming 2026 swift productivity\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nふみにわ開発記\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nAug 9, 2026\n\n\n\n\nCATEGORIES\n\n\nprogramming2026swiftnovel\n\n\n\n1 MIN READ\n\n\nprogramming 2026 swift novel\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 2 MIN READ\n\n\nKaggle Pokemon TCG参加記録\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nAug 9, 2026\n\n\n\n\nCATEGORIES\n\n\nprogramming2026AIKaggle\n\n\n\n2 MIN READ\n\n\nprogramming 2026 AI Kaggle\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 17 MIN READ\n\n\n材料力学II\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJul 29, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n17 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 5 MIN READ\n\n\n金属材料学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJul 24, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n5 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 31 MIN READ\n\n\n半導体物性学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJul 23, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n31 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 15 MIN READ\n\n\n数学2F\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJun 8, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n15 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 7 MIN READ\n\n\n工学基礎演習\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 5, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026\n\n\n\n7 MIN READ\n\n\nUniversity 2026\n\n\n\n\n\n\n\n\n\n\nPOGRAMMING · 1 MIN READ\n\n\nAttention Is All You Needを読む話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nFeb 6, 2026\n\n\n\n\nCATEGORIES\n\n\npogramming2026AI\n\n\n\n1 MIN READ\n\n\npogramming 2026 AI\n\n\n\n\n\n\n\n\n\n\nPOGRAMMING · 8 MIN READ\n\n\nBuild a Large Language Model from Scratchを読む話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nFeb 6, 2026\n\n\n\n\nCATEGORIES\n\n\npogramming2026AI\n\n\n\n8 MIN READ\n\n\npogramming 2026 AI\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\n信頼性学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJan 5, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026Fracture MechanicsFatigueCorrosion\n\n\n\n3 MIN READ\n\n\nUniversity 2026 Fracture Mechanics Fatigue Corrosion\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 4 MIN READ\n\n\n数学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nJan 5, 2026\n\n\n\n\nCATEGORIES\n\n\nUniversity2026Differential EquationsFourier Analysis\n\n\n\n4 MIN READ\n\n\nUniversity 2026 Differential Equations Fourier Analysis\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nDockerでMisskeyを立てる\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 13, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025\n\n\n\n1 MIN READ\n\n\nprogramming 2025\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nNordとTailscaleで自宅サーバーを安全に公開する\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 11, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025\n\n\n\n1 MIN READ\n\n\nprogramming 2025\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nDebianサーバーを立てた話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 8, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025server\n\n\n\n1 MIN READ\n\n\nprogramming 2025 server\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 3 MIN READ\n\n\nTime Machine ServerをSambaで作った話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 7, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025swift\n\n\n\n3 MIN READ\n\n\nprogramming 2025 swift\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nミスって/boot/efiを消した話\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 7, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025swift\n\n\n\n1 MIN READ\n\n\nprogramming 2025 swift\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nQuartoで単一ファイルにレンダリングする方法\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 5, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025\n\n\n\n1 MIN READ\n\n\nprogramming 2025\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nCodexを使い始めた件\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 5, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025\n\n\n\n1 MIN READ\n\n\nprogramming 2025\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nSwift Packageの読み込みエラー\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nSep 5, 2025\n\n\n\n\nCATEGORIES\n\n\nprogramming2025swift\n\n\n\n1 MIN READ\n\n\nprogramming 2025 swift\n\n\n\n\n\n\n\n\n\n\nHOMESERVER · 1 MIN READ\n\n\nLinkwardenにブックマーク管理を任せる\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nMay 13, 2025\n\n\n\n\nCATEGORIES\n\n\nhomeserverprogramming2025\n\n\n\n1 MIN READ\n\n\nhomeserver programming 2025\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\n生産プロセス\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 17, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024SteelmakingThermodynamics\n\n\n\n3 MIN READ\n\n\nUniversity 2024 Steelmaking Thermodynamics\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\nデバイス材料工学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 2, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024SemiconductorOptoelectronics\n\n\n\n3 MIN READ\n\n\nUniversity 2024 Semiconductor Optoelectronics\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 4 MIN READ\n\n\n材料統計力学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nNov 29, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversitystatistical-mechanicsthermodynamics2024\n\n\n\n4 MIN READ\n\n\nUniversity statistical-mechanics thermodynamics 2024\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\n材料反応工学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nNov 29, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024KineticsSurface Science\n\n\n\n3 MIN READ\n\n\nUniversity 2024 Kinetics Surface Science\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\nセラミック材料学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024Ceramics\n\n\n\n3 MIN READ\n\n\nUniversity 2024 Ceramics\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 4 MIN READ\n\n\n高分子材料学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024Polymer\n\n\n\n4 MIN READ\n\n\nUniversity 2024 Polymer\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 11 MIN READ\n\n\n材料電気化学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 8, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024材料工学電気化学\n\n\n\n11 MIN READ\n\n\nUniversity 2024 材料工学 電気化学\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 4 MIN READ\n\n\n組織生成論\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 8, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversityphase-transformationsolidificationkinetics2024\n\n\n\n4 MIN READ\n\n\nUniversity phase-transformation solidification kinetics 2024\n\n\n\n\n\n\n\n\n\n\nMATH · 1 MIN READ\n\n\n過去問演習\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 6, 2024\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n1 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 8 MIN READ\n\n\n固体物性学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 5, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversity2024材料工学固体物理\n\n\n\n8 MIN READ\n\n\nUniversity 2024 材料工学 固体物理\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\n材料強度学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nApr 5, 2024\n\n\n\n\nCATEGORIES\n\n\nUniversitymechanicsdislocationfracture2024\n\n\n\n3 MIN READ\n\n\nUniversity mechanics dislocation fracture 2024\n\n\n\n\n\n\n\n\n\n\nMATH · 2 MIN READ\n\n\n数学A\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n2 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nMATH · 2 MIN READ\n\n\n数学B\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n2 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nMATH · 4 MIN READ\n\n\n数学II\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n4 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nMATH · 2 MIN READ\n\n\n数学III\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nDec 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n2 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nATCODER · 1 MIN READ\n\n\ntypical90-11\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nNov 30, 2023\n\n\n\n\nCATEGORIES\n\n\nAtCoderProgramming\n\n\n\n1 MIN READ\n\n\nAtCoder Programming\n\n\n\n\n\n\n\n\n\n\nATCODER · 14 MIN READ\n\n\n競プロ典型90 06〜10\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nNov 25, 2023\n\n\n\n\nCATEGORIES\n\n\nAtCoderProgramming\n\n\n\n14 MIN READ\n\n\nAtCoder Programming\n\n\n\n\n\n\n\n\n\n\nATCODER · 20 MIN READ\n\n\n競プロ典型90 01〜05\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 17, 2023\n\n\n\n\nCATEGORIES\n\n\nAtCoderProgramming\n\n\n\n20 MIN READ\n\n\nAtCoder Programming\n\n\n\n\n\n\n\n\n\n\nMATH · 7 MIN READ\n\n\n数学I\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n7 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nMATH · 2 MIN READ\n\n\n物理\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 14, 2023\n\n\n\n\nCATEGORIES\n\n\nMath\n\n\n\n2 MIN READ\n\n\nMath\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 1 MIN READ\n\n\n統計力学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2023\n\n\n\n\nCATEGORIES\n\n\nUniversity2023\n\n\n\n1 MIN READ\n\n\nUniversity 2023\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 1 MIN READ\n\n\n材料相平衡論\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2023\n\n\n\n\nCATEGORIES\n\n\nUniversity2023\n\n\n\n1 MIN READ\n\n\nUniversity 2023\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 3 MIN READ\n\n\n材料速度論\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2023\n\n\n\n\nCATEGORIES\n\n\nUniversitydiffusionkinetics2023\n\n\n\n3 MIN READ\n\n\nUniversity diffusion kinetics 2023\n\n\n\n\n\n\n\n\n\n\nUNIVERSITY · 5 MIN READ\n\n\n材料量子力学\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 10, 2023\n\n\n\n\nCATEGORIES\n\n\nUniversityquantum-mechanicsmaterials-science2023\n\n\n\n5 MIN READ\n\n\nUniversity quantum-mechanics materials-science 2023\n\n\n\n\n\n\n\n\n\n\nATCODER · 1 MIN READ\n\n\nCargo Compete\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nOct 9, 2023\n\n\n\n\nCATEGORIES\n\n\nAtCoderProgramming\n\n\n\n1 MIN READ\n\n\nAtCoder Programming\n\n\n\n\n\nNo matching items\n\n  \n\n Back to top",
+    "text": "こっちは秘密基地\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Author\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Categories\n      \n      \n        Description\n      \n      \n        Reading Time (Low to High)\n      \n      \n        Reading Time (High to Low)\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\nKnowledge constellation\n\n今夜の空\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nADHDManager開発記\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nAug 9, 2026\n\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nふみにわ開発記\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nAug 9, 2026\n\n\n\n\n\n\n\n\n\n\n\nPROGRAMMING · 1 MIN READ\n\n\nKaggle Pokemon TCG参加記録\n\n\n\n\nAUTHOR\n\n\nSYSerika Yuzuki\n\n\n\n\nPUBLISHED\n\n\nAug 9, 2026\n\n\n\n\n\n\n\n\n\n\n観測ログ\n\n\n\n\n\n\nAug 9, 2026 ADHDManager開発記\nprogramming\nSerika Yuzuki  programming 2026 swift productivity 1 MIN READ\n\n\nAug 9, 2026 ふみにわ開発記\nprogramming\nSerika Yuzuki  programming 2026 swift novel 1 MIN READ\n\n\nAug 9, 2026 Kaggle Pokemon TCG参加記録\nprogramming\nSerika Yuzuki  programming 2026 AI Kaggle 1 MIN READ\n\n\nJul 29, 2026 材料力学II\nUniversity\nSerika Yuzuki  University 2026 17 MIN READ\n\n\nJul 24, 2026 金属材料学\nUniversity\nSerika Yuzuki  University 2026 5 MIN READ\n\n\nJul 23, 2026 半導体物性学\nUniversity\nSerika Yuzuki  University 2026 31 MIN READ\n\n\nJun 8, 2026 数学2F\nUniversity\nSerika Yuzuki  University 2026 15 MIN READ\n\n\nApr 5, 2026 工学基礎演習\nUniversity\nSerika Yuzuki  University 2026 7 MIN READ\n\n\nFeb 6, 2026 Attention Is All You Needを読む話\npogramming\nSerika Yuzuki  pogramming 2026 AI 1 MIN READ\n\n\nFeb 6, 2026 Build a Large Language Model from Scratchを読む話\npogramming\nSerika Yuzuki  pogramming 2026 AI 8 MIN READ\n\n\nJan 5, 2026 信頼性学\nUniversity\nSerika Yuzuki  University 2026 Fracture Mechanics Fatigue Corrosion 3 MIN READ\n\n\nJan 5, 2026 数学\nUniversity\nSerika Yuzuki  University 2026 Differential Equations Fourier Analysis 4 MIN READ\n\n\nSep 13, 2025 DockerでMisskeyを立てる\nprogramming\nSerika Yuzuki  programming 2025 1 MIN READ\n\n\nSep 11, 2025 NordとTailscaleで自宅サーバーを安全に公開する\nprogramming\nSerika Yuzuki  programming 2025 1 MIN READ\n\n\nSep 8, 2025 Debianサーバーを立てた話\nprogramming\nSerika Yuzuki  programming 2025 server 1 MIN READ\n\n\nSep 7, 2025 Time Machine ServerをSambaで作った話\nprogramming\nSerika Yuzuki  programming 2025 swift 3 MIN READ\n\n\nSep 7, 2025 ミスって/boot/efiを消した話\nprogramming\nSerika Yuzuki  programming 2025 swift 1 MIN READ\n\n\nSep 5, 2025 Quartoで単一ファイルにレンダリングする方法\nprogramming\nSerika Yuzuki  programming 2025 1 MIN READ\n\n\nSep 5, 2025 Codexを使い始めた件\nprogramming\nSerika Yuzuki  programming 2025 1 MIN READ\n\n\nSep 5, 2025 Swift Packageの読み込みエラー\nprogramming\nSerika Yuzuki  programming 2025 swift 1 MIN READ\n\n\nMay 13, 2025 Linkwardenにブックマーク管理を任せる\nhomeserver\nSerika Yuzuki  homeserver programming 2025 1 MIN READ\n\n\nDec 17, 2024 生産プロセス\nUniversity\nSerika Yuzuki  University 2024 Steelmaking Thermodynamics 3 MIN READ\n\n\nDec 2, 2024 デバイス材料工学\nUniversity\nSerika Yuzuki  University 2024 Semiconductor Optoelectronics 3 MIN READ\n\n\nNov 29, 2024 材料統計力学\nUniversity\nSerika Yuzuki  University statistical-mechanics thermodynamics 2024 4 MIN READ\n\n\nNov 29, 2024 材料反応工学\nUniversity\nSerika Yuzuki  University 2024 Kinetics Surface Science 3 MIN READ\n\n\nOct 10, 2024 セラミック材料学\nUniversity\nSerika Yuzuki  University 2024 Ceramics 3 MIN READ\n\n\nOct 10, 2024 高分子材料学\nUniversity\nSerika Yuzuki  University 2024 Polymer 4 MIN READ\n\n\nApr 8, 2024 材料電気化学\nUniversity\nSerika Yuzuki  University 2024 材料工学 電気化学 11 MIN READ\n\n\nApr 8, 2024 組織生成論\nUniversity\nSerika Yuzuki  University phase-transformation solidification kinetics 2024 4 MIN READ\n\n\nApr 6, 2024 過去問演習\nMath\nSerika Yuzuki  Math 1 MIN READ\n\n\nApr 5, 2024 固体物性学\nUniversity\nSerika Yuzuki  University 2024 材料工学 固体物理 8 MIN READ\n\n\nApr 5, 2024 材料強度学\nUniversity\nSerika Yuzuki  University mechanics dislocation fracture 2024 3 MIN READ\n\n\nDec 14, 2023 数学A\nMath\nSerika Yuzuki  Math 2 MIN READ\n\n\nDec 14, 2023 数学B\nMath\nSerika Yuzuki  Math 2 MIN READ\n\n\nDec 14, 2023 数学II\nMath\nSerika Yuzuki  Math 4 MIN READ\n\n\nDec 14, 2023 数学III\nMath\nSerika Yuzuki  Math 2 MIN READ\n\n\nNov 30, 2023 typical90-11\nAtCoder\nSerika Yuzuki  AtCoder Programming 1 MIN READ\n\n\nNov 25, 2023 競プロ典型90 06〜10\nAtCoder\nSerika Yuzuki  AtCoder Programming 14 MIN READ\n\n\nOct 17, 2023 競プロ典型90 01〜05\nAtCoder\nSerika Yuzuki  AtCoder Programming 20 MIN READ\n\n\nOct 14, 2023 数学I\nMath\nSerika Yuzuki  Math 7 MIN READ\n\n\nOct 14, 2023 物理\nMath\nSerika Yuzuki  Math 2 MIN READ\n\n\nOct 10, 2023 統計力学\nUniversity\nSerika Yuzuki  University 2023 1 MIN READ\n\n\nOct 10, 2023 材料相平衡論\nUniversity\nSerika Yuzuki  University 2023 1 MIN READ\n\n\nOct 10, 2023 材料速度論\nUniversity\nSerika Yuzuki  University diffusion kinetics 2023 3 MIN READ\n\n\nOct 10, 2023 材料量子力学\nUniversity\nSerika Yuzuki  University quantum-mechanics materials-science 2023 5 MIN READ\n\n\nOct 9, 2023 Cargo Compete\nAtCoder\nSerika Yuzuki  AtCoder Programming 1 MIN READ\n\n\n\n\nNo matching items\n\n  \n\n Back to top",
     "crumbs": [
       "Home"
     ]
@@ -2344,7 +2266,7 @@
     "href": "posts/tech/ADHDManagerDevelopmentLog.html",
     "title": "ADHDManager開発記",
     "section": "",
-    "text": "タスク管理アプリは、ときどきタスクを減らすどころか、「タスクをきれいに管理する」という新しい仕事を増やしてしまう。\nProjectを作る。期限を決める。優先順位を付ける。分類する。今日やるものを選ぶ。そして、もっと良い選び方がある気がして、また並べ直す。\nADHDManagerは、そうした「管理のための管理」を減らすために始まった。しかし開発の初期には、まさにProjectとTaskを管理する、ごく普通のタスク管理アプリに近い姿をしていた。\nそこから設計を何度も壊し、AIの役割を疑い、同期や通知の失敗に向き合い、商業化を前に立ち止まった。最終的に見つかった中心価値は、タスクをたくさん管理できることでも、AIが賢いことでもない。\nこの記事は、その考えにたどり着くまでの記録である。成功した機能だけでなく、途中で捨てた前提、実際に起きた障害、テストでは証明できなかったこと、そして現在も残っている課題までを書いていく。",
+    "text": "タスク管理アプリって、たまにタスクを減らすどころか、「タスクをきれいに管理する」という新しい仕事を増やしてくる。\nProjectを作る。期限を決める。優先順位を付ける。分類する。今日やるものを選ぶ。もっといい選び方がある気がして、また並べ直す。\nADHDManagerは、そういう管理のための管理を減らしたくて作り始めた。\nところが最初に作ったのは、ProjectとTaskがあって、AIが次にやることを選んでくれる、ごく普通のタスク管理アプリだった。\n今見ると、やりたかったことと普通に逆だった。",
     "crumbs": [
       "Home",
       "Posts",
@@ -2353,11 +2275,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#出発点aiが次にやることを選んでくれたら",
-    "href": "posts/tech/ADHDManagerDevelopmentLog.html#出発点aiが次にやることを選んでくれたら",
+    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#最初は普通のai付きtodoだった",
+    "href": "posts/tech/ADHDManagerDevelopmentLog.html#最初は普通のai付きtodoだった",
     "title": "ADHDManager開発記",
-    "section": "出発点——AIが「次にやること」を選んでくれたら",
-    "text": "出発点——AIが「次にやること」を選んでくれたら\n最初の発想は単純だった。\n締め切りなどの外圧がないと動き出しにくい時、目の前に一つだけ「今はこれ」と出してくれるアプリがあれば、選ぶところで消耗せずに済むのではないか。\n2026年5月末に始まった最初の実装へ、Project、Task、AI推薦UIが加わった。OpenRouter経由でAIを使い、期限、重要度、使える時間、場所などを見て、取り組むTaskを選ぶ。コードが大きくなると、一つのファイルに集まっていた型を役割ごとのファイルへ分割した。\n技術的には、順当にアプリらしくなっていった。ただし、ここには早くも矛盾があった。\n「選べなくて困っている人」を助けたいのに、最初にProjectを作らせ、Taskを所属させ、いくつもの属性を入力させていた。迷いを減らすアプリが、使い始める前に新しい判断を要求していたのである。\n当時の実装が無駄だったわけではない。Taskの永続化、AI通信、推薦ロジック、iOS/macOSで共有できる基礎は、その後も残った。しかし、動く実装と、目的に合うプロダクトは別物だった。",
+    "section": "最初は普通のAI付きToDoだった",
+    "text": "最初は普通のAI付きToDoだった\n最初の実装を始めたのは2026年5月末。\nProjectとTaskを作り、期限、重要度、使える時間、場所などをOpenRouter経由のAIへ渡して、次に取り組むTaskを選ばせた。コードが大きくなってきたので、一つのファイルに集まっていた型も役割ごとに分けた。\n機能は増えたし、画面上は一通り動いた。\nでも、「選べなくて困っている人」を助けたいのに、使う前にProjectを作らせ、Taskを所属させ、属性をいくつも入力させている。\nいや、選ぶ前にやること増えてるじゃん。\n2026年7月にプロジェクト全体を見直して、ADHDManagerはplannerではなく、むしろanti-plannerなんじゃないかと考えるようになった。\nきれいな計画を作るより、比較を終わらせて一件に固定する。決めたあとの進め方は本人へ返す。\n流れもかなり単純にした。\n\n今の条件に合うTaskを一件だけ見せる。\nユーザーが「これをやる」と決めたら、その一件を固定する。\nAIの遅い返事や同期更新が来ても、勝手に別のTaskへ変えない。\n戻ってきたら「終わった」「ここで切り上げる」「手放す」のどれかを選ぶ。\n\n完了だけを正解にするのもやめた。途中まで進んで区切ることもあるし、今は合わないと手放すこともある。それを失敗やstreakの途切れにしたら、アプリを開くこと自体が新しい圧力になる。\n「今は無理」は次の推薦を調整する情報にして、「ここで切り上げる」はTaskを残したまま、今の選択だけを終える操作にした。\n同じ頃にmacOS対応も進めた。iPhoneの画面をそのまま引き延ばすのではなく、推薦ロジックと選択状態は共有しつつ、NavigationSplitViewやキーボード操作など、画面側だけを各OSに合わせている。",
     "crumbs": [
       "Home",
       "Posts",
@@ -2366,11 +2288,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#最初の大きな方向転換管理ではなく選択を終わらせる",
-    "href": "posts/tech/ADHDManagerDevelopmentLog.html#最初の大きな方向転換管理ではなく選択を終わらせる",
+    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#projectを画面から消した",
+    "href": "posts/tech/ADHDManagerDevelopmentLog.html#projectを画面から消した",
     "title": "ADHDManager開発記",
-    "section": "最初の大きな方向転換——「管理」ではなく「選択を終わらせる」",
-    "text": "最初の大きな方向転換——「管理」ではなく「選択を終わらせる」\n2026年7月、プロジェクト全体を目的から見直した。\nそこで言語化されたのが、ADHDManagerはplannerではなく、むしろanti-plannerだという考えだった。工程をきれいに計画するのではなく、比較を終わらせて、一件に固定する。その後の進め方は本人へ返す。\n中核体験は、次の流れへ変わった。\n\n現在の条件に合うTaskを一件だけ見せる。\nユーザーが「これをやる」と決める。\nその一件を固定し、AIの遅い応答や同期更新が来ても勝手に差し替えない。\nユーザーはアプリの外を含め、自分のやり方で進める。\n戻って「終わった」「ここで切り上げる」「手放す」のどれかを選ぶ。\n\nここで重要だったのは、「完了」だけを成功にしなかったことだ。\n途中まで進んで区切ることも、今は合わないと手放すこともある。それを失敗や連続記録の途切れとして扱えば、アプリを開くこと自体が新しい圧力になる。そこで「今は無理」は推薦を改善するための情報にし、「ここで切り上げる」はTaskを残したまま現在の選択だけを終える操作にした。\n同時にmacOS対応も進めた。単にiPhone画面を広げるのではなく、推薦ロジックや選択状態は共有し、NavigationSplitViewやキーボード操作など、画面の殻だけをプラットフォームへ合わせる方針を採った。\nこの段階で、製品の軸は「AI付きToDo」から、選択状態を守るアプリへ移った。",
+    "section": "Projectを画面から消した",
+    "text": "Projectを画面から消した\n次に、初期設計の中心だったProject管理を通常の画面から外した。\nProject一覧、詳細、作成画面、Taskの所属先選択を消して、Taskは一つのフラットな集合として扱う。共通の+から、タイトルだけですぐ追加できるようにした。詳細は必要になったときに開けばいい。\n「整理してから登録する」ではなく、まず捕まえる。整えるのはあと。\nただし、画面からProjectを消すのと、過去のProjectデータを消すのは別の話だ。\nProjectItemとTaskItem.projectは、V1／V2のストアを読み続けるための互換層として残した。新しいTaskはProjectを持たないけど、既存TaskとProjectの関連を勝手に外したり、Project名を変えたり、削除したりはしない。\n移行テストで使うFrozen V2 fixtureも固定した。新しい設計に都合よく作り直したら、古いデータを本当に開けるか分からなくなるからだ。",
     "crumbs": [
       "Home",
       "Posts",
@@ -2379,11 +2301,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#実際に壊れていたもの動く画面の裏で信頼が欠けていた",
-    "href": "posts/tech/ADHDManagerDevelopmentLog.html#実際に壊れていたもの動く画面の裏で信頼が欠けていた",
+    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#画面は動いたでも普通に危なかった",
+    "href": "posts/tech/ADHDManagerDevelopmentLog.html#画面は動いたでも普通に危なかった",
     "title": "ADHDManager開発記",
-    "section": "実際に壊れていたもの——動く画面の裏で、信頼が欠けていた",
-    "text": "実際に壊れていたもの——動く画面の裏で、信頼が欠けていた\n方向性を変えた後、UIを細かく見直すと、推薦精度より先に直すべき問題がいくつも見つかった。\n\nAI処理中に画面を閉じても、遅れて返った結果がTaskを追加し得た。\n一覧の「開始」と、推薦画面の「これをやる」が別の状態遷移だった。\nAIが誤認した期限や重要度を、追加後に十分修正できなかった。\n誤完了や誤削除を取り消す境界が弱かった。\n「今やる」画面にProject名、選択元、条件調整などが並び、決定後もアプリが退いていなかった。\n\nさらに、macOSレビュー用ビルドを起動した時、既存のSwiftDataストアを現行のデータ形式（schema）として開けず、Cannot use staged migration with an unknown model versionでアプリが終了した。\n一番の問題は、移行に失敗したことそのものではない。保存領域を開けない時にfatalErrorへ進み、既存データを持つユーザーへ復旧手段を見せられなかったことだった。\nこの経験から、保存失敗を「例外」ではなく、製品が扱うべき状態に変えた。起動をloading / ready / recoveryRequiredへ分け、読めないデータを黙って削除・初期化せず、再試行や診断、バックアップの導線を出す。PreviewやGUIレビューには明示的な一時ストアを使い、実データから隔離する。\nこの時に得た教訓は明快だった。\n\n信頼性は、正常系が速く動くことではない。失敗した時に、入力や既存データを勝手に失わないことで作られる。",
+    "section": "画面は動いた。でも普通に危なかった",
+    "text": "画面は動いた。でも普通に危なかった\n方向を変えたあとにUIと状態遷移を見直すと、推薦精度より先に直すものがいくつも出てきた。\n\nAI処理中に画面を閉じても、遅れて返った結果がTaskを追加できた。\n一覧の「開始」と、推薦画面の「これをやる」が別の状態遷移になっていた。\nAIが誤認した期限や重要度を、追加したあと十分に直せなかった。\n誤完了や誤削除を取り消す境界が弱かった。\n「今やる」画面にProject名や条件調整が残り、決めたあともアプリが退いていなかった。\n\nさらにmacOSのレビュー用ビルドを起動したら、既存のSwiftDataストアを現行schemaとして開けず、Cannot use staged migration with an unknown model versionでアプリが終了した。\n起動しないのも困るけど、もっとまずかったのは、保存領域を開けないとfatalErrorへ進み、既存データを持つ人へ「どう戻すか」を何も出せなかったことだった。\nそこで起動状態をloading / ready / recoveryRequiredの三つに分けた。読めないデータは勝手に削除したり初期化したりせず、Recoveryで止めて、再試行、診断、バックアップの導線を出す。\nPreviewやGUIレビューも、実データではなく明示的な一時ストアを使うようにした。",
     "crumbs": [
       "Home",
       "Posts",
@@ -2392,11 +2314,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#projectを消すただしデータは消さない",
-    "href": "posts/tech/ADHDManagerDevelopmentLog.html#projectを消すただしデータは消さない",
+    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#aiを主役から降ろした",
+    "href": "posts/tech/ADHDManagerDevelopmentLog.html#aiを主役から降ろした",
     "title": "ADHDManager開発記",
-    "section": "Projectを消す。ただし、データは消さない",
-    "text": "Projectを消す。ただし、データは消さない\n次に行ったのは、初期設計の中心だったProject管理を製品から外すことだった。\nProject一覧、Project詳細、Project作成、Taskの所属先選択を通常導線から削除し、Taskを一つのフラットな集合として扱う。主要画面の共通+から、タイトルだけですぐ追加できるようにした。詳細は、必要になった時だけ後から開く。\nこれは見た目の整理ではない。「整理してから登録する」を、「まず捕まえてから必要なら整える」へ反転させる変更だった。\nただし、ここで過去のProjectデータまで消すと、正しい思想のために既存ユーザーのデータを犠牲にすることになる。そこでProjectItemとTaskItem.projectは、V1/V2ストアを読み続ける互換層として残した。新規TaskはProjectを持たないが、既存Projectとの関連を自動で外したり、名前を変えたり、削除したりしない。\n古い構造を物理的に消すことと、製品体験から退場させることを分けたのである。\n移行テストには、出荷済みschemaを再現するFrozen V2 fixtureを固定し、都合よく作り直さないルールも設けた。新しい設計へ進みながら、古いデータを開けることを同じくらい重く扱った。",
+    "section": "AIを主役から降ろした",
+    "text": "AIを主役から降ろした\nAI自体は便利だった。\n貼り付けた文章や写真からTask案を作ったり、複数科目の試験日程表を科目ごとのTaskへ分けたりできる。「詰まった」ときには、長い手順ではなく、再開するための一動作だけを返すこともできた。\nただ、中心へ置くと途端に不安定になる。\nOpenRouterではproviderの振り分けに互換性問題が出た。構造化応答が長さ上限で切れることもあった。\n推薦では、通信処理が45秒待てるのに、画面側は1.5秒で端末内推薦へ切り替えていた。画面から見れば、AIは1.5秒で打ち切られていたことになる。\n待ち時間を8秒へ揃え、空応答、不正応答、timeoutなら端末内選択へ戻るようにした。\n画像入力も「AIなら読める」で済ませず、縮小とサイズ上限を入れ、端末内OCRの原文を残すようにした。AIが原文を消したり、勝手に言い換えたりできないようにするためだ。\n複数Taskへ分けるのも、独立した予定が明示されている場合だけ最大8件まで。一つの仕事をAIが勝手に細かい手順へ分解するのはやめた。\n中心の推薦は、まず即時に返せる端末内ロジック。AIは文章や画像の整理、曖昧な日付の抽出、詰まったときの一手に使う。AIが落ちても、追加、選択、固定、完了は止めない。\n外部へ送るのも、ユーザーが同意した機能だけにして、送る内容を画面上で説明する。\n8月9日時点の作業ツリーでは、使えるなら端末内のApple Intelligenceを先に使い、足りないときだけ同意済みのOpenRouterへ進む構成も試していた。ただし、これはまだ開発中で、出荷済みの完成機能ではない。\nAIを減らしたというより、AIが失敗しても中心の流れが止まらない位置まで降ろした、という方が近い。",
     "crumbs": [
       "Home",
       "Posts",
@@ -2405,11 +2327,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#aiを主役から降ろす",
-    "href": "posts/tech/ADHDManagerDevelopmentLog.html#aiを主役から降ろす",
+    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#ビルドが通っても実機で動くとは限らない",
+    "href": "posts/tech/ADHDManagerDevelopmentLog.html#ビルドが通っても実機で動くとは限らない",
     "title": "ADHDManager開発記",
-    "section": "AIを主役から降ろす",
-    "text": "AIを主役から降ろす\nAIは便利だった。貼り付けた文章や写真からTask案を作り、複数科目の試験日程表なら科目ごとのTaskへ変換できる。「詰まった」時には、長い手順ではなく、再開のための一動作だけを返せる。\n一方で、AIを中心へ置くほど、プロダクトは不安定になった。\nOpenRouterではAI提供元の振り分けに互換性問題が起きた。構造化応答が長さ上限で切れる場合もあった。推薦では、通信処理が45秒待てる設計なのに、画面側は1.5秒で端末内推薦へ切り替えており、「AIが返事をしない」ように見える待ち時間のずれも見つかった。待ち時間を8秒へ揃え、空応答・不正応答・timeoutでは安全に端末内選択へ戻すようにした。\n画像入力でも、単に「AIなら読める」とは考えなかった。画像を縮小し、サイズ上限を設け、端末内OCRの原文を保存し、AIが原文を消したり言い換えたりできないようにした。複数Task化は、独立した予定が明示された場合だけ最大8件まで許可し、一つの仕事を勝手に手順へ分解することは拒否した。\nこうしてAIの役割は、次第に限定されていった。\n\n中心の推薦は、まず即時で決定的な端末内ロジックを使う。\nAIは、文章や画像の整理、曖昧な日付の抽出、詰まった時の一手を得意領域とする。\nAIが使えなくても、追加、選択、固定、完了という中核体験は止めない。\n外部送信は同意した機能だけにし、送る内容を画面上で説明する。\n\n現在の作業ツリーでは、利用可能なら端末内のApple Intelligenceを先に使い、それで足りない時だけ、同意済みのOpenRouterへ進む段階的な構成も試している。ただし、これはまだ開発中であり、出荷済みの完成機能ではない。\nAIを減らしたのではない。AIが失敗しても製品の約束が壊れない位置まで、主役から降ろした。",
+    "section": "ビルドが通っても、実機で動くとは限らない",
+    "text": "ビルドが通っても、実機で動くとは限らない\nApple Developer Programへ登録したあと、iPhoneとMacのTask、選択中の一件、推薦抑制をprivate CloudKitで同期するPhaseへ進んだ。\n日本語の日時表示や所要時間編集も整え、既存TaskをAIで編集・拡張する機能、Taskとは別のReminder、今の一件を表示するWidgetも追加した。\nWidget側で読み取り用に置いた互換型をCodableにしていたが、Encodableの要件を満たせずビルドエラーになった。必要だったのはDecodableだけ。\nそれを直したら、今度はWidgetが時間経過で「次のReminder」へ進まない。アプリを開き直さない限り古い表示のままだったので、次のReminder時刻にもWidgetを更新する予定を登録し、アプリ内表示も定期更新するようにした。\nxcodebuildが成功しても、App GroupsやWidgetKitの権限、通知許可、deep link、実機上のCloudKit競合までは分からない。\n署名、provisioning、2台の実機、CloudKit本番schema、通知権限を拒否・取消した場合の動作は、それぞれ別に確認する必要がある。\nビルドは通った。でも実機で同期できるかは、まだ別の話だった。",
     "crumbs": [
       "Home",
       "Posts",
@@ -2418,11 +2340,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#同期通知widgetビルド成功では証明できないもの",
-    "href": "posts/tech/ADHDManagerDevelopmentLog.html#同期通知widgetビルド成功では証明できないもの",
+    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#少しだけ楽しくした",
+    "href": "posts/tech/ADHDManagerDevelopmentLog.html#少しだけ楽しくした",
     "title": "ADHDManager開発記",
-    "section": "同期、通知、Widget——ビルド成功では証明できないもの",
-    "text": "同期、通知、Widget——ビルド成功では証明できないもの\nApple Developer Program登録後、iPhoneとMacのTask、選択中の一件、推薦抑制をprivate CloudKitで同期するPhaseへ進んだ。日本語の日時表示や所要時間編集も整え、既存TaskをAIで編集・拡張する機能、Taskと独立したReminder、現在の一件を表示するWidgetを追加した。\nここでも、小さく見える不具合が設計の弱点を教えてくれた。\nWidget側の互換型は読み取りにしか使わないのにCodableへしていたため、Encodable適合がなくビルドエラーになった。必要なのはDecodableだけだった。さらに、最初のWidget実装は表示データを正しく作れても、時間が過ぎた時に「次のReminder」へ進まなかった。アプリを開き直さない限り表示が古いままだったので、将来のReminder境界を更新予定へ積み、アプリ内表示も定期更新するように直した。\nそして、ここには今も越えていない境界がある。\nxcodebuildが成功しても、App GroupsやWidgetKitの権限設定、通知許可、deep link、実機上のCloudKit競合までは証明できない。署名、provisioning、2台の実機、CloudKit本番schema、通知権限の拒否や取消しは、それぞれ別に確認しなければならない。\n「テストが通った」と「ユーザーの端末で信頼できる」は、同じ言葉ではなかった。",
+    "section": "少しだけ楽しくした",
+    "text": "少しだけ楽しくした\nタスクを終えた瞬間に短い光や触覚が返ってくる。そのくらいの楽しさは、操作の手応えになる。\nそこでFocus SparkというPlay layerを追加した。\n反応を返すのは完了だけではない。「ここで切り上げる」と「手放す」にも返す。点数、streak、通貨、ランキング、未達ペナルティは作らない。遊びのための永続データも増やさない。\n最初のレビューでは、Dynamic Typeを大きくすると48ptの装飾が終了文へ重なる懸念が見つかった。\nそれに、「遊びの演出をOFF」という設定が「今やる」画面にしか効かず、Quick Addや一覧のspring、glow、hapticには残っていた。\nOFFとは。\nReduce Motionを含む共通gateを作り、設定をアプリ全体へ適用した。装飾が見えなくても操作結果は分かるようにしている。",
     "crumbs": [
       "Home",
       "Posts",
@@ -2431,11 +2353,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#楽しさを足すただし義務にはしない",
-    "href": "posts/tech/ADHDManagerDevelopmentLog.html#楽しさを足すただし義務にはしない",
+    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#売れるか見直した",
+    "href": "posts/tech/ADHDManagerDevelopmentLog.html#売れるか見直した",
     "title": "ADHDManager開発記",
-    "section": "楽しさを足す。ただし、義務にはしない",
-    "text": "楽しさを足す。ただし、義務にはしない\nタスクを終えた瞬間に、ほんの短い光や触覚が返ってくる。その程度の楽しさは、操作の手応えになる。\nそこでFocus SparkというPlay layerを追加した。完了だけでなく、「ここで切り上げる」「手放す」にも肯定的な反応を返す。点数、streak、通貨、ランキング、未達ペナルティは作らない。遊びのための永続データも増やさない。\n最初の実装レビューでは、Dynamic Typeを大きくした時に48ptの装飾が終了文へ重なる懸念が見つかった。また、「遊びの演出をOFF」という設定が今やる画面だけに効き、Quick Addや一覧のspring、glow、hapticには残るという、設定名と実効範囲のずれもあった。\nそのため、Reduce Motionを含む共通gateを作り、装飾を主要操作の唯一の状態表現にせず、設定OFFをアプリ全体へ適用した。\n楽しさを足す作業で学んだのは、派手さではなく一貫性だった。小さな演出ほど、「消したい人が確実に消せる」「見えなくても操作結果が分かる」という約束が重要になる。",
+    "section": "売れるか見直した",
+    "text": "売れるか見直した\n2026年7月19日、一度実装を止めて、商業化の観点からプロダクト全体を監査した。\nコード、UI、CloudKit、通知、AI送信、Privacy、Accessibility、価格、Support、App Store運用まで見た結果、レポートは約2,500行になった。\n出てきたのは、派手な機能不足より、かなり地味で嫌な問題だった。\n通常のQuick Addと外部AIへ送る入力の境界が分かりにくい。同期中、未ログイン、offline、errorの違いが見えない。通知登録に失敗しても成功したように見える。Export、Restore、全データ削除の仕様が弱い。オンボーディング、Privacy Policy、Support、配布方式、公開名も決まっていない。\nCloudKit本番schema、2端末競合、実機Accessibility、signed archiveも未確認だった。\n監査時のテストは249件中248件が成功し、Unit test bundleは通った。残ったのはQuick AddのUIテスト1件。\nただ、分かったのは、テストがkeyboard focusを確認せずtypeTextしようとしていたところまでだった。製品のautofocusが壊れているのか、テストの前提が間違っているのかは切り分けられていない。\nここで適当に待ち時間を足して緑にしても、何も証明したことにはならない。\n結局、最初に売り物になるのはAIではなく、「もう選び直さなくていい」の方だった。\n監査後の作業ツリーでは、Quick Addをタイトルだけ端末内へ保存する入口へ戻し、文章や写真のAI整理は別の明示操作へ分ける変更を進めていた。\n同時に、「今やる」の条件を折りたたんで5分、15分、25分、60分から選べるようにし、一覧から任意のTaskを「今やる」に指定する変更も進めていた。選択中のTaskからメモや詳細を開く導線も、この途中だった。\nほかにも、オンボーディング、同期状態、通知失敗、JSON書き出し、全データ削除、外部AIの同意と送信内容を詰めていた。ZDR（データを保持しない経路指定）、端末内AI、OpenRouter、固定の代替ヒントをどういう順番で使うかも、この中に入る。\nただし、ここは未コミットの開発中変更を含む。実機、CloudKit、通知、Accessibility、Release archiveの検証はまだだった。",
     "crumbs": [
       "Home",
       "Posts",
@@ -2444,63 +2366,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#商業化監査作れていることと売れることの間",
-    "href": "posts/tech/ADHDManagerDevelopmentLog.html#商業化監査作れていることと売れることの間",
+    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#月9日時点でどこまでできたか",
+    "href": "posts/tech/ADHDManagerDevelopmentLog.html#月9日時点でどこまでできたか",
     "title": "ADHDManager開発記",
-    "section": "商業化監査——作れていることと、売れることの間",
-    "text": "商業化監査——作れていることと、売れることの間\n2026年7月19日、実装を止めて、商業化の観点からプロダクト全体を監査した。コード、UI、CloudKit、通知、AI送信、Privacy、Accessibility、価格、Support、App Store運用までを横断し、結果は約2,500行のレポートになった。\nそこで見えたのは、「機能が足りない」よりも、「信頼の説明と失敗時の回復が足りない」という問題だった。\n\n通常のQuick Addと、外部AIへ送る入力の境界が分かりにくい。\n同期中、未ログイン、offline、errorの違いが利用者に見えない。\n通知登録に失敗しても、成功したように見える経路がある。\nportableなExport、Restore、全データ削除の契約が弱い。\nオンボーディングがなく、初回に何を入力すれば価値を試せるか伝わらない。\nPrivacy Policy、Support、配布方式、公開名、App Store上の表現が未決定である。\nCloudKit本番schema、2端末競合、実機Accessibility、signed archiveは未証明である。\n\nテストでは249件中248件が成功し、Unit test bundleは通った。一方、Quick AddのUIテストが1件失敗した。ただし証明できたのは、テストがkeyboard focusを確認せずにtypeTextしようとしたことまでだった。製品のautofocusが壊れているのか、テストの前提が間違っているのかは切り分けられていない。\nこの失敗は象徴的だった。数字をきれいにするために製品側かテスト側を適当に直すのではなく、何が証明され、何がまだ分からないかを分ける必要がある。\n監査の結論は、機能競争へ進むことではなかった。\n\n最初に売るべきものはAIではない。「もう選び直さなくていい」という安心である。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ADHDManager開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#今取り組んでいることtrust-repair",
-    "href": "posts/tech/ADHDManagerDevelopmentLog.html#今取り組んでいることtrust-repair",
-    "title": "ADHDManager開発記",
-    "section": "今取り組んでいること——Trust repair",
-    "text": "今取り組んでいること——Trust repair\n監査後の現在は、商用機能を増やす前に、中心体験と信頼を修復する作業へ戻っている。\n作業ツリー上では、次の改善を進めている。\n\nQuick Addを、まずタイトルだけ端末内へ保存する入口に戻す。\n文章・写真のAI整理を別の明示操作へ分け、生成結果を確認してから追加する。\n「今やる」の条件を折りたたみ、5分・15分・25分・60分から選べるようにする。\n一覧から任意のTaskを「今やる」に指定できるようにする。\n選択中のTaskからメモや詳細を開けるようにする。\nオンボーディングで、一件を追加して固定する価値を短く説明する。\n同期状態、通知失敗、JSON書き出し、全データ削除を利用者へ見せる。\n外部AIの同意と送信内容を明確にし、ZDR（データ保持を許可しない経路指定）を安全側の既定へ寄せる。\n端末内AI、OpenRouter、固定の代替ヒントを段階的に使う。\n\nただし、この一覧は「完成した機能一覧」ではない。未コミットの開発中変更を含み、実機、CloudKit、通知、Accessibility、Release archiveの検証はこれからである。\nここまでの開発で、完成度を誤認させる言い方そのものが信頼を損なうと分かった。だから現在地も、実装済み、検証済み、未確認を分けて扱う。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ADHDManager開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#何に失敗し何を学んだか",
-    "href": "posts/tech/ADHDManagerDevelopmentLog.html#何に失敗し何を学んだか",
-    "title": "ADHDManager開発記",
-    "section": "何に失敗し、何を学んだか",
-    "text": "何に失敗し、何を学んだか\n振り返ると、大きな失敗はクラッシュやビルドエラーだけではない。目的と手段を取り違えた瞬間にあった。\n\n1. 「AIで選ぶ」を目的にしてしまった\nAIは手段なのに、AIが返るまで待つUIや、モデル設定が中心になりかけた。必要だったのは賢い推薦ではなく、迷いを短く終わらせることだった。\n\n\n2. 一般的なTask managerの常識を持ち込んだ\nProject、階層、分類、豊富な属性は便利だが、このプロダクトでは開始前の判断を増やした。高機能であるほど目的に近づくとは限らなかった。\n\n\n3. 正常系の成功を、信頼性と呼んだ\nBuild成功は、migration、entitlement、通知許可、同期競合、署名を保証しない。テスト成功も、実機の利用旅程やAccessibilityを自動的には証明しない。\n\n\n4. 失敗を見えなくすれば、体験が滑らかになると思った\nAI fallback、通知登録、CloudKit同期を静かに処理しすぎると、利用者には「何が起きたか分からない」状態が残る。滑らかさと不透明さは違う。\n\n\n5. 設定の言葉と、実際の範囲がずれた\nPlay layerのOFF、AI送信の同意、「端末内」という表示など、小さな文言のずれが製品全体の信用へ影響した。設定は実装詳細ではなく、利用者との契約だった。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ADHDManager開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#これから機能を増やす前に仮説を証明する",
-    "href": "posts/tech/ADHDManagerDevelopmentLog.html#これから機能を増やす前に仮説を証明する",
-    "title": "ADHDManager開発記",
-    "section": "これから——機能を増やす前に、仮説を証明する",
-    "text": "これから——機能を増やす前に、仮説を証明する\n今後の優先順位は、すでにかなりはっきりしている。\nまず、誰のどの瞬間を助けるのかを、実際の利用者調査で確かめる。想定しているのは、タスクを持っているのに比較で止まり、必要な時だけ短く一件へ絞りたい人だ。ADHDの人全員に同じ解決策が効くとは仮定しない。\n次に、端末内だけでも中心の流れが成立する状態を完成させる。追加し、一件へ固定し、終えるか区切るか手放し、必要な時だけ戻ってくる。AIなしでもここが速く、安心して使えることが先である。\nその上で、次を公開前の合格条件として証明する。\n\nstable Xcodeでのsigned archiveとTestFlight相当の動作\nCloudKit本番schema、2台の実機、競合と復旧\n通知、Widget、deep link、App Groupsの実機確認\nVoiceOver、Voice Control、Larger Text、Reduce Motionでの主要操作完遂\nExport、Restore、Deleteと、Privacy・Supportの運用\n外部AIへ送る内容、同意、ZDR、失敗時fallbackの一致\nUIテストのfocus問題を含む、主要stateの再現可能な検証\n\n収益化は、現時点では「無期限で使えるlocal core＋買い切りPro」が最初の仮説である。継続原価のあるmanaged AI subscriptionは、localや端末内AIより明確に価値が高く、品質、Privacy、費用、Supportが成立すると分かってから判断する。\n最適化したいのは、滞在時間でも、入力Task数でも、連続利用日数でもない。\n迷って止まった時、一件を決めるまでの時間が短くなったか。決まった後、アプリを閉じて実際の行動へ戻れたか。\nこの二つを、プロダクトの成長より先に測りたい。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "ADHDManager開発記"
-    ]
-  },
-  {
-    "objectID": "posts/tech/ADHDManagerDevelopmentLog.html#おわりに作らないものがプロダクトを形にする",
-    "href": "posts/tech/ADHDManagerDevelopmentLog.html#おわりに作らないものがプロダクトを形にする",
-    "title": "ADHDManager開発記",
-    "section": "おわりに——作らないものが、プロダクトを形にする",
-    "text": "おわりに——作らないものが、プロダクトを形にする\nADHDManagerの開発は、機能を積み上げる歴史であると同時に、作らないものを決める歴史でもあった。\nProjectを通常導線から外した。サブタスクや依存関係を作らなかった。AIを必須にしなかった。streakや罰を入れなかった。決定後の画面から、理由や候補や技術情報を退かせた。\n残ったのは、とても小さな約束である。\n\n一度に見せるのは一件だけ。 決めた一件は、勝手に変えない。 終わっても、区切っても、手放しても責めない。 必要な時だけ現れ、決まった後は退く。\n\nまだ、商用リリースの準備が整ったとは言えない。名前、配布、同期、Privacy、Support、実機品質、そして本当に人の役に立つかという検証が残っている。\nそれでも、何を作るかより先に、何を守るかは見えてきた。\nADHDManagerが目指しているのは、人生を管理することではない。次の一歩を選ぶための摩擦を、ほんの少しだけ減らすことである。",
+    "section": "8月9日時点で、どこまでできたか",
+    "text": "8月9日時点で、どこまでできたか\n一般公開できる状態かと言われたら、まだだった。\nまず、誰のどの瞬間を助けるのかを実際の利用者調査で確かめる必要がある。想定していたのは、やることはあるのに比較で止まり、必要なときだけ短く一件へ絞りたい人。ADHDの人全員に同じ解決策が効くとは考えない。\nそのうえで、端末内だけでも、追加、一件への固定、終了、切り上げ、手放す、という流れを速く安心して使えるところまで仕上げる。AIはそのあとでもいい。\n公開前に残っていた確認も多い。\n\nstable Xcodeでsigned archiveを作り、配布相当の環境で動かす。\nCloudKit本番schemaと2台の実機で、競合と復旧を確かめる。\n通知、Widget、deep link、App Groupsを実機で通す。\nVoiceOver、Voice Control、Larger Text、Reduce Motionで主要操作を終えられるか確かめる。\nExport、Restore、Delete、Privacy、Supportの運用を決める。\n外部AIへ送る内容、同意、ZDR、fallbackを画面の説明と一致させる。\n\n収益化は「無期限で使えるlocal core＋買い切りPro」が、8月9日時点の最初の仮説だった。\n継続費用のかかるAI subscriptionは、localや端末内AIより明確に価値があり、品質、Privacy、費用、Supportが成立すると分かってから考える。\n測りたかったのは、アプリの滞在時間でも、登録したTask数でも、連続利用日数でもない。\n迷って止まったとき、一件を決めるまでの時間が短くなったか。決めたあと、アプリを閉じて実際の行動へ戻れたか。\nまだ公開名、配布、同期、Privacy、Support、実機品質、それに本当に人の役に立つかという検証が残っている。\nADHDManagerでやりたいのは、人生を管理することではない。迷って止まったときに一件だけ決めて、用が済んだらアプリを閉じられるようにすること。\nタスク管理アプリなのに、長く使われない方が正解なのかもしれない。",
     "crumbs": [
       "Home",
       "Posts",
@@ -2569,7 +2439,7 @@
     "href": "posts/tech/KagglePokemonTCGParticipationRecord.html",
     "title": "Kaggle Pokemon TCG参加記録",
     "section": "",
-    "text": "ルールベース、探索、模倣学習、強化学習、Transformer、そしてLLMまで。2026年6月17日から8月9日までの開発記録。\nこの話の結論を先に書く。\nこのコンペで最も大きく勝率を伸ばしたのは、巨大なニューラルネットでも、長時間の強化学習でもなかった。\n効果が大きかったのは、公開対戦から当時の上位プレイヤーが使っていた60枚のデッキを正確に復元すること。そして、見えていないカードを複数の「あり得る世界」として想像し、それぞれで次の一手を比べることだった。\n最終的に残ったのは、次の組み合わせである。\nここへたどり着くまでには、もっともらしい改善を大量に捨てた。学習精度が上がったのに弱いモデル、狙いどおり動いたのに勝率を落とすルール、全体では勝っているのに一つの苦手な相手で危険な崩れ方をしたデッキ、そして候補ではなく評価指標のほうが間違っていた実験もあった。\nこの記事は成功した手法の紹介というより、何を試し、どこで間違い、なぜ止めたかの記録である。",
+    "text": "ルールベース、探索、模倣学習、強化学習、Transformer、LLMまで。2026年6月17日から8月9日までの開発記録。\nAIのコンペに参加して、結局一番大きく勝率を伸ばしたのは、巨大なニューラルネットでも長時間の強化学習でもなかった。\n当時の上位プレイヤーが使っていた60枚のデッキを公開対戦から復元すること。それから、見えていないカードの並びを複数作って、それぞれで少し先まで試すこと。\nせっかく色々な学習モデルを作ったのに、最初に書く結論がこれだった。\nもちろん、強いデッキを持ってくれば終わりという話でもなかった。カードごとの使い方を決めるルール、見えない情報を扱う探索、山札切れと勝利までの速さを比べる小さな補正も必要だった。\nそこへたどり着くまで、もっともらしい案をかなり捨てた。",
     "crumbs": [
       "Home",
       "Posts",
@@ -2578,11 +2448,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#そもそも何を競うコンペだったのか",
-    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#そもそも何を競うコンペだったのか",
+    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#何を作るコンペだったのか",
+    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#何を作るコンペだったのか",
     "title": "Kaggle Pokemon TCG参加記録",
-    "section": "そもそも、何を競うコンペだったのか",
-    "text": "そもそも、何を競うコンペだったのか\nKaggleは、参加者がデータ分析やAIの性能を競うオンラインの競技プラットフォームである。今回の舞台は、公式シミュレータ上でポケモンTCGのプログラム同士を戦わせるコンペだった。\n参加者が提出するのは、次の二つである。\n\n対戦に使う60枚のカードの組み合わせ。\n対戦中の各場面で、どの行動を選ぶか決めるプログラム。\n\n後者を、この記事では「エージェント」と呼ぶ。\nエージェントには、その場で選べる行動の一覧が渡される。カードを出す、攻撃する、番を終える、といった候補の中から、ルール上許されている行動を一つ選ぶ。\nただし、すべての情報が見えるわけではない。相手の手札は見えず、自分の山札がどの順番で並んでいるかも分からない。伏せられたカードもある。エージェントは、分からない情報を抱えたまま勝ち筋を選ばなければならない。\nこの記事で何度も出てくる「サイド」は、相手のポケモンを倒した時などに取る、勝利点に近いカードである。「山札切れ」は、自分の山札から次のカードを引けなくなる敗北を指す。\n対戦結果からKaggle上の評価値が更新され、他の参加者と順位を競う。チェスのように盤面がすべて見えるゲームとは違い、見えていない情報をどう扱うかが大きな課題だった。",
+    "section": "何を作るコンペだったのか",
+    "text": "何を作るコンペだったのか\nKaggleは、データ分析やAIの性能を競うオンラインの競技プラットフォーム。今回の舞台は、公式シミュレータ上でポケモンTCGのプログラム同士を戦わせるコンペだった。\n参加者が提出するのは、対戦に使う60枚のカードの組み合わせと、対戦中にどの行動を選ぶか決めるプログラム。このプログラムを、この記事ではエージェントと呼ぶ。\nエージェントには、その場で選べる行動の一覧が渡される。カードを出す、攻撃する、番を終える、といった候補から、ルール上許されている行動を一つ返す。\nただし、相手の手札は見えない。自分の山札がどの順番で並んでいるかも分からない。伏せられたカードもある。\n分からないものを抱えたまま、次の一手を選ばないといけない。\nこの記事で使う言葉も、先に最低限だけ整理しておく。\n\n\n\n\n\n\n\n言葉\nこの記事での意味\n\n\n\n\nルールベース\n「この場面では攻撃を優先する」のように、人が判断規則を書く方式\n\n\n探索\n候補の行動を実際に少し先まで試し、結果を比べる方式\n\n\n学習モデル\n過去の対戦例から、良さそうな行動や盤面を学ぶニューラルネット\n\n\n比較元\n変更前のエージェント。英語ではbaseline\n\n\n変更案\n比較元へ新しいルールやモデルを加えた候補\n\n\nサイド\n相手のポケモンを倒した時などに取る、勝利点に近いカード\n\n\n山札切れ\n山札から次のカードを引けなくなって負けること\n\n\n1ptの差\n勝率50%が51%になるような、1パーセントポイントの差\n\n\ntimeout\n考えるのに時間がかかりすぎ、対戦を正常に終えられなかった状態\n\n\n\nこの記事の勝率は、特に書いていない限り、手元のコンピュータで相手と試合数を固定して測ったものだ。対戦相手が変わり続けるKaggle本番の評価値とは直接比べられない。\n同じ初期条件を指定しても、シミュレータ内部の偶然までは完全に揃わない。なので「変更だけが原因で必ずこの差が出る」とは書かず、実際に観測した差として扱っている。",
     "crumbs": [
       "Home",
       "Posts",
@@ -2591,11 +2461,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#この記事で使う言葉",
-    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#この記事で使う言葉",
+    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#まずルールベースを作った",
+    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#まずルールベースを作った",
     "title": "Kaggle Pokemon TCG参加記録",
-    "section": "この記事で使う言葉",
-    "text": "この記事で使う言葉\n専門用語をできるだけ避けるため、最初に最低限だけ整理しておく。\n\n\n\n\n\n\n\n言葉\nこの記事での意味\n\n\n\n\nルールベース\n「この場面では攻撃を優先する」のように、人が判断規則を書く方式\n\n\n探索\n候補となる行動を実際に少し先まで試し、結果を比べる方式\n\n\n学習モデル\n過去の対戦例から、良さそうな行動や盤面を学ぶニューラルネット\n\n\n比較元\n改善前のエージェント。英語ではbaselineと呼ばれる\n\n\n変更案\n比較元へ新しいルールやモデルを加えた候補\n\n\n1ptの差\n勝率50%が51%になるような、1パーセントポイントの差\n\n\ntimeout\n考えるのに時間がかかりすぎ、対戦を正常に終えられなかった状態\n\n\n\n以下の勝率は、特記がなければ手元のコンピュータで、相手と試合数を固定して測ったものだ。対戦相手が変わり続けるKaggle本番の評価値とは直接比べられない。\nまた、同じ初期条件を指定しても、シミュレータ内部の偶然まで完全には揃わない。そのため、「変更だけが原因で必ずこの差が出る」と言い切らず、観測された差として扱っている。",
+    "section": "まずルールベースを作った",
+    "text": "まずルールベースを作った\n6月17日、最初に作ったのは、公式シミュレータをPythonから動かして、選べる行動の中からランダムに一つ返すだけのものだった。\nそこから、複数試合を自動で回す仕組み、勝敗の集計、学習コード、提出用ファイル、対戦ログ、試合を見返す画面を順に作った。\n最初に必要だったのは、高度なAIより比較するための土台だった。\n先攻と後攻を入れ替える。勝敗だけでなく、途中停止やエラーも残す。変更前と変更後を同じ条件で戦わせる。\n既存エージェント同士を小さな総当たりで戦わせると、Alakazam（アラクサム）を中心にした公開デッキのルールベースが暫定首位になった。\n一方、ニューラルネットを使う一部のエージェントは、学習済みデータを読み込めていなかった。\nプログラム自体は普通に起動する。でも実際には、毎回「一覧の先頭にある行動」を選んでいた。\nAI、どこ行った。\n起動できることと、意図したモデルが動いていることは別だった。この問題は、その後の学習実験でも何度か踏むことになる。\n既存実装を直接壊さず、Alakazam用のルールエージェントを別に作った。攻撃、進化、カード検索、エネルギーの付け方、退却、ベンチ展開を点数にして、対戦ログを見ながら直していった。\nあるポケモンの攻撃は特殊な処理でダメージを与えるため、単純なカードデータ上では威力0に見えていた。実質100ダメージとして評価すると、短い90試合で56勝から60勝へ改善した。\n逆に、「支援役を置きすぎない」「山札が少なければカードを引かない」「攻撃役が準備できたら追加展開をやめる」といった直感的なルールは、必要な勝ち筋まで消すことが多かった。\n山札を使い切らせて勝つ別のデッキも改良したが、一つの相手へ強くするほど別の相手に弱くなった。\n苦手な相手だけに勝てても、全体が強くなったとは限らない。ここから、必ず複数種類の相手で比べるようになった。",
     "crumbs": [
       "Home",
       "Posts",
@@ -2604,11 +2474,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#最初に作ったaiはカードを理解していなかった",
-    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#最初に作ったaiはカードを理解していなかった",
+    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#少し先読みさせたら伸びた",
+    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#少し先読みさせたら伸びた",
     "title": "Kaggle Pokemon TCG参加記録",
-    "section": "最初に作ったAIは、カードを理解していなかった",
-    "text": "最初に作ったAIは、カードを理解していなかった\n6月17日、プロジェクトは公式シミュレータをPythonから動かし、選べる行動の中からランダムに一つ返すところから始まった。\nそこから、複数の試合を自動で行う仕組み、勝敗を集計する仕組み、学習コード、提出用ファイル、対戦ログ、試合を見返す画面を順に整えた。\n振り返ると、最初に必要だったのは高度なAIではない。\n\n先攻と後攻を入れ替えて、公平に比べられること。\n勝敗だけでなく、途中停止やエラーを記録できること。\n変更前と変更後を、同じ条件で比べられること。\n\nまず既存のエージェント同士を小さな総当たりで戦わせると、Alakazam（アラクサム）を中心にした公開デッキのルールベースが暫定首位になった。\n一方、ニューラルネットを使う一部のエージェントには、学習済みデータが読み込めていないものがあった。プログラム自体は起動するが、実際には毎回「一覧の先頭にある行動」を選んでいたのである。\n\nプログラムが止まらず動くことと、意図したAIが動いていることは違う。\n\nこの問題は、後の学習実験でも何度も戻ってきた。\nそこで既存の実装を直接壊さず、Alakazam用のルールエージェントを別に作った。攻撃、進化、カードの検索、エネルギーの付け方、退却、ベンチへの展開をそれぞれ点数化し、対戦ログを見ながら直していった。\nたとえば、あるポケモンの攻撃は特殊な処理でダメージを与えるため、単純なカードデータ上では威力0に見えていた。これを実質100ダメージとして評価すると、短い90試合の比較で56勝から60勝へ改善した。\n逆に、「支援役を置きすぎない」「山札が少なければカードを引かない」「攻撃役が準備できたら追加展開をやめる」といった直感的なルールは、必要な勝ち筋まで消してしまうことが多かった。\n山札を使い切らせて勝つ別のデッキも改良したが、ある相手へ強くするほど、別の相手に弱くなった。\nここで最初の重要な原則ができた。\n\n一つの苦手な相手への勝率が上がっても、エージェント全体が強くなったとは限らない。",
+    "section": "少し先読みさせたら伸びた",
+    "text": "少し先読みさせたら伸びた\n次に、ルールベースへ短い先読みを足した。\nまずルールで有望な行動を4個まで選ぶ。それぞれを約0.15秒だけシミュレータ上で試して、少し先の盤面が一番よくなる行動を採用する。\n直感で候補を数個に絞って、その候補だけ頭の中で試すようなもの。\n代表的な8種類の相手と各100試合、合計800試合を行うと、元のルールは勝率40.6%、短い先読みを加えた版は48.0%だった。特に苦手だった山札切れ戦術への勝率は14%から30%へ上がった。\nこの固定相手では、観測上かなり伸びた。\nただ、その苦手相手だけをさらに対策すると、今度は800試合全体の勝率が下がった。\n短い試験でたまたま勝った案を、そのまま改善扱いしないため、評価を三段階に分けた。\n\n\n\n\n\n\n\n\n\n段階\n対戦内容\n試合数\n目的\n\n\n\n\n基本確認\n単純な行動をする相手\n600試合\nルール違反や進行停止がないか見る\n\n\n実力比較\n特徴の異なる8種類の相手\n800試合\n戦術、相性、苦手な相手を見る\n\n\n提出前確認\n競争力の高い10種類の相手\n1,000試合\nKaggleへ提出するか決める\n\n\n\n先攻と後攻は半分ずつ入れ替える。最初は160試合の安い確認を行い、有望な案だけ800試合へ進める。最後は、それまで使っていない初期条件で走らせた。\n勝率だけでなく、timeoutや不正な行動が一件もないことも採用条件にした。",
     "crumbs": [
       "Home",
       "Posts",
@@ -2617,11 +2487,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#少し先まで試すだけで初めて大きく伸びた",
-    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#少し先まで試すだけで初めて大きく伸びた",
+    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#学習モデルは思ったより弱かった",
+    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#学習モデルは思ったより弱かった",
     "title": "Kaggle Pokemon TCG参加記録",
-    "section": "「少し先まで試す」だけで、初めて大きく伸びた",
-    "text": "「少し先まで試す」だけで、初めて大きく伸びた\n次に、ルールベースへ短い先読みを加えた。\nまずルールで有望な行動を4個まで選ぶ。それぞれを約0.15秒だけシミュレータ上で試し、少し先の盤面が最も良くなる行動を採用する。\n人間にたとえるなら、「直感で候補を数個に絞り、その候補だけ頭の中で試してから決める」方式である。\n代表的な8種類の相手と各100試合、合計800試合を行うと、元のルールは勝率40.6%、短い先読みを加えた版は48.0%だった。特に苦手だった山札切れ戦術への勝率は14%から30%へ上がった。\nただし、その苦手相手だけをさらに対策する変更は、800試合全体の勝率を下げた。\nこの頃から、評価を三段階に分けた。\n\n\n\n\n\n\n\n\n\n段階\n対戦内容\n試合数\n目的\n\n\n\n\n基本確認\n単純な行動をする相手\n600試合\nルール違反や進行停止がないか確認する\n\n\n実力比較\n特徴の異なる8種類の相手\n800試合\n戦術、相性、苦手な相手を確認する\n\n\n提出前確認\n競争力の高い10種類の相手\n1,000試合\nKaggleへ提出するか判断する\n\n\n\nすべての比較で先攻と後攻を半分ずつ入れ替えた。最初は160試合の短い確認を行い、有望な案だけを800試合へ進める。最後は、それまで使っていない初期条件で確認した。\n短い試験で勝っただけでは、正式な改善とは呼ばない。勝率だけでなく、時間切れや不正な行動が一件もないことも求めた。",
+    "section": "学習モデルは思ったより弱かった",
+    "text": "学習モデルは思ったより弱かった\n次は、ニューラルネットに強いルールエージェントの行動を真似させた。いわゆる模倣学習だ。\n記録済みデータに対する正解率は、複数のネットワーク構造を試して約75%まで上がった。\nさすがに少しは強いだろうと思って実際に戦わせると、勝率は28.75%や32.5%。ルールと先読みを組み合わせた約50%へ全然届かない。\nこの固定相手では普通に弱かった。\n学習時間だけの問題でもなかった。\n\n11枚目以降の手札が入力から落ちていた。\nカード固有の効果を判断する情報が足りなかった。\n選べる行動が31個以上あると、後ろの候補が見えていなかった。\nAIからは同じ入力に見えるのに、実際には別の判断が必要な場面があった。\n\n人間には違う盤面に見えても、AIへ渡した説明では同じ盤面になっていた。\n模倣学習から始めて、試合の勝敗を報酬にするPPOも試した。最初の実験では、勝率が32.5%から15%まで崩れた。\n長く学習すれば直りそうな兆候もなく、ニューラルネットだけで行動を決める路線は一旦止めた。",
     "crumbs": [
       "Home",
       "Posts",
@@ -2630,11 +2500,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#ルールを学習すればもっと強くなると思った",
-    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#ルールを学習すればもっと強くなると思った",
+    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#上位デッキを真似したら一気に伸びた",
+    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#上位デッキを真似したら一気に伸びた",
     "title": "Kaggle Pokemon TCG参加記録",
-    "section": "ルールを学習すれば、もっと強くなると思った",
-    "text": "ルールを学習すれば、もっと強くなると思った\n次は、ニューラルネットに強いルールエージェントの行動を真似させた。これは模倣学習と呼ばれる。\n盤面を入力すると、「教師役のエージェントならどの行動を選ぶか」を予測する。複数のネットワーク構造を試すと、記録済みデータに対する正解率は約75%まで上がった。\nしかし、実際に対戦させると勝率は28.75%や32.5%で、ルールと先読みを組み合わせた約50%へ届かなかった。\n原因は単なる学習時間不足ではなかった。\n\n11枚目以降の手札が入力から落ちていた。\nカード固有の効果を判断するための情報が足りなかった。\n選べる行動が31個以上あると、後ろの候補が見えていなかった。\nAIから見ると同じ入力なのに、実際には異なる判断が必要な場面があった。\n\nつまり、AIへ渡した盤面の説明そのものが不完全だった。人間には別の状況に見えても、AIには「同じ盤面」に見えていたのである。\n模倣学習から始め、試合の勝敗を報酬として学ぶPPOという強化学習も試した。最初の実験では、勝率が32.5%から15%まで崩れた。\n学習を長く続ければ解決する兆候もなく、ニューラルネットだけで行動を決める路線はいったん止めた。",
+    "section": "上位デッキを真似したら一気に伸びた",
+    "text": "上位デッキを真似したら一気に伸びた\n学習実験と並行して、2026年7月14日に公開された上位対戦から、当時の首位プレイヤーが使っていた60枚を復元した。\nここでいう首位デッキは、俺のエージェントが1位になったという意味じゃない。外部の首位プレイヤーが使っていたカード構成のこと。\n数枚入れ替えただけに見えても、60枚全体の噛み合わせは大きく変わる。手札を整えるカード、相手を妨害するカード、使い終わったカードを戻すカードなどが調整されていた。\n同時に、短い先読みをbelief searchへ変えた。\nbeliefは、ここでは「見えていないカードは、こう並んでいるかもしれない」という仮説を指す。\n処理はだいたいこんな感じ。\n\nルールベースで有望な行動を6個ほど選ぶ。\nすでに見えているカードを60枚の一覧から除く。\n残ったカードから、見えていない山札や伏せカードの並びを2通り作る。\nすべての行動を、同じ二つの仮想世界で試す。\n最初の試行で悪かった候補を落とし、有望な候補へ計算時間を寄せる。\n0.30秒以内に終わらなければ、既存ルールへ戻る。\n\n見えていない重要カードが「山札の上にある世界」と「下にある世界」を作って、どちらでも大崩れしにくい行動を選ぶイメージだ。\n同じ条件で各800試合を行った結果がこれ。\n\n\n\n構成\n勝数\n勝率\n直前との差\n\n\n\n\n旧デッキ＋短い先読み\n443/800\n55.38%\n—\n\n\n旧デッキ＋複数世界の探索\n509/800\n63.63%\n+8.25pt\n\n\n首位デッキ＋複数世界の探索\n608/800\n76.00%\n+12.38pt\n\n\n\n一番大きかったのは、モデルを複雑にすることではなく、強い60枚へ合わせることだった。その次が、既存のカード知識を残したまま、見えない情報を複数の世界で比べる探索。\nこの版は三段階の評価をtimeout 0で完走し、最終1,000試合では791勝した。\nただし、この79.1%には特に相性のいい相手への200勝が含まれている。それを除けば73.88%になる。\nどんな相手にも79.1%勝てる、という数字ではない。用意した相手の組み合わせ込みの成績だった。",
     "crumbs": [
       "Home",
       "Posts",
@@ -2643,11 +2513,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#最大の転機は上位デッキの60枚とあり得る世界の比較だった",
-    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#最大の転機は上位デッキの60枚とあり得る世界の比較だった",
+    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#強い比較元を学習で超えられなかった",
+    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#強い比較元を学習で超えられなかった",
     "title": "Kaggle Pokemon TCG参加記録",
-    "section": "最大の転機は、上位デッキの60枚と「あり得る世界」の比較だった",
-    "text": "最大の転機は、上位デッキの60枚と「あり得る世界」の比較だった\n学習実験と並行して、2026年7月14日に公開された上位対戦から、当時の首位プレイヤーが使っていた60枚を復元した。\nここでいう「首位デッキ」は、私のエージェントが1位になったという意味ではない。外部の首位プレイヤーが使っていたカード構成を指す。\nカードを数枚だけ変えたように見えても、60枚全体の噛み合わせは大きく変わる。手札を整えるカード、相手の行動を妨害するカード、使い終わったカードを戻すカードなどが調整されていた。\n同時に、短い先読みを「belief search」と呼ばれる方式へ変えた。beliefは、ここでは「見えていないカードは、こう並んでいるかもしれない」という仮説を意味する。\n仕組みを単純化すると、次のようになる。\n\nまず、ルールベースで有望な行動を6個ほど選ぶ。\nすでに見えているカードを、60枚の一覧から除く。\n残ったカードから、見えていない山札や伏せカードの並びを2通り作る。\nすべての行動を、同じ二つの仮想世界で試す。\n最初の試行で悪かった候補を落とし、有望な候補へ計算時間を集中する。\n0.30秒以内に終わらなければ、安全な既存ルールへ戻る。\n\nたとえば、見えていない重要カードが「山札の上にある世界」と「下にある世界」を作り、どちらでも大崩れしにくい行動を選ぶイメージである。\n同じ条件で各800試合を行った結果は、次のようになった。\n\n\n\n構成\n勝数\n勝率\n直前との差\n\n\n\n\n旧デッキ＋短い先読み\n443/800\n55.38%\n—\n\n\n旧デッキ＋複数世界の探索\n509/800\n63.63%\n+8.25pt\n\n\n首位デッキ＋複数世界の探索\n608/800\n76.00%\n+12.38pt\n\n\n\n最も大きな改善は、モデルを複雑にすることではなく、強い60枚へ追随することだった。次に効いたのが、既存のカード知識を残したまま、見えない情報を複数の世界として比べる探索だった。\nこの版は三段階の正式評価も時間切れ0で完走した。最終1,000試合では791勝だった。ただし、この79.1%には特に相性の良い相手への200勝が含まれている。それを除けば73.88%になる。\nしたがって、「どんな相手にも79.1%勝てるAI」ではない。用意した相手の組み合わせを含めた成績として読む必要がある。\nここまでの投資対効果は、ほぼ次の順になった。\n\n強いデッキへの追随 ＞ 見えない情報を扱う探索 ＞ 小さなルール調整 ≫ 学習モデル",
+    "section": "強い比較元を学習で超えられなかった",
+    "text": "強い比較元を学習で超えられなかった\n強い比較元ができたあと、設定を慎重にしたPPOをもう一度試した。最初のような急激な崩壊は抑えられ、学習用の相手には前より勝てるようになった。\nでも固定した8種類の相手では、模倣学習版が33.54%、PPO版が39.38%。一番よかった学習モデルでも42.5%で、ルールと探索の75.75%には遠かった。\n計算資源は約5.5時間で止めた。\nPPOが何も学んでいないわけではない。学習中の限られた相手には改善していた。でも提出候補に欲しいのは、そこだけの強さではない。\n次はルールを捨てず、探索した先の盤面評価だけをTransformerへ手伝わせた。\n記録済みデータ上では、勝ち、負け、引き分けの予測精度が86.67%まで上がった。探索が選ぶ行動との一致率も73.45%から74.48%へ少し改善した。\nところが実戦を調べると、その前にバグが見つかった。探索が時間内に終わらないと、本来の強いルールではなく、単純な行動選択へ戻っていた。\n戻り先を直すと、勝率は比較元の水準まで戻った。\n正式な800試合では、学習補助版609勝、比較元618勝。計算時間は3.46倍だった。\nしかも、その設定でニューラルネットが最終行動を変えた回数は0。\n重い仕組みを追加したのに、最終行動の変更には一度もつながっていなかった。\n別の学習方法も5回試したが、昇格はゼロだった。勝敗が同じ候補を、残ったサイド数や勝利までの速さで順位付けしようとしても、差が小さすぎて安定した教師にならない。\n教師となる探索が選んだ行動の94.8%は、すでに既存ルールが作った候補の中にあった。\nうまく真似できたときは既存候補と同じになり、外れたときだけ危険な新候補を持ち込みやすい。なので学習モデルを候補へ足す路線も止めて、探索の弱点を直接直す方へ移った。",
     "crumbs": [
       "Home",
       "Posts",
@@ -2656,11 +2526,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#強いルールと探索を学習で超えられるか",
-    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#強いルールと探索を学習で超えられるか",
+    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#山札切れ対策とp2-s",
+    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#山札切れ対策とp2-s",
     "title": "Kaggle Pokemon TCG参加記録",
-    "section": "強いルールと探索を、学習で超えられるか",
-    "text": "強いルールと探索を、学習で超えられるか\n強い比較元ができた後、設定を慎重にしたPPOを再び試した。最初のような急激な崩壊は抑えられ、学習用の相手には以前より勝てるようになった。\nしかし、固定した8種類の相手との評価では、模倣学習版が33.54%、PPO版が39.38%。最も良い学習モデルでも42.5%で、強いルールと探索の75.75%には遠く及ばなかった。計算資源は約5.5時間で止めた。\nこれは「PPOが何も学ばなかった」という意味ではない。学習中の限られた相手には改善したが、提出候補に必要な広い強さを確認できなかった、という失敗である。\n次に、ルールを捨てず、探索した先の盤面評価だけをTransformerというニューラルネットに手伝わせた。\n記録済みデータ上では、勝ち・負け・引き分けの予測精度が86.67%まで上がった。探索が選ぶ行動との一致率も73.45%から74.48%へ少し改善した。\nところが実際の対戦を調べると、先に大きなバグが見つかった。探索が時間内に終わらなかった時、本来の強いルールではなく、単純な行動選択へ戻っていたのである。この戻り先を直すと、勝率は比較元の水準まで戻った。\n正式な800試合では、学習補助版609勝、比較元618勝。計算時間は3.46倍だった。さらに調べると、その設定ではニューラルネットが最終行動を変えた回数は0だった。\nつまり、重い仕組みを追加したのに、実際の判断へ貢献していなかった。提出候補へ進める根拠はなかった。\n別の学習方法も5回試したが、昇格はゼロだった。勝敗が同じ候補を、残ったサイドカード数や勝利までの速さで順位付けしようとしても、差が小さすぎて安定した教師にならなかった。\nさらに、教師となる探索が選んだ行動の94.8%は、すでに既存ルールが作った候補の中にあった。\n\n学習に成功するほど既存候補と同じ答えになり、学習から外れた時だけ危険な新候補を持ち込みやすい。\n\n構造そのものが不利だったため、学習モデルを候補へ足す路線から、探索の弱点を直接直す路線へ移った。",
+    "section": "山札切れ対策とP2-S",
+    "text": "山札切れ対策とP2-S\nこのゲームでは、山札を使い切ると負ける。苦手な相手との対戦では、それが特に目立っていた。\nそこで最初は、山札が少ないときだけ、追加でカードを引く攻撃を使わないルールを作った。\n短い160試合では、比較元128勝に対して変更版129勝。苦手な相手には20勝から26勝へ改善し、山札切れの敗戦も19件から10件へ減った。\n短い試験だけを見ると有望だった。\nでも正式な800試合では、変更版607勝、比較元620勝。別の976試合でも、勝率は0.717pt下がった。\nルールは狙いどおりに動いた。エラーもない。それでも弱くなった。\nカードを引く行動は山札を減らすけど、強い攻撃、進化、次の攻撃役の準備にもつながる。一律で禁止するのが雑すぎた。\nそこで作ったのがP2-Sという小さな補正だった。\n探索した先の盤面ごとに、「山札が尽きるまであと何回攻撃できるか」と、「サイドを取り切って勝つまで最短であと何回攻撃が必要か」を比べる。\n山札切れの方が先に来そうな盤面だけ、評価を少し下げる。勝敗やサイド差のような大きな判断は上書きせず、分からないときは補正しない。\n最初の800試合では、P2-Sが615勝、比較元が599勝。勝率は2pt高かった。\nそれでも当初は不採用にした。\n事前に「特定の相手に山札切れで負けた件数が増えないこと」を条件にしていて、その件数が41から46へ増えたからだ。\nあとから、この物差し自体に欠陥があると分かった。\nP2-Sは、途中で不利な行動を避けて、終盤の山札レースまで試合を続けるための仕組みだ。狙いどおり終盤まで行く試合が増えれば、山札0枚で終わる試合も増える。勝った試合も負けた試合も増え得るのに、負けた件数だけ数えていた。\n仕組みが働くほど悪く見える可能性があった。\nただし、古い実験をあとから成功扱いにはしていない。最初の不採用はそのまま残した。P2-Sの計算式と発動条件も変えず、評価指標だけを「対象3種類の相手への合計勝数」へ直した。\nそのうえで、まだ使っていない初期条件を使い、比較元とP2-Sをもう一度各800試合走らせた。\n\n\n\n再確認\n比較元\nP2-S\n\n\n\n\n総合\n605/800\n635/800\n\n\n勝率\n75.625%\n79.375%\n\n\n対象3種類の相手\n204/300\n217/300\n\n\ntimeout・不正・補正手\n0件\n0件\n\n\n\n観測差は+3.75pt。ただし統計上の幅には0も含まれていて、P2-Sが必ず強いとまでは言えない。\nそれでも、実験前に決めた五つの採用条件は全部通り、最終1,000試合へ進めることにした。",
     "crumbs": [
       "Home",
       "Posts",
@@ -2669,11 +2539,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#山札が少なければ引かないは正しくなかった",
-    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#山札が少なければ引かないは正しくなかった",
+    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#手元とkaggle本番は別物だった",
+    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#手元とkaggle本番は別物だった",
     "title": "Kaggle Pokemon TCG参加記録",
-    "section": "「山札が少なければ引かない」は正しくなかった",
-    "text": "「山札が少なければ引かない」は正しくなかった\nこのゲームでは、山札を使い切ることが敗因になる。苦手な相手との対戦では、それが特に目立っていた。\nそこで、山札が少ない時だけ、追加でカードを引く攻撃を使わないルールを作った。\n短い160試合では、比較元128勝に対して変更版129勝。苦手な相手には20勝から26勝へ改善し、山札切れによる敗戦も19件から10件へ減った。かなり有望に見えた。\nしかし、正式な800試合では変更版607勝、比較元620勝。さらに別の976試合でも、勝率は0.717pt下がった。\nルールは狙いどおりに動き、エラーもなかった。それでも全体では弱くなった。\n「山札が少ないならカードを引かない」は正しそうに聞こえる。しかしカードを引くことは、強い攻撃、進化、次の攻撃役の準備にもつながる。\n危険な行動を一律に禁止するのではなく、山札が尽きる前に勝ち切れるかを比べる必要があった。",
+    "section": "手元とKaggle本番は別物だった",
+    "text": "手元とKaggle本番は別物だった\n最初の首位デッキ版をKaggleへ提出すると、エージェント自身との確認対戦を除く外部30試合は17勝13敗だった。\n評価値は、10試合時点の715.079から25試合時点の785.411まで大きく動いた。少ない試合数で逐次更新される値を、そのまま強さの即時判定には使えない。\nP2-S版の提出後に取れた外部59試合は31勝28敗、勝率52.54%。手元の固定試験で得た78.3%とはかなり違って見える。\nでも対戦相手も、相手が選ばれる仕組みも違う。直接比べられる数字ではない。\n本番ログを見ると、手元の固定相手では目立たなかったものも出てきた。\n\n同じAlakazam系同士は22試合10勝12敗で、12敗中7敗が山札切れだった。\n新しく現れたMarnie Grimmsnarlには7試合2勝5敗だった。\n全28敗のうち8敗が山札切れだった。\n最初は、さらに16敗を「自分のポケモンがいなくなった敗戦」と分類した。\n\nところが、その16件を見直すと、本当に場のポケモンがすべていなくなっていたのは6件だけ。残り10件では控えのポケモンが残っていた。\nシミュレータの終局画面では、次に前へ出すポケモンを選ぶ表示が省略される。それを見て「攻撃役が全滅した」と勘違いしていた。\nつまり、敗因につけた名前まで間違っていた。\nMarnieへの敗戦も、特定カードが足りないという単純な話ではなかった。相手が前のポケモンへ大きなダメージを与えつつ、控えにもダメージをためる間に、こちらの攻撃回数が追いついていなかった。\nログの分類だけで直す場所を決めず、実際に何回攻撃できたか、どの資源がいつ尽きたかまで見ないと危ない。",
     "crumbs": [
       "Home",
       "Posts",
@@ -2682,11 +2552,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#二つの時計を比べる仕組みは一度だけ間違った物差しで落ちた",
-    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#二つの時計を比べる仕組みは一度だけ間違った物差しで落ちた",
+    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#採用しなかった案",
+    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#採用しなかった案",
     "title": "Kaggle Pokemon TCG参加記録",
-    "section": "二つの時計を比べる仕組みは、一度だけ間違った物差しで落ちた",
-    "text": "二つの時計を比べる仕組みは、一度だけ間違った物差しで落ちた\nそこで作ったのがP2-Sという小さな補正だった。名前は難しいが、考え方は単純である。\n探索した先の盤面ごとに、二つの時計を比べる。\n\n山札が尽きるまで、あと何回攻撃できるか。\n勝利に必要なサイドカードを取り切るまで、最短であと何回攻撃が必要か。\n\n「山札切れのほうが先に来る」と判断した盤面だけ、評価を少し下げる。勝敗やサイド差といった大きな判断を上書きせず、分からない時は補正しない安全側の設計にした。\n最初の800試合では、P2-Sが615勝、比較元が599勝で、勝率は2pt高かった。\nそれでも当初は不採用にした。事前に「特定の相手に山札切れで負けた件数が増えないこと」を条件にしており、その件数が41から46へ増えたからだ。\n後から、この物差しに欠陥があると分かった。\nP2-Sは、途中で不利な行動を避け、終盤の山札レースまで試合を続けるための仕組みである。狙いどおり終盤へ到達する試合が増えれば、山札0枚で終わる試合の総数自体が増える。勝った試合も負けた試合も増え得るのに、負けた件数だけを数えていた。\n仕組みが働くほど、悪く見える可能性がある指標だった。\nここで古い実験を、後から成功扱いにはしなかった。最初の不採用はそのまま残した。P2-Sの計算式や発動条件も変えず、評価指標だけを「対象となる3種類の相手への合計勝数」に直した。\nそして、まだ使っていない初期条件で、比較元とP2-Sをもう一度各800試合走らせた。\n\n\n\n再確認\n比較元\nP2-S\n\n\n\n\n総合\n605/800\n635/800\n\n\n勝率\n75.625%\n79.375%\n\n\n対象3種類の相手\n204/300\n217/300\n\n\n時間切れ・不正・補正手\n0件\n0件\n\n\n\n観測差は+3.75ptだった。ただし統計上の幅には0も含まれており、「P2-Sが必ず強い」とまでは証明できない。\nそれでも、実験前に決めた五つの採用条件はすべて通過した。続く最終1,000試合も783勝216敗1分、10種類すべての相手に勝ち越し、時間切れや不正な行動は0だった。\n\n測定ミスを見つけても、負けた実験を勝ちに直さない。新しい物差しと新しい条件で、もう一度決着をつける。\n\nこの出来事は、強いエージェントを作った話であると同時に、強さの測り方を作り直した話でもあった。",
+    "section": "採用しなかった案",
+    "text": "採用しなかった案\nP2-Sを採用したあとも、ルール、探索、デッキ、学習モデルを一つずつ変えて試した。\nうまくいかなかった案にも色々ある。\nそもそも対象場面が少なくて動かないもの。狙いどおり何度も動いたのに弱いもの。情報は増えたけどtimeoutが出るもの。対戦相手を再現できない、結果が欠けているなど、実験そのものが無効なもの。\nたとえば行動候補の重複を減らす仕組みは、6,152回の判断で実際に候補を変えた。それでも各512試合の比較では、勝率が3.516pt下がった。\n動かなかったのではなく、動いた上で弱かった。\nデッキのカードを2枚入れ替えた案は、仕組みと安全性の確認を通ったが、各320試合で9.688pt下がった。\n学習した盤面評価は、記録済み139万局面に対する予測性能を大きく改善した。それでも実対戦2,432試合では+0.350ptで、実験前に期待した+2.5ptへ届かなかった。\n別のデッキは全体で+5.625ptだったが、一つの相手で事前に決めた停止境界まで悪化したので、正式評価へ進めなかった。\n本番41試合を追加分析しようとしたときは、1試合だけ勝敗データが欠けていた。都合よく40試合だけ使ったり、映像から推測して埋めたりせず、分析全体を無効にした。\n上位デッキを持ってくる実験も、Alakazam以外ではうまくいかなかった。\n\n上位Crustleデッキを近い既存ルールで動かすと79/160勝で、元のデッキと専用ルールの89/160勝を下回った。\n上位Marnieデッキは、比較元156/220勝に対して99/220勝だった。\n上位Mega Lucarioデッキは、比較元152/200勝に対して112/200勝だった。\n\n強かったのは60枚だけではなく、その60枚と行動ルールの組み合わせだった。Alakazamでは意味がうまく噛み合ったけど、別の種類へそのまま移せるわけではなかった。\n8月6日に上位20人の公開対戦を調べると、復元できたAlakazamデッキ3件は、すべて当時使っていた60枚と完全に同じだった。公開情報からは、新しいAlakazam候補を得られなかった。\n一方、自分の新しい本番180試合では、96敗中32件で、終局時にAbra系のポケモンが場から消えていた。\nそこで妨害カードを1枚減らし、ポケモンを回収するカードを1枚増やした候補を作った。\n短い比較は123/160勝で、比較元の115/160勝よりよかった。別条件の296試合でも192勝対170勝、観測上は+7.432pt。\n数字だけを見るとかなり有望だった。それでも不採用にした。\n比較元側で、最大手数へ到達するtimeoutが1件起きたからだ。変更版自身のtimeoutは0だったけど、事前に「比較する両方で安全上の問題が0件」と決めていた。\n変更版が危険だと分かったわけではない。この比較を、採用の根拠には使えなくなったという話だ。\n数字を見たあとで例外を作らず、再試行も基準変更もせず、その候補は閉じた。",
     "crumbs": [
       "Home",
       "Posts",
@@ -2695,11 +2565,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#手元で勝っても本番には別の相手がいた",
-    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#手元で勝っても本番には別の相手がいた",
+    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#llmにもやらせてみた",
+    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#llmにもやらせてみた",
     "title": "Kaggle Pokemon TCG参加記録",
-    "section": "手元で勝っても、本番には別の相手がいた",
-    "text": "手元で勝っても、本番には別の相手がいた\n最初の首位デッキ版をKaggleへ提出すると、エージェント自身との確認対戦を除く外部30試合は17勝13敗だった。評価値は、10試合時点の715.079から25試合時点の785.411まで大きく上下した。\n少ない試合数で逐次更新される評価値を、そのまま強さの即時判定には使えないことが分かった。\nP2-S版の提出後に取得できた外部59試合は31勝28敗、勝率52.54%。手元の固定試験で得た78.3%とは大きく違って見えるが、対戦相手も、相手が選ばれる仕組みも異なる。\n本番の試合を見返すと、手元の固定相手では目立たなかった問題が見えた。\n\n同じAlakazam系同士の対戦は22試合10勝12敗で、12敗中7敗が山札切れだった。\n新しく現れたMarnie Grimmsnarlには7試合2勝5敗だった。\n全28敗のうち8敗が山札切れだった。\n当初は、さらに16敗を「自分のポケモンがいなくなった敗戦」と分類した。\n\nところが16件を詳しく見直すと、本当に場のポケモンがすべていなくなっていたのは6件だけだった。残り10件では控えのポケモンが残っていた。\nシミュレータの終局画面では、次に前へ出すポケモンを選ぶ表示が省略される。その表示だけを見て、「攻撃役をすべて失った」と誤解していたのである。\nMarnieへの敗戦も、特定カードが足りないという単純な話ではなかった。相手が前のポケモンへ大きなダメージを与えながら、控えにも同時にダメージを蓄積する間に、こちらの攻撃回数が追いついていなかった。\n\n敗因につけた名前も、検証前は仮説にすぎない。\n\nログの分類を信じるのではなく、実際に何回攻撃できたか、どの資源がいつ尽きたかまで見直す必要があった。",
+    "section": "LLMにもやらせてみた",
+    "text": "LLMにもやらせてみた\n8月には、文章生成AI、いわゆるLLMを教師やプレイヤーとして使う実験もやった。提出本線には一切入れていない。\n最初はGemma 4 31Bへ「この場面では何を選ぶか」を聞きつつ、危なければ既存ルールへ戻れる形で5試合を行った。結果は5勝。\nお、強いじゃんと思ってログを見ると、Gemmaの提案は一度も実行されていなかった。\n毎回、既存の強いルールへ戻っていた。\n証明できたのは「既存ルールが5勝した」ことだけ。Gemmaの強さではないので、同日中に記録を訂正した。\n次は安全網なしでGemma自身に選ばせた。5試合で2勝2敗、技術的な失敗が1件。単純なランダム相手には勝ち、強いルール相手には負けた。\nAIが読み書きした文章量は約111万token、費用は約0.155ドル。\n別条件の10試合は、全部最後まで動いたけど0勝10敗だった。低価格な3モデルを比べた実験は、15試合すべてが通信や出力形式の問題で失敗し、完了した試合は0。\nCodexを教師にする実験では、300種類の盤面すべてで、形式上正しくルール違反のない回答を返した。\nただ、別々に動かした3個のCodexが同じ答えを選んだ割合は63.3%。主要な行動選択では44.4%、選択肢が11個以上ある難しい場面では33.3%だった。先読みで支持できた回答は0件。\n小さな対戦でよい数字が出たものもあったが、モデルと条件を固定した別の2試合では0勝2敗。試合数も少なく、相手も一種類なので、強さの根拠にはしていない。\n合法な答えを返せること、毎回同じ答えを返すこと、同じ結果を再現できること、最後まで動くこと、安く動くこと、対戦で強いこと。全部別だった。",
     "crumbs": [
       "Home",
       "Posts",
@@ -2708,76 +2578,11 @@
     ]
   },
   {
-    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#失敗には少なくとも四つの種類があった",
-    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#失敗には少なくとも四つの種類があった",
+    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#月9日時点で残したもの",
+    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#月9日時点で残したもの",
     "title": "Kaggle Pokemon TCG参加記録",
-    "section": "失敗には、少なくとも四つの種類があった",
-    "text": "失敗には、少なくとも四つの種類があった\nP2-Sを採用した後も、ルール、探索方法、デッキ、学習モデルを一つずつ変更して試した。\n重要だったのは、すべての不採用を単に「弱かった」でまとめないことだった。\n\n\n\n\n\n\n\n\n失敗の種類\n何が起きたか\n次に取る行動\n\n\n\n\nそもそも動く場面が少ない\n対象となる局面がほとんどなく、行動も変わらない\n大規模試験へ進めず、安い確認で止める\n\n\n狙いどおり動いたが弱い\n多くの場面で行動を変えたのに、勝率が下がった\n実装ミス探しを続けず、不採用にする\n\n\n情報は増えたが危険\n判断材料は増えたが、時間切れや不安定さが出た\n勝率が良くても止める\n\n\n実験そのものが無効\n対戦相手を再現できない、結果データが欠けている\n強さを判定せず、実験を無効とする\n\n\n\nたとえば、行動候補の重複を減らす仕組みは6,152回の判断で実際に候補を変えた。それでも各512試合の比較では勝率が3.516pt下がった。動かなかったのではなく、動いた上で弱かった。\nデッキのカードを2枚入れ替えた案は、仕組みと安全性の確認を通過したが、各320試合で9.688pt下がった。\n学習した盤面評価は、記録済み139万局面に対する予測性能を大きく改善した。それでも実対戦2,432試合では+0.350ptに留まり、実験前に期待した+2.5ptへ届かなかった。\n別のデッキは全体で+5.625ptだったが、一つの相手で事前に決めた停止境界まで悪化したため、正式評価へ進めなかった。\nまた、本番41試合を追加分析しようとした時は、1試合だけ勝敗データが欠けていた。都合よく40試合だけを使ったり、映像から結果を推測して埋めたりせず、分析全体を無効として止めた。\n「仕組みが動いた」「記録済みデータへの正解率が上がった」「全体の勝率が少し良い」は、それぞれ有用な情報である。しかし、提出採用の十分条件ではなかった。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "Kaggle Pokemon TCG参加記録"
-    ]
-  },
-  {
-    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#上位デッキを持ってくるだけでもいつも勝てるわけではない",
-    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#上位デッキを持ってくるだけでもいつも勝てるわけではない",
-    "title": "Kaggle Pokemon TCG参加記録",
-    "section": "上位デッキを持ってくるだけでも、いつも勝てるわけではない",
-    "text": "上位デッキを持ってくるだけでも、いつも勝てるわけではない\n上位Alakazamの60枚へ追随したことは最大の成功だった。しかし、「ランキング上位のデッキなら、既存の行動ルールへ載せても強い」と一般化すると失敗した。\n\n上位Crustleデッキを近い既存ルールで動かすと79/160勝で、元のデッキと専用ルールの89/160勝を下回った。\n上位Marnieデッキは、比較元156/220勝に対して99/220勝だった。\n上位Mega Lucarioデッキは、比較元152/200勝に対して112/200勝だった。\n\n強かったのは60枚だけではない。\n\nその60枚と、それをどう使うかという行動ルールの組み合わせが強かった。\n\nAlakazamでは、上位デッキと既存ルールの意味がうまく噛み合った。しかし、その成功を別の種類のデッキへそのまま移すことはできなかった。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "Kaggle Pokemon TCG参加記録"
-    ]
-  },
-  {
-    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#最後の有望候補も安全性の条件で止めた",
-    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#最後の有望候補も安全性の条件で止めた",
-    "title": "Kaggle Pokemon TCG参加記録",
-    "section": "最後の有望候補も、安全性の条件で止めた",
-    "text": "最後の有望候補も、安全性の条件で止めた\n8月6日に上位20人の公開対戦を調べると、復元できたAlakazamデッキ3件は、すべて現在の60枚と完全に同じだった。少なくとも公開情報からは、新しいAlakazam候補を得られなかった。\n一方、自分の新しい本番180試合では、96敗中32件で終局時にAbra系のポケモンが場から消えていた。\nそこで、妨害カードを1枚減らし、ポケモンを回収するカードを1枚増やした候補を作った。\n短い比較では123/160勝で、比較元の115/160勝を上回った。別条件の296試合でも192勝対170勝で、観測上は+7.432ptだった。\nそれでも不採用にした。\n比較元側で、最大手数へ到達する時間切れが1件起きたからだ。変更版自身の時間切れは0だったが、事前に「比較する両方で安全上の問題が0件」と決めていた。\nこれは変更版が危険だと証明した結果ではない。この比較を採用根拠として使うための条件が満たされなかったという結果である。\n数字が良かった後で例外を作らず、再試行も基準変更もせず、その候補を閉じた。\n事前に決めた条件が本当に役立つのは、守るのが簡単な時ではない。守ると惜しい結果を失う時である。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "Kaggle Pokemon TCG参加記録"
-    ]
-  },
-  {
-    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#番外編文章生成aiをそのままプレイヤーにしたら",
-    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#番外編文章生成aiをそのままプレイヤーにしたら",
-    "title": "Kaggle Pokemon TCG参加記録",
-    "section": "番外編：文章生成AIを、そのままプレイヤーにしたら",
-    "text": "番外編：文章生成AIを、そのままプレイヤーにしたら\n8月には、ChatGPTのように文章を生成する大規模言語モデル、いわゆるLLMを教師やプレイヤーとして使う実験も行った。提出本線には一切入れていない。\n最初はGemma 4 31Bというモデルへ「この場面では何を選ぶか」を尋ねつつ、安全のため既存ルールへ戻れる形で5試合を行った。結果は5勝だった。\nしかしログを調べると、Gemmaの提案は一度も実行されていなかった。実際の行動は、毎回既存の強いルールへ戻っていた。\n証明できたのは「既存ルールが5勝した」ことだけで、Gemmaの強さではなかった。そこで同日中に記録を訂正した。\n次に、安全網なしでGemma自身へ行動を選ばせた。5試合で2勝2敗、技術的な失敗が1件。単純なランダム相手には勝ち、強いルール相手には負けた。AIが読み書きした文章量は約111万token、費用は約0.155ドルだった。\n別条件の10試合は、すべて最後まで動いたが0勝10敗。低価格な3モデルを比べた実験は、15試合すべてが通信や出力形式の問題で失敗し、完了した試合は0だった。\nプログラミング支援AIのCodexを教師として使う実験では、300種類の盤面すべてで、形式上正しくルール違反のない回答を返した。\nしかし、別々に動かした3個のCodexが同じ答えを選んだ割合は63.3%。主要な行動選択では44.4%、選択肢が11個以上ある難しい場面では33.3%だった。さらに、先読みで支持できた回答は0件だった。\n小規模な対戦では良い数字が出た実験もあったが、モデルや条件を固定した別の2試合では0勝2敗だった。試合数が少なく、相手も一種類なので、正式な強さの根拠にはしていない。\n\nルール違反なく答えること、複数回同じ答えを返すこと、最後まで動くこと、安く動くこと、強いこと、そして同じ結果を再現できることは、すべて別の条件だった。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "Kaggle Pokemon TCG参加記録"
-    ]
-  },
-  {
-    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#この開発で残った六つの教訓",
-    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#この開発で残った六つの教訓",
-    "title": "Kaggle Pokemon TCG参加記録",
-    "section": "この開発で残った六つの教訓",
-    "text": "この開発で残った六つの教訓\n\n1. 強い人のデッキを観察することが、最も安い大改善だった\n探索方法を変えず、60枚を上位デッキへ合わせただけで、観測上は+12.38ptだった。ただし、カード構成と行動ルールの相性確認は必要である。\n\n\n2. 既存知識を残した先読みが、学習より先に効いた\nルールを捨てず、見えない情報だけを複数の世界として補う探索は、旧デッキのままでも+8.25ptだった。\n\n\n3. 記録済みデータへの正解率は、実戦の強さではない\n139万局面で予測性能が上がったモデルも、Transformerの小さな改善も、実対戦では昇格できなかった。最後に必要なのは、同じ条件での対戦結果と安全性だった。\n\n\n4. 「動かなかった」と「動いて弱かった」を分ける\n対象場面がなく行動を変えない案は、安い確認で止める。十分に動いた上で負けた案は、何度もやり直さず、強さの問題として閉じる。\n\n\n5. 敗因につけた名前も疑う\n当初「場のポケモンが全滅した」と分類した16敗は、詳しく見直すと本当の全滅が6敗だけだった。ログの見た目ではなく、攻撃回数や資源の変化まで確認する必要がある。\n\n\n6. 評価方法も、エージェントと同じくらい作り込む\n先攻と後攻の入れ替え、現行版との同時比較、未使用の初期条件、統計上の幅、時間切れ0、実験前に決めた停止条件。これらは慎重さの飾りではない。\n何十個もの候補を試すと、偶然よく見える案は必ず出てくる。それを「改善」と誤認しないための仕組みだった。",
-    "crumbs": [
-      "Home",
-      "Posts",
-      "Tech",
-      "Kaggle Pokemon TCG参加記録"
-    ]
-  },
-  {
-    "objectID": "posts/tech/KagglePokemonTCGParticipationRecord.html#現在地",
-    "href": "posts/tech/KagglePokemonTCGParticipationRecord.html#現在地",
-    "title": "Kaggle Pokemon TCG参加記録",
-    "section": "現在地",
-    "text": "現在地\n2026年8月9日時点で、提出の中心は次の構成で凍結している。\n\n2026年7月14日に確認した上位Alakazamの60枚。\nカードごとの使い方を記述したルール。\n見えないカード配置を複数作り、有望な行動へ計算を集中する探索。\n山札切れまでの攻撃回数と、勝利までに必要な攻撃回数を比べるP2-S補正。\n\nこの組み合わせは、修正後の採用条件を5項目すべて通過した。最終1,000試合では783勝216敗1分、全10種類の相手に勝ち越し、安全上のエラーは0だった。\n8月6日には提出用ファイルを別の場所へ展開し直し、プログラムを読み込めること、デッキが60枚あること、主要カードの枚数、必要ファイルの内容が最終版と一致することまで確認して凍結した。\n機械学習を完全に諦めたわけではない。ただし次に使うなら、既存の強い探索を丸ごと置き換える役ではなく、安定した教師データと十分な出番を先に確認できる、小さな補助に限る。\n\nこの開発で強くなったのは、AIだけではなかった。何を勝利と呼び、どの失敗を数え、どの魅力的な結果を採用しないか。最後までいちばん長く鍛えられたのは、評価方法そのものだった。\n\n\nこの記事は、2026年8月9日時点の実験記録をもとにした中間総括である。勝率はそれぞれの対戦相手、試合数、実行条件と一緒に読む必要があり、Kaggle本番での普遍的な強さを保証するものではない。",
+    "section": "8月9日時点で残したもの",
+    "text": "8月9日時点で残したもの\n提出の中心として凍結したのは、次の四つだった。\n\n2026年7月14日に確認した上位Alakazamの60枚\nカードごとの使い方を書いたルール\n見えないカード配置を複数作り、有望な行動へ計算を寄せるbelief search\n山札切れまでの攻撃回数と、勝利までに必要な攻撃回数を比べるP2-S\n\nこの組み合わせは、修正後の採用条件を五つとも通った。最終1,000試合は783勝216敗1分。10種類すべての相手に勝ち越し、timeoutや不正な行動は0だった。\n8月6日には提出用ファイルを別の場所へ展開し直し、プログラムを読み込めること、デッキが60枚あること、主要カードの枚数、必要ファイルの内容が最終版と一致することまで確認して凍結した。\n機械学習を完全に諦めたわけではない。\nでも次に使うなら、既存の強い探索を丸ごと置き換える役ではなく、安定した教師データと十分な出番を先に確認できる、小さな補助にする。\n結局、この2か月で難しかったのは、強そうな候補を作ることより、惜しい数字をちゃんと捨てることだった。",
     "crumbs": [
       "Home",
       "Posts",
